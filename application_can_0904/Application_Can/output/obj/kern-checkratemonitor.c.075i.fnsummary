@@ -1,0 +1,214 @@
+
+Analyzing function: OS_CheckRateMonitor/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11 12
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 7 5 }
+;; 5 succs { 6 9 }
+;; 6 succs { 7 9 }
+;; 7 succs { 12 8 }
+;; 8 succs { 12 9 }
+;; 9 succs { 10 11 }
+;; 10 succs { 12 }
+;; 11 succs { 12 }
+;; 12 succs { 1 }
+
+Analyzing function body size: OS_CheckRateMonitor
+
+IPA function summary for OS_CheckRateMonitor/0 inlinable
+  global time:     35.255000
+  self size:       38
+  global size:     0
+  min size:       0
+  self stack:      8
+  global stack:    8
+    size:33.000000, time:22.255000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  array index:(op0 changed)
+  calls:
+    OS_GetTimeStampGeneric/3 function body not available
+      loop depth: 0 freq:1.00 size: 2 time: 11
+       op0 is compile time invariant
+
+Symbol table:
+
+OS_GetTimeStampGeneric/3 (OS_GetTimeStampGeneric) @06c9cc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CheckRateMonitor/0 (1073741823 (estimated locally),1.00 per call) 
+  Calls: 
+OS_rateIndex/2 (OS_rateIndex) @06c799d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_CheckRateMonitor/0 (read)OS_CheckRateMonitor/0 (write)OS_CheckRateMonitor/0 (write)
+  Availability: not_available
+  Varpool flags:
+OS_rateMonitor/1 (OS_rateMonitor) @06c79990
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_CheckRateMonitor/0 (read)OS_CheckRateMonitor/0 (read)OS_CheckRateMonitor/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CheckRateMonitor/0 (OS_CheckRateMonitor) @06c9ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_rateIndex/2 (read)OS_rateMonitor/1 (read)OS_rateMonitor/1 (read)OS_rateMonitor/1 (read)OS_rateIndex/2 (write)OS_rateIndex/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_GetTimeStampGeneric/3 (1073741823 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_CheckRateMonitor (os_ratemonitorid_t rmi)
+{
+  unsigned int frameEnd$tsHi;
+  os_rateindex_t i;
+  os_boolean_t result;
+  struct os_timestamp_t now;
+  int _1;
+  struct os_timestamp_t * _2;
+  unsigned int _3;
+  unsigned int _4;
+  struct os_timestamp_t * _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned char _15;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) rmi_18(D);
+  # DEBUG D#1 => &OS_rateMonitor[_1]
+  # DEBUG rm => D#1
+  # DEBUG BEGIN_STMT
+  # DEBUG D#2 => &OS_rateIndex[_1]
+  # DEBUG ri => D#2
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&now);
+  # DEBUG BEGIN_STMT
+  i_22 = MEM[(os_rateindex_t *)&OS_rateIndex][_1];
+  # DEBUG i => i_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct os_ratemonitor_t *)&OS_rateMonitor][_1].ringBuffer;
+  _3 = (unsigned int) i_22;
+  _4 = _3 * 8;
+  _5 = _2 + _4;
+  _6 = _5->tsHi;
+  # DEBUG frameEnd$tsHi => _6
+  # DEBUG BEGIN_STMT
+  _7 = _5->tsLo;
+  _8 = MEM[(const struct os_ratemonitor_t *)&OS_rateMonitor][_1].timeLimit;
+  _9 = ~_8;
+  if (_7 > _9)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  _10 = _6 + 1;
+  # DEBUG frameEnd$tsHi => _10
+
+  <bb 4> [local count: 1073741823]:
+  # frameEnd$tsHi_19 = PHI <_6(2), _10(3)>
+  # DEBUG frameEnd$tsHi => frameEnd$tsHi_19
+  # DEBUG BEGIN_STMT
+  _11 = _7 + _8;
+  # DEBUG frameEnd$tsLo => _11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = now.tsHi;
+  if (_12 < frameEnd$tsHi_19)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 536870911]:
+  if (_12 == frameEnd$tsHi_19)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 6> [local count: 182536110]:
+  _13 = now.tsLo;
+  if (_11 > _13)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 7> [local count: 628138967]:
+  if (_6 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 8> [local count: 314069483]:
+  if (_7 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 9> [local count: 602637599]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = now.tsLo;
+  _5->tsLo = _14;
+  # DEBUG BEGIN_STMT
+  _5->tsHi = _12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_25 = i_22 + 1;
+  # DEBUG i => i_25
+  # DEBUG BEGIN_STMT
+  _15 = MEM[(const struct os_ratemonitor_t *)&OS_rateMonitor][_1].countLimit;
+  if (_15 <= i_25)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 301318799]:
+  # DEBUG BEGIN_STMT
+  MEM[(os_rateindex_t *)&OS_rateIndex][_1] = 0;
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 301318799]:
+  # DEBUG BEGIN_STMT
+  MEM[(os_rateindex_t *)&OS_rateIndex][_1] = i_25;
+
+  <bb 12> [local count: 1073741824]:
+  # result_16 = PHI <1(8), 0(10), 0(11), 1(7)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  now ={v} {CLOBBER};
+  return result_16;
+
+}
+
+

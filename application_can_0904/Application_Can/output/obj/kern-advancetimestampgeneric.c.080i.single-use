@@ -1,0 +1,65 @@
+__attribute__((target ("general-regs-only")))
+OS_AdvanceTimeStampGeneric (os_timervalue_t newTmrVal)
+{
+  const os_intstatus_t is;
+  const struct os_hwt_t * const ptimeStampTimer;
+  os_timervalue_t diff;
+  short unsigned int OS_intDisableLevelMax.0_1;
+  unsigned int OS_lastTimeStampTime.1_2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ptimeStampTimer_12 = OS_timeStampTimer;
+  # DEBUG ptimeStampTimer => ptimeStampTimer_12
+  # DEBUG BEGIN_STMT
+  # DEBUG plastTimeStampTime => &OS_lastTimeStampTime
+  # DEBUG BEGIN_STMT
+  # DEBUG ptimeStampValue => &OS_timeStampValue
+  # DEBUG BEGIN_STMT
+  OS_intDisableLevelMax.0_1 = OS_intDisableLevelMax;
+  is_14 = OS_CORTEXM_IntSetDisablingLevel (OS_intDisableLevelMax.0_1);
+  # DEBUG is => is_14
+  # DEBUG BEGIN_STMT
+  OS_lastTimeStampTime.1_2 = OS_lastTimeStampTime;
+  _3 = newTmrVal_15(D) - OS_lastTimeStampTime.1_2;
+  _4 = ptimeStampTimer_12->wrapMask;
+  diff_16 = _3 & _4;
+  # DEBUG diff => diff_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = OS_timeStampValue.tsHi;
+  # DEBUG BEGIN_STMT
+  _6 = OS_timeStampValue.tsLo;
+  _7 = ~diff_16;
+  if (_6 > _7)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _8 = _5 + 1;
+  OS_timeStampValue.tsHi = _8;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _9 = _6 + diff_16;
+  OS_timeStampValue.tsLo = _9;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_lastTimeStampTime = newTmrVal_15(D);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_14);
+  return;
+
+}
+
+

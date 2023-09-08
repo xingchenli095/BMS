@@ -1,0 +1,243 @@
+__attribute__((target ("general-regs-only")))
+OS_KernShutdownOs (os_result_t code)
+{
+  const struct os_appcontext_t * const app;
+  os_paramtype_t p[3];
+  const struct os_appcontext_t * iftmp.11;
+  const struct os_appcontext_t * iftmp.9;
+  const struct os_appcontext_t * iftmp.8;
+  int iftmp.1;
+  _Bool iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) code;
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = OS_permittedContext.2_3 + 86;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_8 = OS_permittedContext;
+  _9 = OS_permittedContext.3_8 + 86;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1 = 0;
+
+  <bb 7> :
+  iftmp.0 = iftmp.1 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_16 = OS_permittedContext;
+  _17 = OS_permittedContext.4_16 + 86;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.0 = _23 == 0;
+
+  <bb 9> :
+  if (iftmp.0 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_24 = OS_configMode;
+  _25 = OS_configMode.5_24 & 1024;
+  if (_25 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_ShutdownOs, 12, &p);
+  goto <bb 34>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_26 = OS_iecMode;
+  if (OS_iecMode.6_26 > 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 13> :
+  _27 = OS_kernelData.inFunction;
+  if (_27 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _28 = OS_kernelData.taskCurrent;
+  _29 = _28->dynamic;
+  _30 = BIT_FIELD_REF <MEM[(void *)_29], 16, 160>;
+  _31 = _30;
+  if (_31 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  _32 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _33 = _32;
+  if (_33 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.7_34 = OS_configMode;
+  _35 = OS_configMode.7_34 & 1024;
+  if (_35 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_ShutdownOs, 55, &p);
+  goto <bb 34>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _36 = OS_kernelData.inFunction;
+  if (_36 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  _37 = OS_kernelData.taskCurrent;
+  iftmp.8 = _37->app;
+  goto <bb 29>; [INV]
+
+  <bb 20> :
+  _38 = OS_kernelData.inFunction;
+  if (_38 == 3)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  OS_isrTableBase.10_39 = OS_isrTableBase;
+  _40 = OS_kernelData.isrCurrent;
+  _41 = (unsigned int) _40;
+  _42 = _41 * 68;
+  _43 = OS_isrTableBase.10_39 + _42;
+  iftmp.9 = _43->app;
+  goto <bb 28>; [INV]
+
+  <bb 22> :
+  _44 = OS_kernelData.inFunction;
+  if (_44 == 10)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _45 = OS_kernelData.inFunction;
+  if (_45 == 8)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  _46 = OS_kernelData.inFunction;
+  if (_46 == 9)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  iftmp.11 = OS_kernelData.hookApp;
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  iftmp.11 = 0B;
+
+  <bb 27> :
+  iftmp.9 = iftmp.11;
+
+  <bb 28> :
+  iftmp.8 = iftmp.9;
+
+  <bb 29> :
+  app = iftmp.8;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 30> :
+  _47 = app->flags;
+  _48 = (unsigned int) _47;
+  _49 = _48 & 1;
+  if (_49 != 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (code, 0);
+  goto <bb 34>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.12_50 = OS_configMode;
+  _51 = OS_configMode.12_50 & 1024;
+  if (_51 != 0)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_ShutdownOs, 62, &p);
+
+  <bb 34> :
+  p = {CLOBBER};
+  return;
+
+}
+
+

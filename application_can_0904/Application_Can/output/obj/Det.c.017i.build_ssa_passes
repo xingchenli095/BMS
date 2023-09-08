@@ -1,0 +1,304 @@
+Det_ASR40_ReportError (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  Std_ReturnType retVal;
+  Std_ReturnType D.5521;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal = Det_ReportErrorStatus (0, ModuleId, InstanceId, ApiId, ErrorId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5521 = retVal;
+  return D.5521;
+
+}
+
+
+Det_ASR43_ReportRuntimeError (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  Std_ReturnType retVal;
+  Std_ReturnType D.5519;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal = Det_ReportErrorStatus (1, ModuleId, InstanceId, ApiId, ErrorId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5519 = retVal;
+  return D.5519;
+
+}
+
+
+Det_ASR43_ReportTransientFault (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 FaultId)
+{
+  Std_ReturnType retVal;
+  Std_ReturnType D.5507;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal = Det_ReportErrorStatus (2, ModuleId, InstanceId, ApiId, FaultId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5507 = retVal;
+  return D.5507;
+
+}
+
+
+Det_ReportErrorStatus (uint8 ErrorType, uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  uint16 * Det_ErrorLost;
+  uint16 * Det_UsedSlots;
+  uint16 * Det_WriteIndex;
+  Std_ReturnType transientFaultRetVal;
+  Std_ReturnType D.5516;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  transientFaultRetVal = 0;
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex = 0B;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots = 0B;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost = 0B;
+  # DEBUG BEGIN_STMT
+  Det_State.1_1 = Det_State;
+  if (Det_State.1_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ErrorType;
+  switch (_2) <default: <L13> [INV], case 0: <L1> [INV], case 1: <L2> [INV], case 2: <L3> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex = &Det_WriteIndex_DevelopmentError;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots = &Det_UsedSlots_DevelopmentError;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost = &Det_ErrorLost_DevelopmentError;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex = &Det_WriteIndex_RuntimeError;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots = &Det_UsedSlots_RuntimeError;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost = &Det_ErrorLost_RuntimeError;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex = &Det_WriteIndex_TransientFault;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots = &Det_UsedSlots_TransientFault;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost = &Det_FaultLost_TransientFault;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  Det_Enter_SCHM_DET_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (int) ErrorType;
+  _4 = *Det_WriteIndex;
+  _5 = (int) _4;
+  Det_ErrorBuffer[_3][_5].ModuleId = ModuleId;
+  # DEBUG BEGIN_STMT
+  _6 = (int) ErrorType;
+  _7 = *Det_WriteIndex;
+  _8 = (int) _7;
+  Det_ErrorBuffer[_6][_8].InstanceId = InstanceId;
+  # DEBUG BEGIN_STMT
+  _9 = (int) ErrorType;
+  _10 = *Det_WriteIndex;
+  _11 = (int) _10;
+  Det_ErrorBuffer[_9][_11].ApiId = ApiId;
+  # DEBUG BEGIN_STMT
+  _12 = (int) ErrorType;
+  _13 = *Det_WriteIndex;
+  _14 = (int) _13;
+  Det_ErrorBuffer[_12][_14].ErrorId = ErrorId;
+  # DEBUG BEGIN_STMT
+  _15 = *Det_WriteIndex;
+  _16 = _15 + 1;
+  *Det_WriteIndex = _16;
+  # DEBUG BEGIN_STMT
+  _17 = *Det_WriteIndex;
+  _18 = _17 % 10;
+  *Det_WriteIndex = _18;
+  # DEBUG BEGIN_STMT
+  _19 = *Det_UsedSlots;
+  if (_19 <= 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _20 = *Det_UsedSlots;
+  _21 = _20 + 1;
+  *Det_UsedSlots = _21;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _22 = *Det_ErrorLost;
+  if (_22 != 65535)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _23 = *Det_ErrorLost;
+  _24 = _23 + 1;
+  *Det_ErrorLost = _24;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_Exit_SCHM_DET_EXCLUSIVE_AREA_0 ();
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.5516 = transientFaultRetVal;
+  return D.5516;
+
+}
+
+
+Det_Start ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_State.0_1 = Det_State;
+  if (Det_State.0_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_State = 2;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Det_Init ()
+{
+  uint8 Det_ErrorType;
+  uint16 Det_ErrorNumber;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ErrorType = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ErrorNumber = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Det_ErrorType;
+  _2 = (int) Det_ErrorNumber;
+  Det_ErrorBuffer[_1][_2].ModuleId = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) Det_ErrorType;
+  _4 = (int) Det_ErrorNumber;
+  Det_ErrorBuffer[_3][_4].InstanceId = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) Det_ErrorType;
+  _6 = (int) Det_ErrorNumber;
+  Det_ErrorBuffer[_5][_6].ApiId = 0;
+  # DEBUG BEGIN_STMT
+  _7 = (int) Det_ErrorType;
+  _8 = (int) Det_ErrorNumber;
+  Det_ErrorBuffer[_7][_8].ErrorId = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorNumber = Det_ErrorNumber + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (Det_ErrorNumber <= 9)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ErrorType = Det_ErrorType + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Det_ErrorType <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_FaultLost_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_State = 1;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

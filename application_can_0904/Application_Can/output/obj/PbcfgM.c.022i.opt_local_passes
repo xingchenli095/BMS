@@ -1,0 +1,349 @@
+PbcfgM_AreTheModuleConfigsValid (const struct PbcfgM_ConfigType * PbcfgM_ConfigPtr)
+{
+  const void * const PbcfgMModuleConfigPtr;
+  const struct PbcfgM_ModuleConfigEntryType * const ConfigEntriesPtr;
+  uint16_least Index;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  const struct PbcfgM_ModuleConfigEntryType * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  const struct PbcfgM_ModuleConfigEntryType * _6;
+  long unsigned int _7;
+  Std_ReturnType (*<T493>) (const void *) _8;
+  unsigned char _9;
+  Std_ReturnType (*<T493>) (const void *) _10;
+  const void * iftmp.7_13;
+  const void * iftmp.7_21;
+  const void * iftmp.7_22;
+  Std_ReturnType _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 0;
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  Index_17 = 0;
+  # DEBUG Index => Index_17
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = PbcfgM_ConfigPtr_19(D)->ConfigEntryRef;
+  ConfigEntriesPtr_20 = PbcfgM_ConfigPtr_19(D) + _1;
+  # DEBUG ConfigEntriesPtr => ConfigEntriesPtr_20
+  # DEBUG BEGIN_STMT
+  _2 = Index_12 * 8;
+  _3 = ConfigEntriesPtr_20 + _2;
+  _4 = _3->ConfigRef;
+  if (_4 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  _5 = Index_12 * 8;
+  _6 = ConfigEntriesPtr_20 + _5;
+  _7 = _6->ConfigRef;
+  iftmp.7_22 = PbcfgM_ConfigPtr_19(D) + _7;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.7_21 = 0B;
+
+  <bb 6> :
+  # iftmp.7_13 = PHI <iftmp.7_22(4), iftmp.7_21(5)>
+  PbcfgMModuleConfigPtr_23 = iftmp.7_13;
+  # DEBUG PbcfgMModuleConfigPtr => PbcfgMModuleConfigPtr_23
+  # DEBUG BEGIN_STMT
+  _8 = PbcfgM_IsValidCfgFuncPtr[Index_12];
+  _9 = _8 (PbcfgMModuleConfigPtr_23);
+  if (_9 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_26 = 1;
+  # DEBUG RetVal => RetVal_26
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Index_25 = Index_12 + 1;
+  # DEBUG Index => Index_25
+
+  <bb 9> :
+  # Index_12 = PHI <Index_17(2), Index_25(8)>
+  # DEBUG Index => Index_12
+  # DEBUG BEGIN_STMT
+  _10 = PbcfgM_IsValidCfgFuncPtr[Index_12];
+  if (_10 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # RetVal_11 = PHI <RetVal_26(7), RetVal_16(9)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  _27 = RetVal_11;
+  return _27;
+
+}
+
+
+PbcfgM_IsValidConfig (const struct PbcfgM_ConfigType * PbcfgM_ConfigPtr)
+{
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int PbcfgM_LcfgSignature.6_6;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 1;
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (PbcfgM_ConfigPtr_10(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = PbcfgM_ConfigPtr_10(D)->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = PbcfgM_ConfigPtr_10(D)->PublicInfoSignature;
+  if (_3 == 3637215948)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = PbcfgM_ConfigPtr_10(D)->CfgSignature;
+  if (_4 == 2582618360)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = PbcfgM_ConfigPtr_10(D)->LcfgSignature;
+  PbcfgM_LcfgSignature.6_6 = PbcfgM_LcfgSignature;
+  if (_5 == PbcfgM_LcfgSignature.6_6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = PbcfgM_AreTheModuleConfigsValid (PbcfgM_ConfigPtr_10(D));
+  # DEBUG RetVal => RetVal_14
+
+  <bb 8> :
+  # RetVal_7 = PHI <RetVal_9(2), RetVal_9(3), RetVal_9(4), RetVal_9(5), RetVal_9(6), RetVal_14(7)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = RetVal_7;
+  return _15;
+
+}
+
+
+PbcfgM_GetConfig (uint16 PbcfgM_ModuleId, uint16 PbcfgM_InstanceId, const void * * PbcfgM_ModuleConfigPtr)
+{
+  const struct PbcfgM_ModuleConfigEntryType * const pConfigEntries;
+  uint16_least Index;
+  Std_ReturnType Result;
+  unsigned char PbcfgM_InitStatus.0_1;
+  const struct PbcfgM_ConfigType * PbcfgM_GConfigPtr.1_2;
+  const struct PbcfgM_ConfigType * PbcfgM_GConfigPtr.2_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  const struct PbcfgM_ModuleConfigEntryType * _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  const struct PbcfgM_ModuleConfigEntryType * _9;
+  short unsigned int _10;
+  long unsigned int _11;
+  const struct PbcfgM_ModuleConfigEntryType * _12;
+  long unsigned int _13;
+  const struct PbcfgM_ConfigType * PbcfgM_GConfigPtr.4_14;
+  long unsigned int _15;
+  const struct PbcfgM_ModuleConfigEntryType * _16;
+  long unsigned int _17;
+  const struct PbcfgM_ConfigType * PbcfgM_GConfigPtr.5_18;
+  short unsigned int _19;
+  long unsigned int _20;
+  const void * iftmp.3_23;
+  const void * iftmp.3_32;
+  const void * iftmp.3_33;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_25 = 1;
+  # DEBUG Result => Result_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PbcfgM_InitStatus.0_1 = PbcfgM_InitStatus;
+  if (PbcfgM_InitStatus.0_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (32769, 0, 2, 32);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (PbcfgM_ModuleConfigPtr_27(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (32769, 0, 2, 17);
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PbcfgM_GConfigPtr.1_2 = PbcfgM_GConfigPtr;
+  PbcfgM_GConfigPtr.2_3 = PbcfgM_GConfigPtr;
+  _4 = PbcfgM_GConfigPtr.2_3->ConfigEntryRef;
+  pConfigEntries_28 = PbcfgM_GConfigPtr.1_2 + _4;
+  # DEBUG pConfigEntries => pConfigEntries_28
+  # DEBUG BEGIN_STMT
+  Index_29 = 0;
+  # DEBUG Index => Index_29
+  goto <bb 14>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = Index_22 * 8;
+  _6 = pConfigEntries_28 + _5;
+  _7 = _6->ModuleId;
+  if (PbcfgM_ModuleId_30(D) == _7)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = Index_22 * 8;
+  _9 = pConfigEntries_28 + _8;
+  _10 = _9->InstanceId;
+  if (PbcfgM_InstanceId_31(D) == _10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _11 = Index_22 * 8;
+  _12 = pConfigEntries_28 + _11;
+  _13 = _12->ConfigRef;
+  if (_13 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  PbcfgM_GConfigPtr.4_14 = PbcfgM_GConfigPtr;
+  _15 = Index_22 * 8;
+  _16 = pConfigEntries_28 + _15;
+  _17 = _16->ConfigRef;
+  iftmp.3_33 = PbcfgM_GConfigPtr.4_14 + _17;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.3_32 = 0B;
+
+  <bb 12> :
+  # iftmp.3_23 = PHI <iftmp.3_33(10), iftmp.3_32(11)>
+  *PbcfgM_ModuleConfigPtr_27(D) = iftmp.3_23;
+  # DEBUG BEGIN_STMT
+  Result_35 = 0;
+  # DEBUG Result => Result_35
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Index_36 = Index_22 + 1;
+  # DEBUG Index => Index_36
+
+  <bb 14> :
+  # Index_22 = PHI <Index_29(6), Index_36(13)>
+  # DEBUG Index => Index_22
+  # DEBUG BEGIN_STMT
+  PbcfgM_GConfigPtr.5_18 = PbcfgM_GConfigPtr;
+  _19 = PbcfgM_GConfigPtr.5_18->numConfigEntry;
+  _20 = (long unsigned int) _19;
+  if (Index_22 < _20)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # Result_21 = PHI <Result_25(3), Result_25(5), Result_35(12), Result_25(14)>
+  # DEBUG Result => Result_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _39 = Result_21;
+  return _39;
+
+}
+
+
+PbcfgM_Init (const struct PbcfgM_ConfigType * PbcfgM_ConfigPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (PbcfgM_ConfigPtr_2(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (32769, 0, 1, 17);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PbcfgM_GConfigPtr = PbcfgM_ConfigPtr_2(D);
+  # DEBUG BEGIN_STMT
+  PbcfgM_InitStatus = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

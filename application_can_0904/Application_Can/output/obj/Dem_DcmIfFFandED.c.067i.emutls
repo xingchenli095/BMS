@@ -1,0 +1,2484 @@
+No TLS variables found.
+Dem_CopyFFInfo.isra.0 (const struct Dem_FFClassType * IndividPartFFClass, const Dem_EntryDataType * FFEntryData, uint8 * DestBuffer)
+{
+  Dem_NumFFSegsType SegIdx;
+  Dem_SizeEntryDataType Offset;
+  Dem_SizeEntryDataType StartByte;
+  uint8_least FFPartIdx;
+  const Dem_FFSegIdxType FFSegIdx;
+  const Dem_SizeFFType FFSegSize;
+  const Dem_FFSegIdxType * _2;
+  unsigned int _4;
+  unsigned int _5;
+  const Dem_FFSegIdxType * _6;
+  int _8;
+  const struct Dem_FFSegmentType * _9;
+  short unsigned int _11;
+  short unsigned int _12;
+  sizetype _14;
+  uint8 * _16;
+  unsigned char _17;
+  sizetype _18;
+  uint8 * _19;
+  unsigned char _20;
+  sizetype _22;
+  uint8 * _23;
+  sizetype _25;
+  const Dem_EntryDataType * _27;
+  long unsigned int _28;
+  unsigned char _32;
+
+  <bb 11> [local count: 118111600]:
+  # DEBUG FFKind s=> FFKind
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Offset => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG StartByte => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FFPartClass$0 => IndividPartFFClass_1(D)
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FFPartIdx => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 3> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  _2 = IndividPartFFClass_1(D)->FFSegIdx;
+  _4 = (unsigned int) SegIdx_3;
+  _5 = _4 * 2;
+  _6 = _2 + _5;
+  FFSegIdx_7 = *_6;
+  # DEBUG FFSegIdx => FFSegIdx_7
+  # DEBUG BEGIN_STMT
+  if (FFSegIdx_7 != 65535)
+    goto <bb 4>; [48.88%]
+  else
+    goto <bb 5>; [51.12%]
+
+  <bb 4> [local count: 467112053]:
+  # DEBUG BEGIN_STMT
+  _8 = (int) FFSegIdx_7;
+  _9 = &Dem_FFSegment[_8];
+  FFSegSize_10 = Dem_SizeOfFFSegment (_9);
+  # DEBUG FFSegSize => FFSegSize_10
+  # DEBUG BEGIN_STMT
+  _11 = Dem_FFSegment[_8].DataId;
+  _12 = _11 >> 8;
+  _14 = (sizetype) Offset_13;
+  _16 = DestBuffer_15(D) + _14;
+  _17 = (unsigned char) _12;
+  *_16 = _17;
+  # DEBUG BEGIN_STMT
+  _18 = _14 + 1;
+  _19 = DestBuffer_15(D) + _18;
+  _20 = (unsigned char) _11;
+  *_19 = _20;
+  # DEBUG BEGIN_STMT
+  Offset_21 = Offset_13 + 2;
+  # DEBUG Offset => Offset_21
+  # DEBUG BEGIN_STMT
+  _22 = (sizetype) Offset_21;
+  _23 = DestBuffer_15(D) + _22;
+  _25 = (sizetype) StartByte_24;
+  _27 = FFEntryData_26(D) + _25;
+  _28 = (long unsigned int) FFSegSize_10;
+  TS_MemCpy32 (_23, _27, _28);
+  # DEBUG BEGIN_STMT
+  StartByte_29 = FFSegSize_10 + StartByte_24;
+  # DEBUG StartByte => StartByte_29
+  # DEBUG BEGIN_STMT
+  Offset_30 = FFSegSize_10 + Offset_21;
+  # DEBUG Offset => Offset_30
+
+  <bb 5> [local count: 955630225]:
+  # Offset_34 = PHI <Offset_13(3), Offset_30(4)>
+  # StartByte_35 = PHI <StartByte_24(3), StartByte_29(4)>
+  # DEBUG StartByte => StartByte_35
+  # DEBUG Offset => Offset_34
+  # DEBUG BEGIN_STMT
+  SegIdx_31 = SegIdx_3 + 1;
+  # DEBUG SegIdx => SegIdx_31
+
+  <bb 6> [local count: 1073741824]:
+  # SegIdx_3 = PHI <SegIdx_31(5), 0(9)>
+  # Offset_13 = PHI <Offset_34(5), Offset_36(9)>
+  # StartByte_24 = PHI <StartByte_35(5), StartByte_37(9)>
+  # DEBUG StartByte => StartByte_24
+  # DEBUG Offset => Offset_13
+  # DEBUG SegIdx => SegIdx_3
+  # DEBUG BEGIN_STMT
+  _32 = IndividPartFFClass_1(D)->NumFFSegs;
+  if (SegIdx_3 < _32)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+
+  <bb 8> [local count: 236223200]:
+  # Offset_36 = PHI <0(2), Offset_13(7)>
+  # StartByte_37 = PHI <0(2), StartByte_24(7)>
+  # FFPartIdx_33 = PHI <0(2), 1(7)>
+  # DEBUG FFPartIdx => FFPartIdx_33
+  # DEBUG StartByte => StartByte_37
+  # DEBUG Offset => Offset_36
+  # DEBUG BEGIN_STMT
+  if (FFPartIdx_33 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 118111600]:
+  goto <bb 6>; [100.00%]
+
+  <bb 10> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => {CLOBBER}
+  # DEBUG FFPartClass$0 => D#1
+  return;
+
+}
+
+
+Dem_FindNextEDRecForReporting (const struct Dem_EDClassType * EDClass, uint8 RecordNumberToSearch, const struct Dem_EDSegmentType * * FoundEDSegment, Dem_EDStartByteType * EDStartByte)
+{
+  uint8 EDSegRecNum;
+  uint8 NextAvailableRecNum;
+  Dem_EDSegIdxType FoundSegIndex;
+  Dem_EDSegIdxType SegIndex;
+  boolean Result;
+  const Dem_EDSegIdxType * _1;
+  sizetype _2;
+  const Dem_EDSegIdxType * _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  const Dem_EDStartByteType * _7;
+  unsigned int _8;
+  unsigned int _9;
+  const Dem_EDStartByteType * _10;
+  short unsigned int _11;
+  const Dem_EDSegIdxType * _12;
+  const Dem_EDSegIdxType * _14;
+  unsigned char _15;
+  int _16;
+  const struct Dem_EDSegmentType * _17;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundSegIndex => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG NextAvailableRecNum => 240
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SegIndex => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _1 = EDClass_26(D)->EDSegIdx;
+  _2 = (sizetype) SegIndex_19;
+  _3 = _1 + _2;
+  _4 = *_3;
+  _5 = (int) _4;
+  EDSegRecNum_32 = Dem_EDSegment[_5].RecNum;
+  # DEBUG EDSegRecNum => EDSegRecNum_32
+  # DEBUG BEGIN_STMT
+  if (EDSegRecNum_32 >= RecordNumberToSearch_33(D))
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 477815111]:
+  if (NextAvailableRecNum_23 > EDSegRecNum_32)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 238907556]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NextAvailableRecNum => EDSegRecNum_32
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundSegIndex => SegIndex_19
+
+  <bb 6> [local count: 955630223]:
+  # FoundSegIndex_20 = PHI <FoundSegIndex_21(3), FoundSegIndex_21(4), SegIndex_19(5)>
+  # NextAvailableRecNum_22 = PHI <NextAvailableRecNum_23(3), NextAvailableRecNum_23(4), EDSegRecNum_32(5)>
+  # DEBUG NextAvailableRecNum => NextAvailableRecNum_22
+  # DEBUG FoundSegIndex => FoundSegIndex_20
+  # DEBUG BEGIN_STMT
+  SegIndex_34 = SegIndex_19 + 1;
+  # DEBUG SegIndex => SegIndex_34
+
+  <bb 7> [local count: 1073741824]:
+  # SegIndex_19 = PHI <0(2), SegIndex_34(6)>
+  # FoundSegIndex_21 = PHI <0(2), FoundSegIndex_20(6)>
+  # NextAvailableRecNum_23 = PHI <240(2), NextAvailableRecNum_22(6)>
+  # DEBUG NextAvailableRecNum => NextAvailableRecNum_23
+  # DEBUG FoundSegIndex => FoundSegIndex_21
+  # DEBUG SegIndex => SegIndex_19
+  # DEBUG BEGIN_STMT
+  _6 = EDClass_26(D)->NumEDSegs;
+  if (_6 > SegIndex_19)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 118111601]:
+  # FoundSegIndex_13 = PHI <FoundSegIndex_21(7)>
+  # NextAvailableRecNum_31 = PHI <NextAvailableRecNum_23(7)>
+  # DEBUG BEGIN_STMT
+  if (NextAvailableRecNum_31 <= 239)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 59055800]:
+  # DEBUG BEGIN_STMT
+  _7 = EDClass_26(D)->StartByte;
+  _8 = (unsigned int) FoundSegIndex_13;
+  _9 = _8 * 2;
+  _10 = _7 + _9;
+  _11 = *_10;
+  *EDStartByte_27(D) = _11;
+  # DEBUG BEGIN_STMT
+  _12 = EDClass_26(D)->EDSegIdx;
+  _14 = _12 + _8;
+  _15 = *_14;
+  _16 = (int) _15;
+  _17 = &Dem_EDSegment[_16];
+  *FoundEDSegment_29(D) = _17;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+
+  <bb 10> [local count: 118111601]:
+  # Result_18 = PHI <0(8), 1(9)>
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_18;
+
+}
+
+
+Dem_CopyOBDFreezeFrameInfo (uint8 * DestBuffer, uint16 * BufSize, Dem_SizeEvMemEntryType SelectedEntryIdx)
+{
+  Dem_EntryDataType * const OBDFFStoredData;
+  Dem_SizeEntryDataType StartByte;
+  uint8 NumberOfPids;
+  uint16 Offset;
+  int _1;
+  sizetype _2;
+  uint8 * _3;
+  int _4;
+  sizetype _5;
+  uint8 * _6;
+  unsigned char _7;
+  sizetype _8;
+  uint8 * _9;
+  sizetype _10;
+  Dem_EntryDataType * _11;
+  unsigned char _12;
+  long unsigned int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Offset => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG NumberOfPids => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG StartByte => 0
+  # DEBUG BEGIN_STMT
+  _1 = (int) SelectedEntryIdx_21(D);
+  OBDFFStoredData_22 = &Dem_EntryOBDFF[_1].OBDFFData;
+  # DEBUG OBDFFStoredData => OBDFFStoredData_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ObdFFPidIterator => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _2 = (sizetype) Offset_16;
+  _3 = DestBuffer_26(D) + _2;
+  *_3 = 244;
+  # DEBUG BEGIN_STMT
+  _4 = (int) NumberOfPids_17;
+  _5 = _2 + 1;
+  _6 = DestBuffer_26(D) + _5;
+  _7 = Dem_PidClass[_4].ParameterId;
+  *_6 = _7;
+  # DEBUG BEGIN_STMT
+  _8 = _2 + 2;
+  _9 = DestBuffer_26(D) + _8;
+  _10 = (sizetype) StartByte_19;
+  _11 = OBDFFStoredData_22 + _10;
+  _12 = Dem_PidClass[_4].Size;
+  _13 = (long unsigned int) _12;
+  TS_MemCpy32 (_9, _11, _13);
+  # DEBUG BEGIN_STMT
+  _14 = (short unsigned int) _12;
+  _15 = _14 + Offset_16;
+  Offset_30 = _15 + 2;
+  # DEBUG Offset => Offset_30
+  # DEBUG BEGIN_STMT
+  NumberOfPids_31 = NumberOfPids_17 + 1;
+  # DEBUG NumberOfPids => NumberOfPids_31
+  # DEBUG BEGIN_STMT
+  StartByte_32 = _14 + StartByte_19;
+  # DEBUG StartByte => StartByte_32
+  # DEBUG BEGIN_STMT
+  # DEBUG ObdFFPidIterator => NumberOfPids_31
+
+  <bb 4> [local count: 1073741824]:
+  # Offset_16 = PHI <0(2), Offset_30(3)>
+  # NumberOfPids_17 = PHI <0(2), NumberOfPids_31(3)>
+  # StartByte_19 = PHI <0(2), StartByte_32(3)>
+  # DEBUG StartByte => StartByte_19
+  # DEBUG ObdFFPidIterator => NumberOfPids_17
+  # DEBUG NumberOfPids => NumberOfPids_17
+  # DEBUG Offset => Offset_16
+  # DEBUG BEGIN_STMT
+  if (NumberOfPids_17 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 5>; [33.33%]
+
+  <bb 5> [local count: 357878150]:
+  # Offset_18 = PHI <Offset_16(4)>
+  # DEBUG BEGIN_STMT
+  *BufSize_24(D) = Offset_18;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return 2;
+
+}
+
+
+Dem_SizeOfOBDFreezeFrameInfo (Dem_EventIdType EventId)
+{
+  Dem_EventIdType StoredOBDFFEventId;
+  boolean EntryExists;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  uint16 ObdFFSize;
+  struct Dem_EventMemoryEntryType * _1;
+  unsigned char SelectedEntryIdx.31_2;
+  unsigned int _3;
+  unsigned int _4;
+  struct Dem_EventMemoryEntryType * _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ObdFFSize => 0
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG EntryExists => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists_11 = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 0);
+  # DEBUG EntryExists => EntryExists_11
+  # DEBUG BEGIN_STMT
+  _1 = Dem_EventMem[0];
+  SelectedEntryIdx.31_2 = SelectedEntryIdx;
+  _3 = (unsigned int) SelectedEntryIdx.31_2;
+  _4 = _3 * 16;
+  _5 = _1 + _4;
+  StoredOBDFFEventId_12 = _5->EventId;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_12
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EntryExists_11 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  if (StoredOBDFFEventId_12 == EventId_14(D))
+    goto <bb 4>; [21.72%]
+  else
+    goto <bb 5>; [78.28%]
+
+  <bb 4> [local count: 79293686]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ObdFFSize => 41
+
+  <bb 5> [local count: 1073741824]:
+  # ObdFFSize_6 = PHI <0(2), 0(3), 41(4)>
+  # DEBUG ObdFFSize => ObdFFSize_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx ={v} {CLOBBER};
+  return ObdFFSize_6;
+
+}
+
+
+Dem_CollectOBDFreezeFrameInfo (Dem_EventIdType EventId, uint8 RecordNumber, uint16 * BufSize, uint8 * DestBuffer)
+{
+  uint16 OdbFFSize;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  boolean EntryExists;
+  Std_ReturnType Result;
+  Dem_EventIdType StoredOBDFFEventId;
+  struct Dem_EventMemoryEntryType * _1;
+  unsigned char SelectedEntryIdx.21_2;
+  unsigned int _3;
+  unsigned int _4;
+  struct Dem_EventMemoryEntryType * _5;
+  short unsigned int _6;
+  uint8 * _7;
+  unsigned char _8;
+  short unsigned int OdbFFSize.23_9;
+  short unsigned int _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists_17 = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 0);
+  # DEBUG EntryExists => EntryExists_17
+  # DEBUG BEGIN_STMT
+  _1 = Dem_EventMem[0];
+  SelectedEntryIdx.21_2 = SelectedEntryIdx;
+  _3 = (unsigned int) SelectedEntryIdx.21_2;
+  _4 = _3 * 16;
+  _5 = _1 + _4;
+  StoredOBDFFEventId_18 = _5->EventId;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_18
+  # DEBUG BEGIN_STMT
+  if (EntryExists_17 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  if (StoredOBDFFEventId_18 == EventId_19(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 4> [local count: 124124555]:
+  # DEBUG BEGIN_STMT
+  _6 = *BufSize_20(D);
+  if (_6 > 40)
+    goto <bb 5>; [47.77%]
+  else
+    goto <bb 7>; [52.23%]
+
+  <bb 5> [local count: 59294300]:
+  # DEBUG BEGIN_STMT
+  OdbFFSize = 0;
+  # DEBUG BEGIN_STMT
+  *DestBuffer_22(D) = RecordNumber_23(D);
+  # DEBUG BEGIN_STMT
+  _7 = DestBuffer_22(D) + 2;
+  _8 = Dem_CopyOBDFreezeFrameInfo (_7, &OdbFFSize, SelectedEntryIdx.21_2);
+  MEM[(uint8 *)DestBuffer_22(D) + 1B] = _8;
+  # DEBUG BEGIN_STMT
+  OdbFFSize.23_9 = OdbFFSize;
+  _10 = OdbFFSize.23_9 + 2;
+  *BufSize_20(D) = _10;
+  OdbFFSize ={v} {CLOBBER};
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 949617270]:
+  # DEBUG BEGIN_STMT
+  *BufSize_20(D) = 0;
+
+  <bb 7> [local count: 1073741824]:
+  # Result_11 = PHI <21(4), 0(6), 0(5)>
+  # DEBUG Result => Result_11
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx ={v} {CLOBBER};
+  return Result_11;
+
+}
+
+
+Dem_SizeOfFFInfo (Dem_EventIdType EventId, Dem_FFKindType FFKind, uint8 RecordNumber)
+{
+  const struct Dem_FFClassType * FFIndClass;
+  Dem_FFIdxType NumFF;
+  const Dem_FFIdxType MaxNumFF;
+  Dem_FFIdxType FFIndex;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  boolean EntryExists;
+  uint16 SizeOfFFKind;
+  struct Dem_EventMemoryEntryType * EvMemEntry.32_1;
+  unsigned char _2;
+  short unsigned int _3;
+  int _4;
+  short unsigned int _5;
+  unsigned char _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG SizeOfFFKind => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists_17 = Dem_SearchForEntry (EventId_15(D), &EvMemEntry, 0B);
+  # DEBUG EntryExists => EntryExists_17
+  # DEBUG BEGIN_STMT
+  if (EntryExists_17 == 1)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxNumFF_19 = Dem_GbiMaxNumFFRecs (EventId_15(D));
+  # DEBUG MaxNumFF => MaxNumFF_19
+  # DEBUG BEGIN_STMT
+  # DEBUG FFIdxValid => 0
+  # DEBUG BEGIN_STMT
+  EvMemEntry.32_1 = EvMemEntry;
+  _2 = EvMemEntry.32_1->OccCtr;
+  NumFF_20 = MIN_EXPR <_2, MaxNumFF_19>;
+  # DEBUG NumFF => NumFF_20
+  # DEBUG BEGIN_STMT
+  if (FFKind_21(D) == 2)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 4> [local count: 43986650]:
+  # DEBUG BEGIN_STMT
+  FFIndex_24 = Dem_CheckFFRecNumStored (EvMemEntry.32_1, RecordNumber_22(D));
+  # DEBUG FFIndex => FFIndex_24
+  # DEBUG BEGIN_STMT
+  if (RecordNumber_22(D) == 255)
+    goto <bb 6>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 5> [local count: 35083752]:
+  if (NumFF_20 > FFIndex_24)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 6> [local count: 26444774]:
+  # DEBUG BEGIN_STMT
+  # DEBUG FFIdxValid => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FFIndClass => 0B
+  # DEBUG BEGIN_STMT
+  _3 = Dem_GbiFFClassIdx (EventId_15(D));
+  _4 = (int) _3;
+  FFIndClass_26 = &Dem_FFClass[_4];
+  # DEBUG FFIndClass => FFIndClass_26
+  # DEBUG BEGIN_STMT
+  _5 = Dem_SizeOfFF (2, FFIndClass_26);
+  _6 = Dem_GetNumFFSegs (2, FFIndClass_26);
+  _7 = (short unsigned int) _6;
+  _8 = _7 * 2;
+  _9 = _5 + _8;
+  SizeOfFFKind_29 = _9 + 2;
+  # DEBUG SizeOfFFKind => SizeOfFFKind_29
+  # DEBUG BEGIN_STMT
+  if (RecordNumber_22(D) == 255)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 8991223]:
+  # DEBUG BEGIN_STMT
+  _10 = (short unsigned int) NumFF_20;
+  SizeOfFFKind_30 = _10 * SizeOfFFKind_29;
+  # DEBUG SizeOfFFKind => SizeOfFFKind_30
+
+  <bb 8> [local count: 1073741824]:
+  # SizeOfFFKind_11 = PHI <0(2), 0(5), SizeOfFFKind_29(6), 0(3), SizeOfFFKind_30(7)>
+  # DEBUG FFIdxValid => NULL
+  # DEBUG SizeOfFFKind => SizeOfFFKind_11
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EvMemEntry ={v} {CLOBBER};
+  return SizeOfFFKind_11;
+
+}
+
+
+Dem_CollectFFInfo (Dem_EventIdType EventId, Dem_FFKindType FFKind, uint8 RecordNumber, uint16 * BufSize, uint8 * DestBuffer)
+{
+  Dem_NumFFSegsType NumFFSegs;
+  Dem_SizeEntryDataType NeededFFSize;
+  const Dem_EntryDataType * FFEntryData;
+  const struct Dem_FFClassType * FFIndClass;
+  const Dem_FFIdxType MaxNumFF;
+  Dem_FFIdxType FFIndex;
+  boolean EntryExists;
+  Std_ReturnType Result;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  struct Dem_EventMemoryEntryType * EvMemEntry.27_1;
+  struct Dem_EventMemoryEntryType * EvMemEntry.28_2;
+  unsigned char _3;
+  unsigned char _4;
+  short unsigned int _5;
+  int _6;
+  struct Dem_EventMemoryEntryType * EvMemEntry.29_7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  uint8 * _13;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists_20 = Dem_SearchForEntry (EventId_18(D), &EvMemEntry, 0B);
+  # DEBUG EntryExists => EntryExists_20
+  # DEBUG BEGIN_STMT
+  if (EntryExists_20 == 1)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxNumFF_24 = Dem_GbiMaxNumFFRecs (EventId_18(D));
+  # DEBUG MaxNumFF => MaxNumFF_24
+  # DEBUG BEGIN_STMT
+  # DEBUG isDevFFIdxValid => 0
+  # DEBUG BEGIN_STMT
+  EvMemEntry.27_1 = EvMemEntry;
+  FFIndex_27 = Dem_CheckFFRecNumStored (EvMemEntry.27_1, RecordNumber_25(D));
+  # DEBUG FFIndex => FFIndex_27
+  # DEBUG BEGIN_STMT
+  EvMemEntry.28_2 = EvMemEntry;
+  _3 = EvMemEntry.28_2->OccCtr;
+  _4 = MIN_EXPR <_3, MaxNumFF_24>;
+  if (_4 > FFIndex_27)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 4> [local count: 108662673]:
+  if (FFKind_28(D) == 2)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 5> [local count: 21993325]:
+  # DEBUG BEGIN_STMT
+  # DEBUG FFIndClass => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG FFEntryData => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiFFClassIdx (EventId_18(D));
+  _6 = (int) _5;
+  FFIndClass_31 = &Dem_FFClass[_6];
+  # DEBUG FFIndClass => FFIndClass_31
+  # DEBUG BEGIN_STMT
+  EvMemEntry.29_7 = EvMemEntry;
+  FFEntryData_33 = Dem_FFEntryData (EvMemEntry.29_7, FFIndClass_31, FFIndex_27);
+  # DEBUG FFEntryData => FFEntryData_33
+  # DEBUG BEGIN_STMT
+  NumFFSegs_35 = Dem_GetNumFFSegs (2, FFIndClass_31);
+  # DEBUG NumFFSegs => NumFFSegs_35
+  # DEBUG BEGIN_STMT
+  _8 = Dem_SizeOfFF (2, FFIndClass_31);
+  _9 = (short unsigned int) NumFFSegs_35;
+  _10 = _9 * 2;
+  _11 = _8 + _10;
+  NeededFFSize_37 = _11 + 2;
+  # DEBUG NeededFFSize => NeededFFSize_37
+  # DEBUG BEGIN_STMT
+  _12 = *BufSize_21(D);
+  if (_12 >= NeededFFSize_37)
+    goto <bb 6>; [47.77%]
+  else
+    goto <bb 9>; [52.23%]
+
+  <bb 6> [local count: 10506211]:
+  # DEBUG BEGIN_STMT
+  *DestBuffer_38(D) = RecordNumber_25(D);
+  # DEBUG BEGIN_STMT
+  MEM[(uint8 *)DestBuffer_38(D) + 1B] = NumFFSegs_35;
+  # DEBUG BEGIN_STMT
+  _13 = DestBuffer_38(D) + 2;
+  # DEBUG D#2 => 2
+  Dem_CopyFFInfo.isra.0 (FFIndClass_31, FFEntryData_33, _13);
+  # DEBUG BEGIN_STMT
+  *BufSize_21(D) = NeededFFSize_37;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 195332020]:
+  # DEBUG BEGIN_STMT
+  *BufSize_21(D) = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 856416480]:
+  # DEBUG BEGIN_STMT
+  *BufSize_21(D) = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 9> [local count: 1073741824]:
+  # Result_14 = PHI <0(7), 0(8), 21(5), 0(6)>
+  # DEBUG Result => Result_14
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EvMemEntry ={v} {CLOBBER};
+  return Result_14;
+
+}
+
+
+Dem_FindNextFFRecForReporting (Dem_EventIdType EventId, uint8 RecordNumberToSearch, uint8 * FoundRecordNumber, Dem_FFKindType * FFKind)
+{
+  uint8 RecNum;
+  boolean Result;
+  uint8 FFRecNumIdx;
+  Dem_FFIdxType NumFF;
+  Dem_FFRecNumClassIdxType FFRecNumClassIdx;
+  const Dem_FFIdxType * FFRecNumClass;
+  int _1;
+  sizetype _3;
+  const Dem_FFIdxType * _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *FoundRecordNumber_12(D) = 255;
+  # DEBUG BEGIN_STMT
+  FFRecNumClassIdx_16 = Dem_GbiFFRecNumClassIdx (EventId_14(D));
+  # DEBUG FFRecNumClassIdx => FFRecNumClassIdx_16
+  # DEBUG BEGIN_STMT
+  _1 = (int) FFRecNumClassIdx_16;
+  NumFF_17 = Dem_FFRecNumerationClass[_1].NumFFRecs;
+  # DEBUG NumFF => NumFF_17
+  # DEBUG BEGIN_STMT
+  FFRecNumClass_18 = Dem_FFRecNumerationClass[_1].Dem_FFRecNumClassIdx;
+  # DEBUG FFRecNumClass => FFRecNumClass_18
+  # DEBUG BEGIN_STMT
+  # DEBUG FFRecNumIdx => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _3 = (sizetype) FFRecNumIdx_6;
+  _4 = FFRecNumClass_18 + _3;
+  RecNum_19 = *_4;
+  # DEBUG RecNum => RecNum_19
+  # DEBUG BEGIN_STMT
+  if (RecNum_19 >= RecordNumberToSearch_20(D))
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 477815111]:
+  _5 = *FoundRecordNumber_12(D);
+  if (_5 > RecNum_19)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 238907556]:
+  # DEBUG BEGIN_STMT
+  *FoundRecordNumber_12(D) = RecNum_19;
+  # DEBUG BEGIN_STMT
+  *FFKind_22(D) = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+
+  <bb 6> [local count: 955630223]:
+  # Result_7 = PHI <Result_8(3), Result_8(4), 1(5)>
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx_24 = FFRecNumIdx_6 + 1;
+  # DEBUG FFRecNumIdx => FFRecNumIdx_24
+
+  <bb 7> [local count: 1073741824]:
+  # FFRecNumIdx_6 = PHI <0(2), FFRecNumIdx_24(6)>
+  # Result_8 = PHI <0(2), Result_7(6)>
+  # DEBUG Result => Result_8
+  # DEBUG FFRecNumIdx => FFRecNumIdx_6
+  # DEBUG BEGIN_STMT
+  if (FFRecNumIdx_6 < NumFF_17)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 118111601]:
+  # Result_2 = PHI <Result_8(7)>
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_2;
+
+}
+
+
+Dem_GetSizeOfExtendedDataRecordSelection (uint8 ClientId, uint16 * SizeOfExtendedDataRecord)
+{
+  const struct Dem_EDSegmentType * const EDSegment;
+  boolean EventMemEntryAvail;
+  Dem_EDSegIdxType SegIndex;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  const struct Dem_EDClassType * EDClass;
+  uint8 SelectedRecNum;
+  Dem_SizeEDType SizeOfEDR;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.41_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  const Dem_EDSegIdxType * _8;
+  sizetype _9;
+  const Dem_EDSegIdxType * _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char _15;
+  short unsigned int _46;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.41_1 = Dem_InitializationState;
+  if (Dem_InitializationState.41_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845003]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 32);
+  goto <bb 27>; [100.00%]
+
+  <bb 4> [local count: 548896820]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_29(D) > 2)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 181135950]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 16);
+  goto <bb 27>; [100.00%]
+
+  <bb 6> [local count: 367760869]:
+  # DEBUG BEGIN_STMT
+  if (SizeOfExtendedDataRecord_30(D) == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 64100719]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 17);
+  goto <bb 27>; [100.00%]
+
+  <bb 8> [local count: 303660150]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_29(D);
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 2)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 26>; [66.00%]
+
+  <bb 9> [local count: 103244451]:
+  # DEBUG BEGIN_STMT
+  # DEBUG SizeOfEDR => 0
+  # DEBUG BEGIN_STMT
+  SelectedRecNum_32 = Dem_RecordSelection[_2].SelectedRecNum;
+  # DEBUG SelectedRecNum => SelectedRecNum_32
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SegIndex => 255
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_29(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId_34 = DTCSelection.DTCInfo.EventId;
+  # DEBUG EventId => EventId_34
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiEDClassIdx (EventId_34);
+  _6 = (int) _5;
+  EDClass_36 = &Dem_EDClass[_6];
+  # DEBUG EDClass => EDClass_36
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_32 <= 239)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+
+  <bb 10> [local count: 34070669]:
+  # DEBUG BEGIN_STMT
+  SegIndex_38 = Dem_FindEDNumIndex (EDClass_36, SelectedRecNum_32);
+  # DEBUG SegIndex => SegIndex_38
+
+  <bb 11> [local count: 103244451]:
+  # SegIndex_21 = PHI <255(9), SegIndex_38(10)>
+  # DEBUG SegIndex => SegIndex_21
+  # DEBUG BEGIN_STMT
+  _7 = MEM[(const struct Dem_EDClassType *)&Dem_EDClass][_6].NumEDSegs;
+  if (_7 > SegIndex_21)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 12> [local count: 69173782]:
+  if (SelectedRecNum_32 == 254)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 13> [local count: 45654696]:
+  if (SelectedRecNum_32 == 255)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 25>; [66.00%]
+
+  <bb 14> [local count: 73112352]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EventMemEntryAvail_41 = Dem_SearchForEntry (EventId_34, 0B, 0B);
+  # DEBUG EventMemEntryAvail => EventMemEntryAvail_41
+  # DEBUG BEGIN_STMT
+  # DEBUG SegIndex => 0
+  goto <bb 23>; [100.00%]
+
+  <bb 15> [local count: 591545394]:
+  # DEBUG BEGIN_STMT
+  _8 = MEM[(const struct Dem_EDClassType *)&Dem_EDClass][_6].EDSegIdx;
+  _9 = (sizetype) SegIndex_22;
+  _10 = _8 + _9;
+  _11 = *_10;
+  _12 = (int) _11;
+  EDSegment_43 = &Dem_EDSegment[_12];
+  # DEBUG EDSegment => EDSegment_43
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_32 == 255)
+    goto <bb 19>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 16> [local count: 390419960]:
+  if (SelectedRecNum_32 == 254)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 17> [local count: 132742786]:
+  _13 = MEM[(const struct Dem_EDSegmentType *)&Dem_EDSegment][_12].RecNum;
+  if (_13 > 143)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+
+  <bb 18> [local count: 324048567]:
+  _14 = MEM[(const struct Dem_EDSegmentType *)&Dem_EDSegment][_12].RecNum;
+  if (_14 == SelectedRecNum_32)
+    goto <bb 19>; [34.00%]
+  else
+    goto <bb 22>; [66.00%]
+
+  <bb 19> [local count: 377673340]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EventMemEntryAvail_41 == 1)
+    goto <bb 21>; [20.24%]
+  else
+    goto <bb 20>; [79.76%]
+
+  <bb 20> [local count: 301232255]:
+  _15 = MEM[(const struct Dem_EDSegmentType *)&Dem_EDSegment][_12].AlwaysAvailable;
+  if (_15 == 1)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 22>; [66.00%]
+
+  <bb 21> [local count: 178860051]:
+  # DEBUG BEGIN_STMT
+  SizeOfEDR_44 = SizeOfEDR_19 + 1;
+  # DEBUG SizeOfEDR => SizeOfEDR_44
+  # DEBUG BEGIN_STMT
+  _46 = Dem_SizeOfEDSegment (EDSegment_43);
+  SizeOfEDR_47 = SizeOfEDR_44 + _46;
+  # DEBUG SizeOfEDR => SizeOfEDR_47
+
+  <bb 22> [local count: 591545394]:
+  # SizeOfEDR_18 = PHI <SizeOfEDR_19(18), SizeOfEDR_19(20), SizeOfEDR_47(21)>
+  # DEBUG SizeOfEDR => SizeOfEDR_18
+  # DEBUG BEGIN_STMT
+  SegIndex_48 = SegIndex_22 + 1;
+  # DEBUG SegIndex => SegIndex_48
+
+  <bb 23> [local count: 664657746]:
+  # SizeOfEDR_19 = PHI <0(14), SizeOfEDR_18(22)>
+  # SegIndex_22 = PHI <0(14), SegIndex_48(22)>
+  # DEBUG SegIndex => SegIndex_22
+  # DEBUG SizeOfEDR => SizeOfEDR_19
+  # DEBUG BEGIN_STMT
+  if (_7 > SegIndex_22)
+    goto <bb 15>; [89.00%]
+  else
+    goto <bb 24>; [11.00%]
+
+  <bb 24> [local count: 73112352]:
+  # SizeOfEDR_4 = PHI <SizeOfEDR_19(23)>
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 25> [local count: 103244451]:
+  # Result_16 = PHI <48(13), 0(24)>
+  # SizeOfEDR_20 = PHI <0(13), SizeOfEDR_4(24)>
+  # DEBUG SizeOfEDR => SizeOfEDR_20
+  # DEBUG Result => Result_16
+  # DEBUG BEGIN_STMT
+  *SizeOfExtendedDataRecord_30(D) = SizeOfEDR_20;
+  DTCSelection ={v} {CLOBBER};
+  goto <bb 27>; [100.00%]
+
+  <bb 26> [local count: 200415699]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 64);
+
+  <bb 27> [local count: 1073741824]:
+  # Result_17 = PHI <1(3), 1(5), 1(7), Result_16(25), 1(26)>
+  # DEBUG Result => Result_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_17;
+
+}
+
+
+Dem_GetNextExtendedDataRecord (uint8 ClientId, uint8 * DestBuffer, uint16 * BufSize)
+{
+  Dem_SizeEDType NeededSize;
+  boolean EventMemEntryAvail;
+  uint8 NextAvailableRecNum;
+  Dem_EDStartByteType EDStartByte;
+  const struct Dem_EDSegmentType * EDSegment;
+  const uint8 SelectedRecNum;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  const struct Dem_EDClassType * EDClass;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.34_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  unsigned char _7;
+  const struct Dem_EDSegmentType * EDSegment.35_8;
+  const struct Dem_EDSegmentType * EDSegment.36_9;
+  unsigned char _10;
+  const struct Dem_EDSegmentType * EDSegment.37_11;
+  short unsigned int _12;
+  const struct Dem_EDSegmentType * EDSegment.38_13;
+  short unsigned int EDStartByte.39_14;
+  uint8 * _15;
+  struct Dem_EventMemoryEntryType * EvMemEntry.40_16;
+  unsigned char _17;
+  short unsigned int _46;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.34_1 = Dem_InitializationState;
+  if (Dem_InitializationState.34_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 32);
+  goto <bb 28>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_29(D) > 2)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 16);
+  goto <bb 28>; [100.00%]
+
+  <bb 6> [local count: 367760870]:
+  # DEBUG BEGIN_STMT
+  if (DestBuffer_30(D) == 0B)
+    goto <bb 8>; [17.43%]
+  else
+    goto <bb 7>; [82.57%]
+
+  <bb 7> [local count: 303660150]:
+  if (BufSize_31(D) == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 9>; [70.00%]
+
+  <bb 8> [local count: 155198765]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 17);
+  goto <bb 28>; [100.00%]
+
+  <bb 9> [local count: 212562105]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_29(D);
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 2)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 27>; [66.00%]
+
+  <bb 10> [local count: 72271116]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SelectedRecNum_33 = Dem_RecordSelection[_2].SelectedRecNum;
+  # DEBUG SelectedRecNum => SelectedRecNum_33
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 48
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_29(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId_35 = DTCSelection.DTCInfo.EventId;
+  # DEBUG EventId => EventId_35
+  # DEBUG BEGIN_STMT
+  _4 = Dem_GbiEDClassIdx (EventId_35);
+  _5 = (int) _4;
+  EDClass_37 = &Dem_EDClass[_5];
+  # DEBUG EDClass => EDClass_37
+  # DEBUG BEGIN_STMT
+  _6 = Dem_RecordSelection[_2].NextRecNum;
+  if (_6 != 255)
+    goto <bb 11>; [48.88%]
+  else
+    goto <bb 26>; [51.12%]
+
+  <bb 11> [local count: 35326121]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = Dem_FindNextEDRecForReporting (EDClass_37, _6, &EDSegment, &EDStartByte);
+  if (_7 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 24>; [50.00%]
+
+  <bb 12> [local count: 17663061]:
+  # DEBUG BEGIN_STMT
+  EDSegment.35_8 = EDSegment;
+  NextAvailableRecNum_40 = EDSegment.35_8->RecNum;
+  # DEBUG NextAvailableRecNum => NextAvailableRecNum_40
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_33 > 253)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 13>; [67.00%]
+
+  <bb 13> [local count: 11834251]:
+  if (SelectedRecNum_33 == NextAvailableRecNum_40)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 20>; [66.00%]
+
+  <bb 14> [local count: 9852455]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EventMemEntryAvail_43 = Dem_SearchForEntry (EventId_35, &EvMemEntry, 0B);
+  # DEBUG EventMemEntryAvail => EventMemEntryAvail_43
+  # DEBUG BEGIN_STMT
+  if (EventMemEntryAvail_43 != 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 15> [local count: 6601145]:
+  EDSegment.36_9 = EDSegment;
+  _10 = EDSegment.36_9->AlwaysAvailable;
+  if (_10 != 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+
+  <bb 16> [local count: 6551883]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NeededSize => 1
+  # DEBUG BEGIN_STMT
+  EDSegment.37_11 = EDSegment;
+  _46 = Dem_SizeOfEDSegment (EDSegment.37_11);
+  NeededSize_47 = _46 + 1;
+  # DEBUG NeededSize => NeededSize_47
+  # DEBUG BEGIN_STMT
+  _12 = *BufSize_31(D);
+  if (_12 < NeededSize_47)
+    goto <bb 19>; [67.00%]
+  else
+    goto <bb 17>; [33.00%]
+
+  <bb 17> [local count: 2162121]:
+  # DEBUG BEGIN_STMT
+  *DestBuffer_30(D) = NextAvailableRecNum_40;
+  # DEBUG BEGIN_STMT
+  EDSegment.38_13 = EDSegment;
+  EDStartByte.39_14 = EDStartByte;
+  _15 = DestBuffer_30(D) + 1;
+  EvMemEntry.40_16 = EvMemEntry;
+  Dem_AssembleExtendedDataSeg (EventId_35, EDSegment.38_13, EDStartByte.39_14, _15, EvMemEntry.40_16);
+  # DEBUG BEGIN_STMT
+  *BufSize_31(D) = NeededSize_47;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  goto <bb 19>; [100.00%]
+
+  <bb 18> [local count: 3300573]:
+  # DEBUG BEGIN_STMT
+  *BufSize_31(D) = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 19> [local count: 9852455]:
+  # Result_18 = PHI <0(17), 0(18), 21(16)>
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 20> [local count: 17663061]:
+  # Result_19 = PHI <48(13), Result_18(19)>
+  # DEBUG Result => Result_19
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_33 <= 239)
+    goto <bb 21>; [50.00%]
+  else
+    goto <bb 22>; [50.00%]
+
+  <bb 21> [local count: 8831530]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_2].NextRecNum = 255;
+  goto <bb 25>; [100.00%]
+
+  <bb 22> [local count: 8831530]:
+  # DEBUG BEGIN_STMT
+  if (Result_19 == 0)
+    goto <bb 23>; [50.00%]
+  else
+    goto <bb 25>; [50.00%]
+
+  <bb 23> [local count: 4415765]:
+  # DEBUG BEGIN_STMT
+  _17 = NextAvailableRecNum_40 + 1;
+  Dem_RecordSelection[_2].NextRecNum = _17;
+  goto <bb 25>; [100.00%]
+
+  <bb 24> [local count: 17663061]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_2].NextRecNum = 255;
+
+  <bb 25> [local count: 35326121]:
+  # Result_20 = PHI <Result_19(22), 48(24), Result_19(21), 0(23)>
+  # DEBUG Result => Result_20
+  EDSegment ={v} {CLOBBER};
+  EDStartByte ={v} {CLOBBER};
+
+  <bb 26> [local count: 72271116]:
+  # Result_21 = PHI <48(10), Result_20(25)>
+  # DEBUG Result => Result_21
+  EvMemEntry ={v} {CLOBBER};
+  DTCSelection ={v} {CLOBBER};
+  goto <bb 28>; [100.00%]
+
+  <bb 27> [local count: 140290989]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 64);
+
+  <bb 28> [local count: 1073741824]:
+  # Result_22 = PHI <1(3), 1(5), 1(8), Result_21(26), 1(27)>
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_22;
+
+}
+
+
+Dem_GetSizeOfFreezeFrameSelection (uint8 ClientId, uint16 * SizeOfFreezeFrame)
+{
+  uint8 SelectedRecNum;
+  uint16 SizeOfFF;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.30_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  short unsigned int _27;
+  short unsigned int _29;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.30_1 = Dem_InitializationState;
+  if (Dem_InitializationState.30_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 32);
+  goto <bb 20>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_15(D) > 3)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 16);
+  goto <bb 20>; [100.00%]
+
+  <bb 6> [local count: 367760870]:
+  # DEBUG BEGIN_STMT
+  if (SizeOfFreezeFrame_16(D) == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 64100720]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 17);
+  goto <bb 20>; [100.00%]
+
+  <bb 8> [local count: 303660150]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_15(D);
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 1)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+
+  <bb 9> [local count: 103244451]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SizeOfFF => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_15(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId_19 = DTCSelection.DTCInfo.EventId;
+  # DEBUG EventId => EventId_19
+  # DEBUG BEGIN_STMT
+  SelectedRecNum_20 = Dem_RecordSelection[_2].SelectedRecNum;
+  # DEBUG SelectedRecNum => SelectedRecNum_20
+  # DEBUG BEGIN_STMT
+  _4 = Dem_GbiDTCKind (EventId_19);
+  if (_4 == 2)
+    goto <bb 10>; [51.12%]
+  else
+    goto <bb 12>; [48.88%]
+
+  <bb 10> [local count: 52778563]:
+  if (SelectedRecNum_20 == 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 11> [local count: 17416926]:
+  # DEBUG BEGIN_STMT
+  SizeOfFF_23 = Dem_SizeOfOBDFreezeFrameInfo (EventId_19);
+  # DEBUG SizeOfFF => SizeOfFF_23
+  goto <bb 18>; [100.00%]
+
+  <bb 12> [local count: 85827525]:
+  # DEBUG BEGIN_STMT
+  _5 = Dem_CheckFFRecNumValid (EventId_19, SelectedRecNum_20);
+  if (_5 == 1)
+    goto <bb 13>; [20.24%]
+  else
+    goto <bb 14>; [79.76%]
+
+  <bb 13> [local count: 17371491]:
+  # DEBUG BEGIN_STMT
+  SizeOfFF_32 = Dem_SizeOfFFInfo (EventId_19, 2, SelectedRecNum_20);
+  # DEBUG SizeOfFF => SizeOfFF_32
+  goto <bb 18>; [100.00%]
+
+  <bb 14> [local count: 68456034]:
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_20 == 255)
+    goto <bb 15>; [20.24%]
+  else
+    goto <bb 18>; [79.76%]
+
+  <bb 15> [local count: 13855501]:
+  # DEBUG BEGIN_STMT
+  _6 = Dem_GbiDTCKind (EventId_19);
+  if (_6 == 2)
+    goto <bb 16>; [20.24%]
+  else
+    goto <bb 17>; [79.76%]
+
+  <bb 16> [local count: 2804353]:
+  # DEBUG BEGIN_STMT
+  _27 = Dem_SizeOfOBDFreezeFrameInfo (EventId_19);
+  # DEBUG SizeOfFF => _27
+
+  <bb 17> [local count: 13855501]:
+  # SizeOfFF_9 = PHI <0(15), _27(16)>
+  # DEBUG SizeOfFF => SizeOfFF_9
+  # DEBUG BEGIN_STMT
+  _29 = Dem_SizeOfFFInfo (EventId_19, 2, 255);
+  SizeOfFF_30 = SizeOfFF_9 + _29;
+  # DEBUG SizeOfFF => SizeOfFF_30
+
+  <bb 18> [local count: 103244451]:
+  # Result_7 = PHI <0(11), 0(13), 0(17), 48(14)>
+  # SizeOfFF_10 = PHI <SizeOfFF_23(11), SizeOfFF_32(13), SizeOfFF_30(17), 0(14)>
+  # DEBUG SizeOfFF => SizeOfFF_10
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  *SizeOfFreezeFrame_16(D) = SizeOfFF_10;
+  DTCSelection ={v} {CLOBBER};
+  goto <bb 20>; [100.00%]
+
+  <bb 19> [local count: 200415699]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 64);
+
+  <bb 20> [local count: 1073741824]:
+  # Result_8 = PHI <1(3), 1(5), 1(7), Result_7(18), 1(19)>
+  # DEBUG Result => Result_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_8;
+
+}
+
+
+Dem_GetNextFreezeFrameData (uint8 ClientId, uint8 * DestBuffer, uint16 * BufSize)
+{
+  Dem_FFKindType FFKind;
+  uint8 NextAvailableRecNum;
+  uint8 SelectedRecNum;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.15_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char NextAvailableRecNum.16_7;
+  unsigned char FFKind.17_8;
+  short unsigned int _9;
+  unsigned char FFKind.18_10;
+  unsigned char NextAvailableRecNum.19_11;
+  unsigned char NextAvailableRecNum.20_12;
+  unsigned char _13;
+  unsigned char _15;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.15_1 = Dem_InitializationState;
+  if (Dem_InitializationState.15_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 32);
+  goto <bb 32>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_28(D) > 3)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 16);
+  goto <bb 32>; [100.00%]
+
+  <bb 6> [local count: 367760870]:
+  # DEBUG BEGIN_STMT
+  if (DestBuffer_29(D) == 0B)
+    goto <bb 8>; [17.43%]
+  else
+    goto <bb 7>; [82.57%]
+
+  <bb 7> [local count: 303660150]:
+  if (BufSize_30(D) == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 9>; [70.00%]
+
+  <bb 8> [local count: 155198765]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 17);
+  goto <bb 32>; [100.00%]
+
+  <bb 9> [local count: 212562105]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_28(D);
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 31>; [66.00%]
+
+  <bb 10> [local count: 72271116]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum = 0;
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_28(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId_34 = DTCSelection.DTCInfo.EventId;
+  # DEBUG EventId => EventId_34
+  # DEBUG BEGIN_STMT
+  SelectedRecNum_35 = Dem_RecordSelection[_2].SelectedRecNum;
+  # DEBUG SelectedRecNum => SelectedRecNum_35
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 48
+  # DEBUG BEGIN_STMT
+  goto <bb 33>; [100.00%]
+
+  <bb 11> [local count: 979076996]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NextRecNum => _15
+  # DEBUG BEGIN_STMT
+  if (_15 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 12> [local count: 489538498]:
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiDTCKind (EventId_34);
+  if (_5 == 2)
+    goto <bb 13>; [20.24%]
+  else
+    goto <bb 22>; [79.76%]
+
+  <bb 13> [local count: 99082592]:
+  # DEBUG BEGIN_STMT
+  Result_46 = Dem_CollectOBDFreezeFrameInfo (EventId_34, 0, BufSize_30(D), DestBuffer_29(D));
+  # DEBUG Result => Result_46
+  goto <bb 22>; [100.00%]
+
+  <bb 14> [local count: 489538498]:
+  # DEBUG BEGIN_STMT
+  FFKind = 0;
+  # DEBUG BEGIN_STMT
+  _6 = Dem_FindNextFFRecForReporting (EventId_34, _15, &NextAvailableRecNum, &FFKind);
+  if (_6 != 0)
+    goto <bb 15>; [67.00%]
+  else
+    goto <bb 20>; [33.00%]
+
+  <bb 15> [local count: 327990794]:
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_35 == 255)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 16> [local count: 216473924]:
+  NextAvailableRecNum.16_7 = NextAvailableRecNum;
+  if (NextAvailableRecNum.16_7 == SelectedRecNum_35)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 17> [local count: 185118004]:
+  # DEBUG BEGIN_STMT
+  FFKind.17_8 = FFKind;
+  if (FFKind.17_8 == 2)
+    goto <bb 18>; [20.24%]
+  else
+    goto <bb 21>; [79.76%]
+
+  <bb 18> [local count: 37467884]:
+  _9 = Dem_GbiFFClassIdx (EventId_34);
+  if (_9 != 1)
+    goto <bb 19>; [48.88%]
+  else
+    goto <bb 21>; [51.12%]
+
+  <bb 19> [local count: 18314302]:
+  # DEBUG BEGIN_STMT
+  FFKind.18_10 = FFKind;
+  NextAvailableRecNum.19_11 = NextAvailableRecNum;
+  Result_42 = Dem_CollectFFInfo (EventId_34, FFKind.18_10, NextAvailableRecNum.19_11, BufSize_30(D), DestBuffer_29(D));
+  # DEBUG Result => Result_42
+  goto <bb 21>; [100.00%]
+
+  <bb 20> [local count: 161547704]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_2].NextRecNum = 255;
+  # DEBUG BEGIN_STMT
+  // predicted unlikely by continue predictor.
+  FFKind ={v} {CLOBBER};
+  goto <bb 29>; [100.00%]
+
+  <bb 21> [local count: 327990794]:
+  # Result_16 = PHI <Result_18(17), Result_18(16), Result_42(19), Result_18(18)>
+  # DEBUG Result => Result_16
+  # DEBUG BEGIN_STMT
+  FFKind ={v} {CLOBBER};
+
+  <bb 22> [local count: 817529292]:
+  # Result_17 = PHI <Result_46(13), Result_16(21), Result_18(12)>
+  # DEBUG Result => Result_17
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum_35 != 255)
+    goto <bb 23>; [66.00%]
+  else
+    goto <bb 24>; [34.00%]
+
+  <bb 23> [local count: 539569333]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_2].NextRecNum = 255;
+  goto <bb 29>; [100.00%]
+
+  <bb 24> [local count: 277959959]:
+  # DEBUG BEGIN_STMT
+  if (Result_17 == 0)
+    goto <bb 26>; [50.00%]
+  else
+    goto <bb 25>; [50.00%]
+
+  <bb 25> [local count: 138979980]:
+  if (Result_17 == 48)
+    goto <bb 26>; [34.00%]
+  else
+    goto <bb 27>; [66.00%]
+
+  <bb 26> [local count: 186233173]:
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum.20_12 = NextAvailableRecNum;
+  _13 = NextAvailableRecNum.20_12 + 1;
+  Dem_RecordSelection[_2].NextRecNum = _13;
+
+  <bb 27> [local count: 277959959]:
+  # DEBUG BEGIN_STMT
+  if (Result_17 != 48)
+    goto <bb 30>; [5.50%]
+  else
+    goto <bb 29>; [94.50%]
+
+  <bb 29> [local count: 963789198]:
+  # Result_14 = PHI <Result_18(20), Result_17(23), Result_17(27)>
+
+  <bb 33> [local count: 1036060313]:
+  # Result_18 = PHI <Result_14(29), 48(10)>
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  _15 = Dem_RecordSelection[_2].NextRecNum;
+  if (_15 != 255)
+    goto <bb 11>; [94.50%]
+  else
+    goto <bb 30>; [5.50%]
+
+  <bb 30> [local count: 72271115]:
+  # Result_19 = PHI <Result_17(27), Result_18(33)>
+  # DEBUG Result => Result_19
+  DTCSelection ={v} {CLOBBER};
+  NextAvailableRecNum ={v} {CLOBBER};
+  goto <bb 32>; [100.00%]
+
+  <bb 31> [local count: 140290989]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 64);
+
+  <bb 32> [local count: 1073741824]:
+  # Result_20 = PHI <1(3), 1(5), 1(8), Result_19(30), 1(31)>
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_20;
+
+}
+
+
+Dem_SelectExtendedDataRecord (uint8 ClientId, uint8 ExtendedDataNumber)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.14_1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.14_1 = Dem_InitializationState;
+  if (Dem_InitializationState.14_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 32);
+  goto <bb 22>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_14(D) > 2)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 16);
+  goto <bb 22>; [100.00%]
+
+  <bb 6> [local count: 367760870]:
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber_15(D) == 0)
+    goto <bb 8>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 7> [local count: 246399783]:
+  _2 = ExtendedDataNumber_15(D) + 16;
+  if (_2 <= 13)
+    goto <bb 8>; [67.00%]
+  else
+    goto <bb 9>; [33.00%]
+
+  <bb 8> [local count: 286448942]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 18);
+  goto <bb 22>; [100.00%]
+
+  <bb 9> [local count: 81311928]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_14(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _3 = DTCSelection.SelectorStatus;
+  if (_3 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 40655964]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 64);
+  goto <bb 21>; [100.00%]
+
+  <bb 11> [local count: 40655964]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Dem_DoDTCSelection (ClientId_14(D), &EventId);
+  switch (_4) <default: <L26> [25.00%], case 2: <L16> [25.00%], case 3: <L18> [25.00%], case 4: <L16> [25.00%], case 5: <L9> [25.00%]>
+
+  <bb 12> [local count: 10163991]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClientId_14(D);
+  Dem_RecordSelection[_5].SelectedRecNum = ExtendedDataNumber_15(D);
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber_15(D) == 255)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 13> [local count: 3455757]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_5].NextRecNum = 1;
+  goto <bb 17>; [100.00%]
+
+  <bb 14> [local count: 6708234]:
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber_15(D) == 254)
+    goto <bb 15>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 15> [local count: 2280800]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_5].NextRecNum = 144;
+  goto <bb 17>; [100.00%]
+
+  <bb 16> [local count: 4427434]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_5].NextRecNum = ExtendedDataNumber_15(D);
+
+  <bb 17> [local count: 10163991]:
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_5].Status = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 18> [local count: 10163991]:
+<L16>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 8
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 19> [local count: 10163991]:
+<L18>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 9
+  # DEBUG BEGIN_STMT
+
+  <bb 20> [local count: 40655964]:
+  # Result_6 = PHI <0(17), 8(18), 9(19), 1(11)>
+<L26>:
+  # DEBUG Result => Result_6
+  EventId ={v} {CLOBBER};
+
+  <bb 21> [local count: 81311928]:
+  # Result_7 = PHI <1(10), Result_6(20)>
+  # DEBUG Result => Result_7
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 22> [local count: 1073741824]:
+  # Result_8 = PHI <1(3), 1(5), 1(8), Result_7(21)>
+  # DEBUG Result => Result_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_8;
+
+}
+
+
+Dem_SelectFreezeFrameData (uint8 ClientId, uint8 RecordNumber)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.12_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  uint8 iftmp.13_8;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.12_1 = Dem_InitializationState;
+  if (Dem_InitializationState.12_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 32);
+  goto <bb 15>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_13(D) > 2)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 16);
+  goto <bb 15>; [100.00%]
+
+  <bb 6> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_13(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 64);
+  goto <bb 14>; [100.00%]
+
+  <bb 8> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId_13(D), &EventId);
+  switch (_3) <default: <L19> [33.33%], case 3: <L12> [33.33%], case 5: <L6> [33.33%]>
+
+  <bb 9> [local count: 45736827]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_13(D);
+  Dem_RecordSelection[_4].SelectedRecNum = RecordNumber_16(D);
+  # DEBUG BEGIN_STMT
+  if (RecordNumber_16(D) != 255)
+    goto <bb 11>; [66.00%]
+  else
+    goto <bb 10>; [34.00%]
+
+  <bb 10> [local count: 15550521]:
+
+  <bb 11> [local count: 45736827]:
+  # iftmp.13_8 = PHI <RecordNumber_16(D)(9), 0(10)>
+  Dem_RecordSelection[_4].NextRecNum = iftmp.13_8;
+  # DEBUG BEGIN_STMT
+  Dem_RecordSelection[_4].Status = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 45736827]:
+<L12>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 9
+  # DEBUG BEGIN_STMT
+
+  <bb 13> [local count: 137210483]:
+  # Result_5 = PHI <0(11), 8(8), 9(12)>
+<L19>:
+  # DEBUG Result => Result_5
+  EventId ={v} {CLOBBER};
+
+  <bb 14> [local count: 274434688]:
+  # Result_6 = PHI <1(7), Result_5(13)>
+  # DEBUG Result => Result_6
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 15> [local count: 1073728102]:
+  # Result_7 = PHI <1(3), 1(5), Result_6(14)>
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_7;
+
+}
+
+
+Dem_ResetDataRecordSelector (uint8 ClientId)
+{
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClientId_2(D);
+  Dem_RecordSelection[_1].Status = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_InitDataRecordSelector ()
+{
+  uint8 ClientId;
+  int _1;
+
+  <bb 2> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ClientId => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClientId_2;
+  Dem_RecordSelection[_1].Status = 0;
+  # DEBUG BEGIN_STMT
+  ClientId_6 = ClientId_2 + 1;
+  # DEBUG ClientId => ClientId_6
+
+  <bb 4> [local count: 1073741824]:
+  # ClientId_2 = PHI <0(2), ClientId_6(3)>
+  # DEBUG ClientId => ClientId_2
+  # DEBUG BEGIN_STMT
+  if (ClientId_2 != 3)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 5>; [25.00%]
+
+  <bb 5> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_EnableDTCRecordUpdate (uint8 ClientId)
+{
+  Dem_EntryDataType * const AgingCounter;
+  Dem_SizeEvMemEntryType EvMemEntryIdx;
+  boolean AgedEventFlag;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  Dem_EventIdType LockedEvId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.5_1;
+  unsigned char _2;
+  unsigned char Dem_ClientIdLockingDTCRecordUpdate.6_3;
+  unsigned char _4;
+  unsigned char _5;
+  struct Dem_EventMemoryEntryType * EvMemEntry.7_6;
+  unsigned char _7;
+  struct Dem_EventMemoryEntryType * EvMemEntry.8_8;
+  struct Dem_EventMemoryEntryType * EvMemEntry.9_9;
+  unsigned char EvMemEntryIdx.10_10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.5_1 = Dem_InitializationState;
+  if (Dem_InitializationState.5_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 32);
+  goto <bb 22>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_21(D) > 2)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 16);
+  goto <bb 22>; [100.00%]
+
+  <bb 6> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_21(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 64);
+  goto <bb 21>; [100.00%]
+
+  <bb 8> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG AgedEventFlag => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  LockedEvId_24 = Dem_EvIdOfLockedMemoryEntry;
+  # DEBUG LockedEvId => LockedEvId_24
+  # DEBUG BEGIN_STMT
+  if (LockedEvId_24 == 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 9> [local count: 68612102]:
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate.6_3 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (Dem_ClientIdLockingDTCRecordUpdate.6_3 != ClientId_21(D))
+    goto <bb 15>; [79.76%]
+  else
+    goto <bb 10>; [20.24%]
+
+  <bb 10> [local count: 13887090]:
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = 4;
+  # DEBUG BEGIN_STMT
+  _4 = Dem_GbiNumAgingCycles (LockedEvId_24);
+  if (_4 != 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 11> [local count: 4582740]:
+  # DEBUG BEGIN_STMT
+  _5 = Dem_SearchForEntry (LockedEvId_24, &EvMemEntry, &EvMemEntryIdx);
+  if (_5 == 1)
+    goto <bb 12>; [20.24%]
+  else
+    goto <bb 15>; [79.76%]
+
+  <bb 12> [local count: 927546]:
+  # DEBUG BEGIN_STMT
+  EvMemEntry.7_6 = EvMemEntry;
+  AgingCounter_30 = Dem_IntValEntryData (EvMemEntry.7_6);
+  # DEBUG AgingCounter => AgingCounter_30
+  # DEBUG BEGIN_STMT
+  _7 = *AgingCounter_30;
+  if (_7 == 0)
+    goto <bb 13>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 13> [local count: 306090]:
+  # DEBUG BEGIN_STMT
+  # DEBUG AgedEventFlag => 1
+  # DEBUG BEGIN_STMT
+  EvMemEntry.8_8 = EvMemEntry;
+  Dem_ClearAgedEventEntry (LockedEvId_24, EvMemEntry.8_8);
+  # DEBUG BEGIN_STMT
+  EvMemEntry.9_9 = EvMemEntry;
+  EvMemEntryIdx.10_10 = EvMemEntryIdx;
+  Dem_CheckForImmediateEntryStorage (LockedEvId_24, EvMemEntry.9_9, EvMemEntryIdx.10_10, 0);
+
+  <bb 15> [local count: 137224205]:
+  # Result_11 = PHI <0(8), 1(9), 0(11), 0(10), 0(13), 0(12)>
+  # AgedEventFlag_14 = PHI <0(8), 0(9), 0(11), 0(10), 1(13), 0(12)>
+  # DEBUG AgedEventFlag => AgedEventFlag_14
+  # DEBUG Result => Result_11
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Result_11 == 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+
+  <bb 16> [local count: 68612102]:
+  # DEBUG BEGIN_STMT
+  if (AgedEventFlag_14 == 1)
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 18>; [79.76%]
+
+  <bb 17> [local count: 13887090]:
+  # DEBUG BEGIN_STMT
+  Dem_CheckForTriggerNvmWriteGateEntry ();
+
+  <bb 18> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  if (Result_11 == 1)
+    goto <bb 19>; [20.24%]
+  else
+    goto <bb 20>; [79.76%]
+
+  <bb 19> [local count: 27774179]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 64);
+
+  <bb 20> [local count: 137224205]:
+  EvMemEntry ={v} {CLOBBER};
+  EvMemEntryIdx ={v} {CLOBBER};
+
+  <bb 21> [local count: 274448410]:
+  # Result_12 = PHI <1(7), Result_11(20)>
+  # DEBUG Result => Result_12
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 22> [local count: 1073741824]:
+  # Result_13 = PHI <1(3), 1(5), Result_12(21)>
+  # DEBUG Result => Result_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_13;
+
+}
+
+
+Dem_DisableDTCRecordUpdate (uint8 ClientId)
+{
+  const Dem_EventIdType MasterEventId;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.0_1;
+  unsigned char _2;
+  unsigned char _3;
+  short unsigned int Dem_EvIdOfLockedMemoryEntry.1_4;
+  unsigned char Dem_ClientIdLockingDTCRecordUpdate.2_5;
+  unsigned char Dem_ClientIdLockingDTCRecordUpdate.4_6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.0_1 = Dem_InitializationState;
+  if (Dem_InitializationState.0_1 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 32);
+  goto <bb 21>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ClientId_14(D) > 2)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 16);
+  goto <bb 21>; [100.00%]
+
+  <bb 6> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_14(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 64);
+  goto <bb 20>; [100.00%]
+
+  <bb 8> [local count: 137224205]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId_14(D), &EventId);
+  switch (_3) <default: <L26> [25.00%], case 2: <L6> [25.00%], case 3: <L8> [25.00%], case 4: <L6> [25.00%], case 5: <L9> [25.00%]>
+
+  <bb 9> [local count: 34306051]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 8
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 10> [local count: 34306051]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 9
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 11> [local count: 34306051]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  MasterEventId_17 = EventId;
+  # DEBUG MasterEventId => MasterEventId_17
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry.1_4 = Dem_EvIdOfLockedMemoryEntry;
+  if (Dem_EvIdOfLockedMemoryEntry.1_4 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 12> [local count: 17153026]:
+  Dem_ClientIdLockingDTCRecordUpdate.2_5 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (Dem_ClientIdLockingDTCRecordUpdate.2_5 != ClientId_14(D))
+    goto <bb 13>; [48.88%]
+  else
+    goto <bb 14>; [51.12%]
+
+  <bb 13> [local count: 8384399]:
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [100.00%]
+
+  <bb 14> [local count: 25921652]:
+  # DEBUG BEGIN_STMT
+  if (Dem_EvIdOfLockedMemoryEntry.1_4 != MasterEventId_17)
+    goto <bb 15>; [79.76%]
+  else
+    goto <bb 16>; [20.24%]
+
+  <bb 15> [local count: 20675110]:
+  Dem_ClientIdLockingDTCRecordUpdate.4_6 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (Dem_ClientIdLockingDTCRecordUpdate.4_6 == ClientId_14(D))
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 16>; [79.76%]
+
+  <bb 16> [local count: 21737010]:
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = ClientId_14(D);
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = MasterEventId_17;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 17> [local count: 4184642]:
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 18> [local count: 12569041]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 64);
+
+  <bb 19> [local count: 137224205]:
+  # Result_7 = PHI <8(9), 9(10), 1(18), 1(8), 0(16)>
+<L26>:
+  # DEBUG Result => Result_7
+  EventId ={v} {CLOBBER};
+
+  <bb 20> [local count: 274448410]:
+  # Result_8 = PHI <1(7), Result_7(19)>
+  # DEBUG Result => Result_8
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 21> [local count: 1073741824]:
+  # Result_9 = PHI <1(3), 1(5), Result_8(20)>
+  # DEBUG Result => Result_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_9;
+
+}
+
+
+Dem_InitEventMemoryProcessor ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = 4;
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

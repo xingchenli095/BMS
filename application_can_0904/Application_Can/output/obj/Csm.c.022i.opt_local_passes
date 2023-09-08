@@ -1,0 +1,1867 @@
+Csm_Process (uint32 jobId, struct Crypto_JobPrimitiveInputOutputType * jobPrimitiveInputOutput)
+{
+  boolean run;
+  Std_ReturnType result;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned char _6;
+  struct Csm_QueueType * _7;
+  long unsigned int _8;
+  struct Crypto_JobType * _9;
+  const struct Crypto_JobPrimitiveInfoType * _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned char _15;
+  struct Csm_QueueType * _16;
+  long unsigned int _17;
+  struct Csm_QueueType * _18;
+  long unsigned int _19;
+  struct Csm_QueueType * _20;
+  long unsigned int _21;
+  struct Csm_QueueType * _22;
+  long unsigned int _23;
+  struct Crypto_JobType * _24;
+  struct Csm_QueueType * _25;
+  struct Crypto_JobType * _26;
+  struct Csm_QueueType * _27;
+  struct Crypto_JobType * _28;
+  unsigned char _29;
+  unsigned int _30;
+  unsigned int _31;
+  unsigned char _32;
+  struct Csm_QueueType * _33;
+  struct Csm_QueueElementType * _34;
+  const struct Crypto_JobInfoType * _35;
+  long unsigned int _36;
+  struct Csm_QueueType * _37;
+  struct Csm_QueueElementType * _38;
+  struct Crypto_JobType * _39;
+  const struct Crypto_JobInfoType * _40;
+  long unsigned int _41;
+  struct Csm_QueueType * _42;
+  struct Csm_QueueType * _43;
+  long unsigned int _44;
+  struct Crypto_JobType * _45;
+  Std_ReturnType _93;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_54 = 1;
+  # DEBUG result => result_54
+  # DEBUG BEGIN_STMT
+  run_55 = 0;
+  # DEBUG run => run_55
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = Csm_JobExtraData[jobId_58(D)].csmLockFlag;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_58(D)].csmLockFlag = 1;
+  # DEBUG BEGIN_STMT
+  run_60 = 1;
+  # DEBUG run => run_60
+
+  <bb 4> :
+  # run_48 = PHI <run_55(2), run_60(3)>
+  # DEBUG run => run_48
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (run_48 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_58(D)].jobState;
+  if (_2 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _3 = jobPrimitiveInputOutput_63(D)->mode;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 1;
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_64 = 2;
+  # DEBUG result => result_64
+  goto <bb 33>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = Csm_JobConfigurations[jobId_58(D)].jobState;
+  if (_6 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_58(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_63(D);
+  # DEBUG BEGIN_STMT
+  _7 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _8 = _7->cryIfChannelId;
+  _9 = &Csm_JobConfigurations[jobId_58(D)];
+  result_89 = CryIf_ProcessJob (_8, _9);
+  # DEBUG result => result_89
+  goto <bb 33>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _10 = Csm_JobConfigurations[jobId_58(D)].jobPrimitiveInfo;
+  _11 = _10->processingType;
+  if (_11 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _12 = jobPrimitiveInputOutput_63(D)->mode;
+  _13 = (unsigned int) _12;
+  _14 = _13 & 1;
+  if (_14 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 12> :
+  _15 = Csm_JobExtraData[jobId_58(D)].csmQueueLevel;
+  if (_15 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _16 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _17 = _16->currentSize;
+  _18 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _19 = _18->maxSize;
+  if (_17 >= _19)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  result_85 = 5;
+  # DEBUG result => result_85
+  goto <bb 33>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _20 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _21 = _20->currentSize;
+  if (_21 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_58(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_63(D);
+  # DEBUG BEGIN_STMT
+  _22 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _23 = _22->cryIfChannelId;
+  _24 = &Csm_JobConfigurations[jobId_58(D)];
+  result_78 = CryIf_ProcessJob (_23, _24);
+  # DEBUG result => result_78
+  # DEBUG BEGIN_STMT
+  if (result_78 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_58(D)].csmQueueLevel = 2;
+  goto <bb 33>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (result_78 == 2)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  if (result_78 == 5)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _25 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _26 = &Csm_JobConfigurations[jobId_58(D)];
+  result_81 = Csm_QueuePushJob (_25, _26);
+  # DEBUG result => result_81
+  # DEBUG BEGIN_STMT
+  if (result_81 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_58(D)].csmQueueLevel = 1;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 33>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_58(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_63(D);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _27 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _28 = &Csm_JobConfigurations[jobId_58(D)];
+  result_73 = Csm_QueuePushJob (_27, _28);
+  # DEBUG result => result_73
+  # DEBUG BEGIN_STMT
+  if (result_73 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_58(D)].csmQueueLevel = 1;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 33>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _29 = jobPrimitiveInputOutput_63(D)->mode;
+  _30 = (unsigned int) _29;
+  _31 = _30 & 1;
+  if (_31 == 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 27> :
+  _32 = Csm_JobExtraData[jobId_58(D)].csmQueueLevel;
+  if (_32 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  result_86 = 2;
+  # DEBUG result => result_86
+  goto <bb 33>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _33 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _34 = _33->head;
+  if (_34 == 0B)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 30> :
+  _35 = Csm_JobConfigurations[jobId_58(D)].jobInfo;
+  _36 = _35->jobPriority;
+  _37 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _38 = _37->head;
+  _39 = _38->job;
+  _40 = _39->jobInfo;
+  _41 = _40->jobPriority;
+  if (_36 > _41)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _42 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _42->lockMainQueueDelJob = 1;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_58(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_63(D);
+  # DEBUG BEGIN_STMT
+  _43 = Csm_JobExtraCnfg[jobId_58(D)].csmQueue;
+  _44 = _43->cryIfChannelId;
+  _45 = &Csm_JobConfigurations[jobId_58(D)];
+  result_69 = CryIf_ProcessJob (_44, _45);
+  # DEBUG result => result_69
+  goto <bb 33>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  result_65 = 2;
+  # DEBUG result => result_65
+
+  <bb 33> :
+  # result_46 = PHI <result_64(7), result_89(9), result_54(26), result_69(31), result_65(32), result_78(19), result_73(25), result_78(17), result_81(22), result_85(14), result_86(28), result_54(27)>
+  # DEBUG result => result_46
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_58(D)].csmLockFlag = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  result_62 = 2;
+  # DEBUG result => result_62
+
+  <bb 35> :
+  # result_47 = PHI <result_46(33), result_62(34)>
+  # DEBUG result => result_47
+  # DEBUG BEGIN_STMT
+  _93 = result_47;
+  return _93;
+
+}
+
+
+Csm_RandomSeed (uint32 keyId, const uint8 * seedPtr, uint32 seedLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.16_1;
+  long unsigned int _2;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.16_1 = Csm_Initialized;
+  if (Csm_Initialized.16_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (seedPtr_8(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 1);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  result_11 = CryIf_RandomSeed (_2, seedPtr_8(D), seedLength_9(D));
+  # DEBUG result => result_11
+
+  <bb 9> :
+  # result_3 = PHI <result_5(3), result_5(5), result_5(7), result_11(8)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _15 = result_3;
+  return _15;
+
+}
+
+
+Csm_MacVerify (uint32 jobId, Crypto_OperationModeType mode, const uint8 * dataPtr, uint32 dataLength, const uint8 * macPtr, uint32 macLength, Crypto_VerifyResultType * verifyPtr)
+{
+  struct Crypto_JobPrimitiveInputOutputType jobPrimitiveInputOutput;
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.15_1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  const struct Crypto_PrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  Std_ReturnType _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_11 = 1;
+  # DEBUG result => result_11
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput = {};
+  jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.15_1 = Csm_Initialized;
+  if (Csm_Initialized.15_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 5);
+  goto <bb 19>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (jobId_15(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 4);
+  goto <bb 19>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_15(D)].jobPrimitiveInfo;
+  _3 = _2->primitiveInfo;
+  _4 = _3->service;
+  if (_4 != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 225);
+  goto <bb 19>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (dataPtr_16(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (macPtr_17(D) == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (verifyPtr_18(D) == 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) mode_19(D);
+  _6 = _5 & 7;
+  if (_6 == 5)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  _7 = (unsigned int) mode_19(D);
+  _8 = _7 & 7;
+  if (_8 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  if (mode_19(D) > 7)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  result_30 = 1;
+  # DEBUG result => result_30
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.mode = mode_19(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputPtr = dataPtr_16(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputLength = dataLength_22(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.secondaryInputPtr = macPtr_17(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.secondaryInputLength = macLength_25(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.verifyPtr = verifyPtr_18(D);
+  # DEBUG BEGIN_STMT
+  result_29 = Csm_Process (jobId_15(D), &jobPrimitiveInputOutput);
+  # DEBUG result => result_29
+
+  <bb 19> :
+  # result_9 = PHI <result_11(3), result_11(5), result_11(7), result_11(9), result_11(11), result_11(13), result_30(17), result_29(18)>
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  _37 = result_9;
+  jobPrimitiveInputOutput ={v} {CLOBBER};
+  return _37;
+
+}
+
+
+Csm_MacGenerate (uint32 jobId, Crypto_OperationModeType mode, const uint8 * dataPtr, uint32 dataLength, uint8 * macPtr, uint32 * macLengthPtr)
+{
+  struct Crypto_JobPrimitiveInputOutputType jobPrimitiveInputOutput;
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.14_1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  const struct Crypto_PrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  Std_ReturnType _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_12 = 1;
+  # DEBUG result => result_12
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput = {};
+  jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.14_1 = Csm_Initialized;
+  if (Csm_Initialized.14_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 5);
+  goto <bb 19>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (jobId_16(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 4);
+  goto <bb 19>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_16(D)].jobPrimitiveInfo;
+  _3 = _2->primitiveInfo;
+  _4 = _3->service;
+  if (_4 != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 225);
+  goto <bb 19>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (dataPtr_17(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (macPtr_18(D) == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (macLengthPtr_19(D) == 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) mode_20(D);
+  _6 = _5 & 7;
+  if (_6 == 5)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  _7 = (unsigned int) mode_20(D);
+  _8 = _7 & 7;
+  if (_8 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  if (mode_20(D) > 7)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  result_29 = 1;
+  # DEBUG result => result_29
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.mode = mode_20(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputPtr = dataPtr_17(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputLength = dataLength_23(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.outputPtr = macPtr_18(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.outputLengthPtr = macLengthPtr_19(D);
+  # DEBUG BEGIN_STMT
+  result_28 = Csm_Process (jobId_16(D), &jobPrimitiveInputOutput);
+  # DEBUG result => result_28
+
+  <bb 19> :
+  # result_9 = PHI <result_12(3), result_12(5), result_12(7), result_12(9), result_12(11), result_12(13), result_29(17), result_28(18)>
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  if (result_9 == 3)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 3);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _37 = result_9;
+  jobPrimitiveInputOutput ={v} {CLOBBER};
+  return _37;
+
+}
+
+
+Csm_KeySetValid (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.13_1;
+  long unsigned int _2;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.13_1 = Csm_Initialized;
+  if (Csm_Initialized.13_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 103, 5);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 103, 4);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  result_9 = CryIf_KeySetValid (_2);
+  # DEBUG result => result_9
+
+  <bb 7> :
+  # result_3 = PHI <result_5(3), result_5(5), result_9(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _12 = result_3;
+  return _12;
+
+}
+
+
+Csm_KeyGenerate (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.12_1;
+  long unsigned int _2;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.12_1 = Csm_Initialized;
+  if (Csm_Initialized.12_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 106, 5);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 106, 4);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  result_9 = CryIf_KeyGenerate (_2);
+  # DEBUG result => result_9
+
+  <bb 7> :
+  # result_3 = PHI <result_5(3), result_5(5), result_9(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _12 = result_3;
+  return _12;
+
+}
+
+
+Csm_KeyExchangeCalcSecret (uint32 keyId, const uint8 * partnerPublicValuePtr, uint32 partnerPublicValueLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.11_1;
+  long unsigned int _2;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.11_1 = Csm_Initialized;
+  if (Csm_Initialized.11_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (partnerPublicValuePtr_9(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 1);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  result_12 = CryIf_KeyExchangeCalcSecret (_2, partnerPublicValuePtr_9(D), partnerPublicValueLength_10(D));
+  # DEBUG result => result_12
+
+  <bb 9> :
+  # result_3 = PHI <result_6(3), result_6(5), result_6(7), result_12(8)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  if (result_3 == 3)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 3);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _17 = result_3;
+  return _17;
+
+}
+
+
+Csm_KeyExchangeCalcPubVal (uint32 keyId, uint8 * publicValuePtr, uint32 * publicValueLengthPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.10_1;
+  long unsigned int _2;
+  Std_ReturnType _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.10_1 = Csm_Initialized;
+  if (Csm_Initialized.10_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 5);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 4);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (publicValuePtr_9(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 1);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (publicValueLengthPtr_10(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 1);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  result_12 = CryIf_KeyExchangeCalcPubVal (_2, publicValuePtr_9(D), publicValueLengthPtr_10(D));
+  # DEBUG result => result_12
+
+  <bb 11> :
+  # result_3 = PHI <result_6(3), result_6(5), result_6(7), result_6(9), result_12(10)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  if (result_3 == 3)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 3);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _18 = result_3;
+  return _18;
+
+}
+
+
+Csm_KeyElementSet (uint32 keyId, uint32 keyElementId, const uint8 * keyPtr, uint32 keyLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.9_1;
+  long unsigned int _2;
+  Std_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.9_1 = Csm_Initialized;
+  if (Csm_Initialized.9_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (keyPtr_8(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 1);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  result_12 = CryIf_KeyElementSet (_2, keyElementId_9(D), keyPtr_8(D), keyLength_10(D));
+  # DEBUG result => result_12
+
+  <bb 9> :
+  # result_3 = PHI <result_5(3), result_5(5), result_5(7), result_12(8)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _16 = result_3;
+  return _16;
+
+}
+
+
+Csm_KeyElementGet (uint32 keyId, uint32 keyElementId, uint8 * keyPtr, uint32 * keyLengthPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.8_1;
+  long unsigned int _2;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.8_1 = Csm_Initialized;
+  if (Csm_Initialized.8_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 5);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 4);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (keyPtr_9(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 1);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (keyLengthPtr_10(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 1);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  result_13 = CryIf_KeyElementGet (_2, keyElementId_11(D), keyPtr_9(D), keyLengthPtr_10(D));
+  # DEBUG result => result_13
+
+  <bb 11> :
+  # result_3 = PHI <result_6(3), result_6(5), result_6(7), result_6(9), result_13(10)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  if (result_3 == 3)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 3);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = result_3;
+  return _19;
+
+}
+
+
+Csm_KeyElementCopy (uint32 keyId, uint32 keyElementId, uint32 targetKeyId, uint32 targetKeyElementId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.7_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.7_1 = Csm_Initialized;
+  if (Csm_Initialized.7_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_9(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 4);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  _3 = Csm_Keys[targetKeyId_9(D)];
+  result_13 = CryIf_KeyElementCopy (_2, keyElementId_10(D), _3, targetKeyElementId_11(D));
+  # DEBUG result => result_13
+
+  <bb 9> :
+  # result_4 = PHI <result_6(3), result_6(5), result_6(7), result_13(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  _17 = result_4;
+  return _17;
+
+}
+
+
+Csm_KeyDerive (uint32 keyId, uint32 targetKeyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.6_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.6_1 = Csm_Initialized;
+  if (Csm_Initialized.6_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_9(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 4);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  _3 = Csm_Keys[targetKeyId_9(D)];
+  result_11 = CryIf_KeyDerive (_2, _3);
+  # DEBUG result => result_11
+
+  <bb 9> :
+  # result_4 = PHI <result_6(3), result_6(5), result_6(7), result_11(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  _15 = result_4;
+  return _15;
+
+}
+
+
+Csm_KeyCopy (uint32 keyId, uint32 targetKeyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.5_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.5_1 = Csm_Initialized;
+  if (Csm_Initialized.5_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 4);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_9(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 4);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  _3 = Csm_Keys[targetKeyId_9(D)];
+  result_11 = CryIf_KeyCopy (_2, _3);
+  # DEBUG result => result_11
+
+  <bb 9> :
+  # result_4 = PHI <result_6(3), result_6(5), result_6(7), result_11(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  _15 = result_4;
+  return _15;
+
+}
+
+
+Csm_Init ()
+{
+  uint32 j;
+  uint32 i;
+  struct Csm_QueueType * _1;
+  struct Csm_QueueType * _2;
+  struct Csm_QueueType * _3;
+  struct Csm_QueueType * _4;
+  struct Csm_QueueType * _5;
+  struct Csm_QueueElementType * _6;
+  long unsigned int _7;
+  struct Csm_QueueElementType * _8;
+  struct Csm_QueueType * _9;
+  struct Csm_QueueElementType * _10;
+  long unsigned int _11;
+  struct Csm_QueueElementType * _12;
+  struct Csm_QueueType * _13;
+  long unsigned int _14;
+  unsigned char Csm_Initialized.4_15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_21 = 0;
+  # DEBUG i => i_21
+  # DEBUG BEGIN_STMT
+  j_22 = 0;
+  # DEBUG j => j_22
+  # DEBUG BEGIN_STMT
+  Csm_Initialized = 0;
+  # DEBUG BEGIN_STMT
+  i_25 = 0;
+  # DEBUG i => i_25
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobState = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].cryptoKeyId = 4294967295;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.inputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.inputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.secondaryInputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.secondaryInputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.tertiaryInputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.tertiaryInputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.outputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.outputLengthPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.secondaryOutputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.secondaryOutputLengthPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.verifyPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_16].jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  _1 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _1->lockMainQueueDelJob = 0;
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _2->lockMainProcessJob = 0;
+  # DEBUG BEGIN_STMT
+  _3 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _3->currentSize = 0;
+  # DEBUG BEGIN_STMT
+  _4 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _4->head = 0B;
+  # DEBUG BEGIN_STMT
+  j_46 = 0;
+  # DEBUG j => j_46
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _6 = _5->data;
+  _7 = j_17 * 8;
+  _8 = _6 + _7;
+  _8->job = 0B;
+  # DEBUG BEGIN_STMT
+  _9 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _10 = _9->data;
+  _11 = j_17 * 8;
+  _12 = _10 + _11;
+  _12->next = 0B;
+  # DEBUG BEGIN_STMT
+  j_51 = j_17 + 1;
+  # DEBUG j => j_51
+
+  <bb 5> :
+  # j_17 = PHI <j_46(3), j_51(4)>
+  # DEBUG j => j_17
+  # DEBUG BEGIN_STMT
+  _13 = Csm_JobExtraCnfg[i_16].csmQueue;
+  _14 = _13->maxSize;
+  if (j_17 < _14)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[i_16].csmQueueLevel = 0;
+  # DEBUG BEGIN_STMT
+  i_48 = i_16 + 1;
+  # DEBUG i => i_48
+
+  <bb 7> :
+  # i_16 = PHI <i_25(2), i_48(6)>
+  # DEBUG i => i_16
+  # DEBUG BEGIN_STMT
+  if (i_16 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Csm_Initialized = 1;
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.4_15 = Csm_Initialized;
+  if (Csm_Initialized.4_15 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 0, 7);
+
+  <bb 10> :
+  return;
+
+}
+
+
+Csm_CertificateVerify (uint32 keyId, uint32 verifyCryIfKeyId, Crypto_VerifyResultType * verifyPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.3_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_6 = 1;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.3_1 = Csm_Initialized;
+  if (Csm_Initialized.3_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 5);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_8(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 4);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (verifyCryIfKeyId_9(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 4);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (verifyPtr_10(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 1);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_8(D)];
+  _3 = Csm_Keys[verifyCryIfKeyId_9(D)];
+  result_12 = CryIf_CertificateVerify (_2, _3, verifyPtr_10(D));
+  # DEBUG result => result_12
+
+  <bb 11> :
+  # result_4 = PHI <result_6(3), result_6(5), result_6(7), result_6(9), result_12(10)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  _17 = result_4;
+  return _17;
+
+}
+
+
+Csm_CertificateParse (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.2_1;
+  long unsigned int _2;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.2_1 = Csm_Initialized;
+  if (Csm_Initialized.2_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 110, 5);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 110, 4);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  result_9 = CryIf_CertificateParse (_2);
+  # DEBUG result => result_9
+
+  <bb 7> :
+  # result_3 = PHI <result_5(3), result_5(5), result_9(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _12 = result_3;
+  return _12;
+
+}
+
+
+Csm_CancelJob (uint32 job, Crypto_OperationModeType mode)
+{
+  boolean run;
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.1_1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  struct Csm_QueueType * _6;
+  struct Crypto_JobType * _7;
+  unsigned char _8;
+  struct Csm_QueueType * _9;
+  long unsigned int _10;
+  struct Crypto_JobType * _11;
+  unsigned char _12;
+  void (*<T5b5>) (Crypto_ResultType) _13;
+  void (*<T5b5>) (Crypto_ResultType) _14;
+  struct Csm_QueueType * _15;
+  long unsigned int _16;
+  struct Crypto_JobType * _17;
+  Std_ReturnType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_27 = 1;
+  # DEBUG result => result_27
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.1_1 = Csm_Initialized;
+  if (Csm_Initialized.1_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 111, 5);
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (job_29(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 111, 4);
+  goto <bb 22>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  run_30 = 0;
+  # DEBUG run => run_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobExtraData[job_29(D)].csmLockFlag;
+  if (_2 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_29(D)].csmLockFlag = 1;
+  # DEBUG BEGIN_STMT
+  run_33 = 1;
+  # DEBUG run => run_33
+
+  <bb 8> :
+  # run_21 = PHI <run_30(6), run_33(7)>
+  # DEBUG run => run_21
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (run_21 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _3 = Csm_JobConfigurations[job_29(D)].jobPrimitiveInfo;
+  _4 = _3->processingType;
+  if (_4 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _5 = Csm_JobExtraData[job_29(D)].csmQueueLevel;
+  if (_5 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _6 = Csm_JobExtraCnfg[job_29(D)].csmQueue;
+  _7 = &Csm_JobConfigurations[job_29(D)];
+  result_42 = Csm_QueueDelJob (_6, _7);
+  # DEBUG result => result_42
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = Csm_JobExtraData[job_29(D)].csmQueueLevel;
+  if (_8 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _9 = Csm_JobExtraCnfg[job_29(D)].csmQueue;
+  _10 = _9->cryIfChannelId;
+  _11 = &Csm_JobConfigurations[job_29(D)];
+  result_39 = CryIf_CancelJob (_10, _11);
+  # DEBUG result => result_39
+
+  <bb 14> :
+  # result_18 = PHI <result_42(11), result_27(12), result_39(13)>
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (result_18 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _12 = Csm_JobExtraData[job_29(D)].csmQueueLevel;
+  if (_12 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _13 = Csm_JobExtraCnfg[job_29(D)].csmSWCCallback;
+  if (_13 != 0B)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _14 = Csm_JobExtraCnfg[job_29(D)].csmSWCCallback;
+  _14 (12);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_29(D)].csmQueueLevel = 0;
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _15 = Csm_JobExtraCnfg[job_29(D)].csmQueue;
+  _16 = _15->cryIfChannelId;
+  _17 = &Csm_JobConfigurations[job_29(D)];
+  result_37 = CryIf_CancelJob (_16, _17);
+  # DEBUG result => result_37
+
+  <bb 20> :
+  # result_19 = PHI <result_18(18), result_37(19), result_18(14)>
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_29(D)].csmLockFlag = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  result_35 = 1;
+  # DEBUG result => result_35
+
+  <bb 22> :
+  # result_20 = PHI <result_27(3), result_27(5), result_19(20), result_35(21)>
+  # DEBUG result => result_20
+  # DEBUG BEGIN_STMT
+  _51 = result_20;
+  return _51;
+
+}
+
+
+Csm_CallbackNotification (const struct Crypto_JobType * job, Std_ReturnType result)
+{
+  unsigned char Csm_Initialized.0_1;
+  long unsigned int _2;
+  void (*<T5b5>) (Crypto_ResultType) _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  void (*<T5af>) (void) _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.0_1 = Csm_Initialized;
+  if (Csm_Initialized.0_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 112, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (job_9(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 112, 1);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = job_9(D)->jobId;
+  _3 = Csm_JobExtraCnfg[_2].csmSWCCallback;
+  if (_3 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = job_9(D)->jobId;
+  Csm_JobExtraData[_4].callbackSWCResult = result_10(D);
+  # DEBUG BEGIN_STMT
+  _5 = job_9(D)->jobId;
+  _6 = Csm_JobExtraCnfg[_5].internalTrigger;
+  _6 ();
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Csm_Int_CallbackNotification (job_9(D), result_10(D));
+
+  <bb 9> :
+  return;
+
+}
+
+

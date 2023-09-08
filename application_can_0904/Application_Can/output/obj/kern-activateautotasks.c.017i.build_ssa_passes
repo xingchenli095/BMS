@@ -1,0 +1,45 @@
+__attribute__((target ("general-regs-only")))
+OS_ActivateAutoTasks ()
+{
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+  os_uint16_t idx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  OS_appMode.0_1 = OS_appMode;
+  _2 = (int) OS_appMode.0_1;
+  idx = OS_startModeTasks[_2];
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) idx;
+  tid = OS_autoStartTasks[_3];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_KernActivateTask (tid);
+  # DEBUG BEGIN_STMT
+  idx.1_4 = idx;
+  idx = idx.1_4 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) idx;
+  _6 = OS_autoStartTasks[_5];
+  OS_nTasks.2_7 = OS_nTasks;
+  if (_6 < OS_nTasks.2_7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

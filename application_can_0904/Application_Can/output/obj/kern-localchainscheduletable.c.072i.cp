@@ -1,0 +1,222 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_AppIsAccessible/4:
+  Jump functions of caller  OS_CORTEXM_IntSetDisablingLevel/3:
+  Jump functions of caller  OS_LocalChainScheduleTable/0:
+
+ Propagating constants:
+
+Not considering OS_LocalChainScheduleTable for cloning; -fipa-cp-clone disabled.
+
+overall_size: 49, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_LocalChainScheduleTable/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [1]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_AppIsAccessible/4 (OS_AppIsAccessible) @06c58d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalChainScheduleTable/0 (1073741824 (estimated locally),1.00 per call) OS_LocalChainScheduleTable/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c58c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalChainScheduleTable/0 (1073741824 (estimated locally),1.00 per call) OS_LocalChainScheduleTable/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06c38a68
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalChainScheduleTable/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_scheduleTableBase/1 (OS_scheduleTableBase) @06c38a20
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalChainScheduleTable/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalChainScheduleTable/0 (OS_LocalChainScheduleTable) @06c58a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_scheduleTableBase/1 (read)OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 (1073741824 (estimated locally),1.00 per call) OS_AppIsAccessible/4 (1073741824 (estimated locally),1.00 per call) OS_AppIsAccessible/4 (1073741824 (estimated locally),1.00 per call) OS_CORTEXM_IntSetDisablingLevel/3 (1073741824 (estimated locally),1.00 per call) 
+
+;; Function OS_LocalChainScheduleTable (OS_LocalChainScheduleTable, funcdef_no=0, decl_uid=6491, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_LocalChainScheduleTable/0
+__attribute__((target ("general-regs-only")))
+OS_LocalChainScheduleTable (os_scheduleid_t sc, os_scheduleid_t sn)
+{
+  os_errorresult_t result;
+  os_boolean_t nextIsAccessible;
+  os_boolean_t curIsAccessible;
+  os_intstatus_t is;
+  struct os_scheduledynamic_t * snd;
+  struct os_scheduledynamic_t * scd;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_schedule_t * _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct os_schedule_t * _7;
+  short unsigned int OS_kernDisableLevel.2_8;
+  const struct os_appcontext_t * _9;
+  const struct os_appcontext_t * _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct os_schedule_t * _16;
+  struct os_scheduledynamic_t * _17;
+  unsigned char _21;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) sc_23(D);
+  _3 = _2 * 36;
+  _4 = OS_scheduleTableBase.0_1 + _3;
+  scd_24 = _4->dynamic;
+  # DEBUG scd => scd_24
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) sn_25(D);
+  _6 = _5 * 36;
+  _7 = OS_scheduleTableBase.0_1 + _6;
+  snd_26 = _7->dynamic;
+  # DEBUG snd => snd_26
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_8 = OS_kernDisableLevel;
+  is_28 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.2_8);
+  # DEBUG is => is_28
+  # DEBUG BEGIN_STMT
+  _9 = _4->app;
+  curIsAccessible_30 = OS_AppIsAccessible (_9);
+  # DEBUG curIsAccessible => curIsAccessible_30
+  # DEBUG BEGIN_STMT
+  _10 = _7->app;
+  nextIsAccessible_32 = OS_AppIsAccessible (_10);
+  # DEBUG nextIsAccessible => nextIsAccessible_32
+  # DEBUG BEGIN_STMT
+  if (curIsAccessible_30 == 0)
+    goto <bb 10>; [35.00%]
+  else
+    goto <bb 3>; [65.00%]
+
+  <bb 3> [local count: 697932186]:
+  if (nextIsAccessible_32 == 0)
+    goto <bb 10>; [35.00%]
+  else
+    goto <bb 4>; [65.00%]
+
+  <bb 4> [local count: 453655921]:
+  # DEBUG BEGIN_STMT
+  _11 = scd_24->status;
+  _21 = _11 & 7;
+  if (_21 != 3)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 5> [local count: 299412908]:
+  if (_21 != 1)
+    goto <bb 10>; [51.11%]
+  else
+    goto <bb 6>; [48.89%]
+
+  <bb 6> [local count: 300625984]:
+  # DEBUG BEGIN_STMT
+  _12 = snd_26->status;
+  if (_12 != 0)
+    goto <bb 10>; [35.00%]
+  else
+    goto <bb 7>; [65.00%]
+
+  <bb 7> [local count: 195406889]:
+  # DEBUG BEGIN_STMT
+  _13 = scd_24->chain;
+  if (_13 != 255)
+    goto <bb 8>; [66.00%]
+  else
+    goto <bb 9>; [34.00%]
+
+  <bb 8> [local count: 128968547]:
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) _13;
+  _15 = _14 * 36;
+  _16 = OS_scheduleTableBase.0_1 + _15;
+  _17 = _16->dynamic;
+  _17->status = 0;
+
+  <bb 9> [local count: 195406889]:
+  # DEBUG BEGIN_STMT
+  scd_24->chain = sn_25(D);
+  # DEBUG BEGIN_STMT
+  snd_26->status = 2;
+  # DEBUG BEGIN_STMT
+  snd_26->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  snd_26->chain = 255;
+  # DEBUG BEGIN_STMT
+  snd_26->next = 0;
+
+  <bb 10> [local count: 1073741824]:
+  # result_18 = PHI <154(3), 41(5), 42(6), 0(9), 154(2)>
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_28);
+  # DEBUG BEGIN_STMT
+  return result_18;
+
+}
+
+

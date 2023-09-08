@@ -1,0 +1,42 @@
+__attribute__((target ("general-regs-only")))
+OS_InitCounters ()
+{
+  const struct os_counter_t * const cs;
+  const os_coreid_t myCoreId;
+  os_counterid_t i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.0_1 = OS_counterTableBase;
+  _2 = (unsigned int) i;
+  _3 = _2 * 32;
+  cs = OS_counterTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = cs->dynamic;
+  _4->head = 65535;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_nCounters.1_5 = OS_nCounters;
+  if (i < OS_nCounters.1_5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

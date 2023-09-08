@@ -1,0 +1,130 @@
+
+
+ local analysis of OS_KillIsr
+   scanning: OS_isrTableBase.0_1 = OS_isrTableBase;
+  scanning: _2 = (unsigned int) i_9(D);
+  scanning: _3 = _2 * 68;
+  scanning: _4 = OS_isrTableBase.0_1 + _3;
+  scanning: id_10 = _4->dynamic;
+    Indirect ref read is not const
+  scanning: _5 = id_10->statusflags;
+    Indirect ref read is not const
+  scanning: _6 = _5 | 64;
+  scanning: id_10->statusflags = _6;
+    Indirect ref write is not const/pure
+  scanning: _7 = &id_10->c;
+  scanning: _13 = OS_KillCalledContext (_7);
+  scanning: return _13;
+callgraph:
+
+OS_KillCalledContext/2 (OS_KillCalledContext) @06cb8d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KillIsr/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_KillIsr/0 (OS_KillIsr) @06cb8b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a7130
+  References: OS_isrTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_KillCalledContext/2 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_KillIsr/0 (OS_KillIsr) @06cb8b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a7130
+  References: OS_isrTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_KillCalledContext/2 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_KillIsr: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_KillIsr: malloc_bottom
+callgraph:
+
+OS_KillCalledContext/2 (OS_KillCalledContext) @06cb8d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KillIsr/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_KillIsr/0 (OS_KillIsr) @06cb8b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a6f10
+  References: OS_isrTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_KillCalledContext/2 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+OS_KillIsr/0 (OS_KillIsr) @06cb8b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a6f10
+  References: OS_isrTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_KillCalledContext/2 (1073741824 (estimated locally),1.00 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_KillIsr (os_isrid_t i)
+{
+  struct os_isrdynamic_t * const id;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_isr_t * _4;
+  unsigned char _5;
+  unsigned char _6;
+  struct os_savedcontext_t * _7;
+  os_result_t _13;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) i_9(D);
+  _3 = _2 * 68;
+  _4 = OS_isrTableBase.0_1 + _3;
+  id_10 = _4->dynamic;
+  # DEBUG id => id_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = id_10->statusflags;
+  _6 = _5 | 64;
+  id_10->statusflags = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = &id_10->c;
+  _13 = OS_KillCalledContext (_7);
+  return _13;
+
+}
+
+

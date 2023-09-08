@@ -1,0 +1,1326 @@
+CanNm_HandleTransmit ()
+{
+  Std_ReturnType retVal;
+  struct PduInfoType pduInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].MessageFlags;
+  _2 = (int) _1;
+  _3 = _2 & 2;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanStatus[0].TxPduPtr;
+  pduInfo.SduDataPtr = _4;
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.19_5 = CanNm_RootPtr;
+  _6 = CanNm_RootPtr.19_5->CanNm_ChannelData[0].RxPduLength;
+  pduInfo.SduLength = _6;
+  # DEBUG BEGIN_STMT
+  CanNm_GetPduUserData (0, &pduInfo);
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.20_7 = CanNm_RootPtr;
+  _8 = CanNm_RootPtr.20_7->CanNm_ChannelData[0].TxPduId;
+  retVal = CanIf_Transmit (_8, &pduInfo);
+  # DEBUG BEGIN_STMT
+  if (retVal == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].FirstCanIfTransmitOk = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = CanNm_ChanConfig[0].MsgTimeoutTime;
+  CanNm_ChanStatus[0].TimeoutTimer = _9;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _10 = CanNm_ChanStatus[0].MessageFlags;
+  _11 = _10 | 2;
+  CanNm_ChanStatus[0].MessageFlags = _11;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _12 = BIT_FIELD_REF <MEM[(void *)&CanNm_ChanStatus], 16, 208>;
+  _13 = _12;
+  if (_13 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _14 = CanNm_ChanStatus[0].MessageFlags;
+  _15 = (unsigned int) _14;
+  _16 = _15 & 8;
+  if (_16 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _17 = CanNm_ChanConfig[0].RMSTime;
+  _18 = _17 + 1;
+  CanNm_RmsTimerStart (_18);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStart (1);
+  goto <bb 18>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _19 = CanNm_ChanStatus[0].ImmediateNmTransmissionCounter;
+  if (_19 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (retVal == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = CanNm_ChanStatus[0].ImmediateNmTransmissionCounter;
+  _21 = _20 + 65535;
+  CanNm_ChanStatus[0].ImmediateNmTransmissionCounter = _21;
+  # DEBUG BEGIN_STMT
+  _22 = CanNm_ChanStatus[0].ImmediateNmTransmissionCounter;
+  if (_22 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _23 = CanNm_ChanConfig[0].ImmediateNmCycleTime;
+  CanNm_MsgCycleTimerStart (_23);
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _24 = CanNm_ChanConfig[0].MsgCycleTime;
+  CanNm_MsgCycleTimerStart (_24);
+  goto <bb 18>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _25 = CanNm_ChanStatus[0].MessageFlags;
+  _26 = (int) _25;
+  _27 = _26 & 2;
+  if (_27 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStart (1);
+  goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _28 = CanNm_ChanConfig[0].ImmediateNmCycleTime;
+  CanNm_MsgCycleTimerStart (_28);
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _29 = CanNm_ChanConfig[0].MsgCycleTime;
+  CanNm_MsgCycleTimerStart (_29);
+
+  <bb 18> :
+  pduInfo = {CLOBBER};
+  return;
+
+}
+
+
+CanNm_HandleComControl ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.4_4 = CanNm_RootPtr;
+  _5 = CanNm_RootPtr.4_4->CanNm_ChannelData[0].CanNmMsgCycleOffset;
+  CanNm_MsgCycleTimerStart (_5);
+  # DEBUG BEGIN_STMT
+  _6 = CanNm_ChanConfig[0].CanNmTime;
+  CanNm_NmTimerStart (_6);
+  # DEBUG BEGIN_STMT
+  _7 = CanNm_ChanConfig[0].RSITime;
+  CanNm_UniTimerStart (_7);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStop ();
+  # DEBUG BEGIN_STMT
+  CanNm_NmTimerStop ();
+  # DEBUG BEGIN_STMT
+  CanNm_UniTimerStop ();
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ImmediateNmTransmissionCounter = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+
+CanNm_HandleTxConfirmation ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanConfig[0].CanNmTime;
+  _5 = _4 + 65535;
+  CanNm_NmTimerStart (_5);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].TimeoutTimer = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+CanNm_HandleRxIndication_NOState ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndicationCommon ();
+  return;
+
+}
+
+
+CanNm_HandleRxIndication_NOState_RA ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndication_NOState ();
+  return;
+
+}
+
+
+CanNm_HandleRxIndicationCommon ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanConfig[0].CanNmTime;
+  _5 = _4 + 65535;
+  CanNm_NmTimerStart (_5);
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_MsgCycleTimerStop ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].MsgCycleTimer = 0;
+  return;
+
+}
+
+
+CanNm_MsgCycleTimerStart (CanNm_TimeType MsgCycleTimer)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].MsgCycleTimer = MsgCycleTimer;
+  # DEBUG BEGIN_STMT
+  if (MsgCycleTimer == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanNm_HsmEmitToSelfInst (&CanNm_HsmScCanNm, 3);
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_RmsTimerStart (CanNm_TimeType RmsTime)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].RmsTimer = RmsTime;
+  # DEBUG BEGIN_STMT
+  if (RmsTime == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanNm_HsmEmitToSelfInst (&CanNm_HsmScCanNm, 6);
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_UniTimerStop ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].UniversalTimer = 0;
+  return;
+
+}
+
+
+CanNm_UniTimerStart (CanNm_TimeType UniTimer)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].UniversalTimer = UniTimer;
+  return;
+
+}
+
+
+CanNm_NmTimerStop ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CanNmTimer = 0;
+  return;
+
+}
+
+
+CanNm_NmTimerStart (CanNm_TimeType CanNmTime)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CanNmTimer = CanNmTime;
+  return;
+
+}
+
+
+CanNm_InitIntVar ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ChanStatus = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].MsgCycleTimer = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].TimeoutTimer = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].RmsTimer = 0;
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].TxPduPtr;
+  _2 = CanNm_ChanConfig[0].UDFBPos;
+  _3 = (sizetype) _2;
+  _4 = _1 + _3;
+  CanNm_RootPtr.0_5 = CanNm_RootPtr;
+  _6 = CanNm_RootPtr.0_5->CanNm_ChannelData[0].UserDataLength;
+  TS_MemSet32 (_4, 255, _6);
+  # DEBUG BEGIN_STMT
+  _7 = CanNm_ChanStatus[0].RxPduPtr;
+  _8 = CanNm_ChanConfig[0].UDFBPos;
+  _9 = (sizetype) _8;
+  _10 = _7 + _9;
+  CanNm_RootPtr.1_11 = CanNm_RootPtr;
+  _12 = CanNm_RootPtr.1_11->CanNm_ChannelData[0].UserDataLength;
+  TS_MemSet32 (_10, 255, _12);
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.2_13 = CanNm_RootPtr;
+  _14 = CanNm_ChanStatus[0].TxPduPtr;
+  _15 = CanNm_ChanConfig[0].NidPos;
+  _16 = (sizetype) _15;
+  _17 = _14 + _16;
+  _18 = CanNm_RootPtr.2_13->CanNm_ChannelData[0].CanNmNodeId;
+  *_17 = _18;
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.3_19 = CanNm_RootPtr;
+  _20 = CanNm_RootPtr.3_19->CanNm_ChannelData[0].PnEnabled;
+  if (_20 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _21 = CanNm_ChanStatus[0].TxPduPtr;
+  _22 = CanNm_ChanConfig[0].CbvPos;
+  _23 = (sizetype) _22;
+  _24 = _21 + _23;
+  _25 = *_24;
+  _26 = CanNm_ChanStatus[0].TxPduPtr;
+  _27 = CanNm_ChanConfig[0].CbvPos;
+  _28 = (sizetype) _27;
+  _29 = _26 + _28;
+  _30 = _25 | 64;
+  *_29 = _30;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].PnFilterEnabled = 0;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfPrepareBusSleepModeAction3 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfPrepareBusSleepModeGuard2 ()
+{
+  boolean ret;
+  boolean D.10168;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 >> 1;
+  _4 = (unsigned char) _3;
+  ret = _4 & 1;
+  # DEBUG BEGIN_STMT
+  D.10168 = ret;
+  return D.10168;
+
+}
+
+
+CanNm_HsmCanNmSfPrepareBusSleepModeEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ActiveWakeUp1 = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ActiveWakeUp2 = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanConfig[0].WBSTime;
+  CanNm_UniTimerStart (_1);
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CurState = 2;
+  # DEBUG BEGIN_STMT
+  _2 = CanNm_ChanConfig[0].nmChannelId;
+  Nm_PrepareBusSleepMode (_2);
+  # DEBUG BEGIN_STMT
+  _3 = CanNm_ChanStatus[0].TxPduPtr;
+  _4 = CanNm_ChanConfig[0].CbvPos;
+  _5 = (sizetype) _4;
+  _6 = _3 + _5;
+  TS_AtomicClearBit_8 (_6, 4);
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfRepeatMessageStateGuard2 ()
+{
+  boolean ret;
+  boolean D.10166;
+  unsigned char iftmp.18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = CanNm_ChanStatus[0].RmsTimer;
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.18 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.18 = 0;
+
+  <bb 6> :
+  ret = iftmp.18;
+  # DEBUG BEGIN_STMT
+  D.10166 = ret;
+  return D.10166;
+
+}
+
+
+CanNm_HsmCanNmSfRepeatMessageStateGuard1 ()
+{
+  boolean ret;
+  boolean D.10159;
+  unsigned char iftmp.17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 2;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = CanNm_ChanStatus[0].RmsTimer;
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.17 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.17 = 0;
+
+  <bb 6> :
+  ret = iftmp.17;
+  # DEBUG BEGIN_STMT
+  D.10159 = ret;
+  return D.10159;
+
+}
+
+
+CanNm_HsmCanNmSfRepeatMessageStateExit ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ImmediateNmTransmissionCounter = 0;
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].MessageFlags;
+  _2 = _1 & 247;
+  CanNm_ChanStatus[0].MessageFlags = _2;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].RmsTimer = 0;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfRepeatMessageStateEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].MessageFlags;
+  _2 = _1 & 253;
+  CanNm_ChanStatus[0].MessageFlags = _2;
+  # DEBUG BEGIN_STMT
+  _3 = CanNm_ChanConfig[0].RMSTime;
+  CanNm_RmsTimerStart (_3);
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanConfig[0].RMSTime;
+  if (_4 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = CanNm_ChanStatus[0].MessageFlags;
+  _6 = _5 | 8;
+  CanNm_ChanStatus[0].MessageFlags = _6;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CurState = 5;
+  # DEBUG BEGIN_STMT
+  _7 = CanNm_ChanStatus[0].ChanStatus;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 1;
+  if (_9 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 = CanNm_ChanStatus[0].MessageFlags;
+  _11 = (int) _10;
+  _12 = _11 & 1;
+  if (_12 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _13 = CanNm_ChanStatus[0].ChanStatus;
+  _14 = (int) _13;
+  _15 = _14 & 2;
+  if (_15 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _16 = CanNm_ChanConfig[0].ImmediateNmTransmissions;
+  if (_16 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _17 = CanNm_ChanConfig[0].ImmediateNmTransmissions;
+  CanNm_ChanStatus[0].ImmediateNmTransmissionCounter = _17;
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStart (0);
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.15_18 = CanNm_RootPtr;
+  _19 = CanNm_RootPtr.15_18->CanNm_ChannelData[0].CanNmMsgCycleOffset;
+  CanNm_MsgCycleTimerStart (_19);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.16_20 = CanNm_RootPtr;
+  _21 = CanNm_RootPtr.16_20->CanNm_ChannelData[0].CanNmMsgCycleOffset;
+  CanNm_MsgCycleTimerStart (_21);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _22 = CanNm_ChanStatus[0].MessageFlags;
+  _23 = _22 & 254;
+  CanNm_ChanStatus[0].MessageFlags = _23;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteSleepAction3 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndication_NOState ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteSleepAction2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteSleepGuard1 ()
+{
+  boolean ret;
+  boolean D.10139;
+  unsigned char iftmp.14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 2;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.14 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.14 = 0;
+
+  <bb 5> :
+  ret = iftmp.14;
+  # DEBUG BEGIN_STMT
+  D.10139 = ret;
+  return D.10139;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteSleepEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteActivityAction4 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteActivityGuard4 ()
+{
+  boolean ret;
+  boolean D.10133;
+  unsigned char iftmp.13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.13 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.13 = 0;
+
+  <bb 5> :
+  ret = iftmp.13;
+  # DEBUG BEGIN_STMT
+  D.10133 = ret;
+  return D.10133;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteActivityGuard2 ()
+{
+  boolean ret;
+  boolean D.10127;
+  unsigned char iftmp.12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 2;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.12 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.12 = 0;
+
+  <bb 5> :
+  ret = iftmp.12;
+  # DEBUG BEGIN_STMT
+  D.10127 = ret;
+  return D.10127;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteActivityAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndication_NOState_RA ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationRemoteActivityEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNormalOperationStateEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CurState = 4;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfSendingSubModeAction3 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].CanNmTimer;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = CanNm_ChanStatus[0].ChanStatus;
+  _3 = (unsigned int) _2;
+  _4 = _3 & 1;
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (31, 0, 19, 17);
+  # DEBUG BEGIN_STMT
+  _5 = CanNm_ChanConfig[0].CanNmTime;
+  CanNm_NmTimerStart (_5);
+
+  <bb 5> :
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfSendingSubModeAction2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleTransmit ();
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfSendingSubModeAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanConfig[0].nmChannelId;
+  Nm_TxTimeoutException (_1);
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.11_2 = CanNm_RootPtr;
+  _3 = CanNm_RootPtr.11_2->CanNm_ChannelData[0].PnEnabled;
+  if (_3 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanConfig[0].nmChannelId;
+  CanSM_TxTimeoutException (_4);
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfSendingSubModeExit ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStop ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteSleepAction3 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndicationCommon ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteSleepAction2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteSleepAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.10_1 = CanNm_RootPtr;
+  _2 = CanNm_RootPtr.10_1->CanNm_ChannelData[0].CanNmMsgCycleOffset;
+  CanNm_MsgCycleTimerStart (_2);
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteSleepGuard1 ()
+{
+  boolean ret;
+  boolean D.10113;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.9_1 = CanNm_RootPtr;
+  _2 = CanNm_RootPtr.9_1->CanNm_ChannelData[0].PnHandleMultipleNetworkRequests;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = CanNm_ChanStatus[0].ChanStatus;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.10113 = ret;
+  return D.10113;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteActivityAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.8_1 = CanNm_RootPtr;
+  _2 = CanNm_RootPtr.8_1->CanNm_ChannelData[0].CanNmMsgCycleOffset;
+  CanNm_MsgCycleTimerStart (_2);
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteActivityGuard1 ()
+{
+  boolean ret;
+  boolean D.10107;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.7_1 = CanNm_RootPtr;
+  _2 = CanNm_RootPtr.7_1->CanNm_ChannelData[0].PnHandleMultipleNetworkRequests;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = CanNm_ChanStatus[0].ChanStatus;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.10107 = ret;
+  return D.10107;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepRemoteActivityEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepStateGuard1 ()
+{
+  boolean ret;
+  boolean D.10101;
+  unsigned char iftmp.6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].CanNmTimer;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.6 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.6 = 0;
+
+  <bb 5> :
+  ret = iftmp.6;
+  # DEBUG BEGIN_STMT
+  D.10101 = ret;
+  return D.10101;
+
+}
+
+
+CanNm_HsmCanNmSfReadySleepStateEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CurState = 3;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNetworkModeGuard4 ()
+{
+  boolean ret;
+  boolean D.10095;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_RootPtr.5_1 = CanNm_RootPtr;
+  _2 = CanNm_RootPtr.5_1->CanNm_ChannelData[0].PnHandleMultipleNetworkRequests;
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = CanNm_ChanStatus[0].ChanStatus;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.10095 = ret;
+  return D.10095;
+
+}
+
+
+CanNm_HsmCanNmSfNetworkModeAction3 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleTxConfirmation ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNetworkModeAction2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleRxIndicationCommon ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNetworkModeAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_HandleComControl ();
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfNetworkModeEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CanNm_ChanConfig[0].CanNmTime;
+  CanNm_NmTimerStart (_4);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = CanNm_ChanConfig[0].nmChannelId;
+  Nm_NetworkMode (_5);
+  # DEBUG BEGIN_STMT
+  _6 = CanNm_ChanStatus[0].ActiveWakeUp1;
+  if (_6 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _7 = CanNm_ChanStatus[0].CurState;
+  _8 = _7 + 255;
+  if (_8 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = CanNm_ChanStatus[0].TxPduPtr;
+  _10 = CanNm_ChanConfig[0].CbvPos;
+  _11 = (sizetype) _10;
+  _12 = _9 + _11;
+  TS_AtomicSetBit_8 (_12, 4);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].NmTimerExpired = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].FirstCanIfTransmitOk = 0;
+  # DEBUG BEGIN_STMT
+  _13 = CanNm_ChanStatus[0].MessageFlags;
+  _14 = _13 | 1;
+  CanNm_ChanStatus[0].MessageFlags = _14;
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfBusSleepModeGuard3 ()
+{
+  boolean ret;
+  boolean D.10074;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanStatus[0].ChanStatus;
+  _2 = (unsigned int) _1;
+  _3 = _2 >> 1;
+  _4 = (unsigned char) _3;
+  ret = _4 & 1;
+  # DEBUG BEGIN_STMT
+  D.10074 = ret;
+  return D.10074;
+
+}
+
+
+CanNm_HsmCanNmSfBusSleepModeAction1 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanConfig[0].nmChannelId;
+  Nm_NetworkStartIndication (_1);
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (31, 0, 16, 4);
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfBusSleepModeEntry ()
+{
+  Nm_StateType PrevState;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PrevState = CanNm_ChanStatus[0].CurState;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ActiveWakeUp1 = 0;
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].ActiveWakeUp2 = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanNm_SCHM_CANNM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].CurState = 1;
+  # DEBUG BEGIN_STMT
+  if (PrevState == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = CanNm_ChanConfig[0].nmChannelId;
+  Nm_BusSleepMode (_1);
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanNm_HsmCanNmSfTOPEntry ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanNm_InitIntVar ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_ChanStatus[0].TimeoutTimer = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_NmTimerStop ();
+  # DEBUG BEGIN_STMT
+  CanNm_UniTimerStop ();
+  # DEBUG BEGIN_STMT
+  CanNm_MsgCycleTimerStop ();
+  return;
+
+}
+
+

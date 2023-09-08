@@ -1,0 +1,224 @@
+__attribute__((target ("general-regs-only")))
+OS_InitDataArea (os_uint8_t * dest, os_uint8_t * dlimit, const os_uint8_t * src, const os_uint8_t * slimit)
+{
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (dest_8(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (src_10(D) != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = *src_4;
+  *dest_2 = _1;
+  # DEBUG BEGIN_STMT
+  dest_16 = dest_2 + 1;
+  # DEBUG dest => dest_16
+  # DEBUG BEGIN_STMT
+  src_17 = src_4 + 1;
+  # DEBUG src => src_17
+
+  <bb 5> :
+  # dest_2 = PHI <dest_8(D)(3), dest_16(4)>
+  # src_4 = PHI <src_10(D)(3), src_17(4)>
+  # DEBUG src => src_4
+  # DEBUG dest => dest_2
+  # DEBUG BEGIN_STMT
+  if (src_4 < slimit_11(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *dest_3 = 0;
+  # DEBUG BEGIN_STMT
+  dest_14 = dest_3 + 1;
+  # DEBUG dest => dest_14
+
+  <bb 7> :
+  # dest_3 = PHI <dest_2(5), dest_14(6)>
+  # DEBUG dest => dest_3
+  # DEBUG BEGIN_STMT
+  if (dest_3 < dlimit_12(D))
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_InitApplicationData ()
+{
+  const struct os_isr_t * ip;
+  const struct os_task_t * tp;
+  const struct os_appcontext_t * ap;
+  const os_coreid_t myCoreId;
+  os_isrid_t i;
+  os_taskid_t t;
+  os_applicationid_t a;
+  const struct os_appcontext_t * OS_appTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  os_uint8_t * _4;
+  os_uint8_t * _5;
+  const os_uint8_t * _6;
+  const os_uint8_t * _7;
+  unsigned char a.1_8;
+  unsigned char OS_nApps.2_9;
+  const struct os_task_t * OS_taskTableBase.3_10;
+  unsigned int _11;
+  unsigned int _12;
+  os_uint8_t * _13;
+  os_uint8_t * _14;
+  os_uint8_t * _15;
+  os_uint8_t * _16;
+  unsigned char t.4_17;
+  unsigned char OS_nTasks.5_18;
+  const struct os_isr_t * OS_isrTableBase.6_19;
+  unsigned int _20;
+  unsigned int _21;
+  os_uint8_t * _22;
+  os_uint8_t * _23;
+  os_uint8_t * _24;
+  os_uint8_t * _25;
+  short unsigned int i.7_26;
+  short unsigned int OS_nInterrupts.8_27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_34 = 0;
+  # DEBUG myCoreId => myCoreId_34
+  # DEBUG BEGIN_STMT
+  a_35 = 0;
+  # DEBUG a => a_35
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = (unsigned int) a_28;
+  _3 = _2 * 64;
+  ap_45 = OS_appTableBase.0_1 + _3;
+  # DEBUG ap => ap_45
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = ap_45->dataStart;
+  _5 = ap_45->dataEnd;
+  _6 = ap_45->idataStart;
+  _7 = ap_45->idataEnd;
+  OS_InitDataArea (_4, _5, _6, _7);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  a.1_8 = a_28;
+  a_47 = a.1_8 + 1;
+  # DEBUG a => a_47
+
+  <bb 4> :
+  # a_28 = PHI <a_35(2), a_47(3)>
+  # DEBUG a => a_28
+  # DEBUG BEGIN_STMT
+  OS_nApps.2_9 = OS_nApps;
+  if (a_28 < OS_nApps.2_9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  t_37 = 0;
+  # DEBUG t => t_37
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.3_10 = OS_taskTableBase;
+  _11 = (unsigned int) t_29;
+  _12 = _11 * 76;
+  tp_42 = OS_taskTableBase.3_10 + _12;
+  # DEBUG tp => tp_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = tp_42->dataStart;
+  _14 = tp_42->dataEnd;
+  _15 = tp_42->idataStart;
+  _16 = tp_42->idataEnd;
+  OS_InitDataArea (_13, _14, _15, _16);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  t.4_17 = t_29;
+  t_44 = t.4_17 + 1;
+  # DEBUG t => t_44
+
+  <bb 7> :
+  # t_29 = PHI <t_37(5), t_44(6)>
+  # DEBUG t => t_29
+  # DEBUG BEGIN_STMT
+  OS_nTasks.5_18 = OS_nTasks;
+  if (t_29 < OS_nTasks.5_18)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  i_38 = 0;
+  # DEBUG i => i_38
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.6_19 = OS_isrTableBase;
+  _20 = (unsigned int) i_30;
+  _21 = _20 * 68;
+  ip_39 = OS_isrTableBase.6_19 + _21;
+  # DEBUG ip => ip_39
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = ip_39->dataStart;
+  _23 = ip_39->dataEnd;
+  _24 = ip_39->idataStart;
+  _25 = ip_39->idataEnd;
+  OS_InitDataArea (_22, _23, _24, _25);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.7_26 = i_30;
+  i_41 = i.7_26 + 1;
+  # DEBUG i => i_41
+
+  <bb 10> :
+  # i_30 = PHI <i_38(8), i_41(9)>
+  # DEBUG i => i_30
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.8_27 = OS_nInterrupts;
+  if (i_30 < OS_nInterrupts.8_27)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  return;
+
+}
+
+

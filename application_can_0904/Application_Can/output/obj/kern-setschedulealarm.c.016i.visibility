@@ -1,0 +1,234 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_SetScheduleAlarm
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueAlarm/5 (OS_EnqueueAlarm) @06c4a000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_SetScheduleAlarm/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/4 (OS_CORTEXM_IntSetDisablingLevel) @06c4aee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_SetScheduleAlarm/0 OS_SetScheduleAlarm/0 
+  Calls: 
+OS_kernDisableLevel/3 (OS_kernDisableLevel) @06c2ac18
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_SetScheduleAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_counterTableBase/2 (OS_counterTableBase) @06c2ab40
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_SetScheduleAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_alarmTableBase/1 (OS_alarmTableBase) @06c2aaf8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_SetScheduleAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_SetScheduleAlarm/0 (OS_SetScheduleAlarm) @06c4ac40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_alarmTableBase/1 (read)OS_counterTableBase/2 (read)OS_kernDisableLevel/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/4 OS_EnqueueAlarm/5 OS_CORTEXM_IntSetDisablingLevel/4 
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_SetScheduleAlarm (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, os_tick_t val, os_boolean_t rel)
+{
+  os_intstatus_t is;
+  struct os_counterdynamic_t * cd;
+  const struct os_counter_t * cs;
+  struct os_alarmdynamic_t * ad;
+  const struct os_alarm_t * as;
+  os_tick_t iftmp.4;
+  os_tick_t iftmp.3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.0_1 = OS_alarmTableBase;
+  _2 = ss->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  as = OS_alarmTableBase.0_1 + _4;
+  # DEBUG BEGIN_STMT
+  ad = as->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.1_5 = OS_counterTableBase;
+  _6 = as->counter;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 32;
+  cs = OS_counterTableBase.1_5 + _8;
+  # DEBUG BEGIN_STMT
+  cd = cs->dynamic;
+  # DEBUG BEGIN_STMT
+  if (rel == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  _9 = cs->hwt;
+  if (_9 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _10 = cd->lock;
+  if (_10 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _11 = cs->updFunc;
+  _11 (cs);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_12 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.2_12);
+  # DEBUG BEGIN_STMT
+  ad->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad->period = 0;
+  # DEBUG BEGIN_STMT
+  if (rel != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ad->delta = val;
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = cd->current;
+  if (val < _13)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  _14 = cd->current;
+  _15 = val - _14;
+  _16 = cs->maxallowedvalue;
+  _17 = _15 + _16;
+  iftmp.3 = _17 + 1;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  _18 = cd->current;
+  iftmp.3 = val - _18;
+
+  <bb 11> :
+  ad->delta = iftmp.3;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _19 = cs->maxallowedvalue;
+  _20 = cd->current;
+  _21 = _19 - _20;
+  _22 = ad->delta;
+  if (_21 < _22)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _23 = cd->current;
+  _24 = ad->delta;
+  _25 = _23 + _24;
+  _26 = cs->maxallowedvalue;
+  _27 = _25 - _26;
+  iftmp.4 = _27 + 4294967295;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  _28 = cd->current;
+  _29 = ad->delta;
+  iftmp.4 = _28 + _29;
+
+  <bb 15> :
+  sd->ctrAbs = iftmp.4;
+  # DEBUG BEGIN_STMT
+  _30 = ss->alarm;
+  OS_EnqueueAlarm (cs, cd, _30, ad);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  _31 = cs->hwt;
+  if (_31 != 0B)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _32 = cd->lock;
+  if (_32 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  _33 = cd->head;
+  _34 = ss->alarm;
+  if (_33 == _34)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _35 = cs->updFunc;
+  _35 (cs);
+
+  <bb 19> :
+  return;
+
+}
+
+

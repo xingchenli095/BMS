@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?module SecOC?>
+
+<xgen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.elektrobit.com/2013/xgen" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+
+
+
+
+
+
+
+  <!-- This is the configuration of module SecOC -->
+  <module name="SecOC" version="2.8.1 B533786">
+    <!-- This is the precompile-time configuration of the module. -->
+    <configuration class="PreCompile">
+      <?artifact directory="include" file="SecOC_Types_Int.h" type="types-h" generate="yes" ?>
+
+      <!-- !LINKSTO SecOC.PB.Impl.PbcfgM.Relocatable,1 -->
+      <!-- !LINKSTO SecOC.PB.Impl.NoPbcfgM.Relocatable,1 -->
+
+      <parameter name="relocatable-enable">
+        <boolean-value>true</boolean-value>
+      </parameter>
+
+      <!--
+          Type declarations:
+          Specifies the content of SecOC_Types_Int.h
+      -->
+
+      <!-- This is the type definition of the root structure -->
+      <!-- !LINKSTO SecOC.ASR430.RxTx.SWS_SecOC_00104,1 -->
+      <type name="SecOC_ConfigType">
+        <comment><![CDATA[ \brief Type for the SecOC configuration
+ This type defines the global configuration of the SecOC.]]></comment>
+        <struct>
+          <!-- !LINKSTO SecOC.PB.Impl.Hash,1 -->
+          <member name="PlatformSignature" type="uint32" comment="Used to validate the platform"/>
+          <member name="LcfgSignature" type="uint32" comment="Used to validate the post build configuration against the link time configuration"/>
+          <member name="CfgSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time configuration"/>
+          <member name="PublicInfoSignature" type="uint32" comment="Used to validate the post build configuration against the precompile time published information configuration"/>
+          <member name="PduBufferSize" type="uint32" comment="Required buffer size for storing PDUs"/>
+          <member name="IntBufferSize" type="uint32" comment="Required buffer size for internal processing"/>
+          <member name="RxPduConfigPtr" type="SecOC_RxPduConfigType" comment="ptr. to array of Rx PDU configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+          <member  name="TxPduConfigPtr" type="SecOC_TxPduConfigType" comment="ptr. to array of Tx PDU configurations">
+            <compiler-abstraction>
+              <ref2cfg />
+            </compiler-abstraction>
+          </member>
+        </struct>
+      </type>
+
+      <!-- This type is used for configuration of Rx PDUs. -->
+      <type name="SecOC_RxPduConfigType">
+        <comment><![CDATA[ \brief Rx PDU configuration type
+
+ This type is used for configuration of Rx PDUs.]]></comment>
+        <struct>
+          <member name="BuffersConfig" type="SecOC_RxBuffersConfigType" comment="Rx PDU buffer lengths"/>
+          <member name="DataId" type="uint16" comment="Data ID"/>
+          <member name="AuthenticLayerPduIdAtPduR" type="uint16" comment="ID of authentic Pdu (ID defined in PduR used for PduR_SecOCRxIndication)"/>
+          <member name="AuthInfoTxLength" type="uint16" comment="Truncated MAC length in bits"/>
+          <member name="FreshnessValueId" type="uint16" comment="Freshness value ID"/>
+          <member name="FreshnessValueLength" type="uint8" comment="Freshness value length in bits"/>
+          <member name="FreshnessValueTxLength" type="uint8" comment="Truncated freshness value length in bits"/>
+        </struct>
+      </type>
+
+      <!-- This type is used for configuration of Tx PDUs. -->
+      <type name="SecOC_TxPduConfigType">
+        <comment><![CDATA[ \brief Tx PDU configuration type
+
+ This type is used for configuration of Tx PDUs.]]></comment>
+        <struct>
+          <member name="BuffersConfig" type="SecOC_TxBuffersConfigType" comment="Tx PDU buffer lengths"/>
+          <member name="DataId" type="uint16" comment="Data ID"/>
+          <member name="SecuredLayerPduIdAtPduR" type="uint16" comment="ID of secured Pdu at PduR (used for e.g. PduR_SecOCTpTransmit)"/>
+          <member name="ULAuthLayerPduIdAtPduR" type="uint16" comment="ID of authentic Pdu at PduR (used for e.g. PduR_SecOCTxConfirmation)"/>
+          <member name="AuthInfoTxLength" type="uint16" comment="Truncated MAC length in bits"/>
+          <member name="FreshnessValueId" type="uint16" comment="Freshness value ID"/>
+          <member name="FreshnessValueLength" type="uint8" comment="Freshness value length in bits"/>
+          <member name="FreshnessValueTxLength" type="uint8" comment="Truncated freshness value length in bits"/>
+          <member name="UseReAuthenticate" type="boolean" comment="Flag which indicates if the authentication information shall be updated after triggered transmission"/>
+        </struct>
+      </type>
+
+      <!-- This type is used for configuration of Rx buffers that will be used during the receiving, verification and forwarding procedure. -->
+      <!-- !LINKSTO SecOC.ASR430.Rx.SWS_SecOC_00204,1 -->
+      <type name="SecOC_RxBuffersConfigType">
+        <comment><![CDATA[ \brief Rx buffers configuration type
+
+ This type is used for configuration of Rx buffers that will be used during the receiving, verification and forwarding procedure.]]></comment>
+        <struct>
+          <member name="ReceivedSecuredPduBufferIndex" type="uint32" comment="Buffer index where the Received Secured PDU will be stored"/>
+          <member name="SecuredPduBufferIndex" type="uint32" comment="Buffer index where the Secured PDU will be stored"/>
+          <member name="AuthenticatorIndex" type="uint32" comment="Buffer index where the Authenticator will be stored"/>
+          <member name="DataToAuthenticatorIndex" type="uint32" comment="Buffer index where the data to authenticator will be stored"/>
+          <member name="SecuredPduBufferLength" type="PduLengthType" comment="Buffer length where the Secured PDU will be stored"/>
+          <member name="AuthPduBufferLength" type="PduLengthType" comment="Buffer length where the Authentic PDU will be stored"/>
+          </struct>
+      </type>
+
+      <!-- This type is used for configuration of Tx buffers that will be used during the authentication and transmission procedure. -->
+      <!-- !LINKSTO SecOC.ASR430.Tx.SWS_SecOC_00057,1, SecOC.ASR430.Tx.SWS_SecOC_00146,1, SecOC.ASR430.Tx.SWS_SecOC_00058,1 -->
+      <type name="SecOC_TxBuffersConfigType">
+        <comment><![CDATA[ \brief Tx buffers configuration type
+
+ This type is used for configuration of Tx buffers that will be used during the receiving, verification and transmission procedure.]]></comment>
+        <struct>
+          <member name="ULAuthPduBufferIndex" type="uint32" comment="Buffer index where the upper layer Authentic PDU will be stored"/>
+          <member name="SecuredPduBufferIndex" type="uint32" comment="Buffer index where the Secured PDU will be stored"/>
+          <member name="AuthenticatorIndex" type="uint32" comment="Buffer index where the Authenticator will be stored"/>
+          <member name="DataToAuthenticatorIndex" type="uint32" comment="Buffer index where the data to authenticator will be stored"/>
+          <member name="SecuredPduBufferLength" type="PduLengthType" comment="Buffer length where the Secured PDU will be stored"/>
+          <member name="AuthPduBufferLength" type="PduLengthType" comment="Buffer length where the Authentic PDU will be stored"/>
+          </struct>
+      </type>
+
+    </configuration>  <!-- PreCompile -->
+
+    <!-- This is the post-build configuration of the module. -->
+    <configuration class="PostBuild">
+
+      <?artifact directory="include" file="SecOC_PBcfg.h" type="postbuild-h" ?>
+      <?artifact directory="src" file="SecOC_PBcfg.c" type="postbuild-c" ?>
+
+      <symbol-def name="SECOC_PBCFG_PDU_MEM_SIZE" suffix="U">
+        <integer-value>20</integer-value>
+      </symbol-def>
+      <symbol-def name="SECOC_PBCFG_INT_MEM_SIZE" suffix="U">
+        <integer-value>34</integer-value>
+      </symbol-def>
+
+      <!--
+          Type declarations:
+          Specifies the content of SecOC_PBcfg.h
+      -->
+
+      <!-- This is the type definition of the layout type of the
+           modules' post-build configuration structure -->
+      <type name="SecOC_ConfigLayoutType">
+        <struct>
+          <member name="RootCfg" type="SecOC_ConfigType"/>
+          <member name="RxPduConfig" type="SecOC_RxPduConfigType" count="1"/>
+          <member name="TxPduConfig" type="SecOC_TxPduConfigType" count="1"/>
+        </struct>
+      </type>
+
+      <type name="SecOC_ConstConfigLayoutType">
+        <reference type="SecOC_ConfigLayoutType">
+          <compiler-abstraction>
+            <const memory-class="SECOC_APPL_CONST" />
+          </compiler-abstraction>
+        </reference>
+      </type>
+
+      <!--
+          Type definition and initialization:
+          Specifies the content of SecOC_PBcfg.c
+      -->
+
+      <memory-section name="CONFIG_DATA_UNSPECIFIED">
+      <instance type="SecOC_ConstConfigLayoutType"
+             name="SecOC_ConfigLayout">
+
+        <parameter name="postbuild-configuration-name">
+          <symbolic-value>SecOC_Config</symbolic-value>
+        </parameter>
+
+        <!-- SecOC_ConfigType -->
+        <field>
+          <field>
+            <int>2147485970</int>
+          </field>
+          <field>
+            <int>3958107115</int>
+          </field>
+          <field>
+            <int>1275670664</int>
+          </field>
+          <field>
+            <int>844678326</int>
+          </field>
+          <field>
+            <int>20</int>
+          </field>
+          <field>
+            <int>34</int>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="RxPduConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+          <field>
+            <ref>
+              <struct-field name="TxPduConfig" />
+              <array-field index="0" />
+            </ref>
+          </field>
+        </field>
+
+
+
+        <!-- SecOC_RxPduConfigType RxPduConfigPtr -->
+        <field>
+
+
+          <field>
+            <!-- SecOC_RxBuffersConfigType BuffersConfig[0] -->
+            <field>
+                <!-- ReceivedSecuredPduBufferIndex -->
+                <field>
+                  <int>0</int>
+                </field>
+                <!-- SecuredPduBufferIndex -->
+                <field>
+                  <int>0</int>
+                </field>
+                <!-- AuthenticatorIndex -->
+                <field>
+                  <int>0</int>
+                </field>
+                <!-- DataToAuthenticatorIndex -->
+                <field>
+                  <int>3</int>
+                </field>
+              <!-- SecuredPduBufferLength -->
+              <field>
+                <int>8</int>
+              </field>
+              <!-- AuthPduBufferLength -->
+              <field>
+                <int>4</int>
+              </field>
+            </field>
+            <!-- DataId -->
+            <field>
+              <int>12345</int>
+            </field>
+            <!-- AuthenticLayerPduIdAtPduR -->
+            <field>
+              <int>0</int>
+            </field>
+            <!-- AuthInfoTxLength -->
+            <field>
+              <int>24</int>
+            </field>
+            <!-- FreshnessValueId -->
+            <field>
+              <int>0</int>
+            </field>
+            <!-- FreshnessValueLength -->
+            <field>
+              <int>40</int>
+            </field>
+            <!-- FreshnessValueTxLength -->
+            <field>
+              <int>8</int>
+            </field>
+          </field>
+        </field>
+
+
+
+        <!-- SecOC_TxPduConfigType TxPduConfigPtr -->
+        <field>
+
+
+          <field>
+            <!-- SecOC_TxBuffersConfigType BuffersConfig[0] -->
+            <field>
+                <!-- ULAuthPduBufferIndex -->
+                <field>
+                  <int>8</int>
+                </field>
+                <!-- SecuredPduBufferIndex -->
+                <field>
+                  <int>12</int>
+                </field>
+                <!-- AuthenticatorIndex -->
+                <field>
+                  <int>17</int>
+                </field>
+                <!-- DataToAuthenticatorIndex -->
+                <field>
+                  <int>20</int>
+                </field>
+              <!-- SecuredPduBufferLength -->
+              <field>
+                <int>8</int>
+              </field>
+              <!-- AuthPduBufferLength -->
+              <field>
+                <int>4</int>
+              </field>
+            </field>
+            <!-- DataId -->
+            <field>
+              <int>12345</int>
+            </field>
+            <!-- SecuredLayerPduIdAtPduR -->
+            <field>
+              <int>0</int>
+            </field>
+            <!-- ULAuthLayerPduIdAtPduR -->
+            <field>
+              <int>0</int>
+            </field>
+            <!-- AuthInfoTxLength -->
+            <field>
+              <int>24</int>
+            </field>
+            <!-- FreshnessValueId -->
+            <field>
+              <int>1</int>
+            </field>
+            <!-- FreshnessValueLength -->
+            <field>
+              <int>40</int>
+            </field>
+            <!-- FreshnessValueTxLength -->
+            <field>
+              <int>8</int>
+            </field>
+            <!-- UseReAuthenticate -->
+            <field>
+              <int>0</int>
+            </field>
+          </field>
+        </field>
+
+
+        </instance>
+      </memory-section>
+    </configuration>  <!-- PostBuild -->
+  </module>
+
+  <!-- include the AUTOSAR standard data types, etc. -->
+  <xi:include href="Base.xgen" xpointer="element(/1/1)"/>
+</xgen>
+

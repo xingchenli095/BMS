@@ -1,0 +1,396 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComNotifyEntry/41:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComAction4/40:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComAction3/39:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComAction1/38:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComEntry/37:
+  Jump functions of caller  ComM_HsmComMPncSfPncRequestedAction1/36:
+  Jump functions of caller  ComM_HsmComMPncSfPncRequestedEntry/35:
+  Jump functions of caller  ComM_HsmComMPncSfPncReadySleepEntry/34:
+  Jump functions of caller  ComM_HsmComMPncSfPncPrepareSleepAction3/33:
+  Jump functions of caller  ComM_HsmComMPncSfPncPrepareSleepAction2/32:
+  Jump functions of caller  ComM_HsmComMPncSfPncPrepareSleepAction1/31:
+  Jump functions of caller  ComM_HsmComMPncSfPncPrepareSleepEntry/30:
+  Jump functions of caller  ComM_HsmComMPncSfPncFullComEntry/29:
+  Jump functions of caller  ComM_HsmComMPncSfPncTopAction1/28:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComGuard3/27:
+  Jump functions of caller  ComM_HsmComMPncSfPncNoComGuard1/26:
+  Jump functions of caller  ComM_HsmComMPncSfPncRequestedGuard1/25:
+  Jump functions of caller  ComM_HsmComMPncSfPncReadySleepGuard1/24:
+  Jump functions of caller  ComM_HsmComMPncSfPncPrepareSleepGuard1/23:
+
+ Propagating constants:
+
+
+overall_size: 0, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+ComM_HsmComMPncSfPncNoComNotifyEntry/41 (ComM_HsmComMPncSfPncNoComNotifyEntry) @06c07c40
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction4/40 (ComM_HsmComMPncSfPncNoComAction4) @06c07b60
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction3/39 (ComM_HsmComMPncSfPncNoComAction3) @06c07a80
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction1/38 (ComM_HsmComMPncSfPncNoComAction1) @06c079a0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComEntry/37 (ComM_HsmComMPncSfPncNoComEntry) @06c078c0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedAction1/36 (ComM_HsmComMPncSfPncRequestedAction1) @06c077e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedEntry/35 (ComM_HsmComMPncSfPncRequestedEntry) @06c07700
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncReadySleepEntry/34 (ComM_HsmComMPncSfPncReadySleepEntry) @06c07620
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction3/33 (ComM_HsmComMPncSfPncPrepareSleepAction3) @06c07460
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction2/32 (ComM_HsmComMPncSfPncPrepareSleepAction2) @06c07380
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction1/31 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06c072a0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepEntry/30 (ComM_HsmComMPncSfPncPrepareSleepEntry) @06c071c0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncFullComEntry/29 (ComM_HsmComMPncSfPncFullComEntry) @06c070e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncTopAction1/28 (ComM_HsmComMPncSfPncTopAction1) @06c07000
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncActions/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComGuard3/27 (ComM_HsmComMPncSfPncNoComGuard3) @06c05ee0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncGuards/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComGuard1/26 (ComM_HsmComMPncSfPncNoComGuard1) @06c05e00
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncGuards/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedGuard1/25 (ComM_HsmComMPncSfPncRequestedGuard1) @06c05d20
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncGuards/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncReadySleepGuard1/24 (ComM_HsmComMPncSfPncReadySleepGuard1) @06c05c40
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncGuards/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepGuard1/23 (ComM_HsmComMPncSfPncPrepareSleepGuard1) @06c05b60
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: ComM_HsmComMPncGuards/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmScComMPnc/22 (ComM_HsmScComMPnc) @06c03708
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: ComM_HsmScdComMPnc/21 (addr)ComM_HsmInstComMPnc/2 (addr)ComM_HsmComMPncActions/3 (addr)ComM_HsmComMPncGuards/4 (addr)ComM_HsmEvCountersComMPnc/0 (addr)ComM_HsmEvQueuesComMPnc/1 (addr)
+  Referring: 
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmScdComMPnc/21 (ComM_HsmScdComMPnc) @06c03678
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncTop/16 (addr)ComM_HsmTrPncPrepareSleep/17 (addr)ComM_HsmTrPncReadySleep/18 (addr)ComM_HsmTrPncRequested/19 (addr)ComM_HsmTrPncNoCom/20 (addr)
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncNoCom/20 (ComM_HsmTrPncNoCom) @06c03360
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncNoComSteps1/12 (addr)ComM_HsmTrPncNoComSteps2/13 (addr)ComM_HsmTrPncNoComSteps3/14 (addr)ComM_HsmTrPncNoComSteps4/15 (addr)
+  Referring: ComM_HsmScdComMPnc/21 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncRequested/19 (ComM_HsmTrPncRequested) @06c031f8
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncRequestedSteps1/11 (addr)
+  Referring: ComM_HsmScdComMPnc/21 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncReadySleep/18 (ComM_HsmTrPncReadySleep) @06c03168
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncReadySleepSteps1/9 (addr)ComM_HsmTrPncReadySleepSteps2/10 (addr)
+  Referring: ComM_HsmScdComMPnc/21 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncPrepareSleep/17 (ComM_HsmTrPncPrepareSleep) @06c03090
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncPrepareSleepSteps1/6 (addr)ComM_HsmTrPncPrepareSleepSteps2/7 (addr)ComM_HsmTrPncPrepareSleepSteps3/8 (addr)
+  Referring: ComM_HsmScdComMPnc/21 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncTop/16 (ComM_HsmTrPncTop) @06ba6f78
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmTrPncTopSteps1/5 (addr)
+  Referring: ComM_HsmScdComMPnc/21 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncNoComSteps4/15 (ComM_HsmTrPncNoComSteps4) @06ba6ee8
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncNoCom/20 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncNoComSteps3/14 (ComM_HsmTrPncNoComSteps3) @06ba6ea0
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncNoCom/20 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncNoComSteps2/13 (ComM_HsmTrPncNoComSteps2) @06ba6e58
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncNoCom/20 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncNoComSteps1/12 (ComM_HsmTrPncNoComSteps1) @06ba6e10
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncNoCom/20 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncRequestedSteps1/11 (ComM_HsmTrPncRequestedSteps1) @06ba6dc8
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncRequested/19 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncReadySleepSteps2/10 (ComM_HsmTrPncReadySleepSteps2) @06ba6d80
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncReadySleep/18 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncReadySleepSteps1/9 (ComM_HsmTrPncReadySleepSteps1) @06ba6d38
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncReadySleep/18 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncPrepareSleepSteps3/8 (ComM_HsmTrPncPrepareSleepSteps3) @06ba6cf0
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncPrepareSleep/17 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncPrepareSleepSteps2/7 (ComM_HsmTrPncPrepareSleepSteps2) @06ba6ca8
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncPrepareSleep/17 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncPrepareSleepSteps1/6 (ComM_HsmTrPncPrepareSleepSteps1) @06ba6c60
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncPrepareSleep/17 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmTrPncTopSteps1/5 (ComM_HsmTrPncTopSteps1) @06ba6c18
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmTrPncTop/16 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmComMPncGuards/4 (ComM_HsmComMPncGuards) @06ba6bd0
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmComMPncSfPncPrepareSleepGuard1/23 (addr)ComM_HsmComMPncSfPncReadySleepGuard1/24 (addr)ComM_HsmComMPncSfPncRequestedGuard1/25 (addr)ComM_HsmComMPncSfPncNoComGuard1/26 (addr)ComM_HsmComMPncSfPncNoComGuard3/27 (addr)
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmComMPncActions/3 (ComM_HsmComMPncActions) @06ba6b40
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: ComM_HsmComMPncSfPncTopAction1/28 (addr)ComM_HsmComMPncSfPncFullComEntry/29 (addr)ComM_HsmComMPncSfPncPrepareSleepEntry/30 (addr)ComM_HsmComMPncSfPncPrepareSleepAction1/31 (addr)ComM_HsmComMPncSfPncPrepareSleepAction2/32 (addr)ComM_HsmComMPncSfPncPrepareSleepAction3/33 (addr)ComM_HsmComMPncSfPncReadySleepEntry/34 (addr)ComM_HsmComMPncSfPncRequestedEntry/35 (addr)ComM_HsmComMPncSfPncRequestedAction1/36 (addr)ComM_HsmComMPncSfPncNoComEntry/37 (addr)ComM_HsmComMPncSfPncNoComAction1/38 (addr)ComM_HsmComMPncSfPncNoComAction3/39 (addr)ComM_HsmComMPncSfPncNoComAction4/40 (addr)ComM_HsmComMPncSfPncNoComNotifyEntry/41 (addr)
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+ComM_HsmInstComMPnc/2 (ComM_HsmInstComMPnc) @06ba6ab0
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags:
+ComM_HsmEvQueuesComMPnc/1 (ComM_HsmEvQueuesComMPnc) @06ba6a68
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags:
+ComM_HsmEvCountersComMPnc/0 (ComM_HsmEvCountersComMPnc) @06ba6a20
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: ComM_HsmScComMPnc/22 (addr)
+  Availability: available
+  Varpool flags:

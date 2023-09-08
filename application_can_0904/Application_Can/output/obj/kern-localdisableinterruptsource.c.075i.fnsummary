@@ -1,0 +1,146 @@
+
+Analyzing function: OS_LocalDisableInterruptSource/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6
+;; 2 succs { 6 3 }
+;; 3 succs { 4 5 }
+;; 4 succs { 5 }
+;; 5 succs { 6 }
+;; 6 succs { 1 }
+
+Analyzing function body size: OS_LocalDisableInterruptSource
+
+IPA function summary for OS_LocalDisableInterruptSource/0 inlinable
+  global time:     32.902633
+  self size:       24
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:9.500000, time:4.942632
+    size:3.500000, time:2.238850,  executed if:(not inlined)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 0] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op0[ref offset: 0] changed)
+  calls:
+    OS_CORTEXM_IntSetDisablingLevel/3 function body not available
+      loop depth: 0 freq:0.48 size: 2 time: 11
+    OS_CORTEXM_IntDisableIsr/4 function body not available
+      loop depth: 0 freq:0.16 size: 2 time: 11
+    OS_CORTEXM_IntSetDisablingLevel/3 function body not available
+      loop depth: 0 freq:0.48 size: 3 time: 12
+    OS_AppIsAccessible/1 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+
+Symbol table:
+
+OS_CORTEXM_IntDisableIsr/4 (OS_CORTEXM_IntDisableIsr) @06cd8e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalDisableInterruptSource/0 (169265735 (estimated locally),0.16 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06cd8d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalDisableInterruptSource/0 (512926469 (estimated locally),0.48 per call) OS_LocalDisableInterruptSource/0 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06cb89d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalDisableInterruptSource/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06cd8c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalDisableInterruptSource/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_LocalDisableInterruptSource/0 (OS_LocalDisableInterruptSource) @06cd8a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 (512926469 (estimated locally),0.48 per call) OS_CORTEXM_IntDisableIsr/4 (169265735 (estimated locally),0.16 per call) OS_CORTEXM_IntSetDisablingLevel/3 (512926469 (estimated locally),0.48 per call) OS_AppIsAccessible/1 (1073741824 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_LocalDisableInterruptSource (const struct os_isr_t * isr)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  short unsigned int OS_kernDisableLevel.0_3;
+  struct os_isrdynamic_t * _4;
+  unsigned char _5;
+  unsigned char _6;
+  const struct os_archisr_t * _7;
+  unsigned char _12;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr_14(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 6>; [52.23%]
+  else
+    goto <bb 3>; [47.77%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_3 = OS_kernDisableLevel;
+  is_17 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_3);
+  # DEBUG is => is_17
+  # DEBUG BEGIN_STMT
+  _4 = isr_14(D)->dynamic;
+  _5 = _4->statusflags;
+  _12 = _5 & 32;
+  if (_12 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 169265735]:
+  # DEBUG BEGIN_STMT
+  _6 = _5 | 32;
+  _4->statusflags = _6;
+  # DEBUG BEGIN_STMT
+  _7 = &isr_14(D)->arch;
+  OS_CORTEXM_IntDisableIsr (_7);
+
+  <bb 5> [local count: 512926469]:
+  # result_8 = PHI <0(4), 173(3)>
+  # DEBUG result => result_8
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_17);
+
+  <bb 6> [local count: 1073741824]:
+  # result_9 = PHI <154(2), result_8(5)>
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  return result_9;
+
+}
+
+

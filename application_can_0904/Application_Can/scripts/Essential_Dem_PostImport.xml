@@ -1,0 +1,22 @@
+<Script xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='Scriptor.xsd'>
+	<Name>Essential_Dem_PostImport</Name>
+	<Decription>desc</Decription>
+	<Expression>as:modconf('Dem')[1]</Expression>
+	<Operations>
+	
+		<Operation Type= "Condition">
+            <Expression>node:exists(as:modconf('Dem')[1]/DemConfigSet/*[1]/DemEventParameter/Permanent_DTC/DemEventClass/DemDebounceAlgorithmClass/DemCallbackGetFDC)</Expression>
+            <Operations>
+                <Operation Type= "ForEach">
+                    <Expression>as:modconf('Dem')[1]/DemConfigSet/*[1]/DemEventParameter/Permanent_DTC/DemEventClass/DemDebounceAlgorithmClass/DemCallbackGetFDC</Expression>
+                    <Operations>
+                        <Operation Type="SetEnabled">
+                            <Expression>boolean(0)</Expression>
+                        </Operation>
+                    </Operations>
+                </Operation>
+            </Operations>
+		</Operation>
+		
+	</Operations>
+</Script>

@@ -1,0 +1,108 @@
+IPA function summary for OS_LowerCurrentTasksPriority/0 inlinable
+  global time:     20.000000
+  self size:       12
+  global size:     12
+  min size:       6
+  self stack:      0
+  global stack:    0
+    size:6.000000, time:6.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+    OS_RequeueDown/2 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+
+
+Flattening functions:
+Overall time estimate: 20.000000 weighted by profile: 0.000000
+
+Deciding on inlining of small functions.  Starting with size 0.
+Enqueueing calls in OS_LowerCurrentTasksPriority/0.
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+
+Deciding on functions to be inlined into all callers and removing useless speculations:
+Overall time estimate: 20.000000 weighted by profile: 0.000000
+
+Why inlining failed?
+function body not available                       :        1 calls, 1.000000 freq, 0 count
+IPA function summary for OS_LowerCurrentTasksPriority/0 inlinable
+  global time:     20.000000
+  self size:       12
+  global size:     12
+  min size:       6
+  self stack:      0
+  global stack:    0
+    size:6.000000, time:6.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+    OS_RequeueDown/2 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+
+Symbol table:
+
+OS_RequeueDown/2 (OS_RequeueDown) @06c39d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LowerCurrentTasksPriority/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_kernelData/1 (OS_kernelData) @06c195e8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LowerCurrentTasksPriority/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_LowerCurrentTasksPriority/0 (OS_LowerCurrentTasksPriority) @06c39b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_RequeueDown/2 (1073741824 (estimated locally),1.00 per call) 
+
+;; Function OS_LowerCurrentTasksPriority (OS_LowerCurrentTasksPriority, funcdef_no=0, decl_uid=6853, cgraph_uid=1, symbol_order=0)
+
+__attribute__((target ("general-regs-only")))
+OS_LowerCurrentTasksPriority (os_prio_t reqPrio)
+{
+  os_tasklink_t link;
+  struct os_taskdynamic_t * const td;
+  const struct os_task_t * const currentTask;
+  short unsigned int _1;
+  unsigned char _2;
+  short unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  currentTask_5 = OS_kernelData.taskCurrent;
+  # DEBUG currentTask => currentTask_5
+  # DEBUG BEGIN_STMT
+  td_6 = currentTask_5->dynamic;
+  # DEBUG td => td_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = currentTask_5->linkBase;
+  _2 = td_6->cAct;
+  _3 = (short unsigned int) _2;
+  link_7 = _1 + _3;
+  # DEBUG link => link_7
+  # DEBUG BEGIN_STMT
+  OS_RequeueDown (link_7, reqPrio_8(D));
+  # DEBUG BEGIN_STMT
+  td_6->prio = reqPrio_8(D);
+  return;
+
+}
+
+

@@ -1,0 +1,81 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_ActiTask
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueLink/1 (OS_EnqueueLink) @06c49d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ActiTask/0 
+  Calls: 
+OS_ActiTask/0 (OS_ActiTask) @06c49b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 
+__attribute__((target ("general-regs-only")))
+OS_ActiTask (const struct os_task_t * tp)
+{
+  struct os_taskdynamic_t * td;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td = tp->dynamic;
+  # DEBUG BEGIN_STMT
+  _1 = tp->queuePrio;
+  _2 = (short unsigned int) _1;
+  td->prio = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td->state = 2;
+  # DEBUG BEGIN_STMT
+  td->cAct = 0;
+  # DEBUG BEGIN_STMT
+  td->pEvents = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = tp->accounting;
+  if (_3 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = tp->accounting;
+  _4->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _5 = tp->accounting;
+  _5->etType = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = tp->linkBase;
+  _7 = tp->queuePrio;
+  _8 = (short unsigned int) _7;
+  OS_EnqueueLink (_6, _8);
+  return;
+
+}
+
+

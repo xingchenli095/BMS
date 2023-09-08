@@ -1,0 +1,82 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_InitSchedules
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nSchedules/2 (OS_nSchedules) @06c14828
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitSchedules/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_scheduleTableBase/1 (OS_scheduleTableBase) @06c147e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitSchedules/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_InitSchedules/0 (OS_InitSchedules) @06c38a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_scheduleTableBase/1 (read)OS_nSchedules/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_InitSchedules ()
+{
+  const struct os_schedule_t * const ss;
+  const os_coreid_t myCoreId;
+  os_scheduleid_t i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) i;
+  _3 = _2 * 36;
+  ss = OS_scheduleTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = ss->dynamic;
+  _4->chain = 255;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.1_5 = OS_nSchedules;
+  if (i < OS_nSchedules.1_5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

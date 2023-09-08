@@ -1,0 +1,186 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_KernControlIdle
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_DoControlIdle/5 (OS_DoControlIdle) @06cd9460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernControlIdle/0 
+  Calls: 
+OS_svc_ControlIdle/4 (OS_svc_ControlIdle) @06c04bd0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernControlIdle/0 (addr)OS_KernControlIdle/0 (addr)OS_KernControlIdle/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/3 (OS_Error) @06cd9380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernControlIdle/0 OS_KernControlIdle/0 OS_KernControlIdle/0 
+  Calls: 
+OS_permittedContext/2 (OS_permittedContext) @06c04b40
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernControlIdle/0 (read)OS_KernControlIdle/0 (read)OS_KernControlIdle/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06c04af8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernControlIdle/0 (read)OS_KernControlIdle/0 (read)OS_KernControlIdle/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_KernControlIdle/0 (OS_KernControlIdle) @06cd90e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_svc_ControlIdle/4 (addr)OS_svc_ControlIdle/4 (addr)OS_svc_ControlIdle/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_Error/3 OS_DoControlIdle/5 OS_Error/3 OS_Error/3 
+__attribute__((target ("general-regs-only")))
+OS_KernControlIdle (os_coreid_t c, os_idlemode_t mode)
+{
+  os_paramtype_t p[3];
+  os_errorresult_t e;
+  os_result_t r;
+  os_result_t D.7431;
+  int iftmp.1;
+  _Bool iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) c;
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) mode;
+  p[1] = _2;
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_4 = OS_permittedContext;
+  _5 = OS_permittedContext.2_4 + 106;
+  _6 = *_5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1024;
+  if (_8 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_9 = OS_permittedContext;
+  _10 = OS_permittedContext.3_9 + 106;
+  _11 = *_10;
+  _12 = OS_kernelData.errorStatus.calledFrom;
+  _13 = (int) _12;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1 = 0;
+
+  <bb 7> :
+  iftmp.0 = iftmp.1 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_17 = OS_permittedContext;
+  _18 = OS_permittedContext.4_17 + 106;
+  _19 = *_18;
+  _20 = OS_kernelData.inFunction;
+  _21 = (int) _20;
+  _22 = 1 << _21;
+  _23 = (short unsigned int) _22;
+  _24 = _19 & _23;
+  iftmp.0 = _24 == 0;
+
+  <bb 9> :
+  if (iftmp.0 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ControlIdle, 12, &p);
+  goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (mode > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ControlIdle, 175, &p);
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  e = OS_DoControlIdle (mode);
+  # DEBUG BEGIN_STMT
+  if (e != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ControlIdle, e, &p);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  D.7431 = r;
+  p = {CLOBBER};
+  return D.7431;
+
+}
+
+

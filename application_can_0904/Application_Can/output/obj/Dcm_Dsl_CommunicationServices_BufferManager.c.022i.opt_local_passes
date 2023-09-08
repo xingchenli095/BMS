@@ -1,0 +1,904 @@
+Dcm_Dsl_BufferInitSingleBuffer (Dcm_BufferIndexType BufferIndex)
+{
+  int _1;
+  int _2;
+  int _3;
+  Dcm_MsgItemType * _4;
+  int _5;
+  long unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) BufferIndex_7(D);
+  Dcm_BufferInfo[_1].User = 15;
+  # DEBUG BEGIN_STMT
+  _2 = (int) BufferIndex_7(D);
+  Dcm_BufferInfo[_2].State = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) BufferIndex_7(D);
+  _4 = Dcm_BufferConfig[_3].BufferPtr;
+  _5 = (int) BufferIndex_7(D);
+  _6 = Dcm_BufferConfig[_5].Size;
+  TS_MemSet32 (_4, 0, _6);
+  return;
+
+}
+
+
+Dcm_Dsl_BufferInitializeSingleBuffer (Dcm_BufferUserType Requester, Dcm_BufferIdType BufferId)
+{
+  BufReq_ReturnType FreeResult;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  int _4;
+  BufReq_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  FreeResult_7 = 1;
+  # DEBUG FreeResult => FreeResult_7
+  # DEBUG BEGIN_STMT
+  if (BufferId_8(D) <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) BufferId_8(D);
+  _2 = Dcm_BufferInfo[_1].User;
+  if (Requester_11(D) == _2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) BufferId_8(D);
+  Dcm_BufferInfo[_3].State = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) BufferId_8(D);
+  Dcm_BufferInfo[_4].User = 15;
+  # DEBUG BEGIN_STMT
+  FreeResult_15 = 0;
+  # DEBUG FreeResult => FreeResult_15
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  FreeResult_12 = 1;
+  # DEBUG FreeResult => FreeResult_12
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FreeResult_9 = 0;
+  # DEBUG FreeResult => FreeResult_9
+
+  <bb 7> :
+  # FreeResult_5 = PHI <FreeResult_12(5), FreeResult_9(6), FreeResult_15(4)>
+  # DEBUG FreeResult => FreeResult_5
+  # DEBUG BEGIN_STMT
+  _16 = FreeResult_5;
+  return _16;
+
+}
+
+
+Dcm_Dsl_BufferAllocationPermission (Dcm_BufferUserType Requester, Dcm_BufferUsageType Use, Dcm_BufferSizeType Size, Dcm_BufferIdType BufferId)
+{
+  BufReq_ReturnType AllocationPermission;
+  int _1;
+  int _2;
+  long unsigned int _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  unsigned char _15;
+  int _16;
+  short unsigned int _17;
+  int _18;
+  unsigned char _19;
+  BufReq_ReturnType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_21 = 1;
+  # DEBUG AllocationPermission => AllocationPermission_21
+  # DEBUG BEGIN_STMT
+  _1 = (int) Use_22(D);
+  switch (_1) <default: <L35> [INV], case 1 ... 2: <L0> [INV], case 3: <L8> [INV], case 4: <L12> [INV], case 5: <L18> [INV], case 6: <L24> [INV], case 7: <L28> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BufferId_26(D);
+  _3 = Dcm_BufferConfig[_2].Size;
+  if (Size_23(D) > _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_39 = 3;
+  # DEBUG AllocationPermission => AllocationPermission_39
+  goto <bb 27>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BufferId_26(D);
+  _5 = Dcm_BufferInfo[_4].State;
+  if (_5 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_38 = 2;
+  # DEBUG AllocationPermission => AllocationPermission_38
+  goto <bb 27>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_37 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_37
+  goto <bb 27>; [INV]
+
+  <bb 8> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  if (Size_23(D) > 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_36 = 3;
+  # DEBUG AllocationPermission => AllocationPermission_36
+  goto <bb 27>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_35 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_35
+  goto <bb 27>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  _6 = (int) BufferId_26(D);
+  _7 = Dcm_BufferInfo[_6].State;
+  if (_7 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _8 = (int) BufferId_26(D);
+  _9 = Dcm_BufferInfo[_8].State;
+  if (_9 == 15)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  _10 = (int) BufferId_26(D);
+  _11 = Dcm_BufferInfo[_10].User;
+  if (Requester_30(D) == _11)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_34 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_34
+  goto <bb 27>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_33 = 2;
+  # DEBUG AllocationPermission => AllocationPermission_33
+  goto <bb 27>; [INV]
+
+  <bb 16> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _12 = (int) BufferId_26(D);
+  _13 = Dcm_BufferInfo[_12].State;
+  if (_13 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  _14 = (int) BufferId_26(D);
+  _15 = Dcm_BufferInfo[_14].State;
+  if (_15 == 16)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  _16 = (int) BufferId_26(D);
+  _17 = Dcm_BufferInfo[_16].User;
+  if (Requester_30(D) == _17)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_32 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_32
+  goto <bb 27>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_31 = 2;
+  # DEBUG AllocationPermission => AllocationPermission_31
+  goto <bb 27>; [INV]
+
+  <bb 21> :
+<L24>:
+  # DEBUG BEGIN_STMT
+  _18 = (int) BufferId_26(D);
+  _19 = Dcm_BufferInfo[_18].State;
+  if (_19 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_29 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_29
+  goto <bb 27>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_28 = 2;
+  # DEBUG AllocationPermission => AllocationPermission_28
+  goto <bb 27>; [INV]
+
+  <bb 24> :
+<L28>:
+  # DEBUG BEGIN_STMT
+  if (Size_23(D) > 3)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_25 = 3;
+  # DEBUG AllocationPermission => AllocationPermission_25
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_24 = 0;
+  # DEBUG AllocationPermission => AllocationPermission_24
+
+  <bb 27> :
+  # AllocationPermission_20 = PHI <AllocationPermission_38(6), AllocationPermission_35(10), AllocationPermission_33(15), AllocationPermission_31(20), AllocationPermission_28(23), AllocationPermission_24(26), AllocationPermission_21(2), AllocationPermission_39(4), AllocationPermission_37(7), AllocationPermission_36(9), AllocationPermission_34(14), AllocationPermission_32(19), AllocationPermission_29(22), AllocationPermission_25(25)>
+<L35>:
+  # DEBUG AllocationPermission => AllocationPermission_20
+  # DEBUG BEGIN_STMT
+  _40 = AllocationPermission_20;
+  return _40;
+
+}
+
+
+Dcm_Dsl_BufferGetId (Dcm_BufferUserType Requester, Dcm_BufferUsageType Use)
+{
+  Dcm_BufferIdType BufferId;
+  unsigned char _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  Dcm_BufferIdType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BufferId_10 = 18;
+  # DEBUG BufferId => BufferId_10
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_BufferUseValidForRequester (Requester_12(D), Use_13(D));
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) Use_13(D);
+  switch (_2) <default: <L12> [INV], case 1 ... 2: <L1> [INV], case 3: <L3> [INV], case 4 ... 6: <L4> [INV], case 7: <L7> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = (int) Requester_12(D);
+  _4 = Dcm_RxPduIdConfig[_3].BufferIndex;
+  BufferId_18 = (Dcm_BufferIdType) _4;
+  # DEBUG BufferId => BufferId_18
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  BufferId_17 = Requester_12(D) + 6;
+  # DEBUG BufferId => BufferId_17
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned char) Requester_12(D);
+  _6 = _5 + 244;
+  _7 = (int) _6;
+  _8 = Dcm_ProtocolConfig[_7].TxBufferIndex;
+  BufferId_16 = (Dcm_BufferIdType) _8;
+  # DEBUG BufferId => BufferId_16
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  BufferId_15 = Requester_12(D) + 6;
+  # DEBUG BufferId => BufferId_15
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # BufferId_9 = PHI <BufferId_10(2), BufferId_18(4), BufferId_17(5), BufferId_16(6), BufferId_15(7), BufferId_10(3)>
+<L12>:
+  # DEBUG BufferId => BufferId_9
+  # DEBUG BEGIN_STMT
+  _19 = BufferId_9;
+  return _19;
+
+}
+
+
+Dcm_Dsl_BufferUseValidForRequester (Dcm_BufferUserType Requester, Dcm_BufferUsageType Use)
+{
+  boolean UseIsValid;
+  unsigned char _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  boolean _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  UseIsValid_6 = 0;
+  # DEBUG UseIsValid => UseIsValid_6
+  # DEBUG BEGIN_STMT
+  _1 = Use_7(D) + 255;
+  if (_1 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  if (Requester_8(D) <= 5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _2 = Use_7(D) + 252;
+  if (_2 <= 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  _3 = Requester_8(D) + 65524;
+  if (_3 <= 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (Use_7(D) == 7)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _4 = Requester_8(D) + 65530;
+  if (_4 <= 5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  UseIsValid_9 = 1;
+  # DEBUG UseIsValid => UseIsValid_9
+
+  <bb 9> :
+  # UseIsValid_5 = PHI <UseIsValid_6(6), UseIsValid_6(7), UseIsValid_9(8)>
+  # DEBUG UseIsValid => UseIsValid_5
+  # DEBUG BEGIN_STMT
+  _10 = UseIsValid_5;
+  return _10;
+
+}
+
+
+Dcm_Dsl_BufferFreeRxTxNRC (Dcm_BufferUserType Requester, Dcm_BufferIdType BufferIdRx, Dcm_BufferIdType BufferIdTx, Dcm_BufferIdType BufferIdNRC)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferInitializeSingleBuffer (Requester_3(D), BufferIdRx_4(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferInitializeSingleBuffer (Requester_3(D), BufferIdTx_6(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferInitializeSingleBuffer (Requester_3(D), BufferIdNRC_8(D));
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_BufferInit ()
+{
+  uint16_least NormalBufferIndex;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NormalBufferIndex_4 = 0;
+  # DEBUG NormalBufferIndex => NormalBufferIndex_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) NormalBufferIndex_2;
+  Dcm_Dsl_BufferInitSingleBuffer (_1);
+  # DEBUG BEGIN_STMT
+  NormalBufferIndex_7 = NormalBufferIndex_2 + 1;
+  # DEBUG NormalBufferIndex => NormalBufferIndex_7
+
+  <bb 4> :
+  # NormalBufferIndex_2 = PHI <NormalBufferIndex_4(2), NormalBufferIndex_7(3)>
+  # DEBUG NormalBufferIndex => NormalBufferIndex_2
+  # DEBUG BEGIN_STMT
+  if (NormalBufferIndex_2 <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_BufferGive (Dcm_BufferUserType Provider, Dcm_BufferUserType Receiver, Dcm_BufferIdType BufferId)
+{
+  BufReq_ReturnType OwnerTransferResult;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  BufReq_ReturnType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_6 = 1;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BufferId_7(D) <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _1 = (int) BufferId_7(D);
+  _2 = Dcm_BufferInfo[_1].User;
+  if (Provider_9(D) == _2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) BufferId_7(D);
+  Dcm_BufferInfo[_3].User = Receiver_10(D);
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_12 = 0;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_12
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_13 = 1;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_13
+
+  <bb 6> :
+  # OwnerTransferResult_4 = PHI <OwnerTransferResult_12(4), OwnerTransferResult_13(5)>
+  # DEBUG OwnerTransferResult => OwnerTransferResult_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = OwnerTransferResult_4;
+  return _14;
+
+}
+
+
+Dcm_Dsl_BufferChangeState (Dcm_BufferUserType CurrentUser, Dcm_BufferStateType NewState, Dcm_BufferIdType BufferId)
+{
+  BufReq_ReturnType StateChangeResult;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  BufReq_ReturnType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  StateChangeResult_6 = 1;
+  # DEBUG StateChangeResult => StateChangeResult_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BufferId_7(D) <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _1 = (int) BufferId_7(D);
+  _2 = Dcm_BufferInfo[_1].User;
+  if (CurrentUser_9(D) == _2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) BufferId_7(D);
+  Dcm_BufferInfo[_3].State = NewState_10(D);
+  # DEBUG BEGIN_STMT
+  StateChangeResult_12 = 0;
+  # DEBUG StateChangeResult => StateChangeResult_12
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  StateChangeResult_13 = 1;
+  # DEBUG StateChangeResult => StateChangeResult_13
+
+  <bb 6> :
+  # StateChangeResult_4 = PHI <StateChangeResult_12(4), StateChangeResult_13(5)>
+  # DEBUG StateChangeResult => StateChangeResult_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = StateChangeResult_4;
+  return _14;
+
+}
+
+
+Dcm_Dsl_BufferFree (Dcm_BufferUserType Requester, Dcm_BufferIdType BufferId)
+{
+  BufReq_ReturnType FreeResult;
+  BufReq_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  FreeResult_1 = 1;
+  # DEBUG FreeResult => FreeResult_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  FreeResult_7 = Dcm_Dsl_BufferInitializeSingleBuffer (Requester_4(D), BufferId_5(D));
+  # DEBUG FreeResult => FreeResult_7
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = FreeResult_7;
+  return _9;
+
+}
+
+
+Dcm_Dsl_BufferAllocate (Dcm_BufferUserType Requester, Dcm_BufferUsageType Use, Dcm_BufferSizeType Size, struct Dcm_BufferType * Buffer)
+{
+  const Dcm_BufferIdType RegularRxBufferId;
+  Dcm_BufferIdType BufferId;
+  Dcm_BufferStateType BufferState;
+  BufReq_ReturnType AllocationPermission;
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  Dcm_MsgItemType * _5;
+  int _6;
+  long unsigned int _7;
+  short unsigned int _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  unsigned int _13;
+  unsigned int _14;
+  uint8 * _15;
+  int _16;
+  long unsigned int _17;
+  int _18;
+  int _19;
+  unsigned int _20;
+  unsigned int _21;
+  uint8 * _22;
+  BufReq_ReturnType _59;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  AllocationPermission_28 = 1;
+  # DEBUG AllocationPermission => AllocationPermission_28
+  # DEBUG BEGIN_STMT
+  BufferState_29 = 0;
+  # DEBUG BufferState => BufferState_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BufferId_34 = Dcm_Dsl_BufferGetId (Requester_31(D), Use_32(D));
+  # DEBUG BufferId => BufferId_34
+  # DEBUG BEGIN_STMT
+  if (BufferId_34 != 18)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  AllocationPermission_42 = Dcm_Dsl_BufferAllocationPermission (Requester_31(D), Use_32(D), Size_40(D), BufferId_34);
+  # DEBUG AllocationPermission => AllocationPermission_42
+  # DEBUG BEGIN_STMT
+  if (AllocationPermission_42 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Use_32(D);
+  switch (_1) <default: <L21> [INV], case 1: <L2> [INV], case 2: <L3> [INV], case 4: <L5> [INV], case 5: <L6> [INV], case 6: <L7> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  BufferState_46 = 1;
+  # DEBUG BufferState => BufferState_46
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  BufferState_45 = 3;
+  # DEBUG BufferState => BufferState_45
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  BufferState_44 = 15;
+  # DEBUG BufferState => BufferState_44
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  BufferState_43 = 16;
+  # DEBUG BufferState => BufferState_43
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  BufferState_47 = 17;
+  # DEBUG BufferState => BufferState_47
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # BufferState_24 = PHI <BufferState_46(5), BufferState_45(6), BufferState_29(4), BufferState_44(7), BufferState_43(8), BufferState_47(9)>
+<L21>:
+  # DEBUG BufferState => BufferState_24
+  # DEBUG BEGIN_STMT
+  if (BufferId_34 <= 5)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) BufferId_34;
+  Dcm_BufferInfo[_2].State = BufferState_24;
+  # DEBUG BEGIN_STMT
+  _3 = (int) BufferId_34;
+  Dcm_BufferInfo[_3].User = Requester_31(D);
+  # DEBUG BEGIN_STMT
+  _4 = (int) BufferId_34;
+  _5 = Dcm_BufferConfig[_4].BufferPtr;
+  Buffer_35(D)->BufferPtr = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) BufferId_34;
+  _7 = Dcm_BufferConfig[_6].Size;
+  Buffer_35(D)->Size = _7;
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = BufferId_34 + 65530;
+  if (_8 <= 5)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) Requester_31(D);
+  _10 = Dcm_RxPduIdConfig[_9].BufferIndex;
+  RegularRxBufferId_50 = (const Dcm_BufferIdType) _10;
+  # DEBUG RegularRxBufferId => RegularRxBufferId_50
+  # DEBUG BEGIN_STMT
+  _11 = (int) BufferId_34;
+  _12 = _11 + -6;
+  _13 = (unsigned int) _12;
+  _14 = _13 * 2;
+  _15 = &Dcm_DefaultBuffers[_14];
+  Buffer_35(D)->BufferPtr = _15;
+  # DEBUG BEGIN_STMT
+  _16 = (int) RegularRxBufferId_50;
+  _17 = Dcm_BufferConfig[_16].Size;
+  Buffer_35(D)->Size = _17;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = (int) BufferId_34;
+  _19 = _18 + -12;
+  _20 = (unsigned int) _19;
+  _21 = _20 * 3;
+  _22 = &Dcm_NRCBuffers[_21];
+  Buffer_35(D)->BufferPtr = _22;
+  # DEBUG BEGIN_STMT
+  Buffer_35(D)->Size = 3;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Buffer_35(D)->BufferId = BufferId_34;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Buffer_35(D)->BufferId = 18;
+  # DEBUG BEGIN_STMT
+  Buffer_35(D)->Size = 0;
+  # DEBUG BEGIN_STMT
+  Buffer_35(D)->BufferPtr = 0B;
+
+  <bb 18> :
+  # AllocationPermission_23 = PHI <AllocationPermission_42(16), AllocationPermission_28(17)>
+  # DEBUG AllocationPermission => AllocationPermission_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _59 = AllocationPermission_23;
+  return _59;
+
+}
+
+
+Dcm_Dsl_BufferGetInfo (Dcm_BufferUserType Requester, Dcm_BufferUsageType Use, struct Dcm_BufferType * Buffer)
+{
+  Dcm_BufferIdType BufferId;
+  int _1;
+  long unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->BufferPtr = 0B;
+  # DEBUG BEGIN_STMT
+  BufferId_12 = Dcm_Dsl_BufferGetId (Requester_9(D), Use_10(D));
+  # DEBUG BufferId => BufferId_12
+  # DEBUG BEGIN_STMT
+  if (BufferId_12 <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) BufferId_12;
+  _2 = Dcm_BufferConfig[_1].Size;
+  Buffer_7(D)->Size = _2;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = BufferId_12 + 65530;
+  if (_3 <= 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->Size = 2;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = BufferId_12 + 65524;
+  if (_4 <= 5)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->Size = 3;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->Size = 0;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->BufferId = BufferId_12;
+  # DEBUG BEGIN_STMT
+  Buffer_7(D)->FilledLength = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

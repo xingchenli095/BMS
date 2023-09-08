@@ -1,0 +1,155 @@
+ComM_RteNotify (uint8 User, ComM_ASR40_ModeType CurComMMode)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_EvaluateChannel (uint8 Channel)
+{
+  const ComM_ASR40_ModeType PncReqMode;
+  const ComM_ASR40_ModeType UserReqMode;
+  const uint8 UserOfChannel;
+  ComM_ASR40_ModeType ComMode;
+  PNCHandleType ElementPos;
+  const PNCHandleType NumPncs;
+  const uint8_least NumUser;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.0_1 = ComM_ConfigPtr;
+  _2 = (unsigned int) Channel;
+  _3 = _2 + 1;
+  _4 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_3];
+  _5 = (unsigned char) _4;
+  ComM_ConfigPtr.1_6 = ComM_ConfigPtr;
+  _7 = (int) Channel;
+  _8 = ComM_ConfigPtr.1_6->NumUsersOfAllChannel[_7];
+  _9 = (unsigned char) _8;
+  _10 = _5 - _9;
+  NumUser = (const uint8_least) _10;
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.2_11 = ComM_ConfigPtr;
+  _12 = (unsigned int) Channel;
+  _13 = _12 + 1;
+  _14 = ComM_ConfigPtr.2_11->NumPncOfAllCh[_13];
+  ComM_ConfigPtr.3_15 = ComM_ConfigPtr;
+  _16 = (int) Channel;
+  _17 = ComM_ConfigPtr.3_15->NumPncOfAllCh[_16];
+  NumPncs = _14 - _17;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMode = 0;
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ElementPos = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_18 = ComM_ConfigPtr;
+  ComM_ConfigPtr.5_19 = ComM_ConfigPtr;
+  _20 = ComM_ConfigPtr.5_19->pUsersOfAllChannel;
+  ComM_ConfigPtr.6_21 = ComM_ConfigPtr;
+  _22 = (int) Channel;
+  _23 = ComM_ConfigPtr.6_21->NumUsersOfAllChannel[_22];
+  _24 = (int) _23;
+  _25 = (int) ElementPos;
+  _26 = _24 + _25;
+  _27 = (sizetype) _26;
+  _28 = _20 + _27;
+  _29 = ComM_ConfigPtr.4_18 + _28;
+  UserOfChannel = *_29;
+  # DEBUG BEGIN_STMT
+  UserReqMode = ComM_EB_GetUserRequestedComMode (UserOfChannel);
+  # DEBUG BEGIN_STMT
+  if (ComMode < UserReqMode)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComMode = UserReqMode;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ElementPos.7_30 = ElementPos;
+  ElementPos = ElementPos.7_30 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _31 = (long unsigned int) ElementPos;
+  if (NumUser > _31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ElementPos = 0;
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PncReqMode = ComM_EB_GetPncRequestedComMode (Channel, ElementPos);
+  # DEBUG BEGIN_STMT
+  if (ComMode < PncReqMode)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ComMode = PncReqMode;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ElementPos.8_32 = ElementPos;
+  ElementPos = ElementPos.8_32 + 1;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (ElementPos < NumPncs)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ComM_EB_SetRequestedComMode (Channel, ComMode);
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

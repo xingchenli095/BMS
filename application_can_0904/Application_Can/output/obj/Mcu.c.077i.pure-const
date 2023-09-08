@@ -1,0 +1,2039 @@
+
+
+ local analysis of Mcu_HLDChecksEntry.part.0
+   scanning: Det_ASR40_ReportError (101, 0, McuServiceID_1(D), 15);
+  scanning: return CheckStatus_2;
+Function is locally const.
+
+
+ local analysis of Mcu_HLDChecksExit.part.0
+   scanning: if (RetStatus_1(D) == 0)
+  scanning: Mcu_eStatus = 12;
+  scanning: Mcu_eStatus = 3;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Mcu_SleepOnExit
+   scanning: _1 = Mcu_HLDChecksEntry (26);
+  scanning: if (_1 == 0)
+  scanning: Mcu_Ipw_SleepOnExit (SleepOnExit_5(D));
+  scanning: Mcu_eStatus = 12;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Mcu_GetClockFrequency
+   scanning: _1 = Mcu_HLDChecksEntry (25);
+  scanning: if (_1 == 0)
+  scanning: Frequency_8 = MCU_Ipw_GetClockFrequency (ClockName_6(D));
+  scanning: Mcu_eStatus = 12;
+  scanning: return Frequency_2;
+Function is locally const.
+
+
+ local analysis of Mcu_PerformReset
+   scanning: _1 = Mcu_HLDChecksEntry (7);
+  scanning: if (_1 == 0)
+  scanning: Mcu_pConfigPtr.11_2 = Mcu_pConfigPtr;
+  scanning: _3 = Mcu_pConfigPtr.11_2->HwIPsConfigPtr;
+    Indirect ref read is not const
+  scanning: Mcu_Ipw_PerformReset (_3);
+  scanning: Mcu_eStatus = 12;
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of Mcu_GetResetRawValue
+   scanning: _1 = Mcu_HLDChecksEntry (6);
+  scanning: if (_1 == 0)
+  scanning: RawResetValue_7 = Mcu_Ipw_GetResetRawValue ();
+  scanning: Mcu_eStatus = 12;
+  scanning: return RawResetValue_2;
+Function is locally const.
+
+
+ local analysis of Mcu_GetResetReason
+   scanning: _1 = Mcu_HLDChecksEntry (5);
+  scanning: if (_1 == 0)
+  scanning: ResetReason_7 = Mcu_Ipw_GetResetReason ();
+  scanning: Mcu_eStatus = 12;
+  scanning: return ResetReason_2;
+Function is locally const.
+
+
+ local analysis of Mcu_GetPllStatus
+   scanning: _1 = Mcu_HLDChecksEntry (4);
+  scanning: if (_1 == 0)
+  scanning: PllStatus_7 = Mcu_Ipw_GetPllStatus ();
+  scanning: Mcu_eStatus = 12;
+  scanning: return PllStatus_2;
+Function is locally const.
+
+
+ local analysis of Mcu_DistributePllClock
+   scanning: _1 = Mcu_HLDChecksEntry (3);
+  scanning: if (_1 == 0)
+  scanning: _2 = Mcu_CheckDistributePllClock ();
+  scanning: if (_2 == 0)
+  scanning: Mcu_Ipw_DistributePllClock ();
+  scanning: Mcu_eStatus = 12;
+  scanning: return PllStatus_4;
+Function is locally const.
+
+
+ local analysis of Mcu_SetMode
+   scanning: _1 = Mcu_HLDChecksEntry (8);
+  scanning: if (_1 == 0)
+  scanning: _2 = Mcu_CheckSetMode (McuMode_12(D));
+  scanning: if (_2 == 0)
+  scanning: SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00 ();
+  scanning: Mcu_pConfigPtr.9_3 = Mcu_pConfigPtr;
+  scanning: _4 = Mcu_pConfigPtr.9_3->ModeConfigArrayPtr;
+    Indirect ref read is not const
+  scanning: _5 = Mcu_au8ModeConfigIds[McuMode_12(D)];
+  scanning: _6 = (int) _5;
+  scanning: _7 = &*_4[_6];
+  scanning: Mcu_Ipw_SetMode (_7);
+  scanning: SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00 ();
+  scanning: Mcu_eStatus = 12;
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of Mcu_InitClock
+   scanning: _1 = Mcu_HLDChecksEntry (2);
+  scanning: if (_1 == 0)
+  scanning: _2 = Mcu_CheckInitClock (ClockSetting_14(D));
+  scanning: if (_2 == 0)
+  scanning: Mcu_pConfigPtr.7_3 = Mcu_pConfigPtr;
+  scanning: _4 = Mcu_pConfigPtr.7_3->ClockConfigArrayPtr;
+    Indirect ref read is not const
+  scanning: _5 = Mcu_au8ClockConfigIds[ClockSetting_14(D)];
+  scanning: _6 = (int) _5;
+  scanning: _7 = &*_4[_6];
+  scanning: Mcu_Ipw_InitClock (_7);
+  scanning: Mcu_eStatus = 12;
+  scanning: return ClockStatus_9;
+Function is locally pure.
+
+
+ local analysis of Mcu_InitRamSection
+   scanning: _1 = Mcu_HLDChecksEntry (1);
+  scanning: if (_1 == 0)
+  scanning: Mcu_eStatus = 12;
+  scanning: return 1;
+Function is locally const.
+
+
+ local analysis of Mcu_Init
+   scanning: CheckStatus_18 = Mcu_HLDChecksEntry (0);
+  scanning: if (CheckStatus_18 == 0)
+  scanning: CheckStatus_21 = Mcu_CheckInit (ConfigPtr_19(D));
+  scanning: if (CheckStatus_21 == 0)
+  scanning: Mcu_pConfigPtr = ConfigPtr_19(D);
+  scanning: _1 = ConfigPtr_19(D)->ModeConfigArrayPtr;
+    Indirect ref read is not const
+  scanning: _2 = *_1[NoConfigs_10].ModeConfigId;
+    Indirect ref read is not const
+  scanning: _3 = (unsigned char) NoConfigs_10;
+  scanning: Mcu_au8ModeConfigIds[_2] = _3;
+  scanning: NoConfigs_28 = NoConfigs_10 + 1;
+  scanning: _4 = ConfigPtr_19(D)->NoModeConfigs;
+    Indirect ref read is not const
+  scanning: if (_4 > NoConfigs_10)
+  scanning: _5 = ConfigPtr_19(D)->ClockConfigArrayPtr;
+    Indirect ref read is not const
+  scanning: _6 = *_5[NoConfigs_11].ClkConfigId;
+    Indirect ref read is not const
+  scanning: _7 = (unsigned char) NoConfigs_11;
+  scanning: Mcu_au8ClockConfigIds[_6] = _7;
+  scanning: NoConfigs_26 = NoConfigs_11 + 1;
+  scanning: _8 = ConfigPtr_19(D)->NoClkConfigs;
+    Indirect ref read is not const
+  scanning: if (_8 > NoConfigs_11)
+  scanning: _9 = ConfigPtr_19(D)->HwIPsConfigPtr;
+    Indirect ref read is not const
+  scanning: Mcu_Ipw_Init (_9);
+  scanning: Mcu_pConfigPtr = 0B;
+  scanning: Mcu_HLDChecksExit.part.0 (CheckStatus_21);
+  scanning: return;
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 13 7 8 9 10 11 12
+;;
+;; Loop 2
+;;  header 8, latch 7
+;;  depth 1, outer 0
+;;  nodes: 8 7
+;;
+;; Loop 1
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5
+;; 2 succs { 3 12 }
+;; 3 succs { 4 10 }
+;; 4 succs { 6 }
+;; 5 succs { 6 }
+;; 6 succs { 5 13 }
+;; 13 succs { 8 }
+;; 7 succs { 8 }
+;; 8 succs { 7 9 }
+;; 9 succs { 11 }
+;; 10 succs { 11 }
+;; 11 succs { 12 }
+;; 12 succs { 1 }
+    cannot prove finiteness of loop 2
+Function is locally looping.
+Function is locally pure.
+
+
+ local analysis of Mcu_HLDChecksEntry
+   scanning: if (McuServiceID_5(D) == 0)
+  scanning: Mcu_eStatus.5_1 = Mcu_eStatus;
+  scanning: if (Mcu_eStatus.5_1 != 3)
+  scanning: Det_ASR40_ReportError (101, 0, 0, 19);
+  scanning: Mcu_eStatus.6_2 = Mcu_eStatus;
+  scanning: if (Mcu_eStatus.6_2 == 3)
+  scanning: CheckStatus_10 = Mcu_HLDChecksEntry.part.0 (McuServiceID_5(D));
+  scanning: Mcu_eStatus = 10;
+  scanning: return CheckStatus_3;
+Function is locally const.
+
+
+ local analysis of Mcu_CheckDistributePllClock
+   scanning: _1 = Mcu_Ipw_GetPllStatus ();
+  scanning: if (_1 != 51)
+  scanning: Det_ASR40_ReportError (101, 0, 3, 14);
+  scanning: return CheckStatus_2;
+Function is locally const.
+
+
+ local analysis of Mcu_CheckSetMode
+   scanning: Mcu_pConfigPtr.10_1 = Mcu_pConfigPtr;
+  scanning: _2 = Mcu_pConfigPtr.10_1->NoModeConfigs;
+    Indirect ref read is not const
+  scanning: if (_2 <= McuMode_6(D))
+  scanning: Det_ASR40_ReportError (101, 0, 8, 12);
+  scanning: return CheckStatus_3;
+Function is locally pure.
+
+
+ local analysis of Mcu_CheckInitClock
+   scanning: Mcu_pConfigPtr.8_1 = Mcu_pConfigPtr;
+  scanning: _2 = Mcu_pConfigPtr.8_1->NoClkConfigs;
+    Indirect ref read is not const
+  scanning: if (_2 <= ClockSetting_6(D))
+  scanning: Det_ASR40_ReportError (101, 0, 2, 11);
+  scanning: return CheckStatus_3;
+Function is locally pure.
+
+
+ local analysis of Mcu_CheckInit
+   scanning: if (ConfigPtr_3(D) == 0B)
+  scanning: Det_ASR40_ReportError (101, 0, 0, 17);
+  scanning: return CheckStatus_1;
+Function is locally const.
+callgraph:
+
+Mcu_HLDChecksEntry.part.0/36 (Mcu_HLDChecksEntry.part.0) @0724b460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e111a8
+  References: 
+  Referring: 
+  Function Mcu_HLDChecksEntry.part.0/36 is inline copy in Mcu_HLDChecksEntry/9
+  Availability: local
+  Function flags: count:108662672 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_HLDChecksEntry/9 (inlined) (108662672 (estimated locally),0.10 per call) 
+  Calls: Det_ASR40_ReportError/23 (108662672 (estimated locally),0.10 per call) 
+Mcu_HLDChecksExit.part.0/35 (Mcu_HLDChecksExit.part.0) @07216e00
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e11188
+  References: Mcu_eStatus/2 (write)Mcu_eStatus/2 (write)
+  Referring: 
+  Function Mcu_HLDChecksExit.part.0/35 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223200 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223200 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_SleepOnExit/34 (Mcu_Ipw_SleepOnExit) @072069a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SleepOnExit/21 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+MCU_Ipw_GetClockFrequency/33 (MCU_Ipw_GetClockFrequency) @072067e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetClockFrequency/20 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_PerformReset/32 (Mcu_Ipw_PerformReset) @07206540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_PerformReset/19 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_GetResetRawValue/31 (Mcu_Ipw_GetResetRawValue) @07206380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetResetRawValue/18 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+Mcu_Ipw_GetResetReason/30 (Mcu_Ipw_GetResetReason) @072061c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetResetReason/17 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+Mcu_Ipw_GetPllStatus/29 (Mcu_Ipw_GetPllStatus) @071c9ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetPllStatus/16 (512926469 (estimated locally),0.48 per call) Mcu_CheckDistributePllClock/7 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_DistributePllClock/28 (Mcu_Ipw_DistributePllClock) @071c9d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_DistributePllClock/15 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00) @071c9a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Mcu_Ipw_SetMode/26 (Mcu_Ipw_SetMode) @071c99a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00) @071c98c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Mcu_Ipw_InitClock/24 (Mcu_Ipw_InitClock) @071c9620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_InitClock/13 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Det_ASR40_ReportError/23 (Det_ASR40_ReportError) @071c91c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_CheckDistributePllClock/7 (173198851 (estimated locally),0.16 per call) Mcu_CheckSetMode/6 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (116930485 (estimated locally),0.11 per call) Mcu_CheckInit/4 (41173704 (estimated locally),0.06 per call) Mcu_HLDChecksEntry/9 (262422502 (estimated locally),0.24 per call) Mcu_HLDChecksEntry.part.0/36 (108662672 (estimated locally),0.10 per call) 
+  Calls: 
+Mcu_Ipw_Init/22 (Mcu_Ipw_Init) @071c9000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_Init/11 (118111601 (estimated locally),0.17 per call) 
+  Calls: 
+Mcu_SleepOnExit/21 (Mcu_SleepOnExit) @071bdd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e10fc8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_SleepOnExit/34 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetClockFrequency/20 (Mcu_GetClockFrequency) @071bdb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112e8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: MCU_Ipw_GetClockFrequency/33 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_PerformReset/19 (Mcu_PerformReset) @071bd9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11288
+  References: Mcu_pConfigPtr/3 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_PerformReset/32 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetRawValue/18 (Mcu_GetResetRawValue) @071bd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetRawValue/31 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetReason/17 (Mcu_GetResetReason) @071bd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e111c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetReason/30 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetPllStatus/16 (Mcu_GetPllStatus) @071bd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11148
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetPllStatus/29 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_DistributePllClock/15 (Mcu_DistributePllClock) @071bd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11048
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_DistributePllClock/28 (116930485 (estimated locally),0.11 per call) Mcu_CheckDistributePllClock/7 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_SetMode/14 (Mcu_SetMode) @071bd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11168
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ModeConfigIds/1 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (116930485 (estimated locally),0.11 per call) Mcu_Ipw_SetMode/26 (116930485 (estimated locally),0.11 per call) SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (116930485 (estimated locally),0.11 per call) Mcu_CheckSetMode/6 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitClock/13 (Mcu_InitClock) @071b6ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11068
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ClockConfigIds/0 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_InitClock/24 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitRamSection/12 (Mcu_InitRamSection) @071b6d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11368
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_Init/11 (Mcu_Init) @071b6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112a8
+  References: Mcu_pConfigPtr/3 (write)Mcu_au8ModeConfigIds/1 (write)Mcu_au8ClockConfigIds/0 (write)Mcu_pConfigPtr/3 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:715827876 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksExit.part.0/35 (inlined) (236223200 (estimated locally),0.33 per call) Mcu_Ipw_Init/22 (118111601 (estimated locally),0.17 per call) Mcu_CheckInit/4 (inlined) (236223199 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (715827876 (estimated locally),1.00 per call) 
+Mcu_HLDChecksEntry/9 (Mcu_HLDChecksEntry) @071b67e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e10fe8
+  References: Mcu_eStatus/2 (read)Mcu_eStatus/2 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: Mcu_SleepOnExit/21 (1073741824 (estimated locally),1.00 per call) Mcu_GetClockFrequency/20 (1073741824 (estimated locally),1.00 per call) Mcu_PerformReset/19 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetRawValue/18 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetReason/17 (1073741824 (estimated locally),1.00 per call) Mcu_GetPllStatus/16 (1073741824 (estimated locally),1.00 per call) Mcu_DistributePllClock/15 (1073741824 (estimated locally),1.00 per call) Mcu_SetMode/14 (1073741824 (estimated locally),1.00 per call) Mcu_InitClock/13 (1073741824 (estimated locally),1.00 per call) Mcu_InitRamSection/12 (1073741824 (estimated locally),1.00 per call) Mcu_Init/11 (715827876 (estimated locally),1.00 per call) 
+  Calls: Mcu_HLDChecksEntry.part.0/36 (inlined) (108662672 (estimated locally),0.10 per call) Det_ASR40_ReportError/23 (262422502 (estimated locally),0.24 per call) 
+Mcu_CheckDistributePllClock/7 (Mcu_CheckDistributePllClock) @071b6460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11268
+  References: 
+  Referring: 
+  Function Mcu_CheckDistributePllClock/7 is inline copy in Mcu_DistributePllClock/15
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_DistributePllClock/15 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (173198851 (estimated locally),0.16 per call) Mcu_Ipw_GetPllStatus/29 (354334802 (estimated locally),0.33 per call) 
+Mcu_CheckSetMode/6 (Mcu_CheckSetMode) @071b62a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11088
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckSetMode/6 is inline copy in Mcu_SetMode/14
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_SetMode/14 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInitClock/5 (Mcu_CheckInitClock) @071b60e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e111e8
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckInitClock/5 is inline copy in Mcu_InitClock/13
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_InitClock/13 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInit/4 (Mcu_CheckInit) @07199c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e110a8
+  References: 
+  Referring: 
+  Function Mcu_CheckInit/4 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223199 (estimated locally) body local optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223199 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (41173704 (estimated locally),0.06 per call) 
+
+
+ ordered call graph: reduced for nothrow
+Mcu_HLDChecksEntry.part.0/36 (Mcu_HLDChecksEntry.part.0) @0724b460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e111a8
+  References: 
+  Referring: 
+  Function Mcu_HLDChecksEntry.part.0/36 is inline copy in Mcu_HLDChecksEntry/9
+  Availability: local
+  Function flags: count:108662672 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_HLDChecksEntry/9 (inlined) (108662672 (estimated locally),0.10 per call) 
+  Calls: Det_ASR40_ReportError/23 (108662672 (estimated locally),0.10 per call) 
+Mcu_HLDChecksExit.part.0/35 (Mcu_HLDChecksExit.part.0) @07216e00
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e11188
+  References: Mcu_eStatus/2 (write)Mcu_eStatus/2 (write)
+  Referring: 
+  Function Mcu_HLDChecksExit.part.0/35 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223200 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223200 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_SleepOnExit/21 (Mcu_SleepOnExit) @071bdd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e10fc8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_SleepOnExit/34 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetClockFrequency/20 (Mcu_GetClockFrequency) @071bdb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112e8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: MCU_Ipw_GetClockFrequency/33 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_PerformReset/19 (Mcu_PerformReset) @071bd9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11288
+  References: Mcu_pConfigPtr/3 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_PerformReset/32 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetRawValue/18 (Mcu_GetResetRawValue) @071bd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetRawValue/31 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetReason/17 (Mcu_GetResetReason) @071bd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e111c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetReason/30 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetPllStatus/16 (Mcu_GetPllStatus) @071bd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11148
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetPllStatus/29 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_DistributePllClock/15 (Mcu_DistributePllClock) @071bd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11048
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_DistributePllClock/28 (116930485 (estimated locally),0.11 per call) Mcu_CheckDistributePllClock/7 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_SetMode/14 (Mcu_SetMode) @071bd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11168
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ModeConfigIds/1 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (116930485 (estimated locally),0.11 per call) Mcu_Ipw_SetMode/26 (116930485 (estimated locally),0.11 per call) SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (116930485 (estimated locally),0.11 per call) Mcu_CheckSetMode/6 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitClock/13 (Mcu_InitClock) @071b6ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11068
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ClockConfigIds/0 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_InitClock/24 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitRamSection/12 (Mcu_InitRamSection) @071b6d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11368
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_Init/11 (Mcu_Init) @071b6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112a8
+  References: Mcu_pConfigPtr/3 (write)Mcu_au8ModeConfigIds/1 (write)Mcu_au8ClockConfigIds/0 (write)Mcu_pConfigPtr/3 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:715827876 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksExit.part.0/35 (inlined) (236223200 (estimated locally),0.33 per call) Mcu_Ipw_Init/22 (118111601 (estimated locally),0.17 per call) Mcu_CheckInit/4 (inlined) (236223199 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (715827876 (estimated locally),1.00 per call) 
+Mcu_HLDChecksEntry/9 (Mcu_HLDChecksEntry) @071b67e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e10fe8
+  References: Mcu_eStatus/2 (read)Mcu_eStatus/2 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: Mcu_SleepOnExit/21 (1073741824 (estimated locally),1.00 per call) Mcu_GetClockFrequency/20 (1073741824 (estimated locally),1.00 per call) Mcu_PerformReset/19 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetRawValue/18 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetReason/17 (1073741824 (estimated locally),1.00 per call) Mcu_GetPllStatus/16 (1073741824 (estimated locally),1.00 per call) Mcu_DistributePllClock/15 (1073741824 (estimated locally),1.00 per call) Mcu_SetMode/14 (1073741824 (estimated locally),1.00 per call) Mcu_InitClock/13 (1073741824 (estimated locally),1.00 per call) Mcu_InitRamSection/12 (1073741824 (estimated locally),1.00 per call) Mcu_Init/11 (715827876 (estimated locally),1.00 per call) 
+  Calls: Mcu_HLDChecksEntry.part.0/36 (inlined) (108662672 (estimated locally),0.10 per call) Det_ASR40_ReportError/23 (262422502 (estimated locally),0.24 per call) 
+Mcu_CheckDistributePllClock/7 (Mcu_CheckDistributePllClock) @071b6460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11268
+  References: 
+  Referring: 
+  Function Mcu_CheckDistributePllClock/7 is inline copy in Mcu_DistributePllClock/15
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_DistributePllClock/15 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (173198851 (estimated locally),0.16 per call) Mcu_Ipw_GetPllStatus/29 (354334802 (estimated locally),0.33 per call) 
+Mcu_CheckSetMode/6 (Mcu_CheckSetMode) @071b62a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11088
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckSetMode/6 is inline copy in Mcu_SetMode/14
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_SetMode/14 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInitClock/5 (Mcu_CheckInitClock) @071b60e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e111e8
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckInitClock/5 is inline copy in Mcu_InitClock/13
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_InitClock/13 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInit/4 (Mcu_CheckInit) @07199c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e110a8
+  References: 
+  Referring: 
+  Function Mcu_CheckInit/4 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223199 (estimated locally) body local optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223199 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (41173704 (estimated locally),0.06 per call) 
+
+
+
+MALLOC LATTICE Initial:
+Mcu_HLDChecksEntry.part.0: malloc_bottom
+Mcu_HLDChecksExit.part.0: malloc_bottom
+Mcu_SleepOnExit: malloc_bottom
+Mcu_GetClockFrequency: malloc_bottom
+Mcu_PerformReset: malloc_bottom
+Mcu_GetResetRawValue: malloc_bottom
+Mcu_GetResetReason: malloc_bottom
+Mcu_GetPllStatus: malloc_bottom
+Mcu_DistributePllClock: malloc_bottom
+Mcu_SetMode: malloc_bottom
+Mcu_InitClock: malloc_bottom
+Mcu_InitRamSection: malloc_bottom
+Mcu_Init: malloc_bottom
+Mcu_HLDChecksEntry: malloc_bottom
+Mcu_CheckDistributePllClock: malloc_bottom
+Mcu_CheckSetMode: malloc_bottom
+Mcu_CheckInitClock: malloc_bottom
+Mcu_CheckInit: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+Mcu_HLDChecksEntry.part.0: malloc_bottom
+Mcu_HLDChecksExit.part.0: malloc_bottom
+Mcu_SleepOnExit: malloc_bottom
+Mcu_GetClockFrequency: malloc_bottom
+Mcu_PerformReset: malloc_bottom
+Mcu_GetResetRawValue: malloc_bottom
+Mcu_GetResetReason: malloc_bottom
+Mcu_GetPllStatus: malloc_bottom
+Mcu_DistributePllClock: malloc_bottom
+Mcu_SetMode: malloc_bottom
+Mcu_InitClock: malloc_bottom
+Mcu_InitRamSection: malloc_bottom
+Mcu_Init: malloc_bottom
+Mcu_HLDChecksEntry: malloc_bottom
+Mcu_CheckDistributePllClock: malloc_bottom
+Mcu_CheckSetMode: malloc_bottom
+Mcu_CheckInitClock: malloc_bottom
+Mcu_CheckInit: malloc_bottom
+callgraph:
+
+Mcu_HLDChecksEntry.part.0/36 (Mcu_HLDChecksEntry.part.0) @0724b460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e112e8
+  References: 
+  Referring: 
+  Function Mcu_HLDChecksEntry.part.0/36 is inline copy in Mcu_HLDChecksEntry/9
+  Availability: local
+  Function flags: count:108662672 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_HLDChecksEntry/9 (inlined) (108662672 (estimated locally),0.10 per call) 
+  Calls: Det_ASR40_ReportError/23 (108662672 (estimated locally),0.10 per call) 
+Mcu_HLDChecksExit.part.0/35 (Mcu_HLDChecksExit.part.0) @07216e00
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e11108
+  References: Mcu_eStatus/2 (write)Mcu_eStatus/2 (write)
+  Referring: 
+  Function Mcu_HLDChecksExit.part.0/35 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223200 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223200 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_SleepOnExit/34 (Mcu_Ipw_SleepOnExit) @072069a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SleepOnExit/21 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+MCU_Ipw_GetClockFrequency/33 (MCU_Ipw_GetClockFrequency) @072067e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetClockFrequency/20 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_PerformReset/32 (Mcu_Ipw_PerformReset) @07206540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_PerformReset/19 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_GetResetRawValue/31 (Mcu_Ipw_GetResetRawValue) @07206380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetResetRawValue/18 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+Mcu_Ipw_GetResetReason/30 (Mcu_Ipw_GetResetReason) @072061c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetResetReason/17 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+Mcu_Ipw_GetPllStatus/29 (Mcu_Ipw_GetPllStatus) @071c9ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_GetPllStatus/16 (512926469 (estimated locally),0.48 per call) Mcu_CheckDistributePllClock/7 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_Ipw_DistributePllClock/28 (Mcu_Ipw_DistributePllClock) @071c9d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_DistributePllClock/15 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00) @071c9a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Mcu_Ipw_SetMode/26 (Mcu_Ipw_SetMode) @071c99a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00) @071c98c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_SetMode/14 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Mcu_Ipw_InitClock/24 (Mcu_Ipw_InitClock) @071c9620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_InitClock/13 (116930485 (estimated locally),0.11 per call) 
+  Calls: 
+Det_ASR40_ReportError/23 (Det_ASR40_ReportError) @071c91c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_CheckDistributePllClock/7 (173198851 (estimated locally),0.16 per call) Mcu_CheckSetMode/6 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (116930485 (estimated locally),0.11 per call) Mcu_CheckInit/4 (41173704 (estimated locally),0.06 per call) Mcu_HLDChecksEntry/9 (262422502 (estimated locally),0.24 per call) Mcu_HLDChecksEntry.part.0/36 (108662672 (estimated locally),0.10 per call) 
+  Calls: 
+Mcu_Ipw_Init/22 (Mcu_Ipw_Init) @071c9000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Mcu_Init/11 (118111601 (estimated locally),0.17 per call) 
+  Calls: 
+Mcu_SleepOnExit/21 (Mcu_SleepOnExit) @071bdd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11368
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_SleepOnExit/34 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetClockFrequency/20 (Mcu_GetClockFrequency) @071bdb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11168
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: MCU_Ipw_GetClockFrequency/33 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_PerformReset/19 (Mcu_PerformReset) @071bd9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11208
+  References: Mcu_pConfigPtr/3 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_PerformReset/32 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetRawValue/18 (Mcu_GetResetRawValue) @071bd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11188
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetRawValue/31 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetReason/17 (Mcu_GetResetReason) @071bd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11248
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetReason/30 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetPllStatus/16 (Mcu_GetPllStatus) @071bd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetPllStatus/29 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_DistributePllClock/15 (Mcu_DistributePllClock) @071bd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11288
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_DistributePllClock/28 (116930485 (estimated locally),0.11 per call) Mcu_CheckDistributePllClock/7 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_SetMode/14 (Mcu_SetMode) @071bd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e111a8
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ModeConfigIds/1 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (116930485 (estimated locally),0.11 per call) Mcu_Ipw_SetMode/26 (116930485 (estimated locally),0.11 per call) SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (116930485 (estimated locally),0.11 per call) Mcu_CheckSetMode/6 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitClock/13 (Mcu_InitClock) @071b6ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11228
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ClockConfigIds/0 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_InitClock/24 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitRamSection/12 (Mcu_InitRamSection) @071b6d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11268
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_Init/11 (Mcu_Init) @071b6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11028
+  References: Mcu_pConfigPtr/3 (write)Mcu_au8ModeConfigIds/1 (write)Mcu_au8ClockConfigIds/0 (write)Mcu_pConfigPtr/3 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:715827876 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksExit.part.0/35 (inlined) (236223200 (estimated locally),0.33 per call) Mcu_Ipw_Init/22 (118111601 (estimated locally),0.17 per call) Mcu_CheckInit/4 (inlined) (236223199 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (715827876 (estimated locally),1.00 per call) 
+Mcu_HLDChecksEntry/9 (Mcu_HLDChecksEntry) @071b67e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e111c8
+  References: Mcu_eStatus/2 (read)Mcu_eStatus/2 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: Mcu_SleepOnExit/21 (1073741824 (estimated locally),1.00 per call) Mcu_GetClockFrequency/20 (1073741824 (estimated locally),1.00 per call) Mcu_PerformReset/19 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetRawValue/18 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetReason/17 (1073741824 (estimated locally),1.00 per call) Mcu_GetPllStatus/16 (1073741824 (estimated locally),1.00 per call) Mcu_DistributePllClock/15 (1073741824 (estimated locally),1.00 per call) Mcu_SetMode/14 (1073741824 (estimated locally),1.00 per call) Mcu_InitClock/13 (1073741824 (estimated locally),1.00 per call) Mcu_InitRamSection/12 (1073741824 (estimated locally),1.00 per call) Mcu_Init/11 (715827876 (estimated locally),1.00 per call) 
+  Calls: Mcu_HLDChecksEntry.part.0/36 (inlined) (108662672 (estimated locally),0.10 per call) Det_ASR40_ReportError/23 (262422502 (estimated locally),0.24 per call) 
+Mcu_CheckDistributePllClock/7 (Mcu_CheckDistributePllClock) @071b6460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e112a8
+  References: 
+  Referring: 
+  Function Mcu_CheckDistributePllClock/7 is inline copy in Mcu_DistributePllClock/15
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_DistributePllClock/15 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (173198851 (estimated locally),0.16 per call) Mcu_Ipw_GetPllStatus/29 (354334802 (estimated locally),0.33 per call) 
+Mcu_CheckSetMode/6 (Mcu_CheckSetMode) @071b62a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11308
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckSetMode/6 is inline copy in Mcu_SetMode/14
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_SetMode/14 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInitClock/5 (Mcu_CheckInitClock) @071b60e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11328
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckInitClock/5 is inline copy in Mcu_InitClock/13
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_InitClock/13 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInit/4 (Mcu_CheckInit) @07199c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11128
+  References: 
+  Referring: 
+  Function Mcu_CheckInit/4 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223199 (estimated locally) body local optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223199 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (41173704 (estimated locally),0.06 per call) 
+
+
+ ordered call graph: reduced
+Mcu_SleepOnExit/21 (Mcu_SleepOnExit) @071bdd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11368
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_SleepOnExit/34 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetClockFrequency/20 (Mcu_GetClockFrequency) @071bdb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11168
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: MCU_Ipw_GetClockFrequency/33 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_PerformReset/19 (Mcu_PerformReset) @071bd9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11208
+  References: Mcu_pConfigPtr/3 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_PerformReset/32 (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetRawValue/18 (Mcu_GetResetRawValue) @071bd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11188
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetRawValue/31 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetResetReason/17 (Mcu_GetResetReason) @071bd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11248
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetResetReason/30 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_GetPllStatus/16 (Mcu_GetPllStatus) @071bd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e112c8
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_GetPllStatus/29 (512926469 (estimated locally),0.48 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_DistributePllClock/15 (Mcu_DistributePllClock) @071bd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11288
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_DistributePllClock/28 (116930485 (estimated locally),0.11 per call) Mcu_CheckDistributePllClock/7 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_SetMode/14 (Mcu_SetMode) @071bd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e111a8
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ModeConfigIds/1 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00/27 (116930485 (estimated locally),0.11 per call) Mcu_Ipw_SetMode/26 (116930485 (estimated locally),0.11 per call) SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00/25 (116930485 (estimated locally),0.11 per call) Mcu_CheckSetMode/6 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitClock/13 (Mcu_InitClock) @071b6ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11228
+  References: Mcu_pConfigPtr/3 (read)Mcu_au8ClockConfigIds/0 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_Ipw_InitClock/24 (116930485 (estimated locally),0.11 per call) Mcu_CheckInitClock/5 (inlined) (354334802 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_InitRamSection/12 (Mcu_InitRamSection) @071b6d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11268
+  References: Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksEntry/9 (1073741824 (estimated locally),1.00 per call) 
+Mcu_Init/11 (Mcu_Init) @071b6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06e11028
+  References: Mcu_pConfigPtr/3 (write)Mcu_au8ModeConfigIds/1 (write)Mcu_au8ClockConfigIds/0 (write)Mcu_pConfigPtr/3 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:715827876 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Mcu_HLDChecksExit.part.0/35 (inlined) (236223200 (estimated locally),0.33 per call) Mcu_Ipw_Init/22 (118111601 (estimated locally),0.17 per call) Mcu_CheckInit/4 (inlined) (236223199 (estimated locally),0.33 per call) Mcu_HLDChecksEntry/9 (715827876 (estimated locally),1.00 per call) 
+Mcu_HLDChecksExit.part.0/35 (Mcu_HLDChecksExit.part.0) @07216e00
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e11108
+  References: Mcu_eStatus/2 (write)Mcu_eStatus/2 (write)
+  Referring: 
+  Function Mcu_HLDChecksExit.part.0/35 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223200 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223200 (estimated locally),0.33 per call) 
+  Calls: 
+Mcu_HLDChecksEntry/9 (Mcu_HLDChecksEntry) @071b67e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e111c8
+  References: Mcu_eStatus/2 (read)Mcu_eStatus/2 (read)Mcu_eStatus/2 (write)
+  Referring: 
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: Mcu_SleepOnExit/21 (1073741824 (estimated locally),1.00 per call) Mcu_GetClockFrequency/20 (1073741824 (estimated locally),1.00 per call) Mcu_PerformReset/19 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetRawValue/18 (1073741824 (estimated locally),1.00 per call) Mcu_GetResetReason/17 (1073741824 (estimated locally),1.00 per call) Mcu_GetPllStatus/16 (1073741824 (estimated locally),1.00 per call) Mcu_DistributePllClock/15 (1073741824 (estimated locally),1.00 per call) Mcu_SetMode/14 (1073741824 (estimated locally),1.00 per call) Mcu_InitClock/13 (1073741824 (estimated locally),1.00 per call) Mcu_InitRamSection/12 (1073741824 (estimated locally),1.00 per call) Mcu_Init/11 (715827876 (estimated locally),1.00 per call) 
+  Calls: Mcu_HLDChecksEntry.part.0/36 (inlined) (108662672 (estimated locally),0.10 per call) Det_ASR40_ReportError/23 (262422502 (estimated locally),0.24 per call) 
+Mcu_HLDChecksEntry.part.0/36 (Mcu_HLDChecksEntry.part.0) @0724b460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06e112e8
+  References: 
+  Referring: 
+  Function Mcu_HLDChecksEntry.part.0/36 is inline copy in Mcu_HLDChecksEntry/9
+  Availability: local
+  Function flags: count:108662672 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Mcu_HLDChecksEntry/9 (inlined) (108662672 (estimated locally),0.10 per call) 
+  Calls: Det_ASR40_ReportError/23 (108662672 (estimated locally),0.10 per call) 
+Mcu_CheckDistributePllClock/7 (Mcu_CheckDistributePllClock) @071b6460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e112a8
+  References: 
+  Referring: 
+  Function Mcu_CheckDistributePllClock/7 is inline copy in Mcu_DistributePllClock/15
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_DistributePllClock/15 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (173198851 (estimated locally),0.16 per call) Mcu_Ipw_GetPllStatus/29 (354334802 (estimated locally),0.33 per call) 
+Mcu_CheckSetMode/6 (Mcu_CheckSetMode) @071b62a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11308
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckSetMode/6 is inline copy in Mcu_SetMode/14
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_SetMode/14 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInitClock/5 (Mcu_CheckInitClock) @071b60e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11328
+  References: Mcu_pConfigPtr/3 (read)
+  Referring: 
+  Function Mcu_CheckInitClock/5 is inline copy in Mcu_InitClock/13
+  Availability: local
+  Function flags: count:354334802 (estimated locally) body local optimize_size
+  Called by: Mcu_InitClock/13 (inlined) (354334802 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (116930485 (estimated locally),0.11 per call) 
+Mcu_CheckInit/4 (Mcu_CheckInit) @07199c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06e11128
+  References: 
+  Referring: 
+  Function Mcu_CheckInit/4 is inline copy in Mcu_Init/11
+  Availability: local
+  Function flags: count:236223199 (estimated locally) body local optimize_size
+  Called by: Mcu_Init/11 (inlined) (236223199 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/23 (41173704 (estimated locally),0.06 per call) 
+
+Function found not to call free: Mcu_HLDChecksExit.part.0
+Mcu_HLDChecksEntry.part.0 (uint8 McuServiceID)
+{
+  Std_ReturnType CheckStatus;
+
+  <bb 4> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, McuServiceID_1(D), 15);
+
+  <bb 3> [local count: 1073741824]:
+  # CheckStatus_2 = PHI <1(2)>
+  # DEBUG CheckStatus => CheckStatus_2
+  # DEBUG BEGIN_STMT
+  return CheckStatus_2;
+
+}
+
+
+Mcu_HLDChecksExit.part.0 (Std_ReturnType RetStatus)
+{
+  uint8 McuServiceID;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG D#2 s=> McuServiceID
+  # DEBUG McuServiceID => D#2
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  if (RetStatus_1(D) == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 3;
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+Mcu_SleepOnExit (Mcu_SleepOnExitType SleepOnExit)
+{
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (26);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Mcu_Ipw_SleepOnExit (SleepOnExit_5(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 26
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  return;
+
+}
+
+
+Mcu_GetClockFrequency (Clock_Ip_NameType ClockName)
+{
+  uint32 Frequency;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Frequency => 0
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (25);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Frequency_8 = MCU_Ipw_GetClockFrequency (ClockName_6(D));
+  # DEBUG Frequency => Frequency_8
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 25
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # Frequency_2 = PHI <0(2), Frequency_8(3)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG Frequency => Frequency_2
+  # DEBUG BEGIN_STMT
+  return Frequency_2;
+
+}
+
+
+Mcu_PerformReset ()
+{
+  unsigned char _1;
+  const struct Mcu_ConfigType * Mcu_pConfigPtr.11_2;
+  const struct Mcu_HwIPsConfigType * _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (7);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG INLINE_ENTRY NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr.11_2 = Mcu_pConfigPtr;
+  _3 = Mcu_pConfigPtr.11_2->HwIPsConfigPtr;
+  Mcu_Ipw_PerformReset (_3);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 7
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  return;
+
+}
+
+
+Mcu_GetResetRawValue ()
+{
+  Mcu_RawResetType RawResetValue;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RawResetValue => 4294967295
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (6);
+  if (_1 == 0)
+    goto <bb 3>; [47.77%]
+  else
+    goto <bb 4>; [52.23%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  RawResetValue_7 = Mcu_Ipw_GetResetRawValue ();
+  # DEBUG RawResetValue => RawResetValue_7
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 6
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # RawResetValue_2 = PHI <4294967295(2), RawResetValue_7(3)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG RawResetValue => RawResetValue_2
+  # DEBUG BEGIN_STMT
+  return RawResetValue_2;
+
+}
+
+
+Mcu_GetResetReason ()
+{
+  Mcu_ResetType ResetReason;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetReason => 27
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (5);
+  if (_1 == 0)
+    goto <bb 3>; [47.77%]
+  else
+    goto <bb 4>; [52.23%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  ResetReason_7 = Mcu_Ipw_GetResetReason ();
+  # DEBUG ResetReason => ResetReason_7
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 5
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # ResetReason_2 = PHI <27(2), ResetReason_7(3)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG ResetReason => ResetReason_2
+  # DEBUG BEGIN_STMT
+  return ResetReason_2;
+
+}
+
+
+Mcu_GetPllStatus ()
+{
+  Mcu_PllStatusType PllStatus;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PllStatus => 90
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (4);
+  if (_1 == 0)
+    goto <bb 3>; [47.77%]
+  else
+    goto <bb 4>; [52.23%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  PllStatus_7 = Mcu_Ipw_GetPllStatus ();
+  # DEBUG PllStatus => PllStatus_7
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 4
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # PllStatus_2 = PHI <90(2), PllStatus_7(3)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG PllStatus => PllStatus_2
+  # DEBUG BEGIN_STMT
+  return PllStatus_2;
+
+}
+
+
+Mcu_DistributePllClock ()
+{
+  Std_ReturnType PllStatus;
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PllStatus => 1
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (3);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _2 = Mcu_CheckDistributePllClock ();
+  if (_2 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 116930485]:
+  # DEBUG BEGIN_STMT
+  Mcu_Ipw_DistributePllClock ();
+  # DEBUG BEGIN_STMT
+  # DEBUG PllStatus => 0
+
+  <bb 5> [local count: 354334802]:
+  # PllStatus_3 = PHI <1(3), 0(4)>
+  # DEBUG PllStatus => PllStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 3
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 6> [local count: 1073741824]:
+  # PllStatus_4 = PHI <1(2), PllStatus_3(5)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG PllStatus => PllStatus_4
+  # DEBUG BEGIN_STMT
+  return PllStatus_4;
+
+}
+
+
+Mcu_SetMode (Mcu_ModeType McuMode)
+{
+  unsigned char _1;
+  unsigned char _2;
+  const struct Mcu_ConfigType * Mcu_pConfigPtr.9_3;
+  const struct Mcu_ModeConfigType[1] * _4;
+  unsigned char _5;
+  int _6;
+  const struct Mcu_ModeConfigType * _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (8);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _2 = Mcu_CheckSetMode (McuMode_12(D));
+  if (_2 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 116930485]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Mcu_MCU_EXCLUSIVE_AREA_00 ();
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr.9_3 = Mcu_pConfigPtr;
+  _4 = Mcu_pConfigPtr.9_3->ModeConfigArrayPtr;
+  _5 = Mcu_au8ModeConfigIds[McuMode_12(D)];
+  _6 = (int) _5;
+  _7 = &*_4[_6];
+  Mcu_Ipw_SetMode (_7);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Mcu_MCU_EXCLUSIVE_AREA_00 ();
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 8
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  return;
+
+}
+
+
+Mcu_InitClock (Mcu_ClockType ClockSetting)
+{
+  Std_ReturnType ClockStatus;
+  unsigned char _1;
+  unsigned char _2;
+  const struct Mcu_ConfigType * Mcu_pConfigPtr.7_3;
+  const struct Mcu_ClockConfigType[1] * _4;
+  unsigned char _5;
+  int _6;
+  const struct Mcu_ClockConfigType * _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ClockStatus => 1
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (2);
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _2 = Mcu_CheckInitClock (ClockSetting_14(D));
+  if (_2 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 116930485]:
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr.7_3 = Mcu_pConfigPtr;
+  _4 = Mcu_pConfigPtr.7_3->ClockConfigArrayPtr;
+  _5 = Mcu_au8ClockConfigIds[ClockSetting_14(D)];
+  _6 = (int) _5;
+  _7 = &*_4[_6];
+  Mcu_Ipw_InitClock (_7);
+  # DEBUG BEGIN_STMT
+  # DEBUG ClockStatus => 0
+
+  <bb 5> [local count: 354334802]:
+  # ClockStatus_8 = PHI <1(3), 0(4)>
+  # DEBUG ClockStatus => ClockStatus_8
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 2
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 6> [local count: 1073741824]:
+  # ClockStatus_9 = PHI <1(2), ClockStatus_8(5)>
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG ClockStatus => ClockStatus_9
+  # DEBUG BEGIN_STMT
+  return ClockStatus_9;
+
+}
+
+
+Mcu_InitRamSection (Mcu_RamSectionType RamSection)
+{
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RamStatus => 1
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_HLDChecksEntry (1);
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => 0
+  # DEBUG McuServiceID => 1
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 12;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  # DEBUG BEGIN_STMT
+  return 1;
+
+}
+
+
+Mcu_Init (const struct Mcu_ConfigType * ConfigPtr)
+{
+  Std_ReturnType CheckStatus;
+  uint32 NoConfigs;
+  const struct Mcu_ModeConfigType[1] * _1;
+  long unsigned int _2;
+  unsigned char _3;
+  long unsigned int _4;
+  const struct Mcu_ClockConfigType[1] * _5;
+  long unsigned int _6;
+  unsigned char _7;
+  long unsigned int _8;
+  const struct Mcu_HwIPsConfigType * _9;
+
+  <bb 2> [local count: 715827876]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CheckStatus_18 = Mcu_HLDChecksEntry (0);
+  # DEBUG CheckStatus => CheckStatus_18
+  # DEBUG BEGIN_STMT
+  if (CheckStatus_18 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 3> [local count: 236223199]:
+  # DEBUG BEGIN_STMT
+  CheckStatus_21 = Mcu_CheckInit (ConfigPtr_19(D));
+  # DEBUG CheckStatus => CheckStatus_21
+  # DEBUG BEGIN_STMT
+  if (CheckStatus_21 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 4> [local count: 118111599]:
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr = ConfigPtr_19(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG NoConfigs => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 955630219]:
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_19(D)->ModeConfigArrayPtr;
+  _2 = *_1[NoConfigs_10].ModeConfigId;
+  _3 = (unsigned char) NoConfigs_10;
+  Mcu_au8ModeConfigIds[_2] = _3;
+  # DEBUG BEGIN_STMT
+  NoConfigs_28 = NoConfigs_10 + 1;
+  # DEBUG NoConfigs => NoConfigs_28
+
+  <bb 6> [local count: 1073741820]:
+  # NoConfigs_10 = PHI <0(4), NoConfigs_28(5)>
+  # DEBUG NoConfigs => NoConfigs_10
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr_19(D)->NoModeConfigs;
+  if (_4 > NoConfigs_10)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+
+  <bb 13> [local count: 118111600]:
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 955630225]:
+  # DEBUG BEGIN_STMT
+  _5 = ConfigPtr_19(D)->ClockConfigArrayPtr;
+  _6 = *_5[NoConfigs_11].ClkConfigId;
+  _7 = (unsigned char) NoConfigs_11;
+  Mcu_au8ClockConfigIds[_6] = _7;
+  # DEBUG BEGIN_STMT
+  NoConfigs_26 = NoConfigs_11 + 1;
+  # DEBUG NoConfigs => NoConfigs_26
+
+  <bb 8> [local count: 1073741824]:
+  # NoConfigs_11 = PHI <NoConfigs_26(7), 0(13)>
+  # DEBUG NoConfigs => NoConfigs_11
+  # DEBUG BEGIN_STMT
+  _8 = ConfigPtr_19(D)->NoClkConfigs;
+  if (_8 > NoConfigs_11)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 9>; [11.00%]
+
+  <bb 9> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  _9 = ConfigPtr_19(D)->HwIPsConfigPtr;
+  Mcu_Ipw_Init (_9);
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 118111599]:
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr = 0B;
+
+  <bb 11> [local count: 236223200]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetStatus => CheckStatus_21
+  # DEBUG McuServiceID => 0
+  # DEBUG INLINE_ENTRY Mcu_HLDChecksExit
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => 0
+  Mcu_HLDChecksExit.part.0 (CheckStatus_21);
+
+  <bb 12> [local count: 715827877]:
+  # DEBUG RetStatus => NULL
+  # DEBUG McuServiceID => NULL
+  return;
+
+}
+
+
+Mcu_HLDChecksEntry (uint8 McuServiceID)
+{
+  Std_ReturnType CheckStatus;
+  <unnamed type> Mcu_eStatus.5_1;
+  <unnamed type> Mcu_eStatus.6_2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  if (McuServiceID_5(D) == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus.5_1 = Mcu_eStatus;
+  if (Mcu_eStatus.5_1 != 3)
+    goto <bb 4>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 4> [local count: 262422502]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, 0, 19);
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus.6_2 = Mcu_eStatus;
+  if (Mcu_eStatus.6_2 == 3)
+    goto <bb 6>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 6> [local count: 108662672]:
+  CheckStatus_10 = Mcu_HLDChecksEntry.part.0 (McuServiceID_5(D));
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 428208240]:
+  # DEBUG BEGIN_STMT
+  Mcu_eStatus = 10;
+
+  <bb 8> [local count: 1073741824]:
+  # CheckStatus_3 = PHI <1(4), CheckStatus_10(6), 0(7), 0(3)>
+  # DEBUG CheckStatus => CheckStatus_3
+  # DEBUG BEGIN_STMT
+  return CheckStatus_3;
+
+}
+
+
+Mcu_CheckDistributePllClock ()
+{
+  Std_ReturnType CheckStatus;
+  <unnamed type> _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  _1 = Mcu_Ipw_GetPllStatus ();
+  if (_1 != 51)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, 3, 14);
+
+  <bb 4> [local count: 1073741824]:
+  # CheckStatus_2 = PHI <0(2), 1(3)>
+  # DEBUG CheckStatus => CheckStatus_2
+  # DEBUG BEGIN_STMT
+  return CheckStatus_2;
+
+}
+
+
+Mcu_CheckSetMode (Power_Ip_ModeType McuMode)
+{
+  Std_ReturnType CheckStatus;
+  const struct Mcu_ConfigType * Mcu_pConfigPtr.10_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr.10_1 = Mcu_pConfigPtr;
+  _2 = Mcu_pConfigPtr.10_1->NoModeConfigs;
+  if (_2 <= McuMode_6(D))
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, 8, 12);
+
+  <bb 4> [local count: 1073741824]:
+  # CheckStatus_3 = PHI <0(2), 1(3)>
+  # DEBUG CheckStatus => CheckStatus_3
+  # DEBUG BEGIN_STMT
+  return CheckStatus_3;
+
+}
+
+
+Mcu_CheckInitClock (Mcu_ClockType ClockSetting)
+{
+  Std_ReturnType CheckStatus;
+  const struct Mcu_ConfigType * Mcu_pConfigPtr.8_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  Mcu_pConfigPtr.8_1 = Mcu_pConfigPtr;
+  _2 = Mcu_pConfigPtr.8_1->NoClkConfigs;
+  if (_2 <= ClockSetting_6(D))
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, 2, 11);
+
+  <bb 4> [local count: 1073741824]:
+  # CheckStatus_3 = PHI <0(2), 1(3)>
+  # DEBUG CheckStatus => CheckStatus_3
+  # DEBUG BEGIN_STMT
+  return CheckStatus_3;
+
+}
+
+
+Mcu_CheckInit (const struct Mcu_ConfigType * ConfigPtr)
+{
+  Std_ReturnType CheckStatus;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 0
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_3(D) == 0B)
+    goto <bb 3>; [17.43%]
+  else
+    goto <bb 4>; [82.57%]
+
+  <bb 3> [local count: 187153200]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CheckStatus => 1
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (101, 0, 0, 17);
+
+  <bb 4> [local count: 1073741824]:
+  # CheckStatus_1 = PHI <0(2), 1(3)>
+  # DEBUG CheckStatus => CheckStatus_1
+  # DEBUG BEGIN_STMT
+  return CheckStatus_1;
+
+}
+
+

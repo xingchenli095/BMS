@@ -1,0 +1,73 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_ReleaseLocks
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_resourceTableBase/1 (OS_resourceTableBase) @06c196c0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ReleaseLocks/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_ReleaseLocks/0 (OS_ReleaseLocks) @06b72b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_resourceTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_ReleaseLocks (os_objectid_t head)
+{
+  struct os_resourcedynamic_t * rd;
+  os_objectid_t lock;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  lock = head;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = lock & 16777215;
+  _3 = _2 * 16;
+  _4 = OS_resourceTableBase.0_1 + _3;
+  rd = _4->dynamic;
+  # DEBUG BEGIN_STMT
+  lock = rd->next;
+  # DEBUG BEGIN_STMT
+  rd->next = 4294967295;
+  # DEBUG BEGIN_STMT
+  rd->takenBy = 255;
+  # DEBUG BEGIN_STMT
+  rd->lastPrio = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (lock != 4294967295)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

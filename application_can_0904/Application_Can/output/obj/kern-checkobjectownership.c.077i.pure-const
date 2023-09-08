@@ -1,0 +1,768 @@
+
+
+ local analysis of OS_KernCheckObjectOwnership
+   scanning: app = 0B;
+  scanning: _1 = (unsigned int) typ_39(D);
+  scanning: p[0] = _1;
+  scanning: p[1] = id_41(D);
+  scanning: _2 = OS_kernelData.inFunction;
+  scanning: if (_2 == 10)
+  scanning: OS_permittedContext.2_3 = OS_permittedContext;
+  scanning: _4 = MEM[(const os_callermask_t *)OS_permittedContext.2_3 + 12B];
+    Indirect ref read is not const
+  scanning: _36 = _4 & 1024;
+  scanning: if (_36 != 0)
+  scanning: _5 = OS_kernelData.errorStatus.calledFrom;
+  scanning: _6 = (int) _5;
+  scanning: _7 = 1 << _6;
+  scanning: _8 = (short unsigned int) _7;
+  scanning: _9 = _4 & _8;
+  scanning: if (_9 != 0)
+  scanning: _12 = iftmp.1_34 ^ 1;
+  scanning: iftmp.0_45 = (_Bool) _12;
+  scanning: OS_permittedContext.4_10 = OS_permittedContext;
+  scanning: _11 = MEM[(const os_callermask_t *)OS_permittedContext.4_10 + 12B];
+    Indirect ref read is not const
+  scanning: _13 = (int) _2;
+  scanning: _14 = 1 << _13;
+  scanning: _15 = (short unsigned int) _14;
+  scanning: _16 = _11 & _15;
+  scanning: iftmp.0_43 = _16 == 0;
+  scanning: if (iftmp.0_33 != 0)
+  scanning: OS_configMode.5_17 = OS_configMode;
+  scanning: _18 = OS_configMode.5_17 & 1024;
+  scanning: if (_18 != 0)
+  scanning: OS_Error (&OS_svc_CheckObjectOwnership, 12, &p);
+  scanning: OS_iecMode.6_19 = OS_iecMode;
+  scanning: if (OS_iecMode.6_19 > 1)
+  scanning: if (_2 == 1)
+  scanning: _20 = OS_kernelData.taskCurrent;
+  scanning: _21 = _20->dynamic;
+    Indirect ref read is not const
+  scanning: _22 = BIT_FIELD_REF <MEM[(void *)_21], 16, 160>;
+    Indirect ref read is not const
+  scanning: if (_22 != 0)
+  scanning: _23 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+    Indirect ref read is not const
+  scanning: if (_23 != 0)
+  scanning: OS_configMode.7_24 = OS_configMode;
+  scanning: _25 = OS_configMode.7_24 & 1024;
+  scanning: if (_25 != 0)
+  scanning: OS_Error (&OS_svc_CheckObjectOwnership, 55, &p);
+  scanning: if (typ_39(D) == 1)
+  scanning: OS_nApps.8_26 = OS_nApps;
+  scanning: _27 = (unsigned int) OS_nApps.8_26;
+  scanning: if (_27 > id_41(D))
+  scanning: a_50 = (os_applicationid_t) id_41(D);
+  scanning: idValid_49 = OS_GetOwningAppForObject (typ_39(D), id_41(D), &app, &p);
+  scanning: if (idValid_49 != 0)
+  scanning: app.9_28 = app;
+  scanning: if (app.9_28 != 0B)
+  scanning: _29 = app.9_28->flags;
+    Indirect ref read is not const
+  scanning: _44 = _29 & 2;
+  scanning: if (_44 != 0)
+  scanning: a_52 = app.9_28->appId;
+    Indirect ref read is not const
+  scanning: OS_configMode.12_30 = OS_configMode;
+  scanning: _31 = OS_configMode.12_30 & 1024;
+  scanning: if (_31 != 0)
+  scanning: OS_Error (&OS_svc_CheckObjectOwnership, 45, &p);
+  scanning: return a_32;
+Function is locally pure.
+
+
+ local analysis of OS_GetOwningAppForObject
+   scanning: switch (typ_47(D)) <default: <L21> [12.50%], case 2: <L0> [12.50%], case 3: <L3> [12.50%], case 4: <L6> [12.50%], case 5: <L9> [12.50%], case 6: <L12> [12.50%], case 7: <L15> [12.50%], case 8: <L18> [12.50%]>
+  scanning: <L0>:
+  scanning: OS_nTasks.13_1 = OS_nTasks;
+  scanning: _2 = (unsigned int) OS_nTasks.13_1;
+  scanning: if (_2 > id_49(D))
+  scanning: OS_taskTableBase.14_3 = OS_taskTableBase;
+  scanning: _4 = id_49(D) * 76;
+  scanning: _5 = OS_taskTableBase.14_3 + _4;
+  scanning: _6 = _5->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _6;
+    Indirect ref write is not const/pure
+  scanning: <L3>:
+  scanning: OS_nInterrupts.15_7 = OS_nInterrupts;
+  scanning: _8 = (unsigned int) OS_nInterrupts.15_7;
+  scanning: if (_8 > id_49(D))
+  scanning: OS_isrTableBase.16_9 = OS_isrTableBase;
+  scanning: _10 = id_49(D) * 68;
+  scanning: _11 = OS_isrTableBase.16_9 + _10;
+  scanning: _12 = _11->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _12;
+    Indirect ref write is not const/pure
+  scanning: <L6>:
+  scanning: OS_nResources.17_13 = OS_nResources;
+  scanning: _14 = (unsigned int) OS_nResources.17_13;
+  scanning: if (_14 > id_49(D))
+  scanning: OS_resourceTableBase.18_15 = OS_resourceTableBase;
+  scanning: _16 = id_49(D) * 16;
+  scanning: _17 = OS_resourceTableBase.18_15 + _16;
+  scanning: _18 = _17->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _18;
+    Indirect ref write is not const/pure
+  scanning: <L9>:
+  scanning: OS_nCounters.19_19 = OS_nCounters;
+  scanning: _20 = (unsigned int) OS_nCounters.19_19;
+  scanning: if (_20 > id_49(D))
+  scanning: OS_counterTableBase.20_21 = OS_counterTableBase;
+  scanning: _22 = id_49(D) * 32;
+  scanning: _23 = OS_counterTableBase.20_21 + _22;
+  scanning: _24 = _23->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _24;
+    Indirect ref write is not const/pure
+  scanning: <L12>:
+  scanning: OS_nAlarms.21_25 = OS_nAlarms;
+  scanning: _26 = (unsigned int) OS_nAlarms.21_25;
+  scanning: if (_26 > id_49(D))
+  scanning: OS_alarmTableBase.22_27 = OS_alarmTableBase;
+  scanning: _28 = id_49(D) * 28;
+  scanning: _29 = OS_alarmTableBase.22_27 + _28;
+  scanning: _30 = _29->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _30;
+    Indirect ref write is not const/pure
+  scanning: <L15>:
+  scanning: OS_nSchedules.23_31 = OS_nSchedules;
+  scanning: _32 = (unsigned int) OS_nSchedules.23_31;
+  scanning: if (_32 > id_49(D))
+  scanning: OS_scheduleTableBase.24_33 = OS_scheduleTableBase;
+  scanning: _34 = id_49(D) * 36;
+  scanning: _35 = OS_scheduleTableBase.24_33 + _34;
+  scanning: _36 = _35->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _36;
+    Indirect ref write is not const/pure
+  scanning: <L18>:
+  scanning: OS_nFunctions.25_37 = OS_nFunctions;
+  scanning: _38 = (unsigned int) OS_nFunctions.25_37;
+  scanning: if (_38 > id_49(D))
+  scanning: OS_functionTableBase.26_39 = OS_functionTableBase;
+  scanning: _40 = id_49(D) * 16;
+  scanning: _41 = OS_functionTableBase.26_39 + _40;
+  scanning: _42 = _41->app;
+    Indirect ref read is not const
+  scanning: *app_50(D) = _42;
+    Indirect ref write is not const/pure
+  scanning: <L21>:
+  scanning: OS_configMode.27_43 = OS_configMode;
+  scanning: _44 = OS_configMode.27_43 & 1024;
+  scanning: if (_44 != 0)
+  scanning: OS_Error (&OS_svc_CheckObjectOwnership, 44, p_58(D));
+  scanning: return ret_45;
+callgraph:
+
+OS_Error/5 (OS_Error) @06dbb8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (62451509 (estimated locally),0.06 per call) OS_KernCheckObjectOwnership/1 (52264383 (estimated locally),0.05 per call) OS_KernCheckObjectOwnership/1 (177167401 (estimated locally),0.17 per call) OS_GetOwningAppForObject/0 (7631574 (estimated locally),0.01 per call) 
+  Calls: 
+OS_KernCheckObjectOwnership/1 (OS_KernCheckObjectOwnership) @06dbb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907178
+  References: OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_iecMode/7 (read)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_nApps/8 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/5 (62451509 (estimated locally),0.06 per call) OS_GetOwningAppForObject/0 (inlined) (185007864 (estimated locally),0.17 per call) OS_Error/5 (52264383 (estimated locally),0.05 per call) OS_Error/5 (177167401 (estimated locally),0.17 per call) 
+OS_GetOwningAppForObject/0 (OS_GetOwningAppForObject) @06d1cb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @069072f8
+  References: OS_nTasks/9 (read)OS_taskTableBase/10 (read)OS_nInterrupts/11 (read)OS_isrTableBase/12 (read)OS_nResources/13 (read)OS_resourceTableBase/14 (read)OS_nCounters/15 (read)OS_counterTableBase/16 (read)OS_nAlarms/17 (read)OS_alarmTableBase/18 (read)OS_nSchedules/19 (read)OS_scheduleTableBase/20 (read)OS_nFunctions/21 (read)OS_functionTableBase/22 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Function OS_GetOwningAppForObject/0 is inline copy in OS_KernCheckObjectOwnership/1
+  Availability: local
+  Function flags: count:185007864 (estimated locally) body local optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (inlined) (185007864 (estimated locally),0.17 per call) 
+  Calls: OS_Error/5 (7631574 (estimated locally),0.01 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_KernCheckObjectOwnership/1 (OS_KernCheckObjectOwnership) @06dbb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907178
+  References: OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_iecMode/7 (read)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_nApps/8 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/5 (62451509 (estimated locally),0.06 per call) OS_GetOwningAppForObject/0 (inlined) (185007864 (estimated locally),0.17 per call) OS_Error/5 (52264383 (estimated locally),0.05 per call) OS_Error/5 (177167401 (estimated locally),0.17 per call) 
+OS_GetOwningAppForObject/0 (OS_GetOwningAppForObject) @06d1cb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @069072f8
+  References: OS_nTasks/9 (read)OS_taskTableBase/10 (read)OS_nInterrupts/11 (read)OS_isrTableBase/12 (read)OS_nResources/13 (read)OS_resourceTableBase/14 (read)OS_nCounters/15 (read)OS_counterTableBase/16 (read)OS_nAlarms/17 (read)OS_alarmTableBase/18 (read)OS_nSchedules/19 (read)OS_scheduleTableBase/20 (read)OS_nFunctions/21 (read)OS_functionTableBase/22 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Function OS_GetOwningAppForObject/0 is inline copy in OS_KernCheckObjectOwnership/1
+  Availability: local
+  Function flags: count:185007864 (estimated locally) body local optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (inlined) (185007864 (estimated locally),0.17 per call) 
+  Calls: OS_Error/5 (7631574 (estimated locally),0.01 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_KernCheckObjectOwnership: malloc_bottom
+OS_GetOwningAppForObject: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_KernCheckObjectOwnership: malloc_bottom
+OS_GetOwningAppForObject: malloc_bottom
+callgraph:
+
+OS_Error/5 (OS_Error) @06dbb8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (62451509 (estimated locally),0.06 per call) OS_KernCheckObjectOwnership/1 (52264383 (estimated locally),0.05 per call) OS_KernCheckObjectOwnership/1 (177167401 (estimated locally),0.17 per call) OS_GetOwningAppForObject/0 (7631574 (estimated locally),0.01 per call) 
+  Calls: 
+OS_KernCheckObjectOwnership/1 (OS_KernCheckObjectOwnership) @06dbb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907238
+  References: OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_iecMode/7 (read)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_nApps/8 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/5 (62451509 (estimated locally),0.06 per call) OS_GetOwningAppForObject/0 (inlined) (185007864 (estimated locally),0.17 per call) OS_Error/5 (52264383 (estimated locally),0.05 per call) OS_Error/5 (177167401 (estimated locally),0.17 per call) 
+OS_GetOwningAppForObject/0 (OS_GetOwningAppForObject) @06d1cb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06907178
+  References: OS_nTasks/9 (read)OS_taskTableBase/10 (read)OS_nInterrupts/11 (read)OS_isrTableBase/12 (read)OS_nResources/13 (read)OS_resourceTableBase/14 (read)OS_nCounters/15 (read)OS_counterTableBase/16 (read)OS_nAlarms/17 (read)OS_alarmTableBase/18 (read)OS_nSchedules/19 (read)OS_scheduleTableBase/20 (read)OS_nFunctions/21 (read)OS_functionTableBase/22 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Function OS_GetOwningAppForObject/0 is inline copy in OS_KernCheckObjectOwnership/1
+  Availability: local
+  Function flags: count:185007864 (estimated locally) body local optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (inlined) (185007864 (estimated locally),0.17 per call) 
+  Calls: OS_Error/5 (7631574 (estimated locally),0.01 per call) 
+
+
+ ordered call graph: reduced
+OS_KernCheckObjectOwnership/1 (OS_KernCheckObjectOwnership) @06dbb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907238
+  References: OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_kernelData/2 (read)OS_permittedContext/3 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_iecMode/7 (read)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)OS_nApps/8 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/5 (62451509 (estimated locally),0.06 per call) OS_GetOwningAppForObject/0 (inlined) (185007864 (estimated locally),0.17 per call) OS_Error/5 (52264383 (estimated locally),0.05 per call) OS_Error/5 (177167401 (estimated locally),0.17 per call) 
+OS_GetOwningAppForObject/0 (OS_GetOwningAppForObject) @06d1cb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06907178
+  References: OS_nTasks/9 (read)OS_taskTableBase/10 (read)OS_nInterrupts/11 (read)OS_isrTableBase/12 (read)OS_nResources/13 (read)OS_resourceTableBase/14 (read)OS_nCounters/15 (read)OS_counterTableBase/16 (read)OS_nAlarms/17 (read)OS_alarmTableBase/18 (read)OS_nSchedules/19 (read)OS_scheduleTableBase/20 (read)OS_nFunctions/21 (read)OS_functionTableBase/22 (read)OS_configMode/4 (read)OS_svc_CheckObjectOwnership/6 (addr)
+  Referring: 
+  Function OS_GetOwningAppForObject/0 is inline copy in OS_KernCheckObjectOwnership/1
+  Availability: local
+  Function flags: count:185007864 (estimated locally) body local optimize_size
+  Called by: OS_KernCheckObjectOwnership/1 (inlined) (185007864 (estimated locally),0.17 per call) 
+  Calls: OS_Error/5 (7631574 (estimated locally),0.01 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_KernCheckObjectOwnership (os_objecttype_t typ, os_objectid_t id)
+{
+  os_paramtype_t p[3];
+  const struct os_appcontext_t * app;
+  os_applicationid_t a;
+  os_boolean_t idValid;
+  unsigned int _1;
+  unsigned char _2;
+  const os_callermask_t * OS_permittedContext.2_3;
+  short unsigned int _4;
+  unsigned char _5;
+  int _6;
+  int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  const os_callermask_t * OS_permittedContext.4_10;
+  short unsigned int _11;
+  int _12;
+  int _13;
+  int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  unsigned int OS_configMode.5_17;
+  unsigned int _18;
+  unsigned char OS_iecMode.6_19;
+  const struct os_task_t * _20;
+  struct os_taskdynamic_t * _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  unsigned int OS_configMode.7_24;
+  unsigned int _25;
+  unsigned char OS_nApps.8_26;
+  unsigned int _27;
+  const struct os_appcontext_t * app.9_28;
+  unsigned char _29;
+  unsigned int OS_configMode.12_30;
+  unsigned int _31;
+  _Bool iftmp.0_33;
+  int iftmp.1_34;
+  short unsigned int _36;
+  _Bool iftmp.0_43;
+  unsigned char _44;
+  _Bool iftmp.0_45;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG a => 255
+  # DEBUG BEGIN_STMT
+  app = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) typ_39(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  p[1] = id_41(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = MEM[(const os_callermask_t *)OS_permittedContext.2_3 + 12B];
+  _36 = _4 & 1024;
+  if (_36 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  _5 = OS_kernelData.errorStatus.calledFrom;
+  _6 = (int) _5;
+  _7 = 1 << _6;
+  _8 = (short unsigned int) _7;
+  _9 = _4 & _8;
+  if (_9 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 273804165]:
+
+  <bb 6> [local count: 365072220]:
+  # iftmp.1_34 = PHI <1(4), 0(5)>
+  _12 = iftmp.1_34 ^ 1;
+  iftmp.0_45 = (_Bool) _12;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 708669605]:
+  OS_permittedContext.4_10 = OS_permittedContext;
+  _11 = MEM[(const os_callermask_t *)OS_permittedContext.4_10 + 12B];
+  _13 = (int) _2;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  iftmp.0_43 = _16 == 0;
+
+  <bb 8> [local count: 1073741824]:
+  # iftmp.0_33 = PHI <iftmp.0_45(6), iftmp.0_43(7)>
+  if (iftmp.0_33 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 9> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_17 = OS_configMode;
+  _18 = OS_configMode.5_17 & 1024;
+  if (_18 != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 26>; [67.00%]
+
+  <bb 10> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 12, &p);
+  goto <bb 26>; [100.00%]
+
+  <bb 11> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_19 = OS_iecMode;
+  if (OS_iecMode.6_19 > 1)
+    goto <bb 12>; [59.00%]
+  else
+    goto <bb 17>; [41.00%]
+
+  <bb 12> [local count: 316753838]:
+  if (_2 == 1)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 13> [local count: 107696305]:
+  _20 = OS_kernelData.taskCurrent;
+  _21 = _20->dynamic;
+  _22 = BIT_FIELD_REF <MEM[(void *)_21], 16, 160>;
+  if (_22 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 14> [local count: 209057533]:
+  _23 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  if (_23 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 15> [local count: 158376919]:
+  # DEBUG BEGIN_STMT
+  OS_configMode.7_24 = OS_configMode;
+  _25 = OS_configMode.7_24 & 1024;
+  if (_25 != 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 26>; [67.00%]
+
+  <bb 16> [local count: 52264383]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 55, &p);
+  goto <bb 26>; [100.00%]
+
+  <bb 17> [local count: 378493993]:
+  # DEBUG BEGIN_STMT
+  # DEBUG idValid => 0
+  # DEBUG BEGIN_STMT
+  if (typ_39(D) == 1)
+    goto <bb 18>; [51.12%]
+  else
+    goto <bb 20>; [48.88%]
+
+  <bb 18> [local count: 193486129]:
+  # DEBUG BEGIN_STMT
+  OS_nApps.8_26 = OS_nApps;
+  _27 = (unsigned int) OS_nApps.8_26;
+  if (_27 > id_41(D))
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 24>; [50.00%]
+
+  <bb 19> [local count: 96743065]:
+  # DEBUG BEGIN_STMT
+  a_50 = (os_applicationid_t) id_41(D);
+  # DEBUG a => a_50
+  # DEBUG BEGIN_STMT
+  # DEBUG a => a_50
+  # DEBUG idValid => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 20> [local count: 185007864]:
+  # DEBUG BEGIN_STMT
+  idValid_49 = OS_GetOwningAppForObject (typ_39(D), id_41(D), &app, &p);
+  # DEBUG a => 255
+  # DEBUG idValid => idValid_49
+  # DEBUG BEGIN_STMT
+  if (idValid_49 != 0)
+    goto <bb 21>; [50.00%]
+  else
+    goto <bb 24>; [50.00%]
+
+  <bb 21> [local count: 189246997]:
+  # a_47 = PHI <255(20), a_50(19)>
+  # DEBUG BEGIN_STMT
+  app.9_28 = app;
+  if (app.9_28 != 0B)
+    goto <bb 22>; [70.00%]
+  else
+    goto <bb 26>; [30.00%]
+
+  <bb 22> [local count: 132472898]:
+  # DEBUG BEGIN_STMT
+  _29 = app.9_28->flags;
+  _44 = _29 & 2;
+  if (_44 != 0)
+    goto <bb 26>; [35.00%]
+  else
+    goto <bb 23>; [65.00%]
+
+  <bb 23> [local count: 86107383]:
+  # DEBUG BEGIN_STMT
+  a_52 = app.9_28->appId;
+  # DEBUG a => a_52
+  goto <bb 26>; [100.00%]
+
+  <bb 24> [local count: 189246997]:
+  # DEBUG a => NULL
+  # DEBUG idValid => NULL
+  # DEBUG BEGIN_STMT
+  OS_configMode.12_30 = OS_configMode;
+  _31 = OS_configMode.12_30 & 1024;
+  if (_31 != 0)
+    goto <bb 25>; [33.00%]
+  else
+    goto <bb 26>; [67.00%]
+
+  <bb 25> [local count: 62451509]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 45, &p);
+
+  <bb 26> [local count: 1073741824]:
+  # a_32 = PHI <255(10), 255(16), 255(22), 255(24), 255(25), 255(9), 255(15), a_47(21), a_52(23)>
+  # DEBUG a => a_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  app ={v} {CLOBBER};
+  p ={v} {CLOBBER};
+  return a_32;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_GetOwningAppForObject (os_objecttype_t typ, os_objectid_t id, const struct os_appcontext_t * * app, os_paramtype_t * p)
+{
+  os_boolean_t ret;
+  unsigned char OS_nTasks.13_1;
+  unsigned int _2;
+  const struct os_task_t * OS_taskTableBase.14_3;
+  unsigned int _4;
+  const struct os_task_t * _5;
+  const struct os_appcontext_t * _6;
+  short unsigned int OS_nInterrupts.15_7;
+  unsigned int _8;
+  const struct os_isr_t * OS_isrTableBase.16_9;
+  unsigned int _10;
+  const struct os_isr_t * _11;
+  const struct os_appcontext_t * _12;
+  short unsigned int OS_nResources.17_13;
+  unsigned int _14;
+  const struct os_resource_t * OS_resourceTableBase.18_15;
+  unsigned int _16;
+  const struct os_resource_t * _17;
+  const struct os_appcontext_t * _18;
+  unsigned char OS_nCounters.19_19;
+  unsigned int _20;
+  const struct os_counter_t * OS_counterTableBase.20_21;
+  unsigned int _22;
+  const struct os_counter_t * _23;
+  const struct os_appcontext_t * _24;
+  short unsigned int OS_nAlarms.21_25;
+  unsigned int _26;
+  const struct os_alarm_t * OS_alarmTableBase.22_27;
+  unsigned int _28;
+  const struct os_alarm_t * _29;
+  const struct os_appcontext_t * _30;
+  unsigned char OS_nSchedules.23_31;
+  unsigned int _32;
+  const struct os_schedule_t * OS_scheduleTableBase.24_33;
+  unsigned int _34;
+  const struct os_schedule_t * _35;
+  const struct os_appcontext_t * _36;
+  unsigned char OS_nFunctions.25_37;
+  unsigned int _38;
+  const struct os_function_t * OS_functionTableBase.26_39;
+  unsigned int _40;
+  const struct os_function_t * _41;
+  const struct os_appcontext_t * _42;
+  unsigned int OS_configMode.27_43;
+  unsigned int _44;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (typ_47(D)) <default: <L21> [12.50%], case 2: <L0> [12.50%], case 3: <L3> [12.50%], case 4: <L6> [12.50%], case 5: <L9> [12.50%], case 6: <L12> [12.50%], case 7: <L15> [12.50%], case 8: <L18> [12.50%]>
+
+  <bb 3> [local count: 134217728]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  OS_nTasks.13_1 = OS_nTasks;
+  _2 = (unsigned int) OS_nTasks.13_1;
+  if (_2 > id_49(D))
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 4> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.14_3 = OS_taskTableBase;
+  _4 = id_49(D) * 76;
+  _5 = OS_taskTableBase.14_3 + _4;
+  _6 = _5->app;
+  *app_50(D) = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 5> [local count: 134217728]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.15_7 = OS_nInterrupts;
+  _8 = (unsigned int) OS_nInterrupts.15_7;
+  if (_8 > id_49(D))
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 6> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.16_9 = OS_isrTableBase;
+  _10 = id_49(D) * 68;
+  _11 = OS_isrTableBase.16_9 + _10;
+  _12 = _11->app;
+  *app_50(D) = _12;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 7> [local count: 134217728]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  OS_nResources.17_13 = OS_nResources;
+  _14 = (unsigned int) OS_nResources.17_13;
+  if (_14 > id_49(D))
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 8> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.18_15 = OS_resourceTableBase;
+  _16 = id_49(D) * 16;
+  _17 = OS_resourceTableBase.18_15 + _16;
+  _18 = _17->app;
+  *app_50(D) = _18;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 9> [local count: 134217728]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  OS_nCounters.19_19 = OS_nCounters;
+  _20 = (unsigned int) OS_nCounters.19_19;
+  if (_20 > id_49(D))
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 10> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.20_21 = OS_counterTableBase;
+  _22 = id_49(D) * 32;
+  _23 = OS_counterTableBase.20_21 + _22;
+  _24 = _23->app;
+  *app_50(D) = _24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 11> [local count: 134217728]:
+<L12>:
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.21_25 = OS_nAlarms;
+  _26 = (unsigned int) OS_nAlarms.21_25;
+  if (_26 > id_49(D))
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 12> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.22_27 = OS_alarmTableBase;
+  _28 = id_49(D) * 28;
+  _29 = OS_alarmTableBase.22_27 + _28;
+  _30 = _29->app;
+  *app_50(D) = _30;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 13> [local count: 134217728]:
+<L15>:
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.23_31 = OS_nSchedules;
+  _32 = (unsigned int) OS_nSchedules.23_31;
+  if (_32 > id_49(D))
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 14> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.24_33 = OS_scheduleTableBase;
+  _34 = id_49(D) * 36;
+  _35 = OS_scheduleTableBase.24_33 + _34;
+  _36 = _35->app;
+  *app_50(D) = _36;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 15> [local count: 134217728]:
+<L18>:
+  # DEBUG BEGIN_STMT
+  OS_nFunctions.25_37 = OS_nFunctions;
+  _38 = (unsigned int) OS_nFunctions.25_37;
+  if (_38 > id_49(D))
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 16> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  OS_functionTableBase.26_39 = OS_functionTableBase;
+  _40 = id_49(D) * 16;
+  _41 = OS_functionTableBase.26_39 + _40;
+  _42 = _41->app;
+  *app_50(D) = _42;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 19>; [100.00%]
+
+  <bb 17> [local count: 134217728]:
+<L21>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  OS_configMode.27_43 = OS_configMode;
+  _44 = OS_configMode.27_43 & 1024;
+  if (_44 != 0)
+    goto <bb 18>; [33.00%]
+  else
+    goto <bb 19>; [67.00%]
+
+  <bb 18> [local count: 44291850]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 44, p_58(D));
+
+  <bb 19> [local count: 1073741824]:
+  # ret_45 = PHI <1(4), 1(6), 1(8), 1(10), 1(12), 1(14), 1(16), 1(18), 0(3), 0(5), 0(7), 0(9), 0(11), 0(13), 0(15), 1(17)>
+  # DEBUG ret => ret_45
+  # DEBUG BEGIN_STMT
+  return ret_45;
+
+}
+
+

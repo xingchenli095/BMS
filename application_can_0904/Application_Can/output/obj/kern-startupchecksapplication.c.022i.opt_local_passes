@@ -1,0 +1,191 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksApplication ()
+{
+  const struct os_appcontext_t * const app;
+  os_permission_t permBits;
+  os_unsigned_t i;
+  os_result_t result;
+  const struct os_appcontext_t * OS_appTableBase.0_1;
+  unsigned int _2;
+  unsigned char _3;
+  unsigned int _4;
+  const os_uint32_t * _5;
+  unsigned int _6;
+  unsigned int OS_configurationId.1_7;
+  unsigned char _8;
+  const struct os_task_t * OS_taskTableBase.2_9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct os_task_t * _13;
+  const struct os_appcontext_t * _14;
+  unsigned int _15;
+  unsigned char _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  unsigned int _20;
+  unsigned int _21;
+  unsigned char OS_nApps.3_22;
+  unsigned int _23;
+  os_result_t _45;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_41 = 0;
+  # DEBUG result => result_41
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  permBits_42 = 0;
+  # DEBUG permBits => permBits_42
+  # DEBUG BEGIN_STMT
+  i_43 = 0;
+  # DEBUG i => i_43
+  goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = i_31 * 64;
+  app_46 = OS_appTableBase.0_1 + _2;
+  # DEBUG app => app_46
+  # DEBUG BEGIN_STMT
+  _3 = app_46->appId;
+  _4 = (unsigned int) _3;
+  if (i_31 != _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_48 = OS_Panic (45);
+  # DEBUG result => result_48
+
+  <bb 5> :
+  # result_24 = PHI <result_30(3), result_48(4)>
+  # DEBUG result => result_24
+  # DEBUG BEGIN_STMT
+  _5 = app_46->buildId;
+  _6 = *_5;
+  OS_configurationId.1_7 = OS_configurationId;
+  if (_6 != OS_configurationId.1_7)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result_50 = OS_Panic (46);
+  # DEBUG result => result_50
+
+  <bb 7> :
+  # result_25 = PHI <result_24(5), result_50(6)>
+  # DEBUG result => result_25
+  # DEBUG BEGIN_STMT
+  _8 = app_46->restartTask;
+  if (_8 != 255)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.2_9 = OS_taskTableBase;
+  _10 = app_46->restartTask;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 76;
+  _13 = OS_taskTableBase.2_9 + _12;
+  _14 = _13->app;
+  if (app_46 != _14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result_52 = OS_Panic (47);
+  # DEBUG result => result_52
+
+  <bb 10> :
+  # result_26 = PHI <result_25(7), result_25(8), result_52(9)>
+  # DEBUG result => result_26
+  # DEBUG BEGIN_STMT
+  _15 = app_46->permissionBit;
+  if (_15 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  result_54 = OS_Panic (48);
+  # DEBUG result => result_54
+
+  <bb 12> :
+  # result_27 = PHI <result_26(10), result_54(11)>
+  # DEBUG result => result_27
+  # DEBUG BEGIN_STMT
+  _16 = app_46->flags;
+  _17 = (unsigned int) _16;
+  _18 = _17 & 2;
+  if (_18 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = app_46->permissionBit;
+  _20 = permBits_33 & _19;
+  if (_20 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  result_56 = OS_Panic (49);
+  # DEBUG result => result_56
+
+  <bb 15> :
+  # result_28 = PHI <result_27(13), result_56(14)>
+  # DEBUG result => result_28
+  # DEBUG BEGIN_STMT
+  _21 = app_46->permissionBit;
+  permBits_57 = permBits_33 | _21;
+  # DEBUG permBits => permBits_57
+
+  <bb 16> :
+  # result_29 = PHI <result_27(12), result_28(15)>
+  # permBits_32 = PHI <permBits_33(12), permBits_57(15)>
+  # DEBUG permBits => permBits_32
+  # DEBUG result => result_29
+  # DEBUG BEGIN_STMT
+  i_58 = i_31 + 1;
+  # DEBUG i => i_58
+
+  <bb 17> :
+  # result_30 = PHI <result_41(2), result_29(16)>
+  # i_31 = PHI <i_43(2), i_58(16)>
+  # permBits_33 = PHI <permBits_42(2), permBits_32(16)>
+  # DEBUG permBits => permBits_33
+  # DEBUG i => i_31
+  # DEBUG result => result_30
+  # DEBUG BEGIN_STMT
+  OS_nApps.3_22 = OS_nApps;
+  _23 = (unsigned int) OS_nApps.3_22;
+  if (i_31 < _23)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _45 = result_30;
+  return _45;
+
+}
+
+

@@ -1,0 +1,90 @@
+
+Analyzing function: OS_CatKEntry/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Analyzing function body size: OS_CatKEntry
+
+IPA function summary for OS_CatKEntry/0 inlinable
+  global time:     22.000000
+  self size:       11
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:4.000000, time:4.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+    size:1.000000, time:1.000000,  nonconst if:(op0 changed)
+  calls:
+    indirect call loop depth: 0 freq:1.00 size: 3 time: 15
+
+Symbol table:
+
+OS_kernelData/2 (OS_kernelData) @06c27750
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_CatKEntry/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_isrTableBase/1 (OS_isrTableBase) @06c27708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_CatKEntry/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CatKEntry/0 (OS_CatKEntry) @06c4ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_isrTableBase/1 (read)OS_kernelData/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(1073741824 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_CatKEntry (os_isrid_t iid)
+{
+  os_uint8_t inKernel;
+  void (*os_isrfunc_t) (void) f;
+  const struct os_isr_t * isr;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) iid_5(D);
+  _3 = _2 * 68;
+  isr_6 = OS_isrTableBase.0_1 + _3;
+  # DEBUG isr => isr_6
+  # DEBUG BEGIN_STMT
+  f_7 = isr_6->func;
+  # DEBUG f => f_7
+  # DEBUG BEGIN_STMT
+  inKernel_8 = OS_kernelData.inKernel;
+  # DEBUG inKernel => inKernel_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  f_7 ();
+  # DEBUG BEGIN_STMT
+  return inKernel_8;
+
+}
+
+

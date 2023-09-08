@@ -1,0 +1,97 @@
+__attribute__((target ("general-regs-only")))
+OS_GetTimeStampGeneric (struct os_timestamp_t * out)
+{
+  volatile struct os_timestamp_t * const ptimeStampValue;
+  volatile os_timervalue_t * const plastTimeStampTime;
+  os_timervalue_t localLastTimeStampTime;
+  struct os_timestamp_t timeStampValue2;
+  struct os_timestamp_t timeStampValue1;
+  os_timervalue_t diff;
+  os_timervalue_t newTmrVal;
+  const struct os_hwt_t * const ptimeStampTimer;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ptimeStampTimer = OS_timeStampTimer;
+  # DEBUG BEGIN_STMT
+  if (ptimeStampTimer != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  plastTimeStampTime = &OS_lastTimeStampTime;
+  # DEBUG BEGIN_STMT
+  ptimeStampValue = &OS_timeStampValue;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  timeStampValue1 = OS_timeStampValue;
+  # DEBUG BEGIN_STMT
+  _1 = ptimeStampTimer->driver;
+  _2 = _1->hwtRead;
+  newTmrVal = _2 (ptimeStampTimer);
+  # DEBUG BEGIN_STMT
+  localLastTimeStampTime = OS_lastTimeStampTime;
+  # DEBUG BEGIN_STMT
+  timeStampValue2 = OS_timeStampValue;
+  # DEBUG BEGIN_STMT
+  _3 = timeStampValue1.tsHi;
+  _4 = timeStampValue2.tsHi;
+  if (_3 != _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _5 = timeStampValue1.tsLo;
+  _6 = timeStampValue2.tsLo;
+  if (_5 != _6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = newTmrVal - localLastTimeStampTime;
+  _8 = ptimeStampTimer->wrapMask;
+  diff = _7 & _8;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = timeStampValue2.tsHi;
+  out->tsHi = _9;
+  # DEBUG BEGIN_STMT
+  _10 = timeStampValue2.tsLo;
+  _11 = ~diff;
+  if (_10 > _11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = out->tsHi;
+  _13 = _12 + 1;
+  out->tsHi = _13;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _14 = timeStampValue2.tsLo;
+  _15 = diff + _14;
+  out->tsLo = _15;
+  # DEBUG BEGIN_STMT
+  timeStampValue1 = {CLOBBER};
+  timeStampValue2 = {CLOBBER};
+
+  <bb 9> :
+  return;
+
+}
+
+

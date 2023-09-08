@@ -1,0 +1,2312 @@
+
+
+ local analysis of Dcm_GetSesCtrlTypeExt.part.0
+   scanning: Det_ASR40_ReportError (53, 0, 6, 7);
+  scanning: return retVal_1;
+Function is locally const.
+
+
+ local analysis of Dcm_MainFunction_Part2
+   scanning: _1 = (unsigned char) i_2;
+  scanning: Dcm_Internal_ProcessRetryTimer (_1);
+  scanning: i_12 = i_2 + 1;
+  scanning: if (i_2 != 2)
+  scanning: Dcm_Dsp_DidSignals_SignalBufferOperationsPoll ();
+  scanning: Dcm_Dsp_SecurityAccess_MainFunction ();
+  scanning: Dcm_Dsl_TxConnectionProcessTxConnections ();
+  scanning: Dcm_HsmMain (&Dcm_HsmScDcm);
+  scanning: Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction ();
+  scanning: Dcm_Dsl_Supervisor_PostProcessingMainFunction ();
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+Function is locally const.
+
+
+ local analysis of Dcm_MainFunction_Part1
+   scanning: Dcm_Dsp_ControlDTCSetting_MainFunction ();
+  scanning: Dcm_Dsl_RoeServices_MainFunction ();
+  scanning: Dcm_Dsl_PostBootOperationsHandler_MainFunction ();
+  scanning: Dcm_Dsl_Supervisor_PreProcessingMainFunction ();
+  scanning: Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Dcm_Dsp_Init
+   scanning: Dcm_Dsp_DidServices_Init ();
+  scanning: Dcm_HsmInit (&Dcm_HsmScDcm);
+  scanning: Dcm_Dsp_ServiceProcessorInit ();
+  scanning: Dcm_Dsp_CommunicationControl_Init ();
+  scanning: Dcm_Dsp_SecurityAccess_Init ();
+  scanning: Dcm_Dsp_RoutineControl_Init ();
+  scanning: Dcm_DIDInit ();
+  scanning: Dcm_Dsp_DemFacade_Init ();
+  scanning: Dcm_Dsp_ControlDTCSettingState_Init ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Dcm_Internal_ProcessRetryTimer
+   scanning: _1 = (int) instIdx_6(D);
+  scanning: SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: _2 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+    Indirect ref read is not const
+  scanning: if (_2 != 0)
+  scanning: Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_6(D), 19);
+  scanning: _3 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+    Indirect ref read is not const
+  scanning: _4 = _3 + 65535;
+  scanning: MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer = _4;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+
+
+ local analysis of Dcm_Init
+   scanning: Dcm_Initialized.7_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.7_1 == 1)
+  scanning: Det_ASR40_ReportError (53, 0, 1, 34);
+  scanning: Dcm_Dsl_DiagnosticSessionHandler_Init ();
+  scanning: Dcm_Dsl_Supervisor_Init ();
+  scanning: Dcm_Dsp_Init ();
+  scanning: Dcm_Dsl_RoeServices_Init ();
+  scanning: Dcm_Dsl_Init ();
+  scanning: Dcm_Dsl_ComMChannelStateManager_Init ();
+  scanning: Dcm_Dsl_SecurityLevelHandler_Init ();
+  scanning: Dcm_Dsl_PostBootOperationsHandler_Init ();
+  scanning: Dcm_Initialized = 1;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Dcm_DIDInit
+   scanning: Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init ();
+  scanning: Dcm_Dsp_ReadDataByIdentifier_Init ();
+  scanning: Dcm_Dsp_WriteDataByIdentifier_Init ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Dcm_GetSesCtrlTypeExt
+   scanning: Dcm_Initialized.6_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.6_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 6, 5);
+  scanning: if (SesCtrlType_6(D) == 0B)
+  scanning: retVal_13 = Dcm_GetSesCtrlTypeExt.part.0 ();
+  scanning: SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: _2 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  scanning: *SesCtrlType_6(D) = _2;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: return retVal_3;
+
+
+ local analysis of Dcm_DemTriggerOnDTCStatus
+   scanning: Dcm_Initialized.5_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.5_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 43, 5);
+  scanning: Dcm_Dsl_RoeServices_TriggerOnDTCStatus (DTCStatusOld_5(D), DTCStatusNew_6(D));
+  scanning: return retVal_2;
+Function is locally const.
+
+
+ local analysis of Dcm_MainFunction
+   scanning: Dcm_Initialized.4_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.4_1 == 1)
+  scanning: Dcm_MainFunction_Part1 ();
+  scanning: Dcm_MainFunction_Part2 ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Dcm_Internal_ReleaseLock
+   scanning: SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: PreviousMutexState_5 = *MutexPtr_4(D);
+    Indirect ref read is not const
+  scanning: *MutexPtr_4(D) = 0;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: if (PreviousMutexState_5 == 0)
+  scanning: Det_ASR40_ReportError (53, 0, 255, 18);
+  scanning: return;
+
+
+ local analysis of Dcm_Internal_GetLock
+   scanning: SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: PreviousMutexState_5 = *MutexPtr_4(D);
+    Indirect ref read is not const
+  scanning: *MutexPtr_4(D) = 1;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: if (PreviousMutexState_5 == 1)
+  scanning: return RetVal_1;
+
+
+ local analysis of Dcm_TriggerOnEvent
+   scanning: Dcm_Initialized.3_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.3_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 45, 5);
+  scanning: if (RoeEventId_5(D) == 255)
+  scanning: Det_ASR40_ReportError (53, 0, 45, 6);
+  scanning: apiRetVal_7 = Dcm_Dsl_RoeServices_TriggerOnEvent (RoeEventId_5(D));
+  scanning: return apiRetVal_2;
+Function is locally const.
+
+
+ local analysis of Dcm_ResetToDefaultSession
+   scanning: Dcm_Initialized.2_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.2_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 42, 5);
+  scanning: Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession (2);
+  scanning: return Retval_2;
+Function is locally const.
+
+
+ local analysis of Dcm_GetActiveProtocol
+   scanning: Dcm_Initialized.1_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.1_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 15, 5);
+  scanning: if (ActiveProtocol_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (53, 0, 15, 7);
+  scanning: SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: retVal_10 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig (&CurProtocolConfig);
+  scanning: if (retVal_10 == 0)
+  scanning: _2 = CurProtocolConfig.Type;
+  scanning: *ActiveProtocol_7(D) = _2;
+    Indirect ref write is not const/pure
+  scanning: *ActiveProtocol_7(D) = 12;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  scanning: return retVal_3;
+
+
+ local analysis of Dcm_GetSesCtrlType
+   scanning: retVal_4 = Dcm_GetSesCtrlTypeExt (SesCtrlType_2(D));
+  scanning: return retVal_4;
+Function is locally const.
+
+
+ local analysis of Dcm_GetSecurityLevel
+   scanning: Dcm_Initialized.0_1 = Dcm_Initialized;
+  scanning: if (Dcm_Initialized.0_1 != 1)
+  scanning: Det_ASR40_ReportError (53, 0, 13, 5);
+  scanning: if (SecLevel_6(D) == 0B)
+  scanning: Det_ASR40_ReportError (53, 0, 13, 7);
+  scanning: _2 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  scanning: *SecLevel_6(D) = _2;
+    Indirect ref write is not const/pure
+  scanning: return retVal_3;
+callgraph:
+
+Dcm_GetSesCtrlTypeExt.part.0/60 (Dcm_GetSesCtrlTypeExt.part.0) @06f519a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06807270
+  References: 
+  Referring: 
+  Function Dcm_GetSesCtrlTypeExt.part.0/60 is inline copy in Dcm_GetSesCtrlTypeExt/13
+  Availability: local
+  Function flags: count:164669045 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (inlined) (164669045 (estimated locally),0.15 per call) 
+  Calls: Det_ASR40_ReportError/20 (164669045 (estimated locally),0.15 per call) 
+Dcm_Dsp_WriteDataByIdentifier_Init/59 (Dcm_Dsp_WriteDataByIdentifier_Init) @06f3fd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ReadDataByIdentifier_Init/58 (Dcm_Dsp_ReadDataByIdentifier_Init) @06f3fc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init) @06f3fb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ControlDTCSettingState_Init/56 (Dcm_Dsp_ControlDTCSettingState_Init) @06f3f9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DemFacade_Init/55 (Dcm_Dsp_DemFacade_Init) @06f3f8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_RoutineControl_Init/54 (Dcm_Dsp_RoutineControl_Init) @06f3f7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_SecurityAccess_Init/53 (Dcm_Dsp_SecurityAccess_Init) @06f3f700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_CommunicationControl_Init/52 (Dcm_Dsp_CommunicationControl_Init) @06f3f620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ServiceProcessorInit/51 (Dcm_Dsp_ServiceProcessorInit) @06f3f540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_HsmInit/50 (Dcm_HsmInit) @06f3f460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DidServices_Init/49 (Dcm_Dsp_DidServices_Init) @06f3f380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_PostBootOperationsHandler_Init/48 (Dcm_Dsl_PostBootOperationsHandler_Init) @06f3f1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_Init/47 (Dcm_Dsl_SecurityLevelHandler_Init) @06f3f0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_ComMChannelStateManager_Init/46 (Dcm_Dsl_ComMChannelStateManager_Init) @06f3f000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_Init/45 (Dcm_Dsl_Init) @06f38ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_Init/44 (Dcm_Dsl_RoeServices_Init) @06f38e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_Init/43 (Dcm_Dsl_Supervisor_Init) @06f38d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_Init/42 (Dcm_Dsl_DiagnosticSessionHandler_Init) @06f38c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession) @06f38a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (Dcm_Dsl_RoeServices_TriggerOnDTCStatus) @06f388c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DemTriggerOnDTCStatus/12 (365072220 (estimated locally),0.34 per call) 
+  Calls: 
+Dcm_HsmEmitInst/39 (Dcm_HsmEmitInst) @06f38700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Internal_ProcessRetryTimer/16 (143456245 (estimated locally),0.13 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (Dcm_Dsl_Supervisor_PostProcessingMainFunction) @06f38540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction) @06f38460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_HsmMain/35 (Dcm_HsmMain) @06f38380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_TxConnectionProcessTxConnections/34 (Dcm_Dsl_TxConnectionProcessTxConnections) @06f382a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_SecurityAccess_MainFunction/33 (Dcm_Dsp_SecurityAccess_MainFunction) @06f381c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (Dcm_Dsp_DidSignals_SignalBufferOperationsPoll) @06f380e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction) @06efdee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (Dcm_Dsl_Supervisor_PreProcessingMainFunction) @06efde00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (Dcm_Dsl_PostBootOperationsHandler_MainFunction) @06efdd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_MainFunction/28 (Dcm_Dsl_RoeServices_MainFunction) @06efdc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_ControlDTCSetting_MainFunction/27 (Dcm_Dsp_ControlDTCSetting_MainFunction) @06efdb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_TriggerOnEvent/26 (Dcm_Dsl_RoeServices_TriggerOnEvent) @06efd700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_TriggerOnEvent/8 (362271901 (estimated locally),0.34 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession) @06efd540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_ResetToDefaultSession/7 (365072220 (estimated locally),0.34 per call) 
+  Calls: 
+SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06efd380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ReleaseLock/10 (1073741824 (estimated locally),1.00 per call) Dcm_Internal_GetLock/9 (1073741824 (estimated locally),1.00 per call) Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ProcessRetryTimer/16 (434715895 (estimated locally),0.40 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig) @06efd2a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06efd1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ReleaseLock/10 (1073741824 (estimated locally),1.00 per call) Dcm_Internal_GetLock/9 (1073741824 (estimated locally),1.00 per call) Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ProcessRetryTimer/16 (434715895 (estimated locally),0.40 per call) 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel) @06ef8ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSecurityLevel/4 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+Det_ASR40_ReportError/20 (Det_ASR40_ReportError) @06ef8e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (365072220 (estimated locally),0.34 per call) Dcm_GetSesCtrlTypeExt/13 (524845004 (estimated locally),0.49 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (164669045 (estimated locally),0.15 per call) Dcm_DemTriggerOnDTCStatus/12 (708669605 (estimated locally),0.66 per call) Dcm_Internal_ReleaseLock/10 (354334802 (estimated locally),0.33 per call) Dcm_TriggerOnEvent/8 (186624919 (estimated locally),0.17 per call) Dcm_TriggerOnEvent/8 (524845004 (estimated locally),0.49 per call) Dcm_ResetToDefaultSession/7 (708669605 (estimated locally),0.66 per call) Dcm_GetActiveProtocol/6 (164669046 (estimated locally),0.15 per call) Dcm_GetActiveProtocol/6 (524845004 (estimated locally),0.49 per call) Dcm_GetSecurityLevel/4 (164669046 (estimated locally),0.15 per call) Dcm_GetSecurityLevel/4 (524845004 (estimated locally),0.49 per call) 
+  Calls: 
+Dcm_MainFunction_Part2/19 (Dcm_MainFunction_Part2) @06ef8c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807110
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_MainFunction_Part2/19 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (217325345 (estimated locally),0.20 per call) Dcm_HsmMain/35 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_TxConnectionProcessTxConnections/34 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_SecurityAccess_MainFunction/33 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (217325345 (estimated locally),0.20 per call) Dcm_Internal_ProcessRetryTimer/16 (inlined) (434715895 (estimated locally),0.40 per call) 
+Dcm_MainFunction_Part1/18 (Dcm_MainFunction_Part1) @06ef8a80
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807150
+  References: 
+  Referring: 
+  Function Dcm_MainFunction_Part1/18 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_RoeServices_MainFunction/28 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_ControlDTCSetting_MainFunction/27 (217325345 (estimated locally),0.20 per call) 
+Dcm_Dsp_Init/17 (Dcm_Dsp_Init) @06ef88c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807130
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_Dsp_Init/17 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Init/15 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_ControlDTCSettingState_Init/56 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DemFacade_Init/55 (708669605 (estimated locally),0.66 per call) Dcm_DIDInit/14 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsp_RoutineControl_Init/54 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_SecurityAccess_Init/53 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_CommunicationControl_Init/52 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ServiceProcessorInit/51 (708669605 (estimated locally),0.66 per call) Dcm_HsmInit/50 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidServices_Init/49 (708669605 (estimated locally),0.66 per call) 
+Dcm_Internal_ProcessRetryTimer/16 (Dcm_Internal_ProcessRetryTimer) @06ef8700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807170
+  References: Dcm_HsmInfo/2 (read)Dcm_HsmScDcm/36 (addr)Dcm_HsmInfo/2 (read)Dcm_HsmInfo/2 (write)
+  Referring: 
+  Function Dcm_Internal_ProcessRetryTimer/16 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:434715895 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (inlined) (434715895 (estimated locally),0.40 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (434715895 (estimated locally),0.40 per call) Dcm_HsmEmitInst/39 (143456245 (estimated locally),0.13 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (434715895 (estimated locally),0.40 per call) 
+Dcm_Init/15 (Dcm_Init) @06ef8540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807190
+  References: Dcm_Initialized/0 (read)Dcm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_PostBootOperationsHandler_Init/48 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_SecurityLevelHandler_Init/47 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_ComMChannelStateManager_Init/46 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Init/45 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_RoeServices_Init/44 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Supervisor_Init/43 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_DiagnosticSessionHandler_Init/42 (708669605 (estimated locally),0.66 per call) Det_ASR40_ReportError/20 (365072220 (estimated locally),0.34 per call) 
+Dcm_DIDInit/14 (Dcm_DIDInit) @06ef82a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @068073b0
+  References: 
+  Referring: 
+  Function Dcm_DIDInit/14 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_WriteDataByIdentifier_Init/59 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ReadDataByIdentifier_Init/58 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetSesCtrlTypeExt/13 (Dcm_GetSesCtrlTypeExt) @06ef80e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807330
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: Dcm_GetSesCtrlType/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (inlined) (164669045 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_DemTriggerOnDTCStatus/12 (Dcm_DemTriggerOnDTCStatus) @06ef2d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807350
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_MainFunction/11 (Dcm_MainFunction) @06ef2a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071b0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_MainFunction_Part2/19 (inlined) (217325345 (estimated locally),0.20 per call) Dcm_MainFunction_Part1/18 (inlined) (217325345 (estimated locally),0.20 per call) 
+Dcm_Internal_ReleaseLock/10 (Dcm_Internal_ReleaseLock) @06ef28c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/20 (354334802 (estimated locally),0.33 per call) SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_Internal_GetLock/9 (Dcm_Internal_GetLock) @06ef2700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807290
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_TriggerOnEvent/8 (Dcm_TriggerOnEvent) @06ef2540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068072b0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnEvent/26 (362271901 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (186624919 (estimated locally),0.17 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_ResetToDefaultSession/7 (Dcm_ResetToDefaultSession) @06ef21c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068072d0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetActiveProtocol/6 (Dcm_GetActiveProtocol) @06ed4ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1718
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_GetSesCtrlType/5 (Dcm_GetSesCtrlType) @06ed4b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd12d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_GetSesCtrlTypeExt/13 (1073741824 (estimated locally),1.00 per call) 
+Dcm_GetSecurityLevel/4 (Dcm_GetSecurityLevel) @06ed49a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11d8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+
+
+ ordered call graph: reduced for nothrow
+Dcm_GetSesCtrlTypeExt.part.0/60 (Dcm_GetSesCtrlTypeExt.part.0) @06f519a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06807270
+  References: 
+  Referring: 
+  Function Dcm_GetSesCtrlTypeExt.part.0/60 is inline copy in Dcm_GetSesCtrlTypeExt/13
+  Availability: local
+  Function flags: count:164669045 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (inlined) (164669045 (estimated locally),0.15 per call) 
+  Calls: Det_ASR40_ReportError/20 (164669045 (estimated locally),0.15 per call) 
+Dcm_MainFunction_Part2/19 (Dcm_MainFunction_Part2) @06ef8c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807110
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_MainFunction_Part2/19 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (217325345 (estimated locally),0.20 per call) Dcm_HsmMain/35 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_TxConnectionProcessTxConnections/34 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_SecurityAccess_MainFunction/33 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (217325345 (estimated locally),0.20 per call) Dcm_Internal_ProcessRetryTimer/16 (inlined) (434715895 (estimated locally),0.40 per call) 
+Dcm_MainFunction_Part1/18 (Dcm_MainFunction_Part1) @06ef8a80
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807150
+  References: 
+  Referring: 
+  Function Dcm_MainFunction_Part1/18 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_RoeServices_MainFunction/28 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_ControlDTCSetting_MainFunction/27 (217325345 (estimated locally),0.20 per call) 
+Dcm_Dsp_Init/17 (Dcm_Dsp_Init) @06ef88c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807130
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_Dsp_Init/17 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Init/15 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_ControlDTCSettingState_Init/56 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DemFacade_Init/55 (708669605 (estimated locally),0.66 per call) Dcm_DIDInit/14 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsp_RoutineControl_Init/54 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_SecurityAccess_Init/53 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_CommunicationControl_Init/52 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ServiceProcessorInit/51 (708669605 (estimated locally),0.66 per call) Dcm_HsmInit/50 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidServices_Init/49 (708669605 (estimated locally),0.66 per call) 
+Dcm_Internal_ProcessRetryTimer/16 (Dcm_Internal_ProcessRetryTimer) @06ef8700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06807170
+  References: Dcm_HsmInfo/2 (read)Dcm_HsmScDcm/36 (addr)Dcm_HsmInfo/2 (read)Dcm_HsmInfo/2 (write)
+  Referring: 
+  Function Dcm_Internal_ProcessRetryTimer/16 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:434715895 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (inlined) (434715895 (estimated locally),0.40 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (434715895 (estimated locally),0.40 per call) Dcm_HsmEmitInst/39 (143456245 (estimated locally),0.13 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (434715895 (estimated locally),0.40 per call) 
+Dcm_Init/15 (Dcm_Init) @06ef8540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807190
+  References: Dcm_Initialized/0 (read)Dcm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_PostBootOperationsHandler_Init/48 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_SecurityLevelHandler_Init/47 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_ComMChannelStateManager_Init/46 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Init/45 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_RoeServices_Init/44 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Supervisor_Init/43 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_DiagnosticSessionHandler_Init/42 (708669605 (estimated locally),0.66 per call) Det_ASR40_ReportError/20 (365072220 (estimated locally),0.34 per call) 
+Dcm_DIDInit/14 (Dcm_DIDInit) @06ef82a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @068073b0
+  References: 
+  Referring: 
+  Function Dcm_DIDInit/14 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_WriteDataByIdentifier_Init/59 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ReadDataByIdentifier_Init/58 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetSesCtrlTypeExt/13 (Dcm_GetSesCtrlTypeExt) @06ef80e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807330
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: Dcm_GetSesCtrlType/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (inlined) (164669045 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_DemTriggerOnDTCStatus/12 (Dcm_DemTriggerOnDTCStatus) @06ef2d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807350
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_MainFunction/11 (Dcm_MainFunction) @06ef2a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071b0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_MainFunction_Part2/19 (inlined) (217325345 (estimated locally),0.20 per call) Dcm_MainFunction_Part1/18 (inlined) (217325345 (estimated locally),0.20 per call) 
+Dcm_Internal_ReleaseLock/10 (Dcm_Internal_ReleaseLock) @06ef28c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/20 (354334802 (estimated locally),0.33 per call) SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_Internal_GetLock/9 (Dcm_Internal_GetLock) @06ef2700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807290
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_TriggerOnEvent/8 (Dcm_TriggerOnEvent) @06ef2540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068072b0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnEvent/26 (362271901 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (186624919 (estimated locally),0.17 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_ResetToDefaultSession/7 (Dcm_ResetToDefaultSession) @06ef21c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068072d0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetActiveProtocol/6 (Dcm_GetActiveProtocol) @06ed4ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1718
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_GetSesCtrlType/5 (Dcm_GetSesCtrlType) @06ed4b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd12d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_GetSesCtrlTypeExt/13 (1073741824 (estimated locally),1.00 per call) 
+Dcm_GetSecurityLevel/4 (Dcm_GetSecurityLevel) @06ed49a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11d8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+
+
+
+MALLOC LATTICE Initial:
+Dcm_GetSesCtrlTypeExt.part.0: malloc_bottom
+Dcm_MainFunction_Part2: malloc_bottom
+Dcm_MainFunction_Part1: malloc_bottom
+Dcm_Dsp_Init: malloc_bottom
+Dcm_Internal_ProcessRetryTimer: malloc_bottom
+Dcm_Init: malloc_bottom
+Dcm_DIDInit: malloc_bottom
+Dcm_GetSesCtrlTypeExt: malloc_bottom
+Dcm_DemTriggerOnDTCStatus: malloc_bottom
+Dcm_MainFunction: malloc_bottom
+Dcm_Internal_ReleaseLock: malloc_bottom
+Dcm_Internal_GetLock: malloc_bottom
+Dcm_TriggerOnEvent: malloc_bottom
+Dcm_ResetToDefaultSession: malloc_bottom
+Dcm_GetActiveProtocol: malloc_bottom
+Dcm_GetSesCtrlType: malloc_bottom
+Dcm_GetSecurityLevel: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+Dcm_GetSesCtrlTypeExt.part.0: malloc_bottom
+Dcm_MainFunction_Part2: malloc_bottom
+Dcm_MainFunction_Part1: malloc_bottom
+Dcm_Dsp_Init: malloc_bottom
+Dcm_Internal_ProcessRetryTimer: malloc_bottom
+Dcm_Init: malloc_bottom
+Dcm_DIDInit: malloc_bottom
+Dcm_GetSesCtrlTypeExt: malloc_bottom
+Dcm_DemTriggerOnDTCStatus: malloc_bottom
+Dcm_MainFunction: malloc_bottom
+Dcm_Internal_ReleaseLock: malloc_bottom
+Dcm_Internal_GetLock: malloc_bottom
+Dcm_TriggerOnEvent: malloc_bottom
+Dcm_ResetToDefaultSession: malloc_bottom
+Dcm_GetActiveProtocol: malloc_bottom
+Dcm_GetSesCtrlType: malloc_bottom
+Dcm_GetSecurityLevel: malloc_bottom
+callgraph:
+
+Dcm_GetSesCtrlTypeExt.part.0/60 (Dcm_GetSesCtrlTypeExt.part.0) @06f519a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06cd1478
+  References: 
+  Referring: 
+  Function Dcm_GetSesCtrlTypeExt.part.0/60 is inline copy in Dcm_GetSesCtrlTypeExt/13
+  Availability: local
+  Function flags: count:164669045 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (inlined) (164669045 (estimated locally),0.15 per call) 
+  Calls: Det_ASR40_ReportError/20 (164669045 (estimated locally),0.15 per call) 
+Dcm_Dsp_WriteDataByIdentifier_Init/59 (Dcm_Dsp_WriteDataByIdentifier_Init) @06f3fd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ReadDataByIdentifier_Init/58 (Dcm_Dsp_ReadDataByIdentifier_Init) @06f3fc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init) @06f3fb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DIDInit/14 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ControlDTCSettingState_Init/56 (Dcm_Dsp_ControlDTCSettingState_Init) @06f3f9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DemFacade_Init/55 (Dcm_Dsp_DemFacade_Init) @06f3f8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_RoutineControl_Init/54 (Dcm_Dsp_RoutineControl_Init) @06f3f7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_SecurityAccess_Init/53 (Dcm_Dsp_SecurityAccess_Init) @06f3f700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_CommunicationControl_Init/52 (Dcm_Dsp_CommunicationControl_Init) @06f3f620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_ServiceProcessorInit/51 (Dcm_Dsp_ServiceProcessorInit) @06f3f540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_HsmInit/50 (Dcm_HsmInit) @06f3f460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsp_DidServices_Init/49 (Dcm_Dsp_DidServices_Init) @06f3f380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsp_Init/17 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_PostBootOperationsHandler_Init/48 (Dcm_Dsl_PostBootOperationsHandler_Init) @06f3f1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_Init/47 (Dcm_Dsl_SecurityLevelHandler_Init) @06f3f0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_ComMChannelStateManager_Init/46 (Dcm_Dsl_ComMChannelStateManager_Init) @06f3f000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_Init/45 (Dcm_Dsl_Init) @06f38ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_Init/44 (Dcm_Dsl_RoeServices_Init) @06f38e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_Init/43 (Dcm_Dsl_Supervisor_Init) @06f38d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_Init/42 (Dcm_Dsl_DiagnosticSessionHandler_Init) @06f38c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (708669605 (estimated locally),0.66 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession) @06f38a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (Dcm_Dsl_RoeServices_TriggerOnDTCStatus) @06f388c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_DemTriggerOnDTCStatus/12 (365072220 (estimated locally),0.34 per call) 
+  Calls: 
+Dcm_HsmEmitInst/39 (Dcm_HsmEmitInst) @06f38700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Internal_ProcessRetryTimer/16 (143456245 (estimated locally),0.13 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (Dcm_Dsl_Supervisor_PostProcessingMainFunction) @06f38540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction) @06f38460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_HsmMain/35 (Dcm_HsmMain) @06f38380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_TxConnectionProcessTxConnections/34 (Dcm_Dsl_TxConnectionProcessTxConnections) @06f382a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_SecurityAccess_MainFunction/33 (Dcm_Dsp_SecurityAccess_MainFunction) @06f381c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (Dcm_Dsp_DidSignals_SignalBufferOperationsPoll) @06f380e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction) @06efdee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (Dcm_Dsl_Supervisor_PreProcessingMainFunction) @06efde00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (Dcm_Dsl_PostBootOperationsHandler_MainFunction) @06efdd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_MainFunction/28 (Dcm_Dsl_RoeServices_MainFunction) @06efdc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsp_ControlDTCSetting_MainFunction/27 (Dcm_Dsp_ControlDTCSetting_MainFunction) @06efdb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_MainFunction_Part1/18 (217325345 (estimated locally),0.20 per call) 
+  Calls: 
+Dcm_Dsl_RoeServices_TriggerOnEvent/26 (Dcm_Dsl_RoeServices_TriggerOnEvent) @06efd700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_TriggerOnEvent/8 (362271901 (estimated locally),0.34 per call) 
+  Calls: 
+Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession) @06efd540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_ResetToDefaultSession/7 (365072220 (estimated locally),0.34 per call) 
+  Calls: 
+SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06efd380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ReleaseLock/10 (1073741824 (estimated locally),1.00 per call) Dcm_Internal_GetLock/9 (1073741824 (estimated locally),1.00 per call) Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ProcessRetryTimer/16 (434715895 (estimated locally),0.40 per call) 
+  Calls: 
+Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig) @06efd2a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06efd1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ReleaseLock/10 (1073741824 (estimated locally),1.00 per call) Dcm_Internal_GetLock/9 (1073741824 (estimated locally),1.00 per call) Dcm_GetActiveProtocol/6 (384227774 (estimated locally),0.36 per call) Dcm_Internal_ProcessRetryTimer/16 (434715895 (estimated locally),0.40 per call) 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel) @06ef8ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_GetSecurityLevel/4 (384227774 (estimated locally),0.36 per call) 
+  Calls: 
+Det_ASR40_ReportError/20 (Det_ASR40_ReportError) @06ef8e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Init/15 (365072220 (estimated locally),0.34 per call) Dcm_GetSesCtrlTypeExt/13 (524845004 (estimated locally),0.49 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (164669045 (estimated locally),0.15 per call) Dcm_DemTriggerOnDTCStatus/12 (708669605 (estimated locally),0.66 per call) Dcm_Internal_ReleaseLock/10 (354334802 (estimated locally),0.33 per call) Dcm_TriggerOnEvent/8 (186624919 (estimated locally),0.17 per call) Dcm_TriggerOnEvent/8 (524845004 (estimated locally),0.49 per call) Dcm_ResetToDefaultSession/7 (708669605 (estimated locally),0.66 per call) Dcm_GetActiveProtocol/6 (164669046 (estimated locally),0.15 per call) Dcm_GetActiveProtocol/6 (524845004 (estimated locally),0.49 per call) Dcm_GetSecurityLevel/4 (164669046 (estimated locally),0.15 per call) Dcm_GetSecurityLevel/4 (524845004 (estimated locally),0.49 per call) 
+  Calls: 
+Dcm_MainFunction_Part2/19 (Dcm_MainFunction_Part2) @06ef8c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd14b8
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_MainFunction_Part2/19 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (217325345 (estimated locally),0.20 per call) Dcm_HsmMain/35 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_TxConnectionProcessTxConnections/34 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_SecurityAccess_MainFunction/33 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (217325345 (estimated locally),0.20 per call) Dcm_Internal_ProcessRetryTimer/16 (inlined) (434715895 (estimated locally),0.40 per call) 
+Dcm_MainFunction_Part1/18 (Dcm_MainFunction_Part1) @06ef8a80
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd14d8
+  References: 
+  Referring: 
+  Function Dcm_MainFunction_Part1/18 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_RoeServices_MainFunction/28 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_ControlDTCSetting_MainFunction/27 (217325345 (estimated locally),0.20 per call) 
+Dcm_Dsp_Init/17 (Dcm_Dsp_Init) @06ef88c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1238
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_Dsp_Init/17 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Init/15 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_ControlDTCSettingState_Init/56 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DemFacade_Init/55 (708669605 (estimated locally),0.66 per call) Dcm_DIDInit/14 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsp_RoutineControl_Init/54 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_SecurityAccess_Init/53 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_CommunicationControl_Init/52 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ServiceProcessorInit/51 (708669605 (estimated locally),0.66 per call) Dcm_HsmInit/50 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidServices_Init/49 (708669605 (estimated locally),0.66 per call) 
+Dcm_Internal_ProcessRetryTimer/16 (Dcm_Internal_ProcessRetryTimer) @06ef8700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1498
+  References: Dcm_HsmInfo/2 (read)Dcm_HsmScDcm/36 (addr)Dcm_HsmInfo/2 (read)Dcm_HsmInfo/2 (write)
+  Referring: 
+  Function Dcm_Internal_ProcessRetryTimer/16 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:434715895 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (inlined) (434715895 (estimated locally),0.40 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (434715895 (estimated locally),0.40 per call) Dcm_HsmEmitInst/39 (143456245 (estimated locally),0.13 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (434715895 (estimated locally),0.40 per call) 
+Dcm_Init/15 (Dcm_Init) @06ef8540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1518
+  References: Dcm_Initialized/0 (read)Dcm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_PostBootOperationsHandler_Init/48 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_SecurityLevelHandler_Init/47 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_ComMChannelStateManager_Init/46 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Init/45 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_RoeServices_Init/44 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Supervisor_Init/43 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_DiagnosticSessionHandler_Init/42 (708669605 (estimated locally),0.66 per call) Det_ASR40_ReportError/20 (365072220 (estimated locally),0.34 per call) 
+Dcm_DIDInit/14 (Dcm_DIDInit) @06ef82a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1538
+  References: 
+  Referring: 
+  Function Dcm_DIDInit/14 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_WriteDataByIdentifier_Init/59 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ReadDataByIdentifier_Init/58 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetSesCtrlTypeExt/13 (Dcm_GetSesCtrlTypeExt) @06ef80e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11d8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: Dcm_GetSesCtrlType/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (inlined) (164669045 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_DemTriggerOnDTCStatus/12 (Dcm_DemTriggerOnDTCStatus) @06ef2d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11f8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_MainFunction/11 (Dcm_MainFunction) @06ef2a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1258
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_MainFunction_Part2/19 (inlined) (217325345 (estimated locally),0.20 per call) Dcm_MainFunction_Part1/18 (inlined) (217325345 (estimated locally),0.20 per call) 
+Dcm_Internal_ReleaseLock/10 (Dcm_Internal_ReleaseLock) @06ef28c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd12d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/20 (354334802 (estimated locally),0.33 per call) SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_Internal_GetLock/9 (Dcm_Internal_GetLock) @06ef2700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1338
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_TriggerOnEvent/8 (Dcm_TriggerOnEvent) @06ef2540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1358
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnEvent/26 (362271901 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (186624919 (estimated locally),0.17 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_ResetToDefaultSession/7 (Dcm_ResetToDefaultSession) @06ef21c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1378
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetActiveProtocol/6 (Dcm_GetActiveProtocol) @06ed4ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1398
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_GetSesCtrlType/5 (Dcm_GetSesCtrlType) @06ed4b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1718
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_GetSesCtrlTypeExt/13 (1073741824 (estimated locally),1.00 per call) 
+Dcm_GetSecurityLevel/4 (Dcm_GetSecurityLevel) @06ed49a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071f0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+
+
+ ordered call graph: reduced
+Dcm_Init/15 (Dcm_Init) @06ef8540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1518
+  References: Dcm_Initialized/0 (read)Dcm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_PostBootOperationsHandler_Init/48 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_SecurityLevelHandler_Init/47 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_ComMChannelStateManager_Init/46 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Init/45 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_RoeServices_Init/44 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsl_Supervisor_Init/43 (708669605 (estimated locally),0.66 per call) Dcm_Dsl_DiagnosticSessionHandler_Init/42 (708669605 (estimated locally),0.66 per call) Det_ASR40_ReportError/20 (365072220 (estimated locally),0.34 per call) 
+Dcm_Dsp_Init/17 (Dcm_Dsp_Init) @06ef88c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1238
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_Dsp_Init/17 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Init/15 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_ControlDTCSettingState_Init/56 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DemFacade_Init/55 (708669605 (estimated locally),0.66 per call) Dcm_DIDInit/14 (inlined) (708669605 (estimated locally),0.66 per call) Dcm_Dsp_RoutineControl_Init/54 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_SecurityAccess_Init/53 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_CommunicationControl_Init/52 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ServiceProcessorInit/51 (708669605 (estimated locally),0.66 per call) Dcm_HsmInit/50 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidServices_Init/49 (708669605 (estimated locally),0.66 per call) 
+Dcm_DIDInit/14 (Dcm_DIDInit) @06ef82a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1538
+  References: 
+  Referring: 
+  Function Dcm_DIDInit/14 is inline copy in Dcm_Init/15
+  Availability: local
+  Function flags: count:708669605 (estimated locally) body local optimize_size
+  Called by: Dcm_Dsp_Init/17 (inlined) (708669605 (estimated locally),0.66 per call) 
+  Calls: Dcm_Dsp_WriteDataByIdentifier_Init/59 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_ReadDataByIdentifier_Init/58 (708669605 (estimated locally),0.66 per call) Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init/57 (708669605 (estimated locally),0.66 per call) 
+Dcm_DemTriggerOnDTCStatus/12 (Dcm_DemTriggerOnDTCStatus) @06ef2d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11f8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnDTCStatus/40 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_MainFunction/11 (Dcm_MainFunction) @06ef2a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1258
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_MainFunction_Part2/19 (inlined) (217325345 (estimated locally),0.20 per call) Dcm_MainFunction_Part1/18 (inlined) (217325345 (estimated locally),0.20 per call) 
+Dcm_MainFunction_Part1/18 (Dcm_MainFunction_Part1) @06ef8a80
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd14d8
+  References: 
+  Referring: 
+  Function Dcm_MainFunction_Part1/18 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction/31 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_Supervisor_PreProcessingMainFunction/30 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_PostBootOperationsHandler_MainFunction/29 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_RoeServices_MainFunction/28 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_ControlDTCSetting_MainFunction/27 (217325345 (estimated locally),0.20 per call) 
+Dcm_MainFunction_Part2/19 (Dcm_MainFunction_Part2) @06ef8c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd14b8
+  References: Dcm_HsmScDcm/36 (addr)
+  Referring: 
+  Function Dcm_MainFunction_Part2/19 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:217325345 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction/11 (inlined) (217325345 (estimated locally),0.20 per call) 
+  Calls: Dcm_Dsl_Supervisor_PostProcessingMainFunction/38 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction/37 (217325345 (estimated locally),0.20 per call) Dcm_HsmMain/35 (217325345 (estimated locally),0.20 per call) Dcm_Dsl_TxConnectionProcessTxConnections/34 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_SecurityAccess_MainFunction/33 (217325345 (estimated locally),0.20 per call) Dcm_Dsp_DidSignals_SignalBufferOperationsPoll/32 (217325345 (estimated locally),0.20 per call) Dcm_Internal_ProcessRetryTimer/16 (inlined) (434715895 (estimated locally),0.40 per call) 
+Dcm_Internal_ProcessRetryTimer/16 (Dcm_Internal_ProcessRetryTimer) @06ef8700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cd1498
+  References: Dcm_HsmInfo/2 (read)Dcm_HsmScDcm/36 (addr)Dcm_HsmInfo/2 (read)Dcm_HsmInfo/2 (write)
+  Referring: 
+  Function Dcm_Internal_ProcessRetryTimer/16 is inline copy in Dcm_MainFunction/11
+  Availability: local
+  Function flags: count:434715895 (estimated locally) body local optimize_size
+  Called by: Dcm_MainFunction_Part2/19 (inlined) (434715895 (estimated locally),0.40 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (434715895 (estimated locally),0.40 per call) Dcm_HsmEmitInst/39 (143456245 (estimated locally),0.13 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (434715895 (estimated locally),0.40 per call) 
+Dcm_Internal_ReleaseLock/10 (Dcm_Internal_ReleaseLock) @06ef28c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd12d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/20 (354334802 (estimated locally),0.33 per call) SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_Internal_GetLock/9 (Dcm_Internal_GetLock) @06ef2700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1338
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (1073741824 (estimated locally),1.00 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (1073741824 (estimated locally),1.00 per call) 
+Dcm_TriggerOnEvent/8 (Dcm_TriggerOnEvent) @06ef2540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1358
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_RoeServices_TriggerOnEvent/26 (362271901 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (186624919 (estimated locally),0.17 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_ResetToDefaultSession/7 (Dcm_ResetToDefaultSession) @06ef21c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1378
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession/25 (365072220 (estimated locally),0.34 per call) Det_ASR40_ReportError/20 (708669605 (estimated locally),0.66 per call) 
+Dcm_GetActiveProtocol/6 (Dcm_GetActiveProtocol) @06ed4ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1398
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig/23 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_GetSesCtrlType/5 (Dcm_GetSesCtrlType) @06ed4b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd1718
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_GetSesCtrlTypeExt/13 (1073741824 (estimated locally),1.00 per call) 
+Dcm_GetSesCtrlTypeExt/13 (Dcm_GetSesCtrlTypeExt) @06ef80e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cd11d8
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: Dcm_GetSesCtrlType/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/24 (384227774 (estimated locally),0.36 per call) Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession/41 (384227774 (estimated locally),0.36 per call) SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/22 (384227774 (estimated locally),0.36 per call) Dcm_GetSesCtrlTypeExt.part.0/60 (inlined) (164669045 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+Dcm_GetSesCtrlTypeExt.part.0/60 (Dcm_GetSesCtrlTypeExt.part.0) @06f519a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06cd1478
+  References: 
+  Referring: 
+  Function Dcm_GetSesCtrlTypeExt.part.0/60 is inline copy in Dcm_GetSesCtrlTypeExt/13
+  Availability: local
+  Function flags: count:164669045 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Dcm_GetSesCtrlTypeExt/13 (inlined) (164669045 (estimated locally),0.15 per call) 
+  Calls: Det_ASR40_ReportError/20 (164669045 (estimated locally),0.15 per call) 
+Dcm_GetSecurityLevel/4 (Dcm_GetSecurityLevel) @06ed49a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068071f0
+  References: Dcm_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/21 (384227774 (estimated locally),0.36 per call) Det_ASR40_ReportError/20 (164669046 (estimated locally),0.15 per call) Det_ASR40_ReportError/20 (524845004 (estimated locally),0.49 per call) 
+
+Dcm_GetSesCtrlTypeExt.part.0 ()
+{
+  Std_ReturnType retVal;
+  Dcm_SesCtrlType * SesCtrlType;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#3 s=> SesCtrlType
+  # DEBUG SesCtrlType => D#3
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 6, 7);
+
+  <bb 3> [local count: 1073741824]:
+  # retVal_1 = PHI <1(2)>
+  # DEBUG retVal => retVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_1;
+
+}
+
+
+Dcm_MainFunction_Part2 ()
+{
+  uint8_least i;
+  unsigned char _1;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) i_2;
+  Dcm_Internal_ProcessRetryTimer (_1);
+  # DEBUG BEGIN_STMT
+  i_12 = i_2 + 1;
+  # DEBUG i => i_12
+
+  <bb 4> [local count: 1073741824]:
+  # i_2 = PHI <0(2), i_12(3)>
+  # DEBUG i => i_2
+  # DEBUG BEGIN_STMT
+  if (i_2 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 5>; [33.33%]
+
+  <bb 5> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_SignalBufferOperationsPoll ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionProcessTxConnections ();
+  # DEBUG BEGIN_STMT
+  Dcm_HsmMain (&Dcm_HsmScDcm);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_PostProcessingMainFunction ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_MainFunction_Part1 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_PostBootOperationsHandler_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_PreProcessingMainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_Init ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidServices_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInit (&Dcm_HsmScDcm);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorInit ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_RoutineControl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_DIDInit ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DemFacade_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSettingState_Init ();
+  return;
+
+}
+
+
+Dcm_Internal_ProcessRetryTimer (const uint8 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_6(D);
+  # DEBUG D#1 => &Dcm_HsmInfo[_1]
+  # DEBUG curHsmInfo => D#1
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+  if (_2 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_6(D), 19);
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+  _4 = _3 + 65535;
+  MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer = _4;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+Dcm_Init (const Dcm_ConfigType * ConfigPtr)
+{
+  unsigned char Dcm_Initialized.7_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.7_1 = Dcm_Initialized;
+  if (Dcm_Initialized.7_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 1, 34);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_PostBootOperationsHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized = 1;
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DIDInit ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ReadDataByIdentifier_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_WriteDataByIdentifier_Init ();
+  return;
+
+}
+
+
+Dcm_GetSesCtrlTypeExt (Dcm_SesCtrlType * SesCtrlType)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.6_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.6_1 = Dcm_Initialized;
+  if (Dcm_Initialized.6_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 6, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (SesCtrlType_6(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669045]:
+  # DEBUG D#2 => SesCtrlType_6(D)
+  retVal_13 = Dcm_GetSesCtrlTypeExt.part.0 ();
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  *SesCtrlType_6(D) = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 7> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), retVal_13(5), 0(6)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+
+Dcm_DemTriggerOnDTCStatus (uint32 DTC, uint8 DTCStatusOld, uint8 DTCStatusNew)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.5_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.5_1 = Dcm_Initialized;
+  if (Dcm_Initialized.5_1 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 43, 5);
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_TriggerOnDTCStatus (DTCStatusOld_5(D), DTCStatusNew_6(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 5> [local count: 1073741824]:
+  # retVal_2 = PHI <1(3), 0(4)>
+  # DEBUG retVal => retVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_2;
+
+}
+
+
+Dcm_MainFunction ()
+{
+  unsigned char Dcm_Initialized.4_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.4_1 = Dcm_Initialized;
+  if (Dcm_Initialized.4_1 == 1)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Dcm_MainFunction_Part1 ();
+  # DEBUG BEGIN_STMT
+  Dcm_MainFunction_Part2 ();
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Internal_ReleaseLock (Dcm_MutexType * MutexPtr)
+{
+  Dcm_MutexType PreviousMutexState;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PreviousMutexState => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  PreviousMutexState_5 = *MutexPtr_4(D);
+  # DEBUG PreviousMutexState => PreviousMutexState_5
+  # DEBUG BEGIN_STMT
+  *MutexPtr_4(D) = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PreviousMutexState_5 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 255, 18);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Internal_GetLock (Dcm_MutexType * MutexPtr)
+{
+  Dcm_MutexType PreviousMutexState;
+  Std_ReturnType RetVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 31
+  # DEBUG BEGIN_STMT
+  # DEBUG PreviousMutexState => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  PreviousMutexState_5 = *MutexPtr_4(D);
+  # DEBUG PreviousMutexState => PreviousMutexState_5
+  # DEBUG BEGIN_STMT
+  *MutexPtr_4(D) = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PreviousMutexState_5 == 1)
+    goto <bb 4>; [21.72%]
+  else
+    goto <bb 3>; [78.28%]
+
+  <bb 3> [local count: 840525101]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_1 = PHI <31(2), 0(3)>
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_1;
+
+}
+
+
+Dcm_TriggerOnEvent (uint8 RoeEventId)
+{
+  Std_ReturnType apiRetVal;
+  unsigned char Dcm_Initialized.3_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG apiRetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.3_1 = Dcm_Initialized;
+  if (Dcm_Initialized.3_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 45, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (RoeEventId_5(D) == 255)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 186624919]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 45, 6);
+  # DEBUG BEGIN_STMT
+  # DEBUG apiRetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 362271901]:
+  # DEBUG BEGIN_STMT
+  apiRetVal_7 = Dcm_Dsl_RoeServices_TriggerOnEvent (RoeEventId_5(D));
+  # DEBUG apiRetVal => apiRetVal_7
+
+  <bb 7> [local count: 1073741824]:
+  # apiRetVal_2 = PHI <1(3), 1(5), apiRetVal_7(6)>
+  # DEBUG apiRetVal => apiRetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return apiRetVal_2;
+
+}
+
+
+Dcm_ResetToDefaultSession ()
+{
+  Std_ReturnType Retval;
+  unsigned char Dcm_Initialized.2_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Retval => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.2_1 = Dcm_Initialized;
+  if (Dcm_Initialized.2_1 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 42, 5);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession (2);
+  # DEBUG BEGIN_STMT
+  # DEBUG Retval => 0
+
+  <bb 5> [local count: 1073741824]:
+  # Retval_2 = PHI <1(3), 0(4)>
+  # DEBUG Retval => Retval_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Retval_2;
+
+}
+
+
+Dcm_GetActiveProtocol (Dcm_ProtocolType * ActiveProtocol)
+{
+  struct Dcm_ProtocolConfigType CurProtocolConfig;
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.1_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.1_1 = Dcm_Initialized;
+  if (Dcm_Initialized.1_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 15, 5);
+  goto <bb 10>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ActiveProtocol_7(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669046]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 15, 7);
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_10 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig (&CurProtocolConfig);
+  # DEBUG retVal => retVal_10
+  # DEBUG BEGIN_STMT
+  if (retVal_10 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 192113887]:
+  # DEBUG BEGIN_STMT
+  _2 = CurProtocolConfig.Type;
+  *ActiveProtocol_7(D) = _2;
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 192113887]:
+  # DEBUG BEGIN_STMT
+  *ActiveProtocol_7(D) = 12;
+
+  <bb 9> [local count: 384227774]:
+  CurProtocolConfig ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 10> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), 1(5), 0(9)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+
+Dcm_GetSesCtrlType (Dcm_SesCtrlType * SesCtrlType)
+{
+  Std_ReturnType retVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_4 = Dcm_GetSesCtrlTypeExt (SesCtrlType_2(D));
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_4;
+
+}
+
+
+Dcm_GetSecurityLevel (Dcm_SecLevelType * SecLevel)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.0_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.0_1 = Dcm_Initialized;
+  if (Dcm_Initialized.0_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 13, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (SecLevel_6(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669046]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 13, 7);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  *SecLevel_6(D) = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 7> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), 1(5), 0(6)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+

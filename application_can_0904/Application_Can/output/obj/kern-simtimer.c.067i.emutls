@@ -1,0 +1,361 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_KernSimTimerAdvance (os_unsigned_t tmr, os_tick_t incr)
+{
+  os_unsigned_t c;
+  os_timervalue_t old;
+  os_result_t result;
+  unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int _9;
+  const struct os_isr_t * OS_isrTableBase.2_10;
+  unsigned int _11;
+  unsigned int _12;
+  sizetype _13;
+  const struct os_isr_t * _14;
+  void (*<T467>) (void) _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _25;
+  unsigned char _31;
+
+  <bb 2> [local count: 977248435]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (tmr_26(D) > 1)
+    goto <bb 14>; [43.66%]
+  else
+    goto <bb 3>; [56.34%]
+
+  <bb 3> [local count: 550581768]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#5 => &OS_simTimer[tmr_26(D)]
+  # DEBUG tmrp => D#5
+  # DEBUG BEGIN_STMT
+  _1 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].mask;
+  if (_1 < incr_28(D))
+    goto <bb 14>; [35.00%]
+  else
+    goto <bb 4>; [65.00%]
+
+  <bb 4> [local count: 357878148]:
+  # DEBUG BEGIN_STMT
+  old_29 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].count;
+  # DEBUG old => old_29
+  # DEBUG BEGIN_STMT
+  _2 = incr_28(D) + old_29;
+  _3 = _1 & _2;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].count = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG c => 0
+  goto <bb 13>; [100.00%]
+
+  <bb 5> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].control;
+  _25 = _4 & 2;
+  if (_25 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 357931837]:
+  _5 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].compare;
+  _6 = _5 - old_29;
+  _7 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].mask;
+  _8 = _6 & _7;
+  if (_8 <= incr_28(D))
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 7> [local count: 536897757]:
+  # DEBUG BEGIN_STMT
+  _31 = _4 & 1;
+  if (_31 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 8> [local count: 268448878]:
+  # DEBUG BEGIN_STMT
+  _9 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].isr;
+  if (_9 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 134224439]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.2_10 = OS_isrTableBase;
+  _11 = (unsigned int) _9;
+  _12 = _11 * 68;
+  _13 = _12 + 4294967228;
+  _14 = OS_isrTableBase.2_10 + _13;
+  _15 = _14->func;
+  _15 ();
+
+  <bb 10> [local count: 268448878]:
+  # DEBUG BEGIN_STMT
+  _16 = MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].control;
+  _17 = _16 & 253;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].control = _17;
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 268448878]:
+  # DEBUG BEGIN_STMT
+  _18 = _4 | 2;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][tmr_26(D)].channel[c_20].control = _18;
+
+  <bb 12> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  c_35 = c_20 + 1;
+  # DEBUG c => c_35
+
+  <bb 13> [local count: 1073741824]:
+  # c_20 = PHI <0(4), c_35(12)>
+  # DEBUG c => c_20
+  # DEBUG BEGIN_STMT
+  if (c_20 != 2)
+    goto <bb 5>; [66.67%]
+  else
+    goto <bb 14>; [33.33%]
+
+  <bb 14> [local count: 977248437]:
+  # result_19 = PHI <3(2), 8(3), 0(13)>
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  return result_19;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerSetup (os_unsigned_t tmr, os_unsigned_t chan, os_isrid_t isrId)
+{
+  os_result_t result;
+  short unsigned int OS_nInterrupts.0_1;
+  const struct os_isr_t * OS_isrTableBase.1_2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_isr_t * _5;
+  unsigned char _6;
+  short unsigned int _7;
+  unsigned char _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  if (tmr_11(D) > 1)
+    goto <bb 7>; [43.66%]
+  else
+    goto <bb 3>; [56.34%]
+
+  <bb 3> [local count: 604946144]:
+  # DEBUG BEGIN_STMT
+  if (chan_12(D) > 1)
+    goto <bb 7>; [43.66%]
+  else
+    goto <bb 4>; [56.34%]
+
+  <bb 4> [local count: 340826657]:
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.0_1 = OS_nInterrupts;
+  if (OS_nInterrupts.0_1 <= isrId_14(D))
+    goto <bb 7>; [35.00%]
+  else
+    goto <bb 5>; [65.00%]
+
+  <bb 5> [local count: 221537327]:
+  OS_isrTableBase.1_2 = OS_isrTableBase;
+  _3 = (unsigned int) isrId_14(D);
+  _4 = _3 * 68;
+  _5 = OS_isrTableBase.1_2 + _4;
+  _6 = _5->flags;
+  _10 = _6 & 3;
+  if (_10 != 2)
+    goto <bb 7>; [51.11%]
+  else
+    goto <bb 6>; [48.89%]
+
+  <bb 6> [local count: 108309599]:
+  # DEBUG BEGIN_STMT
+  _7 = isrId_14(D) + 1;
+  OS_simTimer[tmr_11(D)].channel[chan_12(D)].isr = _7;
+  # DEBUG BEGIN_STMT
+  OS_simTimer[tmr_11(D)].channel[chan_12(D)].compare = 0;
+  # DEBUG BEGIN_STMT
+  OS_simTimer[tmr_11(D)].channel[chan_12(D)].control = 0;
+
+  <bb 7> [local count: 1073741824]:
+  # result_8 = PHI <3(2), 3(3), 8(5), 0(6), 8(4)>
+  # DEBUG result => result_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return result_8;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerStop (const struct os_hwt_t * td)
+{
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = td_6(D)->major;
+  _2 = (int) _1;
+  # DEBUG D#3 => &OS_simTimer[_2]
+  # DEBUG tmr => D#3
+  # DEBUG BEGIN_STMT
+  _3 = td_6(D)->minor;
+  _4 = (int) _3;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_4].control = 0;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerStart (const struct os_hwt_t * td, os_timervalue_t old, os_tick_t delta)
+{
+  unsigned char _1;
+  int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  int _6;
+  unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = td_11(D)->major;
+  _2 = (int) _1;
+  # DEBUG D#2 => &OS_simTimer[_2]
+  # DEBUG tmr => D#2
+  # DEBUG BEGIN_STMT
+  _3 = old_12(D) + delta_13(D);
+  _4 = MEM[(struct os_simtimer_t *)&OS_simTimer][_2].mask;
+  _5 = td_11(D)->minor;
+  _6 = (int) _5;
+  _7 = _3 & _4;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_6].compare = _7;
+  # DEBUG BEGIN_STMT
+  _8 = MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_6].control;
+  _9 = _8 | 1;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_6].control = _9;
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerRead (const struct os_hwt_t * td)
+{
+  unsigned char _1;
+  int _2;
+  os_timervalue_t _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = td_4(D)->major;
+  _2 = (int) _1;
+  # DEBUG D#1 => &OS_simTimer[_2]
+  # DEBUG tmr => D#1
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(struct os_simtimer_t *)&OS_simTimer][_2].count;
+  return _5;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerInit (const struct os_hwt_t * td)
+{
+  os_timervalue_t mask;
+  unsigned char _1;
+  int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  int _8;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = td_11(D)->major;
+  _2 = (int) _1;
+  # DEBUG D#4 => &OS_simTimer[_2]
+  # DEBUG tmr => D#4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(struct os_simtimer_t *)&OS_simTimer][_2].mask;
+  if (_3 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  mask_13 = td_11(D)->wrapMask;
+  # DEBUG mask => mask_13
+  # DEBUG BEGIN_STMT
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].mask = mask_13;
+  # DEBUG BEGIN_STMT
+  _4 = mask_13 + 1;
+  _5 = _4 & mask_13;
+  if (_5 != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 4> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _6 = td_11(D)->wrapMask;
+  if (_3 != _6)
+    goto <bb 6>; [48.88%]
+  else
+    goto <bb 7>; [51.12%]
+
+  <bb 6> [local count: 262422502]:
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 7> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = td_11(D)->minor;
+  _8 = (int) _7;
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_8].compare = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct os_simtimer_t *)&OS_simTimer][_2].channel[_8].control = 0;
+  return;
+
+}
+
+

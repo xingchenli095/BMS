@@ -1,0 +1,24 @@
+<Script xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='Scriptor.xsd'>
+    <Name>Essential_Rte_PostImport</Name>
+    <Decription>desc</Decription>
+    <Expression>as:modconf('Rte')[1]</Expression>
+    <Operations>
+    
+        <!-- set rte counter -->
+        <Operation Type= "Condition">
+            <Expression>not(text:match(node:value(as:modconf('Rte')[1]/RteGeneration/OsCounterRef), 'ASPath:/Os/Os/HwCounter'))</Expression>
+            <Operations>
+                <Operation Type= "ForEach">
+                    <Expression>as:modconf('Rte')[1]/RteGeneration/OsCounterRef</Expression>
+                    <Operations>
+                        <Operation Type="SetValue">
+                            <Expression>'ASPath:/Os/Os/HwCounter'</Expression>
+                        </Operation>
+                    </Operations>
+                </Operation>
+            </Operations>
+        </Operation>
+
+    </Operations>
+    
+</Script>

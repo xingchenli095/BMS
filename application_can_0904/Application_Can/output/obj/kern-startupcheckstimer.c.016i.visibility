@@ -1,0 +1,130 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StartupChecksTimer
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nHwTimers/3 (OS_nHwTimers) @06c789d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksTimer/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Panic/2 (OS_Panic) @06c98c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartupChecksTimer/0 OS_StartupChecksTimer/0 
+  Calls: 
+OS_hwTimerTableBase/1 (OS_hwTimerTableBase) @06c78900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksTimer/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartupChecksTimer/0 (OS_StartupChecksTimer) @06c98a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_hwTimerTableBase/1 (read)OS_nHwTimers/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_Panic/2 OS_Panic/2 
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksTimer ()
+{
+  const struct os_hwt_t * const hwt;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  os_result_t D.7424;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_hwTimerTableBase.0_1 = OS_hwTimerTableBase;
+  _2 = i * 24;
+  hwt = OS_hwTimerTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = hwt->wrapMask;
+  _4 = _3 + 1;
+  _5 = hwt->wrapMask;
+  _6 = _4 & _5;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (21);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = hwt->wrapMask;
+  _8 = hwt->maxDelta;
+  if (_7 <= _8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _9 = hwt->maxDelta;
+  _10 = hwt->defDelta;
+  if (_9 <= _10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (22);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_nHwTimers.1_11 = OS_nHwTimers;
+  _12 = (unsigned int) OS_nHwTimers.1_11;
+  if (i < _12)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.7424 = result;
+  return D.7424;
+
+}
+
+

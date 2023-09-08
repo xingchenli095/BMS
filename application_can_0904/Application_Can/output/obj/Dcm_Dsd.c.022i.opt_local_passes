@@ -1,0 +1,2378 @@
+Dcm_Dsd_SecurityLevelCheckOnService (const struct Dcm_SidTabEntryConfigType * SidConfig)
+{
+  Dcm_SecLevelType CurSecLevel;
+  uint8 i;
+  Dcm_NegativeResponseCodeType SecurityCheckNrc;
+  const Dcm_SecLevelType * _1;
+  sizetype _2;
+  const Dcm_SecLevelType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Dcm_NegativeResponseCodeType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecurityCheckNrc_9 = 0;
+  # DEBUG SecurityCheckNrc => SecurityCheckNrc_9
+  # DEBUG BEGIN_STMT
+  i_10 = 0;
+  # DEBUG i => i_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurSecLevel_13 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  # DEBUG CurSecLevel => CurSecLevel_13
+  # DEBUG BEGIN_STMT
+  if (CurSecLevel_13 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  i_15 = 0;
+  # DEBUG i => i_15
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = SidConfig_16(D)->SecLevels;
+  _2 = (sizetype) i_8;
+  _3 = _1 + _2;
+  _4 = *_3;
+  if (CurSecLevel_13 == _4)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_17 = i_8 + 1;
+  # DEBUG i => i_17
+
+  <bb 6> :
+  # i_8 = PHI <i_15(3), i_17(5)>
+  # DEBUG i => i_8
+  # DEBUG BEGIN_STMT
+  _5 = SidConfig_16(D)->NumSecLevels;
+  if (i_8 < _5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = SidConfig_16(D)->NumSecLevels;
+  if (i_8 >= _6)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SecurityCheckNrc_18 = 51;
+  # DEBUG SecurityCheckNrc => SecurityCheckNrc_18
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SecurityCheckNrc_14 = 51;
+  # DEBUG SecurityCheckNrc => SecurityCheckNrc_14
+
+  <bb 10> :
+  # SecurityCheckNrc_7 = PHI <SecurityCheckNrc_18(8), SecurityCheckNrc_14(9), SecurityCheckNrc_9(7)>
+  # DEBUG SecurityCheckNrc => SecurityCheckNrc_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = SecurityCheckNrc_7;
+  return _19;
+
+}
+
+
+Dcm_DsdInternal_HandleReqMsgType (Dcm_RequestTypeType RequestType, struct Dcm_MsgContextType * curMsgContext, Dcm_BufferUsageType * TxBufferUse)
+{
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (RequestType_4(D) == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (RequestType_4(D) == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (RequestType_4(D) == 12)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  curMsgContext_6(D)->msgAddInfo.reqType = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  curMsgContext_6(D)->msgAddInfo.reqType = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _1 = RequestType_4(D) + 255;
+  if (_1 <= 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *TxBufferUse_9(D) = 4;
+  # DEBUG BEGIN_STMT
+  curMsgContext_6(D)->msgAddInfo.requestOrigin = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *TxBufferUse_9(D) = 5;
+  # DEBUG BEGIN_STMT
+  curMsgContext_6(D)->msgAddInfo.requestOrigin = 2;
+
+  <bb 10> :
+  return;
+
+}
+
+
+Dcm_DsdInternal_SupplierNotification (uint8 instIdx)
+{
+  Std_ReturnType NotificationRetVal;
+  uint8_least i;
+  uint16 SourceAddress;
+  Dcm_NegativeResponseCodeType aggregatedNrc;
+  Dcm_NegativeResponseCodeType curNrc;
+  uint8 ReqType;
+  uint8 * RequestData;
+  uint16 DataSize;
+  struct Dcm_MsgContextType * pMsgContext;
+  uint8 Sid;
+  struct Dcm_HsmInfoType * CurHsmInfo;
+  Std_ReturnType SupplNotifStatus;
+  int _1;
+  int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Std_ReturnType (*<T6d2>) (uint8, const uint8 *, uint16, uint8, uint16, Dcm_NegativeResponseCodeType *) _7;
+  unsigned char curNrc.10_8;
+  int _9;
+  int _10;
+  short unsigned int _11;
+  unsigned char _12;
+  unsigned char _13;
+  Std_ReturnType _57;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_28(D);
+  CurHsmInfo_29 = &Dcm_HsmInfo[_1];
+  # DEBUG CurHsmInfo => CurHsmInfo_29
+  # DEBUG BEGIN_STMT
+  Sid_31 = CurHsmInfo_29->serviceId;
+  # DEBUG Sid => Sid_31
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_28(D);
+  pMsgContext_32 = &Dcm_HsmInfo[_2].msgContext;
+  # DEBUG pMsgContext => pMsgContext_32
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_32->reqDataLen;
+  DataSize_33 = (uint16) _3;
+  # DEBUG DataSize => DataSize_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReqType_34 = 0;
+  # DEBUG ReqType => ReqType_34
+  # DEBUG BEGIN_STMT
+  curNrc = 0;
+  # DEBUG BEGIN_STMT
+  aggregatedNrc_36 = 16;
+  # DEBUG aggregatedNrc => aggregatedNrc_36
+  # DEBUG BEGIN_STMT
+  SourceAddress_37 = CurHsmInfo_29->TesterSourceAddress;
+  # DEBUG SourceAddress => SourceAddress_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NotificationRetVal_38 = 0;
+  # DEBUG NotificationRetVal => NotificationRetVal_38
+  # DEBUG BEGIN_STMT
+  _4 = CurHsmInfo_29->RequestType;
+  if (_4 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _5 = CurHsmInfo_29->RequestType;
+  if (_5 == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _6 = CurHsmInfo_29->RequestType;
+  if (_6 == 12)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReqType_40 = 0;
+  # DEBUG ReqType => ReqType_40
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReqType_39 = 1;
+  # DEBUG ReqType => ReqType_39
+
+  <bb 7> :
+  # ReqType_18 = PHI <ReqType_40(5), ReqType_39(6)>
+  # DEBUG ReqType => ReqType_18
+  # DEBUG BEGIN_STMT
+  if (DataSize_33 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RequestData_42 = pMsgContext_32->reqData;
+  # DEBUG RequestData => RequestData_42
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RequestData_41 = 0B;
+  # DEBUG RequestData => RequestData_41
+
+  <bb 10> :
+  # RequestData_17 = PHI <RequestData_42(8), RequestData_41(9)>
+  # DEBUG RequestData => RequestData_17
+  # DEBUG BEGIN_STMT
+  SupplNotifStatus_43 = 0;
+  # DEBUG SupplNotifStatus => SupplNotifStatus_43
+  # DEBUG BEGIN_STMT
+  i_44 = 0;
+  # DEBUG i => i_44
+  goto <bb 19>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_RteSupplierNotificationTable[i_22].Indication;
+  NotificationRetVal_46 = _7 (Sid_31, RequestData_17, DataSize_33, ReqType_18, SourceAddress_37, &curNrc);
+  # DEBUG NotificationRetVal => NotificationRetVal_46
+  # DEBUG BEGIN_STMT
+  if (NotificationRetVal_46 == 8)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SupplNotifStatus_51 = 8;
+  # DEBUG SupplNotifStatus => SupplNotifStatus_51
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (NotificationRetVal_46 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  curNrc.10_8 = curNrc;
+  if (curNrc.10_8 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 71, 2);
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  aggregatedNrc_47 = curNrc;
+  # DEBUG aggregatedNrc => aggregatedNrc_47
+
+  <bb 17> :
+  # aggregatedNrc_19 = PHI <aggregatedNrc_21(15), aggregatedNrc_47(16)>
+  # DEBUG aggregatedNrc => aggregatedNrc_19
+  # DEBUG BEGIN_STMT
+  SupplNotifStatus_49 = 1;
+  # DEBUG SupplNotifStatus => SupplNotifStatus_49
+
+  <bb 18> :
+  # SupplNotifStatus_14 = PHI <SupplNotifStatus_15(13), SupplNotifStatus_49(17)>
+  # aggregatedNrc_20 = PHI <aggregatedNrc_21(13), aggregatedNrc_19(17)>
+  # DEBUG aggregatedNrc => aggregatedNrc_20
+  # DEBUG SupplNotifStatus => SupplNotifStatus_14
+  # DEBUG BEGIN_STMT
+  i_50 = i_22 + 1;
+  # DEBUG i => i_50
+
+  <bb 19> :
+  # SupplNotifStatus_15 = PHI <SupplNotifStatus_43(10), SupplNotifStatus_14(18)>
+  # aggregatedNrc_21 = PHI <aggregatedNrc_36(10), aggregatedNrc_20(18)>
+  # i_22 = PHI <i_44(10), i_50(18)>
+  # DEBUG i => i_22
+  # DEBUG aggregatedNrc => aggregatedNrc_21
+  # DEBUG SupplNotifStatus => SupplNotifStatus_15
+  # DEBUG BEGIN_STMT
+  if (i_22 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  # SupplNotifStatus_16 = PHI <SupplNotifStatus_51(12), SupplNotifStatus_15(19)>
+  # DEBUG SupplNotifStatus => SupplNotifStatus_16
+  # DEBUG BEGIN_STMT
+  _9 = (int) SupplNotifStatus_16;
+  switch (_9) <default: <L29> [INV], case 1: <L24> [INV], case 8: <L18> [INV]>
+
+  <bb 21> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _10 = (int) instIdx_28(D);
+  _11 = Dcm_HsmInfo[_10].rpCntr;
+  if (_11 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  _12 = CurHsmInfo_29->serviceId;
+  if (_12 == 4)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _13 = CurHsmInfo_29->serviceId;
+  if (_13 == 9)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_28(D), 5);
+  goto <bb 27>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  CurHsmInfo_29->negativeResponseCode = 34;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_28(D), 6);
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+<L24>:
+  # DEBUG BEGIN_STMT
+  CurHsmInfo_29->negativeResponseCode = aggregatedNrc_21;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_28(D), 6);
+  # DEBUG BEGIN_STMT
+
+  <bb 27> :
+<L29>:
+  # DEBUG BEGIN_STMT
+  _57 = SupplNotifStatus_16;
+  curNrc ={v} {CLOBBER};
+  return _57;
+
+}
+
+
+Dcm_DsdInternal_ManufacturerNotification (uint8 instIdx)
+{
+  Std_ReturnType NotificationRetVal;
+  uint8_least i;
+  uint16 SourceAddress;
+  Dcm_NegativeResponseCodeType aggregatedNrc;
+  Dcm_NegativeResponseCodeType curNrc;
+  uint8 ReqType;
+  uint8 * RequestData;
+  const uint16 DataSize;
+  uint8 Sid;
+  struct Dcm_HsmInfoType * CurHsmInfo;
+  Std_ReturnType MftNotifStatus;
+  int _1;
+  long unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Dcm_MsgItemType * _7;
+  Std_ReturnType (*<T6d2>) (uint8, const uint8 *, uint16, uint8, uint16, Dcm_NegativeResponseCodeType *) _8;
+  unsigned char curNrc.8_9;
+  int _10;
+  int _11;
+  short unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  Std_ReturnType _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_29(D);
+  CurHsmInfo_30 = &Dcm_HsmInfo[_1];
+  # DEBUG CurHsmInfo => CurHsmInfo_30
+  # DEBUG BEGIN_STMT
+  Sid_32 = CurHsmInfo_30->serviceId;
+  # DEBUG Sid => Sid_32
+  # DEBUG BEGIN_STMT
+  _2 = CurHsmInfo_30->RxBuffer.FilledLength;
+  _3 = (short unsigned int) _2;
+  DataSize_33 = _3 + 65535;
+  # DEBUG DataSize => DataSize_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curNrc = 0;
+  # DEBUG BEGIN_STMT
+  aggregatedNrc_35 = 16;
+  # DEBUG aggregatedNrc => aggregatedNrc_35
+  # DEBUG BEGIN_STMT
+  SourceAddress_36 = CurHsmInfo_30->TesterSourceAddress;
+  # DEBUG SourceAddress => SourceAddress_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NotificationRetVal_37 = 0;
+  # DEBUG NotificationRetVal => NotificationRetVal_37
+  # DEBUG BEGIN_STMT
+  _4 = CurHsmInfo_30->RequestType;
+  if (_4 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _5 = CurHsmInfo_30->RequestType;
+  if (_5 == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _6 = CurHsmInfo_30->RequestType;
+  if (_6 == 12)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReqType_39 = 0;
+  # DEBUG ReqType => ReqType_39
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReqType_38 = 1;
+  # DEBUG ReqType => ReqType_38
+
+  <bb 7> :
+  # ReqType_19 = PHI <ReqType_39(5), ReqType_38(6)>
+  # DEBUG ReqType => ReqType_19
+  # DEBUG BEGIN_STMT
+  if (DataSize_33 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = CurHsmInfo_30->RxBuffer.BufferPtr;
+  RequestData_41 = _7 + 1;
+  # DEBUG RequestData => RequestData_41
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RequestData_40 = 0B;
+  # DEBUG RequestData => RequestData_40
+
+  <bb 10> :
+  # RequestData_18 = PHI <RequestData_41(8), RequestData_40(9)>
+  # DEBUG RequestData => RequestData_18
+  # DEBUG BEGIN_STMT
+  MftNotifStatus_42 = 0;
+  # DEBUG MftNotifStatus => MftNotifStatus_42
+  # DEBUG BEGIN_STMT
+  i_43 = 0;
+  # DEBUG i => i_43
+  goto <bb 19>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_RteManufacturerNotificationTable[i_23].Indication;
+  NotificationRetVal_45 = _8 (Sid_32, RequestData_18, DataSize_33, ReqType_19, SourceAddress_36, &curNrc);
+  # DEBUG NotificationRetVal => NotificationRetVal_45
+  # DEBUG BEGIN_STMT
+  if (NotificationRetVal_45 == 8)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  MftNotifStatus_50 = 8;
+  # DEBUG MftNotifStatus => MftNotifStatus_50
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (NotificationRetVal_45 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  curNrc.8_9 = curNrc;
+  if (curNrc.8_9 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 70, 2);
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  aggregatedNrc_46 = curNrc;
+  # DEBUG aggregatedNrc => aggregatedNrc_46
+
+  <bb 17> :
+  # aggregatedNrc_20 = PHI <aggregatedNrc_22(15), aggregatedNrc_46(16)>
+  # DEBUG aggregatedNrc => aggregatedNrc_20
+  # DEBUG BEGIN_STMT
+  MftNotifStatus_48 = 1;
+  # DEBUG MftNotifStatus => MftNotifStatus_48
+
+  <bb 18> :
+  # MftNotifStatus_15 = PHI <MftNotifStatus_16(13), MftNotifStatus_48(17)>
+  # aggregatedNrc_21 = PHI <aggregatedNrc_22(13), aggregatedNrc_20(17)>
+  # DEBUG aggregatedNrc => aggregatedNrc_21
+  # DEBUG MftNotifStatus => MftNotifStatus_15
+  # DEBUG BEGIN_STMT
+  i_49 = i_23 + 1;
+  # DEBUG i => i_49
+
+  <bb 19> :
+  # MftNotifStatus_16 = PHI <MftNotifStatus_42(10), MftNotifStatus_15(18)>
+  # aggregatedNrc_22 = PHI <aggregatedNrc_35(10), aggregatedNrc_21(18)>
+  # i_23 = PHI <i_43(10), i_49(18)>
+  # DEBUG i => i_23
+  # DEBUG aggregatedNrc => aggregatedNrc_22
+  # DEBUG MftNotifStatus => MftNotifStatus_16
+  # DEBUG BEGIN_STMT
+  if (i_23 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  # MftNotifStatus_17 = PHI <MftNotifStatus_50(12), MftNotifStatus_16(19)>
+  # DEBUG MftNotifStatus => MftNotifStatus_17
+  # DEBUG BEGIN_STMT
+  _10 = (int) MftNotifStatus_17;
+  switch (_10) <default: <L29> [INV], case 1: <L24> [INV], case 8: <L18> [INV]>
+
+  <bb 21> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _11 = (int) instIdx_29(D);
+  _12 = Dcm_HsmInfo[_11].rpCntr;
+  if (_12 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  _13 = CurHsmInfo_30->serviceId;
+  if (_13 == 4)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _14 = CurHsmInfo_30->serviceId;
+  if (_14 == 9)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_29(D), 5);
+  goto <bb 27>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  CurHsmInfo_30->negativeResponseCode = 34;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_29(D), 6);
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+<L24>:
+  # DEBUG BEGIN_STMT
+  CurHsmInfo_30->negativeResponseCode = aggregatedNrc_22;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_29(D), 6);
+  # DEBUG BEGIN_STMT
+
+  <bb 27> :
+<L29>:
+  # DEBUG BEGIN_STMT
+  _56 = MftNotifStatus_17;
+  curNrc ={v} {CLOBBER};
+  return _56;
+
+}
+
+
+Dcm_DsdInternal_CheckSubServiceSecurity (uint8 subSidIdxExt, const struct Dcm_SidTabEntryConfigType * curSidConfig)
+{
+  Dcm_SecLevelType curSecLevel;
+  boolean subServiceSecurity;
+  uint8_least i;
+  const struct Dcm_SubSidTabEntryConfigType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct Dcm_SubSidTabEntryConfigType * _4;
+  unsigned char _5;
+  const struct Dcm_SubSidTabEntryConfigType * _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Dcm_SubSidTabEntryConfigType * _9;
+  const Dcm_SecLevelType * _10;
+  const Dcm_SecLevelType * _11;
+  unsigned char _12;
+  const struct Dcm_SubSidTabEntryConfigType * _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct Dcm_SubSidTabEntryConfigType * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  boolean _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_24 = 0;
+  # DEBUG i => i_24
+  # DEBUG BEGIN_STMT
+  subServiceSecurity_25 = 0;
+  # DEBUG subServiceSecurity => subServiceSecurity_25
+  # DEBUG BEGIN_STMT
+  _1 = curSidConfig_27(D)->SubServices;
+  _2 = (unsigned int) subSidIdxExt_28(D);
+  _3 = _2 * 24;
+  _4 = _1 + _3;
+  _5 = _4->NumSubSecLevels;
+  if (_5 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curSecLevel_31 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  # DEBUG curSecLevel => curSecLevel_31
+  # DEBUG BEGIN_STMT
+  if (curSecLevel_31 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  i_32 = 0;
+  # DEBUG i => i_32
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = curSidConfig_27(D)->SubServices;
+  _7 = (unsigned int) subSidIdxExt_28(D);
+  _8 = _7 * 24;
+  _9 = _6 + _8;
+  _10 = _9->SubSecLevels;
+  _11 = _10 + i_19;
+  _12 = *_11;
+  if (curSecLevel_31 == _12)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  subServiceSecurity_33 = 1;
+  # DEBUG subServiceSecurity => subServiceSecurity_33
+
+  <bb 7> :
+  # subServiceSecurity_20 = PHI <subServiceSecurity_21(5), subServiceSecurity_33(6)>
+  # DEBUG subServiceSecurity => subServiceSecurity_20
+  # DEBUG BEGIN_STMT
+  i_34 = i_19 + 1;
+  # DEBUG i => i_34
+
+  <bb 8> :
+  # i_19 = PHI <i_32(4), i_34(7)>
+  # subServiceSecurity_21 = PHI <subServiceSecurity_25(4), subServiceSecurity_20(7)>
+  # DEBUG subServiceSecurity => subServiceSecurity_21
+  # DEBUG i => i_19
+  # DEBUG BEGIN_STMT
+  _13 = curSidConfig_27(D)->SubServices;
+  _14 = (unsigned int) subSidIdxExt_28(D);
+  _15 = _14 * 24;
+  _16 = _13 + _15;
+  _17 = _16->NumSubSecLevels;
+  _18 = (long unsigned int) _17;
+  if (i_19 < _18)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (subServiceSecurity_21 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  subServiceSecurity_29 = 1;
+  # DEBUG subServiceSecurity => subServiceSecurity_29
+
+  <bb 11> :
+  # subServiceSecurity_22 = PHI <subServiceSecurity_21(8), subServiceSecurity_29(10), subServiceSecurity_25(3), subServiceSecurity_21(9)>
+  # DEBUG subServiceSecurity => subServiceSecurity_22
+  # DEBUG BEGIN_STMT
+  _35 = subServiceSecurity_22;
+  return _35;
+
+}
+
+
+Dcm_DsdInternal_CheckSubServiceSession (uint8 subSidIdxExt, const struct Dcm_SidTabEntryConfigType * curSidConfig)
+{
+  const Dcm_SesCtrlType curSesCtrl;
+  boolean subServiceSession;
+  uint8_least i;
+  const struct Dcm_SubSidTabEntryConfigType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct Dcm_SubSidTabEntryConfigType * _4;
+  unsigned char _5;
+  const struct Dcm_SubSidTabEntryConfigType * _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Dcm_SubSidTabEntryConfigType * _9;
+  const Dcm_SesCtrlType * _10;
+  const Dcm_SesCtrlType * _11;
+  unsigned char _12;
+  const struct Dcm_SubSidTabEntryConfigType * _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct Dcm_SubSidTabEntryConfigType * _16;
+  const Dcm_SesCtrlType * _17;
+  const Dcm_SesCtrlType * _18;
+  unsigned char _19;
+  const struct Dcm_SubSidTabEntryConfigType * _20;
+  unsigned int _21;
+  unsigned int _22;
+  const struct Dcm_SubSidTabEntryConfigType * _23;
+  unsigned char _24;
+  long unsigned int _25;
+  boolean _42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_31 = 0;
+  # DEBUG i => i_31
+  # DEBUG BEGIN_STMT
+  subServiceSession_32 = 0;
+  # DEBUG subServiceSession => subServiceSession_32
+  # DEBUG BEGIN_STMT
+  _1 = curSidConfig_34(D)->SubServices;
+  _2 = (unsigned int) subSidIdxExt_35(D);
+  _3 = _2 * 24;
+  _4 = _1 + _3;
+  _5 = _4->NumSubSesCtrls;
+  if (_5 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curSesCtrl_38 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG curSesCtrl => curSesCtrl_38
+  # DEBUG BEGIN_STMT
+  i_39 = 0;
+  # DEBUG i => i_39
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = curSidConfig_34(D)->SubServices;
+  _7 = (unsigned int) subSidIdxExt_35(D);
+  _8 = _7 * 24;
+  _9 = _6 + _8;
+  _10 = _9->SubSesCtrls;
+  _11 = _10 + i_26;
+  _12 = *_11;
+  if (_12 == 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _13 = curSidConfig_34(D)->SubServices;
+  _14 = (unsigned int) subSidIdxExt_35(D);
+  _15 = _14 * 24;
+  _16 = _13 + _15;
+  _17 = _16->SubSesCtrls;
+  _18 = _17 + i_26;
+  _19 = *_18;
+  if (curSesCtrl_38 == _19)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  subServiceSession_40 = 1;
+  # DEBUG subServiceSession => subServiceSession_40
+
+  <bb 7> :
+  # subServiceSession_27 = PHI <subServiceSession_28(5), subServiceSession_40(6)>
+  # DEBUG subServiceSession => subServiceSession_27
+  # DEBUG BEGIN_STMT
+  i_41 = i_26 + 1;
+  # DEBUG i => i_41
+
+  <bb 8> :
+  # i_26 = PHI <i_39(3), i_41(7)>
+  # subServiceSession_28 = PHI <subServiceSession_32(3), subServiceSession_27(7)>
+  # DEBUG subServiceSession => subServiceSession_28
+  # DEBUG i => i_26
+  # DEBUG BEGIN_STMT
+  _20 = curSidConfig_34(D)->SubServices;
+  _21 = (unsigned int) subSidIdxExt_35(D);
+  _22 = _21 * 24;
+  _23 = _20 + _22;
+  _24 = _23->NumSubSesCtrls;
+  _25 = (long unsigned int) _24;
+  if (i_26 < _25)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (subServiceSession_28 != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  subServiceSession_36 = 1;
+  # DEBUG subServiceSession => subServiceSession_36
+
+  <bb 11> :
+  # subServiceSession_29 = PHI <subServiceSession_28(9), subServiceSession_36(10), subServiceSession_28(8)>
+  # DEBUG subServiceSession => subServiceSession_29
+  # DEBUG BEGIN_STMT
+  _42 = subServiceSession_29;
+  return _42;
+
+}
+
+
+Dcm_DsdInternal_ValidateSubSvcReq (uint8 instIdx, const struct Dcm_SidTabEntryConfigType * curSidConfig)
+{
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  uint8 ServiceTableIndex;
+  const struct Dcm_ProtocolConfigType * const curProtocolConfig;
+  struct Dcm_MsgContextType * const curMsgContext;
+  struct Dcm_HsmInfoType * curHsmInfo;
+  boolean subserviceEnabled;
+  Dcm_NegativeResponseCodeType curNrc;
+  uint8 modeRuleNrc;
+  uint8 subSidIdxExt;
+  int _1;
+  long unsigned int _2;
+  int _3;
+  int _4;
+  const struct Dcm_SidTabEntryConfigType * _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Dcm_SidTabEntryConfigType * _9;
+  unsigned char _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  Dcm_MsgItemType * _13;
+  unsigned char _14;
+  unsigned char _15;
+  Dcm_MsgItemType * _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char subSidIdxExt.11_20;
+  unsigned char _21;
+  unsigned char subSidIdxExt.12_22;
+  unsigned char _23;
+  const struct Dcm_SubSidTabEntryConfigType * _24;
+  unsigned char subSidIdxExt.13_25;
+  unsigned int _26;
+  unsigned int _27;
+  const struct Dcm_SubSidTabEntryConfigType * _28;
+  boolean (*<T68a>) (uint8 *) _29;
+  const struct Dcm_SubSidTabEntryConfigType * _30;
+  unsigned char subSidIdxExt.14_31;
+  unsigned int _32;
+  unsigned int _33;
+  const struct Dcm_SubSidTabEntryConfigType * _34;
+  boolean (*<T68a>) (uint8 *) _35;
+  unsigned char subSidIdxExt.15_36;
+  unsigned char _37;
+  Dcm_NegativeResponseCodeType _75;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  subSidIdxExt = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curNrc_51 = 1;
+  # DEBUG curNrc => curNrc_51
+  # DEBUG BEGIN_STMT
+  subserviceEnabled_52 = 0;
+  # DEBUG subserviceEnabled => subserviceEnabled_52
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_53(D);
+  curHsmInfo_54 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_54
+  # DEBUG BEGIN_STMT
+  curMsgContext_55 = &curHsmInfo_54->msgContext;
+  # DEBUG curMsgContext => curMsgContext_55
+  # DEBUG BEGIN_STMT
+  _2 = curMsgContext_55->reqDataLen;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_53(D);
+  curProtocolConfig_57 = &Dcm_ProtocolConfig[_3];
+  # DEBUG curProtocolConfig => curProtocolConfig_57
+  # DEBUG BEGIN_STMT
+  ServiceTableIndex_58 = curProtocolConfig_57->ServiceTableIndex;
+  # DEBUG ServiceTableIndex => ServiceTableIndex_58
+  # DEBUG BEGIN_STMT
+  _4 = (int) ServiceTableIndex_58;
+  curSidTabConfig_59 = &Dcm_SidTabConfig[_4];
+  # DEBUG curSidTabConfig => curSidTabConfig_59
+  # DEBUG BEGIN_STMT
+  _5 = curSidTabConfig_59->Entries;
+  _6 = curHsmInfo_54->sidTabEntryInd;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 32;
+  _9 = _5 + _8;
+  _10 = _9->ServiceId;
+  if (_10 == 62)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = curMsgContext_55->reqData;
+  _12 = *_11;
+  if (_12 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _13 = curMsgContext_55->reqData;
+  _14 = *_13;
+  if (_14 == 128)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  subserviceEnabled_60 = 1;
+  # DEBUG subserviceEnabled => subserviceEnabled_60
+
+  <bb 7> :
+  # subserviceEnabled_41 = PHI <subserviceEnabled_52(3), subserviceEnabled_52(5), subserviceEnabled_60(6)>
+  # DEBUG subserviceEnabled => subserviceEnabled_41
+  # DEBUG BEGIN_STMT
+  if (subserviceEnabled_41 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo_54->sidTabEntryInd;
+  _16 = curMsgContext_55->reqData;
+  _17 = *_16;
+  subserviceEnabled_63 = Dcm_DsdInternal_GetSubServiceUsedStatus (ServiceTableIndex_58, _15, curSidConfig_61(D), _17, &subSidIdxExt);
+  # DEBUG subserviceEnabled => subserviceEnabled_63
+
+  <bb 9> :
+  # subserviceEnabled_42 = PHI <subserviceEnabled_41(7), subserviceEnabled_63(8)>
+  # DEBUG subserviceEnabled => subserviceEnabled_42
+  # DEBUG BEGIN_STMT
+  _18 = curSidConfig_61(D)->ServiceId;
+  if (_18 != 49)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (subserviceEnabled_42 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  curNrc_66 = 18;
+  # DEBUG curNrc => curNrc_66
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  curNrc_65 = 0;
+  # DEBUG curNrc => curNrc_65
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  curNrc_64 = 0;
+  # DEBUG curNrc => curNrc_64
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  curNrc_56 = 19;
+  # DEBUG curNrc => curNrc_56
+
+  <bb 15> :
+  # curNrc_38 = PHI <curNrc_64(13), curNrc_56(14), curNrc_65(12), curNrc_66(11)>
+  # DEBUG curNrc => curNrc_38
+  # DEBUG BEGIN_STMT
+  _19 = curSidConfig_61(D)->ServiceId;
+  if (_19 != 49)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (curNrc_38 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  subSidIdxExt.11_20 = subSidIdxExt;
+  _21 = Dcm_DsdInternal_CheckSubServiceSession (subSidIdxExt.11_20, curSidConfig_61(D));
+  if (_21 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  curNrc_70 = 126;
+  # DEBUG curNrc => curNrc_70
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  subSidIdxExt.12_22 = subSidIdxExt;
+  _23 = Dcm_DsdInternal_CheckSubServiceSecurity (subSidIdxExt.12_22, curSidConfig_61(D));
+  if (_23 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  curNrc_69 = 51;
+  # DEBUG curNrc => curNrc_69
+
+  <bb 21> :
+  # curNrc_39 = PHI <curNrc_38(16), curNrc_70(18), curNrc_38(19), curNrc_69(20)>
+  # DEBUG curNrc => curNrc_39
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (curNrc_39 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 22> :
+  _24 = curSidConfig_61(D)->SubServices;
+  subSidIdxExt.13_25 = subSidIdxExt;
+  _26 = (unsigned int) subSidIdxExt.13_25;
+  _27 = _26 * 24;
+  _28 = _24 + _27;
+  _29 = _28->ModeRuleSubSrvFunction;
+  if (_29 != 0B)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _30 = curSidConfig_61(D)->SubServices;
+  subSidIdxExt.14_31 = subSidIdxExt;
+  _32 = (unsigned int) subSidIdxExt.14_31;
+  _33 = _32 * 24;
+  _34 = _30 + _33;
+  _35 = _34->ModeRuleSubSrvFunction;
+  _35 (&modeRuleNrc);
+  # DEBUG BEGIN_STMT
+  curNrc_72 = modeRuleNrc;
+  # DEBUG curNrc => curNrc_72
+
+  <bb 24> :
+  # curNrc_40 = PHI <curNrc_38(15), curNrc_39(21), curNrc_39(22), curNrc_72(23)>
+  # DEBUG curNrc => curNrc_40
+  # DEBUG BEGIN_STMT
+  if (curNrc_40 == 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  subSidIdxExt.15_36 = subSidIdxExt;
+  curHsmInfo_54->subServiceIdIdx = subSidIdxExt.15_36;
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _37 = curSidConfig_61(D)->ServiceId;
+  if (_37 == 39)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 27> :
+  if (curNrc_40 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  if (curNrc_40 != 18)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_Reset ();
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _75 = curNrc_40;
+  subSidIdxExt ={v} {CLOBBER};
+  modeRuleNrc ={v} {CLOBBER};
+  return _75;
+
+}
+
+
+Dcm_DsdInternal_GetSubServiceUsedStatus (uint8 ServiceTableIndex, uint8 sidIdxExt, const struct Dcm_SidTabEntryConfigType * curSidConfig, uint8 subSidId, uint8 * subSidIdxExt)
+{
+  const uint8 subserviceEnabledBitMask;
+  const uint8 subserviceEnabledByteIdx;
+  uint8 subSidIdxExtLocal;
+  boolean subserviceEnabled;
+  const struct Dcm_SubSidTabEntryConfigType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct Dcm_SubSidTabEntryConfigType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  int _9;
+  int _10;
+  int _11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned char subSidIdxExtLocal.16_14;
+  unsigned char _15;
+  boolean _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  subserviceEnabled_18 = 0;
+  # DEBUG subserviceEnabled => subserviceEnabled_18
+  # DEBUG BEGIN_STMT
+  subSidIdxExtLocal_21 = *subSidIdxExt_20(D);
+  # DEBUG subSidIdxExtLocal => subSidIdxExtLocal_21
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = curSidConfig_22(D)->SubServices;
+  _2 = (unsigned int) subSidIdxExtLocal_17;
+  _3 = _2 * 24;
+  _4 = _1 + _3;
+  _5 = _4->SubServiceId;
+  if (subSidId_23(D) == _5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  subserviceEnabledByteIdx_25 = subSidIdxExtLocal_17 / 8;
+  # DEBUG subserviceEnabledByteIdx => subserviceEnabledByteIdx_25
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned int) subSidIdxExtLocal_17;
+  _7 = _6 & 7;
+  _8 = 1 << _7;
+  subserviceEnabledBitMask_26 = (const uint8) _8;
+  # DEBUG subserviceEnabledBitMask => subserviceEnabledBitMask_26
+  # DEBUG BEGIN_STMT
+  _9 = (int) ServiceTableIndex_27(D);
+  _10 = (int) sidIdxExt_28(D);
+  _11 = (int) subserviceEnabledByteIdx_25;
+  _12 = Dcm_DsdSubServiceUsed[_9][_10][_11];
+  _13 = subserviceEnabledBitMask_26 & _12;
+  if (_13 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  subserviceEnabled_29 = 1;
+  # DEBUG subserviceEnabled => subserviceEnabled_29
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  subSidIdxExtLocal.16_14 = subSidIdxExtLocal_17;
+  subSidIdxExtLocal_24 = subSidIdxExtLocal.16_14 + 1;
+  # DEBUG subSidIdxExtLocal => subSidIdxExtLocal_24
+
+  <bb 7> :
+  # subSidIdxExtLocal_17 = PHI <subSidIdxExtLocal_21(2), subSidIdxExtLocal_24(6)>
+  # DEBUG subSidIdxExtLocal => subSidIdxExtLocal_17
+  # DEBUG BEGIN_STMT
+  _15 = curSidConfig_22(D)->NumSubServices;
+  if (subSidIdxExtLocal_17 < _15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # subserviceEnabled_16 = PHI <subserviceEnabled_29(5), subserviceEnabled_18(7), subserviceEnabled_18(4)>
+  # DEBUG subserviceEnabled => subserviceEnabled_16
+  # DEBUG BEGIN_STMT
+  *subSidIdxExt_20(D) = subSidIdxExtLocal_17;
+  # DEBUG BEGIN_STMT
+  _31 = subserviceEnabled_16;
+  return _31;
+
+}
+
+
+Dcm_DsdInternal_ValidateSvcReq (uint8 instIdx, const struct Dcm_SidTabEntryConfigType * * curSidConfig)
+{
+  const Dcm_SesCtrlType curSesCtrl;
+  const uint8 serviceEnabledBitMask;
+  const uint8 serviceEnabledByteIdx;
+  const struct Dcm_SidTabEntryConfigType * sidConfig;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  uint8 ServiceTableIndex;
+  const struct Dcm_ProtocolConfigType * const curProtocolConfig;
+  struct Dcm_HsmInfoType * curHsmInfo;
+  boolean serviceEnabled;
+  Dcm_NegativeResponseCodeType curNrc;
+  uint8 modeRuleNrc;
+  uint8 sidIdxExt;
+  uint8_least i;
+  int _1;
+  int _2;
+  int _3;
+  const struct Dcm_SidTabEntryConfigType * _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct Dcm_SidTabEntryConfigType * _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  int _13;
+  int _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char sidIdxExt.9_17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char _20;
+  const struct Dcm_SidTabEntryConfigType * _21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned char _24;
+  unsigned char _25;
+  const Dcm_SesCtrlType * _26;
+  const Dcm_SesCtrlType * _27;
+  unsigned char _28;
+  const Dcm_SesCtrlType * _29;
+  const Dcm_SesCtrlType * _30;
+  unsigned char _31;
+  unsigned char _32;
+  long unsigned int _33;
+  unsigned char _34;
+  long unsigned int _35;
+  unsigned char _36;
+  boolean (*<T68a>) (uint8 *) _37;
+  boolean (*<T68a>) (uint8 *) _38;
+  Dcm_NegativeResponseCodeType _85;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_54 = 0;
+  # DEBUG i => i_54
+  # DEBUG BEGIN_STMT
+  sidIdxExt_55 = 0;
+  # DEBUG sidIdxExt => sidIdxExt_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curNrc_56 = 1;
+  # DEBUG curNrc => curNrc_56
+  # DEBUG BEGIN_STMT
+  serviceEnabled_57 = 0;
+  # DEBUG serviceEnabled => serviceEnabled_57
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_58(D);
+  curHsmInfo_59 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_59
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_58(D);
+  curProtocolConfig_60 = &Dcm_ProtocolConfig[_2];
+  # DEBUG curProtocolConfig => curProtocolConfig_60
+  # DEBUG BEGIN_STMT
+  ServiceTableIndex_62 = curProtocolConfig_60->ServiceTableIndex;
+  # DEBUG ServiceTableIndex => ServiceTableIndex_62
+  # DEBUG BEGIN_STMT
+  _3 = (int) ServiceTableIndex_62;
+  curSidTabConfig_63 = &Dcm_SidTabConfig[_3];
+  # DEBUG curSidTabConfig => curSidTabConfig_63
+  # DEBUG BEGIN_STMT
+  sidConfig_64 = 0B;
+  # DEBUG sidConfig => sidConfig_64
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = curSidTabConfig_63->Entries;
+  _5 = (unsigned int) sidIdxExt_40;
+  _6 = _5 * 32;
+  _7 = _4 + _6;
+  _8 = _7->ServiceId;
+  _9 = curHsmInfo_59->serviceId;
+  if (_8 == _9)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  serviceEnabledByteIdx_66 = sidIdxExt_40 / 8;
+  # DEBUG serviceEnabledByteIdx => serviceEnabledByteIdx_66
+  # DEBUG BEGIN_STMT
+  _10 = (unsigned int) sidIdxExt_40;
+  _11 = _10 & 7;
+  _12 = 1 << _11;
+  serviceEnabledBitMask_67 = (const uint8) _12;
+  # DEBUG serviceEnabledBitMask => serviceEnabledBitMask_67
+  # DEBUG BEGIN_STMT
+  _13 = (int) ServiceTableIndex_62;
+  _14 = (int) serviceEnabledByteIdx_66;
+  _15 = Dcm_DsdServiceUsed[_13][_14];
+  _16 = serviceEnabledBitMask_67 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceEnabled_68 = 1;
+  # DEBUG serviceEnabled => serviceEnabled_68
+
+  <bb 6> :
+  # serviceEnabled_45 = PHI <serviceEnabled_57(4), serviceEnabled_68(5)>
+  # DEBUG serviceEnabled => serviceEnabled_45
+  # DEBUG BEGIN_STMT
+  curHsmInfo_59->sidTabEntryInd = sidIdxExt_40;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  sidIdxExt.9_17 = sidIdxExt_40;
+  sidIdxExt_65 = sidIdxExt.9_17 + 1;
+  # DEBUG sidIdxExt => sidIdxExt_65
+
+  <bb 8> :
+  # sidIdxExt_40 = PHI <sidIdxExt_55(2), sidIdxExt_65(7)>
+  # DEBUG sidIdxExt => sidIdxExt_40
+  # DEBUG BEGIN_STMT
+  _18 = curSidTabConfig_63->NumEntries;
+  if (sidIdxExt_40 < _18)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # serviceEnabled_46 = PHI <serviceEnabled_45(6), serviceEnabled_57(8)>
+  # DEBUG serviceEnabled => serviceEnabled_46
+  # DEBUG BEGIN_STMT
+  if (serviceEnabled_46 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _19 = curHsmInfo_59->serviceId;
+  if (_19 <= 15)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  _20 = curProtocolConfig_60->SupressServiceNotSupportedNRC;
+  if (_20 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_59->msgContext.msgAddInfo.suppressPosResponse = 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  curNrc_75 = 17;
+  # DEBUG curNrc => curNrc_75
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  curNrc_70 = 0;
+  # DEBUG curNrc => curNrc_70
+  # DEBUG BEGIN_STMT
+  _21 = curSidTabConfig_63->Entries;
+  _22 = (unsigned int) sidIdxExt_40;
+  _23 = _22 * 32;
+  sidConfig_71 = _21 + _23;
+  # DEBUG sidConfig => sidConfig_71
+  # DEBUG BEGIN_STMT
+  *curSidConfig_72(D) = sidConfig_71;
+
+  <bb 15> :
+  # curNrc_41 = PHI <curNrc_75(13), curNrc_70(14)>
+  # sidConfig_47 = PHI <sidConfig_64(13), sidConfig_71(14)>
+  # DEBUG sidConfig => sidConfig_47
+  # DEBUG curNrc => curNrc_41
+  # DEBUG BEGIN_STMT
+  if (curNrc_41 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _24 = curHsmInfo_59->serviceId;
+  if (_24 > 15)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _25 = sidConfig_47->NumSesCtrls;
+  if (_25 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  curSesCtrl_77 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG curSesCtrl => curSesCtrl_77
+  # DEBUG BEGIN_STMT
+  i_78 = 0;
+  # DEBUG i => i_78
+  goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _26 = sidConfig_47->SesCtrls;
+  _27 = _26 + i_39;
+  _28 = *_27;
+  if (_28 == 255)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  _29 = sidConfig_47->SesCtrls;
+  _30 = _29 + i_39;
+  _31 = *_30;
+  if (curSesCtrl_77 == _31)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  i_79 = i_39 + 1;
+  # DEBUG i => i_79
+
+  <bb 22> :
+  # i_39 = PHI <i_78(18), i_79(21)>
+  # DEBUG i => i_39
+  # DEBUG BEGIN_STMT
+  _32 = sidConfig_47->NumSesCtrls;
+  _33 = (long unsigned int) _32;
+  if (i_39 < _33)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _34 = sidConfig_47->NumSesCtrls;
+  _35 = (long unsigned int) _34;
+  if (i_39 >= _35)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  curNrc_80 = 127;
+  # DEBUG curNrc => curNrc_80
+
+  <bb 25> :
+  # curNrc_42 = PHI <curNrc_41(17), curNrc_41(23), curNrc_80(24)>
+  # DEBUG curNrc => curNrc_42
+  # DEBUG BEGIN_STMT
+  if (curNrc_42 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 26> :
+  _36 = sidConfig_47->NumSecLevels;
+  if (_36 != 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  curNrc_82 = Dcm_Dsd_SecurityLevelCheckOnService (sidConfig_47);
+  # DEBUG curNrc => curNrc_82
+
+  <bb 28> :
+  # curNrc_43 = PHI <curNrc_41(16), curNrc_42(25), curNrc_42(26), curNrc_82(27)>
+  # DEBUG curNrc => curNrc_43
+  # DEBUG BEGIN_STMT
+  if (curNrc_43 == 0)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 29> :
+  _37 = sidConfig_47->ModeRuleSrvFunction;
+  if (_37 != 0B)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _38 = sidConfig_47->ModeRuleSrvFunction;
+  _38 (&modeRuleNrc);
+  # DEBUG BEGIN_STMT
+  curNrc_84 = modeRuleNrc;
+  # DEBUG curNrc => curNrc_84
+
+  <bb 31> :
+  # curNrc_44 = PHI <curNrc_41(15), curNrc_43(28), curNrc_43(29), curNrc_84(30)>
+  # DEBUG curNrc => curNrc_44
+  # DEBUG BEGIN_STMT
+  _85 = curNrc_44;
+  modeRuleNrc ={v} {CLOBBER};
+  return _85;
+
+}
+
+
+Dcm_DsdInternal_UpdateHsmInfoAfterValidSubSvcReq (uint8 instIdx, const struct Dcm_SidTabEntryConfigType * curSidConfig, Dcm_NegativeResponseCodeType curNrc)
+{
+  struct Dcm_HsmInfoType * curHsmInfo;
+  int _1;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_6(D);
+  curHsmInfo_7 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_7
+  # DEBUG BEGIN_STMT
+  if (curNrc_8(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_7->requestValidationStatus = 1;
+  # DEBUG BEGIN_STMT
+  _2 = curSidConfig_11(D)->ExtSrvHandler;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_7->dspService = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo_7->serviceId;
+  Dcm_Dsl_DiagnosticSessionHandler_ClearResetToDefaultSessionOccured (_3);
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (instIdx_6(D), 0);
+
+  <bb 6> :
+  return;
+
+}
+
+
+Dcm_DsdInternal_UpdateHsmInfoAfterValidSvcReq (uint8 instIdx, const struct Dcm_SidTabEntryConfigType * curSidConfig, Dcm_NegativeResponseCodeType curNrc)
+{
+  struct Dcm_HsmInfoType * curHsmInfo;
+  int _1;
+  long unsigned int _2;
+  Dcm_MsgItemType * _3;
+  Dcm_MsgItemType * _4;
+  unsigned char _5;
+  short unsigned int _6;
+  unsigned char _7;
+  Dcm_MsgItemType * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  unsigned char _14;
+  long unsigned int _15;
+  Dcm_MsgItemType * _16;
+  unsigned char _17;
+  signed char _18;
+  Dcm_MsgItemType * _19;
+  unsigned char _20;
+  Dcm_MsgItemType * _21;
+  unsigned char _22;
+  Dcm_MsgItemType * _23;
+  unsigned char _24;
+  long unsigned int _25;
+  long unsigned int _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_31(D);
+  curHsmInfo_32 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_32
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo_32->RxBuffer.FilledLength;
+  if (_2 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo_32->RxBuffer.BufferPtr;
+  _4 = _3 + 1;
+  curHsmInfo_32->msgContext.reqData = _4;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.reqData = 0B;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = curHsmInfo_32->serviceId;
+  curHsmInfo_32->msgContext.idContext = _5;
+  # DEBUG BEGIN_STMT
+  _6 = curHsmInfo_32->RxConnectionId;
+  curHsmInfo_32->msgContext.dcmRxPduId = _6;
+  # DEBUG BEGIN_STMT
+  if (curNrc_38(D) == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = curHsmInfo_32->serviceId;
+  _8 = curHsmInfo_32->TxBuffer.BufferPtr;
+  _9 = _7 | 64;
+  *_8 = _9;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _10 = curHsmInfo_32->RxBuffer.FilledLength;
+  _11 = _10 + 4294967295;
+  curHsmInfo_32->msgContext.reqDataLen = _11;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->TxBuffer.FilledLength = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _12 = curHsmInfo_32->TxBuffer.BufferPtr;
+  _13 = _12 + 1;
+  curHsmInfo_32->msgContext.resData = _13;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.resDataLen = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.msgAddInfo.suppressPosResponse = 0;
+  # DEBUG BEGIN_STMT
+  _14 = curSidConfig_47(D)->SubfuncAvail;
+  if (_14 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  _15 = curHsmInfo_32->msgContext.reqDataLen;
+  if (_15 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _16 = curHsmInfo_32->msgContext.reqData;
+  _17 = *_16;
+  _18 = (signed char) _17;
+  if (_18 < 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  _19 = curHsmInfo_32->msgContext.reqData;
+  _20 = *_19;
+  _21 = curHsmInfo_32->msgContext.reqData;
+  _22 = _20 & 127;
+  *_21 = _22;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.msgAddInfo.suppressPosResponse = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _23 = curHsmInfo_32->msgContext.reqData;
+  _24 = *_23;
+  curHsmInfo_32->subServiceId = _24;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_32->msgContext.msgAddInfo.suppressPosResponse = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _25 = curHsmInfo_32->TxBuffer.Size;
+  _26 = _25 + 4294967295;
+  curHsmInfo_32->msgContext.resMaxDataLen = _26;
+
+  <bb 14> :
+  return;
+
+}
+
+
+Dcm_DsdInternal_ProcessPage (Dcm_MsgLenType FilledPageLen)
+{
+  const uint8 instIdx;
+  unsigned char Dcm_Initialized.20_1;
+  short unsigned int _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  int _6;
+  long unsigned int _7;
+  int _8;
+  long unsigned int _9;
+  int _10;
+  long unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.20_1 = Dcm_Initialized;
+  if (Dcm_Initialized.20_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 105, 5);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _3 = (unsigned char) _2;
+  instIdx_15 = _3 + 244;
+  # DEBUG instIdx => instIdx_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_15;
+  _5 = Dcm_HsmInfo[_4].sentLength;
+  _6 = (int) instIdx_15;
+  _7 = FilledPageLen_16(D) + _5;
+  Dcm_HsmInfo[_6].sentLength = _7;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx_15;
+  _9 = Dcm_HsmInfo[_8].TxBuffer.FilledLength;
+  _10 = (int) instIdx_15;
+  _11 = FilledPageLen_16(D) + _9;
+  Dcm_HsmInfo[_10].TxBuffer.FilledLength = _11;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_15, 10);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DsdInternal_StartPagedProcessing (const struct Dcm_MsgContextType * pMsgContext)
+{
+  uint8 instIdx;
+  Dcm_MsgLenType curTxBufferLen;
+  unsigned char Dcm_Initialized.19_1;
+  short unsigned int _2;
+  int _3;
+  int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.19_1 = Dcm_Initialized;
+  if (Dcm_Initialized.19_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 69, 5);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (pMsgContext_7(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 69, 7);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_7(D)->dcmRxPduId;
+  instIdx_9 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_2, 1);
+  # DEBUG instIdx => instIdx_9
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_9;
+  curTxBufferLen_11 = Dcm_HsmInfo[_3].TxBuffer.FilledLength;
+  # DEBUG curTxBufferLen => curTxBufferLen_11
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_9;
+  Dcm_HsmInfo[_4].sentLength = curTxBufferLen_11;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_ExternalProcessingDone (struct Dcm_MsgContextType * pMsgContext)
+{
+  uint8 instIdx;
+  unsigned char Dcm_Initialized.18_1;
+  short unsigned int _2;
+  long unsigned int _3;
+  int _4;
+  long unsigned int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.18_1 = Dcm_Initialized;
+  if (Dcm_Initialized.18_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 67, 5);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (pMsgContext_8(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 67, 7);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_8(D)->dcmRxPduId;
+  instIdx_10 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_2, 1);
+  # DEBUG instIdx => instIdx_10
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_8(D)->resDataLen;
+  _4 = (int) instIdx_10;
+  _5 = _3 + 1;
+  Dcm_HsmInfo[_4].TxBuffer.FilledLength = _5;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_ExternalSetNegResponse (struct Dcm_MsgContextType * pMsgContext, Dcm_NegativeResponseCodeType errorCode)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 ProtocolIndex;
+  unsigned char Dcm_Initialized.17_1;
+  short unsigned int _2;
+  <unnamed-unsigned:3> _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  unsigned int _7;
+  long unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  unsigned char _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.17_1 = Dcm_Initialized;
+  if (Dcm_Initialized.17_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 68, 5);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (pMsgContext_17(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 68, 7);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_17(D)->dcmRxPduId;
+  _3 = pMsgContext_17(D)->msgAddInfo.requestOrigin;
+  _4 = (unsigned char) _3;
+  ProtocolIndex_19 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_2, _4);
+  # DEBUG ProtocolIndex => ProtocolIndex_19
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIndex_19;
+  curHsmInfo_20 = &Dcm_HsmInfo[_5];
+  # DEBUG curHsmInfo => curHsmInfo_20
+  # DEBUG BEGIN_STMT
+  _6 = errorCode_21(D) / 32;
+  _7 = (unsigned int) _6;
+  _8 = Dcm_ValidNegativeResponseCodeMask[_7];
+  _9 = (unsigned int) errorCode_21(D);
+  _10 = _9 & 31;
+  _11 = _8 >> _10;
+  _12 = _11 & 1;
+  if (_12 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 68, 6);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = curHsmInfo_20->negativeResponseCode;
+  if (_13 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->negativeResponseCode = errorCode_21(D);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DsdInternal_DispatchSvcReq (uint8 instIdx)
+{
+  Dcm_NegativeResponseCodeType curNrc;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig;
+  struct Dcm_MsgContextType * const curMsgContext;
+  struct Dcm_HsmInfoType * curHsmInfo;
+  BufReq_ReturnType TxBufferAllocationResult;
+  Dcm_BufferUsageType TxBufferUse;
+  int _1;
+  unsigned char _2;
+  Dcm_MsgItemType * _3;
+  unsigned char _4;
+  short unsigned int _5;
+  struct Dcm_BufferType * _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  unsigned char TxBufferUse.0_9;
+  struct Dcm_BufferType * _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  Dcm_MsgItemType * _14;
+  Dcm_MsgItemType * _15;
+  unsigned char _16;
+  short unsigned int _17;
+  unsigned char _18;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.1_19;
+  unsigned char _20;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.2_21;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _22;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.3_23;
+  unsigned char _24;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.4_25;
+  unsigned char _26;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.5_27;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.6_28;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _29;
+  unsigned char _30;
+  long unsigned int _31;
+  const struct Dcm_SidTabEntryConfigType * curSidConfig.7_32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TxBufferUse = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_42(D);
+  curHsmInfo_43 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_43
+  # DEBUG BEGIN_STMT
+  curMsgContext_44 = &curHsmInfo_43->msgContext;
+  # DEBUG curMsgContext => curMsgContext_44
+  # DEBUG BEGIN_STMT
+  curSidConfig = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo_43->RequestType;
+  Dcm_DsdInternal_HandleReqMsgType (_2, curMsgContext_44, &TxBufferUse);
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->negativeResponseCode = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->processPageFuncId = 255;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->dspService = 1;
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo_43->RxBuffer.BufferPtr;
+  _4 = *_3;
+  curHsmInfo_43->serviceId = _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = curHsmInfo_43->TxConnectionId;
+  _6 = &curHsmInfo_43->NRCBuffer;
+  Dcm_Dsl_BufferAllocate (_5, 7, 3, _6);
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) instIdx_42(D);
+  _8 = _7 + 12;
+  TxBufferUse.0_9 = TxBufferUse;
+  _10 = &curHsmInfo_43->TxBuffer;
+  TxBufferAllocationResult_53 = Dcm_Dsl_BufferAllocate (_8, TxBufferUse.0_9, 0, _10);
+  # DEBUG TxBufferAllocationResult => TxBufferAllocationResult_53
+  # DEBUG BEGIN_STMT
+  if (TxBufferAllocationResult_53 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _11 = curHsmInfo_43->RxBuffer.FilledLength;
+  _12 = _11 + 4294967295;
+  curHsmInfo_43->msgContext.reqDataLen = _12;
+  # DEBUG BEGIN_STMT
+  _13 = curHsmInfo_43->RxBuffer.FilledLength;
+  if (_13 > 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _14 = curHsmInfo_43->RxBuffer.BufferPtr;
+  _15 = _14 + 1;
+  curHsmInfo_43->msgContext.reqData = _15;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->msgContext.reqData = 0B;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _16 = curHsmInfo_43->serviceId;
+  curHsmInfo_43->msgContext.idContext = _16;
+  # DEBUG BEGIN_STMT
+  _17 = curHsmInfo_43->RxConnectionId;
+  curHsmInfo_43->msgContext.dcmRxPduId = _17;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->negativeResponseCode = 33;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_42(D), 6);
+  goto <bb 21>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = Dcm_DsdInternal_ManufacturerNotification (instIdx_42(D));
+  if (_18 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curNrc_56 = Dcm_DsdInternal_ValidateSvcReq (instIdx_42(D), &curSidConfig);
+  # DEBUG curNrc => curNrc_56
+  # DEBUG BEGIN_STMT
+  curSidConfig.1_19 = curSidConfig;
+  Dcm_DsdInternal_UpdateHsmInfoAfterValidSvcReq (instIdx_42(D), curSidConfig.1_19, curNrc_56);
+  # DEBUG BEGIN_STMT
+  if (curNrc_56 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _20 = Dcm_DsdInternal_SupplierNotification (instIdx_42(D));
+  if (_20 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  curSidConfig.2_21 = curSidConfig;
+  _22 = curSidConfig.2_21->ExtSrvHandler;
+  if (_22 == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  curSidConfig.3_23 = curSidConfig;
+  _24 = curSidConfig.3_23->NumSubServices;
+  if (_24 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  curSidConfig.4_25 = curSidConfig;
+  _26 = curSidConfig.4_25->SubfuncAvail;
+  if (_26 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  curSidConfig.5_27 = curSidConfig;
+  curNrc_60 = Dcm_DsdInternal_ValidateSubSvcReq (instIdx_42(D), curSidConfig.5_27);
+  # DEBUG curNrc => curNrc_60
+
+  <bb 14> :
+  # curNrc_33 = PHI <curNrc_56(10), curNrc_56(11), curNrc_56(12), curNrc_60(13)>
+  # DEBUG curNrc => curNrc_33
+  # DEBUG BEGIN_STMT
+  curSidConfig.6_28 = curSidConfig;
+  _29 = curSidConfig.6_28->ExtSrvHandler;
+  if (_29 != 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  _30 = curHsmInfo_43->serviceId;
+  if (_30 == 16)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _31 = curHsmInfo_43->RxBuffer.FilledLength;
+  if (_31 <= 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  curNrc_61 = 19;
+  # DEBUG curNrc => curNrc_61
+
+  <bb 18> :
+  # curNrc_34 = PHI <curNrc_33(14), curNrc_33(15), curNrc_33(16), curNrc_61(17)>
+  # DEBUG curNrc => curNrc_34
+  # DEBUG BEGIN_STMT
+  curSidConfig.7_32 = curSidConfig;
+  Dcm_DsdInternal_UpdateHsmInfoAfterValidSubSvcReq (instIdx_42(D), curSidConfig.7_32, curNrc_34);
+
+  <bb 19> :
+  # curNrc_35 = PHI <curNrc_56(8), curNrc_56(9), curNrc_34(18)>
+  # DEBUG curNrc => curNrc_35
+  # DEBUG BEGIN_STMT
+  if (curNrc_35 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_43->negativeResponseCode = curNrc_35;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx_42(D), 6);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  TxBufferUse ={v} {CLOBBER};
+  curSidConfig ={v} {CLOBBER};
+  return;
+
+}
+
+

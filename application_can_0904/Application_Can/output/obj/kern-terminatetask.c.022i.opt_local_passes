@@ -1,0 +1,107 @@
+__attribute__((target ("general-regs-only")))
+OS_KernTerminateTask ()
+{
+  os_result_t r;
+  struct os_taskdynamic_t * td;
+  const struct os_task_t * tp;
+  unsigned char _1;
+  unsigned char OS_iecMode.0_2;
+  short unsigned int _3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  os_result_t _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r_10 = 0;
+  # DEBUG r => r_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  tp_14 = OS_kernelData.taskCurrent;
+  # DEBUG tp => tp_14
+  # DEBUG BEGIN_STMT
+  td_15 = tp_14->dynamic;
+  # DEBUG td => td_15
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_2 = OS_iecMode;
+  if (OS_iecMode.0_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = BIT_FIELD_REF <MEM[(void *)td_15], 16, 160>;
+  _4 = _3;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  r_17 = OS_Error (&OS_svc_TerminateTask, 55, 0B);
+  # DEBUG r => r_17
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = td_15->lastLock;
+  if (_5 != 4294967295)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = td_15->lastLock;
+  _7 = _6 >> 24;
+  if (_7 == 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  r_22 = OS_Error (&OS_svc_TerminateTask, 156, 0B);
+  # DEBUG r => r_22
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  r_20 = OS_Error (&OS_svc_TerminateTask, 13, 0B);
+  # DEBUG r => r_20
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_DoTerminateTask (tp_14, td_15);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  r_13 = OS_Error (&OS_svc_TerminateTask, 12, 0B);
+  # DEBUG r => r_13
+
+  <bb 12> :
+  # r_8 = PHI <r_20(9), r_13(11), r_17(5), r_22(8), r_10(10)>
+  # DEBUG r => r_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = r_8;
+  return _23;
+
+}
+
+

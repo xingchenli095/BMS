@@ -1,0 +1,36 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_KillIsr (os_isrid_t i)
+{
+  struct os_isrdynamic_t * const id;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_isr_t * _4;
+  unsigned char _5;
+  unsigned char _6;
+  struct os_savedcontext_t * _7;
+  os_result_t _13;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) i_9(D);
+  _3 = _2 * 68;
+  _4 = OS_isrTableBase.0_1 + _3;
+  id_10 = _4->dynamic;
+  # DEBUG id => id_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = id_10->statusflags;
+  _6 = _5 | 64;
+  id_10->statusflags = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = &id_10->c;
+  _13 = OS_KillCalledContext (_7);
+  return _13;
+
+}
+
+

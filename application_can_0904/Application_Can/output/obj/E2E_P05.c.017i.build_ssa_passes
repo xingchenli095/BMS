@@ -1,0 +1,759 @@
+E2E_EB_P05Check (uint8 * StateCounterPtr, const uint8 * DataPtr, uint16 Offset, uint16 DataID, uint16 Length, uint8 MaxDeltaCounter)
+{
+  const uint8 DeltaCounter;
+  const uint16 ComputedCRC;
+  const uint16 ReceivedCRC;
+  const uint8 ReceivedCounter;
+  const uint16 CrcByteOffset;
+  const uint8 LastStateCounter;
+  const boolean NewDataAvailable;
+  E2E_P05CheckStatusType RetVal;
+  E2E_P05CheckStatusType D.5633;
+  const boolean iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 7;
+  # DEBUG BEGIN_STMT
+  if (DataPtr != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.0 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0 = 0;
+
+  <bb 5> :
+  NewDataAvailable = iftmp.0;
+  # DEBUG BEGIN_STMT
+  if (NewDataAvailable == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  LastStateCounter = *StateCounterPtr;
+  # DEBUG BEGIN_STMT
+  CrcByteOffset = Offset;
+  # DEBUG BEGIN_STMT
+  _1 = (sizetype) Offset;
+  _2 = _1 + 2;
+  _3 = DataPtr + _2;
+  ReceivedCounter = *_3;
+  # DEBUG BEGIN_STMT
+  _4 = (sizetype) CrcByteOffset;
+  _5 = DataPtr + _4;
+  _6 = *_5;
+  _7 = (short unsigned int) _6;
+  _8 = (sizetype) CrcByteOffset;
+  _9 = _8 + 1;
+  _10 = DataPtr + _9;
+  _11 = *_10;
+  _12 = (short unsigned int) _11;
+  _13 = _12 << 8;
+  ReceivedCRC = _7 | _13;
+  # DEBUG BEGIN_STMT
+  ComputedCRC = E2E_EB_CalculateCrc (DataPtr, CrcByteOffset, Length, DataID);
+  # DEBUG BEGIN_STMT
+  if (ReceivedCRC != ComputedCRC)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal = 7;
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DeltaCounter = ReceivedCounter - LastStateCounter;
+  # DEBUG BEGIN_STMT
+  if (DeltaCounter > MaxDeltaCounter)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal = 64;
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (DeltaCounter > 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal = 32;
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (DeltaCounter == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetVal = 8;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  *StateCounterPtr = ReceivedCounter;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  D.5633 = RetVal;
+  return D.5633;
+
+}
+
+
+E2E_EB_P05Protect (uint8 * CounterPtr, uint8 * DataPtr, uint16 Offset, uint16 DataID, uint16 Length)
+{
+  const uint16 ComputedCRC;
+  const uint16 CrcByteOffset;
+  const uint8 Counter;
+  Std_ReturnType D.5578;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Counter = *CounterPtr;
+  # DEBUG BEGIN_STMT
+  _1 = Offset + 2;
+  _2 = (sizetype) _1;
+  _3 = DataPtr + _2;
+  *_3 = Counter;
+  # DEBUG BEGIN_STMT
+  CrcByteOffset = Offset;
+  # DEBUG BEGIN_STMT
+  ComputedCRC = E2E_EB_CalculateCrc (DataPtr, CrcByteOffset, Length, DataID);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (sizetype) CrcByteOffset;
+  _5 = DataPtr + _4;
+  _6 = (unsigned char) ComputedCRC;
+  *_5 = _6;
+  # DEBUG BEGIN_STMT
+  _7 = ComputedCRC >> 8;
+  _8 = (sizetype) CrcByteOffset;
+  _9 = _8 + 1;
+  _10 = DataPtr + _9;
+  _11 = (unsigned char) _7;
+  *_10 = _11;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = *CounterPtr;
+  _13 = _12 + 1;
+  *CounterPtr = _13;
+  # DEBUG BEGIN_STMT
+  D.5578 = 0;
+  return D.5578;
+
+}
+
+
+E2E_EB_CalculateCrc (const uint8 * DataPtr, uint16 CrcByteOffset, uint16 Length, uint16 DataID)
+{
+  uint16 Crc;
+  const uint8 DataIDLow;
+  const uint8 DataIDHigh;
+  uint16 D.5583;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = DataID >> 8;
+  _2 = (unsigned char) _1;
+  DataIDHigh = _2;
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned char) DataID;
+  DataIDLow = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CrcByteOffset != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = (long unsigned int) CrcByteOffset;
+  Crc = SCrc_CalculateCRC16 (DataPtr, _4, 65535, 1);
+  # DEBUG BEGIN_STMT
+  _5 = (sizetype) CrcByteOffset;
+  _6 = _5 + 2;
+  _7 = DataPtr + _6;
+  _8 = (long unsigned int) Length;
+  _9 = (long unsigned int) CrcByteOffset;
+  _10 = _8 - _9;
+  _11 = _10 + 4294967294;
+  Crc = SCrc_CalculateCRC16 (_7, _11, Crc, 0);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = DataPtr + 2;
+  _13 = (long unsigned int) Length;
+  _14 = _13 + 4294967294;
+  Crc = SCrc_CalculateCRC16 (_12, _14, 65535, 1);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Crc = SCrc_CalculateCRC16 (&DataIDLow, 1, Crc, 0);
+  # DEBUG BEGIN_STMT
+  Crc = SCrc_CalculateCRC16 (&DataIDHigh, 1, Crc, 0);
+  # DEBUG BEGIN_STMT
+  D.5583 = Crc;
+  DataIDHigh = {CLOBBER};
+  DataIDLow = {CLOBBER};
+  return D.5583;
+
+}
+
+
+E2E_EB_P05CheckNullPtrChecks (const struct E2E_P05ConfigType * ConfigPtr, const struct E2E_P05CheckStateType * StatePtr, const uint8 * DataPtr, uint16 Length)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5612;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (StatePtr == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataPtr == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (Length != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.5612 = RetVal;
+  return D.5612;
+
+}
+
+
+E2E_EB_P05ConfigParamChecks (const struct E2E_P05ConfigType * ConfigPtr)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5576;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr->Offset;
+  _2 = _1 & 7;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr->DataLength;
+  _4 = _3 & 7;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = ConfigPtr->DataLength;
+  if (_5 <= 23)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = ConfigPtr->DataLength;
+  _7 = _6 + 65512;
+  _8 = ConfigPtr->Offset;
+  if (_7 < _8)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  D.5576 = RetVal;
+  return D.5576;
+
+}
+
+
+E2E_EB_P05ProtectNullPtrChecks (const struct E2E_P05ConfigType * ConfigPtr, const struct E2E_P05ProtectStateType * StatePtr, const uint8 * DataPtr)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5562;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (StatePtr == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataPtr == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.5562 = RetVal;
+  return D.5562;
+
+}
+
+
+E2E_P05MapStatusToSM (Std_ReturnType CheckReturn, E2E_P05CheckStatusType Status)
+{
+  E2E_PCheckStatusType RetVal;
+  E2E_PCheckStatusType D.5648;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckReturn == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  switch (Status) <default: <L7> [INV], case 0: <L1> [INV], case 1: <L5> [INV], case 7: <L3> [INV], case 8: <L4> [INV], case 32: <L1> [INV], case 64: <L6> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  RetVal = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  RetVal = 5;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  RetVal = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  RetVal = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal = 3;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  D.5648 = RetVal;
+  return D.5648;
+
+}
+
+
+E2E_P05CheckInit (struct E2E_P05CheckStateType * StatePtr)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5643;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (StatePtr != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  StatePtr->Counter = 255;
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 7;
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.5643 = RetVal;
+  return D.5643;
+
+}
+
+
+E2E_P05ProtectInit (struct E2E_P05ProtectStateType * StatePtr)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5638;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (StatePtr != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  StatePtr->Counter = 0;
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.5638 = RetVal;
+  return D.5638;
+
+}
+
+
+E2E_P05Check (const struct E2E_P05ConfigType * ConfigPtr, struct E2E_P05CheckStateType * StatePtr, const uint8 * DataPtr, uint16 Length)
+{
+  const E2E_P05CheckStatusType E2EP05_EB_Status;
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5600;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = E2E_EB_P05CheckNullPtrChecks (ConfigPtr, StatePtr, DataPtr, Length);
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = E2E_EB_P05ConfigParamChecks (ConfigPtr);
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 20>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataPtr != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (Length == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 20>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (Length != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _3 = ConfigPtr->DataLength;
+  _4 = _3 / 8;
+  if (Length != _4)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 20>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _5 = &StatePtr->Counter;
+  _6 = ConfigPtr->Offset;
+  _7 = _6 / 8;
+  _8 = ConfigPtr->DataID;
+  _9 = ConfigPtr->DataLength;
+  _10 = _9 / 8;
+  _11 = ConfigPtr->MaxDeltaCounter;
+  E2EP05_EB_Status = E2E_EB_P05Check (_5, DataPtr, _7, _8, _10, _11);
+  # DEBUG BEGIN_STMT
+  switch (E2EP05_EB_Status) <default: <L15> [INV], case 0: <L10> [INV], case 1: <L11> [INV], case 8: <L13> [INV], case 32: <L14> [INV], case 64: <L12> [INV]>
+
+  <bb 13> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 14> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 15> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 64;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 16> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 17> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 32;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  StatePtr->Status = 7;
+  # DEBUG BEGIN_STMT
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  D.5600 = RetVal;
+  return D.5600;
+
+}
+
+
+E2E_P05Protect (const struct E2E_P05ConfigType * ConfigPtr, struct E2E_P05ProtectStateType * StatePtr, uint8 * DataPtr, uint16 Length)
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5551;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = E2E_EB_P05ProtectNullPtrChecks (ConfigPtr, StatePtr, DataPtr);
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 19;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = E2E_EB_P05ConfigParamChecks (ConfigPtr);
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr->DataLength;
+  _4 = _3 / 8;
+  if (Length != _4)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal = 23;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = &StatePtr->Counter;
+  _6 = ConfigPtr->Offset;
+  _7 = _6 / 8;
+  _8 = ConfigPtr->DataID;
+  _9 = ConfigPtr->DataLength;
+  _10 = _9 / 8;
+  RetVal = E2E_EB_P05Protect (_5, DataPtr, _7, _8, _10);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.5551 = RetVal;
+  return D.5551;
+
+}
+
+

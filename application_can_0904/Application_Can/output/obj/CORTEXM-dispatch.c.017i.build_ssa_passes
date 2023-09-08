@@ -1,0 +1,60 @@
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_Dispatch (const struct os_cortexm_context_t * context, struct os_cortexm_context_t * tasksp)
+{
+  const struct os_task_t * const current_task;
+  os_stackelement_t * checksp;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  checksp = tasksp;
+  # DEBUG BEGIN_STMT
+  current_task = OS_kernelData.taskCurrent;
+  # DEBUG BEGIN_STMT
+  checksp = checksp + 4294967248;
+  # DEBUG BEGIN_STMT
+  _1 = current_task->flags;
+  _2 = (signed char) _1;
+  if (_2 < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  checksp = checksp + 4294967160;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = current_task->dynamic;
+  _3->context.sp = checksp;
+  # DEBUG BEGIN_STMT
+  checksp.0_4 = (unsigned int) checksp;
+  _5 = OS_TaskSpOutOfBounds (checksp.0_4, current_task);
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  tasksp = tasksp + 4294967248;
+  # DEBUG BEGIN_STMT
+  *tasksp = *context;
+  # DEBUG BEGIN_STMT
+  _6 = current_task->flags;
+  _7 = (signed char) _6;
+  if (_7 < 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SaveVFPFullContext (tasksp);
+
+  <bb 7> :
+  return;
+
+}
+
+

@@ -1,0 +1,1848 @@
+Histogram:
+1 indirect calls trained.
+0 (0.00%) have common target.
+0 (0.00%) targets was not found.
+0 (0.00%) targets had parameter count mismatch.
+0 (0.00%) targets was not in polymorphic call target list.
+0 (0.00%) speculations seems useless.
+0 (0.00%) speculations produced.
+NvM_SetRamBlockStatus_Async_CalcCrc_Start.part.0 ()
+{
+  Std_ReturnType ReturnVal;
+  uint8 * BufferAddr;
+  unsigned char NvM_MirrorRetryCount.48_1;
+  unsigned char NvM_GlobalCallLevel.49_2;
+  int _3;
+
+  <bb 5> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount.48_1 = NvM_MirrorRetryCount;
+  if (NvM_MirrorRetryCount.48_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.49_2 = NvM_GlobalCallLevel;
+  _3 = (int) NvM_GlobalCallLevel.49_2;
+  NvM_CurrentFunctionPtr[_3] = NvM_SetRamBlockStatus_Async_CalcCrc_Start;
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_InvalidateNvBlock_Async_State1.part.0 ()
+{
+  MemIf_StatusType Status;
+  short unsigned int _1;
+  unsigned char _2;
+  unsigned char NvM_GlobalCallLevel.33_3;
+  int _4;
+
+  <bb 6> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetMergedBlockNumber ();
+  _2 = Fee_InvalidateBlock (_1);
+  if (_2 == 0)
+    goto <bb 3>; [67.00%]
+  else
+    goto <bb 4>; [33.00%]
+
+  <bb 3> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.33_3 = NvM_GlobalCallLevel;
+  _4 = (int) NvM_GlobalCallLevel.33_3;
+  NvM_CurrentFunctionPtr[_4] = NvM_StateMachine_ProcessJobResult;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_RedundantBlockError ();
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_EraseNvBlock_Async_State1.part.0 ()
+{
+  MemIf_StatusType Status;
+  short unsigned int _1;
+  unsigned char _2;
+  unsigned char NvM_GlobalCallLevel.32_3;
+  int _4;
+
+  <bb 6> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetMergedBlockNumber ();
+  _2 = Fee_EraseImmediateBlock (_1);
+  if (_2 == 0)
+    goto <bb 3>; [67.00%]
+  else
+    goto <bb 4>; [33.00%]
+
+  <bb 3> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.32_3 = NvM_GlobalCallLevel;
+  _4 = (int) NvM_GlobalCallLevel.32_3;
+  NvM_CurrentFunctionPtr[_4] = NvM_StateMachine_ProcessJobResult;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_RedundantBlockError ();
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_SetRamBlockStatus_Async_CalcCrc_End ()
+{
+  uint8 * _1;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.51_2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetStoredRamCRCAddress ();
+  NvM_CurrentBlockDescriptorPtr.51_2 = NvM_CurrentBlockDescriptorPtr;
+  _3 = NvM_CurrentBlockDescriptorPtr.51_2->blockDesc;
+  NvM_CopyCrc (_1, &NvM_CalcCrc_CalcBuffer, _3);
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 0;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_RemoveElement ();
+  return;
+
+}
+
+
+NvM_SetRamBlockStatus_Async_CalcCrc_Start ()
+{
+  uint8 * BufferAddr;
+  Std_ReturnType ReturnVal;
+  unsigned char NvM_CurrentServiceId.45_1;
+  short unsigned int NvM_GlobalWorkingStatus.46_2;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.47_5;
+  Std_ReturnType (*<Tae1>) (void *) _6;
+  unsigned char NvM_GlobalCallLevel.50_7;
+  int _8;
+  short unsigned int _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BufferAddr_13 = NvM_GetUserRamBlockAddress ();
+  # DEBUG BufferAddr => BufferAddr_13
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.45_1 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.45_1 != 25)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 5;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.46_2 = NvM_GlobalWorkingStatus;
+  _10 = NvM_GlobalWorkingStatus.46_2 & 4096;
+  if (_10 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.47_5 = NvM_CurrentBlockDescriptorPtr;
+  _6 = NvM_CurrentBlockDescriptorPtr.47_5->writeRamToNvCallback;
+  ReturnVal_17 = NvM_MirrorCopy (0B, _6, BufferAddr_13);
+  # DEBUG ReturnVal => ReturnVal_17
+  # DEBUG BEGIN_STMT
+  if (ReturnVal_17 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 268435457]:
+  NvM_SetRamBlockStatus_Async_CalcCrc_Start.part.0 ();
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 805306369]:
+  # DEBUG ReturnVal => NULL
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.50_7 = NvM_GlobalCallLevel;
+  _8 = (int) NvM_GlobalCallLevel.50_7;
+  NvM_CurrentFunctionPtr[_8] = NvM_SetRamBlockStatus_Async_CalcCrc_End;
+  # DEBUG BEGIN_STMT
+  NvM_CalculateCrc (BufferAddr_13);
+
+  <bb 8> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_EraseNvBlock_Async_State1 ()
+{
+  MemIf_StatusType Status;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_3 = Fee_GetStatus ();
+  # DEBUG Status => Status_3
+  # DEBUG BEGIN_STMT
+  if (Status_3 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845000]:
+  NvM_EraseNvBlock_Async_State1.part.0 ();
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 2;
+
+  <bb 5> [local count: 1073741823]:
+  return;
+
+}
+
+
+NvM_EraseNvBlock_Async ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 9;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_ProcessRedundantBlock (NvM_EraseNvBlock_Async_State1);
+  return;
+
+}
+
+
+NvM_InvalidateNvBlock_Async_State1 ()
+{
+  MemIf_StatusType Status;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_3 = Fee_GetStatus ();
+  # DEBUG Status => Status_3
+  # DEBUG BEGIN_STMT
+  if (Status_3 != 2)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845000]:
+  NvM_InvalidateNvBlock_Async_State1.part.0 ();
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 2;
+
+  <bb 5> [local count: 1073741823]:
+  return;
+
+}
+
+
+NvM_InvalidateNvBlock_Async ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 11;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_ProcessRedundantBlock (NvM_InvalidateNvBlock_Async_State1);
+  return;
+
+}
+
+
+NvM_JobErrorNotification ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_JobEndNotification ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_ASR40_CancelJobs (NvM_BlockIdType BlockId)
+{
+  boolean RequestFound;
+  uint16 Queue_Standard_TopIndex;
+  struct NvM_QueueItemType QueueTemp;
+  uint16 QueueCopyIndex;
+  uint16 QueueIndex;
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_Queue_IndexStandard.37_1;
+  short unsigned int NvM_Queue_CancelledStandardJobs.38_2;
+  int _3;
+  unsigned char _4;
+  short unsigned int NvM_GlobalBlockNumber.39_5;
+  short unsigned int _6;
+  int _7;
+  short unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  int _11;
+  unsigned int _12;
+  unsigned int _13;
+
+  <bb 2> [local count: 1047196343]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RequestFound => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_28 = NvM_CheckCondCancelJobs (BlockId_26(D));
+  # DEBUG BlockIndex => BlockIndex_28
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_28 != 9)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 15>; [51.12%]
+
+  <bb 3> [local count: 511869572]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.37_1 = NvM_Queue_IndexStandard;
+  NvM_Queue_CancelledStandardJobs.38_2 = NvM_Queue_CancelledStandardJobs;
+  Queue_Standard_TopIndex_30 = NvM_Queue_IndexStandard.37_1 - NvM_Queue_CancelledStandardJobs.38_2;
+  # DEBUG Queue_Standard_TopIndex => Queue_Standard_TopIndex_30
+  # DEBUG BEGIN_STMT
+  _3 = (int) BlockIndex_28;
+  _4 = NvM_AdminBlockTable[_3].NvMResult;
+  if (_4 == 2)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 4> [local count: 174035655]:
+  NvM_GlobalBlockNumber.39_5 = NvM_GlobalBlockNumber;
+  if (NvM_GlobalBlockNumber.39_5 != BlockIndex_28)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 14>; [34.00%]
+
+  <bb 5> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_3].NvMResult = 6;
+  # DEBUG BEGIN_STMT
+  _6 = NvM_Queue_CancelledStandardJobs.38_2 + 1;
+  NvM_Queue_CancelledStandardJobs = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG QueueIndex => Queue_Standard_TopIndex_30
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 6> [local count: 958878294]:
+  # DEBUG BEGIN_STMT
+  _7 = (int) QueueIndex_16;
+  _8 = NvM_Queue_Standard[_7].NvMBlockDescriptorIndex;
+  if (_8 == BlockIndex_28)
+    goto <bb 7>; [16.00%]
+  else
+    goto <bb 11>; [84.00%]
+
+  <bb 7> [local count: 153420527]:
+  # DEBUG BEGIN_STMT
+  QueueTemp = NvM_Queue_Standard[_7];
+  # DEBUG BEGIN_STMT
+  # DEBUG QueueCopyIndex => QueueIndex_16
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 613682110]:
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) QueueCopyIndex_17;
+  _10 = _9 + 1;
+  _11 = (int) QueueCopyIndex_17;
+  NvM_Queue_Standard[_11] = NvM_Queue_Standard[_10];
+  # DEBUG BEGIN_STMT
+  QueueCopyIndex_36 = QueueCopyIndex_17 + 1;
+  # DEBUG QueueCopyIndex => QueueCopyIndex_36
+
+  <bb 9> [local count: 767102639]:
+  # QueueCopyIndex_17 = PHI <QueueIndex_16(7), QueueCopyIndex_36(8)>
+  # DEBUG QueueCopyIndex => QueueCopyIndex_17
+  # DEBUG BEGIN_STMT
+  if (QueueCopyIndex_17 < Queue_Standard_TopIndex_30)
+    goto <bb 8>; [80.00%]
+  else
+    goto <bb 10>; [20.00%]
+
+  <bb 10> [local count: 153420527]:
+  # DEBUG BEGIN_STMT
+  _12 = (unsigned int) _6;
+  _13 = 4 - _12;
+  NvM_Queue_Standard[_13] = QueueTemp;
+  # DEBUG BEGIN_STMT
+  # DEBUG RequestFound => 1
+
+  <bb 11> [local count: 958878294]:
+  # RequestFound_18 = PHI <0(6), 1(10)>
+  # DEBUG RequestFound => RequestFound_18
+  # DEBUG BEGIN_STMT
+  QueueIndex_37 = QueueIndex_16 + 65535;
+  # DEBUG QueueIndex => QueueIndex_37
+
+  <bb 12> [local count: 1073741824]:
+  # QueueIndex_16 = PHI <Queue_Standard_TopIndex_30(5), QueueIndex_37(11)>
+  # RequestFound_19 = PHI <0(5), RequestFound_18(11)>
+  # DEBUG RequestFound => RequestFound_19
+  # DEBUG QueueIndex => QueueIndex_16
+  # DEBUG BEGIN_STMT
+  if (QueueIndex_16 != 65535)
+    goto <bb 13>; [94.50%]
+  else
+    goto <bb 14>; [5.50%]
+
+  <bb 13> [local count: 1014686024]:
+  if (RequestFound_19 == 0)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 14>; [5.50%]
+
+  <bb 14> [local count: 511869572]:
+  # Result_14 = PHI <1(3), 1(4), 0(13), 0(12)>
+  # DEBUG Result => Result_14
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 15> [local count: 1047196342]:
+  # Result_15 = PHI <1(2), Result_14(14)>
+  # DEBUG Result => Result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  QueueTemp ={v} {CLOBBER};
+  return Result_15;
+
+}
+
+
+NvM_SetBlockLockStatus (NvM_ASR40_BlockIdType BlockId, boolean BlockLocked)
+{
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.36_1;
+  int _2;
+  unsigned char _3;
+  void * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _25;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  BlockIndex_16 = NvM_GetBlockIndexForValidId (BlockId_14(D));
+  # DEBUG BlockIndex => BlockIndex_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.36_1 = NvM_GlobalGenericStatus;
+  _25 = NvM_GlobalGenericStatus.36_1 & 1;
+  if (_25 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 20);
+  goto <bb 14>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_16 == 9)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 145607981]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 10);
+  goto <bb 14>; [100.00%]
+
+  <bb 6> [local count: 573799040]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_16;
+  _3 = NvM_AdminBlockTable[_2].NvMResult;
+  if (_3 == 2)
+    goto <bb 7>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 7> [local count: 116136926]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 21);
+  goto <bb 14>; [100.00%]
+
+  <bb 8> [local count: 457662113]:
+  # DEBUG BEGIN_STMT
+  _4 = NvM_BlockDescriptorTable[_2].ramBlockDataAddress;
+  if (_4 != 0B)
+    goto <bb 10>; [53.47%]
+  else
+    goto <bb 9>; [46.53%]
+
+  <bb 9> [local count: 212950181]:
+  _5 = NvM_BlockDescriptorTable[_2].blockDesc;
+  _6 = _5 & 131072;
+  if (_6 != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 10> [local count: 351187023]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (BlockLocked_18(D) == 1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 11> [local count: 119403588]:
+  # DEBUG BEGIN_STMT
+  _7 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _8 = _7 | 8;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _8;
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 231783435]:
+  # DEBUG BEGIN_STMT
+  _9 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _10 = _9 & 65527;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _10;
+
+  <bb 13> [local count: 351187023]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 14> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_ASR40_SetRamBlockStatus (NvM_ASR40_BlockIdType BlockId, boolean BlockChanged)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.35_1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  void * _7;
+  long unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  long unsigned int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  short unsigned int _18;
+  short unsigned int _23;
+  unsigned char _33;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NvM_CurrentBlockDescriptorLocalPtr => 0B
+  # DEBUG BEGIN_STMT
+  BlockIndex_22 = NvM_GetBlockIndexForValidId (BlockId_20(D));
+  # DEBUG BlockIndex => BlockIndex_22
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_22 == 9)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 10);
+  goto <bb 19>; [100.00%]
+
+  <bb 4> [local count: 856416480]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.35_1 = NvM_GlobalGenericStatus;
+  _18 = NvM_GlobalGenericStatus.35_1 & 1;
+  if (_18 == 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 282617438]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 20);
+  goto <bb 19>; [100.00%]
+
+  <bb 6> [local count: 573799041]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_22;
+  _3 = NvM_AdminBlockTable[_2].NvMResult;
+  if (_3 == 2)
+    goto <bb 7>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 7> [local count: 116136926]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 21);
+  goto <bb 19>; [100.00%]
+
+  <bb 8> [local count: 457662114]:
+  # DEBUG BEGIN_STMT
+  _4 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _23 = _4 & 8;
+  if (_23 != 0)
+    goto <bb 9>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 9> [local count: 151028498]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 25);
+  goto <bb 19>; [100.00%]
+
+  <bb 10> [local count: 306633616]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#2 => &NvM_BlockDescriptorTable[_2]
+  # DEBUG NvM_CurrentBlockDescriptorLocalPtr => D#2
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const struct NvM_BlockDescriptorType *)&NvM_BlockDescriptorTable][_2].blockDesc;
+  _6 = _5 & 4194304;
+  if (_6 != 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 11> [local count: 153316808]:
+  _7 = MEM[(const struct NvM_BlockDescriptorType *)&NvM_BlockDescriptorTable][_2].ramBlockDataAddress;
+  if (_7 != 0B)
+    goto <bb 13>; [53.47%]
+  else
+    goto <bb 12>; [46.53%]
+
+  <bb 12> [local count: 71338311]:
+  _8 = _5 & 131072;
+  if (_8 != 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 13> [local count: 117647653]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (BlockChanged_25(D) == 1)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 14> [local count: 40000202]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_2].NvMValid = 165;
+  # DEBUG BEGIN_STMT
+  _9 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _10 = _9 | 8193;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _10;
+  # DEBUG BEGIN_STMT
+  _11 = _5 & 8;
+  if (_11 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+
+  <bb 15> [local count: 20000101]:
+  _12 = NvM_AdminBlockTable[_2].NvMExtendedStatus;
+  _33 = _12 & 2;
+  if (_33 == 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 18>; [67.00%]
+
+  <bb 16> [local count: 6600033]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_2].NvMResult = 0;
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_EnqueueElement (BlockIndex_22);
+  goto <bb 18>; [100.00%]
+
+  <bb 17> [local count: 77647451]:
+  # DEBUG BEGIN_STMT
+  _13 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _14 = _13 & 65534;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _14;
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_2].NvMValid = 255;
+
+  <bb 18> [local count: 117647653]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 19> [local count: 1073741823]:
+  # Result_15 = PHI <1(3), 1(5), 1(7), 1(9), 0(18), 1(10), 1(12)>
+  # DEBUG Result => Result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_15;
+
+}
+
+
+NvM_ASR40_SetBlockProtection (NvM_ASR40_BlockIdType BlockId, boolean ProtectionEnabled)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.34_1;
+  int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _16;
+  short unsigned int _22;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  BlockIndex_15 = NvM_GetBlockIndexForValidId (BlockId_13(D));
+  # DEBUG BlockIndex => BlockIndex_15
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_15 == 9)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 10);
+  goto <bb 13>; [100.00%]
+
+  <bb 4> [local count: 856416480]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.34_1 = NvM_GlobalGenericStatus;
+  _16 = NvM_GlobalGenericStatus.34_1 & 1;
+  if (_16 == 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 282617438]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 20);
+  goto <bb 13>; [100.00%]
+
+  <bb 6> [local count: 573799041]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_15;
+  _3 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _22 = _3 & 8;
+  if (_22 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 189353683]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 25);
+  goto <bb 13>; [100.00%]
+
+  <bb 8> [local count: 384445357]:
+  # DEBUG BEGIN_STMT
+  _4 = NvM_AdminBlockTable[_2].NvMResult;
+  if (_4 != 2)
+    goto <bb 9>; [48.88%]
+  else
+    goto <bb 13>; [51.12%]
+
+  <bb 9> [local count: 187916891]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ProtectionEnabled_18(D) == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 10> [local count: 63891743]:
+  # DEBUG BEGIN_STMT
+  _5 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _6 = _5 | 2;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _6;
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 124025148]:
+  # DEBUG BEGIN_STMT
+  _7 = NvM_AdminBlockTable[_2].NvMDynStatus;
+  _8 = _7 & 65533;
+  NvM_AdminBlockTable[_2].NvMDynStatus = _8;
+
+  <bb 12> [local count: 187916891]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 13> [local count: 1073741824]:
+  # Result_9 = PHI <1(3), 1(5), 1(7), 1(8), 0(12)>
+  # DEBUG Result => Result_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_9;
+
+}
+
+
+NvM_ASR40_InvalidateNvBlock (NvM_ASR40_BlockIdType BlockId)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  short unsigned int _20;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG ReportWriteOnceUnknown => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_12 = NvM_CheckCondInvalidateNvBlock (BlockId_10(D));
+  # DEBUG BlockIndex => BlockIndex_12
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_12 != 9)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 10>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = NvM_CheckWriteProtection (BlockIndex_12);
+  if (_1 == 1)
+    goto <bb 9>; [51.12%]
+  else
+    goto <bb 4>; [48.88%]
+
+  <bb 4> [local count: 256544238]:
+  # DEBUG BEGIN_STMT
+  _2 = NvM_CheckDataSetRomBlock (BlockIndex_12);
+  if (_2 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 5> [local count: 128272119]:
+  _3 = (int) BlockIndex_12;
+  _4 = NvM_AdminBlockTable[_3].NvMDynStatus;
+  _20 = _4 & 8;
+  if (_20 == 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 6> [local count: 64136059]:
+  # DEBUG BEGIN_STMT
+  _5 = NvM_AdminBlockTable[_3].NvMResult;
+  if (_5 != 2)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 9>; [51.12%]
+
+  <bb 7> [local count: 31349706]:
+  # DEBUG BEGIN_STMT
+  Result_17 = NvM_Queue_InsertStandard (BlockIndex_12, 0B, NvM_InvalidateNvBlock_Async);
+  # DEBUG Result => Result_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result_17 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 15674853]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_3].NvMCurrentServiceId = 11;
+
+  <bb 9> [local count: 524845004]:
+  # Result_21 = PHI <Result_17(7), 0(8), 1(3), 1(6), 1(5), 1(4)>
+  # DEBUG Result => NULL
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 10> [local count: 1073741824]:
+  # Result_6 = PHI <1(2), Result_21(9)>
+  # DEBUG Result => Result_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_6;
+
+}
+
+
+NvM_ASR40_EraseNvBlock (NvM_ASR40_BlockIdType BlockId)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  short unsigned int _20;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG ReportWriteOnceUnknown => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_12 = NvM_CheckCondEraseNvBlock (BlockId_10(D));
+  # DEBUG BlockIndex => BlockIndex_12
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_12 != 9)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 10>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = NvM_CheckWriteProtection (BlockIndex_12);
+  if (_1 == 1)
+    goto <bb 9>; [51.12%]
+  else
+    goto <bb 4>; [48.88%]
+
+  <bb 4> [local count: 256544238]:
+  # DEBUG BEGIN_STMT
+  _2 = NvM_CheckDataSetRomBlock (BlockIndex_12);
+  if (_2 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 5> [local count: 128272119]:
+  _3 = (int) BlockIndex_12;
+  _4 = NvM_AdminBlockTable[_3].NvMDynStatus;
+  _20 = _4 & 8;
+  if (_20 == 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 6> [local count: 64136059]:
+  # DEBUG BEGIN_STMT
+  _5 = NvM_AdminBlockTable[_3].NvMResult;
+  if (_5 != 2)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 9>; [51.12%]
+
+  <bb 7> [local count: 31349706]:
+  # DEBUG BEGIN_STMT
+  Result_17 = NvM_Queue_InsertStandard (BlockIndex_12, 0B, NvM_EraseNvBlock_Async);
+  # DEBUG Result => Result_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result_17 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 15674853]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_3].NvMCurrentServiceId = 9;
+
+  <bb 9> [local count: 524845004]:
+  # Result_21 = PHI <Result_17(7), 0(8), 1(3), 1(6), 1(5), 1(4)>
+  # DEBUG Result => NULL
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 10> [local count: 1073741824]:
+  # Result_6 = PHI <1(2), Result_21(9)>
+  # DEBUG Result => Result_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_6;
+
+}
+
+
+NvM_ASR40_GetDataIndex (NvM_ASR40_BlockIdType BlockId, uint8 * DataIndex)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.31_1;
+  int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned int _5;
+  unsigned char _6;
+  short unsigned int _13;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  BlockIndex_12 = NvM_GetBlockIndexForValidId (BlockId_10(D));
+  # DEBUG BlockIndex => BlockIndex_12
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_12 == 9)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 10);
+  goto <bb 11>; [100.00%]
+
+  <bb 4> [local count: 856416480]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.31_1 = NvM_GlobalGenericStatus;
+  _13 = NvM_GlobalGenericStatus.31_1 & 1;
+  if (_13 == 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 282617438]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 20);
+  goto <bb 11>; [100.00%]
+
+  <bb 6> [local count: 573799041]:
+  # DEBUG BEGIN_STMT
+  if (DataIndex_14(D) == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 100013173]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 14);
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 473785868]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_12;
+  _3 = NvM_BlockDescriptorTable[_2].blockDesc;
+  _4 = _3 >> 7;
+  _5 = _4 & 3;
+  if (_5 == 2)
+    goto <bb 9>; [51.12%]
+  else
+    goto <bb 10>; [48.88%]
+
+  <bb 9> [local count: 242199335]:
+  # DEBUG BEGIN_STMT
+  _6 = NvM_AdminBlockTable[_2].NvMDatasetBlockIndex;
+  *DataIndex_14(D) = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 231586532]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 11);
+  # DEBUG BEGIN_STMT
+  *DataIndex_14(D) = 0;
+
+  <bb 11> [local count: 1073741823]:
+  # Result_7 = PHI <1(3), 1(5), 1(7), 0(9), 1(10)>
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_7;
+
+}
+
+
+NvM_ASR40_SetDataIndex (NvM_ASR40_BlockIdType BlockId, uint8 DataIndex)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.30_1;
+  int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned int _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  int _11;
+  unsigned char _12;
+  short unsigned int _19;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  BlockIndex_18 = NvM_GetBlockIndexForValidId (BlockId_16(D));
+  # DEBUG BlockIndex => BlockIndex_18
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.30_1 = NvM_GlobalGenericStatus;
+  _19 = NvM_GlobalGenericStatus.30_1 & 1;
+  if (_19 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 20);
+  goto <bb 13>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_18 == 9)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 145607981]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 10);
+  goto <bb 13>; [100.00%]
+
+  <bb 6> [local count: 573799040]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_18;
+  _3 = NvM_BlockDescriptorTable[_2].blockDesc;
+  _4 = _3 >> 7;
+  _5 = _4 & 3;
+  if (_5 != 2)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 280472971]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 11);
+  goto <bb 13>; [100.00%]
+
+  <bb 8> [local count: 293326069]:
+  # DEBUG BEGIN_STMT
+  _6 = (int) DataIndex_20(D);
+  _7 = NvM_BlockDescriptorTable[_2].nvBlockNum;
+  _8 = (int) _7;
+  _9 = NvM_BlockDescriptorTable[_2].romBlockNum;
+  _10 = (int) _9;
+  _11 = _8 + _10;
+  if (_6 >= _11)
+    goto <bb 9>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 9> [local count: 96797603]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 12);
+  goto <bb 13>; [100.00%]
+
+  <bb 10> [local count: 196528466]:
+  # DEBUG BEGIN_STMT
+  _12 = NvM_AdminBlockTable[_2].NvMResult;
+  if (_12 == 2)
+    goto <bb 11>; [20.24%]
+  else
+    goto <bb 12>; [79.76%]
+
+  <bb 11> [local count: 39777362]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 21);
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 156751105]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_2].NvMDatasetBlockIndex = DataIndex_20(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 13> [local count: 1073741824]:
+  # Result_13 = PHI <1(3), 1(5), 1(7), 1(9), 1(11), 0(12)>
+  # DEBUG Result => Result_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_13;
+
+}
+
+
+NvM_ASR40_GetErrorStatus (NvM_ASR40_BlockIdType BlockId, NvM_ASR40_RequestResultType * RequestResultPtr)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  short unsigned int NvM_GlobalGenericStatus.29_1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockId_7(D) != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  BlockIndex_10 = NvM_GetBlockIndexForValidId (BlockId_7(D));
+  # DEBUG BlockIndex => BlockIndex_10
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_10 > 8)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 116930485]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 10);
+  goto <bb 10>; [100.00%]
+
+  <bb 5> [local count: 956811340]:
+  # BlockIndex_16 = PHI <BlockIndex_10(3), 0(2)>
+  # DEBUG BlockIndex => NULL
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.29_1 = NvM_GlobalGenericStatus;
+  _6 = NvM_GlobalGenericStatus.29_1 & 1;
+  if (_6 == 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 315747742]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 20);
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 641063598]:
+  # DEBUG BEGIN_STMT
+  if (RequestResultPtr_11(D) == 0B)
+    goto <bb 8>; [17.43%]
+  else
+    goto <bb 9>; [82.57%]
+
+  <bb 8> [local count: 111737385]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 14);
+  goto <bb 10>; [100.00%]
+
+  <bb 9> [local count: 529326212]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_16;
+  _3 = NvM_AdminBlockTable[_2].NvMResult;
+  *RequestResultPtr_11(D) = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 10> [local count: 1073741824]:
+  # Result_4 = PHI <1(4), 1(6), 1(8), 0(9)>
+  # DEBUG Result => Result_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_4;
+
+}
+
+
+NvM_ProcessBlockCallback ()
+{
+  unsigned char NvM_CurrentServiceId.24_1;
+  unsigned char _2;
+  short unsigned int NvM_GlobalBlockNumber.26_3;
+  unsigned char NvM_GlobalErrorStatus.28_4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.24_1 = NvM_CurrentServiceId;
+  _2 = NvM_CurrentServiceId.24_1 + 244;
+  if (_2 <= 1)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 3>; [59.00%]
+
+  <bb 3> [local count: 633507677]:
+  if (NvM_CurrentServiceId.24_1 == 25)
+    goto <bb 5>; [51.12%]
+  else
+    goto <bb 4>; [48.88%]
+
+  <bb 4> [local count: 309658552]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.26_3 = NvM_GlobalBlockNumber;
+  NvM_GlobalErrorStatus.28_4 = NvM_GlobalErrorStatus;
+  NvM_InvokeSingleBlockCallback (NvM_GlobalBlockNumber.26_3, NvM_CurrentServiceId.24_1, NvM_GlobalErrorStatus.28_4);
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_ProcessCanceledJob ()
+{
+  uint16 CurrentBlock;
+  short unsigned int NvM_GlobalGenericStatus.17_1;
+  unsigned char _2;
+  short unsigned int NvM_GlobalGenericStatus.18_3;
+  short unsigned int _4;
+  short unsigned int NvM_Queue_IndexStandard.19_5;
+  short unsigned int NvM_Queue_CancelledStandardJobs.20_6;
+  short unsigned int _7;
+  unsigned char _8;
+  int _9;
+  unsigned char _10;
+  unsigned char _11;
+  short unsigned int _16;
+
+  <bb 2> [local count: 418205033]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ExecuteBlockCallback => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.17_1 = NvM_GlobalGenericStatus;
+  _16 = NvM_GlobalGenericStatus.17_1 & 2;
+  if (_16 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 3> [local count: 138007661]:
+  # DEBUG BEGIN_STMT
+  _2 = Nvm_Queue_CheckEmpty ();
+  if (_2 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 69003831]:
+  # DEBUG ExecuteBlockCallback => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [100.00%]
+
+  <bb 5> [local count: 69003831]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.18_3 = NvM_GlobalGenericStatus;
+  _4 = NvM_GlobalGenericStatus.18_3 & 65533;
+  NvM_GlobalGenericStatus = _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ExecuteBlockCallback => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 6> [local count: 280197372]:
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.19_5 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.19_5 != 65535)
+    goto <bb 7>; [79.76%]
+  else
+    goto <bb 10>; [20.24%]
+
+  <bb 7> [local count: 223485424]:
+  NvM_Queue_CancelledStandardJobs.20_6 = NvM_Queue_CancelledStandardJobs;
+  if (NvM_Queue_CancelledStandardJobs.20_6 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 111742712]:
+  # DEBUG BEGIN_STMT
+  _7 = NvM_Queue_IndexStandard.19_5 - NvM_Queue_CancelledStandardJobs.20_6;
+  NvM_Queue_IndexStandard = _7;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG ExecuteBlockCallback => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 9> [local count: 111742712]:
+  # DEBUG ExecuteBlockCallback => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [100.00%]
+
+  <bb 10> [local count: 56711948]:
+  # DEBUG ExecuteBlockCallback => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [100.00%]
+
+  <bb 11> [local count: 180746542]:
+  # DEBUG BEGIN_STMT
+  _8 = NvM_AdminBlockTable[0].NvMResult;
+  if (_8 == 6)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 18> [local count: 119292718]:
+  goto <bb 16>; [100.00%]
+
+  <bb 12> [local count: 954449107]:
+  # DEBUG BEGIN_STMT
+  _9 = (int) CurrentBlock_12;
+  _10 = NvM_AdminBlockTable[_9].NvMResult;
+  if (_10 == 6)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 13> [local count: 324512696]:
+  _11 = NvM_AdminBlockTable[_9].NvMCurrentServiceId;
+  if (_11 != 255)
+    goto <bb 14>; [48.88%]
+  else
+    goto <bb 15>; [51.12%]
+
+  <bb 14> [local count: 158621806]:
+  # DEBUG BEGIN_STMT
+  NvM_InvokeSingleBlockCallback (CurrentBlock_12, _11, 6);
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_9].NvMCurrentServiceId = 255;
+
+  <bb 15> [local count: 954449108]:
+  # DEBUG BEGIN_STMT
+  CurrentBlock_27 = CurrentBlock_12 + 1;
+  # DEBUG CurrentBlock => CurrentBlock_27
+
+  <bb 16> [local count: 1073741824]:
+  # CurrentBlock_12 = PHI <CurrentBlock_27(15), 1(18)>
+  # DEBUG CurrentBlock => CurrentBlock_12
+  # DEBUG BEGIN_STMT
+  if (CurrentBlock_12 != 9)
+    goto <bb 12>; [88.89%]
+  else
+    goto <bb 17>; [11.11%]
+
+  <bb 17> [local count: 418205032]:
+  return;
+
+}
+
+
+NvM_MainFunction ()
+{
+  uint8 JobEndIndicator;
+  short unsigned int NvM_GlobalGenericStatus.3_1;
+  short unsigned int _2;
+  unsigned char NvM_GlobalCallLevel.5_3;
+  unsigned char _4;
+  short unsigned int NvM_RamBlockCrcCalcCount.6_5;
+  unsigned char NvM_CurrentServiceId.7_6;
+  short unsigned int NvM_Queue_IndexStandard.8_7;
+  int _8;
+  void (*<T59e>) (void) _9;
+  unsigned char NvM_GlobalCallLevel.10_10;
+  unsigned char NvM_GlobalErrorStatus.11_11;
+  unsigned char NvM_CurrentServiceId.13_12;
+  short unsigned int NvM_GlobalBlockNumber.14_13;
+  int _14;
+  unsigned char _15;
+  short unsigned int NvM_GlobalGenericStatus.16_16;
+  short unsigned int _17;
+  short unsigned int _23;
+  unsigned char NvM_GlobalCallLevel.10_24;
+
+  <bb 2> [local count: 337833918]:
+  # DEBUG BEGIN_STMT
+  # DEBUG JobEndIndicator => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ExecuteMainFunction => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.3_1 = NvM_GlobalGenericStatus;
+  _23 = NvM_GlobalGenericStatus.3_1 & 5;
+  if (_23 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+
+  <bb 3> [local count: 222970386]:
+  # DEBUG ExecuteMainFunction => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [100.00%]
+
+  <bb 4> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  _2 = NvM_GlobalGenericStatus.3_1 | 4;
+  NvM_GlobalGenericStatus = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ExecuteMainFunction => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_ProcessCanceledJob ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.5_3 = NvM_GlobalCallLevel;
+  if (NvM_GlobalCallLevel.5_3 == 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 5> [local count: 37904966]:
+  # DEBUG BEGIN_STMT
+  _4 = Nvm_Queue_CheckEmpty ();
+  if (_4 == 1)
+    goto <bb 7>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 6> [local count: 30233001]:
+  NvM_RamBlockCrcCalcCount.6_5 = NvM_RamBlockCrcCalcCount;
+  if (NvM_RamBlockCrcCalcCount.6_5 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 7> [local count: 22788465]:
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_SetNextRequest ();
+  # DEBUG BEGIN_STMT
+  NvM_PreService_Function ();
+  # DEBUG BEGIN_STMT
+  # DEBUG JobEndIndicator => 1
+  goto <bb 12>; [100.00%]
+
+  <bb 8> [local count: 76958567]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.7_6 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.7_6 == 5)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 9> [local count: 26165913]:
+  NvM_Queue_IndexStandard.8_7 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.8_7 != 65535)
+    goto <bb 10>; [48.88%]
+  else
+    goto <bb 12>; [51.12%]
+
+  <bb 10> [local count: 12789898]:
+  # DEBUG BEGIN_STMT
+  NvM_ProcessStandardPriorityJob ();
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 958878294]:
+  # DEBUG BEGIN_STMT
+  _8 = (int) NvM_GlobalCallLevel.10_10;
+  _9 = NvM_CurrentFunctionPtr[_8];
+  _9 ();
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 114863532]:
+  # JobEndIndicator_47 = PHI <1(9), 0(6), 1(7), 1(8), 1(10)>
+  # DEBUG JobEndIndicator => NULL
+
+  <bb 13> [local count: 1073741824]:
+  # DEBUG JobEndIndicator => JobEndIndicator_47
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.10_10 = NvM_GlobalCallLevel;
+  if (NvM_GlobalCallLevel.10_10 != 0)
+    goto <bb 14>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+
+  <bb 14> [local count: 1014686025]:
+  NvM_GlobalErrorStatus.11_11 = NvM_GlobalErrorStatus;
+  if (NvM_GlobalErrorStatus.11_11 != 2)
+    goto <bb 11>; [94.50%]
+  else
+    goto <bb 15>; [5.50%]
+
+  <bb 15> [local count: 114863532]:
+  # NvM_GlobalCallLevel.10_24 = PHI <NvM_GlobalCallLevel.10_10(13), NvM_GlobalCallLevel.10_10(14)>
+  # DEBUG BEGIN_STMT
+  if (JobEndIndicator_47 == 1)
+    goto <bb 16>; [34.00%]
+  else
+    goto <bb 22>; [66.00%]
+
+  <bb 16> [local count: 39053601]:
+  if (NvM_GlobalCallLevel.10_24 == 0)
+    goto <bb 17>; [33.00%]
+  else
+    goto <bb 22>; [67.00%]
+
+  <bb 17> [local count: 12887688]:
+  # DEBUG BEGIN_STMT
+  NvM_PostService_Function ();
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.13_12 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.13_12 != 5)
+    goto <bb 18>; [48.88%]
+  else
+    goto <bb 19>; [51.12%]
+
+  <bb 18> [local count: 6299502]:
+  # DEBUG BEGIN_STMT
+  NvM_Queue_RemoveFirstItem ();
+  # DEBUG BEGIN_STMT
+  NvM_ProcessBlockCallback ();
+
+  <bb 19> [local count: 12887688]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.14_13 = NvM_GlobalBlockNumber;
+  _14 = (int) NvM_GlobalBlockNumber.14_13;
+  _15 = NvM_AdminBlockTable[_14].NvMResult;
+  if (_15 != 2)
+    goto <bb 20>; [66.00%]
+  else
+    goto <bb 21>; [34.00%]
+
+  <bb 20> [local count: 8505874]:
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[_14].NvMCurrentServiceId = 255;
+
+  <bb 21> [local count: 12887688]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber = 9;
+
+  <bb 22> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.16_16 = NvM_GlobalGenericStatus;
+  _17 = NvM_GlobalGenericStatus.16_16 & 65531;
+  NvM_GlobalGenericStatus = _17;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 23> [local count: 337833918]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_Init ()
+{
+  uint16 i;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  int _6;
+  short unsigned int NvM_GlobalGenericStatus.2_7;
+  short unsigned int _8;
+
+  <bb 2> [local count: 107374182]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CurrentAdminBlockPtr => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus = 0;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard = 65535;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs = 0;
+  # DEBUG BEGIN_STMT
+  NvM_InitStoredCrcBuf ();
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 966367641]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_9;
+  # DEBUG D#1 => &NvM_AdminBlockTable[_1]
+  # DEBUG CurrentAdminBlockPtr => D#1
+  # DEBUG BEGIN_STMT
+  MEM[(struct NvM_AdminBlockType *)&NvM_AdminBlockTable][_1].NvMDatasetBlockIndex = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct NvM_AdminBlockType *)&NvM_AdminBlockTable][_1].NvMResult = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct NvM_AdminBlockType *)&NvM_AdminBlockTable][_1].NvMDynStatus = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct NvM_AdminBlockType *)&NvM_AdminBlockTable][_1].NvMExtendedStatus = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct NvM_AdminBlockType *)&NvM_AdminBlockTable][_1].NvMCurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  _2 = NvM_BlockDescriptorTable[_1].blockDesc;
+  _3 = _2 & 16;
+  if (_3 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 483183819]:
+  # DEBUG BEGIN_STMT
+  _4 = NvM_AdminBlockTable[_1].NvMDynStatus;
+  _5 = _4 | 2;
+  NvM_AdminBlockTable[_1].NvMDynStatus = _5;
+
+  <bb 5> [local count: 966367639]:
+  # DEBUG BEGIN_STMT
+  i_32 = i_9 + 1;
+  # DEBUG i => i_32
+
+  <bb 6> [local count: 1073741824]:
+  # i_9 = PHI <0(2), i_32(5)>
+  # DEBUG i => i_9
+  # DEBUG BEGIN_STMT
+  if (i_9 != 9)
+    goto <bb 3>; [90.00%]
+  else
+    goto <bb 10>; [10.00%]
+
+  <bb 10> [local count: 107374182]:
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 536742088]:
+  # DEBUG BEGIN_STMT
+  _6 = (int) i_10;
+  NvM_CrcQueue[_6] = 0;
+  # DEBUG BEGIN_STMT
+  i_25 = i_10 + 1;
+  # DEBUG i => i_25
+
+  <bb 8> [local count: 644116271]:
+  # i_10 = PHI <i_25(7), 0(10)>
+  # DEBUG i => i_10
+  # DEBUG BEGIN_STMT
+  if (i_10 != 5)
+    goto <bb 7>; [83.33%]
+  else
+    goto <bb 9>; [16.67%]
+
+  <bb 9> [local count: 107374182]:
+  # DEBUG BEGIN_STMT
+  NvM_TempRamBlockAddress = 0B;
+  # DEBUG BEGIN_STMT
+  NvM_RamBlockCrcCalcCount = 0;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.2_7 = NvM_GlobalGenericStatus;
+  _8 = NvM_GlobalGenericStatus.2_7 | 1;
+  NvM_GlobalGenericStatus = _8;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

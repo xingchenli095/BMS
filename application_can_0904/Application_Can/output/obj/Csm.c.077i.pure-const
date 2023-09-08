@@ -1,0 +1,3364 @@
+
+
+ local analysis of Csm_Process.part.0
+   scanning: Csm_JobExtraData[jobId_1(D)].csmLockFlag = 1;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _2 = Csm_JobConfigurations[jobId_1(D)].jobState;
+  scanning: if (_2 == 1)
+  scanning: _4 = jobPrimitiveInputOutput_3(D)->mode;
+    Indirect ref read is not const
+  scanning: _5 = _4 & 1;
+  scanning: if (_5 != 0)
+  scanning: if (_2 == 1)
+  scanning: Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+    Indirect ref read is not const
+  scanning: _6 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  scanning: _7 = _6->cryIfChannelId;
+    Indirect ref read is not const
+  scanning: _8 = &Csm_JobConfigurations[jobId_1(D)];
+  scanning: result_9 = CryIf_ProcessJob (_7, _8);
+  scanning: _10 = Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInfo;
+  scanning: _11 = _10->processingType;
+    Indirect ref read is not const
+  scanning: if (_11 == 0)
+  scanning: _12 = jobPrimitiveInputOutput_3(D)->mode;
+    Indirect ref read is not const
+  scanning: _13 = _12 & 1;
+  scanning: if (_13 != 0)
+  scanning: _14 = Csm_JobExtraData[jobId_1(D)].csmQueueLevel;
+  scanning: if (_14 == 0)
+  scanning: _15 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  scanning: _16 = _15->currentSize;
+    Indirect ref read is not const
+  scanning: _17 = _15->maxSize;
+    Indirect ref read is not const
+  scanning: if (_16 >= _17)
+  scanning: if (_16 == 0)
+  scanning: Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+    Indirect ref read is not const
+  scanning: _18 = _15->cryIfChannelId;
+    Indirect ref read is not const
+  scanning: _19 = &Csm_JobConfigurations[jobId_1(D)];
+  scanning: result_20 = CryIf_ProcessJob (_18, _19);
+  scanning: if (result_20 == 0)
+  scanning: Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 2;
+  scanning: if (result_20 == 2)
+  scanning: if (result_20 == 5)
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: result_21 = Csm_QueuePushJob (_15, _19);
+  scanning: if (result_21 == 0)
+  scanning: Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 1;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+    Indirect ref read is not const
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _22 = &Csm_JobConfigurations[jobId_1(D)];
+  scanning: result_23 = Csm_QueuePushJob (_15, _22);
+  scanning: if (result_23 == 0)
+  scanning: Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 1;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: if (_13 == 0)
+  scanning: _24 = Csm_JobExtraData[jobId_1(D)].csmQueueLevel;
+  scanning: if (_24 != 0)
+  scanning: _25 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  scanning: _26 = _25->head;
+    Indirect ref read is not const
+  scanning: if (_26 == 0B)
+  scanning: _27 = Csm_JobConfigurations[jobId_1(D)].jobInfo;
+  scanning: _28 = _27->jobPriority;
+    Indirect ref read is not const
+  scanning: _29 = _26->job;
+    Indirect ref read is not const
+  scanning: _30 = _29->jobInfo;
+    Indirect ref read is not const
+  scanning: _31 = _30->jobPriority;
+    Indirect ref read is not const
+  scanning: if (_28 > _31)
+  scanning: _25->lockMainQueueDelJob = 1;
+    Indirect ref write is not const/pure
+  scanning: Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+    Indirect ref read is not const
+  scanning: _32 = _25->cryIfChannelId;
+    Indirect ref read is not const
+  scanning: _33 = &Csm_JobConfigurations[jobId_1(D)];
+  scanning: result_34 = CryIf_ProcessJob (_32, _33);
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: Csm_JobExtraData[jobId_1(D)].csmLockFlag = 0;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: return result_35;
+
+
+ local analysis of Csm_Process
+   scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _1 = Csm_JobExtraData[jobId_7(D)].csmLockFlag;
+  scanning: if (_1 == 0)
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: result_9 = Csm_Process.part.0 (jobId_7(D), jobPrimitiveInputOutput_8(D));
+  scanning: return result_4;
+Function is locally const.
+
+
+ local analysis of Csm_RandomSeed
+   scanning: Csm_Initialized.16_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.16_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 105, 5);
+  scanning: if (keyId_6(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 105, 4);
+  scanning: if (seedPtr_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 105, 1);
+  scanning: _2 = Csm_Keys[keyId_6(D)];
+  scanning: result_10 = CryIf_RandomSeed (_2, seedPtr_7(D), seedLength_8(D));
+  scanning: return result_3;
+Function is locally const.
+
+
+ local analysis of Csm_MacVerify
+   scanning: jobPrimitiveInputOutput = {};
+  scanning: jobPrimitiveInputOutput.mode = 7;
+  scanning: Csm_Initialized.15_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.15_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 5);
+  scanning: if (jobId_11(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 4);
+  scanning: _2 = Csm_JobConfigurations[jobId_11(D)].jobPrimitiveInfo;
+  scanning: _3 = _2->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->service;
+    Indirect ref read is not const
+  scanning: if (_4 != 2)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 225);
+  scanning: if (dataPtr_12(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 1);
+  scanning: if (macPtr_13(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 1);
+  scanning: if (verifyPtr_14(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 97, 1);
+  scanning: _7 = mode_15(D) & 7;
+  scanning: if (_7 == 5)
+  scanning: if (_7 == 0)
+  scanning: if (mode_15(D) > 7)
+  scanning: jobPrimitiveInputOutput.mode = mode_15(D);
+  scanning: jobPrimitiveInputOutput.inputPtr = dataPtr_12(D);
+  scanning: jobPrimitiveInputOutput.inputLength = dataLength_18(D);
+  scanning: jobPrimitiveInputOutput.secondaryInputPtr = macPtr_13(D);
+  scanning: jobPrimitiveInputOutput.secondaryInputLength = macLength_21(D);
+  scanning: jobPrimitiveInputOutput.verifyPtr = verifyPtr_14(D);
+  scanning: result_25 = Csm_Process (jobId_11(D), &jobPrimitiveInputOutput);
+  scanning: return result_5;
+Function is locally pure.
+
+
+ local analysis of Csm_MacGenerate
+   scanning: jobPrimitiveInputOutput = {};
+  scanning: jobPrimitiveInputOutput.mode = 7;
+  scanning: Csm_Initialized.14_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.14_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 5);
+  scanning: if (jobId_10(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 4);
+  scanning: _2 = Csm_JobConfigurations[jobId_10(D)].jobPrimitiveInfo;
+  scanning: _3 = _2->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->service;
+    Indirect ref read is not const
+  scanning: if (_4 != 1)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 225);
+  scanning: if (dataPtr_11(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 1);
+  scanning: if (macPtr_12(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 1);
+  scanning: if (macLengthPtr_13(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 1);
+  scanning: _6 = mode_14(D) & 7;
+  scanning: if (_6 == 5)
+  scanning: if (_6 == 0)
+  scanning: if (mode_14(D) > 7)
+  scanning: jobPrimitiveInputOutput.mode = mode_14(D);
+  scanning: jobPrimitiveInputOutput.inputPtr = dataPtr_11(D);
+  scanning: jobPrimitiveInputOutput.inputLength = dataLength_17(D);
+  scanning: jobPrimitiveInputOutput.outputPtr = macPtr_12(D);
+  scanning: jobPrimitiveInputOutput.outputLengthPtr = macLengthPtr_13(D);
+  scanning: result_22 = Csm_Process (jobId_10(D), &jobPrimitiveInputOutput);
+  scanning: if (result_22 == 3)
+  scanning: Det_ASR40_ReportError (110, 0, 96, 3);
+  scanning: return result_31;
+Function is locally pure.
+
+
+ local analysis of Csm_KeySetValid
+   scanning: Csm_Initialized.13_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.13_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 103, 5);
+  scanning: if (keyId_6(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 103, 4);
+  scanning: _2 = Csm_Keys[keyId_6(D)];
+  scanning: result_8 = CryIf_KeySetValid (_2);
+  scanning: return result_3;
+Function is locally const.
+
+
+ local analysis of Csm_KeyGenerate
+   scanning: Csm_Initialized.12_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.12_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 106, 5);
+  scanning: if (keyId_6(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 106, 4);
+  scanning: _2 = Csm_Keys[keyId_6(D)];
+  scanning: result_8 = CryIf_KeyGenerate (_2);
+  scanning: return result_3;
+Function is locally const.
+
+
+ local analysis of Csm_KeyExchangeCalcSecret
+   scanning: Csm_Initialized.11_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.11_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 109, 5);
+  scanning: if (keyId_5(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 109, 4);
+  scanning: if (partnerPublicValuePtr_6(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 109, 1);
+  scanning: _2 = Csm_Keys[keyId_5(D)];
+  scanning: result_9 = CryIf_KeyExchangeCalcSecret (_2, partnerPublicValuePtr_6(D), partnerPublicValueLength_7(D));
+  scanning: if (result_9 == 3)
+  scanning: Det_ASR40_ReportError (110, 0, 109, 3);
+  scanning: return result_14;
+Function is locally const.
+
+
+ local analysis of Csm_KeyExchangeCalcPubVal
+   scanning: Csm_Initialized.10_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.10_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 108, 5);
+  scanning: if (keyId_5(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 108, 4);
+  scanning: if (publicValuePtr_6(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 108, 1);
+  scanning: if (publicValueLengthPtr_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 108, 1);
+  scanning: _2 = Csm_Keys[keyId_5(D)];
+  scanning: result_9 = CryIf_KeyExchangeCalcPubVal (_2, publicValuePtr_6(D), publicValueLengthPtr_7(D));
+  scanning: if (result_9 == 3)
+  scanning: Det_ASR40_ReportError (110, 0, 108, 3);
+  scanning: return result_15;
+Function is locally const.
+
+
+ local analysis of Csm_KeyElementSet
+   scanning: Csm_Initialized.9_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.9_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 120, 5);
+  scanning: if (keyId_6(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 120, 4);
+  scanning: if (keyPtr_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 120, 1);
+  scanning: _2 = Csm_Keys[keyId_6(D)];
+  scanning: result_11 = CryIf_KeyElementSet (_2, keyElementId_8(D), keyPtr_7(D), keyLength_9(D));
+  scanning: return result_3;
+Function is locally const.
+
+
+ local analysis of Csm_KeyElementGet
+   scanning: Csm_Initialized.8_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.8_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 104, 5);
+  scanning: if (keyId_5(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 104, 4);
+  scanning: if (keyPtr_6(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 104, 1);
+  scanning: if (keyLengthPtr_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 104, 1);
+  scanning: _2 = Csm_Keys[keyId_5(D)];
+  scanning: result_10 = CryIf_KeyElementGet (_2, keyElementId_8(D), keyPtr_6(D), keyLengthPtr_7(D));
+  scanning: if (result_10 == 3)
+  scanning: Det_ASR40_ReportError (110, 0, 104, 3);
+  scanning: return result_16;
+Function is locally const.
+
+
+ local analysis of Csm_KeyElementCopy
+   scanning: Csm_Initialized.7_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.7_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 113, 5);
+  scanning: if (keyId_7(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 113, 4);
+  scanning: if (targetKeyId_8(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 113, 4);
+  scanning: _2 = Csm_Keys[keyId_7(D)];
+  scanning: _3 = Csm_Keys[targetKeyId_8(D)];
+  scanning: result_12 = CryIf_KeyElementCopy (_2, keyElementId_9(D), _3, targetKeyElementId_10(D));
+  scanning: return result_4;
+Function is locally const.
+
+
+ local analysis of Csm_KeyDerive
+   scanning: Csm_Initialized.6_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.6_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 107, 5);
+  scanning: if (keyId_7(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 107, 4);
+  scanning: if (targetKeyId_8(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 107, 4);
+  scanning: _2 = Csm_Keys[keyId_7(D)];
+  scanning: _3 = Csm_Keys[targetKeyId_8(D)];
+  scanning: result_10 = CryIf_KeyDerive (_2, _3);
+  scanning: return result_4;
+Function is locally const.
+
+
+ local analysis of Csm_KeyCopy
+   scanning: Csm_Initialized.5_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.5_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 115, 5);
+  scanning: if (keyId_7(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 115, 4);
+  scanning: if (targetKeyId_8(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 115, 4);
+  scanning: _2 = Csm_Keys[keyId_7(D)];
+  scanning: _3 = Csm_Keys[targetKeyId_8(D)];
+  scanning: result_10 = CryIf_KeyCopy (_2, _3);
+  scanning: return result_4;
+Function is locally const.
+
+
+ local analysis of Csm_Init
+   scanning: Csm_JobConfigurations[i_6].jobState = 0;
+  scanning: Csm_JobConfigurations[i_6].cryptoKeyId = 4294967295;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.inputPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.inputLength = 0;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryInputPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryInputLength = 0;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.tertiaryInputPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.tertiaryInputLength = 0;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.outputPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.outputLengthPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryOutputPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryOutputLengthPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.verifyPtr = 0B;
+  scanning: Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.mode = 7;
+  scanning: _1 = Csm_JobExtraCnfg[i_6].csmQueue;
+  scanning: _1->lockMainQueueDelJob = 0;
+    Indirect ref write is not const/pure
+  scanning: _1->lockMainProcessJob = 0;
+    Indirect ref write is not const/pure
+  scanning: _1->currentSize = 0;
+    Indirect ref write is not const/pure
+  scanning: _1->head = 0B;
+    Indirect ref write is not const/pure
+  scanning: _2 = _1->data;
+    Indirect ref read is not const
+  scanning: _3 = j_7 * 8;
+  scanning: _4 = _2 + _3;
+  scanning: _4->job = 0B;
+    Indirect ref write is not const/pure
+  scanning: _4->next = 0B;
+    Indirect ref write is not const/pure
+  scanning: j_34 = j_7 + 1;
+  scanning: _5 = _1->maxSize;
+    Indirect ref read is not const
+  scanning: if (_5 > j_7)
+  scanning: Csm_JobExtraData[i_6].csmQueueLevel = 0;
+  scanning: i_31 = i_6 + 1;
+  scanning: if (i_6 != 2)
+  scanning: Csm_Initialized = 1;
+  scanning: return;
+
+
+ local analysis of Csm_CertificateVerify
+   scanning: Csm_Initialized.3_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.3_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 116, 5);
+  scanning: if (keyId_7(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 116, 4);
+  scanning: if (verifyCryIfKeyId_8(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 116, 4);
+  scanning: if (verifyPtr_9(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 116, 1);
+  scanning: _2 = Csm_Keys[keyId_7(D)];
+  scanning: _3 = Csm_Keys[verifyCryIfKeyId_8(D)];
+  scanning: result_11 = CryIf_CertificateVerify (_2, _3, verifyPtr_9(D));
+  scanning: return result_4;
+Function is locally const.
+
+
+ local analysis of Csm_CertificateParse
+   scanning: Csm_Initialized.2_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.2_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 110, 5);
+  scanning: if (keyId_6(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 110, 4);
+  scanning: _2 = Csm_Keys[keyId_6(D)];
+  scanning: result_8 = CryIf_CertificateParse (_2);
+  scanning: return result_3;
+Function is locally const.
+
+
+ local analysis of Csm_CancelJob
+   scanning: Csm_Initialized.1_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.1_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 111, 5);
+  scanning: if (job_24(D) > 1)
+  scanning: Det_ASR40_ReportError (110, 0, 111, 4);
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _2 = Csm_JobExtraData[job_24(D)].csmLockFlag;
+  scanning: if (_2 == 0)
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: Csm_JobExtraData[job_24(D)].csmLockFlag = 1;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _3 = Csm_JobConfigurations[job_24(D)].jobPrimitiveInfo;
+  scanning: _4 = _3->processingType;
+    Indirect ref read is not const
+  scanning: if (_4 == 0)
+  scanning: _5 = Csm_JobExtraData[job_24(D)].csmQueueLevel;
+  scanning: if (_5 == 1)
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: _6 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  scanning: _7 = &Csm_JobConfigurations[job_24(D)];
+  scanning: result_34 = Csm_QueueDelJob (_6, _7);
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: if (_5 == 2)
+  scanning: _8 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  scanning: _9 = _8->cryIfChannelId;
+    Indirect ref read is not const
+  scanning: _10 = &Csm_JobConfigurations[job_24(D)];
+  scanning: result_31 = CryIf_CancelJob (_9, _10);
+  scanning: if (result_16 == 0)
+  scanning: _11 = Csm_JobExtraData[job_24(D)].csmQueueLevel;
+  scanning: if (_11 == 1)
+  scanning: _12 = Csm_JobExtraCnfg[job_24(D)].csmSWCCallback;
+  scanning: if (_12 != 0B)
+  scanning: _12 (12);
+  scanning: Csm_JobExtraData[job_24(D)].csmQueueLevel = 0;
+  scanning: _13 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  scanning: _14 = _13->cryIfChannelId;
+    Indirect ref read is not const
+  scanning: _15 = &Csm_JobConfigurations[job_24(D)];
+  scanning: result_29 = CryIf_CancelJob (_14, _15);
+  scanning: SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: Csm_JobExtraData[job_24(D)].csmLockFlag = 0;
+  scanning: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  scanning: return result_18;
+Function is locally pure.
+
+
+ local analysis of Csm_CallbackNotification
+   scanning: Csm_Initialized.0_1 = Csm_Initialized;
+  scanning: if (Csm_Initialized.0_1 == 0)
+  scanning: Det_ASR40_ReportError (110, 0, 112, 5);
+  scanning: if (job_7(D) == 0B)
+  scanning: Det_ASR40_ReportError (110, 0, 112, 1);
+  scanning: _2 = job_7(D)->jobId;
+    Indirect ref read is not const
+  scanning: _3 = Csm_JobExtraCnfg[_2].csmSWCCallback;
+  scanning: if (_3 != 0B)
+  scanning: Csm_JobExtraData[_2].callbackSWCResult = result_8(D);
+  scanning: _4 = Csm_JobExtraCnfg[_2].internalTrigger;
+  scanning: _4 ();
+  scanning: Csm_Int_CallbackNotification (job_7(D), result_8(D));
+  scanning: return;
+Function is locally pure.
+callgraph:
+
+Csm_Process.part.0/43 (Csm_Process.part.0) @06cfb9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06bb9048
+  References: Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Function Csm_Process.part.0/43 is inline copy in Csm_Process/18
+  Availability: local
+  Function flags: count:697932183 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Csm_Process/18 (inlined) (697932183 (estimated locally),0.65 per call) 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) CryIf_ProcessJob/41 (117247024 (estimated locally),0.11 per call) CryIf_ProcessJob/41 (14438646 (estimated locally),0.01 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (3418956 (estimated locally),0.00 per call) Csm_QueuePushJob/42 (3418956 (estimated locally),0.00 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (3418956 (estimated locally),0.00 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (14438646 (estimated locally),0.01 per call) Csm_QueuePushJob/42 (14438646 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (14438646 (estimated locally),0.01 per call) CryIf_ProcessJob/41 (135642421 (estimated locally),0.13 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) 
+Csm_QueuePushJob/42 (Csm_QueuePushJob) @06cd1e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) 
+  Calls: 
+CryIf_ProcessJob/41 (CryIf_ProcessJob) @06cd1d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process.part.0/43 (117247024 (estimated locally),0.11 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (135642421 (estimated locally),0.13 per call) 
+  Calls: 
+CryIf_RandomSeed/40 (CryIf_RandomSeed) @06cd18c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_RandomSeed/17 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeySetValid/39 (CryIf_KeySetValid) @06cd1380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeySetValid/14 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyGenerate/38 (CryIf_KeyGenerate) @06cd11c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyGenerate/13 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyExchangeCalcSecret/37 (CryIf_KeyExchangeCalcSecret) @06cd1000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyExchangeCalcSecret/12 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyExchangeCalcPubVal/36 (CryIf_KeyExchangeCalcPubVal) @06cbeee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyExchangeCalcPubVal/11 (243332049 (estimated locally),0.23 per call) 
+  Calls: 
+CryIf_KeyElementSet/35 (CryIf_KeyElementSet) @06cbed20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementSet/10 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyElementGet/34 (CryIf_KeyElementGet) @06cbeb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementGet/9 (243332049 (estimated locally),0.23 per call) 
+  Calls: 
+CryIf_KeyElementCopy/33 (CryIf_KeyElementCopy) @06cbe9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementCopy/8 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_KeyDerive/32 (CryIf_KeyDerive) @06cbe7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyDerive/7 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_KeyCopy/31 (CryIf_KeyCopy) @06cbe620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyCopy/6 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_CertificateVerify/30 (CryIf_CertificateVerify) @06cbe2a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CertificateVerify/4 (172457207 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_CertificateParse/29 (CryIf_CertificateParse) @06cbe0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CertificateParse/3 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_CancelJob/27 (CryIf_CancelJob) @06c2ae00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CancelJob/2 (48667885 (estimated locally),0.05 per call) Csm_CancelJob/2 (15951407 (estimated locally),0.01 per call) 
+  Calls: 
+Csm_QueueDelJob/26 (Csm_QueueDelJob) @06c2aee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) 
+  Calls: 
+SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0) @06c2ad20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process/18 (375809638 (estimated locally),0.35 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_CancelJob/2 (147478440 (estimated locally),0.14 per call) Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) Csm_CancelJob/2 (147478439 (estimated locally),0.14 per call) Csm_CancelJob/2 (147478439 (estimated locally),0.14 per call) 
+  Calls: 
+SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0) @06c2ac40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process/18 (1073741823 (estimated locally),1.00 per call) Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_CancelJob/2 (147478440 (estimated locally),0.14 per call) Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) Csm_CancelJob/2 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+Csm_Int_CallbackNotification/22 (Csm_Int_CallbackNotification) @06c2a9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CallbackNotification/1 (103536706 (estimated locally),0.10 per call) 
+  Calls: 
+Det_ASR40_ReportError/19 (Det_ASR40_ReportError) @06c2a8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_MacVerify/16 (25574773 (estimated locally),0.02 per call) Csm_MacVerify/16 (30973445 (estimated locally),0.03 per call) Csm_MacVerify/16 (37511741 (estimated locally),0.03 per call) Csm_MacVerify/16 (205783328 (estimated locally),0.19 per call) Csm_MacVerify/16 (298410032 (estimated locally),0.28 per call) Csm_MacVerify/16 (354334802 (estimated locally),0.33 per call) Csm_MacGenerate/15 (1585875 (estimated locally),0.00 per call) Csm_MacGenerate/15 (25574773 (estimated locally),0.02 per call) Csm_MacGenerate/15 (30973445 (estimated locally),0.03 per call) Csm_MacGenerate/15 (37511741 (estimated locally),0.03 per call) Csm_MacGenerate/15 (205783328 (estimated locally),0.19 per call) Csm_MacGenerate/15 (298410033 (estimated locally),0.28 per call) Csm_MacGenerate/15 (354334802 (estimated locally),0.33 per call) Csm_RandomSeed/17 (126299097 (estimated locally),0.12 per call) Csm_RandomSeed/17 (298410033 (estimated locally),0.28 per call) Csm_RandomSeed/17 (354334802 (estimated locally),0.33 per call) Csm_KeySetValid/14 (424450143 (estimated locally),0.40 per call) Csm_KeySetValid/14 (354334802 (estimated locally),0.33 per call) Csm_KeyGenerate/13 (424450143 (estimated locally),0.40 per call) Csm_KeyGenerate/13 (354334802 (estimated locally),0.33 per call) Csm_KeyExchangeCalcSecret/12 (35422687 (estimated locally),0.03 per call) Csm_KeyExchangeCalcSecret/12 (126299097 (estimated locally),0.12 per call) Csm_KeyExchangeCalcSecret/12 (298410033 (estimated locally),0.28 per call) Csm_KeyExchangeCalcSecret/12 (354334802 (estimated locally),0.33 per call) Csm_KeyExchangeCalcPubVal/11 (29248512 (estimated locally),0.03 per call) Csm_KeyExchangeCalcPubVal/11 (104285164 (estimated locally),0.10 per call) Csm_KeyExchangeCalcPubVal/11 (73379775 (estimated locally),0.07 per call) Csm_KeyExchangeCalcPubVal/11 (298410033 (estimated locally),0.28 per call) Csm_KeyExchangeCalcPubVal/11 (354334802 (estimated locally),0.33 per call) Csm_KeyElementSet/10 (126299097 (estimated locally),0.12 per call) Csm_KeyElementSet/10 (298410033 (estimated locally),0.28 per call) Csm_KeyElementSet/10 (354334802 (estimated locally),0.33 per call) Csm_KeyElementGet/9 (29248512 (estimated locally),0.03 per call) Csm_KeyElementGet/9 (104285164 (estimated locally),0.10 per call) Csm_KeyElementGet/9 (73379775 (estimated locally),0.07 per call) Csm_KeyElementGet/9 (298410033 (estimated locally),0.28 per call) Csm_KeyElementGet/9 (354334802 (estimated locally),0.33 per call) Csm_KeyElementCopy/8 (248388223 (estimated locally),0.23 per call) Csm_KeyElementCopy/8 (298410033 (estimated locally),0.28 per call) Csm_KeyElementCopy/8 (354334802 (estimated locally),0.33 per call) Csm_KeyDerive/7 (248388223 (estimated locally),0.23 per call) Csm_KeyDerive/7 (298410033 (estimated locally),0.28 per call) Csm_KeyDerive/7 (354334802 (estimated locally),0.33 per call) Csm_KeyCopy/6 (248388223 (estimated locally),0.23 per call) Csm_KeyCopy/6 (298410033 (estimated locally),0.28 per call) Csm_KeyCopy/6 (354334802 (estimated locally),0.33 per call) Csm_CertificateVerify/4 (73910231 (estimated locally),0.07 per call) Csm_CertificateVerify/4 (174629551 (estimated locally),0.16 per call) Csm_CertificateVerify/4 (298410033 (estimated locally),0.28 per call) Csm_CertificateVerify/4 (354334802 (estimated locally),0.33 per call) Csm_CertificateParse/3 (424450143 (estimated locally),0.40 per call) Csm_CertificateParse/3 (354334802 (estimated locally),0.33 per call) Csm_CancelJob/2 (424450142 (estimated locally),0.40 per call) Csm_CancelJob/2 (354334802 (estimated locally),0.33 per call) Csm_CallbackNotification/1 (125392644 (estimated locally),0.12 per call) Csm_CallbackNotification/1 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Csm_Process/18 (Csm_Process) @06c2a700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93a8
+  References: Csm_JobExtraData/21 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Csm_MacVerify/16 (13193638 (estimated locally),0.01 per call) Csm_MacGenerate/15 (13193638 (estimated locally),0.01 per call) 
+  Calls: Csm_Process.part.0/43 (inlined) (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (375809638 (estimated locally),0.35 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (1073741823 (estimated locally),1.00 per call) 
+Csm_RandomSeed/17 (Csm_RandomSeed) @06c2a460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9168
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_RandomSeed/40 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacVerify/16 (Csm_MacVerify) @06c2a2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93c8
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410032 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacGenerate/15 (Csm_MacGenerate) @06c2a000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846f50
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (1585875 (estimated locally),0.00 per call) Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeySetValid/14 (Csm_KeySetValid) @06c10d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846ff0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeySetValid/39 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyGenerate/13 (Csm_KeyGenerate) @06c10b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d370
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyGenerate/38 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcSecret/12 (Csm_KeyExchangeCalcSecret) @06c109a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d610
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (35422687 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcSecret/37 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcPubVal/11 (Csm_KeyExchangeCalcPubVal) @06c107e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d350
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcPubVal/36 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementSet/10 (Csm_KeyElementSet) @06c10620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d490
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementSet/35 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementGet/9 (Csm_KeyElementGet) @06c10460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d4b0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyElementGet/34 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementCopy/8 (Csm_KeyElementCopy) @06c102a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d4d0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementCopy/33 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyDerive/7 (Csm_KeyDerive) @06c100e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d550
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyDerive/32 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyCopy/6 (Csm_KeyCopy) @06becb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d310
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyCopy/31 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_Init/5 (Csm_Init) @06bec9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d430
+  References: Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:59046942 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Csm_CertificateVerify/4 (Csm_CertificateVerify) @06bec7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d390
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateVerify/30 (172457207 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (73910231 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (174629551 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CertificateParse/3 (Csm_CertificateParse) @06bec620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d510
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateParse/29 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CancelJob/2 (Csm_CancelJob) @06bec460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d2b0
+  References: Csm_Initialized/0 (read)Csm_JobExtraData/21 (read)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478440 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (147478440 (estimated locally),0.14 per call) CryIf_CancelJob/27 (48667885 (estimated locally),0.05 per call) CryIf_CancelJob/27 (15951407 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (19999256 (estimated locally),0.02 per call) Csm_QueueDelJob/26 (19999256 (estimated locally),0.02 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (19999256 (estimated locally),0.02 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450142 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(4278129 (estimated locally),0.00 per call) 
+Csm_CallbackNotification/1 (Csm_CallbackNotification) @06bece00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d330
+  References: Csm_Initialized/0 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Int_CallbackNotification/22 (103536706 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(490477672 (estimated locally),0.46 per call) 
+
+
+ ordered call graph: reduced for nothrow
+Csm_Process.part.0/43 (Csm_Process.part.0) @06cfb9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06bb9048
+  References: Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Function Csm_Process.part.0/43 is inline copy in Csm_Process/18
+  Availability: local
+  Function flags: count:697932183 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Csm_Process/18 (inlined) (697932183 (estimated locally),0.65 per call) 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) CryIf_ProcessJob/41 (117247024 (estimated locally),0.11 per call) CryIf_ProcessJob/41 (14438646 (estimated locally),0.01 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (3418956 (estimated locally),0.00 per call) Csm_QueuePushJob/42 (3418956 (estimated locally),0.00 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (3418956 (estimated locally),0.00 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (14438646 (estimated locally),0.01 per call) Csm_QueuePushJob/42 (14438646 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (14438646 (estimated locally),0.01 per call) CryIf_ProcessJob/41 (135642421 (estimated locally),0.13 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) 
+Csm_Process/18 (Csm_Process) @06c2a700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93a8
+  References: Csm_JobExtraData/21 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Csm_MacVerify/16 (13193638 (estimated locally),0.01 per call) Csm_MacGenerate/15 (13193638 (estimated locally),0.01 per call) 
+  Calls: Csm_Process.part.0/43 (inlined) (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (375809638 (estimated locally),0.35 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (1073741823 (estimated locally),1.00 per call) 
+Csm_RandomSeed/17 (Csm_RandomSeed) @06c2a460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9168
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_RandomSeed/40 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacVerify/16 (Csm_MacVerify) @06c2a2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93c8
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410032 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacGenerate/15 (Csm_MacGenerate) @06c2a000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846f50
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (1585875 (estimated locally),0.00 per call) Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeySetValid/14 (Csm_KeySetValid) @06c10d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846ff0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeySetValid/39 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyGenerate/13 (Csm_KeyGenerate) @06c10b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d370
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyGenerate/38 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcSecret/12 (Csm_KeyExchangeCalcSecret) @06c109a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d610
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (35422687 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcSecret/37 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcPubVal/11 (Csm_KeyExchangeCalcPubVal) @06c107e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d350
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcPubVal/36 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementSet/10 (Csm_KeyElementSet) @06c10620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d490
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementSet/35 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementGet/9 (Csm_KeyElementGet) @06c10460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d4b0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyElementGet/34 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementCopy/8 (Csm_KeyElementCopy) @06c102a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d4d0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementCopy/33 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyDerive/7 (Csm_KeyDerive) @06c100e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d550
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyDerive/32 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyCopy/6 (Csm_KeyCopy) @06becb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d310
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyCopy/31 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_Init/5 (Csm_Init) @06bec9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d430
+  References: Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:59046942 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Csm_CertificateVerify/4 (Csm_CertificateVerify) @06bec7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d390
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateVerify/30 (172457207 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (73910231 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (174629551 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CertificateParse/3 (Csm_CertificateParse) @06bec620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d510
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateParse/29 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CancelJob/2 (Csm_CancelJob) @06bec460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d2b0
+  References: Csm_Initialized/0 (read)Csm_JobExtraData/21 (read)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478440 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (147478440 (estimated locally),0.14 per call) CryIf_CancelJob/27 (48667885 (estimated locally),0.05 per call) CryIf_CancelJob/27 (15951407 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (19999256 (estimated locally),0.02 per call) Csm_QueueDelJob/26 (19999256 (estimated locally),0.02 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (19999256 (estimated locally),0.02 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450142 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(4278129 (estimated locally),0.00 per call) 
+Csm_CallbackNotification/1 (Csm_CallbackNotification) @06bece00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d330
+  References: Csm_Initialized/0 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Int_CallbackNotification/22 (103536706 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(490477672 (estimated locally),0.46 per call) 
+
+
+
+MALLOC LATTICE Initial:
+Csm_Process.part.0: malloc_bottom
+Csm_Process: malloc_bottom
+Csm_RandomSeed: malloc_bottom
+Csm_MacVerify: malloc_bottom
+Csm_MacGenerate: malloc_bottom
+Csm_KeySetValid: malloc_bottom
+Csm_KeyGenerate: malloc_bottom
+Csm_KeyExchangeCalcSecret: malloc_bottom
+Csm_KeyExchangeCalcPubVal: malloc_bottom
+Csm_KeyElementSet: malloc_bottom
+Csm_KeyElementGet: malloc_bottom
+Csm_KeyElementCopy: malloc_bottom
+Csm_KeyDerive: malloc_bottom
+Csm_KeyCopy: malloc_bottom
+Csm_Init: malloc_bottom
+Csm_CertificateVerify: malloc_bottom
+Csm_CertificateParse: malloc_bottom
+Csm_CancelJob: malloc_bottom
+Csm_CallbackNotification: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+Csm_Process.part.0: malloc_bottom
+Csm_Process: malloc_bottom
+Csm_RandomSeed: malloc_bottom
+Csm_MacVerify: malloc_bottom
+Csm_MacGenerate: malloc_bottom
+Csm_KeySetValid: malloc_bottom
+Csm_KeyGenerate: malloc_bottom
+Csm_KeyExchangeCalcSecret: malloc_bottom
+Csm_KeyExchangeCalcPubVal: malloc_bottom
+Csm_KeyElementSet: malloc_bottom
+Csm_KeyElementGet: malloc_bottom
+Csm_KeyElementCopy: malloc_bottom
+Csm_KeyDerive: malloc_bottom
+Csm_KeyCopy: malloc_bottom
+Csm_Init: malloc_bottom
+Csm_CertificateVerify: malloc_bottom
+Csm_CertificateParse: malloc_bottom
+Csm_CancelJob: malloc_bottom
+Csm_CallbackNotification: malloc_bottom
+callgraph:
+
+Csm_Process.part.0/43 (Csm_Process.part.0) @06cfb9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06bb93a8
+  References: Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Function Csm_Process.part.0/43 is inline copy in Csm_Process/18
+  Availability: local
+  Function flags: count:697932183 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Csm_Process/18 (inlined) (697932183 (estimated locally),0.65 per call) 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) CryIf_ProcessJob/41 (117247024 (estimated locally),0.11 per call) CryIf_ProcessJob/41 (14438646 (estimated locally),0.01 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (3418956 (estimated locally),0.00 per call) Csm_QueuePushJob/42 (3418956 (estimated locally),0.00 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (3418956 (estimated locally),0.00 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (14438646 (estimated locally),0.01 per call) Csm_QueuePushJob/42 (14438646 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (14438646 (estimated locally),0.01 per call) CryIf_ProcessJob/41 (135642421 (estimated locally),0.13 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) 
+Csm_QueuePushJob/42 (Csm_QueuePushJob) @06cd1e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) 
+  Calls: 
+CryIf_ProcessJob/41 (CryIf_ProcessJob) @06cd1d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process.part.0/43 (117247024 (estimated locally),0.11 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (135642421 (estimated locally),0.13 per call) 
+  Calls: 
+CryIf_RandomSeed/40 (CryIf_RandomSeed) @06cd18c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_RandomSeed/17 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeySetValid/39 (CryIf_KeySetValid) @06cd1380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeySetValid/14 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyGenerate/38 (CryIf_KeyGenerate) @06cd11c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyGenerate/13 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyExchangeCalcSecret/37 (CryIf_KeyExchangeCalcSecret) @06cd1000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyExchangeCalcSecret/12 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyExchangeCalcPubVal/36 (CryIf_KeyExchangeCalcPubVal) @06cbeee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyExchangeCalcPubVal/11 (243332049 (estimated locally),0.23 per call) 
+  Calls: 
+CryIf_KeyElementSet/35 (CryIf_KeyElementSet) @06cbed20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementSet/10 (294697892 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_KeyElementGet/34 (CryIf_KeyElementGet) @06cbeb60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementGet/9 (243332049 (estimated locally),0.23 per call) 
+  Calls: 
+CryIf_KeyElementCopy/33 (CryIf_KeyElementCopy) @06cbe9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyElementCopy/8 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_KeyDerive/32 (CryIf_KeyDerive) @06cbe7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyDerive/7 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_KeyCopy/31 (CryIf_KeyCopy) @06cbe620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_KeyCopy/6 (172608766 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_CertificateVerify/30 (CryIf_CertificateVerify) @06cbe2a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CertificateVerify/4 (172457207 (estimated locally),0.16 per call) 
+  Calls: 
+CryIf_CertificateParse/29 (CryIf_CertificateParse) @06cbe0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CertificateParse/3 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+CryIf_CancelJob/27 (CryIf_CancelJob) @06c2ae00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CancelJob/2 (48667885 (estimated locally),0.05 per call) Csm_CancelJob/2 (15951407 (estimated locally),0.01 per call) 
+  Calls: 
+Csm_QueueDelJob/26 (Csm_QueueDelJob) @06c2aee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) 
+  Calls: 
+SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0) @06c2ad20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process/18 (375809638 (estimated locally),0.35 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_CancelJob/2 (147478440 (estimated locally),0.14 per call) Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) Csm_CancelJob/2 (147478439 (estimated locally),0.14 per call) Csm_CancelJob/2 (147478439 (estimated locally),0.14 per call) 
+  Calls: 
+SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0) @06c2ac40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_Process/18 (1073741823 (estimated locally),1.00 per call) Csm_Process.part.0/43 (3418956 (estimated locally),0.00 per call) Csm_Process.part.0/43 (14438646 (estimated locally),0.01 per call) Csm_Process.part.0/43 (697932183 (estimated locally),0.65 per call) Csm_CancelJob/2 (147478440 (estimated locally),0.14 per call) Csm_CancelJob/2 (19999256 (estimated locally),0.02 per call) Csm_CancelJob/2 (294956879 (estimated locally),0.27 per call) 
+  Calls: 
+Csm_Int_CallbackNotification/22 (Csm_Int_CallbackNotification) @06c2a9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_CallbackNotification/1 (103536706 (estimated locally),0.10 per call) 
+  Calls: 
+Det_ASR40_ReportError/19 (Det_ASR40_ReportError) @06c2a8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Csm_MacVerify/16 (25574773 (estimated locally),0.02 per call) Csm_MacVerify/16 (30973445 (estimated locally),0.03 per call) Csm_MacVerify/16 (37511741 (estimated locally),0.03 per call) Csm_MacVerify/16 (205783328 (estimated locally),0.19 per call) Csm_MacVerify/16 (298410032 (estimated locally),0.28 per call) Csm_MacVerify/16 (354334802 (estimated locally),0.33 per call) Csm_MacGenerate/15 (1585875 (estimated locally),0.00 per call) Csm_MacGenerate/15 (25574773 (estimated locally),0.02 per call) Csm_MacGenerate/15 (30973445 (estimated locally),0.03 per call) Csm_MacGenerate/15 (37511741 (estimated locally),0.03 per call) Csm_MacGenerate/15 (205783328 (estimated locally),0.19 per call) Csm_MacGenerate/15 (298410033 (estimated locally),0.28 per call) Csm_MacGenerate/15 (354334802 (estimated locally),0.33 per call) Csm_RandomSeed/17 (126299097 (estimated locally),0.12 per call) Csm_RandomSeed/17 (298410033 (estimated locally),0.28 per call) Csm_RandomSeed/17 (354334802 (estimated locally),0.33 per call) Csm_KeySetValid/14 (424450143 (estimated locally),0.40 per call) Csm_KeySetValid/14 (354334802 (estimated locally),0.33 per call) Csm_KeyGenerate/13 (424450143 (estimated locally),0.40 per call) Csm_KeyGenerate/13 (354334802 (estimated locally),0.33 per call) Csm_KeyExchangeCalcSecret/12 (35422687 (estimated locally),0.03 per call) Csm_KeyExchangeCalcSecret/12 (126299097 (estimated locally),0.12 per call) Csm_KeyExchangeCalcSecret/12 (298410033 (estimated locally),0.28 per call) Csm_KeyExchangeCalcSecret/12 (354334802 (estimated locally),0.33 per call) Csm_KeyExchangeCalcPubVal/11 (29248512 (estimated locally),0.03 per call) Csm_KeyExchangeCalcPubVal/11 (104285164 (estimated locally),0.10 per call) Csm_KeyExchangeCalcPubVal/11 (73379775 (estimated locally),0.07 per call) Csm_KeyExchangeCalcPubVal/11 (298410033 (estimated locally),0.28 per call) Csm_KeyExchangeCalcPubVal/11 (354334802 (estimated locally),0.33 per call) Csm_KeyElementSet/10 (126299097 (estimated locally),0.12 per call) Csm_KeyElementSet/10 (298410033 (estimated locally),0.28 per call) Csm_KeyElementSet/10 (354334802 (estimated locally),0.33 per call) Csm_KeyElementGet/9 (29248512 (estimated locally),0.03 per call) Csm_KeyElementGet/9 (104285164 (estimated locally),0.10 per call) Csm_KeyElementGet/9 (73379775 (estimated locally),0.07 per call) Csm_KeyElementGet/9 (298410033 (estimated locally),0.28 per call) Csm_KeyElementGet/9 (354334802 (estimated locally),0.33 per call) Csm_KeyElementCopy/8 (248388223 (estimated locally),0.23 per call) Csm_KeyElementCopy/8 (298410033 (estimated locally),0.28 per call) Csm_KeyElementCopy/8 (354334802 (estimated locally),0.33 per call) Csm_KeyDerive/7 (248388223 (estimated locally),0.23 per call) Csm_KeyDerive/7 (298410033 (estimated locally),0.28 per call) Csm_KeyDerive/7 (354334802 (estimated locally),0.33 per call) Csm_KeyCopy/6 (248388223 (estimated locally),0.23 per call) Csm_KeyCopy/6 (298410033 (estimated locally),0.28 per call) Csm_KeyCopy/6 (354334802 (estimated locally),0.33 per call) Csm_CertificateVerify/4 (73910231 (estimated locally),0.07 per call) Csm_CertificateVerify/4 (174629551 (estimated locally),0.16 per call) Csm_CertificateVerify/4 (298410033 (estimated locally),0.28 per call) Csm_CertificateVerify/4 (354334802 (estimated locally),0.33 per call) Csm_CertificateParse/3 (424450143 (estimated locally),0.40 per call) Csm_CertificateParse/3 (354334802 (estimated locally),0.33 per call) Csm_CancelJob/2 (424450142 (estimated locally),0.40 per call) Csm_CancelJob/2 (354334802 (estimated locally),0.33 per call) Csm_CallbackNotification/1 (125392644 (estimated locally),0.12 per call) Csm_CallbackNotification/1 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Csm_Process/18 (Csm_Process) @06c2a700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93c8
+  References: Csm_JobExtraData/21 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Csm_MacVerify/16 (13193638 (estimated locally),0.01 per call) Csm_MacGenerate/15 (13193638 (estimated locally),0.01 per call) 
+  Calls: Csm_Process.part.0/43 (inlined) (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (375809638 (estimated locally),0.35 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (1073741823 (estimated locally),1.00 per call) 
+Csm_RandomSeed/17 (Csm_RandomSeed) @06c2a460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9048
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_RandomSeed/40 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacVerify/16 (Csm_MacVerify) @06c2a2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9168
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410032 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacGenerate/15 (Csm_MacGenerate) @06c2a000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846f50
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (1585875 (estimated locally),0.00 per call) Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeySetValid/14 (Csm_KeySetValid) @06c10d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846ff0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeySetValid/39 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyGenerate/13 (Csm_KeyGenerate) @06c10b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d090
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyGenerate/38 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcSecret/12 (Csm_KeyExchangeCalcSecret) @06c109a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0f0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (35422687 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcSecret/37 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcPubVal/11 (Csm_KeyExchangeCalcPubVal) @06c107e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d010
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcPubVal/36 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementSet/10 (Csm_KeyElementSet) @06c10620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688ceb0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementSet/35 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementGet/9 (Csm_KeyElementGet) @06c10460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d250
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyElementGet/34 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementCopy/8 (Csm_KeyElementCopy) @06c102a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf50
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementCopy/33 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyDerive/7 (Csm_KeyDerive) @06c100e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0b0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyDerive/32 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyCopy/6 (Csm_KeyCopy) @06becb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0d0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyCopy/31 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_Init/5 (Csm_Init) @06bec9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d110
+  References: Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:59046942 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Csm_CertificateVerify/4 (Csm_CertificateVerify) @06bec7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d190
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateVerify/30 (172457207 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (73910231 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (174629551 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CertificateParse/3 (Csm_CertificateParse) @06bec620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf30
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateParse/29 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CancelJob/2 (Csm_CancelJob) @06bec460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d050
+  References: Csm_Initialized/0 (read)Csm_JobExtraData/21 (read)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478440 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (147478440 (estimated locally),0.14 per call) CryIf_CancelJob/27 (48667885 (estimated locally),0.05 per call) CryIf_CancelJob/27 (15951407 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (19999256 (estimated locally),0.02 per call) Csm_QueueDelJob/26 (19999256 (estimated locally),0.02 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (19999256 (estimated locally),0.02 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450142 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(4278129 (estimated locally),0.00 per call) 
+Csm_CallbackNotification/1 (Csm_CallbackNotification) @06bece00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf70
+  References: Csm_Initialized/0 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Int_CallbackNotification/22 (103536706 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(490477672 (estimated locally),0.46 per call) 
+
+
+ ordered call graph: reduced
+Csm_RandomSeed/17 (Csm_RandomSeed) @06c2a460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9048
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_RandomSeed/40 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacVerify/16 (Csm_MacVerify) @06c2a2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb9168
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410032 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_MacGenerate/15 (Csm_MacGenerate) @06c2a000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846f50
+  References: Csm_Initialized/0 (read)Csm_JobConfigurations/25 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (1585875 (estimated locally),0.00 per call) Csm_Process/18 (13193638 (estimated locally),0.01 per call) Det_ASR40_ReportError/19 (25574773 (estimated locally),0.02 per call) Det_ASR40_ReportError/19 (30973445 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (37511741 (estimated locally),0.03 per call) Det_ASR40_ReportError/19 (205783328 (estimated locally),0.19 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_Process/18 (Csm_Process) @06c2a700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06bb93c8
+  References: Csm_JobExtraData/21 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Csm_MacVerify/16 (13193638 (estimated locally),0.01 per call) Csm_MacGenerate/15 (13193638 (estimated locally),0.01 per call) 
+  Calls: Csm_Process.part.0/43 (inlined) (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (375809638 (estimated locally),0.35 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (1073741823 (estimated locally),1.00 per call) 
+Csm_Process.part.0/43 (Csm_Process.part.0) @06cfb9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06bb93a8
+  References: Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (read)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Function Csm_Process.part.0/43 is inline copy in Csm_Process/18
+  Availability: local
+  Function flags: count:697932183 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Csm_Process/18 (inlined) (697932183 (estimated locally),0.65 per call) 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) CryIf_ProcessJob/41 (117247024 (estimated locally),0.11 per call) CryIf_ProcessJob/41 (14438646 (estimated locally),0.01 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (3418956 (estimated locally),0.00 per call) Csm_QueuePushJob/42 (3418956 (estimated locally),0.00 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (3418956 (estimated locally),0.00 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (14438646 (estimated locally),0.01 per call) Csm_QueuePushJob/42 (14438646 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (14438646 (estimated locally),0.01 per call) CryIf_ProcessJob/41 (135642421 (estimated locally),0.13 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (697932183 (estimated locally),0.65 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (697932183 (estimated locally),0.65 per call) 
+Csm_KeySetValid/14 (Csm_KeySetValid) @06c10d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06846ff0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeySetValid/39 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyGenerate/13 (Csm_KeyGenerate) @06c10b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d090
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyGenerate/38 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcSecret/12 (Csm_KeyExchangeCalcSecret) @06c109a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0f0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (35422687 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcSecret/37 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyExchangeCalcPubVal/11 (Csm_KeyExchangeCalcPubVal) @06c107e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d010
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyExchangeCalcPubVal/36 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementSet/10 (Csm_KeyElementSet) @06c10620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688ceb0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementSet/35 (294697892 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (126299097 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementGet/9 (Csm_KeyElementGet) @06c10460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d250
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/19 (29248512 (estimated locally),0.03 per call) CryIf_KeyElementGet/34 (243332049 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (104285164 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (73379775 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyElementCopy/8 (Csm_KeyElementCopy) @06c102a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf50
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyElementCopy/33 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyDerive/7 (Csm_KeyDerive) @06c100e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0b0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyDerive/32 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_KeyCopy/6 (Csm_KeyCopy) @06becb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d0d0
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_KeyCopy/31 (172608766 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (248388223 (estimated locally),0.23 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_Init/5 (Csm_Init) @06bec9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d110
+  References: Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobConfigurations/25 (write)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:59046942 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Csm_CertificateVerify/4 (Csm_CertificateVerify) @06bec7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d190
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateVerify/30 (172457207 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (73910231 (estimated locally),0.07 per call) Det_ASR40_ReportError/19 (174629551 (estimated locally),0.16 per call) Det_ASR40_ReportError/19 (298410033 (estimated locally),0.28 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CertificateParse/3 (Csm_CertificateParse) @06bec620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf30
+  References: Csm_Initialized/0 (read)Csm_Keys/28 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: CryIf_CertificateParse/29 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450143 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+Csm_CancelJob/2 (Csm_CancelJob) @06bec460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688d050
+  References: Csm_Initialized/0 (read)Csm_JobExtraData/21 (read)Csm_JobExtraData/21 (write)Csm_JobConfigurations/25 (read)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)Csm_JobConfigurations/25 (addr)Csm_JobExtraData/21 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478440 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (147478440 (estimated locally),0.14 per call) CryIf_CancelJob/27 (48667885 (estimated locally),0.05 per call) CryIf_CancelJob/27 (15951407 (estimated locally),0.01 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (19999256 (estimated locally),0.02 per call) Csm_QueueDelJob/26 (19999256 (estimated locally),0.02 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (19999256 (estimated locally),0.02 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/24 (147478439 (estimated locally),0.14 per call) SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0/23 (294956879 (estimated locally),0.27 per call) Det_ASR40_ReportError/19 (424450142 (estimated locally),0.40 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(4278129 (estimated locally),0.00 per call) 
+Csm_CallbackNotification/1 (Csm_CallbackNotification) @06bece00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @0688cf70
+  References: Csm_Initialized/0 (read)Csm_JobExtraCnfg/20 (read)Csm_JobExtraData/21 (write)Csm_JobExtraCnfg/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Csm_Int_CallbackNotification/22 (103536706 (estimated locally),0.10 per call) Det_ASR40_ReportError/19 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/19 (354334802 (estimated locally),0.33 per call) 
+   Indirect call(490477672 (estimated locally),0.46 per call) 
+
+Function found not to call free: Csm_Init
+Csm_Process.part.0 (uint32 jobId, struct Crypto_JobPrimitiveInputOutputType * jobPrimitiveInputOutput)
+{
+  Std_ReturnType result;
+  boolean run;
+  unsigned char _2;
+  unsigned char _4;
+  unsigned char _5;
+  struct Csm_QueueType * _6;
+  long unsigned int _7;
+  struct Crypto_JobType * _8;
+  const struct Crypto_JobPrimitiveInfoType * _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned char _14;
+  struct Csm_QueueType * _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  struct Crypto_JobType * _19;
+  struct Crypto_JobType * _22;
+  unsigned char _24;
+  struct Csm_QueueType * _25;
+  struct Csm_QueueElementType * _26;
+  const struct Crypto_JobInfoType * _27;
+  long unsigned int _28;
+  struct Crypto_JobType * _29;
+  const struct Crypto_JobInfoType * _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  struct Crypto_JobType * _33;
+
+  <bb 29> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_1(D)].csmLockFlag = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG run => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_1(D)].jobState;
+  if (_2 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _4 = jobPrimitiveInputOutput_3(D)->mode;
+  _5 = _4 & 1;
+  if (_5 != 0)
+    goto <bb 27>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 891205715]:
+  # DEBUG BEGIN_STMT
+  if (_2 == 1)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 180380037]:
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+  # DEBUG BEGIN_STMT
+  _6 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  _7 = _6->cryIfChannelId;
+  _8 = &Csm_JobConfigurations[jobId_1(D)];
+  result_9 = CryIf_ProcessJob (_7, _8);
+  # DEBUG result => result_9
+  goto <bb 27>; [100.00%]
+
+  <bb 6> [local count: 710825678]:
+  # DEBUG BEGIN_STMT
+  _10 = Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInfo;
+  _11 = _10->processingType;
+  if (_11 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 24>; [50.00%]
+
+  <bb 7> [local count: 355412839]:
+  # DEBUG BEGIN_STMT
+  _12 = jobPrimitiveInputOutput_3(D)->mode;
+  _13 = _12 & 1;
+  if (_13 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 8> [local count: 177706419]:
+  _14 = Csm_JobExtraData[jobId_1(D)].csmQueueLevel;
+  if (_14 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 9> [local count: 88853210]:
+  # DEBUG BEGIN_STMT
+  _15 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  _16 = _15->currentSize;
+  _17 = _15->maxSize;
+  if (_16 >= _17)
+    goto <bb 27>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 10> [local count: 44426605]:
+  # DEBUG BEGIN_STMT
+  if (_16 == 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 18>; [50.00%]
+
+  <bb 11> [local count: 22213302]:
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+  # DEBUG BEGIN_STMT
+  _18 = _15->cryIfChannelId;
+  _19 = &Csm_JobConfigurations[jobId_1(D)];
+  result_20 = CryIf_ProcessJob (_18, _19);
+  # DEBUG result => result_20
+  # DEBUG BEGIN_STMT
+  if (result_20 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 11106651]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 2;
+  goto <bb 27>; [100.00%]
+
+  <bb 13> [local count: 11106651]:
+  # DEBUG BEGIN_STMT
+  if (result_20 == 2)
+    goto <bb 15>; [20.24%]
+  else
+    goto <bb 14>; [79.76%]
+
+  <bb 14> [local count: 8858665]:
+  if (result_20 == 5)
+    goto <bb 15>; [34.00%]
+  else
+    goto <bb 27>; [66.00%]
+
+  <bb 15> [local count: 5259932]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  result_21 = Csm_QueuePushJob (_15, _19);
+  # DEBUG result => result_21
+  # DEBUG BEGIN_STMT
+  if (result_21 == 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 16> [local count: 2629966]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 1;
+
+  <bb 17> [local count: 5259932]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 27>; [100.00%]
+
+  <bb 18> [local count: 22213302]:
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _22 = &Csm_JobConfigurations[jobId_1(D)];
+  result_23 = Csm_QueuePushJob (_15, _22);
+  # DEBUG result => result_23
+  # DEBUG BEGIN_STMT
+  if (result_23 == 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 20>; [50.00%]
+
+  <bb 19> [local count: 11106651]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_1(D)].csmQueueLevel = 1;
+
+  <bb 20> [local count: 22213302]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 27>; [100.00%]
+
+  <bb 21> [local count: 266559629]:
+  # DEBUG BEGIN_STMT
+  if (_13 == 0)
+    goto <bb 22>; [50.00%]
+  else
+    goto <bb 27>; [50.00%]
+
+  <bb 22> [local count: 133279814]:
+  _24 = Csm_JobExtraData[jobId_1(D)].csmQueueLevel;
+  if (_24 != 0)
+    goto <bb 23>; [50.00%]
+  else
+    goto <bb 27>; [50.00%]
+
+  <bb 23> [local count: 66639907]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 2
+  goto <bb 27>; [100.00%]
+
+  <bb 24> [local count: 355412839]:
+  # DEBUG BEGIN_STMT
+  _25 = Csm_JobExtraCnfg[jobId_1(D)].csmQueue;
+  _26 = _25->head;
+  if (_26 == 0B)
+    goto <bb 26>; [17.43%]
+  else
+    goto <bb 25>; [82.57%]
+
+  <bb 25> [local count: 293464381]:
+  _27 = Csm_JobConfigurations[jobId_1(D)].jobInfo;
+  _28 = _27->jobPriority;
+  _29 = _26->job;
+  _30 = _29->jobInfo;
+  _31 = _30->jobPriority;
+  if (_28 > _31)
+    goto <bb 26>; [50.00%]
+  else
+    goto <bb 27>; [50.00%]
+
+  <bb 26> [local count: 208680648]:
+  # DEBUG BEGIN_STMT
+  _25->lockMainQueueDelJob = 1;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[jobId_1(D)].jobPrimitiveInputOutput = *jobPrimitiveInputOutput_3(D);
+  # DEBUG BEGIN_STMT
+  _32 = _25->cryIfChannelId;
+  _33 = &Csm_JobConfigurations[jobId_1(D)];
+  result_34 = CryIf_ProcessJob (_32, _33);
+  # DEBUG result => result_34
+
+  <bb 27> [local count: 1073741824]:
+  # result_36 = PHI <2(3), result_9(5), 5(9), 0(12), result_20(14), result_21(17), result_23(20), 1(21), 1(22), 2(23), 2(25), result_34(26)>
+  # DEBUG result => result_36
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[jobId_1(D)].csmLockFlag = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+
+  <bb 28> [local count: 1073741823]:
+  # result_35 = PHI <result_36(27)>
+  # DEBUG result => result_35
+  # DEBUG BEGIN_STMT
+  return result_35;
+
+}
+
+
+Csm_Process (uint32 jobId, struct Crypto_JobPrimitiveInputOutputType * jobPrimitiveInputOutput)
+{
+  Std_ReturnType result;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG run => 0
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = Csm_JobExtraData[jobId_7(D)].csmLockFlag;
+  if (_1 == 0)
+    goto <bb 4>; [65.00%]
+  else
+    goto <bb 3>; [35.00%]
+
+  <bb 3> [local count: 375809638]:
+  # DEBUG run => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 697932183]:
+  result_9 = Csm_Process.part.0 (jobId_7(D), jobPrimitiveInputOutput_8(D));
+
+  <bb 5> [local count: 1073741824]:
+  # result_4 = PHI <result_9(4), 2(3)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+Csm_RandomSeed (uint32 keyId, const uint8 * seedPtr, uint32 seedLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.16_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.16_1 = Csm_Initialized;
+  if (Csm_Initialized.16_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_6(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (seedPtr_7(D) == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 8>; [70.00%]
+
+  <bb 7> [local count: 126299097]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 105, 1);
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 294697892]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_6(D)];
+  result_10 = CryIf_RandomSeed (_2, seedPtr_7(D), seedLength_8(D));
+  # DEBUG result => result_10
+
+  <bb 9> [local count: 1073741824]:
+  # result_3 = PHI <1(3), 1(5), 1(7), result_10(8)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  return result_3;
+
+}
+
+
+Csm_MacVerify (uint32 jobId, Crypto_OperationModeType mode, const uint8 * dataPtr, uint32 dataLength, const uint8 * macPtr, uint32 macLength, Crypto_VerifyResultType * verifyPtr)
+{
+  struct Crypto_JobPrimitiveInputOutputType jobPrimitiveInputOutput;
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.15_1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  const struct Crypto_PrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned char _7;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput = {};
+  jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.15_1 = Csm_Initialized;
+  if (Csm_Initialized.15_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 5);
+  goto <bb 18>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (jobId_11(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410032]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 4);
+  goto <bb 18>; [100.00%]
+
+  <bb 6> [local count: 420996988]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_11(D)].jobPrimitiveInfo;
+  _3 = _2->primitiveInfo;
+  _4 = _3->service;
+  if (_4 != 2)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 205783328]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 225);
+  goto <bb 18>; [100.00%]
+
+  <bb 8> [local count: 215213660]:
+  # DEBUG BEGIN_STMT
+  if (dataPtr_12(D) == 0B)
+    goto <bb 9>; [17.43%]
+  else
+    goto <bb 10>; [82.57%]
+
+  <bb 9> [local count: 37511741]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 18>; [100.00%]
+
+  <bb 10> [local count: 177701920]:
+  # DEBUG BEGIN_STMT
+  if (macPtr_13(D) == 0B)
+    goto <bb 11>; [17.43%]
+  else
+    goto <bb 12>; [82.57%]
+
+  <bb 11> [local count: 30973445]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 18>; [100.00%]
+
+  <bb 12> [local count: 146728475]:
+  # DEBUG BEGIN_STMT
+  if (verifyPtr_14(D) == 0B)
+    goto <bb 13>; [17.43%]
+  else
+    goto <bb 14>; [82.57%]
+
+  <bb 13> [local count: 25574773]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 97, 1);
+  goto <bb 18>; [100.00%]
+
+  <bb 14> [local count: 121153702]:
+  # DEBUG BEGIN_STMT
+  _7 = mode_15(D) & 7;
+  if (_7 == 5)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 15> [local count: 79961443]:
+  if (_7 == 0)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 16> [local count: 39980722]:
+  if (mode_15(D) > 7)
+    goto <bb 18>; [67.00%]
+  else
+    goto <bb 17>; [33.00%]
+
+  <bb 17> [local count: 13193638]:
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.mode = mode_15(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputPtr = dataPtr_12(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputLength = dataLength_18(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.secondaryInputPtr = macPtr_13(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.secondaryInputLength = macLength_21(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.verifyPtr = verifyPtr_14(D);
+  # DEBUG BEGIN_STMT
+  result_25 = Csm_Process (jobId_11(D), &jobPrimitiveInputOutput);
+  # DEBUG result => result_25
+
+  <bb 18> [local count: 1073741824]:
+  # result_5 = PHI <1(3), 1(5), 1(7), 1(9), 1(11), 1(13), 1(15), result_25(17), 1(14), 1(16)>
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput ={v} {CLOBBER};
+  return result_5;
+
+}
+
+
+Csm_MacGenerate (uint32 jobId, Crypto_OperationModeType mode, const uint8 * dataPtr, uint32 dataLength, uint8 * macPtr, uint32 * macLengthPtr)
+{
+  struct Crypto_JobPrimitiveInputOutputType jobPrimitiveInputOutput;
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.14_1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  const struct Crypto_PrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned char _6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput = {};
+  jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.14_1 = Csm_Initialized;
+  if (Csm_Initialized.14_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 5);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (jobId_10(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 4);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobConfigurations[jobId_10(D)].jobPrimitiveInfo;
+  _3 = _2->primitiveInfo;
+  _4 = _3->service;
+  if (_4 != 1)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 205783328]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 225);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 8> [local count: 215213661]:
+  # DEBUG BEGIN_STMT
+  if (dataPtr_11(D) == 0B)
+    goto <bb 9>; [17.43%]
+  else
+    goto <bb 10>; [82.57%]
+
+  <bb 9> [local count: 37511741]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 10> [local count: 177701920]:
+  # DEBUG BEGIN_STMT
+  if (macPtr_12(D) == 0B)
+    goto <bb 11>; [17.43%]
+  else
+    goto <bb 12>; [82.57%]
+
+  <bb 11> [local count: 30973445]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 12> [local count: 146728475]:
+  # DEBUG BEGIN_STMT
+  if (macLengthPtr_13(D) == 0B)
+    goto <bb 13>; [17.43%]
+  else
+    goto <bb 14>; [82.57%]
+
+  <bb 13> [local count: 25574773]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 14> [local count: 121153702]:
+  # DEBUG BEGIN_STMT
+  _6 = mode_14(D) & 7;
+  if (_6 == 5)
+    goto <bb 19>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 15> [local count: 79961443]:
+  if (_6 == 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 16> [local count: 39980722]:
+  if (mode_14(D) > 7)
+    goto <bb 19>; [67.00%]
+  else
+    goto <bb 17>; [33.00%]
+
+  <bb 17> [local count: 13193638]:
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.mode = mode_14(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputPtr = dataPtr_11(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.inputLength = dataLength_17(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.outputPtr = macPtr_12(D);
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput.outputLengthPtr = macLengthPtr_13(D);
+  # DEBUG BEGIN_STMT
+  result_22 = Csm_Process (jobId_10(D), &jobPrimitiveInputOutput);
+  # DEBUG result => result_22
+  # DEBUG BEGIN_STMT
+  if (result_22 == 3)
+    goto <bb 18>; [12.02%]
+  else
+    goto <bb 19>; [87.98%]
+
+  <bb 18> [local count: 1585875]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 96, 3);
+
+  <bb 19> [local count: 1073741824]:
+  # result_31 = PHI <result_22(17), 3(18), 1(3), 1(16), 1(14), 1(15), 1(13), 1(11), 1(9), 1(7), 1(5)>
+  # DEBUG result => NULL
+  # DEBUG BEGIN_STMT
+  jobPrimitiveInputOutput ={v} {CLOBBER};
+  return result_31;
+
+}
+
+
+Csm_KeySetValid (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.13_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.13_1 = Csm_Initialized;
+  if (Csm_Initialized.13_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 103, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_6(D) > 1)
+    goto <bb 5>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+
+  <bb 5> [local count: 424450143]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 103, 4);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 294956879]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_6(D)];
+  result_8 = CryIf_KeySetValid (_2);
+  # DEBUG result => result_8
+
+  <bb 7> [local count: 1073741824]:
+  # result_3 = PHI <1(3), 1(5), result_8(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  return result_3;
+
+}
+
+
+Csm_KeyGenerate (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.12_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.12_1 = Csm_Initialized;
+  if (Csm_Initialized.12_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 106, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_6(D) > 1)
+    goto <bb 5>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+
+  <bb 5> [local count: 424450143]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 106, 4);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 294956879]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_6(D)];
+  result_8 = CryIf_KeyGenerate (_2);
+  # DEBUG result => result_8
+
+  <bb 7> [local count: 1073741824]:
+  # result_3 = PHI <1(3), 1(5), result_8(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  return result_3;
+
+}
+
+
+Csm_KeyExchangeCalcSecret (uint32 keyId, const uint8 * partnerPublicValuePtr, uint32 partnerPublicValueLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.11_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.11_1 = Csm_Initialized;
+  if (Csm_Initialized.11_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 5);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_5(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 4);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (partnerPublicValuePtr_6(D) == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 8>; [70.00%]
+
+  <bb 7> [local count: 126299097]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 8> [local count: 294697892]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_5(D)];
+  result_9 = CryIf_KeyExchangeCalcSecret (_2, partnerPublicValuePtr_6(D), partnerPublicValueLength_7(D));
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  if (result_9 == 3)
+    goto <bb 9>; [12.02%]
+  else
+    goto <bb 10>; [87.98%]
+
+  <bb 9> [local count: 35422687]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 109, 3);
+
+  <bb 10> [local count: 1073741824]:
+  # result_14 = PHI <result_9(8), 3(9), 1(3), 1(7), 1(5)>
+  # DEBUG BEGIN_STMT
+  return result_14;
+
+}
+
+
+Csm_KeyExchangeCalcPubVal (uint32 keyId, uint8 * publicValuePtr, uint32 * publicValueLengthPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.10_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.10_1 = Csm_Initialized;
+  if (Csm_Initialized.10_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 5);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_5(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 4);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (publicValuePtr_6(D) == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 73379775]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 8> [local count: 347617214]:
+  # DEBUG BEGIN_STMT
+  if (publicValueLengthPtr_7(D) == 0B)
+    goto <bb 9>; [30.00%]
+  else
+    goto <bb 10>; [70.00%]
+
+  <bb 9> [local count: 104285164]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 10> [local count: 243332049]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_5(D)];
+  result_9 = CryIf_KeyExchangeCalcPubVal (_2, publicValuePtr_6(D), publicValueLengthPtr_7(D));
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  if (result_9 == 3)
+    goto <bb 11>; [12.02%]
+  else
+    goto <bb 12>; [87.98%]
+
+  <bb 11> [local count: 29248512]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 108, 3);
+
+  <bb 12> [local count: 1073741824]:
+  # result_15 = PHI <result_9(10), 3(11), 1(3), 1(9), 1(7), 1(5)>
+  # DEBUG BEGIN_STMT
+  return result_15;
+
+}
+
+
+Csm_KeyElementSet (uint32 keyId, uint32 keyElementId, const uint8 * keyPtr, uint32 keyLength)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.9_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.9_1 = Csm_Initialized;
+  if (Csm_Initialized.9_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_6(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (keyPtr_7(D) == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 8>; [70.00%]
+
+  <bb 7> [local count: 126299097]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 120, 1);
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 294697892]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_6(D)];
+  result_11 = CryIf_KeyElementSet (_2, keyElementId_8(D), keyPtr_7(D), keyLength_9(D));
+  # DEBUG result => result_11
+
+  <bb 9> [local count: 1073741824]:
+  # result_3 = PHI <1(3), 1(5), 1(7), result_11(8)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  return result_3;
+
+}
+
+
+Csm_KeyElementGet (uint32 keyId, uint32 keyElementId, uint8 * keyPtr, uint32 * keyLengthPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.8_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.8_1 = Csm_Initialized;
+  if (Csm_Initialized.8_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 5);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_5(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 4);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (keyPtr_6(D) == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 73379775]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 8> [local count: 347617214]:
+  # DEBUG BEGIN_STMT
+  if (keyLengthPtr_7(D) == 0B)
+    goto <bb 9>; [30.00%]
+  else
+    goto <bb 10>; [70.00%]
+
+  <bb 9> [local count: 104285164]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 1);
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [100.00%]
+
+  <bb 10> [local count: 243332049]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_5(D)];
+  result_10 = CryIf_KeyElementGet (_2, keyElementId_8(D), keyPtr_6(D), keyLengthPtr_7(D));
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  if (result_10 == 3)
+    goto <bb 11>; [12.02%]
+  else
+    goto <bb 12>; [87.98%]
+
+  <bb 11> [local count: 29248512]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 104, 3);
+
+  <bb 12> [local count: 1073741824]:
+  # result_16 = PHI <result_10(10), 3(11), 1(3), 1(9), 1(7), 1(5)>
+  # DEBUG BEGIN_STMT
+  return result_16;
+
+}
+
+
+Csm_KeyElementCopy (uint32 keyId, uint32 keyElementId, uint32 targetKeyId, uint32 targetKeyElementId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.7_1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.7_1 = Csm_Initialized;
+  if (Csm_Initialized.7_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_8(D) > 1)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 8>; [41.00%]
+
+  <bb 7> [local count: 248388223]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 113, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 172608766]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  _3 = Csm_Keys[targetKeyId_8(D)];
+  result_12 = CryIf_KeyElementCopy (_2, keyElementId_9(D), _3, targetKeyElementId_10(D));
+  # DEBUG result => result_12
+
+  <bb 9> [local count: 1073741824]:
+  # result_4 = PHI <1(3), 1(5), 1(7), result_12(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+Csm_KeyDerive (uint32 keyId, uint32 targetKeyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.6_1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.6_1 = Csm_Initialized;
+  if (Csm_Initialized.6_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_8(D) > 1)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 8>; [41.00%]
+
+  <bb 7> [local count: 248388223]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 107, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 172608766]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  _3 = Csm_Keys[targetKeyId_8(D)];
+  result_10 = CryIf_KeyDerive (_2, _3);
+  # DEBUG result => result_10
+
+  <bb 9> [local count: 1073741824]:
+  # result_4 = PHI <1(3), 1(5), 1(7), result_10(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+Csm_KeyCopy (uint32 keyId, uint32 targetKeyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.5_1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.5_1 = Csm_Initialized;
+  if (Csm_Initialized.5_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (targetKeyId_8(D) > 1)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 8>; [41.00%]
+
+  <bb 7> [local count: 248388223]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 115, 4);
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 172608766]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  _3 = Csm_Keys[targetKeyId_8(D)];
+  result_10 = CryIf_KeyCopy (_2, _3);
+  # DEBUG result => result_10
+
+  <bb 9> [local count: 1073741824]:
+  # result_4 = PHI <1(3), 1(5), 1(7), result_10(8)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+Csm_Init ()
+{
+  uint32 j;
+  uint32 i;
+  struct Csm_QueueType * _1;
+  struct Csm_QueueElementType * _2;
+  long unsigned int _3;
+  struct Csm_QueueElementType * _4;
+  long unsigned int _5;
+
+  <bb 2> [local count: 59046942]:
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG j => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobState = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].cryptoKeyId = 4294967295;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.inputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.inputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryInputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryInputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.tertiaryInputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.tertiaryInputLength = 0;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.outputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.outputLengthPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryOutputPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.secondaryOutputLengthPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.verifyPtr = 0B;
+  # DEBUG BEGIN_STMT
+  Csm_JobConfigurations[i_6].jobPrimitiveInputOutput.mode = 7;
+  # DEBUG BEGIN_STMT
+  _1 = Csm_JobExtraCnfg[i_6].csmQueue;
+  _1->lockMainQueueDelJob = 0;
+  # DEBUG BEGIN_STMT
+  _1->lockMainProcessJob = 0;
+  # DEBUG BEGIN_STMT
+  _1->currentSize = 0;
+  # DEBUG BEGIN_STMT
+  _1->head = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG j => 0
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _2 = _1->data;
+  _3 = j_7 * 8;
+  _4 = _2 + _3;
+  _4->job = 0B;
+  # DEBUG BEGIN_STMT
+  _4->next = 0B;
+  # DEBUG BEGIN_STMT
+  j_34 = j_7 + 1;
+  # DEBUG j => j_34
+
+  <bb 5> [local count: 1073741824]:
+  # j_7 = PHI <0(3), j_34(4)>
+  # DEBUG j => j_7
+  # DEBUG BEGIN_STMT
+  _5 = _1->maxSize;
+  if (_5 > j_7)
+    goto <bb 4>; [89.00%]
+  else
+    goto <bb 6>; [11.00%]
+
+  <bb 6> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[i_6].csmQueueLevel = 0;
+  # DEBUG BEGIN_STMT
+  i_31 = i_6 + 1;
+  # DEBUG i => i_31
+
+  <bb 7> [local count: 177158543]:
+  # i_6 = PHI <0(2), i_31(6)>
+  # DEBUG i => i_6
+  # DEBUG BEGIN_STMT
+  if (i_6 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 8>; [33.33%]
+
+  <bb 8> [local count: 59046942]:
+  # DEBUG BEGIN_STMT
+  Csm_Initialized = 1;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Csm_CertificateVerify (uint32 keyId, uint32 verifyCryIfKeyId, Crypto_VerifyResultType * verifyPtr)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.3_1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.3_1 = Csm_Initialized;
+  if (Csm_Initialized.3_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 5);
+  goto <bb 11>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_7(D) > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 6>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 4);
+  goto <bb 11>; [100.00%]
+
+  <bb 6> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  if (verifyCryIfKeyId_8(D) > 1)
+    goto <bb 7>; [41.48%]
+  else
+    goto <bb 8>; [58.52%]
+
+  <bb 7> [local count: 174629551]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 4);
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 246367438]:
+  # DEBUG BEGIN_STMT
+  if (verifyPtr_9(D) == 0B)
+    goto <bb 9>; [30.00%]
+  else
+    goto <bb 10>; [70.00%]
+
+  <bb 9> [local count: 73910231]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 116, 1);
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 172457207]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_7(D)];
+  _3 = Csm_Keys[verifyCryIfKeyId_8(D)];
+  result_11 = CryIf_CertificateVerify (_2, _3, verifyPtr_9(D));
+  # DEBUG result => result_11
+
+  <bb 11> [local count: 1073741824]:
+  # result_4 = PHI <1(3), 1(5), 1(7), 1(9), result_11(10)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+Csm_CertificateParse (uint32 keyId)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.2_1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.2_1 = Csm_Initialized;
+  if (Csm_Initialized.2_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 110, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (keyId_6(D) > 1)
+    goto <bb 5>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+
+  <bb 5> [local count: 424450143]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 110, 4);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 294956879]:
+  # DEBUG BEGIN_STMT
+  _2 = Csm_Keys[keyId_6(D)];
+  result_8 = CryIf_CertificateParse (_2);
+  # DEBUG result => result_8
+
+  <bb 7> [local count: 1073741824]:
+  # result_3 = PHI <1(3), 1(5), result_8(6)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  return result_3;
+
+}
+
+
+Csm_CancelJob (uint32 job, Crypto_OperationModeType mode)
+{
+  Std_ReturnType result;
+  unsigned char Csm_Initialized.1_1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  struct Csm_QueueType * _6;
+  struct Crypto_JobType * _7;
+  struct Csm_QueueType * _8;
+  long unsigned int _9;
+  struct Crypto_JobType * _10;
+  unsigned char _11;
+  void (*<T5b5>) (Crypto_ResultType) _12;
+  struct Csm_QueueType * _13;
+  long unsigned int _14;
+  struct Crypto_JobType * _15;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.1_1 = Csm_Initialized;
+  if (Csm_Initialized.1_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 111, 5);
+  goto <bb 20>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (job_24(D) > 1)
+    goto <bb 5>; [59.00%]
+  else
+    goto <bb 6>; [41.00%]
+
+  <bb 5> [local count: 424450142]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 111, 4);
+  goto <bb 20>; [100.00%]
+
+  <bb 6> [local count: 294956879]:
+  # DEBUG BEGIN_STMT
+  # DEBUG run => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = Csm_JobExtraData[job_24(D)].csmLockFlag;
+  if (_2 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 7> [local count: 147478439]:
+  # DEBUG run => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 8> [local count: 147478439]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_24(D)].csmLockFlag = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG run => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Csm_JobConfigurations[job_24(D)].jobPrimitiveInfo;
+  _4 = _3->processingType;
+  if (_4 == 0)
+    goto <bb 9>; [67.00%]
+  else
+    goto <bb 18>; [33.00%]
+
+  <bb 9> [local count: 98810554]:
+  # DEBUG BEGIN_STMT
+  _5 = Csm_JobExtraData[job_24(D)].csmQueueLevel;
+  if (_5 == 1)
+    goto <bb 10>; [20.24%]
+  else
+    goto <bb 11>; [79.76%]
+
+  <bb 10> [local count: 19999256]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _6 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  _7 = &Csm_JobConfigurations[job_24(D)];
+  result_34 = Csm_QueueDelJob (_6, _7);
+  # DEBUG result => result_34
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  goto <bb 13>; [100.00%]
+
+  <bb 11> [local count: 78811298]:
+  # DEBUG BEGIN_STMT
+  if (_5 == 2)
+    goto <bb 12>; [20.24%]
+  else
+    goto <bb 19>; [79.76%]
+
+  <bb 12> [local count: 15951407]:
+  # DEBUG BEGIN_STMT
+  _8 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  _9 = _8->cryIfChannelId;
+  _10 = &Csm_JobConfigurations[job_24(D)];
+  result_31 = CryIf_CancelJob (_9, _10);
+  # DEBUG result => result_31
+
+  <bb 13> [local count: 35950663]:
+  # result_16 = PHI <result_34(10), result_31(12)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (result_16 == 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 14> [local count: 17975332]:
+  # DEBUG BEGIN_STMT
+  _11 = Csm_JobExtraData[job_24(D)].csmQueueLevel;
+  if (_11 == 1)
+    goto <bb 15>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 15> [local count: 6111613]:
+  _12 = Csm_JobExtraCnfg[job_24(D)].csmSWCCallback;
+  if (_12 != 0B)
+    goto <bb 16>; [70.00%]
+  else
+    goto <bb 17>; [30.00%]
+
+  <bb 16> [local count: 4278129]:
+  # DEBUG BEGIN_STMT
+  _12 (12);
+
+  <bb 17> [local count: 17975332]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_24(D)].csmQueueLevel = 0;
+  goto <bb 19>; [100.00%]
+
+  <bb 18> [local count: 48667885]:
+  # DEBUG BEGIN_STMT
+  _13 = Csm_JobExtraCnfg[job_24(D)].csmQueue;
+  _14 = _13->cryIfChannelId;
+  _15 = &Csm_JobConfigurations[job_24(D)];
+  result_29 = CryIf_CancelJob (_14, _15);
+  # DEBUG result => result_29
+
+  <bb 19> [local count: 147478440]:
+  # result_17 = PHI <0(17), result_29(18), result_16(13), 1(11)>
+  # DEBUG result => result_17
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[job_24(D)].csmLockFlag = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Csm_SCHM_CSM_EXCLUSIVE_AREA_0 ();
+
+  <bb 20> [local count: 1073741824]:
+  # result_18 = PHI <1(3), 1(5), result_17(19), 1(7)>
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  return result_18;
+
+}
+
+
+Csm_CallbackNotification (const struct Crypto_JobType * job, Std_ReturnType result)
+{
+  unsigned char Csm_Initialized.0_1;
+  long unsigned int _2;
+  void (*<T5b5>) (Crypto_ResultType) _3;
+  void (*<T5af>) (void) _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Csm_Initialized.0_1 = Csm_Initialized;
+  if (Csm_Initialized.0_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 112, 5);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (job_7(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (110, 0, 112, 1);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  _2 = job_7(D)->jobId;
+  _3 = Csm_JobExtraCnfg[_2].csmSWCCallback;
+  if (_3 != 0B)
+    goto <bb 7>; [82.57%]
+  else
+    goto <bb 8>; [17.43%]
+
+  <bb 7> [local count: 490477672]:
+  # DEBUG BEGIN_STMT
+  Csm_JobExtraData[_2].callbackSWCResult = result_8(D);
+  # DEBUG BEGIN_STMT
+  _4 = Csm_JobExtraCnfg[_2].internalTrigger;
+  _4 ();
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 103536706]:
+  # DEBUG BEGIN_STMT
+  Csm_Int_CallbackNotification (job_7(D), result_8(D));
+
+  <bb 9> [local count: 1073741824]:
+  return;
+
+}
+
+

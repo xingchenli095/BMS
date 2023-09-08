@@ -1,0 +1,253 @@
+__attribute__((target ("general-regs-only")))
+OS_KernStopScheduleTable (os_scheduleid_t s)
+{
+  os_errorresult_t e;
+  const struct os_schedule_t * const ss;
+  const struct os_appcontext_t * const app;
+  os_paramtype_t p[3];
+  os_result_t r;
+  os_result_t D.7458;
+  const struct os_appcontext_t * iftmp.10;
+  const struct os_appcontext_t * iftmp.8;
+  const struct os_appcontext_t * iftmp.7;
+  int iftmp.1;
+  _Bool iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) s;
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = OS_permittedContext.2_3 + 18;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_8 = OS_permittedContext;
+  _9 = OS_permittedContext.3_8 + 18;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1 = 0;
+
+  <bb 7> :
+  iftmp.0 = iftmp.1 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_16 = OS_permittedContext;
+  _17 = OS_permittedContext.4_16 + 18;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.0 = _23 == 0;
+
+  <bb 9> :
+  if (iftmp.0 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_StopScheduleTable, 12, &p);
+  goto <bb 34>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.5_24 = OS_iecMode;
+  if (OS_iecMode.5_24 > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _25 = OS_kernelData.inFunction;
+  if (_25 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _26 = OS_kernelData.taskCurrent;
+  _27 = _26->dynamic;
+  _28 = BIT_FIELD_REF <MEM[(void *)_27], 16, 160>;
+  _29 = _28;
+  if (_29 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _30 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _31 = _30;
+  if (_31 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_StopScheduleTable, 55, &p);
+  goto <bb 34>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.6_32 = OS_nSchedules;
+  if (s >= OS_nSchedules.6_32)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_StopScheduleTable, 40, &p);
+  goto <bb 34>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _33 = OS_kernelData.inFunction;
+  if (_33 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  _34 = OS_kernelData.taskCurrent;
+  iftmp.7 = _34->app;
+  goto <bb 29>; [INV]
+
+  <bb 20> :
+  _35 = OS_kernelData.inFunction;
+  if (_35 == 3)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  OS_isrTableBase.9_36 = OS_isrTableBase;
+  _37 = OS_kernelData.isrCurrent;
+  _38 = (unsigned int) _37;
+  _39 = _38 * 68;
+  _40 = OS_isrTableBase.9_36 + _39;
+  iftmp.8 = _40->app;
+  goto <bb 28>; [INV]
+
+  <bb 22> :
+  _41 = OS_kernelData.inFunction;
+  if (_41 == 10)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _42 = OS_kernelData.inFunction;
+  if (_42 == 8)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  _43 = OS_kernelData.inFunction;
+  if (_43 == 9)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  iftmp.10 = OS_kernelData.hookApp;
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  iftmp.10 = 0B;
+
+  <bb 27> :
+  iftmp.8 = iftmp.10;
+
+  <bb 28> :
+  iftmp.7 = iftmp.8;
+
+  <bb 29> :
+  app = iftmp.7;
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.11_44 = OS_scheduleTableBase;
+  _45 = (unsigned int) s;
+  _46 = _45 * 36;
+  ss = OS_scheduleTableBase.11_44 + _46;
+  # DEBUG BEGIN_STMT
+  if (app != 0B)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 30> :
+  _47 = app->permissionBit;
+  _48 = ss->permissions;
+  _49 = _47 & _48;
+  if (_49 == 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_StopScheduleTable, 37, &p);
+  goto <bb 34>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e = OS_LocalStopScheduleTable (s, ss);
+  # DEBUG BEGIN_STMT
+  if (e != 0)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_StopScheduleTable, e, &p);
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7458 = r;
+  p = {CLOBBER};
+  return D.7458;
+
+}
+
+

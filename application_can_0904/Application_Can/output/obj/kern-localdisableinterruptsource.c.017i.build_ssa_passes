@@ -1,0 +1,66 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalDisableInterruptSource (const struct os_isr_t * isr)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  os_errorresult_t D.7418;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_3 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_3);
+  # DEBUG BEGIN_STMT
+  _4 = isr->dynamic;
+  _5 = _4->statusflags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 32;
+  if (_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = isr->dynamic;
+  _9 = _8->statusflags;
+  _10 = isr->dynamic;
+  _11 = _9 | 32;
+  _10->statusflags = _11;
+  # DEBUG BEGIN_STMT
+  _12 = &isr->arch;
+  OS_CORTEXM_IntDisableIsr (_12);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = 173;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.7418 = result;
+  return D.7418;
+
+}
+
+

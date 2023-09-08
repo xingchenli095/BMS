@@ -1,0 +1,203 @@
+Histogram:
+__attribute__((target ("general-regs-only")))
+OS_KernSchedule ()
+{
+  os_tasklink_t next;
+  os_tasklink_t link;
+  struct os_taskdynamic_t * td;
+  os_result_t r;
+  os_intstatus_t is;
+  unsigned char _1;
+  const struct os_task_t * _2;
+  unsigned char OS_iecMode.0_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  short unsigned int OS_kernDisableLevel.1_7;
+  const struct os_task_t * _8;
+  short unsigned int _9;
+  unsigned char _10;
+  short unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  os_tasklink_t * _14;
+  unsigned char _15;
+  unsigned char _16;
+  int _17;
+  int _18;
+  const struct os_task_t * _19;
+  short unsigned int _20;
+  int _21;
+  struct os_taskdynamic_t * _22;
+  unsigned char _23;
+  int _24;
+  int _25;
+  short unsigned int _26;
+  unsigned char _27;
+  short unsigned int _28;
+  int iftmp.2_30;
+  int iftmp.2_43;
+  int iftmp.2_44;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 18>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.taskCurrent;
+  td_36 = _2->dynamic;
+  # DEBUG td => td_36
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_3 = OS_iecMode;
+  if (OS_iecMode.0_3 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 274448410]:
+  _4 = BIT_FIELD_REF <MEM[(void *)td_36], 16, 160>;
+  if (_4 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 90567975]:
+  # DEBUG BEGIN_STMT
+  r_38 = OS_Error (&OS_svc_Schedule, 55, 0B);
+  # DEBUG r => r_38
+  goto <bb 19>; [100.00%]
+
+  <bb 6> [local count: 458328844]:
+  # DEBUG BEGIN_STMT
+  _5 = td_36->lastLock;
+  if (_5 != 4294967295)
+    goto <bb 7>; [79.76%]
+  else
+    goto <bb 10>; [20.24%]
+
+  <bb 7> [local count: 365563086]:
+  # DEBUG BEGIN_STMT
+  _6 = _5 >> 24;
+  if (_6 == 9)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 8> [local count: 124291449]:
+  # DEBUG BEGIN_STMT
+  r_51 = OS_Error (&OS_svc_Schedule, 156, 0B);
+  # DEBUG r => r_51
+  goto <bb 19>; [100.00%]
+
+  <bb 9> [local count: 241271637]:
+  # DEBUG BEGIN_STMT
+  r_49 = OS_Error (&OS_svc_Schedule, 13, 0B);
+  # DEBUG r => r_49
+  goto <bb 19>; [100.00%]
+
+  <bb 10> [local count: 92765758]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG taskActivations => &OS_taskActivations
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_7 = OS_kernDisableLevel;
+  is_40 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_7);
+  # DEBUG is => is_40
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.taskCurrent;
+  _9 = _8->linkBase;
+  _10 = td_36->cAct;
+  _11 = (short unsigned int) _10;
+  link_41 = _9 + _11;
+  # DEBUG link => link_41
+  # DEBUG BEGIN_STMT
+  _12 = (unsigned int) link_41;
+  _13 = _12 * 2;
+  _14 = &OS_taskActivations + _13;
+  next_42 = *_14;
+  # DEBUG next => next_42
+  # DEBUG BEGIN_STMT
+  _15 = td_36->state;
+  if (_15 == 5)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 11> [local count: 31540358]:
+  if (next_42 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 12> [local count: 15770179]:
+  _16 = _8->queuePrio;
+  _17 = (int) _16;
+  _18 = (int) next_42;
+  _19 = OS_taskPtrs[_18];
+  _20 = _19->linkBase;
+  _21 = (int) _20;
+  _22 = _19->dynamic;
+  _23 = _22->cAct;
+  _24 = (int) _23;
+  _25 = _21 + _24;
+  if (_18 == _25)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 13> [local count: 5361861]:
+  _26 = _22->prio;
+  iftmp.2_44 = (int) _26;
+  goto <bb 15>; [100.00%]
+
+  <bb 14> [local count: 10408318]:
+  _27 = _19->queuePrio;
+  iftmp.2_43 = (int) _27;
+
+  <bb 15> [local count: 15770179]:
+  # iftmp.2_30 = PHI <iftmp.2_44(13), iftmp.2_43(14)>
+  if (_17 < iftmp.2_30)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+
+  <bb 16> [local count: 5204159]:
+  # DEBUG BEGIN_STMT
+  _28 = (short unsigned int) _16;
+  td_36->prio = _28;
+  # DEBUG BEGIN_STMT
+  OS_RequeueDown (link_41, _28);
+
+  <bb 17> [local count: 92765758]:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_40);
+  goto <bb 19>; [100.00%]
+
+  <bb 18> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  r_35 = OS_Error (&OS_svc_Schedule, 12, 0B);
+  # DEBUG r => r_35
+
+  <bb 19> [local count: 1073741824]:
+  # r_29 = PHI <r_49(9), r_35(18), r_38(5), r_51(8), 0(17)>
+  # DEBUG r => r_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return r_29;
+
+}
+
+

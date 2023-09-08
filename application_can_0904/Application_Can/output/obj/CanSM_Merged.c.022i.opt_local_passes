@@ -1,0 +1,4379 @@
+CanSM_DecrementTimerInternal (uint16 * timer)
+{
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = *timer_6(D);
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = *timer_6(D);
+  _3 = _2 + 65535;
+  *timer_6(D) = _3;
+
+  <bb 4> :
+  return;
+
+}
+
+
+CanSM_CheckTrcvWakeFlag (const CanSM_NetworkIndexType nw, boolean * const checkIndicationReceived)
+{
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.39_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.39_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.39_1->NetRef;
+  _3 = (unsigned int) nw_10(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  CanIf_CheckTrcvWakeFlag (_6);
+  # DEBUG BEGIN_STMT
+  _7 = (int) nw_10(D);
+  _8 = CanSM_NetworkInfo[_7].TrcvCheckWakeFlagIndication;
+  *checkIndicationReceived_12(D) = _8;
+  return;
+
+}
+
+
+CanSM_ClearTrcvWufFlag (const CanSM_NetworkIndexType nw, boolean * const clearIndicationReceived)
+{
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.38_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.38_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.38_1->NetRef;
+  _3 = (unsigned int) nw_10(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  CanIf_ClearTrcvWufFlag (_6);
+  # DEBUG BEGIN_STMT
+  _7 = (int) nw_10(D);
+  _8 = CanSM_NetworkInfo[_7].TrcvClearWUFIndication;
+  *clearIndicationReceived_12(D) = _8;
+  return;
+
+}
+
+
+CanSM_TrcvModeTypeToUint8 (const CanTrcv_TrcvModeType trcvMode)
+{
+  uint8 result;
+  uint8 _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (trcvMode_2(D)) <default: <L2> [INV], case 0: <L0> [INV], case 2: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  result_4 = 0;
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  result_3 = 2;
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  # result_1 = PHI <result_4(3), result_3(4), result_5(5)>
+  # DEBUG result => result_1
+  # DEBUG BEGIN_STMT
+  _6 = result_1;
+  return _6;
+
+}
+
+
+CanSM_SetTrcvMode (const CanSM_NetworkIndexType nw, const CanTrcv_TrcvModeType trcvMode, boolean * const modeIndicationReceived)
+{
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.31_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+  unsigned char _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.31_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.31_1->NetRef;
+  _3 = (unsigned int) nw_9(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  CanIf_SetTrcvMode (_6, trcvMode_10(D));
+  # DEBUG BEGIN_STMT
+  _7 = CanSM_CheckTrcvModeIndication (nw_9(D), trcvMode_10(D));
+  *modeIndicationReceived_13(D) = _7;
+  return;
+
+}
+
+
+CanSM_CheckTrcvModeIndication (const CanSM_NetworkIndexType nw, const CanTrcv_TrcvModeType trcvMode)
+{
+  uint8 buf;
+  boolean result;
+  int _1;
+  unsigned char _2;
+  boolean _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_4 = 0;
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_5(D);
+  buf_7 = CanSM_NetworkInfo[_1].TrcvModeIndication;
+  # DEBUG buf => buf_7
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_TrcvModeTypeToUint8 (trcvMode_8(D));
+  if (buf_7 == _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_10 = 1;
+  # DEBUG result => result_10
+
+  <bb 4> :
+  # result_3 = PHI <result_4(2), result_10(3)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _11 = result_3;
+  return _11;
+
+}
+
+
+CanSM_ClearTrcvModeIndAndSetMode (const CanSM_NetworkIndexType nw, const CanTrcv_TrcvModeType trcvMode, boolean * const modeIndicationReceived)
+{
+  uint8 buf;
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  buf_2 = 1;
+  # DEBUG buf => buf_2
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_3(D);
+  CanSM_NetworkInfo[_1].TrcvModeIndication = buf_2;
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_3(D), trcvMode_6(D), modeIndicationReceived_7(D));
+  return;
+
+}
+
+
+CanSM_ControllerModeTypeToUint8 (const CanIf_ControllerModeType ctrlMode)
+{
+  uint8 result;
+  uint8 _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (ctrlMode_2(D)) <default: <L3> [INV], case 1: <L2> [INV], case 2: <L0> [INV], case 3: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  result_4 = 3;
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  result_3 = 1;
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  result_5 = 2;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  result_6 = 0;
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+  # result_1 = PHI <result_4(3), result_3(4), result_5(5), result_6(6)>
+  # DEBUG result => result_1
+  # DEBUG BEGIN_STMT
+  _7 = result_1;
+  return _7;
+
+}
+
+
+CanSM_SetCtrlModes (const CanSM_NetworkIndexType nw, const CanIf_ControllerModeType ctrlMode, boolean * const allModeIndicationsReceived)
+{
+  uint8 buf;
+  uint8_least i;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.43_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  const struct CanSMControllerType * _6;
+  const struct CanSMControllerType * _7;
+  unsigned char _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.44_12;
+  const struct CanSMNetworkType * _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct CanSMNetworkType * _16;
+  const struct CanSMControllerType * _17;
+  const struct CanSMControllerType * _18;
+  unsigned char _19;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.45_20;
+  const struct CanSMNetworkType * _21;
+  unsigned int _22;
+  unsigned int _23;
+  const struct CanSMNetworkType * _24;
+  unsigned char _25;
+  long unsigned int _26;
+  unsigned char _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_31 = 0;
+  # DEBUG i => i_31
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.43_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.43_1->NetRef;
+  _3 = (unsigned int) nw_33(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->CtrlRef;
+  _7 = _6 + i_28;
+  _8 = _7->ControllerId;
+  _9 = CanSM_CtrlIdxFromCtrlId (_8);
+  _10 = (int) _9;
+  buf_39 = CanSM_CtrlModeIndication[_10];
+  # DEBUG buf => buf_39
+  # DEBUG BEGIN_STMT
+  _11 = CanSM_ControllerModeTypeToUint8 (ctrlMode_34(D));
+  if (buf_39 != _11)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.44_12 = CanSM_ConfigPtr;
+  _13 = CanSM_ConfigPtr.44_12->NetRef;
+  _14 = (unsigned int) nw_33(D);
+  _15 = _14 * 20;
+  _16 = _13 + _15;
+  _17 = _16->CtrlRef;
+  _18 = _17 + i_28;
+  _19 = _18->ControllerId;
+  CanIf_SetControllerMode (_19, ctrlMode_34(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_42 = i_28 + 1;
+  # DEBUG i => i_42
+
+  <bb 6> :
+  # i_28 = PHI <i_31(2), i_42(5)>
+  # DEBUG i => i_28
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.45_20 = CanSM_ConfigPtr;
+  _21 = CanSM_ConfigPtr.45_20->NetRef;
+  _22 = (unsigned int) nw_33(D);
+  _23 = _22 * 20;
+  _24 = _21 + _23;
+  _25 = _24->NumNwCtrl;
+  _26 = (long unsigned int) _25;
+  if (i_28 < _26)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _27 = CanSM_CheckCtrlModeIndications (nw_33(D), ctrlMode_34(D));
+  *allModeIndicationsReceived_36(D) = _27;
+  return;
+
+}
+
+
+CanSM_CheckCtrlModeIndications (const CanSM_NetworkIndexType nw, const CanIf_ControllerModeType ctrlMode)
+{
+  uint8 buf;
+  uint8_least i;
+  boolean result;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.22_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  const struct CanSMControllerType * _6;
+  const struct CanSMControllerType * _7;
+  unsigned char _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.23_12;
+  const struct CanSMNetworkType * _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct CanSMNetworkType * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  boolean _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_23 = 1;
+  # DEBUG result => result_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_24 = 0;
+  # DEBUG i => i_24
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.22_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.22_1->NetRef;
+  _3 = (unsigned int) nw_26(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->CtrlRef;
+  _7 = _6 + i_20;
+  _8 = _7->ControllerId;
+  _9 = CanSM_CtrlIdxFromCtrlId (_8);
+  _10 = (int) _9;
+  buf_28 = CanSM_CtrlModeIndication[_10];
+  # DEBUG buf => buf_28
+  # DEBUG BEGIN_STMT
+  _11 = CanSM_ControllerModeTypeToUint8 (ctrlMode_29(D));
+  if (buf_28 != _11)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_32 = 0;
+  # DEBUG result => result_32
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_31 = i_20 + 1;
+  # DEBUG i => i_31
+
+  <bb 6> :
+  # i_20 = PHI <i_24(2), i_31(5)>
+  # DEBUG i => i_20
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.23_12 = CanSM_ConfigPtr;
+  _13 = CanSM_ConfigPtr.23_12->NetRef;
+  _14 = (unsigned int) nw_26(D);
+  _15 = _14 * 20;
+  _16 = _13 + _15;
+  _17 = _16->NumNwCtrl;
+  _18 = (long unsigned int) _17;
+  if (i_20 < _18)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # result_19 = PHI <result_32(4), result_23(6)>
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  _33 = result_19;
+  return _33;
+
+}
+
+
+CanSM_ClearCtrlModeIndAndSetModes (const CanSM_NetworkIndexType nw, const CanIf_ControllerModeType ctrlMode, boolean * const allModeIndicationsReceived)
+{
+  uint8 buf;
+  uint8_least i;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.69_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  const struct CanSMControllerType * _6;
+  const struct CanSMControllerType * _7;
+  unsigned char _8;
+  unsigned char _9;
+  int _10;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.70_11;
+  const struct CanSMNetworkType * _12;
+  unsigned int _13;
+  unsigned int _14;
+  const struct CanSMNetworkType * _15;
+  unsigned char _16;
+  long unsigned int _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_20 = 0;
+  # DEBUG i => i_20
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  buf_26 = 0;
+  # DEBUG buf => buf_26
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.69_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.69_1->NetRef;
+  _3 = (unsigned int) nw_22(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->CtrlRef;
+  _7 = _6 + i_18;
+  _8 = _7->ControllerId;
+  _9 = CanSM_CtrlIdxFromCtrlId (_8);
+  _10 = (int) _9;
+  CanSM_CtrlModeIndication[_10] = buf_26;
+  # DEBUG BEGIN_STMT
+  i_29 = i_18 + 1;
+  # DEBUG i => i_29
+
+  <bb 4> :
+  # i_18 = PHI <i_20(2), i_29(3)>
+  # DEBUG i => i_18
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.70_11 = CanSM_ConfigPtr;
+  _12 = CanSM_ConfigPtr.70_11->NetRef;
+  _13 = (unsigned int) nw_22(D);
+  _14 = _13 * 20;
+  _15 = _12 + _14;
+  _16 = _15->NumNwCtrl;
+  _17 = (long unsigned int) _16;
+  if (i_18 < _17)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_22(D), ctrlMode_23(D), allModeIndicationsReceived_24(D));
+  return;
+
+}
+
+
+CanSM_SetPduModes (const CanSM_NetworkIndexType nw, const CanIf_PduModeType pduModeRequest)
+{
+  uint8_least i;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.55_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  const struct CanSMControllerType * _6;
+  const struct CanSMControllerType * _7;
+  unsigned char _8;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.56_9;
+  const struct CanSMNetworkType * _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct CanSMNetworkType * _13;
+  unsigned char _14;
+  long unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_18 = 0;
+  # DEBUG i => i_18
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.55_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.55_1->NetRef;
+  _3 = (unsigned int) nw_20(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->CtrlRef;
+  _7 = _6 + i_16;
+  _8 = _7->ControllerId;
+  CanIf_SetPduMode (_8, pduModeRequest_21(D));
+  # DEBUG BEGIN_STMT
+  i_23 = i_16 + 1;
+  # DEBUG i => i_23
+
+  <bb 4> :
+  # i_16 = PHI <i_18(2), i_23(3)>
+  # DEBUG i => i_16
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.56_9 = CanSM_ConfigPtr;
+  _10 = CanSM_ConfigPtr.56_9->NetRef;
+  _11 = (unsigned int) nw_20(D);
+  _12 = _11 * 20;
+  _13 = _10 + _12;
+  _14 = _13->NumNwCtrl;
+  _15 = (long unsigned int) _14;
+  if (i_16 < _15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+CanSM_DefaultTrailingCriticalSection (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType newInternalState)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_4(D);
+  CanSM_NetworkInfo[_1].InternalState = newInternalState_5(D);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+CanSM_MainFunctionRepeatModeRequests_S_RFUCO (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  int _1;
+  unsigned char allModeIndicationsReceived.40_2;
+  unsigned char allModeIndicationsReceived.41_3;
+  unsigned char allModeIndicationsReceived.42_4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_8(D);
+  switch (_1) <default: <L11> [INV], case 80: <L0> [INV], case 81: <L3> [INV], case 82: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_9(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.40_2 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.40_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 82;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_9(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.41_3 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.41_3 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 83;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_9(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.42_4 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.42_4 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 84;
+
+  <bb 9> :
+<L11>:
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_MainFunctionRepeatModeRequests_S_PN (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  int _1;
+  unsigned char allModeIndicationsReceived.32_2;
+  unsigned char allModeIndicationsReceived.33_3;
+  unsigned char allModeIndicationsReceived.34_4;
+  unsigned char allModeIndicationsReceived.35_5;
+  unsigned char allModeIndicationsReceived.36_6;
+  unsigned char allModeIndicationsReceived.37_7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_11(D);
+  switch (_1) <default: <L21> [INV], case 96: <L0> [INV], case 97: <L3> [INV], case 98: <L6> [INV], case 99: <L9> [INV], case 100: <L12> [INV], case 101: <L13> [INV], case 102: <L16> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvWufFlag (nw_12(D), &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.32_2 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.32_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 97;
+  goto <bb 16>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_12(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.33_3 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.33_3 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 98;
+  goto <bb 16>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_12(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.34_4 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.34_4 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 99;
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_12(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.35_5 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.35_5 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 100;
+  goto <bb 16>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 102;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 12> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  CanSM_CheckTrcvWakeFlag (nw_12(D), &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.36_6 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.36_6 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 70;
+  goto <bb 16>; [INV]
+
+  <bb 14> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  CanSM_CheckTrcvWakeFlag (nw_12(D), &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.37_7 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.37_7 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_14(D) = 96;
+
+  <bb 16> :
+<L21>:
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_MainFunctionRepeatModeRequests_S_RNOCO (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  int _1;
+  unsigned char allModeIndicationsReceived.27_2;
+  unsigned char allModeIndicationsReceived.28_3;
+  unsigned char allModeIndicationsReceived.29_4;
+  unsigned char allModeIndicationsReceived.30_5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_9(D);
+  switch (_1) <default: <L14> [INV], case 64: <L6> [INV], case 65: <L9> [INV], case 66: <L0> [INV], case 67: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_10(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.27_2 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.27_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 69;
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetTrcvMode (nw_10(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.28_3 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.28_3 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 70;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_10(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.29_4 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.29_4 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 67;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_10(D), 3, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.30_5 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.30_5 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 68;
+
+  <bb 11> :
+<L14>:
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_MainFunctionRepeatModeRequests (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  const CanSM_InternalStateType mainInternalState;
+  boolean allModeIndicationsReceived;
+  int _1;
+  int _2;
+  unsigned char allModeIndicationsReceived.24_3;
+  unsigned char allModeIndicationsReceived.25_4;
+  unsigned char allModeIndicationsReceived.26_5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  mainInternalState_10 = internalState_9(D) & 240;
+  # DEBUG mainInternalState => mainInternalState_10
+  # DEBUG BEGIN_STMT
+  _1 = (int) mainInternalState_10;
+  switch (_1) <default: <L3> [INV], case 64: <L0> [INV], case 80: <L2> [INV], case 96: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionRepeatModeRequests_S_RNOCO (nw_11(D), internalState_9(D), nextTransition_12(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionRepeatModeRequests_S_PN (nw_11(D), internalState_9(D), nextTransition_12(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionRepeatModeRequests_S_RFUCO (nw_11(D), internalState_9(D), nextTransition_12(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _2 = (int) internalState_9(D);
+  switch (_2) <default: <L17> [INV], case 50: <L4> [INV], case 128: <L7> [INV], case 129: <L10> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_11(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.24_3 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.24_3 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 52;
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_11(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.25_4 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.25_4 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 129;
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_11(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.26_5 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.26_5 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 130;
+
+  <bb 13> :
+<L17>:
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_MainFunctionCheckModeIndications_S_RFUCO (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_6(D);
+  switch (_1) <default: <L11> [INV], case 80: <L0> [INV], case 81: <L3> [INV], case 82: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_CheckTrcvModeIndication (nw_8(D), 0);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 82;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_CheckCtrlModeIndications (nw_8(D), 2);
+  if (_3 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 83;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _4 = CanSM_CheckCtrlModeIndications (nw_8(D), 1);
+  if (_4 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 84;
+
+  <bb 9> :
+<L11>:
+  return;
+
+}
+
+
+CanSM_MainFunctionCheckModeIndications_S_PN (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_13(D);
+  switch (_1) <default: <L23> [INV], case 96: <L0> [INV], case 97: <L3> [INV], case 98: <L6> [INV], case 99: <L9> [INV], case 100: <L12> [INV], case 101: <L15> [INV], case 102: <L18> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_15(D);
+  _3 = CanSM_NetworkInfo[_2].TrcvClearWUFIndication;
+  if (_3 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 97;
+  goto <bb 17>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _4 = CanSM_CheckCtrlModeIndications (nw_15(D), 2);
+  if (_4 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 98;
+  goto <bb 17>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _5 = CanSM_CheckTrcvModeIndication (nw_15(D), 0);
+  if (_5 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 99;
+  goto <bb 17>; [INV]
+
+  <bb 9> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  _6 = CanSM_CheckTrcvModeIndication (nw_15(D), 2);
+  if (_6 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 100;
+  goto <bb 17>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  _7 = CanSM_CheckCtrlModeIndications (nw_15(D), 3);
+  if (_7 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 101;
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  _8 = (int) nw_15(D);
+  _9 = CanSM_NetworkInfo[_8].TrcvCheckWakeFlagIndication;
+  if (_9 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 70;
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _10 = (int) nw_15(D);
+  _11 = CanSM_NetworkInfo[_10].TrcvCheckWakeFlagIndication;
+  if (_11 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_16(D) = 96;
+
+  <bb 17> :
+<L23>:
+  return;
+
+}
+
+
+CanSM_MainFunctionCheckModeIndications_S_RNOCO (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) internalState_7(D);
+  switch (_1) <default: <L14> [INV], case 64: <L6> [INV], case 65: <L9> [INV], case 66: <L0> [INV], case 67: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_CheckTrcvModeIndication (nw_9(D), 0);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 69;
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_CheckTrcvModeIndication (nw_9(D), 2);
+  if (_3 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 70;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _4 = CanSM_CheckCtrlModeIndications (nw_9(D), 2);
+  if (_4 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 67;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  _5 = CanSM_CheckCtrlModeIndications (nw_9(D), 3);
+  if (_5 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 68;
+
+  <bb 11> :
+<L14>:
+  return;
+
+}
+
+
+CanSM_MainFunctionCheckModeIndications (const CanSM_NetworkIndexType nw, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  const CanSM_InternalStateType MainInternalState;
+  int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  MainInternalState_8 = internalState_7(D) & 240;
+  # DEBUG MainInternalState => MainInternalState_8
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainInternalState_8;
+  switch (_1) <default: <L3> [INV], case 64: <L0> [INV], case 80: <L1> [INV], case 96: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionCheckModeIndications_S_RNOCO (nw_10(D), internalState_7(D), nextTransition_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionCheckModeIndications_S_RFUCO (nw_10(D), internalState_7(D), nextTransition_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionCheckModeIndications_S_PN (nw_10(D), internalState_7(D), nextTransition_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _2 = (int) internalState_7(D);
+  switch (_2) <default: <L17> [INV], case 50: <L4> [INV], case 128: <L7> [INV], case 129: <L10> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_CheckCtrlModeIndications (nw_10(D), 1);
+  if (_3 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 52;
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _4 = CanSM_CheckCtrlModeIndications (nw_10(D), 2);
+  if (_4 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 129;
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _5 = CanSM_CheckCtrlModeIndications (nw_10(D), 1);
+  if (_5 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 130;
+
+  <bb 13> :
+<L17>:
+  return;
+
+}
+
+
+CanSM_Do_T_TX_TIMEOUT_CC_STARTED_INDICATED (const CanSM_NetworkIndexType nw)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_3(D), 3);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_3(D);
+  CanSM_NetworkInfo[_1].InternalState = 49;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+CanSM_Do_T_TX_TIMEOUT_CC_STOPPED_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.91_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.91_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.91_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 130;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 129);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_TX_TIMEOUT_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.90_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.90_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.90_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 129;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 128);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_TRY_T_FUCO_BUS_OFF_PASSIVE (const CanSM_NetworkIndexType nw)
+{
+  int _1;
+  int _2;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.65_3;
+  const struct CanSMNetworkType * _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct CanSMNetworkType * _7;
+  short unsigned int _8;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.66_9;
+  const struct CanSMNetworkType * _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct CanSMNetworkType * _13;
+  short unsigned int _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_18(D);
+  CanSM_NetworkInfo[_1].InternalState = 49;
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_18(D);
+  CanSM_NetworkInfo[_2].BoCounter = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.65_3 = CanSM_ConfigPtr;
+  _4 = CanSM_ConfigPtr.65_3->NetRef;
+  _5 = (unsigned int) nw_18(D);
+  _6 = _5 * 20;
+  _7 = _4 + _6;
+  _8 = _7->DemEventId;
+  if (_8 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.66_9 = CanSM_ConfigPtr;
+  _10 = CanSM_ConfigPtr.66_9->NetRef;
+  _11 = (unsigned int) nw_18(D);
+  _12 = _11 * 20;
+  _13 = _10 + _12;
+  _14 = _13->DemEventId;
+  Dem_ReportErrorStatus (_14, 0);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_Do_T_FUCO_TX_ON (const CanSM_NetworkIndexType nw)
+{
+  uint8 buf;
+  int _1;
+  int _2;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.63_3;
+  const struct CanSMNetworkType * _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct CanSMNetworkType * _7;
+  unsigned char _8;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.64_9;
+  const struct CanSMNetworkType * _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct CanSMNetworkType * _13;
+  int _14;
+  short unsigned int _15;
+  unsigned char _16;
+  unsigned char _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_20(D), 3);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_23 = 3;
+  # DEBUG buf => buf_23
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_20(D);
+  CanSM_NetworkInfo[_1].NwState = buf_23;
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_20(D);
+  CanSM_NetworkInfo[_2].InternalState = 48;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.63_3 = CanSM_ConfigPtr;
+  _4 = CanSM_ConfigPtr.63_3->NetRef;
+  _5 = (unsigned int) nw_20(D);
+  _6 = _5 * 20;
+  _7 = _4 + _6;
+  _8 = _7->BorTxConfirmationPolling;
+  if (_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.64_9 = CanSM_ConfigPtr;
+  _10 = CanSM_ConfigPtr.64_9->NetRef;
+  _11 = (unsigned int) nw_20(D);
+  _12 = _11 * 20;
+  _13 = _10 + _12;
+  _14 = (int) nw_20(D);
+  _15 = _13->BorTimeTxEnsured;
+  CanSM_NetworkInfo[_14].BoTimer = _15;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _16 = CanSM_GetNetworkHandleFromIndex (nw_20(D));
+  BswM_CanSM_CurrentState (_16, 2);
+  # DEBUG BEGIN_STMT
+  _17 = CanSM_GetNetworkHandleFromIndex (nw_20(D));
+  ComM_BusSM_ModeIndication (_17, &CanSM_CommFullCommunication);
+  return;
+
+}
+
+
+CanSM_Do_T_FUCO_TX_OFF (const CanSM_NetworkIndexType nw)
+{
+  uint8 buf;
+  int _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_6 = 2;
+  # DEBUG buf => buf_6
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_7(D);
+  CanSM_NetworkInfo[_1].NwState = buf_6;
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_7(D);
+  CanSM_NetworkInfo[_2].InternalState = 51;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_GetNetworkHandleFromIndex (nw_7(D));
+  ComM_BusSM_ModeIndication (_3, &CanSM_CommSilentCommunication);
+  return;
+
+}
+
+
+CanSM_Do_T_FUCO_HANDLE_BUS_OFF (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  uint8 buf;
+  CanSM_BswMCurrentStateType BswMState;
+  boolean BusOffLevel2Reached;
+  boolean allModeIndicationsReceived;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.57_4;
+  const struct CanSMNetworkType * _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct CanSMNetworkType * _8;
+  short unsigned int _9;
+  _Bool _10;
+  int _11;
+  unsigned char _12;
+  int _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.58_18;
+  const struct CanSMNetworkType * _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct CanSMNetworkType * _22;
+  short unsigned int _23;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.59_24;
+  const struct CanSMNetworkType * _25;
+  unsigned int _26;
+  unsigned int _27;
+  const struct CanSMNetworkType * _28;
+  short unsigned int _29;
+  int _30;
+  int _31;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.60_32;
+  const struct CanSMNetworkType * _33;
+  unsigned int _34;
+  unsigned int _35;
+  const struct CanSMNetworkType * _36;
+  int _37;
+  short unsigned int _38;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.61_39;
+  const struct CanSMNetworkType * _40;
+  unsigned int _41;
+  unsigned int _42;
+  const struct CanSMNetworkType * _43;
+  int _44;
+  short unsigned int _45;
+  unsigned char allModeIndicationsReceived.62_46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_53(D);
+  _2 = CanSM_NetworkInfo[_1].BoCounter;
+  _3 = (short unsigned int) _2;
+  CanSM_ConfigPtr.57_4 = CanSM_ConfigPtr;
+  _5 = CanSM_ConfigPtr.57_4->NetRef;
+  _6 = (unsigned int) nw_53(D);
+  _7 = _6 * 20;
+  _8 = _5 + _7;
+  _9 = _8->BorCounterL1ToL2;
+  _10 = _3 >= _9;
+  BusOffLevel2Reached_54 = (boolean) _10;
+  # DEBUG BusOffLevel2Reached => BusOffLevel2Reached_54
+  # DEBUG BEGIN_STMT
+  _11 = (int) nw_53(D);
+  _12 = CanSM_NetworkInfo[_11].BoCounter;
+  if (_12 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) nw_53(D);
+  _14 = CanSM_NetworkInfo[_13].BoCounter;
+  _15 = _14;
+  _16 = _15 + 1;
+  CanSM_NetworkInfo[_13].BoCounter = _16;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswMState_56 = 3;
+  # DEBUG BswMState => BswMState_56
+  # DEBUG BEGIN_STMT
+  _17 = CanSM_GetNetworkHandleFromIndex (nw_53(D));
+  BswM_CanSM_CurrentState (_17, BswMState_56);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.58_18 = CanSM_ConfigPtr;
+  _19 = CanSM_ConfigPtr.58_18->NetRef;
+  _20 = (unsigned int) nw_53(D);
+  _21 = _20 * 20;
+  _22 = _19 + _21;
+  _23 = _22->DemEventId;
+  if (_23 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.59_24 = CanSM_ConfigPtr;
+  _25 = CanSM_ConfigPtr.59_24->NetRef;
+  _26 = (unsigned int) nw_53(D);
+  _27 = _26 * 20;
+  _28 = _25 + _27;
+  _29 = _28->DemEventId;
+  Dem_ReportErrorStatus (_29, 3);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_53(D), 1);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_62 = 0;
+  # DEBUG buf => buf_62
+  # DEBUG BEGIN_STMT
+  _30 = (int) nw_53(D);
+  CanSM_NetworkInfo[_30].BusOffEvent = buf_62;
+  # DEBUG BEGIN_STMT
+  _31 = (int) nw_53(D);
+  CanSM_NetworkInfo[_31].InternalState = 50;
+  # DEBUG BEGIN_STMT
+  if (BusOffLevel2Reached_54 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.60_32 = CanSM_ConfigPtr;
+  _33 = CanSM_ConfigPtr.60_32->NetRef;
+  _34 = (unsigned int) nw_53(D);
+  _35 = _34 * 20;
+  _36 = _33 + _35;
+  _37 = (int) nw_53(D);
+  _38 = _36->BorTimeL1;
+  CanSM_NetworkInfo[_37].BoTimer = _38;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.61_39 = CanSM_ConfigPtr;
+  _40 = CanSM_ConfigPtr.61_39->NetRef;
+  _41 = (unsigned int) nw_53(D);
+  _42 = _41 * 20;
+  _43 = _40 + _42;
+  _44 = (int) nw_53(D);
+  _45 = _43->BorTimeL2;
+  CanSM_NetworkInfo[_44].BoTimer = _45;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanSM_SetCtrlModes (nw_53(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.62_46 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.62_46 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_69(D) = 52;
+
+  <bb 11> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_SICO_FUCO (const CanSM_NetworkIndexType nw, const boolean invokedInMainFunction)
+{
+  uint8 buf;
+  unsigned char _1;
+  int _2;
+  int _3;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.51_4;
+  const struct CanSMNetworkType * _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct CanSMNetworkType * _8;
+  unsigned char _9;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.53_10;
+  const struct CanSMNetworkType * _11;
+  unsigned int _12;
+  unsigned int _13;
+  const struct CanSMNetworkType * _14;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.54_15;
+  const struct CanSMNetworkType * _16;
+  unsigned int _17;
+  unsigned int _18;
+  const struct CanSMNetworkType * _19;
+  short unsigned int _20;
+  int _21;
+  unsigned char _22;
+  uint16 iftmp.52_23;
+  uint16 iftmp.52_35;
+  uint16 iftmp.52_36;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanSM_GetNetworkHandleFromIndex (nw_26(D));
+  BswM_CanSM_CurrentState (_1, 2);
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_26(D), 3);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_31 = 3;
+  # DEBUG buf => buf_31
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_26(D);
+  CanSM_NetworkInfo[_2].NwState = buf_31;
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_26(D);
+  CanSM_NetworkInfo[_3].InternalState = 48;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.51_4 = CanSM_ConfigPtr;
+  _5 = CanSM_ConfigPtr.51_4->NetRef;
+  _6 = (unsigned int) nw_26(D);
+  _7 = _6 * 20;
+  _8 = _5 + _7;
+  _9 = _8->BorTxConfirmationPolling;
+  if (_9 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (invokedInMainFunction_34(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  CanSM_ConfigPtr.53_10 = CanSM_ConfigPtr;
+  _11 = CanSM_ConfigPtr.53_10->NetRef;
+  _12 = (unsigned int) nw_26(D);
+  _13 = _12 * 20;
+  _14 = _11 + _13;
+  iftmp.52_36 = _14->BorTimeTxEnsured;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  CanSM_ConfigPtr.54_15 = CanSM_ConfigPtr;
+  _16 = CanSM_ConfigPtr.54_15->NetRef;
+  _17 = (unsigned int) nw_26(D);
+  _18 = _17 * 20;
+  _19 = _16 + _18;
+  _20 = _19->BorTimeTxEnsured;
+  iftmp.52_35 = _20 + 1;
+
+  <bb 6> :
+  # iftmp.52_23 = PHI <iftmp.52_36(4), iftmp.52_35(5)>
+  _21 = (int) nw_26(D);
+  CanSM_NetworkInfo[_21].BoTimer = iftmp.52_23;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _22 = CanSM_GetNetworkHandleFromIndex (nw_26(D));
+  ComM_BusSM_ModeIndication (_22, &CanSM_CommFullCommunication);
+  return;
+
+}
+
+
+CanSM_Do_T_FUCO_SICO (const CanSM_NetworkIndexType nw)
+{
+  unsigned char _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanSM_GetNetworkHandleFromIndex (nw_6(D));
+  BswM_CanSM_CurrentState (_1, 1);
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_6(D), 1);
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_6(D);
+  CanSM_NetworkInfo[_2].NwState = 2;
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_6(D);
+  CanSM_NetworkInfo[_3].InternalState = 32;
+  # DEBUG BEGIN_STMT
+  _4 = CanSM_GetNetworkHandleFromIndex (nw_6(D));
+  ComM_BusSM_ModeIndication (_4, &CanSM_CommSilentCommunication);
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO_CC_STARTED (const CanSM_NetworkIndexType nw, const boolean invokedInMainFunction)
+{
+  uint8 buf;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.79_5;
+  const struct CanSMNetworkType * _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct CanSMNetworkType * _9;
+  unsigned char _10;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.81_11;
+  const struct CanSMNetworkType * _12;
+  unsigned int _13;
+  unsigned int _14;
+  const struct CanSMNetworkType * _15;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.82_16;
+  const struct CanSMNetworkType * _17;
+  unsigned int _18;
+  unsigned int _19;
+  const struct CanSMNetworkType * _20;
+  short unsigned int _21;
+  int _22;
+  unsigned char _23;
+  uint16 iftmp.80_24;
+  uint16 iftmp.80_37;
+  uint16 iftmp.80_38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_26(D);
+  CanSM_NetworkInfo[_1].BoCounter = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_SetPduModes (nw_26(D), 3);
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_GetNetworkHandleFromIndex (nw_26(D));
+  BswM_CanSM_CurrentState (_2, 2);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_33 = 3;
+  # DEBUG buf => buf_33
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_26(D);
+  CanSM_NetworkInfo[_3].NwState = buf_33;
+  # DEBUG BEGIN_STMT
+  _4 = (int) nw_26(D);
+  CanSM_NetworkInfo[_4].InternalState = 48;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.79_5 = CanSM_ConfigPtr;
+  _6 = CanSM_ConfigPtr.79_5->NetRef;
+  _7 = (unsigned int) nw_26(D);
+  _8 = _7 * 20;
+  _9 = _6 + _8;
+  _10 = _9->BorTxConfirmationPolling;
+  if (_10 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (invokedInMainFunction_36(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  CanSM_ConfigPtr.81_11 = CanSM_ConfigPtr;
+  _12 = CanSM_ConfigPtr.81_11->NetRef;
+  _13 = (unsigned int) nw_26(D);
+  _14 = _13 * 20;
+  _15 = _12 + _14;
+  iftmp.80_38 = _15->BorTimeTxEnsured;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  CanSM_ConfigPtr.82_16 = CanSM_ConfigPtr;
+  _17 = CanSM_ConfigPtr.82_16->NetRef;
+  _18 = (unsigned int) nw_26(D);
+  _19 = _18 * 20;
+  _20 = _17 + _19;
+  _21 = _20->BorTimeTxEnsured;
+  iftmp.80_37 = _21 + 1;
+
+  <bb 6> :
+  # iftmp.80_24 = PHI <iftmp.80_38(4), iftmp.80_37(5)>
+  _22 = (int) nw_26(D);
+  CanSM_NetworkInfo[_22].BoTimer = iftmp.80_24;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _23 = CanSM_GetNetworkHandleFromIndex (nw_26(D));
+  ComM_BusSM_ModeIndication (_23, &CanSM_CommFullCommunication);
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO_CC_STOPPED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  uint8 buf;
+  boolean allModeIndicationsReceived;
+  int _1;
+  unsigned char allModeIndicationsReceived.78_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  buf_6 = 0;
+  # DEBUG buf => buf_6
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_7(D);
+  CanSM_NetworkInfo[_1].BusOffEvent = buf_6;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_7(D), 1, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.78_2 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.78_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 84;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_7(D), 82);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO_TRCV_NORMAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.77_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.77_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.77_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 83;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 81);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO_TRCV_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.76_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvModeIndAndSetMode (nw_5(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.76_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.76_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 82;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 80);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.75_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.75_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.75_1->NetRef;
+  _3 = (unsigned int) nw_9(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  if (_6 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 81;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 82;
+
+  <bb 5> :
+  return;
+
+}
+
+
+CanSM_Do_T_PN_CC_SLEEP_TIMEOUT (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean checkIndicationReceived;
+  int _1;
+  unsigned char checkIndicationReceived.89_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  checkIndicationReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_6(D);
+  CanSM_NetworkInfo[_1].TrcvCheckWakeFlagIndication = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_CheckTrcvWakeFlag (nw_6(D), &checkIndicationReceived);
+  # DEBUG BEGIN_STMT
+  checkIndicationReceived.89_2 = checkIndicationReceived;
+  if (checkIndicationReceived.89_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 96;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_6(D), 102);
+
+  <bb 5> :
+  checkIndicationReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_CC_SLEEP_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean checkIndicationReceived;
+  int _1;
+  unsigned char checkIndicationReceived.88_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  checkIndicationReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_6(D);
+  CanSM_NetworkInfo[_1].TrcvCheckWakeFlagIndication = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_CheckTrcvWakeFlag (nw_6(D), &checkIndicationReceived);
+  # DEBUG BEGIN_STMT
+  checkIndicationReceived.88_2 = checkIndicationReceived;
+  if (checkIndicationReceived.88_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 70;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_6(D), 101);
+
+  <bb 5> :
+  checkIndicationReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_TRCV_STANDBY_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.87_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 3, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.87_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.87_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 101;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 100);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_TRCV_NORMAL_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.86_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvModeIndAndSetMode (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.86_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.86_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 100;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 99);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_CC_STOPPED_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.85_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvModeIndAndSetMode (nw_5(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.85_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.85_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 99;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 98);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_CLEAR_WUF_INDICATED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.84_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.84_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.84_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 98;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 97);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_PN_DEINIT (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean clearIndicationReceived;
+  int _1;
+  unsigned char clearIndicationReceived.83_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  clearIndicationReceived = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_6(D);
+  CanSM_NetworkInfo[_1].TrcvClearWUFIndication = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvWufFlag (nw_6(D), &clearIndicationReceived);
+  # DEBUG BEGIN_STMT
+  clearIndicationReceived.83_2 = clearIndicationReceived;
+  if (clearIndicationReceived.83_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_10(D) = 97;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_6(D), 96);
+
+  <bb 5> :
+  clearIndicationReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_FINAL (const CanSM_NetworkIndexType nw)
+{
+  uint8 buf;
+  boolean isInitialTransition;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  unsigned char _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  isInitialTransition_8 = 0;
+  # DEBUG isInitialTransition => isInitialTransition_8
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_9(D);
+  _2 = CanSM_NetworkInfo[_1].NwState;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  isInitialTransition_11 = 1;
+  # DEBUG isInitialTransition => isInitialTransition_11
+
+  <bb 4> :
+  # isInitialTransition_6 = PHI <isInitialTransition_8(2), isInitialTransition_11(3)>
+  # DEBUG isInitialTransition => isInitialTransition_6
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  buf_13 = 1;
+  # DEBUG buf => buf_13
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_9(D);
+  CanSM_NetworkInfo[_3].NwState = buf_13;
+  # DEBUG BEGIN_STMT
+  _4 = (int) nw_9(D);
+  CanSM_NetworkInfo[_4].InternalState = 16;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (isInitialTransition_6 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = CanSM_GetNetworkHandleFromIndex (nw_9(D));
+  ComM_BusSM_ModeIndication (_5, &CanSM_CommNoCommunication);
+
+  <bb 6> :
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_TRCV_NORMAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.74_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvModeIndAndSetMode (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.74_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.74_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 70;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 67);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_CC_SLEEP (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.72_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+  unsigned char allModeIndicationsReceived.73_7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.72_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.72_1->NetRef;
+  _3 = (unsigned int) nw_11(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  if (_6 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvModeIndAndSetMode (nw_11(D), 0, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.73_7 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.73_7 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 69;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_11(D), 66);
+
+  <bb 6> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_12(D) = 70;
+
+  <bb 8> :
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_CC_STOPPED (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.71_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 3, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.71_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.71_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 68;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 65);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_CC_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  boolean allModeIndicationsReceived;
+  unsigned char allModeIndicationsReceived.68_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_ClearCtrlModeIndAndSetModes (nw_5(D), 2, &allModeIndicationsReceived);
+  # DEBUG BEGIN_STMT
+  allModeIndicationsReceived.68_1 = allModeIndicationsReceived;
+  if (allModeIndicationsReceived.68_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_8(D) = 67;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_DefaultTrailingCriticalSection (nw_5(D), 64);
+
+  <bb 5> :
+  allModeIndicationsReceived ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_DEINIT_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.67_1;
+  const struct CanSMNetworkType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct CanSMNetworkType * _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 66;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.67_1 = CanSM_ConfigPtr;
+  _2 = CanSM_ConfigPtr.67_1->NetRef;
+  _3 = (unsigned int) nw_13(D);
+  _4 = _3 * 20;
+  _5 = _2 + _4;
+  _6 = _5->TrcvId;
+  if (_6 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) nw_13(D);
+  _8 = CanSM_NetworkConfig[_7].PartialNetworking;
+  if (_8 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_11(D) = 96;
+
+  <bb 5> :
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO_INITIAL (const CanSM_NetworkIndexType nw, CanSM_TransitionType * const nextTransition)
+{
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = CanSM_GetNetworkHandleFromIndex (nw_3(D));
+  BswM_CanSM_CurrentState (_1, 0);
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 65;
+  return;
+
+}
+
+
+CanSM_Do_T_TX_TIMEOUT (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) transition_3(D);
+  switch (_1) <default: <L5> [INV], case 128: <L0> [INV], case 129: <L1> [INV], case 130: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_TX_TIMEOUT_INITIAL (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_TX_TIMEOUT_CC_STOPPED_INDICATED (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_TX_TIMEOUT_CC_STARTED_INDICATED (nw_5(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L5>:
+  return;
+
+}
+
+
+CanSM_Do_T_PN (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) transition_3(D);
+  switch (_1) <default: <L9> [INV], case 96: <L0> [INV], case 97: <L1> [INV], case 98: <L2> [INV], case 99: <L3> [INV], case 100: <L4> [INV], case 101: <L5> [INV], case 102: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_DEINIT (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_CLEAR_WUF_INDICATED (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_CC_STOPPED_INDICATED (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_TRCV_NORMAL_INDICATED (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_TRCV_STANDBY_INDICATED (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_CC_SLEEP_INDICATED (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN_CC_SLEEP_TIMEOUT (nw_5(D), nextTransition_6(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+<L9>:
+  return;
+
+}
+
+
+CanSM_Do_T_RFUCO (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition, const boolean invokedInMainFunction)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) transition_3(D);
+  switch (_1) <default: <L7> [INV], case 80: <L0> [INV], case 81: <L1> [INV], case 82: <L2> [INV], case 83: <L3> [INV], case 84: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO_INITIAL (nw_5(D), nextTransition_8(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO_TRCV_INITIAL (nw_5(D), nextTransition_8(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO_TRCV_NORMAL (nw_5(D), nextTransition_8(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO_CC_STOPPED (nw_5(D), nextTransition_8(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO_CC_STARTED (nw_5(D), invokedInMainFunction_6(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+<L7>:
+  return;
+
+}
+
+
+CanSM_Do_T_RNOCO (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) transition_3(D);
+  switch (_1) <default: <L9> [INV], case 64: <L0> [INV], case 65: <L1> [INV], case 66: <L2> [INV], case 67: <L3> [INV], case 68: <L4> [INV], case 69: <L5> [INV], case 70: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_INITIAL (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_DEINIT_INITIAL (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_CC_INITIAL (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_CC_STOPPED (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_CC_SLEEP (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_TRCV_NORMAL (nw_5(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO_FINAL (nw_5(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+<L9>:
+  return;
+
+}
+
+
+CanSM_Do_T_FUCO (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) transition_3(D);
+  switch (_1) <default: <L7> [INV], case 48: <L0> [INV], case 51: <L1> [INV], case 52: <L2> [INV], case 53: <L3> [INV], case 54: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_FUCO_SICO (nw_5(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_FUCO_HANDLE_BUS_OFF (nw_5(D), nextTransition_9(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_FUCO_TX_OFF (nw_5(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_FUCO_TX_ON (nw_5(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_TRY_T_FUCO_BUS_OFF_PASSIVE (nw_5(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+<L7>:
+  return;
+
+}
+
+
+CanSM_DoTransitionSwitch (const CanSM_NetworkIndexType nw, const CanSM_TransitionType transition, CanSM_TransitionType * const nextTransition, const boolean invokedInMainFunction)
+{
+  const CanSM_TransitionType mainTransition;
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  mainTransition_4 = transition_3(D) & 240;
+  # DEBUG mainTransition => mainTransition_4
+  # DEBUG BEGIN_STMT
+  _1 = (int) mainTransition_4;
+  switch (_1) <default: <L8> [INV], case 16: <L0> [INV], case 48: <L1> [INV], case 64: <L2> [INV], case 80: <L3> [INV], case 96: <L4> [INV], case 128: <L5> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_SICO_FUCO (nw_6(D), invokedInMainFunction_10(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_FUCO (nw_6(D), transition_3(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RNOCO (nw_6(D), transition_3(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_RFUCO (nw_6(D), transition_3(D), nextTransition_7(D), invokedInMainFunction_10(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_PN (nw_6(D), transition_3(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  CanSM_Do_T_TX_TIMEOUT (nw_6(D), transition_3(D), nextTransition_7(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+<L8>:
+  return;
+
+}
+
+
+CanSM_VerifyRequestedComMode (const ComM_ModeType reqMode, const CanSM_InternalStateType internalState, CanSM_TransitionType * const nextTransition)
+{
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) reqMode_8(D);
+  switch (_1) <default: <L25> [INV], case 0: <L0> [INV], case 1: <L8> [INV], case 2: <L16> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = internalState_9(D) + 208;
+  if (_2 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (internalState_9(D) == 51)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 48;
+  goto <bb 17>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (internalState_9(D) == 32)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 64;
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _3 = internalState_9(D) + 208;
+  if (_3 <= 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (internalState_9(D) == 51)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 48;
+  goto <bb 17>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (internalState_9(D) == 16)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 80;
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  if (internalState_9(D) == 16)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 80;
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (internalState_9(D) == 32)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  *nextTransition_6(D) = 16;
+
+  <bb 17> :
+<L25>:
+  return;
+
+}
+
+
+CanSM_DoTransitionSequence (const CanSM_NetworkIndexType nw, const CanSM_TransitionType initialTransition, const boolean invokedInMainFunction)
+{
+  const CanSM_TransitionType transition;
+  CanSM_TransitionType nextTransition;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.47_1;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.48_2;
+  short unsigned int _3;
+  int _4;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.49_5;
+  int _6;
+  unsigned char _7;
+  unsigned char nextTransition.50_8;
+  uint16 iftmp.46_9;
+  uint16 iftmp.46_15;
+  uint16 iftmp.46_16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  nextTransition = initialTransition_12(D);
+  # DEBUG BEGIN_STMT
+  if (invokedInMainFunction_14(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  CanSM_ConfigPtr.47_1 = CanSM_ConfigPtr;
+  iftmp.46_16 = CanSM_ConfigPtr.47_1->ModeReqRepTime;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  CanSM_ConfigPtr.48_2 = CanSM_ConfigPtr;
+  _3 = CanSM_ConfigPtr.48_2->ModeReqRepTime;
+  iftmp.46_15 = _3 + 1;
+
+  <bb 5> :
+  # iftmp.46_9 = PHI <iftmp.46_16(3), iftmp.46_15(4)>
+  _4 = (int) nw_17(D);
+  CanSM_NetworkInfo[_4].ModeReqRepetitionTimer = iftmp.46_9;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.49_5 = CanSM_ConfigPtr;
+  _6 = (int) nw_17(D);
+  _7 = CanSM_ConfigPtr.49_5->ModeReqRepMax;
+  CanSM_NetworkInfo[_6].ModeReqRepetitionCounter = _7;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  transition_20 = nextTransition;
+  # DEBUG transition => transition_20
+  # DEBUG BEGIN_STMT
+  nextTransition = 0;
+  # DEBUG BEGIN_STMT
+  CanSM_DoTransitionSwitch (nw_17(D), transition_20, &nextTransition, invokedInMainFunction_14(D));
+  # DEBUG BEGIN_STMT
+  nextTransition.50_8 = nextTransition;
+  if (nextTransition.50_8 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  nextTransition ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_MainFunctionInternal (const CanSM_NetworkIndexType nw)
+{
+  boolean isWaitingForModeIndication;
+  uint8 busOff;
+  uint16 nwInfoTimer;
+  ComM_ModeType reqMode;
+  CanSM_InternalStateType internalState;
+  boolean TransitionOngoing;
+  boolean DoMainFunctionProcessing;
+  CanSM_TransitionType nextTransition;
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  uint16 * _6;
+  int _7;
+  unsigned char nextTransition.16_8;
+  int _9;
+  unsigned char _10;
+  unsigned char nextTransition.17_11;
+  int _12;
+  uint16 * _13;
+  int _14;
+  short unsigned int _15;
+  int _16;
+  unsigned char _17;
+  unsigned char _18;
+  int _19;
+  unsigned char nextTransition.18_20;
+  int _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+  const struct CanSM_ConfigType * CanSM_ConfigPtr.19_25;
+  int _26;
+  short unsigned int _27;
+  unsigned char nextTransition.20_28;
+  unsigned char nextTransition.21_29;
+  int _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  nextTransition = 0;
+  # DEBUG BEGIN_STMT
+  DoMainFunctionProcessing_38 = 0;
+  # DEBUG DoMainFunctionProcessing => DoMainFunctionProcessing_38
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_40(D);
+  TransitionOngoing_41 = CanSM_NetworkInfo[_1].TransitionOngoing;
+  # DEBUG TransitionOngoing => TransitionOngoing_41
+  # DEBUG BEGIN_STMT
+  if (TransitionOngoing_41 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_40(D);
+  CanSM_NetworkInfo[_2].TransitionOngoing = 1;
+  # DEBUG BEGIN_STMT
+  DoMainFunctionProcessing_43 = 1;
+  # DEBUG DoMainFunctionProcessing => DoMainFunctionProcessing_43
+
+  <bb 4> :
+  # DoMainFunctionProcessing_31 = PHI <DoMainFunctionProcessing_38(2), DoMainFunctionProcessing_43(3)>
+  # DEBUG DoMainFunctionProcessing => DoMainFunctionProcessing_31
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (DoMainFunctionProcessing_31 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_40(D);
+  internalState_45 = CanSM_NetworkInfo[_3].InternalState;
+  # DEBUG internalState => internalState_45
+  # DEBUG BEGIN_STMT
+  _4 = (int) nw_40(D);
+  reqMode_46 = CanSM_NetworkInfo[_4].reqComMode;
+  # DEBUG reqMode => reqMode_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = (int) nw_40(D);
+  _6 = &CanSM_NetworkInfo[_5].BoTimer;
+  CanSM_DecrementTimerInternal (_6);
+  # DEBUG BEGIN_STMT
+  _7 = (int) nw_40(D);
+  nwInfoTimer_48 = CanSM_NetworkInfo[_7].BoTimer;
+  # DEBUG nwInfoTimer => nwInfoTimer_48
+  # DEBUG BEGIN_STMT
+  CanSM_VerifyRequestedComMode (reqMode_46, internalState_45, &nextTransition);
+  # DEBUG BEGIN_STMT
+  nextTransition.16_8 = nextTransition;
+  if (nextTransition.16_8 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isWaitingForModeIndication_51 = CanSM_IsWaitingForModeIndication (internalState_45);
+  # DEBUG isWaitingForModeIndication => isWaitingForModeIndication_51
+  # DEBUG BEGIN_STMT
+  _9 = (int) nw_40(D);
+  busOff_52 = CanSM_NetworkInfo[_9].BusOffEvent;
+  # DEBUG busOff => busOff_52
+  # DEBUG BEGIN_STMT
+  if (busOff_52 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _10 = internalState_45 + 208;
+  if (_10 <= 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  nextTransition = 51;
+  goto <bb 24>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (internalState_45 == 51)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (nwInfoTimer_48 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  nextTransition = 53;
+  goto <bb 24>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (internalState_45 == 48)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (nwInfoTimer_48 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  nextTransition = 54;
+  goto <bb 24>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (isWaitingForModeIndication_51 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionCheckModeIndications (nw_40(D), internalState_45, &nextTransition);
+  # DEBUG BEGIN_STMT
+  nextTransition.17_11 = nextTransition;
+  if (nextTransition.17_11 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) nw_40(D);
+  _13 = &CanSM_NetworkInfo[_12].ModeReqRepetitionTimer;
+  CanSM_DecrementTimerInternal (_13);
+  # DEBUG BEGIN_STMT
+  _14 = (int) nw_40(D);
+  _15 = CanSM_NetworkInfo[_14].ModeReqRepetitionTimer;
+  if (_15 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) nw_40(D);
+  _17 = CanSM_NetworkInfo[_16].ModeReqRepetitionCounter;
+  if (_17 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _18 = CanSM_GetNetworkHandleFromIndex (nw_40(D));
+  Det_ASR40_ReportError (140, _18, 5, 10);
+  # DEBUG BEGIN_STMT
+  _19 = (int) internalState_45;
+  switch (_19) <default: <L22> [INV], case 50: <L19> [INV], case 128 ... 129: <L19> [INV]>
+
+  <bb 20> :
+<L19>:
+  # DEBUG BEGIN_STMT
+  nextTransition = 64;
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 21> :
+<L22>:
+  # DEBUG BEGIN_STMT
+  nextTransition = 65;
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionRepeatModeRequests (nw_40(D), internalState_45, &nextTransition);
+  # DEBUG BEGIN_STMT
+  nextTransition.18_20 = nextTransition;
+  if (nextTransition.18_20 == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _21 = (int) nw_40(D);
+  _22 = CanSM_NetworkInfo[_21].ModeReqRepetitionCounter;
+  _23 = _22;
+  _24 = _23 + 255;
+  CanSM_NetworkInfo[_21].ModeReqRepetitionCounter = _24;
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr.19_25 = CanSM_ConfigPtr;
+  _26 = (int) nw_40(D);
+  _27 = CanSM_ConfigPtr.19_25->ModeReqRepTime;
+  CanSM_NetworkInfo[_26].ModeReqRepetitionTimer = _27;
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  nextTransition.20_28 = nextTransition;
+  if (nextTransition.20_28 != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  nextTransition.21_29 = nextTransition;
+  CanSM_DoTransitionSequence (nw_40(D), nextTransition.21_29, 1);
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _30 = (int) nw_40(D);
+  CanSM_NetworkInfo[_30].TransitionOngoing = 0;
+
+  <bb 27> :
+  nextTransition ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_IsWaitingForModeIndication (const CanSM_InternalStateType state)
+{
+  boolean result;
+  int _1;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_3 = 0;
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _1 = (int) state_4(D);
+  switch (_1) <default: <L26> [INV], case 50: <L0> [INV], case 64 ... 67: <L0> [INV], case 80 ... 82: <L0> [INV], case 96 ... 102: <L0> [INV], case 128 ... 129: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+
+  <bb 4> :
+  # result_2 = PHI <result_5(3), result_3(2)>
+<L26>:
+  # DEBUG result => result_2
+  # DEBUG BEGIN_STMT
+  _6 = result_2;
+  return _6;
+
+}
+
+
+CanSM_RequestComModeInternal (const CanSM_NetworkIndexType nw, const ComM_ModeType ComM_Mode)
+{
+  CanSM_InternalStateType internalState;
+  boolean TransitionOngoing;
+  CanSM_TransitionType nextTransition;
+  int _1;
+  int _2;
+  unsigned char nextTransition.12_3;
+  int _4;
+  int _5;
+  unsigned char nextTransition.13_6;
+  unsigned char nextTransition.14_7;
+  int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  nextTransition = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_14(D);
+  TransitionOngoing_15 = CanSM_NetworkInfo[_1].TransitionOngoing;
+  # DEBUG TransitionOngoing => TransitionOngoing_15
+  # DEBUG BEGIN_STMT
+  if (TransitionOngoing_15 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_14(D);
+  internalState_16 = CanSM_NetworkInfo[_2].InternalState;
+  # DEBUG internalState => internalState_16
+  # DEBUG BEGIN_STMT
+  CanSM_VerifyRequestedComMode (ComM_Mode_17(D), internalState_16, &nextTransition);
+  # DEBUG BEGIN_STMT
+  nextTransition.12_3 = nextTransition;
+  if (nextTransition.12_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) nw_14(D);
+  CanSM_NetworkInfo[_4].TransitionOngoing = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) nw_14(D);
+  CanSM_NetworkInfo[_5].reqComMode = ComM_Mode_17(D);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  nextTransition.13_6 = nextTransition;
+  if (nextTransition.13_6 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  nextTransition.14_7 = nextTransition;
+  CanSM_DoTransitionSequence (nw_14(D), nextTransition.14_7, 0);
+  # DEBUG BEGIN_STMT
+  _8 = (int) nw_14(D);
+  CanSM_NetworkInfo[_8].TransitionOngoing = 0;
+
+  <bb 7> :
+  nextTransition ={v} {CLOBBER};
+  return;
+
+}
+
+
+CanSM_TxTimeoutException (NetworkHandleType Channel)
+{
+  boolean TransitionOngoing;
+  boolean DoTxTimeoutException;
+  CanSM_NetworkIndexType nw;
+  unsigned char CanSM_GlobalInit.15_1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.15_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.15_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 11, 1);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NetworkHandleIsValid (Channel_12(D));
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 11, 3);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  nw_15 = CanSM_GetNetworkIndexFromHandle (Channel_12(D));
+  # DEBUG nw => nw_15
+  # DEBUG BEGIN_STMT
+  DoTxTimeoutException_16 = 0;
+  # DEBUG DoTxTimeoutException => DoTxTimeoutException_16
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_15;
+  TransitionOngoing_18 = CanSM_NetworkInfo[_3].TransitionOngoing;
+  # DEBUG TransitionOngoing => TransitionOngoing_18
+  # DEBUG BEGIN_STMT
+  if (TransitionOngoing_18 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _4 = (int) nw_15;
+  _5 = CanSM_NetworkInfo[_4].InternalState;
+  if (_5 == 49)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) nw_15;
+  CanSM_NetworkInfo[_6].TransitionOngoing = 1;
+  # DEBUG BEGIN_STMT
+  DoTxTimeoutException_20 = 1;
+  # DEBUG DoTxTimeoutException => DoTxTimeoutException_20
+
+  <bb 9> :
+  # DoTxTimeoutException_8 = PHI <DoTxTimeoutException_16(6), DoTxTimeoutException_16(7), DoTxTimeoutException_20(8)>
+  # DEBUG DoTxTimeoutException => DoTxTimeoutException_8
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanSM_SCHM_CANSM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (DoTxTimeoutException_8 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  CanSM_DoTransitionSequence (nw_15, 128, 0);
+  # DEBUG BEGIN_STMT
+  _7 = (int) nw_15;
+  CanSM_NetworkInfo[_7].TransitionOngoing = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_RequestComMode (NetworkHandleType network, ComM_ModeType ComM_Mode)
+{
+  CanSM_NetworkIndexType nw;
+  Std_ReturnType retval;
+  unsigned char CanSM_GlobalInit.11_1;
+  unsigned char _2;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retval_5 = 1;
+  # DEBUG retval => retval_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.11_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.11_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 2, 1);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NetworkHandleIsValid (network_7(D));
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 2, 3);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ComM_Mode_9(D) > 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 2, 8);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  nw_11 = CanSM_GetNetworkIndexFromHandle (network_7(D));
+  # DEBUG nw => nw_11
+  # DEBUG BEGIN_STMT
+  CanSM_RequestComModeInternal (nw_11, ComM_Mode_9(D));
+  # DEBUG BEGIN_STMT
+  retval_13 = 0;
+  # DEBUG retval => retval_13
+
+  <bb 9> :
+  # retval_3 = PHI <retval_5(3), retval_5(5), retval_5(7), retval_13(8)>
+  # DEBUG retval => retval_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = retval_3;
+  return _17;
+
+}
+
+
+CanSM_MainFunction ()
+{
+  CanSM_NetworkIndexType nw;
+  unsigned char CanSM_GlobalInit.9_1;
+  unsigned char nw.10_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.9_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.9_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  nw_7 = 0;
+  # DEBUG nw => nw_7
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_MainFunctionInternal (nw_3);
+  # DEBUG BEGIN_STMT
+  nw.10_2 = nw_3;
+  nw_9 = nw.10_2 + 1;
+  # DEBUG nw => nw_9
+
+  <bb 5> :
+  # nw_3 = PHI <nw_7(3), nw_9(4)>
+  # DEBUG nw => nw_3
+  # DEBUG BEGIN_STMT
+  if (nw_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_Init (const struct CanSM_ConfigType * ConfigPtr)
+{
+  const struct CanSM_ConfigType * LocalConfigPtr;
+  CanSM_NetworkIndexType nw;
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  unsigned char nw.7_5;
+  unsigned char nw.8_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LocalConfigPtr_13 = ConfigPtr_12(D);
+  # DEBUG LocalConfigPtr => LocalConfigPtr_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (LocalConfigPtr_13 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 0, 2);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfigPtr = LocalConfigPtr_13;
+  # DEBUG BEGIN_STMT
+  nw_16 = 0;
+  # DEBUG nw => nw_16
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) nw_7;
+  CanSM_NetworkInfo[_1].NwState = 0;
+  # DEBUG BEGIN_STMT
+  _2 = (int) nw_7;
+  CanSM_NetworkInfo[_2].InternalState = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_7;
+  CanSM_NetworkInfo[_3].reqComMode = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) nw_7;
+  CanSM_NetworkInfo[_4].TransitionOngoing = 0;
+  # DEBUG BEGIN_STMT
+  nw.7_5 = nw_7;
+  nw_25 = nw.7_5 + 1;
+  # DEBUG nw => nw_25
+
+  <bb 6> :
+  # nw_7 = PHI <nw_16(4), nw_25(5)>
+  # DEBUG nw => nw_7
+  # DEBUG BEGIN_STMT
+  if (nw_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit = 1;
+  # DEBUG BEGIN_STMT
+  nw_18 = 0;
+  # DEBUG nw => nw_18
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanSM_DoTransitionSequence (nw_8, 64, 0);
+  # DEBUG BEGIN_STMT
+  nw.8_6 = nw_8;
+  nw_20 = nw.8_6 + 1;
+  # DEBUG nw => nw_20
+
+  <bb 9> :
+  # nw_8 = PHI <nw_18(7), nw_20(8)>
+  # DEBUG nw => nw_8
+  # DEBUG BEGIN_STMT
+  if (nw_8 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_GetCurrentComMode (NetworkHandleType network, ComM_ModeType * ComM_ModePtr)
+{
+  uint8 networkModeState;
+  Std_ReturnType retval;
+  unsigned char CanSM_GlobalInit.6_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  int _5;
+  Std_ReturnType _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.6_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.6_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 3, 1);
+  # DEBUG BEGIN_STMT
+  retval_27 = 1;
+  # DEBUG retval => retval_27
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ComM_ModePtr_9(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 3, 2);
+  # DEBUG BEGIN_STMT
+  retval_25 = 1;
+  # DEBUG retval => retval_25
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NetworkHandleIsValid (network_10(D));
+  if (_2 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_GetNetworkIndexFromHandle (network_10(D));
+  _4 = (int) _3;
+  networkModeState_15 = CanSM_NetworkInfo[_4].NwState;
+  # DEBUG networkModeState => networkModeState_15
+  # DEBUG BEGIN_STMT
+  _5 = (int) networkModeState_15;
+  switch (_5) <default: <L9> [INV], case 0: <L5> [INV], case 1: <L6> [INV], case 2: <L7> [INV], case 3: <L8> [INV]>
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  retval_22 = 1;
+  # DEBUG retval => retval_22
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  *ComM_ModePtr_9(D) = 0;
+  # DEBUG BEGIN_STMT
+  retval_21 = 0;
+  # DEBUG retval => retval_21
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  *ComM_ModePtr_9(D) = 1;
+  # DEBUG BEGIN_STMT
+  retval_19 = 0;
+  # DEBUG retval => retval_19
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  *ComM_ModePtr_9(D) = 2;
+  # DEBUG BEGIN_STMT
+  retval_17 = 0;
+  # DEBUG retval => retval_17
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retval_23 = 1;
+  # DEBUG retval => retval_23
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 3, 3);
+  # DEBUG BEGIN_STMT
+  retval_13 = 1;
+  # DEBUG retval => retval_13
+
+  <bb 14> :
+  # retval_6 = PHI <retval_27(3), retval_25(5), retval_21(9), retval_13(13), retval_22(8), retval_23(12), retval_17(11), retval_19(10)>
+  # DEBUG retval => retval_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = retval_6;
+  return _28;
+
+}
+
+
+CanSM_ConfirmPnAvailability (uint8 TransceiverId)
+{
+  NetworkHandleType NwHandle;
+  unsigned char CanSM_GlobalInit.5_1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.5_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.5_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 6, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromTrcvId (TransceiverId_6(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 6, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_NwIdxFromTrcvId (TransceiverId_6(D));
+  NwHandle_10 = CanSM_GetNetworkHandleFromIndex (_3);
+  # DEBUG NwHandle => NwHandle_10
+  # DEBUG BEGIN_STMT
+  CanNm_ConfirmPnAvailability (NwHandle_10);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_CheckTransceiverWakeFlagIndication (uint8 Transceiver)
+{
+  uint8 nw;
+  unsigned char CanSM_GlobalInit.4_1;
+  unsigned char _2;
+  int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.4_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.4_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 10, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromTrcvId (Transceiver_6(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 10, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  nw_9 = CanSM_NwIdxFromTrcvId (Transceiver_6(D));
+  # DEBUG nw => nw_9
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_9;
+  CanSM_NetworkInfo[_3].TrcvCheckWakeFlagIndication = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_ClearTrcvWufFlagIndication (uint8 Transceiver)
+{
+  uint8 nw;
+  unsigned char CanSM_GlobalInit.3_1;
+  unsigned char _2;
+  int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.3_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.3_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 8, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromTrcvId (Transceiver_6(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 8, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  nw_9 = CanSM_NwIdxFromTrcvId (Transceiver_6(D));
+  # DEBUG nw => nw_9
+  # DEBUG BEGIN_STMT
+  _3 = (int) nw_9;
+  CanSM_NetworkInfo[_3].TrcvClearWUFIndication = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_TransceiverModeIndication (uint8 TransceiverId, CanTrcv_TrcvModeType TransceiverMode)
+{
+  uint8 buf;
+  unsigned char CanSM_GlobalInit.2_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.2_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.2_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 9, 1);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromTrcvId (TransceiverId_8(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 9, 5);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (TransceiverMode_10(D)) <default: <L6> [INV], case 0: <L4> [INV], case 2: <L5> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  buf_12 = 0;
+  # DEBUG buf => buf_12
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  buf_11 = 2;
+  # DEBUG buf => buf_11
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  buf_13 = 1;
+  # DEBUG buf => buf_13
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # buf_5 = PHI <buf_12(7), buf_11(8), buf_13(9)>
+  # DEBUG buf => buf_5
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_NwIdxFromTrcvId (TransceiverId_8(D));
+  _4 = (int) _3;
+  CanSM_NetworkInfo[_4].TrcvModeIndication = buf_5;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_ControllerModeIndication (uint8 ControllerId, CanIf_ControllerModeType ControllerMode)
+{
+  uint8 buf;
+  unsigned char CanSM_GlobalInit.1_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.1_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.1_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 7, 1);
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromCtrlId (ControllerId_8(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 7, 4);
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (ControllerMode_10(D)) <default: <L7> [INV], case 1: <L6> [INV], case 2: <L4> [INV], case 3: <L5> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  buf_12 = 3;
+  # DEBUG buf => buf_12
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  buf_11 = 1;
+  # DEBUG buf => buf_11
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  buf_13 = 2;
+  # DEBUG buf => buf_13
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  buf_14 = 0;
+  # DEBUG buf => buf_14
+  # DEBUG BEGIN_STMT
+
+  <bb 11> :
+  # buf_5 = PHI <buf_12(7), buf_11(8), buf_13(9), buf_14(10)>
+  # DEBUG buf => buf_5
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_CtrlIdxFromCtrlId (ControllerId_8(D));
+  _4 = (int) _3;
+  CanSM_CtrlModeIndication[_4] = buf_5;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanSM_ControllerBusOff (uint8 ControllerId)
+{
+  const uint8 sigCtrlIndication;
+  const uint8 sigBusOff;
+  unsigned char CanSM_GlobalInit.0_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanSM_GlobalInit.0_1 = CanSM_GlobalInit;
+  if (CanSM_GlobalInit.0_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 4, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_NwIdxFromCtrlId (ControllerId_9(D));
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (140, 0, 4, 4);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  sigBusOff_11 = 1;
+  # DEBUG sigBusOff => sigBusOff_11
+  # DEBUG BEGIN_STMT
+  sigCtrlIndication_12 = 3;
+  # DEBUG sigCtrlIndication => sigCtrlIndication_12
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_NwIdxFromCtrlId (ControllerId_9(D));
+  _4 = (int) _3;
+  CanSM_NetworkInfo[_4].BusOffEvent = 1;
+  # DEBUG BEGIN_STMT
+  _5 = CanSM_CtrlIdxFromCtrlId (ControllerId_9(D));
+  _6 = (int) _5;
+  CanSM_CtrlModeIndication[_6] = 3;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

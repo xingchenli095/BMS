@@ -1,0 +1,234 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalSetAlarm
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueAlarm/4 (OS_EnqueueAlarm) @06ce1000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c2e000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 OS_LocalSetAlarm/0 OS_LocalSetAlarm/0 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06c06e58
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06c2eee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 
+  Calls: 
+OS_LocalSetAlarm/0 (OS_LocalSetAlarm) @06c2ec40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_CORTEXM_IntSetDisablingLevel/3 OS_EnqueueAlarm/4 OS_CORTEXM_IntSetDisablingLevel/3 OS_AppIsAccessible/1 
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_LocalSetAlarm (os_alarmid_t a, const struct os_alarm_t * as, const struct os_counter_t * cs, os_tick_t val, os_tick_t per, os_boolean_t rel)
+{
+  struct os_counterdynamic_t * cd;
+  struct os_alarmdynamic_t * ad;
+  os_errorresult_t result;
+  os_intstatus_t is;
+  os_errorresult_t D.7448;
+  os_tick_t iftmp.1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ad = as->dynamic;
+  # DEBUG BEGIN_STMT
+  cd = cs->dynamic;
+  # DEBUG BEGIN_STMT
+  _1 = as->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 23>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = cs->hwt;
+  if (_3 != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = cd->lock;
+  if (_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = cs->updFunc;
+  _5 (cs);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_6 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_6);
+  # DEBUG BEGIN_STMT
+  result = ad->inUse;
+  # DEBUG BEGIN_STMT
+  if (result == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ad->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad->period = per;
+  # DEBUG BEGIN_STMT
+  if (rel != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ad->delta = val;
+  goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _7 = cd->current;
+  if (val < _7)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  _8 = cd->current;
+  _9 = val - _8;
+  _10 = cs->maxallowedvalue;
+  _11 = _9 + _10;
+  iftmp.1 = _11 + 1;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  _12 = cd->current;
+  iftmp.1 = val - _12;
+
+  <bb 13> :
+  ad->delta = iftmp.1;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_EnqueueAlarm (cs, cd, a, ad);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  goto <bb 19>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  if (result == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  result = 20;
+  goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (result == 2)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  result = 4;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = cs->hwt;
+  if (_13 != 0B)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _14 = cd->lock;
+  if (_14 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 21> :
+  _15 = cd->head;
+  if (a == _15)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _16 = cs->updFunc;
+  _16 (cs);
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  D.7448 = result;
+  return D.7448;
+
+}
+
+

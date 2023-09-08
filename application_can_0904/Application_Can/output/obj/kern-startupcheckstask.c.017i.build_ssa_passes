@@ -1,0 +1,268 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksTask ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_task_t * const ts;
+  os_result_t tempres;
+  os_unsigned_t n;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  os_result_t D.7450;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  n = 0;
+  goto <bb 23>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_1 = OS_taskTableBase;
+  _2 = n * 76;
+  ts = OS_taskTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  app = ts->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (51);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms = ts->permissions;
+  # DEBUG BEGIN_STMT
+  _3 = ts->taskId;
+  _4 = (unsigned int) _3;
+  if (n != _4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (24);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (app != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _5 = app->permissionBit;
+  _6 = perms & _5;
+  if (_6 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (50);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _7 = ts->queuePrio;
+  _8 = ts->runPrio;
+  if (_7 > _8)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (25);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _9 = ts->flags;
+  _10 = (unsigned int) _9;
+  _11 = _10 & 2;
+  if (_11 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.1_12 = OS_configMode;
+  _13 = OS_configMode.1_12 & 2;
+  if (_13 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (27);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _14 = ts->maxAct;
+  if (_14 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (28);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.2_15 = OS_configMode;
+  _16 = OS_configMode.2_15 & 1;
+  if (_16 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  _17 = ts->maxAct;
+  if (_17 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (29);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  tempres = OS_CheckTaskAccountingConfig (ts);
+  # DEBUG BEGIN_STMT
+  if (tempres != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  result = tempres;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  n = n + 1;
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.3_18 = OS_nTasks;
+  _19 = (unsigned int) OS_nTasks.3_18;
+  if (n < _19)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  D.7450 = result;
+  return D.7450;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CheckTaskAccountingConfig (const struct os_task_t * ts)
+{
+  os_result_t result;
+  os_result_t D.7465;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  _1 = ts->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 64;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = ts->accounting;
+  if (_4 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (30);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = ts->execBudget;
+  if (_5 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _6 = ts->osLockTime;
+  if (_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _7 = ts->allLockTime;
+  if (_7 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _8 = ts->resourceLockTime;
+  if (_8 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _9 = ts->accounting;
+  if (_9 == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (31);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _10 = ts->osLockTime;
+  _11 = ts->allLockTime;
+  if (_10 < _11)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (32);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  D.7465 = result;
+  return D.7465;
+
+}
+
+

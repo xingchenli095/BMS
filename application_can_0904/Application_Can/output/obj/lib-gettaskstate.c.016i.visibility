@@ -1,0 +1,84 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_GetTaskState
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_UserGetTaskState/2 (OS_UserGetTaskState) @06c280e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetTaskState/1 
+  Calls: 
+OS_GetTaskState/1 (OS_GetTaskState) @06b60ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_taskStateToOsek/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_UserGetTaskState/2 
+OS_taskStateToOsek/0 (OS_taskStateToOsek) @06b595a0
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: OS_GetTaskState/1 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+__attribute__((target ("general-regs-only")))
+OS_GetTaskState (os_taskid_t t, os_taskstate_t * sr)
+{
+  os_result_t r;
+  StatusType D.5807;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r = OS_UserGetTaskState (t, sr);
+  # DEBUG BEGIN_STMT
+  if (r == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = *sr;
+  if (_1 > 6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  r = 31;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = *sr;
+  _3 = (int) _2;
+  _4 = OS_taskStateToOsek[_3];
+  *sr = _4;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.5807 = r;
+  return D.5807;
+
+}
+
+

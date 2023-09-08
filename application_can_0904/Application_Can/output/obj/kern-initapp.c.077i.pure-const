@@ -1,0 +1,128 @@
+
+
+ local analysis of OS_InitApp
+   scanning: OS_appTableBase.0_1 = OS_appTableBase;
+  scanning: _2 = (unsigned int) a_5;
+  scanning: _3 = _2 * 64;
+  scanning: ap_8 = OS_appTableBase.0_1 + _3;
+  scanning: ad_9 = ap_8->dynamic;
+    Indirect ref read is not const
+  scanning: ad_9->appstate = 2;
+    Indirect ref write is not const/pure
+  scanning: a_11 = a_5 + 1;
+  scanning: OS_nApps.2_4 = OS_nApps;
+  scanning: if (OS_nApps.2_4 > a_5)
+  scanning: return;
+callgraph:
+
+OS_InitApp/0 (OS_InitApp) @06ca8a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896fd0
+  References: OS_appTableBase/1 (read)OS_nApps/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced for nothrow
+OS_InitApp/0 (OS_InitApp) @06ca8a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896fd0
+  References: OS_appTableBase/1 (read)OS_nApps/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+
+MALLOC LATTICE Initial:
+OS_InitApp: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_InitApp: malloc_bottom
+callgraph:
+
+OS_InitApp/0 (OS_InitApp) @06ca8a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896e70
+  References: OS_appTableBase/1 (read)OS_nApps/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced
+OS_InitApp/0 (OS_InitApp) @06ca8a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896e70
+  References: OS_appTableBase/1 (read)OS_nApps/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+Function found not to call free: OS_InitApp
+__attribute__((target ("general-regs-only")))
+OS_InitApp ()
+{
+  struct os_appdynamic_t * ad;
+  const struct os_appcontext_t * ap;
+  os_applicationid_t a;
+  const struct os_appcontext_t * OS_appTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char OS_nApps.2_4;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG a => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = (unsigned int) a_5;
+  _3 = _2 * 64;
+  ap_8 = OS_appTableBase.0_1 + _3;
+  # DEBUG ap => ap_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ad_9 = ap_8->dynamic;
+  # DEBUG ad => ad_9
+  # DEBUG BEGIN_STMT
+  ad_9->appstate = 2;
+  # DEBUG BEGIN_STMT
+  a_11 = a_5 + 1;
+  # DEBUG a => a_11
+
+  <bb 4> [local count: 1073741824]:
+  # a_5 = PHI <0(2), a_11(3)>
+  # DEBUG a => a_5
+  # DEBUG BEGIN_STMT
+  OS_nApps.2_4 = OS_nApps;
+  if (OS_nApps.2_4 > a_5)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+

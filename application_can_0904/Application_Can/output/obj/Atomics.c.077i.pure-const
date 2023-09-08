@@ -1,0 +1,1284 @@
+
+
+ local analysis of Atomics_ClearFlag
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: flags_6 ={v} *object_5(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ~flagSelectionMask_7(D);
+  scanning: _2 = _1 & flags_6;
+  scanning: *object_5(D) ={v} _2;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return;
+
+
+ local analysis of Atomics_TestAndSetFlag
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_7 ={v} *object_6(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_7 | flagSelectionMask_8(D);
+  scanning: *object_6(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: _2 = ret_7 & flagSelectionMask_8(D);
+  scanning: _3 = _2 != 0;
+  scanning: _11 = (boolean) _3;
+  scanning: return _11;
+
+
+ local analysis of Atomics_FetchXor
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_5 ={v} *object_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_5 ^ operand_6(D);
+  scanning: *object_4(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_5;
+
+
+ local analysis of Atomics_FetchAnd
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_5 ={v} *object_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_5 & operand_6(D);
+  scanning: *object_4(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_5;
+
+
+ local analysis of Atomics_FetchOr
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_5 ={v} *object_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_5 | operand_6(D);
+  scanning: *object_4(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_5;
+
+
+ local analysis of Atomics_FetchSub
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_5 ={v} *object_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_5 - operand_6(D);
+  scanning: *object_4(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_5;
+
+
+ local analysis of Atomics_FetchAdd
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_5 ={v} *object_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = ret_5 + operand_6(D);
+  scanning: *object_4(D) ={v} _1;
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_5;
+
+
+ local analysis of Atomics_CompareExchange
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: tmp_7 ={v} *object_6(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: _1 = *expected_8(D);
+    Indirect ref read is not const
+  scanning: if (_1 == tmp_7)
+  scanning: *object_6(D) ={v} newValue_10(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: *expected_8(D) = tmp_7;
+    Indirect ref write is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_2;
+
+
+ local analysis of Atomics_Exchange
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_4 ={v} *object_3(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: *object_3(D) ={v} newValue_5(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_4;
+
+
+ local analysis of Atomics_Load
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: ret_4 ={v} *object_3(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return ret_4;
+
+
+ local analysis of Atomics_Store
+   scanning: OS_UserSuspendInterrupts (1);
+  scanning: *object_3(D) ={v} newValue_4(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: OS_UserResumeInterrupts (1);
+  scanning: return;
+
+
+ local analysis of Atomics_Init
+   scanning: *object_2(D) ={v} initValue_3(D);
+    Volatile stmt is not const/pure
+    Volatile indirect ref is not const/pure
+  scanning: return;
+
+
+ local analysis of Atomics_ThreadFence
+   scanning: return;
+Function is locally const.
+callgraph:
+
+OS_UserResumeInterrupts/14 (OS_UserResumeInterrupts) @06d74c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Atomics_ClearFlag/12 (1073741824 (estimated locally),1.00 per call) Atomics_TestAndSetFlag/11 (1073741824 (estimated locally),1.00 per call) Atomics_FetchXor/10 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAnd/9 (1073741824 (estimated locally),1.00 per call) Atomics_FetchOr/8 (1073741824 (estimated locally),1.00 per call) Atomics_FetchSub/7 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAdd/6 (1073741824 (estimated locally),1.00 per call) Atomics_CompareExchange/5 (1073741824 (estimated locally),1.00 per call) Atomics_Exchange/4 (1073741824 (estimated locally),1.00 per call) Atomics_Load/3 (1073741824 (estimated locally),1.00 per call) Atomics_Store/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_UserSuspendInterrupts/13 (OS_UserSuspendInterrupts) @06d74b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Atomics_ClearFlag/12 (1073741824 (estimated locally),1.00 per call) Atomics_TestAndSetFlag/11 (1073741824 (estimated locally),1.00 per call) Atomics_FetchXor/10 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAnd/9 (1073741824 (estimated locally),1.00 per call) Atomics_FetchOr/8 (1073741824 (estimated locally),1.00 per call) Atomics_FetchSub/7 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAdd/6 (1073741824 (estimated locally),1.00 per call) Atomics_CompareExchange/5 (1073741824 (estimated locally),1.00 per call) Atomics_Exchange/4 (1073741824 (estimated locally),1.00 per call) Atomics_Load/3 (1073741824 (estimated locally),1.00 per call) Atomics_Store/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Atomics_ClearFlag/12 (Atomics_ClearFlag) @06d747e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8530
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_TestAndSetFlag/11 (Atomics_TestAndSetFlag) @06d74380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8710
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchXor/10 (Atomics_FetchXor) @06d71ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8550
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAnd/9 (Atomics_FetchAnd) @06d71a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8730
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchOr/8 (Atomics_FetchOr) @06d71620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchSub/7 (Atomics_FetchSub) @06d711c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAdd/6 (Atomics_FetchAdd) @06d3cd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8610
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_CompareExchange/5 (Atomics_CompareExchange) @06d3c8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8790
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Exchange/4 (Atomics_Exchange) @06d3c460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Load/3 (Atomics_Load) @06d3c000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae87f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Store/2 (Atomics_Store) @06d34c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8810
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Init/1 (Atomics_Init) @06d347e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8830
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Atomics_ThreadFence/0 (Atomics_ThreadFence) @06d34540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8590
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced for nothrow
+Atomics_ClearFlag/12 (Atomics_ClearFlag) @06d747e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8530
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_TestAndSetFlag/11 (Atomics_TestAndSetFlag) @06d74380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8710
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchXor/10 (Atomics_FetchXor) @06d71ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8550
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAnd/9 (Atomics_FetchAnd) @06d71a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8730
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchOr/8 (Atomics_FetchOr) @06d71620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchSub/7 (Atomics_FetchSub) @06d711c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAdd/6 (Atomics_FetchAdd) @06d3cd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8610
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_CompareExchange/5 (Atomics_CompareExchange) @06d3c8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8790
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Exchange/4 (Atomics_Exchange) @06d3c460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Load/3 (Atomics_Load) @06d3c000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae87f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Store/2 (Atomics_Store) @06d34c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8810
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Init/1 (Atomics_Init) @06d347e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8830
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Atomics_ThreadFence/0 (Atomics_ThreadFence) @06d34540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8590
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+
+MALLOC LATTICE Initial:
+Atomics_ClearFlag: malloc_bottom
+Atomics_TestAndSetFlag: malloc_bottom
+Atomics_FetchXor: malloc_bottom
+Atomics_FetchAnd: malloc_bottom
+Atomics_FetchOr: malloc_bottom
+Atomics_FetchSub: malloc_bottom
+Atomics_FetchAdd: malloc_bottom
+Atomics_CompareExchange: malloc_bottom
+Atomics_Exchange: malloc_bottom
+Atomics_Load: malloc_bottom
+Atomics_Store: malloc_bottom
+Atomics_Init: malloc_bottom
+Atomics_ThreadFence: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+Atomics_ClearFlag: malloc_bottom
+Atomics_TestAndSetFlag: malloc_bottom
+Atomics_FetchXor: malloc_bottom
+Atomics_FetchAnd: malloc_bottom
+Atomics_FetchOr: malloc_bottom
+Atomics_FetchSub: malloc_bottom
+Atomics_FetchAdd: malloc_bottom
+Atomics_CompareExchange: malloc_bottom
+Atomics_Exchange: malloc_bottom
+Atomics_Load: malloc_bottom
+Atomics_Store: malloc_bottom
+Atomics_Init: malloc_bottom
+Atomics_ThreadFence: malloc_bottom
+callgraph:
+
+OS_UserResumeInterrupts/14 (OS_UserResumeInterrupts) @06d74c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Atomics_ClearFlag/12 (1073741824 (estimated locally),1.00 per call) Atomics_TestAndSetFlag/11 (1073741824 (estimated locally),1.00 per call) Atomics_FetchXor/10 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAnd/9 (1073741824 (estimated locally),1.00 per call) Atomics_FetchOr/8 (1073741824 (estimated locally),1.00 per call) Atomics_FetchSub/7 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAdd/6 (1073741824 (estimated locally),1.00 per call) Atomics_CompareExchange/5 (1073741824 (estimated locally),1.00 per call) Atomics_Exchange/4 (1073741824 (estimated locally),1.00 per call) Atomics_Load/3 (1073741824 (estimated locally),1.00 per call) Atomics_Store/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_UserSuspendInterrupts/13 (OS_UserSuspendInterrupts) @06d74b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Atomics_ClearFlag/12 (1073741824 (estimated locally),1.00 per call) Atomics_TestAndSetFlag/11 (1073741824 (estimated locally),1.00 per call) Atomics_FetchXor/10 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAnd/9 (1073741824 (estimated locally),1.00 per call) Atomics_FetchOr/8 (1073741824 (estimated locally),1.00 per call) Atomics_FetchSub/7 (1073741824 (estimated locally),1.00 per call) Atomics_FetchAdd/6 (1073741824 (estimated locally),1.00 per call) Atomics_CompareExchange/5 (1073741824 (estimated locally),1.00 per call) Atomics_Exchange/4 (1073741824 (estimated locally),1.00 per call) Atomics_Load/3 (1073741824 (estimated locally),1.00 per call) Atomics_Store/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Atomics_ClearFlag/12 (Atomics_ClearFlag) @06d747e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8690
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_TestAndSetFlag/11 (Atomics_TestAndSetFlag) @06d74380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae87d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchXor/10 (Atomics_FetchXor) @06d71ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAnd/9 (Atomics_FetchAnd) @06d71a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8650
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchOr/8 (Atomics_FetchOr) @06d71620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8630
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchSub/7 (Atomics_FetchSub) @06d711c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae84f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAdd/6 (Atomics_FetchAdd) @06d3cd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8670
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_CompareExchange/5 (Atomics_CompareExchange) @06d3c8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Exchange/4 (Atomics_Exchange) @06d3c460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Load/3 (Atomics_Load) @06d3c000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8510
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Store/2 (Atomics_Store) @06d34c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Init/1 (Atomics_Init) @06d347e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Atomics_ThreadFence/0 (Atomics_ThreadFence) @06d34540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8710
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced
+Atomics_ClearFlag/12 (Atomics_ClearFlag) @06d747e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8690
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_TestAndSetFlag/11 (Atomics_TestAndSetFlag) @06d74380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae87d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchXor/10 (Atomics_FetchXor) @06d71ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAnd/9 (Atomics_FetchAnd) @06d71a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8650
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchOr/8 (Atomics_FetchOr) @06d71620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8630
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchSub/7 (Atomics_FetchSub) @06d711c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae84f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_FetchAdd/6 (Atomics_FetchAdd) @06d3cd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8670
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_CompareExchange/5 (Atomics_CompareExchange) @06d3c8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Exchange/4 (Atomics_Exchange) @06d3c460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Load/3 (Atomics_Load) @06d3c000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8510
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Store/2 (Atomics_Store) @06d34c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae86f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserResumeInterrupts/14 (1073741824 (estimated locally),1.00 per call) OS_UserSuspendInterrupts/13 (1073741824 (estimated locally),1.00 per call) 
+Atomics_Init/1 (Atomics_Init) @06d347e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae85b0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Atomics_ThreadFence/0 (Atomics_ThreadFence) @06d34540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06ae8710
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+Function found not to call free: Atomics_ThreadFence
+Function found not to call free: Atomics_Init
+Atomics_ClearFlag (volatile Atomic_t * object, Atomic_value_t flagSelectionMask)
+{
+  const Atomic_value_t flags;
+  long unsigned int _1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  flags_6 ={v} *object_5(D);
+  # DEBUG flags => flags_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ~flagSelectionMask_7(D);
+  _2 = _1 & flags_6;
+  *object_5(D) ={v} _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#11 => {CLOBBER}
+  # DEBUG success => D#11
+  return;
+
+}
+
+
+Atomics_TestAndSetFlag (volatile Atomic_t * object, Atomic_value_t flagSelectionMask)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+  long unsigned int _2;
+  _Bool _3;
+  boolean _11;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_7 ={v} *object_6(D);
+  # DEBUG ret => ret_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_7 | flagSelectionMask_8(D);
+  *object_6(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = ret_7 & flagSelectionMask_8(D);
+  _3 = _2 != 0;
+  _11 = (boolean) _3;
+  # DEBUG D#10 => {CLOBBER}
+  # DEBUG success => D#10
+  return _11;
+
+}
+
+
+Atomics_FetchXor (volatile Atomic_t * object, Atomic_value_t operand)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 ={v} *object_4(D);
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_5 ^ operand_6(D);
+  *object_4(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => {CLOBBER}
+  # DEBUG success => D#9
+  return ret_5;
+
+}
+
+
+Atomics_FetchAnd (volatile Atomic_t * object, Atomic_value_t operand)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 ={v} *object_4(D);
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_5 & operand_6(D);
+  *object_4(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#8 => {CLOBBER}
+  # DEBUG success => D#8
+  return ret_5;
+
+}
+
+
+Atomics_FetchOr (volatile Atomic_t * object, Atomic_value_t operand)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 ={v} *object_4(D);
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_5 | operand_6(D);
+  *object_4(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#7 => {CLOBBER}
+  # DEBUG success => D#7
+  return ret_5;
+
+}
+
+
+Atomics_FetchSub (volatile Atomic_t * object, Atomic_value_t operand)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 ={v} *object_4(D);
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_5 - operand_6(D);
+  *object_4(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#6 => {CLOBBER}
+  # DEBUG success => D#6
+  return ret_5;
+
+}
+
+
+Atomics_FetchAdd (volatile Atomic_t * object, Atomic_value_t operand)
+{
+  Atomic_value_t ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 ={v} *object_4(D);
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ret_5 + operand_6(D);
+  *object_4(D) ={v} _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#5 => {CLOBBER}
+  # DEBUG success => D#5
+  return ret_5;
+
+}
+
+
+Atomics_CompareExchange (volatile Atomic_t * object, Atomic_t * expected, Atomic_value_t newValue)
+{
+  const Atomic_value_t tmp;
+  boolean ret;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  tmp_7 ={v} *object_6(D);
+  # DEBUG tmp => tmp_7
+  # DEBUG BEGIN_STMT
+  _1 = *expected_8(D);
+  if (_1 == tmp_7)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *object_6(D) ={v} newValue_10(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  *expected_8(D) = tmp_7;
+
+  <bb 5> [local count: 1073741824]:
+  # ret_2 = PHI <1(3), 0(4)>
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#4 => {CLOBBER}
+  # DEBUG success => D#4
+  return ret_2;
+
+}
+
+
+Atomics_Exchange (volatile Atomic_t * object, Atomic_value_t newValue)
+{
+  Atomic_value_t ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_4 ={v} *object_3(D);
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *object_3(D) ={v} newValue_5(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#3 => {CLOBBER}
+  # DEBUG success => D#3
+  return ret_4;
+
+}
+
+
+Atomics_Load (const Atomic_t * object)
+{
+  Atomic_value_t ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_4 ={v} *object_3(D);
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#2 => {CLOBBER}
+  # DEBUG success => D#2
+  return ret_4;
+
+}
+
+
+Atomics_Store (volatile Atomic_t * object, Atomic_value_t newValue)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserSuspendInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *object_3(D) ={v} newValue_4(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserResumeInterrupts (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG success => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => {CLOBBER}
+  # DEBUG success => D#1
+  return;
+
+}
+
+
+Atomics_Init (volatile Atomic_t * object, Atomic_value_t initValue)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *object_2(D) ={v} initValue_3(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Atomics_ThreadFence ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

@@ -1,0 +1,207 @@
+__attribute__((target ("general-regs-only")))
+OS_ExecTimerTimestampInterrupt ()
+{
+  os_tick_t OS_hwtStartDelta;
+  const struct os_isr_t * isr;
+  os_tick_t remaining;
+  os_tick_t used;
+  const os_coreid_t myCoreId;
+  struct os_kerneldata_t * const kernel_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_executionTimer[0];
+  _2 = _1->driver;
+  _3 = _2->hwtStop;
+  _4 = OS_executionTimer[0];
+  _3 (_4);
+  # DEBUG BEGIN_STMT
+  used = OS_GetTimeUsed ();
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.frc;
+  OS_AdvanceTimeStampGeneric (_5);
+  # DEBUG BEGIN_STMT
+  _6 = OS_kernelData.accounting.etType;
+  if (_6 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _7 = OS_executionTimer[0];
+  _8 = _7->driver;
+  _9 = _8->hwtStart;
+  _10 = OS_executionTimer[0];
+  _11 = OS_kernelData.accounting.frc;
+  _12 = OS_executionTimer[0];
+  _13 = _12->maxDelta;
+  _9 (_10, _11, _13);
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _14 = OS_kernelData.accounting.etUsed;
+  _15 = ~_14;
+  if (used > _15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etUsed = 4294967295;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _16 = OS_kernelData.accounting.etUsed;
+  _17 = used + _16;
+  OS_kernelData.accounting.etUsed = _17;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = OS_kernelData.accounting.etUsed;
+  _19 = OS_kernelData.accounting.etLimit;
+  if (_18 >= _19)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _20 = OS_kernelData.inFunction;
+  if (_20 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.taskTimingNesting = 1;
+  # DEBUG BEGIN_STMT
+  _21 = OS_kernelData.taskCurrent;
+  _22 = _21->flags;
+  _23 = (unsigned int) _22;
+  _24 = _23 & 64;
+  if (_24 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  _25 = OS_kernelData.taskCurrent;
+  _26 = _25->accounting;
+  _27 = _26->etMax;
+  _28 = OS_kernelData.accounting.etUsed;
+  if (_27 < _28)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _29 = OS_kernelData.taskCurrent;
+  _30 = _29->accounting;
+  _31 = OS_kernelData.accounting.etUsed;
+  _30->etMax = _31;
+  goto <bb 16>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _32 = OS_kernelData.inFunction;
+  if (_32 == 3)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_33 = OS_isrTableBase;
+  _34 = OS_kernelData.isrCurrent;
+  _35 = (unsigned int) _34;
+  _36 = _35 * 68;
+  isr = OS_isrTableBase.0_33 + _36;
+  # DEBUG BEGIN_STMT
+  _37 = isr->flags;
+  _38 = (unsigned int) _37;
+  _39 = _38 & 64;
+  if (_39 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _40 = isr->accounting;
+  _41 = _40->etMax;
+  _42 = OS_kernelData.accounting.etUsed;
+  if (_41 < _42)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _43 = isr->accounting;
+  _44 = OS_kernelData.accounting.etUsed;
+  _43->etMax = _44;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+  # DEBUG BEGIN_STMT
+  _45 = OS_executionTimer[0];
+  _46 = _45->driver;
+  _47 = _46->hwtStart;
+  _48 = OS_executionTimer[0];
+  _49 = OS_kernelData.accounting.frc;
+  _50 = OS_executionTimer[0];
+  _51 = _50->maxDelta;
+  _47 (_48, _49, _51);
+  goto <bb 20>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _52 = OS_kernelData.accounting.etLimit;
+  _53 = OS_kernelData.accounting.etUsed;
+  remaining = _52 - _53;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_hwtStartDelta = remaining;
+  # DEBUG BEGIN_STMT
+  _54 = OS_executionTimer[0];
+  _55 = _54->maxDelta;
+  if (OS_hwtStartDelta > _55)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _56 = OS_executionTimer[0];
+  OS_hwtStartDelta = _56->defDelta;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _57 = OS_executionTimer[0];
+  _58 = _57->driver;
+  _59 = _58->hwtStart;
+  _60 = OS_executionTimer[0];
+  _61 = OS_kernelData.accounting.frc;
+  _59 (_60, _61, OS_hwtStartDelta);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

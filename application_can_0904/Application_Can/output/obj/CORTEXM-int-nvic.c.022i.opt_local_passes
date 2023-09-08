@@ -1,0 +1,336 @@
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntDisableUnknownInterrupt ()
+{
+  register os_uint32_t OS_CurIpsr;
+  os_uint32_t curSource;
+  unsigned int _1;
+  struct os_arm_int_nvic_reg_t * _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  os_uint32_t _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mrs	%0, ipsr" : "result" "=r" OS_CurIpsr_7);
+  # DEBUG OS_CurIpsr => OS_CurIpsr_7
+  # DEBUG BEGIN_STMT
+  _8 = OS_CurIpsr_7 + 4294967280;
+  curSource_9 = _8;
+  # DEBUG curSource => curSource_9
+  # DEBUG BEGIN_STMT
+  if (curSource_9 <= 239)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = curSource_9 & 31;
+  _2 = 3758153984B;
+  _3 = curSource_9 >> 5;
+  _4 = _3 & 15;
+  _5 = 1 << _1;
+  _2->icer[_4] ={v} _5;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_Panic (15);
+
+  <bb 5> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_IntDisableConditionalX ()
+{
+  register os_uint32_t newBasepri;
+  register os_uint32_t OS_CurBasepri;
+  os_oldlevel_t prevDisablingLevel;
+  unsigned int _1;
+  short unsigned int OS_kernDisableLevel.2_2;
+  short unsigned int OS_kernDisableLevel.3_3;
+  int _4;
+  int _5;
+  short unsigned int _7;
+  os_oldlevel_t _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mrs	%0, basepri" : "result" "=r" OS_CurBasepri_6);
+  # DEBUG OS_CurBasepri => OS_CurBasepri_6
+  # DEBUG BEGIN_STMT
+  _1 = OS_CurBasepri_6 >> 4;
+  _7 = (short unsigned int) _1;
+  prevDisablingLevel_8 = _7;
+  # DEBUG prevDisablingLevel => prevDisablingLevel_8
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_2 = OS_kernDisableLevel;
+  if (prevDisablingLevel_8 > OS_kernDisableLevel.2_2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (prevDisablingLevel_8 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.3_3 = OS_kernDisableLevel;
+  _4 = (int) OS_kernDisableLevel.3_3;
+  _5 = _4 << 4;
+  newBasepri_10 = (os_uint32_t) _5;
+  # DEBUG newBasepri => newBasepri_10
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("msr basepri, %0" :  : "input" "r" newBasepri_10);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = prevDisablingLevel_8;
+  return _11;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_IntDisableConditional ()
+{
+  register os_uint32_t OS_CurBasepri;
+  os_oldlevel_t prevDisablingLevel;
+  unsigned int _1;
+  short unsigned int OS_kernDisableLevel.0_2;
+  short unsigned int OS_kernDisableLevel.1_3;
+  short unsigned int _7;
+  os_oldlevel_t _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mrs	%0, basepri" : "result" "=r" OS_CurBasepri_6);
+  # DEBUG OS_CurBasepri => OS_CurBasepri_6
+  # DEBUG BEGIN_STMT
+  _1 = OS_CurBasepri_6 >> 4;
+  _7 = (short unsigned int) _1;
+  prevDisablingLevel_8 = _7;
+  # DEBUG prevDisablingLevel => prevDisablingLevel_8
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_2 = OS_kernDisableLevel;
+  if (prevDisablingLevel_8 > OS_kernDisableLevel.0_2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (prevDisablingLevel_8 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_3 = OS_kernDisableLevel;
+  prevDisablingLevel_11 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_3);
+  # DEBUG prevDisablingLevel => prevDisablingLevel_11
+
+  <bb 5> :
+  # prevDisablingLevel_4 = PHI <prevDisablingLevel_8(3), prevDisablingLevel_11(4)>
+  # DEBUG prevDisablingLevel => prevDisablingLevel_4
+  # DEBUG BEGIN_STMT
+  _12 = prevDisablingLevel_4;
+  return _12;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntSetDisablingLevel (os_oldlevel_t level)
+{
+  register os_uint32_t newPrimask;
+  register os_uint32_t newBasepri;
+  register os_uint32_t OS_CurBasepri;
+  register os_uint32_t OS_DIRQResult;
+  const os_oldlevel_t prevDisablingLevel;
+  const os_intstatus_t old_state;
+  unsigned int _1;
+  int _2;
+  int _3;
+  os_uint32_t _7;
+  short unsigned int _10;
+  os_oldlevel_t _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mrs	%0, primask" : "result" "=r" OS_DIRQResult_4);
+  # DEBUG OS_DIRQResult => OS_DIRQResult_4
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("cpsid	i");
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = OS_DIRQResult_4;
+  old_state_8 = (const os_intstatus_t) _7;
+  # DEBUG old_state => old_state_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mrs	%0, basepri" : "result" "=r" OS_CurBasepri_9);
+  # DEBUG OS_CurBasepri => OS_CurBasepri_9
+  # DEBUG BEGIN_STMT
+  _1 = OS_CurBasepri_9 >> 4;
+  _10 = (short unsigned int) _1;
+  prevDisablingLevel_11 = _10;
+  # DEBUG prevDisablingLevel => prevDisablingLevel_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) level_12(D);
+  _3 = _2 << 4;
+  newBasepri_13 = (os_uint32_t) _3;
+  # DEBUG newBasepri => newBasepri_13
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("msr basepri, %0" :  : "input" "r" newBasepri_13);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  newPrimask_14 = (os_uint32_t) old_state_8;
+  # DEBUG newPrimask => newPrimask_14
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("msr primask, %0" :  : "input" "r" newPrimask_14);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = prevDisablingLevel_11;
+  return _15;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntClearIsr (const struct os_archisr_t * isr)
+{
+  short unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  struct os_arm_int_nvic_reg_t * _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = isr_11(D)->source;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 31;
+  _4 = 3758153984B;
+  _5 = isr_11(D)->source;
+  _6 = _5 >> 5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 15;
+  _9 = 1 << _3;
+  _4->icpr[_8] ={v} _9;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntDisableIsr (const struct os_archisr_t * isr)
+{
+  short unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  struct os_arm_int_nvic_reg_t * _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = isr_11(D)->source;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 31;
+  _4 = 3758153984B;
+  _5 = isr_11(D)->source;
+  _6 = _5 >> 5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 15;
+  _9 = 1 << _3;
+  _4->icer[_8] ={v} _9;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntEnableIsr (const struct os_archisr_t * isr)
+{
+  short unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  struct os_arm_int_nvic_reg_t * _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = isr_11(D)->source;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 31;
+  _4 = 3758153984B;
+  _5 = isr_11(D)->source;
+  _6 = _5 >> 5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 15;
+  _9 = 1 << _3;
+  _4->iser[_8] ={v} _9;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_IntSetupIsr (const struct os_archisr_t * isr)
+{
+  short unsigned int _1;
+  unsigned char _2;
+  struct os_arm_int_nvic_reg_t * _3;
+  short unsigned int _4;
+  int _5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr_8(D)->priority;
+  _2 = (unsigned char) _1;
+  _3 = 3758153984B;
+  _4 = isr_8(D)->source;
+  _5 = (int) _4;
+  _6 = _2 << 4;
+  _3->ipr[_5] ={v} _6;
+  return;
+
+}
+
+

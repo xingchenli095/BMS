@@ -1,0 +1,57 @@
+__attribute__((target ("general-regs-only")))
+OS_DiffTime32 (const struct os_timestamp_t * newTime, const struct os_timestamp_t * oldTime)
+{
+  struct os_timestamp_t diffTime;
+  os_uint32_t D.5805;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = newTime->tsHi;
+  _2 = oldTime->tsHi;
+  _3 = _1 - _2;
+  diffTime.tsHi = _3;
+  # DEBUG BEGIN_STMT
+  _4 = oldTime->tsLo;
+  _5 = newTime->tsLo;
+  if (_4 > _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _6 = diffTime.tsHi;
+  _7 = _6 + 4294967295;
+  diffTime.tsHi = _7;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = newTime->tsLo;
+  _9 = oldTime->tsLo;
+  _10 = _8 - _9;
+  diffTime.tsLo = _10;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = diffTime.tsHi;
+  if (_11 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  diffTime.tsLo = 4294967295;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5805 = diffTime.tsLo;
+  diffTime = {CLOBBER};
+  return D.5805;
+
+}
+
+

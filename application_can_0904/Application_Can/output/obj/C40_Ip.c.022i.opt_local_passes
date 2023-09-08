@@ -1,0 +1,4848 @@
+C40_Ip_ValidRangeAddress (uint32 StartAddress, uint32 Length)
+{
+  uint32 EndAddress;
+  boolean RetVal;
+  long unsigned int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  boolean _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = StartAddress_13(D) + Length_14(D);
+  EndAddress_15 = _1 + 4294967295;
+  # DEBUG EndAddress => EndAddress_15
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ValidCodeAddress (StartAddress_13(D));
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = C40_Ip_ValidCodeAddress (EndAddress_15);
+  if (_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 1;
+  # DEBUG RetVal => RetVal_19
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = C40_Ip_ValidDataAddress (StartAddress_13(D));
+  if (_4 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _5 = C40_Ip_ValidDataAddress (EndAddress_15);
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = C40_Ip_ValidUTestAddress (StartAddress_13(D));
+  if (_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _7 = C40_Ip_ValidUTestAddress (EndAddress_15);
+  if (_7 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_25 = 1;
+  # DEBUG RetVal => RetVal_25
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_26 = 0;
+  # DEBUG RetVal => RetVal_26
+
+  <bb 12> :
+  # RetVal_8 = PHI <RetVal_19(4), RetVal_22(7), RetVal_25(10), RetVal_26(11)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _27 = RetVal_8;
+  return _27;
+
+}
+
+
+C40_Ip_ValidAddress (uint32 Address)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  int iftmp.44_4;
+  int iftmp.44_12;
+  int iftmp.44_13;
+  boolean _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_ValidCodeAddress (Address_8(D));
+  if (_1 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = C40_Ip_ValidDataAddress (Address_8(D));
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = C40_Ip_ValidUTestAddress (Address_8(D));
+  if (_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.44_13 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.44_12 = 0;
+
+  <bb 7> :
+  # iftmp.44_4 = PHI <iftmp.44_13(5), iftmp.44_12(6)>
+  _14 = (boolean) iftmp.44_4;
+  return _14;
+
+}
+
+
+C40_Ip_ValidUTestAddress (uint32 Address)
+{
+  long unsigned int _1;
+  _Bool _2;
+  boolean _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address_3(D) + 3841982464;
+  _2 = _1 <= 8191;
+  _4 = (boolean) _2;
+  return _4;
+
+}
+
+
+C40_Ip_ValidDataAddress (uint32 Address)
+{
+  long unsigned int _1;
+  _Bool _2;
+  boolean _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address_3(D) + 4026531840;
+  _2 = _1 <= 131071;
+  _4 = (boolean) _2;
+  return _4;
+
+}
+
+
+C40_Ip_ValidCodeAddress (uint32 Address)
+{
+  long unsigned int _1;
+  _Bool _2;
+  boolean _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address_3(D) + 4290772992;
+  _2 = _1 <= 2097151;
+  _4 = (boolean) _2;
+  return _4;
+
+}
+
+
+C40_Ip_FlashAccessCalloutFinish ()
+{
+  const struct C40_ConfigType * C40_Ip_pConfigPtr.8_1;
+  void (*<T4c8>) (void) _2;
+  const struct C40_ConfigType * C40_Ip_pConfigPtr.9_3;
+  void (*<T4c8>) (void) _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.8_1 = C40_Ip_pConfigPtr;
+  _2 = C40_Ip_pConfigPtr.8_1->finishedFlashAccessNotifPtr;
+  if (_2 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.9_3 = C40_Ip_pConfigPtr;
+  _4 = C40_Ip_pConfigPtr.9_3->finishedFlashAccessNotifPtr;
+  _4 ();
+
+  <bb 4> :
+  return;
+
+}
+
+
+C40_Ip_FlashAccessCalloutStart ()
+{
+  const struct C40_ConfigType * C40_Ip_pConfigPtr.1_1;
+  void (*<T4c8>) (void) _2;
+  const struct C40_ConfigType * C40_Ip_pConfigPtr.2_3;
+  void (*<T4c8>) (void) _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.1_1 = C40_Ip_pConfigPtr;
+  _2 = C40_Ip_pConfigPtr.1_1->startFlashAccessNotifPtr;
+  if (_2 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.2_3 = C40_Ip_pConfigPtr;
+  _4 = C40_Ip_pConfigPtr.2_3->startFlashAccessNotifPtr;
+  _4 ();
+
+  <bb 4> :
+  return;
+
+}
+
+
+C40_Ip_SetAsyncMode (const boolean Async)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync = Async_2(D);
+  return;
+
+}
+
+
+C40_Ip_GetFailedAddress ()
+{
+  uint32 TempADR;
+  uint32 Temp;
+  uint32 AddrOffset;
+  uint32 CheckRegionBlockError;
+  uint32 Addr;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  <unnamed type> C40_Ip_eOpStatus.49_3;
+  long unsigned int C40_Ip_u32LogicalAddressCheckFail.50_4;
+  long unsigned int _5;
+  uint32 _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Addr_8 = 4294967295;
+  # DEBUG Addr => Addr_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  TempADR_10 ={v} _1->ADR;
+  # DEBUG TempADR => TempADR_10
+  # DEBUG BEGIN_STMT
+  _2 = TempADR_10 >> 1;
+  AddrOffset_11 = _2 & 262143;
+  # DEBUG AddrOffset => AddrOffset_11
+  # DEBUG BEGIN_STMT
+  C40_Ip_eOpStatus.49_3 = C40_Ip_eOpStatus;
+  if (C40_Ip_eOpStatus.49_3 == 17)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32LogicalAddressCheckFail.50_4 = C40_Ip_u32LogicalAddressCheckFail;
+  Temp_13 = C40_Ip_u32LogicalAddressCheckFail.50_4 & 127;
+  # DEBUG Temp => Temp_13
+  # DEBUG BEGIN_STMT
+  _5 = AddrOffset_11 << 3;
+  AddrOffset_14 = Temp_13 + _5;
+  # DEBUG AddrOffset => AddrOffset_14
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  AddrOffset_12 = AddrOffset_11 << 3;
+  # DEBUG AddrOffset => AddrOffset_12
+
+  <bb 5> :
+  # AddrOffset_7 = PHI <AddrOffset_14(3), AddrOffset_12(4)>
+  # DEBUG AddrOffset => AddrOffset_7
+  # DEBUG BEGIN_STMT
+  CheckRegionBlockError_15 = TempADR_10 & 20447232;
+  # DEBUG CheckRegionBlockError => CheckRegionBlockError_15
+  # DEBUG BEGIN_STMT
+  switch (CheckRegionBlockError_15) <default: <L10> [INV], case 524288: <L3> [INV], case 1048576: <L4> [INV], case 2097152: <L5> [INV], case 16777216: <L6> [INV]>
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  Addr_19 = AddrOffset_7 + 4194304;
+  # DEBUG Addr => Addr_19
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Addr_18 = AddrOffset_7 + 5242880;
+  # DEBUG Addr => Addr_18
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Addr_17 = AddrOffset_7 + 268435456;
+  # DEBUG Addr => Addr_17
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  Addr_16 = AddrOffset_7 + 452984832;
+  # DEBUG Addr => Addr_16
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # Addr_6 = PHI <Addr_19(6), Addr_18(7), Addr_17(8), Addr_16(9), Addr_8(5)>
+<L10>:
+  # DEBUG Addr => Addr_6
+  # DEBUG BEGIN_STMT
+  _20 = Addr_6;
+  return _20;
+
+}
+
+
+C40_Ip_UserMarginReadCheck (uint32 SelectBlock, C40_Ip_FlashBreakPointsType BreakPoints, C40_Ip_MarginOptionType MarginLevel, const struct C40_Ip_MisrType * MisrSeedValues, uint8 DomainIdValue)
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  unsigned char _1;
+  struct FLASH_Type * _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  signed int _5;
+  struct FLASH_Type * _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  struct FLASH_Type * _15;
+  long unsigned int _16;
+  struct FLASH_Type * _17;
+  long unsigned int _18;
+  struct FLASH_Type * _19;
+  long unsigned int _20;
+  struct FLASH_Type * _21;
+  long unsigned int _22;
+  struct FLASH_Type * _23;
+  long unsigned int _24;
+  struct FLASH_Type * _25;
+  long unsigned int _26;
+  struct FLASH_Type * _27;
+  struct FLASH_Type * _28;
+  long unsigned int _29;
+  struct FLASH_Type * _30;
+  long unsigned int _31;
+  struct FLASH_Type * _32;
+  long unsigned int _33;
+  struct FLASH_Type * _34;
+  long unsigned int _35;
+  struct FLASH_Type * _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  struct FLASH_Type * _39;
+  long unsigned int _40;
+  struct FLASH_Type * _41;
+  long unsigned int _42;
+  C40_Ip_StatusType _78;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_49 = 23205;
+  # DEBUG ReturnCode => ReturnCode_49
+  # DEBUG BEGIN_STMT
+  WaitCounter_50 = 450;
+  # DEBUG WaitCounter => WaitCounter_50
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_CheckSelecBlock (SelectBlock_52(D));
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_56 = 11700;
+  # DEBUG ReturnCode => ReturnCode_56
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_55 = C40_Ip_UTestCheckBusy ();
+  # DEBUG ReturnCode => ReturnCode_55
+
+  <bb 5> :
+  # ReturnCode_43 = PHI <ReturnCode_56(3), ReturnCode_55(4)>
+  # DEBUG ReturnCode => ReturnCode_43
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_43 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->UT0 ={v} 4193884569;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->UT0;
+  _5 = (signed int) _4;
+  if (_5 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_77 = 10212;
+  # DEBUG ReturnCode => ReturnCode_77
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_60 = C40_Ip_MainInterfaceWriteJobAddress (SelectBlock_52(D), DomainIdValue_58(D));
+  # DEBUG ReturnCode => ReturnCode_60
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_60 == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _6->DATA[0] ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 4;
+  _9->UT0 ={v} _10;
+  # DEBUG BEGIN_STMT
+  C40_Ip_UTestCheckBreakpoint (BreakPoints_68(D));
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 ={v} _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 | 32;
+  _13->UT0 ={v} _14;
+  # DEBUG BEGIN_STMT
+  if (MarginLevel_71(D) == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 ={v} _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 | 16;
+  _17->UT0 ={v} _18;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _20 ={v} _19->UT0;
+  _21 = 1076805632B;
+  _22 = _20 & 4294967279;
+  _21->UT0 ={v} _22;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetSeedMisr (MisrSeedValues_74(D));
+  # DEBUG BEGIN_STMT
+  _23 = 1076805632B;
+  _24 ={v} _23->UT0;
+  _25 = 1076805632B;
+  _26 = _24 | 2;
+  _25->UT0 ={v} _26;
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _27 = 1076805632B;
+  _27->DATA[0] ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  _29 ={v} _28->UT0;
+  _30 = 1076805632B;
+  _31 = _29 | 2;
+  _30->UT0 ={v} _31;
+  # DEBUG BEGIN_STMT
+  _32 = 1076805632B;
+  _33 ={v} _32->UT0;
+  _34 = 1076805632B;
+  _35 = _33 & 4294967293;
+  _34->UT0 ={v} _35;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_64 = WaitCounter_45 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_64
+
+  <bb 15> :
+  # WaitCounter_45 = PHI <WaitCounter_50(13), WaitCounter_64(14)>
+  # DEBUG WaitCounter => WaitCounter_45
+  # DEBUG BEGIN_STMT
+  _36 = 1076805632B;
+  _37 ={v} _36->UT0;
+  _38 = _37 & 1;
+  if (_38 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (WaitCounter_45 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _39 = 1076805632B;
+  _40 ={v} _39->UT0;
+  _41 = 1076805632B;
+  _42 = _40 & 2147483647;
+  _41->UT0 ={v} _42;
+
+  <bb 18> :
+  # ReturnCode_44 = PHI <ReturnCode_43(5), ReturnCode_77(7), ReturnCode_60(12), ReturnCode_60(17)>
+  # DEBUG ReturnCode => ReturnCode_44
+  # DEBUG BEGIN_STMT
+  _78 = ReturnCode_44;
+  return _78;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheckResume ()
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  C40_Ip_StatusType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_12 = 23205;
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 ={v} _4->UT0;
+  _6 = _5 & 65;
+  if (_6 == 65)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_18 = C40_Ip_ArrayIntegrityResumeSuppened ();
+  # DEBUG ReturnCode => ReturnCode_18
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = _8 & 512;
+  if (_9 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_16 = C40_Ip_ArrayIntegrityResumeBroken ();
+  # DEBUG ReturnCode => ReturnCode_16
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_14 = 10212;
+  # DEBUG ReturnCode => ReturnCode_14
+
+  <bb 8> :
+  # ReturnCode_10 = PHI <ReturnCode_12(5), ReturnCode_14(7), ReturnCode_18(4), ReturnCode_16(6)>
+  # DEBUG ReturnCode => ReturnCode_10
+  # DEBUG BEGIN_STMT
+  _19 = ReturnCode_10;
+  return _19;
+
+}
+
+
+C40_Ip_ArrayIntegrityResumeBroken ()
+{
+  uint32 Temp;
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  struct FLASH_Type * _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  struct FLASH_Type * _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  C40_Ip_StatusType _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_18 = 23205;
+  # DEBUG ReturnCode => ReturnCode_18
+  # DEBUG BEGIN_STMT
+  WaitCounter_19 = 450;
+  # DEBUG WaitCounter => WaitCounter_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  Temp_21 ={v} _1->MCRS;
+  # DEBUG Temp => Temp_21
+  # DEBUG BEGIN_STMT
+  Temp_22 = Temp_21 & 216858623;
+  # DEBUG Temp => Temp_22
+  # DEBUG BEGIN_STMT
+  Temp_23 = Temp_22 | 3221225472;
+  # DEBUG Temp => Temp_23
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->MCRS ={v} Temp_23;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->UT0;
+  _5 = 1076805632B;
+  _6 = _4 & 4294966783;
+  _5->UT0 ={v} _6;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_26 = WaitCounter_17 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_26
+
+  <bb 4> :
+  # WaitCounter_17 = PHI <WaitCounter_19(2), WaitCounter_26(3)>
+  # DEBUG WaitCounter => WaitCounter_17
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = _8 & 1;
+  if (_9 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (WaitCounter_17 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 ={v} _10->UT0;
+  _12 = _11 & 512;
+  if (_12 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _13 = 1076805632B;
+  _14 ={v} _13->UT0;
+  _15 = _14 & 1;
+  if (_15 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_27 = 10212;
+  # DEBUG ReturnCode => ReturnCode_27
+
+  <bb 9> :
+  # ReturnCode_16 = PHI <ReturnCode_18(7), ReturnCode_27(8)>
+  # DEBUG ReturnCode => ReturnCode_16
+  # DEBUG BEGIN_STMT
+  _28 = ReturnCode_16;
+  return _28;
+
+}
+
+
+C40_Ip_ArrayIntegrityResumeSuppened ()
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  struct FLASH_Type * _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  C40_Ip_StatusType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_16 = 23205;
+  # DEBUG ReturnCode => ReturnCode_16
+  # DEBUG BEGIN_STMT
+  WaitCounter_17 = 450;
+  # DEBUG WaitCounter => WaitCounter_17
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->UT0;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967231;
+  _3->UT0 ={v} _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_20 = WaitCounter_15 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_20
+
+  <bb 4> :
+  # WaitCounter_15 = PHI <WaitCounter_17(2), WaitCounter_20(3)>
+  # DEBUG WaitCounter => WaitCounter_15
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 ={v} _5->UT0;
+  _7 = _6 & 1;
+  if (_7 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (WaitCounter_15 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = 1076805632B;
+  _9 ={v} _8->UT0;
+  _10 = _9 & 64;
+  if (_10 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _11 = 1076805632B;
+  _12 ={v} _11->UT0;
+  _13 = _12 & 1;
+  if (_13 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_21 = 10212;
+  # DEBUG ReturnCode => ReturnCode_21
+
+  <bb 9> :
+  # ReturnCode_14 = PHI <ReturnCode_16(7), ReturnCode_21(8)>
+  # DEBUG ReturnCode => ReturnCode_14
+  # DEBUG BEGIN_STMT
+  _22 = ReturnCode_14;
+  return _22;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheckSuspend ()
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  struct FLASH_Type * _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  struct FLASH_Type * _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  C40_Ip_StatusType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_23 = 23205;
+  # DEBUG ReturnCode => ReturnCode_23
+  # DEBUG BEGIN_STMT
+  WaitCounter_24 = 450;
+  # DEBUG WaitCounter => WaitCounter_24
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  _4 = 1076805632B;
+  _5 ={v} _4->UT0;
+  _6 = _5 & 65;
+  if (_6 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 64;
+  _9->UT0 ={v} _10;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_27 = WaitCounter_21 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_27
+
+  <bb 6> :
+  # WaitCounter_21 = PHI <WaitCounter_24(4), WaitCounter_27(5)>
+  # DEBUG WaitCounter => WaitCounter_21
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 ={v} _11->UT0;
+  _13 = _12 & 1;
+  if (_13 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (WaitCounter_21 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _14 = 1076805632B;
+  _15 ={v} _14->UT0;
+  _16 = _15 & 64;
+  if (_16 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _17 = 1076805632B;
+  _18 ={v} _17->UT0;
+  _19 = _18 & 1;
+  if (_19 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_28 = 10212;
+  # DEBUG ReturnCode => ReturnCode_28
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_29 = 10212;
+  # DEBUG ReturnCode => ReturnCode_29
+
+  <bb 12> :
+  # ReturnCode_20 = PHI <ReturnCode_28(10), ReturnCode_29(11), ReturnCode_23(9)>
+  # DEBUG ReturnCode => ReturnCode_20
+  # DEBUG BEGIN_STMT
+  _30 = ReturnCode_20;
+  return _30;
+
+}
+
+
+C40_Ip_CheckUserTestStatusExecution (const struct C40_Ip_MisrType * MisrExpectedValues, C40_Ip_UtestStateType * OpStatus)
+{
+  uint8 Index;
+  uint32 Temp;
+  C40_Ip_StatusType ReturnCode;
+  int _1;
+  struct FLASH_Type * _2;
+  int _3;
+  long unsigned int _4;
+  unsigned char Index.47_5;
+  struct FLASH_Type * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  struct FLASH_Type * _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  struct FLASH_Type * _16;
+  long unsigned int _17;
+  struct FLASH_Type * _18;
+  long unsigned int _19;
+  struct FLASH_Type * _20;
+  long unsigned int _21;
+  struct FLASH_Type * _22;
+  long unsigned int _23;
+  struct FLASH_Type * _24;
+  long unsigned int _25;
+  struct FLASH_Type * _26;
+  long unsigned int _27;
+  C40_Ip_UtestStateType iftmp.48_32;
+  C40_Ip_UtestStateType iftmp.48_47;
+  C40_Ip_UtestStateType iftmp.48_48;
+  C40_Ip_StatusType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_34 = 23205;
+  # DEBUG ReturnCode => ReturnCode_34
+  # DEBUG BEGIN_STMT
+  *OpStatus_36(D) = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Index_38 = 0;
+  # DEBUG Index => Index_38
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Index_31;
+  Temp_40 = MisrExpectedValues_39(D)->arrMISRValue[_1];
+  # DEBUG Temp => Temp_40
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 = (int) Index_31;
+  _4 ={v} _2->UM[_3];
+  if (Temp_40 != _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_42 = 10212;
+  # DEBUG ReturnCode => ReturnCode_42
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Index.47_5 = Index_31;
+  Index_41 = Index.47_5 + 1;
+  # DEBUG Index => Index_41
+
+  <bb 6> :
+  # Index_31 = PHI <Index_38(2), Index_41(5)>
+  # DEBUG Index => Index_31
+  # DEBUG BEGIN_STMT
+  if (Index_31 <= 8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # ReturnCode_28 = PHI <ReturnCode_42(4), ReturnCode_34(6)>
+  # DEBUG ReturnCode => ReturnCode_28
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 ={v} _6->UM9;
+  _8 = _7 & 1;
+  _9 = MisrExpectedValues_39(D)->arrMISRValue[9];
+  if (_8 != _9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_43 = 10212;
+  # DEBUG ReturnCode => ReturnCode_43
+
+  <bb 9> :
+  # ReturnCode_29 = PHI <ReturnCode_28(7), ReturnCode_43(8)>
+  # DEBUG ReturnCode => ReturnCode_29
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 ={v} _10->UT0;
+  _12 = _11 & 512;
+  if (_12 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _13 = 1076805632B;
+  _14 ={v} _13->MCRS;
+  _15 = _14 & 1073741824;
+  if (_15 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.48_48 = 48;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  iftmp.48_47 = 49;
+
+  <bb 13> :
+  # iftmp.48_32 = PHI <iftmp.48_48(11), iftmp.48_47(12)>
+  *OpStatus_36(D) = iftmp.48_32;
+  # DEBUG BEGIN_STMT
+  ReturnCode_50 = 10212;
+  # DEBUG ReturnCode => ReturnCode_50
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _16 = 1076805632B;
+  _17 ={v} _16->UT0;
+  _18 = 1076805632B;
+  _19 = _17 & 4294967259;
+  _18->UT0 ={v} _19;
+  # DEBUG BEGIN_STMT
+  _20 = 1076805632B;
+  _21 ={v} _20->UT0;
+  _22 = 1076805632B;
+  _23 = _21 & 4294967293;
+  _22->UT0 ={v} _23;
+  # DEBUG BEGIN_STMT
+  _24 = 1076805632B;
+  _25 ={v} _24->UT0;
+  _26 = 1076805632B;
+  _27 = _25 & 2147483647;
+  _26->UT0 ={v} _27;
+
+  <bb 15> :
+  # ReturnCode_30 = PHI <ReturnCode_50(13), ReturnCode_29(14)>
+  # DEBUG ReturnCode => ReturnCode_30
+  # DEBUG BEGIN_STMT
+  _51 = ReturnCode_30;
+  return _51;
+
+}
+
+
+C40_Ip_CheckUserTestStatus (const struct C40_Ip_MisrType * MisrExpectedValues, C40_Ip_UtestStateType * TestResult)
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  C40_Ip_StatusType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_12 = 23205;
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (MisrExpectedValues_13(D) == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (TestResult_14(D) == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_22 = 11700;
+  # DEBUG ReturnCode => ReturnCode_22
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *TestResult_14(D) = 0;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 ={v} _4->UT0;
+  _6 = _5 & 1;
+  if (_6 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = _8 & 64;
+  if (_9 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *TestResult_14(D) = 23;
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_20 = C40_Ip_CheckUserTestStatusExecution (MisrExpectedValues_13(D), TestResult_14(D));
+  # DEBUG ReturnCode => ReturnCode_20
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_18 = 59202;
+  # DEBUG ReturnCode => ReturnCode_18
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_17 = 11220;
+  # DEBUG ReturnCode => ReturnCode_17
+
+  <bb 12> :
+  # ReturnCode_10 = PHI <ReturnCode_22(4), ReturnCode_18(10), ReturnCode_17(11), ReturnCode_20(9), ReturnCode_12(8)>
+  # DEBUG ReturnCode => ReturnCode_10
+  # DEBUG BEGIN_STMT
+  _23 = ReturnCode_10;
+  return _23;
+
+}
+
+
+C40_Ip_CheckSelecBlock (uint32 SelectBlock)
+{
+  boolean ReturnCode;
+  boolean _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_2 = 1;
+  # DEBUG ReturnCode => ReturnCode_2
+  # DEBUG BEGIN_STMT
+  if (SelectBlock_3(D) == 4194304)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (SelectBlock_3(D) == 5242880)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (SelectBlock_3(D) == 268435456)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (SelectBlock_3(D) == 452984832)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_4 = 0;
+  # DEBUG ReturnCode => ReturnCode_4
+
+  <bb 7> :
+  # ReturnCode_1 = PHI <ReturnCode_2(2), ReturnCode_2(3), ReturnCode_2(4), ReturnCode_2(5), ReturnCode_4(6)>
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  _5 = ReturnCode_1;
+  return _5;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheck (uint32 SelectBlock, C40_Ip_ArrayIntegritySequenceType AddressSequence, C40_Ip_FlashBreakPointsType BreakPoints, const struct C40_Ip_MisrType * MisrSeedValues, uint8 DomainIdValue)
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  unsigned char _1;
+  struct FLASH_Type * _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  signed int _5;
+  struct FLASH_Type * _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  struct FLASH_Type * _15;
+  long unsigned int _16;
+  struct FLASH_Type * _17;
+  long unsigned int _18;
+  struct FLASH_Type * _19;
+  struct FLASH_Type * _20;
+  long unsigned int _21;
+  struct FLASH_Type * _22;
+  long unsigned int _23;
+  struct FLASH_Type * _24;
+  long unsigned int _25;
+  struct FLASH_Type * _26;
+  long unsigned int _27;
+  struct FLASH_Type * _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  struct FLASH_Type * _31;
+  long unsigned int _32;
+  struct FLASH_Type * _33;
+  long unsigned int _34;
+  C40_Ip_StatusType _67;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WaitCounter_41 = 450;
+  # DEBUG WaitCounter => WaitCounter_41
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_CheckSelecBlock (SelectBlock_43(D));
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_47 = 11700;
+  # DEBUG ReturnCode => ReturnCode_47
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_46 = C40_Ip_UTestCheckBusy ();
+  # DEBUG ReturnCode => ReturnCode_46
+
+  <bb 5> :
+  # ReturnCode_35 = PHI <ReturnCode_47(3), ReturnCode_46(4)>
+  # DEBUG ReturnCode => ReturnCode_35
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_35 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->UT0 ={v} 4193884569;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->UT0;
+  _5 = (signed int) _4;
+  if (_5 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_66 = 10212;
+  # DEBUG ReturnCode => ReturnCode_66
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_51 = C40_Ip_MainInterfaceWriteJobAddress (SelectBlock_43(D), DomainIdValue_49(D));
+  # DEBUG ReturnCode => ReturnCode_51
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_51 == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _6->DATA[0] ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  if (AddressSequence_58(D) == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 4;
+  _9->UT0 ={v} _10;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 ={v} _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 & 4294967291;
+  _13->UT0 ={v} _14;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_UTestCheckBreakpoint (BreakPoints_61(D));
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetSeedMisr (MisrSeedValues_63(D));
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 ={v} _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 | 2;
+  _17->UT0 ={v} _18;
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _19->DATA[0] ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  _20 = 1076805632B;
+  _21 ={v} _20->UT0;
+  _22 = 1076805632B;
+  _23 = _21 | 2;
+  _22->UT0 ={v} _23;
+  # DEBUG BEGIN_STMT
+  _24 = 1076805632B;
+  _25 ={v} _24->UT0;
+  _26 = 1076805632B;
+  _27 = _25 & 4294967293;
+  _26->UT0 ={v} _27;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_55 = WaitCounter_37 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_55
+
+  <bb 15> :
+  # WaitCounter_37 = PHI <WaitCounter_41(13), WaitCounter_55(14)>
+  # DEBUG WaitCounter => WaitCounter_37
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  _29 ={v} _28->UT0;
+  _30 = _29 & 1;
+  if (_30 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (WaitCounter_37 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _31 = 1076805632B;
+  _32 ={v} _31->UT0;
+  _33 = 1076805632B;
+  _34 = _32 & 2147483647;
+  _33->UT0 ={v} _34;
+
+  <bb 18> :
+  # ReturnCode_36 = PHI <ReturnCode_35(5), ReturnCode_66(7), ReturnCode_51(12), ReturnCode_51(17)>
+  # DEBUG ReturnCode => ReturnCode_36
+  # DEBUG BEGIN_STMT
+  _67 = ReturnCode_36;
+  return _67;
+
+}
+
+
+C40_Ip_UTestCheckBreakpoint (C40_Ip_FlashBreakPointsType BreakPoints)
+{
+  uint32 Temp;
+  struct FLASH_Type * _1;
+  struct FLASH_Type * _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  struct FLASH_Type * _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  struct FLASH_Type * _15;
+  long unsigned int _16;
+  struct FLASH_Type * _17;
+  long unsigned int _18;
+  struct FLASH_Type * _19;
+  long unsigned int _20;
+  struct FLASH_Type * _21;
+  long unsigned int _22;
+  struct FLASH_Type * _23;
+  long unsigned int _24;
+  struct FLASH_Type * _25;
+  long unsigned int _26;
+  struct FLASH_Type * _27;
+  long unsigned int _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (BreakPoints_30(D)) <default: <L2> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  Temp_38 ={v} _1->MCRS;
+  # DEBUG Temp => Temp_38
+  # DEBUG BEGIN_STMT
+  Temp_39 = Temp_38 & 216858623;
+  # DEBUG Temp => Temp_39
+  # DEBUG BEGIN_STMT
+  Temp_40 = Temp_39 | 3221225472;
+  # DEBUG Temp => Temp_40
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->MCRS ={v} Temp_40;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->UT0;
+  _5 = 1076805632B;
+  _6 = _4 | 256;
+  _5->UT0 ={v} _6;
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 & 3221225471;
+  _9->UT0 ={v} _10;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  Temp_32 ={v} _11->MCRS;
+  # DEBUG Temp => Temp_32
+  # DEBUG BEGIN_STMT
+  Temp_33 = Temp_32 & 216858623;
+  # DEBUG Temp => Temp_33
+  # DEBUG BEGIN_STMT
+  Temp_34 = Temp_33 | 3221225472;
+  # DEBUG Temp => Temp_34
+  # DEBUG BEGIN_STMT
+  _12 = 1076805632B;
+  _12->MCRS ={v} Temp_34;
+  # DEBUG BEGIN_STMT
+  _13 = 1076805632B;
+  _14 ={v} _13->UT0;
+  _15 = 1076805632B;
+  _16 = _14 | 256;
+  _15->UT0 ={v} _16;
+  # DEBUG BEGIN_STMT
+  _17 = 1076805632B;
+  _18 ={v} _17->UT0;
+  _19 = 1076805632B;
+  _20 = _18 | 1073741824;
+  _19->UT0 ={v} _20;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _21 = 1076805632B;
+  _22 ={v} _21->UT0;
+  _23 = 1076805632B;
+  _24 = _22 & 4294967039;
+  _23->UT0 ={v} _24;
+  # DEBUG BEGIN_STMT
+  _25 = 1076805632B;
+  _26 ={v} _25->UT0;
+  _27 = 1076805632B;
+  _28 = _26 & 3221225471;
+  _27->UT0 ={v} _28;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  return;
+
+}
+
+
+C40_Ip_UTestCheckBusy ()
+{
+  C40_Ip_StatusType ReturnCode;
+  uint32 WaitCounter;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  struct FLASH_Type * _15;
+  long unsigned int _16;
+  struct FLASH_Type * _17;
+  long unsigned int _18;
+  struct FLASH_Type * _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  struct FLASH_Type * _22;
+  long unsigned int _23;
+  struct FLASH_Type * _24;
+  long unsigned int _25;
+  struct FLASH_Type * _26;
+  long unsigned int _27;
+  struct FLASH_Type * _28;
+  long unsigned int _29;
+  struct FLASH_Type * _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  struct FLASH_Type * _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  C40_Ip_StatusType _50;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_39 = 450;
+  # DEBUG WaitCounter => WaitCounter_39
+  # DEBUG BEGIN_STMT
+  ReturnCode_40 = 23205;
+  # DEBUG ReturnCode => ReturnCode_40
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 ={v} _4->UT0;
+  _6 = _5 & 512;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->MCRS;
+  _9 = 1076805632B;
+  _10 = _8 & 4077912064;
+  _9->MCRS ={v} _10;
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 ={v} _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 & 4294966783;
+  _13->UT0 ={v} _14;
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 ={v} _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 & 4294967293;
+  _17->UT0 ={v} _18;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  WaitCounter_46 = WaitCounter_36 + 4294967295;
+  # DEBUG WaitCounter => WaitCounter_46
+
+  <bb 6> :
+  # WaitCounter_36 = PHI <WaitCounter_39(4), WaitCounter_46(5)>
+  # DEBUG WaitCounter => WaitCounter_36
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _20 ={v} _19->UT0;
+  _21 = _20 & 1;
+  if (_21 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (WaitCounter_36 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = 1076805632B;
+  _23 ={v} _22->UT0;
+  _24 = 1076805632B;
+  _25 = _23 | 4;
+  _24->UT0 ={v} _25;
+  # DEBUG BEGIN_STMT
+  _26 = 1076805632B;
+  _27 ={v} _26->UT0;
+  _28 = 1076805632B;
+  _29 = _27 | 2147483648;
+  _28->UT0 ={v} _29;
+  # DEBUG BEGIN_STMT
+  _30 = 1076805632B;
+  _31 ={v} _30->UT0;
+  _32 = _31 & 512;
+  if (_32 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _33 = 1076805632B;
+  _34 ={v} _33->UT0;
+  _35 = _34 & 1;
+  if (_35 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_49 = 10212;
+  # DEBUG ReturnCode => ReturnCode_49
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_42 = 59202;
+  # DEBUG ReturnCode => ReturnCode_42
+
+  <bb 12> :
+  # ReturnCode_37 = PHI <ReturnCode_40(2), ReturnCode_49(10), ReturnCode_42(11), ReturnCode_40(9)>
+  # DEBUG ReturnCode => ReturnCode_37
+  # DEBUG BEGIN_STMT
+  _50 = ReturnCode_37;
+  return _50;
+
+}
+
+
+C40_Ip_GetBlockNumberFromAddress (uint32 TargetAddress)
+{
+  C40_Ip_FlashBlocksNumberType BlockNumber;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  C40_Ip_FlashBlocksNumberType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = TargetAddress_6(D) + 3841982464;
+  if (_1 <= 8191)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_12 = 5;
+  # DEBUG BlockNumber => BlockNumber_12
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = TargetAddress_6(D) + 4026531840;
+  if (_2 <= 131071)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_11 = 4;
+  # DEBUG BlockNumber => BlockNumber_11
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = TargetAddress_6(D) + 4290772992;
+  if (_3 <= 2097151)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_10 = C40_Ip_GetCodeBlockNumber (TargetAddress_6(D));
+  # DEBUG BlockNumber => BlockNumber_10
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_7 = 255;
+  # DEBUG BlockNumber => BlockNumber_7
+
+  <bb 9> :
+  # BlockNumber_4 = PHI <BlockNumber_12(3), BlockNumber_11(5), BlockNumber_10(7), BlockNumber_7(8)>
+  # DEBUG BlockNumber => BlockNumber_4
+  # DEBUG BEGIN_STMT
+  _13 = BlockNumber_4;
+  return _13;
+
+}
+
+
+C40_Ip_GetCodeBlockNumber (uint32 TargetAddress)
+{
+  C40_Ip_FlashBlocksNumberType BlockNumber;
+  C40_Ip_FlashBlocksNumberType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_2 = 255;
+  # DEBUG BlockNumber => BlockNumber_2
+  # DEBUG BEGIN_STMT
+  if (TargetAddress_3(D) <= 5242879)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_5 = 0;
+  # DEBUG BlockNumber => BlockNumber_5
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (TargetAddress_3(D) <= 6291455)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_4 = 1;
+  # DEBUG BlockNumber => BlockNumber_4
+
+  <bb 6> :
+  # BlockNumber_1 = PHI <BlockNumber_5(3), BlockNumber_2(4), BlockNumber_4(5)>
+  # DEBUG BlockNumber => BlockNumber_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = BlockNumber_1;
+  return _6;
+
+}
+
+
+C40_Ip_GetSectorNumberFromAddress (uint32 TargetAddress)
+{
+  C40_Ip_VirtualSectorsType VirtualSectors;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  C40_Ip_VirtualSectorsType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidAddress (TargetAddress_9(D));
+  # DEBUG BEGIN_STMT
+  _1 = TargetAddress_9(D) + 3841982464;
+  if (_1 <= 8191)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  VirtualSectors_14 = 272;
+  # DEBUG VirtualSectors => VirtualSectors_14
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = TargetAddress_9(D) + 4026531840;
+  if (_2 <= 131071)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = TargetAddress_9(D) + 4026531840;
+  VirtualSectors_13 = _3 / 8192;
+  # DEBUG VirtualSectors => VirtualSectors_13
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = TargetAddress_9(D) + 4290772992;
+  if (_4 <= 2097151)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = TargetAddress_9(D) + 4290772992;
+  _6 = _5 / 8192;
+  VirtualSectors_12 = _6 + 16;
+  # DEBUG VirtualSectors => VirtualSectors_12
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  VirtualSectors_11 = 273;
+  # DEBUG VirtualSectors => VirtualSectors_11
+
+  <bb 9> :
+  # VirtualSectors_7 = PHI <VirtualSectors_14(3), VirtualSectors_13(5), VirtualSectors_12(7), VirtualSectors_11(8)>
+  # DEBUG VirtualSectors => VirtualSectors_7
+  # DEBUG BEGIN_STMT
+  _15 = VirtualSectors_7;
+  return _15;
+
+}
+
+
+C40_Ip_CheckLockDomainID_CheckRegister (C40_Ip_VirtualSectorsType VirtualSector, uint32 * CheckRegister, uint32 * TempLockMasterRegister)
+{
+  uint32 SectorStep;
+  uint32 DomainStep;
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+  long unsigned int C40_Ip_u32SectorId.43_1;
+  struct PFLASH_Type * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  struct PFLASH_Type * _5;
+  long unsigned int _6;
+  struct PFLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  struct PFLASH_Type * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.43_1 = C40_Ip_u32SectorId;
+  SectorStep_17 = C40_Ip_u32SectorId.43_1 & 4294967292;
+  # DEBUG SectorStep => SectorStep_17
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_18(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076264960B;
+  _3 ={v} _2->PFCBLK_SETSLOCK[2];
+  *CheckRegister_22(D) = _3;
+  # DEBUG BEGIN_STMT
+  _4 = SectorStep_17 + 1076265984;
+  *TempLockMasterRegister_25(D) = _4;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_18(D) == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  _6 ={v} _5->PFCBLKU_SETSLOCK[0];
+  *CheckRegister_22(D) = _6;
+  # DEBUG BEGIN_STMT
+  *TempLockMasterRegister_25(D) = 1076266112;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_19 = VirtualSector_18(D) + 4294967280;
+  # DEBUG SectorIndex => SectorIndex_19
+  # DEBUG BEGIN_STMT
+  BlockCount_20 = SectorIndex_19 / 128;
+  # DEBUG BlockCount => BlockCount_20
+  # DEBUG BEGIN_STMT
+  SectorPosition_21 = SectorIndex_19 & 127;
+  # DEBUG SectorPosition => SectorPosition_21
+  # DEBUG BEGIN_STMT
+  if (SectorPosition_21 <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  _8 ={v} _7->PFCBLK_SSETSLOCK[BlockCount_20];
+  *CheckRegister_22(D) = _8;
+  # DEBUG BEGIN_STMT
+  DomainStep_28 = BlockCount_20 << 4;
+  # DEBUG DomainStep => DomainStep_28
+  # DEBUG BEGIN_STMT
+  _9 = DomainStep_28 + SectorStep_17;
+  _10 = _9 + 1076266116;
+  *TempLockMasterRegister_25(D) = _10;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076264960B;
+  _12 ={v} _11->PFCBLK_SETSLOCK[BlockCount_20];
+  *CheckRegister_22(D) = _12;
+  # DEBUG BEGIN_STMT
+  DomainStep_24 = BlockCount_20 << 5;
+  # DEBUG DomainStep => DomainStep_24
+  # DEBUG BEGIN_STMT
+  _13 = DomainStep_24 + SectorStep_17;
+  _14 = _13 + 1076265920;
+  *TempLockMasterRegister_25(D) = _14;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_GetBaseAddressOfSector (C40_Ip_VirtualSectorsType VirtualSectors)
+{
+  volatile uint32 BaseAddressofSector;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  uint32 _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors_6(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = VirtualSectors_6(D) + 32768;
+  _2 = _1 * 8192;
+  BaseAddressofSector ={v} _2;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors_6(D) <= 271)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = VirtualSectors_6(D) + 496;
+  _4 = _3 * 8192;
+  BaseAddressofSector ={v} _4;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors_6(D) == 272)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BaseAddressofSector ={v} 452984832;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  BaseAddressofSector ={v} 4294967295;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _12 ={v} BaseAddressofSector;
+  return _12;
+
+}
+
+
+C40_Ip_CheckLockDomainID (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  uint32 CheckRegister;
+  uint32 ShiftValue;
+  uint32 TempLockMasterRegister;
+  uint8 LockDomainIDValue;
+  C40_Ip_StatusType ReturnCode;
+  long unsigned int C40_Ip_u32SectorId.10_1;
+  long unsigned int _2;
+  long unsigned int CheckRegister.11_3;
+  long unsigned int C40_Ip_u32BitPosition.12_4;
+  long unsigned int _5;
+  long unsigned int TempLockMasterRegister.13_6;
+  long unsigned int TempLockMasterRegister.14_7;
+  volatile uint32 * TempLockMasterRegister.15_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  C40_Ip_StatusType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_14 = 23205;
+  # DEBUG ReturnCode => ReturnCode_14
+  # DEBUG BEGIN_STMT
+  LockDomainIDValue_15 = 0;
+  # DEBUG LockDomainIDValue => LockDomainIDValue_15
+  # DEBUG BEGIN_STMT
+  TempLockMasterRegister = 0;
+  # DEBUG BEGIN_STMT
+  ShiftValue_18 = 0;
+  # DEBUG ShiftValue => ShiftValue_18
+  # DEBUG BEGIN_STMT
+  CheckRegister = 0;
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_20(D) != 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.10_1 = C40_Ip_u32SectorId;
+  _2 = C40_Ip_u32SectorId.10_1 & 3;
+  ShiftValue_21 = _2 * 8;
+  # DEBUG ShiftValue => ShiftValue_21
+
+  <bb 4> :
+  # ShiftValue_12 = PHI <ShiftValue_18(2), ShiftValue_21(3)>
+  # DEBUG ShiftValue => ShiftValue_12
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_20(D) <= 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_CheckLockDomainID_CheckRegister (VirtualSector_20(D), &CheckRegister, &TempLockMasterRegister);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CheckRegister.11_3 = CheckRegister;
+  C40_Ip_u32BitPosition.12_4 = C40_Ip_u32BitPosition;
+  _5 = CheckRegister.11_3 & C40_Ip_u32BitPosition.12_4;
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  TempLockMasterRegister.13_6 = TempLockMasterRegister;
+  if (TempLockMasterRegister.13_6 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TempLockMasterRegister.14_7 = TempLockMasterRegister;
+  TempLockMasterRegister.15_8 = (volatile uint32 *) TempLockMasterRegister.14_7;
+  _9 ={v} *TempLockMasterRegister.15_8;
+  _10 = _9 >> ShiftValue_12;
+  LockDomainIDValue_23 = (uint8) _10;
+  # DEBUG LockDomainIDValue => LockDomainIDValue_23
+  # DEBUG BEGIN_STMT
+  if (LockDomainIDValue_23 != DomainIdValue_24(D))
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_25 = 10212;
+  # DEBUG ReturnCode => ReturnCode_25
+
+  <bb 10> :
+  # ReturnCode_11 = PHI <ReturnCode_14(6), ReturnCode_14(7), ReturnCode_25(9), ReturnCode_14(8)>
+  # DEBUG ReturnCode => ReturnCode_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _26 = ReturnCode_11;
+  TempLockMasterRegister ={v} {CLOBBER};
+  CheckRegister ={v} {CLOBBER};
+  return _26;
+
+}
+
+
+C40_Ip_GetSectorID (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 SectorIndex;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  uint32 _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_5(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId = VirtualSector_5(D);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_5(D) == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = VirtualSector_5(D) + 4294967024;
+  C40_Ip_u32SectorId = _1;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_6 = VirtualSector_5(D) + 4294967280;
+  # DEBUG SectorIndex => SectorIndex_6
+  # DEBUG BEGIN_STMT
+  SectorPosition_7 = SectorIndex_6 & 127;
+  # DEBUG SectorPosition => SectorPosition_7
+  # DEBUG BEGIN_STMT
+  if (SectorPosition_7 <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = SectorPosition_7 >> 3;
+  C40_Ip_u32SectorId = _2;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = SectorPosition_7 + 4294967200;
+  C40_Ip_u32SectorId = _3;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _13 = C40_Ip_u32SectorId;
+  return _13;
+
+}
+
+
+C40_Ip_MainInterfaceHVJobStatus ()
+{
+  uint32 ErrorFlags;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  C40_Ip_StatusType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCRS;
+  _3 = _2 & 32768;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_11 = 59202;
+  # DEBUG ReturnCode => ReturnCode_11
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 ={v} _4->MCRS;
+  ErrorFlags_8 = _5 & 212992;
+  # DEBUG ErrorFlags => ErrorFlags_8
+  # DEBUG BEGIN_STMT
+  if (ErrorFlags_8 == 16384)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_10 = 23205;
+  # DEBUG ReturnCode => ReturnCode_10
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_9 = 10212;
+  # DEBUG ReturnCode => ReturnCode_9
+
+  <bb 7> :
+  # ReturnCode_6 = PHI <ReturnCode_11(3), ReturnCode_10(5), ReturnCode_9(6)>
+  # DEBUG ReturnCode => ReturnCode_6
+  # DEBUG BEGIN_STMT
+  _12 = ReturnCode_6;
+  return _12;
+
+}
+
+
+C40_Ip_MainInterfaceWriteStatus ()
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int C40_Ip_u32ProgrammedAddress.40_9;
+  long unsigned int C40_Ip_u32ProgrammedLength.41_10;
+  const uint8 * C40_Ip_pProgrammedData.42_11;
+  C40_Ip_StatusType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode_16 = C40_Ip_MainInterfaceHVJobStatus ();
+  # DEBUG ReturnCode => ReturnCode_16
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_16 != 59202)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 ={v} _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294967039;
+  _7->MCR ={v} _8;
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_16 == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedAddress.40_9 = C40_Ip_u32ProgrammedAddress;
+  C40_Ip_u32ProgrammedLength.41_10 = C40_Ip_u32ProgrammedLength;
+  C40_Ip_pProgrammedData.42_11 = C40_Ip_pProgrammedData;
+  ReturnCode_20 = C40_Ip_Compare (C40_Ip_u32ProgrammedAddress.40_9, C40_Ip_u32ProgrammedLength.41_10, C40_Ip_pProgrammedData.42_11);
+  # DEBUG ReturnCode => ReturnCode_20
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_20 != 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_21 = 13260;
+  # DEBUG ReturnCode => ReturnCode_21
+
+  <bb 6> :
+  # ReturnCode_12 = PHI <ReturnCode_16(2), ReturnCode_16(3), ReturnCode_20(4), ReturnCode_21(5)>
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  _22 = ReturnCode_12;
+  return _22;
+
+}
+
+
+C40_Ip_MainInterfaceWrite (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr, uint8 DomainIdValue)
+{
+  uint32 LocationWriteDataRegs;
+  C40_Ip_StatusType ReturnCode;
+  long unsigned int _1;
+  struct FLASH_Type * _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  unsigned char C40_Ip_bAsync.30_6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  C40_Ip_StatusType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32LogicalAddressCheckFail = LogicalAddress_17(D);
+  # DEBUG BEGIN_STMT
+  C40_Ip_eOpStatus = 17;
+  # DEBUG BEGIN_STMT
+  ReturnCode_23 = C40_Ip_MainInterfaceWritePreCheck (LogicalAddress_17(D), Length_20(D), SourceAddressPtr_21(D));
+  # DEBUG ReturnCode => ReturnCode_23
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_23 == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_25 = C40_Ip_Compare (LogicalAddress_17(D), Length_20(D), 0B);
+  # DEBUG ReturnCode => ReturnCode_25
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_25 != 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_26 = 11892;
+  # DEBUG ReturnCode => ReturnCode_26
+
+  <bb 5> :
+  # ReturnCode_11 = PHI <ReturnCode_23(2), ReturnCode_25(3), ReturnCode_26(4)>
+  # DEBUG ReturnCode => ReturnCode_11
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_11 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  ReturnCode_30 = C40_Ip_MainInterfaceWriteJobAddress (LogicalAddress_17(D), DomainIdValue_28(D));
+  # DEBUG ReturnCode => ReturnCode_30
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_30 == 11220)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearInterlockWrite ();
+
+  <bb 8> :
+  # ReturnCode_12 = PHI <ReturnCode_11(5), ReturnCode_30(6), ReturnCode_30(7)>
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_12 == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedAddress = LogicalAddress_17(D);
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedLength = Length_20(D);
+  # DEBUG BEGIN_STMT
+  C40_Ip_pProgrammedData = SourceAddressPtr_21(D);
+  # DEBUG BEGIN_STMT
+  _1 = LogicalAddress_17(D) >> 2;
+  LocationWriteDataRegs_35 = _1 & 31;
+  # DEBUG LocationWriteDataRegs => LocationWriteDataRegs_35
+  # DEBUG BEGIN_STMT
+  C40_Ip_MainInterfaceFillDataBuff (LocationWriteDataRegs_35, SourceAddressPtr_21(D), Length_20(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 ={v} _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 256;
+  _4->MCR ={v} _5;
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync.30_6 = C40_Ip_bAsync;
+  if (C40_Ip_bAsync.30_6 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 ={v} _7->MCR;
+  _9 = 1076805632B;
+  _10 = _8 | 1;
+  _9->MCR ={v} _10;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _40 = ReturnCode_12;
+  return _40;
+
+}
+
+
+C40_Ip_ClearInterlockWrite ()
+{
+  struct FLASH_Type * _1;
+  struct FLASH_Type * _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  struct FLASH_Type * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  struct FLASH_Type * _9;
+  long unsigned int _10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _1->DATA[0] ={v} 0;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 ={v} _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 256;
+  _4->MCR ={v} _5;
+  # DEBUG BEGIN_STMT
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 ={v} _6->MCR;
+  _8 = _7 & 256;
+  if (_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = 1076805632B;
+  _10 ={v} _9->MCR;
+  _11 = 1076805632B;
+  _12 = _10 & 4294967039;
+  _11->MCR ={v} _12;
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceFillDataBuff (uint32 LocationWriteDataRegs, const uint8 * DataPtr, uint32 Size)
+{
+  volatile uint32 DataTemp32;
+  uint32 SizeLeft;
+  uint32 DataIndex;
+  const uint8 * DataPtr8;
+  const uint32 * DataPtr32;
+  long unsigned int DataPtr.31_1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  long unsigned int _9;
+  const uint8 * _10;
+  unsigned char _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int DataTemp32.32_14;
+  long unsigned int _15;
+  const uint8 * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int DataTemp32.33_20;
+  long unsigned int _21;
+  const uint8 * _22;
+  unsigned char _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int DataTemp32.34_26;
+  long unsigned int _27;
+  struct FLASH_Type * _28;
+  long unsigned int DataTemp32.35_29;
+  const uint8 * _30;
+  unsigned char _31;
+  long unsigned int _32;
+  const uint8 * _33;
+  unsigned char _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  long unsigned int DataTemp32.36_37;
+  long unsigned int _38;
+  const uint8 * _39;
+  unsigned char _40;
+  long unsigned int _41;
+  long unsigned int _42;
+  long unsigned int DataTemp32.37_43;
+  long unsigned int _44;
+  const uint8 * _45;
+  unsigned char _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  long unsigned int DataTemp32.38_49;
+  long unsigned int _50;
+  struct FLASH_Type * _51;
+  long unsigned int _52;
+  long unsigned int DataTemp32.39_53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DataPtr32_64 = DataPtr_63(D);
+  # DEBUG DataPtr32 => DataPtr32_64
+  # DEBUG BEGIN_STMT
+  DataPtr8_65 = DataPtr_63(D);
+  # DEBUG DataPtr8 => DataPtr8_65
+  # DEBUG BEGIN_STMT
+  DataIndex_67 = LocationWriteDataRegs_66(D);
+  # DEBUG DataIndex => DataIndex_67
+  # DEBUG BEGIN_STMT
+  SizeLeft_69 = Size_68(D);
+  # DEBUG SizeLeft => SizeLeft_69
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DataPtr.31_1 = (long unsigned int) DataPtr_63(D);
+  _2 = DataPtr.31_1 & 3;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DataPtr32_54 = PHI <DataPtr32_64(2), DataPtr32_86(3)>
+  # DataIndex_56 = PHI <DataIndex_67(2), DataIndex_87(3)>
+  # SizeLeft_58 = PHI <SizeLeft_69(2), SizeLeft_88(3)>
+  # DEBUG SizeLeft => SizeLeft_58
+  # DEBUG DataIndex => DataIndex_56
+  # DEBUG DataPtr32 => DataPtr32_54
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = *DataPtr32_54;
+  _3->DATA[DataIndex_56] ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = DataIndex_56 + 1;
+  _7 = MEM[(const uint32 *)DataPtr32_54 + 4B];
+  _5->DATA[_6] ={v} _7;
+  # DEBUG BEGIN_STMT
+  DataPtr32_86 = DataPtr32_54 + 8;
+  # DEBUG DataPtr32 => DataPtr32_86
+  # DEBUG BEGIN_STMT
+  DataIndex_87 = DataIndex_56 + 2;
+  # DEBUG DataIndex => DataIndex_87
+  # DEBUG BEGIN_STMT
+  SizeLeft_88 = SizeLeft_58 + 4294967288;
+  # DEBUG SizeLeft => SizeLeft_88
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_88 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DataPtr8_55 = PHI <DataPtr8_65(2), DataPtr8_81(4)>
+  # DataIndex_57 = PHI <DataIndex_67(2), DataIndex_82(4)>
+  # SizeLeft_59 = PHI <SizeLeft_69(2), SizeLeft_83(4)>
+  # DEBUG SizeLeft => SizeLeft_59
+  # DEBUG DataIndex => DataIndex_57
+  # DEBUG DataPtr8 => DataPtr8_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = *DataPtr8_55;
+  _9 = (long unsigned int) _8;
+  DataTemp32 ={v} _9;
+  # DEBUG BEGIN_STMT
+  _10 = DataPtr8_55 + 1;
+  _11 = *_10;
+  _12 = (long unsigned int) _11;
+  _13 = _12 << 8;
+  DataTemp32.32_14 ={v} DataTemp32;
+  _15 = _13 | DataTemp32.32_14;
+  DataTemp32 ={v} _15;
+  # DEBUG BEGIN_STMT
+  _16 = DataPtr8_55 + 2;
+  _17 = *_16;
+  _18 = (long unsigned int) _17;
+  _19 = _18 << 16;
+  DataTemp32.33_20 ={v} DataTemp32;
+  _21 = _19 | DataTemp32.33_20;
+  DataTemp32 ={v} _21;
+  # DEBUG BEGIN_STMT
+  _22 = DataPtr8_55 + 3;
+  _23 = *_22;
+  _24 = (long unsigned int) _23;
+  _25 = _24 << 24;
+  DataTemp32.34_26 ={v} DataTemp32;
+  _27 = _25 | DataTemp32.34_26;
+  DataTemp32 ={v} _27;
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  DataTemp32.35_29 ={v} DataTemp32;
+  _28->DATA[DataIndex_57] ={v} DataTemp32.35_29;
+  # DEBUG BEGIN_STMT
+  _30 = DataPtr8_55 + 4;
+  _31 = *_30;
+  _32 = (long unsigned int) _31;
+  DataTemp32 ={v} _32;
+  # DEBUG BEGIN_STMT
+  _33 = DataPtr8_55 + 5;
+  _34 = *_33;
+  _35 = (long unsigned int) _34;
+  _36 = _35 << 8;
+  DataTemp32.36_37 ={v} DataTemp32;
+  _38 = _36 | DataTemp32.36_37;
+  DataTemp32 ={v} _38;
+  # DEBUG BEGIN_STMT
+  _39 = DataPtr8_55 + 6;
+  _40 = *_39;
+  _41 = (long unsigned int) _40;
+  _42 = _41 << 16;
+  DataTemp32.37_43 ={v} DataTemp32;
+  _44 = _42 | DataTemp32.37_43;
+  DataTemp32 ={v} _44;
+  # DEBUG BEGIN_STMT
+  _45 = DataPtr8_55 + 7;
+  _46 = *_45;
+  _47 = (long unsigned int) _46;
+  _48 = _47 << 24;
+  DataTemp32.38_49 ={v} DataTemp32;
+  _50 = _48 | DataTemp32.38_49;
+  DataTemp32 ={v} _50;
+  # DEBUG BEGIN_STMT
+  _51 = 1076805632B;
+  _52 = DataIndex_57 + 1;
+  DataTemp32.39_53 ={v} DataTemp32;
+  _51->DATA[_52] ={v} DataTemp32.39_53;
+  # DEBUG BEGIN_STMT
+  DataPtr8_81 = DataPtr8_55 + 8;
+  # DEBUG DataPtr8 => DataPtr8_81
+  # DEBUG BEGIN_STMT
+  DataIndex_82 = DataIndex_57 + 2;
+  # DEBUG DataIndex => DataIndex_82
+  # DEBUG BEGIN_STMT
+  SizeLeft_83 = SizeLeft_59 + 4294967288;
+  # DEBUG SizeLeft => SizeLeft_83
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_83 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceWritePreCheck (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr)
+{
+  C40_Ip_VirtualSectorsType VirtualSector;
+  C40_Ip_StatusType ReturnCode;
+  long unsigned int _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  struct FLASH_Type * _6;
+  long unsigned int _7;
+  signed int _8;
+  <unnamed type> _9;
+  C40_Ip_StatusType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress_13(D), Length_14(D));
+  # DEBUG BEGIN_STMT
+  VirtualSector_17 = C40_Ip_GetSectorNumberFromAddress (LogicalAddress_13(D));
+  # DEBUG VirtualSector => VirtualSector_17
+  # DEBUG BEGIN_STMT
+  _1 = LogicalAddress_13(D) & 7;
+  if (_1 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Length_14(D) & 7;
+  if (_2 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (Length_14(D) > 128)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Length_14(D) == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (SourceAddressPtr_18(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_24 = 11700;
+  # DEBUG ReturnCode => ReturnCode_24
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->MCR;
+  _5 = _4 & 272;
+  if (_5 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_23 = 10212;
+  # DEBUG ReturnCode => ReturnCode_23
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 ={v} _6->UT0;
+  _8 = (signed int) _7;
+  if (_8 < 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_22 = 10212;
+  # DEBUG ReturnCode => ReturnCode_22
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _9 = C40_Ip_GetLock (VirtualSector_17);
+  if (_9 != 64034)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_21 = 10212;
+  # DEBUG ReturnCode => ReturnCode_21
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_20 = 23205;
+  # DEBUG ReturnCode => ReturnCode_20
+
+  <bb 15> :
+  # ReturnCode_10 = PHI <ReturnCode_24(7), ReturnCode_23(9), ReturnCode_22(11), ReturnCode_21(13), ReturnCode_20(14)>
+  # DEBUG ReturnCode => ReturnCode_10
+  # DEBUG BEGIN_STMT
+  _25 = ReturnCode_10;
+  return _25;
+
+}
+
+
+C40_Ip_MainInterfaceSectorEraseStatus ()
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int C40_Ip_u32ErasedSectorAddress.29_9;
+  C40_Ip_StatusType _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode_14 = C40_Ip_MainInterfaceHVJobStatus ();
+  # DEBUG ReturnCode => ReturnCode_14
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_14 != 59202)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 ={v} _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294967279;
+  _7->MCR ={v} _8;
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_14 == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ErasedSectorAddress.29_9 = C40_Ip_u32ErasedSectorAddress;
+  ReturnCode_18 = C40_Ip_Compare (C40_Ip_u32ErasedSectorAddress.29_9, 8192, 0B);
+  # DEBUG ReturnCode => ReturnCode_18
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_18 != 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_19 = 11892;
+  # DEBUG ReturnCode => ReturnCode_19
+
+  <bb 6> :
+  # ReturnCode_10 = PHI <ReturnCode_14(2), ReturnCode_14(3), ReturnCode_18(4), ReturnCode_19(5)>
+  # DEBUG ReturnCode => ReturnCode_10
+  # DEBUG BEGIN_STMT
+  _20 = ReturnCode_10;
+  return _20;
+
+}
+
+
+C40_Ip_MainInterfaceSectorErase (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  uint32 LogicalAddress;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  struct FLASH_Type * _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  struct FLASH_Type * _6;
+  long unsigned int _7;
+  struct FLASH_Type * _8;
+  long unsigned int _9;
+  unsigned char C40_Ip_bAsync.28_10;
+  struct FLASH_Type * _11;
+  long unsigned int _12;
+  struct FLASH_Type * _13;
+  long unsigned int _14;
+  C40_Ip_StatusType _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode_21 = C40_Ip_MainInterfaceSectorErasePreCheck (VirtualSector_19(D));
+  # DEBUG ReturnCode => ReturnCode_21
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_21 == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  LogicalAddress_24 = C40_Ip_GetBaseAddressOfSector (VirtualSector_19(D));
+  # DEBUG LogicalAddress => LogicalAddress_24
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ErasedSectorAddress = LogicalAddress_24;
+  # DEBUG BEGIN_STMT
+  ReturnCode_28 = C40_Ip_MainInterfaceWriteJobAddress (LogicalAddress_24, DomainIdValue_26(D));
+  # DEBUG ReturnCode => ReturnCode_28
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_28 == 11220)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearInterlockWrite ();
+
+  <bb 5> :
+  # ReturnCode_15 = PHI <ReturnCode_21(2), ReturnCode_28(3), ReturnCode_28(4)>
+  # DEBUG ReturnCode => ReturnCode_15
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_15 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _1->DATA[0] ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 ={v} _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 16;
+  _4->MCR ={v} _5;
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 ={v} _6->MCR;
+  _8 = 1076805632B;
+  _9 = _7 & 4294967263;
+  _8->MCR ={v} _9;
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync.28_10 = C40_Ip_bAsync;
+  if (C40_Ip_bAsync.28_10 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 ={v} _11->MCR;
+  _13 = 1076805632B;
+  _14 = _12 | 1;
+  _13->MCR ={v} _14;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _35 = ReturnCode_15;
+  return _35;
+
+}
+
+
+C40_Ip_MainInterfaceSectorErasePreCheck (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct FLASH_Type * _4;
+  long unsigned int _5;
+  signed int _6;
+  <unnamed type> _7;
+  C40_Ip_StatusType _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_10(D) > 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_17 = 11700;
+  # DEBUG ReturnCode => ReturnCode_17
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = _2 & 272;
+  if (_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_16 = 10212;
+  # DEBUG ReturnCode => ReturnCode_16
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 ={v} _4->UT0;
+  _6 = (signed int) _5;
+  if (_6 < 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_15 = 10212;
+  # DEBUG ReturnCode => ReturnCode_15
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_GetLock (VirtualSector_10(D));
+  if (_7 != 64034)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_14 = 10212;
+  # DEBUG ReturnCode => ReturnCode_14
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_13 = 23205;
+  # DEBUG ReturnCode => ReturnCode_13
+
+  <bb 11> :
+  # ReturnCode_8 = PHI <ReturnCode_17(3), ReturnCode_16(5), ReturnCode_15(7), ReturnCode_14(9), ReturnCode_13(10)>
+  # DEBUG ReturnCode => ReturnCode_8
+  # DEBUG BEGIN_STMT
+  _18 = ReturnCode_8;
+  return _18;
+
+}
+
+
+C40_Ip_ClearAllErrorFlagsMainInterface ()
+{
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCRS;
+  _3 = 1076805632B;
+  _4 = _2 & 4078108672;
+  _3->MCRS ={v} _4;
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceAbort ()
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  struct FLASH_Type * _8;
+  long unsigned int _9;
+  struct FLASH_Type * _10;
+  long unsigned int _11;
+  C40_Ip_StatusType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_12 = 23205;
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 ={v} _5->MCRS;
+  _7 = _6 & 32768;
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = 1076805632B;
+  _9 ={v} _8->MCR;
+  _10 = 1076805632B;
+  _11 = _9 & 4294966991;
+  _10->MCR ={v} _11;
+  # DEBUG BEGIN_STMT
+  _16 = ReturnCode_12;
+  return _16;
+
+}
+
+
+C40_Ip_InitMainInterface ()
+{
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  struct FLASH_Type * _7;
+  long unsigned int _8;
+  C40_Ip_StatusType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_9 = 10212;
+  # DEBUG ReturnCode => ReturnCode_9
+  # DEBUG BEGIN_STMT
+  ReturnCode_12 = C40_Ip_MainInterfaceAbort ();
+  # DEBUG ReturnCode => ReturnCode_12
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294963199;
+  _3->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 ={v} _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294934527;
+  _7->MCR ={v} _8;
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  _16 = ReturnCode_12;
+  return _16;
+
+}
+
+
+C40_Ip_MainInterfaceWriteJobAddress (uint32 PhysicalAddress, uint8 DomainIdValue)
+{
+  uint8 ActualDomainIDs;
+  C40_Ip_StatusType ReturnCode;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  C40_Ip_StatusType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_5 = 23205;
+  # DEBUG ReturnCode => ReturnCode_5
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_MainInterfaceWriteLogicalAddress (PhysicalAddress_7(D));
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCR;
+  _3 = _2 >> 16;
+  ActualDomainIDs_9 = (uint8) _3;
+  # DEBUG ActualDomainIDs => ActualDomainIDs_9
+  # DEBUG BEGIN_STMT
+  if (ActualDomainIDs_9 != DomainIdValue_10(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = ReturnCode_5;
+  return _11;
+
+}
+
+
+C40_Ip_MainInterfaceWriteLogicalAddress (uint32 Address)
+{
+  struct PFLASH_Type * _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _1->PFCPGM_PEADR_L ={v} Address_3(D);
+  return;
+
+}
+
+
+C40_Ip_EraseVerify (uint32 Address, uint32 Size)
+{
+  boolean CompareResult;
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint32 ReadAddress;
+  unsigned char CompareResult.27_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_12 = Address_11(D);
+  # DEBUG ReadAddress => ReadAddress_12
+  # DEBUG BEGIN_STMT
+  SizeLeft_14 = Size_13(D);
+  # DEBUG SizeLeft => SizeLeft_14
+
+  <bb 3> :
+  # ReadAddress_2 = PHI <ReadAddress_12(2), ReadAddress_25(6)>
+  # SizeLeft_3 = PHI <SizeLeft_14(2), SizeLeft_26(6)>
+  # ReadSize_5 = PHI <ReadSize_15(D)(2), ReadSize_6(6)>
+  # DEBUG ReadSize => ReadSize_5
+  # DEBUG SizeLeft => SizeLeft_3
+  # DEBUG ReadAddress => ReadAddress_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_18 = C40_Ip_ClearPreviousRead (ReadAddress_2);
+  # DEBUG Status => Status_18
+  # DEBUG BEGIN_STMT
+  if (Status_18 == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize_21 = C40_Ip_CompareBlank (ReadAddress_2, SizeLeft_3, &CompareResult);
+  # DEBUG ReadSize => ReadSize_21
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  CompareResult.27_1 = CompareResult;
+  Status_24 = C40_Ip_CheckReadCompareStatus (ReadAddress_2, CompareResult.27_1);
+  # DEBUG Status => Status_24
+
+  <bb 5> :
+  # ReadSize_6 = PHI <ReadSize_5(3), ReadSize_21(4)>
+  # Status_7 = PHI <Status_18(3), Status_24(4)>
+  # DEBUG Status => Status_7
+  # DEBUG ReadSize => ReadSize_6
+  # DEBUG BEGIN_STMT
+  if (Status_7 != 23205)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_25 = ReadAddress_2 + ReadSize_6;
+  # DEBUG ReadAddress => ReadAddress_25
+  # DEBUG BEGIN_STMT
+  SizeLeft_26 = SizeLeft_3 - ReadSize_6;
+  # DEBUG SizeLeft => SizeLeft_26
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_26 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # SizeLeft_4 = PHI <SizeLeft_3(5), SizeLeft_26(6)>
+  # DEBUG SizeLeft => SizeLeft_4
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_4 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 9> :
+  CompareResult ={v} {CLOBBER};
+  return;
+
+}
+
+
+C40_Ip_CompareBlank (uint32 ReadAddress, uint32 SizeLeft, boolean * CompareResult)
+{
+  uint32 ReadSize;
+  long unsigned int _1;
+  long unsigned int _2;
+  _Bool _3;
+  unsigned char _4;
+  long unsigned int _5;
+  short unsigned int _6;
+  _Bool _7;
+  unsigned char _8;
+  unsigned char _9;
+  _Bool _10;
+  unsigned char _11;
+  uint32 _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ReadAddress_14(D) & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft_15(D) > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize_16 = 4;
+  # DEBUG ReadSize => ReadSize_16
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ReadData32 (ReadAddress_14(D));
+  _3 = _2 == 4294967295;
+  _4 = (unsigned char) _3;
+  *CompareResult_19(D) = _4;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = ReadAddress_14(D) & 1;
+  if (_5 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft_15(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize_21 = 2;
+  # DEBUG ReadSize => ReadSize_21
+  # DEBUG BEGIN_STMT
+  _6 = C40_Ip_ReadData16 (ReadAddress_14(D));
+  _7 = _6 == 65535;
+  _8 = (unsigned char) _7;
+  *CompareResult_19(D) = _8;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize_24 = 1;
+  # DEBUG ReadSize => ReadSize_24
+  # DEBUG BEGIN_STMT
+  _9 = C40_Ip_ReadData8 (ReadAddress_14(D));
+  _10 = _9 == 255;
+  _11 = (unsigned char) _10;
+  *CompareResult_19(D) = _11;
+
+  <bb 9> :
+  # ReadSize_12 = PHI <ReadSize_16(4), ReadSize_21(7), ReadSize_24(8)>
+  # DEBUG ReadSize => ReadSize_12
+  # DEBUG BEGIN_STMT
+  _27 = ReadSize_12;
+  return _27;
+
+}
+
+
+C40_Ip_ProgramVerify (uint32 Address, const uint8 * Data, uint32 Size)
+{
+  boolean CompareResult;
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint32 DataAddress;
+  uint32 ReadAddress;
+  unsigned char CompareResult.26_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_13 = Address_12(D);
+  # DEBUG ReadAddress => ReadAddress_13
+  # DEBUG BEGIN_STMT
+  DataAddress_15 = (uint32) Data_14(D);
+  # DEBUG DataAddress => DataAddress_15
+  # DEBUG BEGIN_STMT
+  SizeLeft_17 = Size_16(D);
+  # DEBUG SizeLeft => SizeLeft_17
+
+  <bb 3> :
+  # ReadAddress_2 = PHI <ReadAddress_13(2), ReadAddress_28(6)>
+  # DataAddress_3 = PHI <DataAddress_15(2), DataAddress_29(6)>
+  # SizeLeft_4 = PHI <SizeLeft_17(2), SizeLeft_30(6)>
+  # ReadSize_6 = PHI <ReadSize_18(D)(2), ReadSize_7(6)>
+  # DEBUG ReadSize => ReadSize_6
+  # DEBUG SizeLeft => SizeLeft_4
+  # DEBUG DataAddress => DataAddress_3
+  # DEBUG ReadAddress => ReadAddress_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_21 = C40_Ip_ClearPreviousRead (ReadAddress_2);
+  # DEBUG Status => Status_21
+  # DEBUG BEGIN_STMT
+  if (Status_21 == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize_24 = C40_Ip_CompareData (ReadAddress_2, DataAddress_3, SizeLeft_4, &CompareResult);
+  # DEBUG ReadSize => ReadSize_24
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  CompareResult.26_1 = CompareResult;
+  Status_27 = C40_Ip_CheckReadCompareStatus (ReadAddress_2, CompareResult.26_1);
+  # DEBUG Status => Status_27
+
+  <bb 5> :
+  # ReadSize_7 = PHI <ReadSize_6(3), ReadSize_24(4)>
+  # Status_8 = PHI <Status_21(3), Status_27(4)>
+  # DEBUG Status => Status_8
+  # DEBUG ReadSize => ReadSize_7
+  # DEBUG BEGIN_STMT
+  if (Status_8 != 23205)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_28 = ReadAddress_2 + ReadSize_7;
+  # DEBUG ReadAddress => ReadAddress_28
+  # DEBUG BEGIN_STMT
+  DataAddress_29 = DataAddress_3 + ReadSize_7;
+  # DEBUG DataAddress => DataAddress_29
+  # DEBUG BEGIN_STMT
+  SizeLeft_30 = SizeLeft_4 - ReadSize_7;
+  # DEBUG SizeLeft => SizeLeft_30
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_30 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # SizeLeft_5 = PHI <SizeLeft_4(5), SizeLeft_30(6)>
+  # DEBUG SizeLeft => SizeLeft_5
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_5 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 9> :
+  CompareResult ={v} {CLOBBER};
+  return;
+
+}
+
+
+C40_Ip_CompareData (uint32 ReadAddress, uint32 DataAddress, uint32 SizeLeft, boolean * CompareResult)
+{
+  uint32 CombinedAddress;
+  uint32 ReadSize;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  _Bool _4;
+  unsigned char _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  _Bool _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char _12;
+  _Bool _13;
+  unsigned char _14;
+  uint32 _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CombinedAddress_19 = ReadAddress_17(D) | DataAddress_18(D);
+  # DEBUG CombinedAddress => CombinedAddress_19
+  # DEBUG BEGIN_STMT
+  _1 = CombinedAddress_19 & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft_20(D) > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize_21 = 4;
+  # DEBUG ReadSize => ReadSize_21
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ReadData32 (ReadAddress_17(D));
+  _3 = C40_Ip_ReadData32 (DataAddress_18(D));
+  _4 = _2 == _3;
+  _5 = (unsigned char) _4;
+  *CompareResult_25(D) = _5;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = CombinedAddress_19 & 1;
+  if (_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft_20(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize_27 = 2;
+  # DEBUG ReadSize => ReadSize_27
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_ReadData16 (ReadAddress_17(D));
+  _8 = C40_Ip_ReadData16 (DataAddress_18(D));
+  _9 = _7 == _8;
+  _10 = (unsigned char) _9;
+  *CompareResult_25(D) = _10;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize_31 = 1;
+  # DEBUG ReadSize => ReadSize_31
+  # DEBUG BEGIN_STMT
+  _11 = C40_Ip_ReadData8 (ReadAddress_17(D));
+  _12 = C40_Ip_ReadData8 (DataAddress_18(D));
+  _13 = _11 == _12;
+  _14 = (unsigned char) _13;
+  *CompareResult_25(D) = _14;
+
+  <bb 9> :
+  # ReadSize_15 = PHI <ReadSize_21(4), ReadSize_27(7), ReadSize_31(8)>
+  # DEBUG ReadSize => ReadSize_15
+  # DEBUG BEGIN_STMT
+  _35 = ReadSize_15;
+  return _35;
+
+}
+
+
+C40_Ip_Compare (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr)
+{
+  C40_Ip_StatusType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress_3(D), Length_4(D));
+  # DEBUG BEGIN_STMT
+  if (Length_4(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 11700;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 59202;
+  # DEBUG BEGIN_STMT
+  if (SourceAddressPtr_7(D) != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ProgramVerify (LogicalAddress_3(D), SourceAddressPtr_7(D), Length_4(D));
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_EraseVerify (LogicalAddress_3(D), Length_4(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = C40_Ip_eReadStatus;
+  return _11;
+
+}
+
+
+C40_Ip_ClearLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+  struct PFLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int C40_Ip_u32BitPosition.22_3;
+  long unsigned int _4;
+  struct PFLASH_Type * _5;
+  long unsigned int _6;
+  struct PFLASH_Type * _7;
+  long unsigned int _8;
+  long unsigned int C40_Ip_u32BitPosition.23_9;
+  long unsigned int _10;
+  struct PFLASH_Type * _11;
+  long unsigned int _12;
+  struct PFLASH_Type * _13;
+  long unsigned int _14;
+  long unsigned int C40_Ip_u32BitPosition.24_15;
+  long unsigned int _16;
+  struct PFLASH_Type * _17;
+  long unsigned int _18;
+  struct PFLASH_Type * _19;
+  long unsigned int _20;
+  long unsigned int C40_Ip_u32BitPosition.25_21;
+  long unsigned int _22;
+  struct PFLASH_Type * _23;
+  long unsigned int _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_26(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 ={v} _1->PFCBLK_SPELOCK[2];
+  C40_Ip_u32BitPosition.22_3 = C40_Ip_u32BitPosition;
+  _4 = ~C40_Ip_u32BitPosition.22_3;
+  _5 = 1076264960B;
+  _6 = _2 & _4;
+  _5->PFCBLK_SPELOCK[2] ={v} _6;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_26(D) == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  _8 ={v} _7->PFCBLKU_SPELOCK[0];
+  C40_Ip_u32BitPosition.23_9 = C40_Ip_u32BitPosition;
+  _10 = ~C40_Ip_u32BitPosition.23_9;
+  _11 = 1076264960B;
+  _12 = _8 & _10;
+  _11->PFCBLKU_SPELOCK[0] ={v} _12;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_27 = VirtualSector_26(D) + 4294967280;
+  # DEBUG SectorIndex => SectorIndex_27
+  # DEBUG BEGIN_STMT
+  BlockCount_28 = SectorIndex_27 / 128;
+  # DEBUG BlockCount => BlockCount_28
+  # DEBUG BEGIN_STMT
+  SectorPosition_29 = SectorIndex_27 & 127;
+  # DEBUG SectorPosition => SectorPosition_29
+  # DEBUG BEGIN_STMT
+  if (SectorPosition_29 <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = 1076264960B;
+  _14 ={v} _13->PFCBLK_SSPELOCK[BlockCount_28];
+  C40_Ip_u32BitPosition.24_15 = C40_Ip_u32BitPosition;
+  _16 = ~C40_Ip_u32BitPosition.24_15;
+  _17 = 1076264960B;
+  _18 = _14 & _16;
+  _17->PFCBLK_SSPELOCK[BlockCount_28] ={v} _18;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076264960B;
+  _20 ={v} _19->PFCBLK_SPELOCK[BlockCount_28];
+  C40_Ip_u32BitPosition.25_21 = C40_Ip_u32BitPosition;
+  _22 = ~C40_Ip_u32BitPosition.25_21;
+  _23 = 1076264960B;
+  _24 = _20 & _22;
+  _23->PFCBLK_SPELOCK[BlockCount_28] ={v} _24;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_ClearLock (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode_6 = C40_Ip_GetLock (VirtualSector_4(D));
+  # DEBUG ReturnCode => ReturnCode_6
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_6 == 10212)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_6 == 64034)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_11 = 23205;
+  # DEBUG ReturnCode => ReturnCode_11
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_9 = C40_Ip_CheckLockDomainID (VirtualSector_4(D), DomainIdValue_7(D));
+  # DEBUG ReturnCode => ReturnCode_9
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_9 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearLockProtect (VirtualSector_4(D));
+
+  <bb 7> :
+  # ReturnCode_1 = PHI <ReturnCode_6(2), ReturnCode_11(4), ReturnCode_9(5), ReturnCode_9(6)>
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  _12 = ReturnCode_1;
+  return _12;
+
+}
+
+
+C40_Ip_GetLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 CheckRegister;
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+  long unsigned int _1;
+  long unsigned int C40_Ip_u32SectorId.20_2;
+  long unsigned int _3;
+  struct PFLASH_Type * _4;
+  struct PFLASH_Type * _5;
+  struct PFLASH_Type * _6;
+  struct PFLASH_Type * _7;
+  long unsigned int C40_Ip_u32BitPosition.21_8;
+  uint32 _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_GetSectorID (VirtualSector_11(D));
+  C40_Ip_u32SectorId = _1;
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.20_2 = C40_Ip_u32SectorId;
+  _3 = 1 << C40_Ip_u32SectorId.20_2;
+  C40_Ip_u32BitPosition = _3;
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_11(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076264960B;
+  CheckRegister_21 ={v} _4->PFCBLK_SPELOCK[2];
+  # DEBUG CheckRegister => CheckRegister_21
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_11(D) == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  CheckRegister_20 ={v} _5->PFCBLKU_SPELOCK[0];
+  # DEBUG CheckRegister => CheckRegister_20
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_15 = VirtualSector_11(D) + 4294967280;
+  # DEBUG SectorIndex => SectorIndex_15
+  # DEBUG BEGIN_STMT
+  BlockCount_16 = SectorIndex_15 / 128;
+  # DEBUG BlockCount => BlockCount_16
+  # DEBUG BEGIN_STMT
+  SectorPosition_17 = SectorIndex_15 & 127;
+  # DEBUG SectorPosition => SectorPosition_17
+  # DEBUG BEGIN_STMT
+  if (SectorPosition_17 <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076264960B;
+  CheckRegister_19 ={v} _6->PFCBLK_SSPELOCK[BlockCount_16];
+  # DEBUG CheckRegister => CheckRegister_19
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  CheckRegister_18 ={v} _7->PFCBLK_SPELOCK[BlockCount_16];
+  # DEBUG CheckRegister => CheckRegister_18
+
+  <bb 9> :
+  # CheckRegister_9 = PHI <CheckRegister_21(3), CheckRegister_20(5), CheckRegister_19(7), CheckRegister_18(8)>
+  # DEBUG CheckRegister => CheckRegister_9
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32BitPosition.21_8 = C40_Ip_u32BitPosition;
+  _22 = CheckRegister_9 & C40_Ip_u32BitPosition.21_8;
+  return _22;
+
+}
+
+
+C40_Ip_GetLock (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 CheckRegister;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_3(D) > 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_9 = 10212;
+  # DEBUG ReturnCode => ReturnCode_9
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CheckRegister_6 = C40_Ip_GetLockProtect (VirtualSector_3(D));
+  # DEBUG CheckRegister => CheckRegister_6
+  # DEBUG BEGIN_STMT
+  if (CheckRegister_6 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_8 = 64034;
+  # DEBUG ReturnCode => ReturnCode_8
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_7 = 59576;
+  # DEBUG ReturnCode => ReturnCode_7
+
+  <bb 7> :
+  # ReturnCode_1 = PHI <ReturnCode_9(3), ReturnCode_8(5), ReturnCode_7(6)>
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  _10 = ReturnCode_1;
+  return _10;
+
+}
+
+
+C40_Ip_SetLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+  struct PFLASH_Type * _1;
+  long unsigned int _2;
+  long unsigned int C40_Ip_u32BitPosition.16_3;
+  struct PFLASH_Type * _4;
+  long unsigned int _5;
+  struct PFLASH_Type * _6;
+  long unsigned int _7;
+  long unsigned int C40_Ip_u32BitPosition.17_8;
+  struct PFLASH_Type * _9;
+  long unsigned int _10;
+  struct PFLASH_Type * _11;
+  long unsigned int _12;
+  long unsigned int C40_Ip_u32BitPosition.18_13;
+  struct PFLASH_Type * _14;
+  long unsigned int _15;
+  struct PFLASH_Type * _16;
+  long unsigned int _17;
+  long unsigned int C40_Ip_u32BitPosition.19_18;
+  struct PFLASH_Type * _19;
+  long unsigned int _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_22(D) <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 ={v} _1->PFCBLK_SPELOCK[2];
+  C40_Ip_u32BitPosition.16_3 = C40_Ip_u32BitPosition;
+  _4 = 1076264960B;
+  _5 = _2 | C40_Ip_u32BitPosition.16_3;
+  _4->PFCBLK_SPELOCK[2] ={v} _5;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector_22(D) == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076264960B;
+  _7 ={v} _6->PFCBLKU_SPELOCK[0];
+  C40_Ip_u32BitPosition.17_8 = C40_Ip_u32BitPosition;
+  _9 = 1076264960B;
+  _10 = _7 | C40_Ip_u32BitPosition.17_8;
+  _9->PFCBLKU_SPELOCK[0] ={v} _10;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_23 = VirtualSector_22(D) + 4294967280;
+  # DEBUG SectorIndex => SectorIndex_23
+  # DEBUG BEGIN_STMT
+  BlockCount_24 = SectorIndex_23 / 128;
+  # DEBUG BlockCount => BlockCount_24
+  # DEBUG BEGIN_STMT
+  SectorPosition_25 = SectorIndex_23 & 127;
+  # DEBUG SectorPosition => SectorPosition_25
+  # DEBUG BEGIN_STMT
+  if (SectorPosition_25 <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076264960B;
+  _12 ={v} _11->PFCBLK_SSPELOCK[BlockCount_24];
+  C40_Ip_u32BitPosition.18_13 = C40_Ip_u32BitPosition;
+  _14 = 1076264960B;
+  _15 = _12 | C40_Ip_u32BitPosition.18_13;
+  _14->PFCBLK_SSPELOCK[BlockCount_24] ={v} _15;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _16 = 1076264960B;
+  _17 ={v} _16->PFCBLK_SPELOCK[BlockCount_24];
+  C40_Ip_u32BitPosition.19_18 = C40_Ip_u32BitPosition;
+  _19 = 1076264960B;
+  _20 = _17 | C40_Ip_u32BitPosition.19_18;
+  _19->PFCBLK_SPELOCK[BlockCount_24] ={v} _20;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_SetLock (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode_6 = C40_Ip_GetLock (VirtualSector_4(D));
+  # DEBUG ReturnCode => ReturnCode_6
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_6 == 10212)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_6 == 59576)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_11 = 23205;
+  # DEBUG ReturnCode => ReturnCode_11
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_9 = C40_Ip_CheckLockDomainID (VirtualSector_4(D), DomainIdValue_7(D));
+  # DEBUG ReturnCode => ReturnCode_9
+  # DEBUG BEGIN_STMT
+  if (ReturnCode_9 == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetLockProtect (VirtualSector_4(D));
+
+  <bb 7> :
+  # ReturnCode_1 = PHI <ReturnCode_6(2), ReturnCode_11(4), ReturnCode_9(5), ReturnCode_9(6)>
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  _12 = ReturnCode_1;
+  return _12;
+
+}
+
+
+C40_Ip_Read (uint32 LogicalAddress, uint32 Length, uint8 * DestAddressPtr)
+{
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint8 * DesAddressPtr;
+  uint32 ReadAddress;
+  <unnamed type> _1;
+  <unnamed type> C40_Ip_eReadStatus.0_2;
+  C40_Ip_StatusType _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_14 = LogicalAddress_13(D);
+  # DEBUG ReadAddress => ReadAddress_14
+  # DEBUG BEGIN_STMT
+  DesAddressPtr_16 = DestAddressPtr_15(D);
+  # DEBUG DesAddressPtr => DesAddressPtr_16
+  # DEBUG BEGIN_STMT
+  SizeLeft_18 = Length_17(D);
+  # DEBUG SizeLeft => SizeLeft_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress_13(D), Length_17(D));
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_ReadCheckInputParams (Length_17(D), DestAddressPtr_15(D));
+  C40_Ip_eReadStatus = _1;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus.0_2 = C40_Ip_eReadStatus;
+  if (C40_Ip_eReadStatus.0_2 == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 59202;
+
+  <bb 4> :
+  # ReadAddress_3 = PHI <ReadAddress_14(3), ReadAddress_33(7)>
+  # DesAddressPtr_4 = PHI <DesAddressPtr_16(3), DesAddressPtr_34(7)>
+  # SizeLeft_5 = PHI <SizeLeft_18(3), SizeLeft_35(7)>
+  # ReadSize_7 = PHI <ReadSize_24(D)(3), ReadSize_8(7)>
+  # DEBUG ReadSize => ReadSize_7
+  # DEBUG SizeLeft => SizeLeft_5
+  # DEBUG DesAddressPtr => DesAddressPtr_4
+  # DEBUG ReadAddress => ReadAddress_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_26 = C40_Ip_ClearPreviousRead (ReadAddress_3);
+  # DEBUG Status => Status_26
+  # DEBUG BEGIN_STMT
+  if (Status_26 == 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize_29 = C40_Ip_ReadData (ReadAddress_3, DesAddressPtr_4, SizeLeft_5);
+  # DEBUG ReadSize => ReadSize_29
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  Status_32 = C40_Ip_CheckReadCompareStatus (ReadAddress_3, 1);
+  # DEBUG Status => Status_32
+
+  <bb 6> :
+  # ReadSize_8 = PHI <ReadSize_7(4), ReadSize_29(5)>
+  # Status_9 = PHI <Status_26(4), Status_32(5)>
+  # DEBUG Status => Status_9
+  # DEBUG ReadSize => ReadSize_8
+  # DEBUG BEGIN_STMT
+  if (Status_9 != 23205)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadAddress_33 = ReadAddress_3 + ReadSize_8;
+  # DEBUG ReadAddress => ReadAddress_33
+  # DEBUG BEGIN_STMT
+  DesAddressPtr_34 = DesAddressPtr_4 + ReadSize_8;
+  # DEBUG DesAddressPtr => DesAddressPtr_34
+  # DEBUG BEGIN_STMT
+  SizeLeft_35 = SizeLeft_5 - ReadSize_8;
+  # DEBUG SizeLeft => SizeLeft_35
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_35 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # SizeLeft_6 = PHI <SizeLeft_5(6), SizeLeft_35(7)>
+  # DEBUG SizeLeft => SizeLeft_6
+  # DEBUG BEGIN_STMT
+  if (SizeLeft_6 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _37 = C40_Ip_eReadStatus;
+  return _37;
+
+}
+
+
+C40_Ip_ClearPreviousRead (uint32 ReadAddress)
+{
+  C40_Ip_StatusType Status;
+  C40_Ip_StatusType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Status_1 = 23205;
+  # DEBUG Status => Status_1
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Status_1;
+  return _4;
+
+}
+
+
+C40_Ip_ReadCheckInputParams (uint32 Length, const uint8 * DestAddressPtr)
+{
+  C40_Ip_StatusType Status;
+  C40_Ip_StatusType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Status_2 = 11700;
+  # DEBUG Status => Status_2
+  # DEBUG BEGIN_STMT
+  if (DestAddressPtr_3(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (Length_4(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Status_5 = 23205;
+  # DEBUG Status => Status_5
+
+  <bb 5> :
+  # Status_1 = PHI <Status_2(2), Status_2(3), Status_5(4)>
+  # DEBUG Status => Status_1
+  # DEBUG BEGIN_STMT
+  _6 = Status_1;
+  return _6;
+
+}
+
+
+C40_Ip_ReadData (uint32 ReadAddress, uint8 * DesAddressPtr, uint32 SizeLeft)
+{
+  uint32 CombinedAddress;
+  uint32 DesAddress;
+  uint32 ReadSize;
+  long unsigned int _1;
+  uint32 * DesAddress.3_2;
+  long unsigned int _3;
+  long unsigned int _4;
+  uint16 * DesAddress.4_5;
+  short unsigned int _6;
+  unsigned char _7;
+  uint32 _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DesAddress_11 = (uint32) DesAddressPtr_10(D);
+  # DEBUG DesAddress => DesAddress_11
+  # DEBUG BEGIN_STMT
+  CombinedAddress_13 = ReadAddress_12(D) | DesAddress_11;
+  # DEBUG CombinedAddress => CombinedAddress_13
+  # DEBUG BEGIN_STMT
+  _1 = CombinedAddress_13 & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft_14(D) > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize_15 = 4;
+  # DEBUG ReadSize => ReadSize_15
+  # DEBUG BEGIN_STMT
+  DesAddress.3_2 = (uint32 *) DesAddress_11;
+  _3 = C40_Ip_ReadData32 (ReadAddress_12(D));
+  *DesAddress.3_2 = _3;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = CombinedAddress_13 & 1;
+  if (_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft_14(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize_19 = 2;
+  # DEBUG ReadSize => ReadSize_19
+  # DEBUG BEGIN_STMT
+  DesAddress.4_5 = (uint16 *) DesAddress_11;
+  _6 = C40_Ip_ReadData16 (ReadAddress_12(D));
+  *DesAddress.4_5 = _6;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize_22 = 1;
+  # DEBUG ReadSize => ReadSize_22
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_ReadData8 (ReadAddress_12(D));
+  *DesAddressPtr_10(D) = _7;
+
+  <bb 9> :
+  # ReadSize_8 = PHI <ReadSize_15(4), ReadSize_19(7), ReadSize_22(8)>
+  # DEBUG ReadSize => ReadSize_8
+  # DEBUG BEGIN_STMT
+  _25 = ReadSize_8;
+  return _25;
+
+}
+
+
+C40_Ip_SetSeedMisr (const struct C40_Ip_MisrType * MisrSeedValues)
+{
+  uint8 Counter;
+  struct FLASH_Type * _1;
+  int _2;
+  unsigned char Counter.45_3;
+  struct FLASH_Type * _4;
+  int _5;
+  struct FLASH_Type * _6;
+  int _7;
+  long unsigned int _8;
+  unsigned char Counter.46_9;
+  struct FLASH_Type * _10;
+  long unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (MisrSeedValues_17(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Counter_23 = 0;
+  # DEBUG Counter => Counter_23
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = (int) Counter_12;
+  _1->UM[_2] ={v} 0;
+  # DEBUG BEGIN_STMT
+  Counter.45_3 = Counter_12;
+  Counter_26 = Counter.45_3 + 1;
+  # DEBUG Counter => Counter_26
+
+  <bb 5> :
+  # Counter_12 = PHI <Counter_23(3), Counter_26(4)>
+  # DEBUG Counter => Counter_12
+  # DEBUG BEGIN_STMT
+  if (Counter_12 <= 8)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _4->UM9 ={v} 0;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Counter_18 = 0;
+  # DEBUG Counter => Counter_18
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) Counter_13;
+  _6 = 1076805632B;
+  _7 = (int) Counter_13;
+  _8 = MisrSeedValues_17(D)->arrMISRValue[_5];
+  _6->UM[_7] ={v} _8;
+  # DEBUG BEGIN_STMT
+  Counter.46_9 = Counter_13;
+  Counter_22 = Counter.46_9 + 1;
+  # DEBUG Counter => Counter_22
+
+  <bb 9> :
+  # Counter_13 = PHI <Counter_18(7), Counter_22(8)>
+  # DEBUG Counter => Counter_13
+  # DEBUG BEGIN_STMT
+  if (Counter_13 <= 8)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 = MisrSeedValues_17(D)->arrMISRValue[9];
+  _10->UM9 ={v} _11;
+
+  <bb 11> :
+  return;
+
+}
+
+
+C40_Ip_ReadData8 (uint32 Address)
+{
+  uint8 * Address.7_1;
+  uint8 _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.7_1 = (uint8 *) Address_2(D);
+  _4 = *Address.7_1;
+  return _4;
+
+}
+
+
+C40_Ip_ReadData16 (uint32 Address)
+{
+  uint16 * Address.6_1;
+  uint16 _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.6_1 = (uint16 *) Address_2(D);
+  _4 = *Address.6_1;
+  return _4;
+
+}
+
+
+C40_Ip_ReadData32 (uint32 Address)
+{
+  uint32 * Address.5_1;
+  uint32 _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.5_1 = (uint32 *) Address_2(D);
+  _4 = *Address.5_1;
+  return _4;
+
+}
+
+
+C40_Ip_CheckReadCompareStatus (uint32 ReadAddress, boolean CompareResult)
+{
+  uint32 ErrorFlags;
+  C40_Ip_StatusType Status;
+  struct FLASH_Type * _1;
+  long unsigned int _2;
+  struct FLASH_Type * _3;
+  long unsigned int _4;
+  struct FLASH_Type * _5;
+  long unsigned int _6;
+  C40_Ip_StatusType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status_9 = 10212;
+  # DEBUG Status => Status_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 ={v} _1->MCRS;
+  ErrorFlags_11 = _2 & 856686592;
+  # DEBUG ErrorFlags => ErrorFlags_11
+  # DEBUG BEGIN_STMT
+  if (ErrorFlags_11 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 ={v} _3->MCRS;
+  _5 = 1076805632B;
+  _6 = ErrorFlags_11 & _4;
+  _5->MCRS ={v} _6;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 10212;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (CompareResult_12(D) != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 13260;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Status_13 = 23205;
+  # DEBUG Status => Status_13
+
+  <bb 7> :
+  # Status_7 = PHI <Status_9(3), Status_9(5), Status_13(6)>
+  # DEBUG Status => Status_7
+  # DEBUG BEGIN_STMT
+  _17 = Status_7;
+  return _17;
+
+}
+
+
+C40_Ip_Abort ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_1 = 10212;
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  ReturnCode_4 = C40_Ip_MainInterfaceAbort ();
+  # DEBUG ReturnCode => ReturnCode_4
+  # DEBUG BEGIN_STMT
+  _5 = ReturnCode_4;
+  return _5;
+
+}
+
+
+C40_Ip_Block4PipeSelect ()
+{
+  struct PFLASH_Type * _1;
+  long unsigned int _2;
+  struct PFLASH_Type * _3;
+  long unsigned int _4;
+  struct PFLASH_Type * _5;
+  struct PFLASH_Type * _6;
+  long unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 ={v} _1->PFCR4;
+  _3 = 1076264960B;
+  _4 = _2 & 4294967281;
+  _3->PFCR4 ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  _6 = 1076264960B;
+  _7 ={v} _5->PFCR4;
+  _6->PFCR4 ={v} _7;
+  return;
+
+}
+
+
+C40_Ip_DataErrorSuppression ()
+{
+  struct PFLASH_Type * _1;
+  long unsigned int _2;
+  struct PFLASH_Type * _3;
+  long unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 ={v} _1->PFCR4;
+  _3 = 1076264960B;
+  _4 = _2 & 4294967294;
+  _3->PFCR4 ={v} _4;
+  return;
+
+}
+
+
+C40_Ip_Init (const struct C40_ConfigType * InitConfig)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode_1 = 10212;
+  # DEBUG ReturnCode => ReturnCode_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_DataErrorSuppression ();
+  # DEBUG BEGIN_STMT
+  C40_Ip_Block4PipeSelect ();
+  # DEBUG BEGIN_STMT
+  ReturnCode_6 = C40_Ip_InitMainInterface ();
+  # DEBUG ReturnCode => ReturnCode_6
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr = InitConfig_7(D);
+  # DEBUG BEGIN_STMT
+  _9 = ReturnCode_6;
+  return _9;
+
+}
+
+

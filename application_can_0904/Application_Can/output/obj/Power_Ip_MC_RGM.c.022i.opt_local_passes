@@ -1,0 +1,736 @@
+Power_Ip_MC_RGM_PerformReset (const struct Power_Ip_MC_RGM_ConfigType * ConfigPtr)
+{
+  <unnamed type> _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_4(D)->ResetType;
+  switch (_1) <default: <L4> [INV], case 60: <L1> [INV], case 90: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_SocTriggerResetEvent (1);
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_SocTriggerResetEvent (0);
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L4>:
+  return;
+
+}
+
+
+Power_Ip_MC_RGM_GetResetRawValue ()
+{
+  uint32 ResetMask;
+  uint32 Position;
+  uint32 DynamicMask;
+  uint32 Index;
+  uint32 ActiveValue;
+  uint32 RegValue;
+  uint32 RawReset;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.13_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.14_6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  Power_Ip_RawResetType _52;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RawReset_29 = 0;
+  # DEBUG RawReset => RawReset_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.13_1 = Power_Ip_pxMC_RGM;
+  _2 ={v} Power_Ip_pxMC_RGM.13_1->FES;
+  RegValue_31 = _2 & 1611727449;
+  # DEBUG RegValue => RegValue_31
+  # DEBUG BEGIN_STMT
+  if (RegValue_31 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_u32FesResetStatus = RegValue_31;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ResetMask_33 = 1611727577;
+  # DEBUG ResetMask => ResetMask_33
+  # DEBUG BEGIN_STMT
+  ActiveValue_34 = Power_Ip_u32FesResetStatus;
+  # DEBUG ActiveValue => ActiveValue_34
+  # DEBUG BEGIN_STMT
+  if (ActiveValue_34 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Position_35 = 0;
+  # DEBUG Position => Position_35
+  # DEBUG BEGIN_STMT
+  Index_36 = 0;
+  # DEBUG Index => Index_36
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DynamicMask_38 = 1 << Index_19;
+  # DEBUG DynamicMask => DynamicMask_38
+  # DEBUG BEGIN_STMT
+  _3 = DynamicMask_38 & ResetMask_33;
+  if (_3 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = DynamicMask_38 & ActiveValue_34;
+  if (_4 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = 1 << Position_22;
+  RawReset_39 = RawReset_13 | _5;
+  # DEBUG RawReset => RawReset_39
+
+  <bb 9> :
+  # RawReset_11 = PHI <RawReset_13(7), RawReset_39(8)>
+  # DEBUG RawReset => RawReset_11
+  # DEBUG BEGIN_STMT
+  Position_40 = Position_22 + 1;
+  # DEBUG Position => Position_40
+
+  <bb 10> :
+  # RawReset_12 = PHI <RawReset_13(6), RawReset_11(9)>
+  # Position_21 = PHI <Position_22(6), Position_40(9)>
+  # DEBUG Position => Position_21
+  # DEBUG RawReset => RawReset_12
+  # DEBUG BEGIN_STMT
+  Index_41 = Index_19 + 1;
+  # DEBUG Index => Index_41
+
+  <bb 11> :
+  # RawReset_13 = PHI <RawReset_29(5), RawReset_12(10)>
+  # Index_19 = PHI <Index_36(5), Index_41(10)>
+  # Position_22 = PHI <Position_35(5), Position_21(10)>
+  # DEBUG Position => Position_22
+  # DEBUG Index => Index_19
+  # DEBUG RawReset => RawReset_13
+  # DEBUG BEGIN_STMT
+  if (Index_19 <= 31)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_RGM_ClearFesResetFlags (RegValue_31);
+
+  <bb 13> :
+  # RawReset_14 = PHI <RawReset_29(4), RawReset_13(12)>
+  # DEBUG RawReset => RawReset_14
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.14_6 = Power_Ip_pxMC_RGM;
+  _7 ={v} Power_Ip_pxMC_RGM.14_6->DES;
+  RegValue_42 = _7 & 1611061081;
+  # DEBUG RegValue => RegValue_42
+  # DEBUG BEGIN_STMT
+  if (RegValue_42 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_u32DesResetStatus = RegValue_42;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ActiveValue_44 = Power_Ip_u32DesResetStatus;
+  # DEBUG ActiveValue => ActiveValue_44
+  # DEBUG BEGIN_STMT
+  if (ActiveValue_44 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Position_45 = 15;
+  # DEBUG Position => Position_45
+  # DEBUG BEGIN_STMT
+  Index_46 = 0;
+  # DEBUG Index => Index_46
+  goto <bb 22>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  DynamicMask_48 = 1 << Index_20;
+  # DEBUG DynamicMask => DynamicMask_48
+  # DEBUG BEGIN_STMT
+  _8 = DynamicMask_48 & 1611061081;
+  if (_8 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _9 = DynamicMask_48 & ActiveValue_44;
+  if (_9 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _10 = 1 << Position_24;
+  RawReset_49 = RawReset_17 | _10;
+  # DEBUG RawReset => RawReset_49
+
+  <bb 20> :
+  # RawReset_15 = PHI <RawReset_17(18), RawReset_49(19)>
+  # DEBUG RawReset => RawReset_15
+  # DEBUG BEGIN_STMT
+  Position_50 = Position_24 + 1;
+  # DEBUG Position => Position_50
+
+  <bb 21> :
+  # RawReset_16 = PHI <RawReset_17(17), RawReset_15(20)>
+  # Position_23 = PHI <Position_24(17), Position_50(20)>
+  # DEBUG Position => Position_23
+  # DEBUG RawReset => RawReset_16
+  # DEBUG BEGIN_STMT
+  Index_51 = Index_20 + 1;
+  # DEBUG Index => Index_51
+
+  <bb 22> :
+  # RawReset_17 = PHI <RawReset_14(16), RawReset_16(21)>
+  # Index_20 = PHI <Index_46(16), Index_51(21)>
+  # Position_24 = PHI <Position_45(16), Position_23(21)>
+  # DEBUG Position => Position_24
+  # DEBUG Index => Index_20
+  # DEBUG RawReset => RawReset_17
+  # DEBUG BEGIN_STMT
+  if (Index_20 <= 31)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_RGM_ClearDesResetFlags (RegValue_42);
+
+  <bb 24> :
+  # RawReset_18 = PHI <RawReset_14(15), RawReset_17(23)>
+  # DEBUG RawReset => RawReset_18
+  # DEBUG BEGIN_STMT
+  _52 = RawReset_18;
+  return _52;
+
+}
+
+
+Power_Ip_MC_RGM_GetResetReason ()
+{
+  uint32 Position;
+  uint32 ActiveValue;
+  uint32 RegValue;
+  Power_Ip_ResetType ResetReason;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.8_1;
+  long unsigned int _2;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.9_3;
+  long unsigned int _4;
+  Power_Ip_ResetType _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResetReason_11 = 25;
+  # DEBUG ResetReason => ResetReason_11
+  # DEBUG BEGIN_STMT
+  RegValue_12 = 0;
+  # DEBUG RegValue => RegValue_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position = 0;
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.8_1 = Power_Ip_pxMC_RGM;
+  _2 ={v} Power_Ip_pxMC_RGM.8_1->DES;
+  RegValue_15 = _2 & 1611061081;
+  # DEBUG RegValue => RegValue_15
+  # DEBUG BEGIN_STMT
+  if (RegValue_15 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_u32DesResetStatus = RegValue_15;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ActiveValue_17 = Power_Ip_u32DesResetStatus;
+  # DEBUG ActiveValue => ActiveValue_17
+  # DEBUG BEGIN_STMT
+  ResetReason_19 = Power_Ip_MC_RGM_CheckResetReason (ActiveValue_17, 0, &Position);
+  # DEBUG ResetReason => ResetReason_19
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_RGM_ClearDesResetFlags (RegValue_15);
+  # DEBUG BEGIN_STMT
+  if (RegValue_15 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.9_3 = Power_Ip_pxMC_RGM;
+  _4 ={v} Power_Ip_pxMC_RGM.9_3->FES;
+  RegValue_21 = _4 & 1611727449;
+  # DEBUG RegValue => RegValue_21
+  # DEBUG BEGIN_STMT
+  if (RegValue_21 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_u32FesResetStatus = RegValue_21;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ActiveValue_23 = Power_Ip_u32FesResetStatus;
+  # DEBUG ActiveValue => ActiveValue_23
+  # DEBUG BEGIN_STMT
+  if (ActiveValue_23 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResetReason_25 = Power_Ip_MC_RGM_CheckResetReason (ActiveValue_23, 1, &Position);
+  # DEBUG ResetReason => ResetReason_25
+
+  <bb 9> :
+  # ResetReason_5 = PHI <ResetReason_19(7), ResetReason_25(8)>
+  # DEBUG ResetReason => ResetReason_5
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_RGM_ClearFesResetFlags (RegValue_21);
+
+  <bb 10> :
+  # ResetReason_6 = PHI <ResetReason_19(4), ResetReason_5(9)>
+  # DEBUG ResetReason => ResetReason_6
+  # DEBUG BEGIN_STMT
+  _27 = ResetReason_6;
+  Position ={v} {CLOBBER};
+  return _27;
+
+}
+
+
+Power_Ip_MC_RGM_CheckResetReason (uint32 ActiveValue, uint8 ResetMode, uint32 * PositionPtr)
+{
+  uint32 Position;
+  uint32 DynamicMask;
+  uint32 Index;
+  uint32 NumberOfFlags;
+  uint32 ResetMask;
+  Power_Ip_ResetType ResetReason;
+  long unsigned int _1;
+  long unsigned int _2;
+  Power_Ip_ResetType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResetReason_14 = 25;
+  # DEBUG ResetReason => ResetReason_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NumberOfFlags_15 = 0;
+  # DEBUG NumberOfFlags => NumberOfFlags_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position_18 = *PositionPtr_17(D);
+  # DEBUG Position => Position_18
+  # DEBUG BEGIN_STMT
+  if (ResetMode_19(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ResetMask_21 = 1611061081;
+  # DEBUG ResetMask => ResetMask_21
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ResetMask_20 = 1611727577;
+  # DEBUG ResetMask => ResetMask_20
+
+  <bb 5> :
+  # ResetMask_7 = PHI <ResetMask_21(3), ResetMask_20(4)>
+  # DEBUG ResetMask => ResetMask_7
+  # DEBUG BEGIN_STMT
+  Index_22 = 0;
+  # DEBUG Index => Index_22
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DynamicMask_23 = 1 << Index_11;
+  # DEBUG DynamicMask => DynamicMask_23
+  # DEBUG BEGIN_STMT
+  _1 = DynamicMask_23 & ResetMask_7;
+  if (_1 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = DynamicMask_23 & ActiveValue_24(D);
+  if (_2 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResetReason_25 = Position_13;
+  # DEBUG ResetReason => ResetReason_25
+  # DEBUG BEGIN_STMT
+  NumberOfFlags_26 = NumberOfFlags_10 + 1;
+  # DEBUG NumberOfFlags => NumberOfFlags_26
+  # DEBUG BEGIN_STMT
+  if (NumberOfFlags_26 > 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ResetReason_27 = 26;
+  # DEBUG ResetReason => ResetReason_27
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # ResetReason_3 = PHI <ResetReason_5(7), ResetReason_25(8)>
+  # NumberOfFlags_8 = PHI <NumberOfFlags_10(7), NumberOfFlags_26(8)>
+  # DEBUG NumberOfFlags => NumberOfFlags_8
+  # DEBUG ResetReason => ResetReason_3
+  # DEBUG BEGIN_STMT
+  Position_28 = Position_13 + 1;
+  # DEBUG Position => Position_28
+
+  <bb 11> :
+  # ResetReason_4 = PHI <ResetReason_5(6), ResetReason_3(10)>
+  # NumberOfFlags_9 = PHI <NumberOfFlags_10(6), NumberOfFlags_8(10)>
+  # Position_12 = PHI <Position_13(6), Position_28(10)>
+  # DEBUG Position => Position_12
+  # DEBUG NumberOfFlags => NumberOfFlags_9
+  # DEBUG ResetReason => ResetReason_4
+  # DEBUG BEGIN_STMT
+  Index_29 = Index_11 + 1;
+  # DEBUG Index => Index_29
+
+  <bb 12> :
+  # ResetReason_5 = PHI <ResetReason_14(5), ResetReason_4(11)>
+  # NumberOfFlags_10 = PHI <NumberOfFlags_15(5), NumberOfFlags_9(11)>
+  # Index_11 = PHI <Index_22(5), Index_29(11)>
+  # Position_13 = PHI <Position_18(5), Position_12(11)>
+  # DEBUG Position => Position_13
+  # DEBUG Index => Index_11
+  # DEBUG NumberOfFlags => NumberOfFlags_10
+  # DEBUG ResetReason => ResetReason_5
+  # DEBUG BEGIN_STMT
+  if (Index_11 <= 31)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # ResetReason_6 = PHI <ResetReason_27(9), ResetReason_5(12)>
+  # DEBUG ResetReason => ResetReason_6
+  # DEBUG BEGIN_STMT
+  *PositionPtr_17(D) = Position_13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = ResetReason_6;
+  return _31;
+
+}
+
+
+Power_Ip_MC_RGM_ResetInit (const struct Power_Ip_MC_RGM_ConfigType * ConfigPtr)
+{
+  uint32 DesResetReason;
+  uint32 FesResetReason;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.0_1;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.1_2;
+  long unsigned int _3;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.2_4;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.3_5;
+  long unsigned int _6;
+  long unsigned int _7;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.4_8;
+  long unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  FesResetReason_13 = 0;
+  # DEBUG FesResetReason => FesResetReason_13
+  # DEBUG BEGIN_STMT
+  DesResetReason_14 = 0;
+  # DEBUG DesResetReason => DesResetReason_14
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.0_1 = Power_Ip_pxMC_RGM;
+  FesResetReason_16 ={v} Power_Ip_pxMC_RGM.0_1->FES;
+  # DEBUG FesResetReason => FesResetReason_16
+  # DEBUG BEGIN_STMT
+  if (FesResetReason_16 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_u32FesResetStatus = FesResetReason_16;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_RGM_ClearFesResetFlags (FesResetReason_16);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.1_2 = Power_Ip_pxMC_RGM;
+  _3 = ConfigPtr_19(D)->FuncResetOpt;
+  Power_Ip_pxMC_RGM.1_2->FERD ={v} _3;
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.2_4 = Power_Ip_pxMC_RGM;
+  DesResetReason_21 ={v} Power_Ip_pxMC_RGM.2_4->DES;
+  # DEBUG DesResetReason => DesResetReason_21
+  # DEBUG BEGIN_STMT
+  if (DesResetReason_21 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.3_5 = Power_Ip_pxMC_RGM;
+  _6 = ConfigPtr_19(D)->FesThresholdReset;
+  Power_Ip_pxMC_RGM.3_5->FRET ={v} _6;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = DesResetReason_21 & 1;
+  if (_7 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.4_8 = Power_Ip_pxMC_RGM;
+  _9 = ConfigPtr_19(D)->DesThresholdReset;
+  Power_Ip_pxMC_RGM.4_8->DRET ={v} _9;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Power_Ip_MC_RGM_ClearDesResetFlags (uint32 RegValue)
+{
+  uint32 RegValueTemp;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  long unsigned int TimeoutTicks.10_1;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.11_2;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.12_3;
+  long unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutOccurred_8 = 0;
+  # DEBUG TimeoutOccurred => TimeoutOccurred_8
+  # DEBUG BEGIN_STMT
+  RegValueTemp_10 = RegValue_9(D);
+  # DEBUG RegValueTemp => RegValueTemp_10
+  # DEBUG BEGIN_STMT
+  if (RegValueTemp_10 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 4> :
+  # RegValueTemp_5 = PHI <RegValueTemp_10(3), RegValueTemp_16(5)>
+  # DEBUG RegValueTemp => RegValueTemp_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.10_1 = TimeoutTicks;
+  TimeoutOccurred_14 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.10_1);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_14
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.11_2 = Power_Ip_pxMC_RGM;
+  Power_Ip_pxMC_RGM.11_2->DES ={v} RegValueTemp_5;
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.12_3 = Power_Ip_pxMC_RGM;
+  _4 ={v} Power_Ip_pxMC_RGM.12_3->DES;
+  RegValueTemp_16 = _4 & 1611061081;
+  # DEBUG RegValueTemp => RegValueTemp_16
+  # DEBUG BEGIN_STMT
+  if (RegValueTemp_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (TimeoutOccurred_14 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_14 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 8> :
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+
+Power_Ip_MC_RGM_ClearFesResetFlags (uint32 RegValue)
+{
+  uint32 RegValueTemp;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  long unsigned int TimeoutTicks.5_1;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.6_2;
+  struct Power_Ip_MC_RGM_Type * Power_Ip_pxMC_RGM.7_3;
+  long unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutOccurred_8 = 0;
+  # DEBUG TimeoutOccurred => TimeoutOccurred_8
+  # DEBUG BEGIN_STMT
+  RegValueTemp_10 = RegValue_9(D);
+  # DEBUG RegValueTemp => RegValueTemp_10
+  # DEBUG BEGIN_STMT
+  if (RegValueTemp_10 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 4> :
+  # RegValueTemp_5 = PHI <RegValueTemp_10(3), RegValueTemp_16(5)>
+  # DEBUG RegValueTemp => RegValueTemp_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.5_1 = TimeoutTicks;
+  TimeoutOccurred_14 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.5_1);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_14
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.6_2 = Power_Ip_pxMC_RGM;
+  Power_Ip_pxMC_RGM.6_2->FES ={v} RegValueTemp_5;
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_RGM.7_3 = Power_Ip_pxMC_RGM;
+  _4 ={v} Power_Ip_pxMC_RGM.7_3->FES;
+  RegValueTemp_16 = _4 & 1611727449;
+  # DEBUG RegValueTemp => RegValueTemp_16
+  # DEBUG BEGIN_STMT
+  if (RegValueTemp_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (TimeoutOccurred_14 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_14 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 8> :
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+

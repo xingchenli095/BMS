@@ -1,0 +1,495 @@
+__attribute__((target ("general-regs-only")))
+OS_KernStartScheduleTable (os_scheduleid_t s, os_tick_t offset, os_boolean_t rel)
+{
+  os_errorresult_t e;
+  os_tick_t max;
+  const struct os_counter_t * const cs;
+  const struct os_alarm_t * const as;
+  const struct os_appcontext_t * const app;
+  const struct os_schedule_t * const ss;
+  os_paramtype_t p[3];
+  os_result_t r;
+  const struct os_serviceinfo_t * const varSif;
+  const os_serviceid_t varSid;
+  unsigned int _1;
+  unsigned char _2;
+  const os_callermask_t * OS_permittedContext.4_3;
+  unsigned int _4;
+  unsigned int _5;
+  const os_callermask_t * _6;
+  short unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  const os_callermask_t * OS_permittedContext.5_10;
+  unsigned int _11;
+  unsigned int _12;
+  const os_callermask_t * _13;
+  short unsigned int _14;
+  unsigned char _15;
+  int _16;
+  int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  const os_callermask_t * OS_permittedContext.6_20;
+  unsigned int _21;
+  unsigned int _22;
+  const os_callermask_t * _23;
+  short unsigned int _24;
+  unsigned char _25;
+  int _26;
+  int _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  unsigned char OS_iecMode.7_30;
+  unsigned char _31;
+  const struct os_task_t * _32;
+  struct os_taskdynamic_t * _33;
+  short unsigned int _34;
+  short unsigned int _35;
+  short unsigned int _36;
+  short unsigned int _37;
+  unsigned char OS_nSchedules.8_38;
+  const struct os_schedule_t * OS_scheduleTableBase.9_39;
+  unsigned int _40;
+  unsigned int _41;
+  unsigned char _42;
+  const struct os_task_t * _43;
+  unsigned char _44;
+  const struct os_isr_t * OS_isrTableBase.12_45;
+  short unsigned int _46;
+  unsigned int _47;
+  unsigned int _48;
+  const struct os_isr_t * _49;
+  unsigned char _50;
+  unsigned char _51;
+  unsigned char _52;
+  const struct os_alarm_t * OS_alarmTableBase.14_53;
+  short unsigned int _54;
+  unsigned int _55;
+  unsigned int _56;
+  const struct os_counter_t * OS_counterTableBase.15_57;
+  unsigned char _58;
+  unsigned int _59;
+  unsigned int _60;
+  unsigned int _61;
+  const struct os_scheduleentry_t * _62;
+  unsigned int _63;
+  unsigned int _64;
+  unsigned int _65;
+  unsigned int _66;
+  unsigned char _67;
+  unsigned int _68;
+  unsigned int _69;
+  unsigned char _70;
+  const os_serviceid_t iftmp.0_72;
+  const struct os_serviceinfo_t * iftmp.1_73;
+  _Bool iftmp.2_74;
+  int iftmp.3_75;
+  const struct os_appcontext_t * iftmp.10_76;
+  const struct os_appcontext_t * iftmp.11_77;
+  const struct os_appcontext_t * iftmp.13_78;
+  const unsigned int iftmp.16_79;
+  const os_serviceid_t iftmp.0_82;
+  const os_serviceid_t iftmp.0_83;
+  const struct os_serviceinfo_t * iftmp.1_85;
+  const struct os_serviceinfo_t * iftmp.1_86;
+  _Bool iftmp.2_94;
+  int iftmp.3_95;
+  int iftmp.3_96;
+  _Bool iftmp.2_97;
+  const struct os_appcontext_t * iftmp.13_103;
+  const struct os_appcontext_t * iftmp.13_104;
+  const struct os_appcontext_t * iftmp.11_105;
+  const struct os_appcontext_t * iftmp.11_106;
+  const struct os_appcontext_t * iftmp.10_107;
+  const struct os_appcontext_t * iftmp.10_108;
+  const unsigned int iftmp.16_112;
+  const unsigned int iftmp.16_113;
+  os_result_t _129;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (rel_81(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.0_83 = 7;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0_82 = 8;
+
+  <bb 5> :
+  # iftmp.0_72 = PHI <iftmp.0_83(3), iftmp.0_82(4)>
+  varSid_84 = iftmp.0_72;
+  # DEBUG varSid => varSid_84
+  # DEBUG BEGIN_STMT
+  if (rel_81(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1_86 = &OS_svc_StartScheduleTableRel;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.1_85 = &OS_svc_StartScheduleTableAbs;
+
+  <bb 8> :
+  # iftmp.1_73 = PHI <iftmp.1_86(6), iftmp.1_85(7)>
+  varSif_87 = iftmp.1_73;
+  # DEBUG varSif => varSif_87
+  # DEBUG BEGIN_STMT
+  r_88 = 0;
+  # DEBUG r => r_88
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) s_89(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  p[1] = offset_92(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 9> :
+  OS_permittedContext.4_3 = OS_permittedContext;
+  _4 = (unsigned int) varSid_84;
+  _5 = _4 * 2;
+  _6 = OS_permittedContext.4_3 + _5;
+  _7 = *_6;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 1024;
+  if (_9 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  OS_permittedContext.5_10 = OS_permittedContext;
+  _11 = (unsigned int) varSid_84;
+  _12 = _11 * 2;
+  _13 = OS_permittedContext.5_10 + _12;
+  _14 = *_13;
+  _15 = OS_kernelData.errorStatus.calledFrom;
+  _16 = (int) _15;
+  _17 = 1 << _16;
+  _18 = (short unsigned int) _17;
+  _19 = _14 & _18;
+  if (_19 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.3_95 = 1;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  iftmp.3_96 = 0;
+
+  <bb 13> :
+  # iftmp.3_75 = PHI <iftmp.3_95(11), iftmp.3_96(12)>
+  iftmp.2_97 = iftmp.3_75 == 0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  OS_permittedContext.6_20 = OS_permittedContext;
+  _21 = (unsigned int) varSid_84;
+  _22 = _21 * 2;
+  _23 = OS_permittedContext.6_20 + _22;
+  _24 = *_23;
+  _25 = OS_kernelData.inFunction;
+  _26 = (int) _25;
+  _27 = 1 << _26;
+  _28 = (short unsigned int) _27;
+  _29 = _24 & _28;
+  iftmp.2_94 = _29 == 0;
+
+  <bb 15> :
+  # iftmp.2_74 = PHI <iftmp.2_97(13), iftmp.2_94(14)>
+  if (iftmp.2_74 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  r_128 = OS_Error (varSif_87, 12, &p);
+  # DEBUG r => r_128
+  goto <bb 51>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.7_30 = OS_iecMode;
+  if (OS_iecMode.7_30 > 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 18> :
+  _31 = OS_kernelData.inFunction;
+  if (_31 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  _32 = OS_kernelData.taskCurrent;
+  _33 = _32->dynamic;
+  _34 = BIT_FIELD_REF <MEM[(void *)_33], 16, 160>;
+  _35 = _34;
+  if (_35 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  _36 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _37 = _36;
+  if (_37 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  r_99 = OS_Error (varSif_87, 55, &p);
+  # DEBUG r => r_99
+  goto <bb 51>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.8_38 = OS_nSchedules;
+  if (s_89(D) >= OS_nSchedules.8_38)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  r_126 = OS_Error (varSif_87, 40, &p);
+  # DEBUG r => r_126
+  goto <bb 51>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (rel_81(D) != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  if (offset_92(D) == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  r_101 = OS_Error (varSif_87, 19, &p);
+  # DEBUG r => r_101
+  goto <bb 51>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.9_39 = OS_scheduleTableBase;
+  _40 = (unsigned int) s_89(D);
+  _41 = _40 * 36;
+  ss_102 = OS_scheduleTableBase.9_39 + _41;
+  # DEBUG ss => ss_102
+  # DEBUG BEGIN_STMT
+  _42 = OS_kernelData.inFunction;
+  if (_42 == 1)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  _43 = OS_kernelData.taskCurrent;
+  iftmp.10_108 = _43->app;
+  goto <bb 38>; [INV]
+
+  <bb 29> :
+  _44 = OS_kernelData.inFunction;
+  if (_44 == 3)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  OS_isrTableBase.12_45 = OS_isrTableBase;
+  _46 = OS_kernelData.isrCurrent;
+  _47 = (unsigned int) _46;
+  _48 = _47 * 68;
+  _49 = OS_isrTableBase.12_45 + _48;
+  iftmp.11_106 = _49->app;
+  goto <bb 37>; [INV]
+
+  <bb 31> :
+  _50 = OS_kernelData.inFunction;
+  if (_50 == 10)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 32> :
+  _51 = OS_kernelData.inFunction;
+  if (_51 == 8)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 33> :
+  _52 = OS_kernelData.inFunction;
+  if (_52 == 9)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  iftmp.13_104 = OS_kernelData.hookApp;
+  goto <bb 36>; [INV]
+
+  <bb 35> :
+  iftmp.13_103 = 0B;
+
+  <bb 36> :
+  # iftmp.13_78 = PHI <iftmp.13_104(34), iftmp.13_103(35)>
+  iftmp.11_105 = iftmp.13_78;
+
+  <bb 37> :
+  # iftmp.11_77 = PHI <iftmp.11_106(30), iftmp.11_105(36)>
+  iftmp.10_107 = iftmp.11_77;
+
+  <bb 38> :
+  # iftmp.10_76 = PHI <iftmp.10_108(28), iftmp.10_107(37)>
+  app_109 = iftmp.10_76;
+  # DEBUG app => app_109
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.14_53 = OS_alarmTableBase;
+  _54 = ss_102->alarm;
+  _55 = (unsigned int) _54;
+  _56 = _55 * 28;
+  as_110 = OS_alarmTableBase.14_53 + _56;
+  # DEBUG as => as_110
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.15_57 = OS_counterTableBase;
+  _58 = as_110->counter;
+  _59 = (unsigned int) _58;
+  _60 = _59 * 32;
+  cs_111 = OS_counterTableBase.15_57 + _60;
+  # DEBUG cs => cs_111
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (rel_81(D) != 0)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 39> :
+  _61 = cs_111->maxallowedvalue;
+  _62 = ss_102->table;
+  _63 = _62->offset;
+  iftmp.16_113 = _61 - _63;
+  goto <bb 41>; [INV]
+
+  <bb 40> :
+  iftmp.16_112 = cs_111->maxallowedvalue;
+
+  <bb 41> :
+  # iftmp.16_79 = PHI <iftmp.16_113(39), iftmp.16_112(40)>
+  max_114 = iftmp.16_79;
+  # DEBUG max => max_114
+  # DEBUG BEGIN_STMT
+  if (app_109 != 0B)
+    goto <bb 42>; [INV]
+  else
+    goto <bb 44>; [INV]
+
+  <bb 42> :
+  _64 = app_109->permissionBit;
+  _65 = ss_102->permissions;
+  _66 = _64 & _65;
+  if (_66 == 0)
+    goto <bb 43>; [INV]
+  else
+    goto <bb 44>; [INV]
+
+  <bb 43> :
+  # DEBUG BEGIN_STMT
+  r_116 = OS_Error (varSif_87, 37, &p);
+  # DEBUG r => r_116
+  goto <bb 51>; [INV]
+
+  <bb 44> :
+  # DEBUG BEGIN_STMT
+  if (rel_81(D) != 0)
+    goto <bb 45>; [INV]
+  else
+    goto <bb 47>; [INV]
+
+  <bb 45> :
+  _67 = ss_102->flags;
+  _68 = (unsigned int) _67;
+  _69 = _68 & 4;
+  if (_69 != 0)
+    goto <bb 46>; [INV]
+  else
+    goto <bb 47>; [INV]
+
+  <bb 46> :
+  # DEBUG BEGIN_STMT
+  r_118 = OS_Error (varSif_87, 38, &p);
+  # DEBUG r => r_118
+  goto <bb 51>; [INV]
+
+  <bb 47> :
+  # DEBUG BEGIN_STMT
+  if (offset_92(D) > max_114)
+    goto <bb 48>; [INV]
+  else
+    goto <bb 49>; [INV]
+
+  <bb 48> :
+  # DEBUG BEGIN_STMT
+  r_124 = OS_Error (varSif_87, 19, &p);
+  # DEBUG r => r_124
+  goto <bb 51>; [INV]
+
+  <bb 49> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _70 = as_110->counter;
+  e_120 = OS_LocalStartScheduleTable (ss_102, _70, offset_92(D), rel_81(D));
+  # DEBUG e => e_120
+  # DEBUG BEGIN_STMT
+  if (e_120 != 0)
+    goto <bb 50>; [INV]
+  else
+    goto <bb 51>; [INV]
+
+  <bb 50> :
+  # DEBUG BEGIN_STMT
+  r_122 = OS_Error (varSif_87, e_120, &p);
+  # DEBUG r => r_122
+
+  <bb 51> :
+  # r_71 = PHI <r_128(16), r_99(21), r_126(23), r_101(26), r_116(43), r_118(46), r_124(48), r_88(49), r_122(50)>
+  # DEBUG r => r_71
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _129 = r_71;
+  p ={v} {CLOBBER};
+  return _129;
+
+}
+
+

@@ -1,0 +1,277 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_GetResourceFromTask
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_RaiseTaskPriority/8 (OS_RaiseTaskPriority) @06cf1380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetResourceFromTask/0 
+  Calls: 
+OS_startResLockTimingFp/7 (OS_startResLockTimingFp) @06c1cee8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetResourceFromTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CORTEXM_IntSetDisablingLevel/6 (OS_CORTEXM_IntSetDisablingLevel) @06cf12a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetResourceFromTask/0 OS_GetResourceFromTask/0 OS_GetResourceFromTask/0 OS_GetResourceFromTask/0 OS_GetResourceFromTask/0 
+  Calls: 
+OS_kernDisableLevel/5 (OS_kernDisableLevel) @06c1ce58
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetResourceFromTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_svc_GetResource/4 (OS_svc_GetResource) @06c1cdc8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetResourceFromTask/0 (addr)OS_GetResourceFromTask/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/3 (OS_Error) @06cf10e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetResourceFromTask/0 OS_GetResourceFromTask/0 
+  Calls: 
+OS_resourceTableBase/2 (OS_resourceTableBase) @06c1cd38
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetResourceFromTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06c1ccf0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetResourceFromTask/0 (addr)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)OS_GetResourceFromTask/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_GetResourceFromTask/0 (OS_GetResourceFromTask) @06c3cee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (addr)OS_resourceTableBase/2 (read)OS_kernelData/1 (read)OS_svc_GetResource/4 (addr)OS_kernelData/1 (read)OS_svc_GetResource/4 (addr)OS_kernelData/1 (read)OS_kernDisableLevel/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_startResLockTimingFp/7 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/6 OS_CORTEXM_IntSetDisablingLevel/6 OS_CORTEXM_IntSetDisablingLevel/6 OS_CORTEXM_IntSetDisablingLevel/6 OS_RaiseTaskPriority/8 OS_CORTEXM_IntSetDisablingLevel/6 OS_Error/3 OS_Error/3 
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_GetResourceFromTask (os_resourceid_t r, struct os_resourcedynamic_t * rd, os_paramtype_t * p)
+{
+  os_prio_t newLevel;
+  const struct os_appcontext_t * const app;
+  struct os_taskdynamic_t * td;
+  os_intstatus_t is;
+  const struct os_resource_t * rs;
+  os_result_t result;
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t D.7440;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = (unsigned int) r;
+  _3 = _2 * 16;
+  rs = OS_resourceTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.taskCurrent;
+  app = _4->app;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _5 = app->permissionBit;
+  _6 = rs->permissions;
+  _7 = _5 & _6;
+  if (_7 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Error (&OS_svc_GetResource, 37, p);
+  goto <bb 18>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.taskCurrent;
+  _9 = _8->queuePrio;
+  _10 = (short unsigned int) _9;
+  _11 = rs->prio;
+  if (_10 > _11)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = OS_Error (&OS_svc_GetResource, 26, p);
+  goto <bb 18>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = OS_kernelData.taskCurrent;
+  td = _12->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_13 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_13);
+  # DEBUG BEGIN_STMT
+  _14 = td->state;
+  if (_14 == 5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _15 = td->lastLock;
+  rd->next = _15;
+  # DEBUG BEGIN_STMT
+  _16 = (unsigned int) r;
+  _17 = _16 | 67108864;
+  td->lastLock = _17;
+  # DEBUG BEGIN_STMT
+  _18 = td->prio;
+  rd->lastPrio = _18;
+  # DEBUG BEGIN_STMT
+  _19 = OS_kernelData.taskCurrent;
+  _20 = _19->taskId;
+  _21 = (short unsigned int) _20;
+  rd->takenBy = _21;
+  # DEBUG BEGIN_STMT
+  _22 = OS_kernelData.taskCurrent;
+  _23 = _22->resourceLockTime;
+  if (_23 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _24 = OS_kernelData.taskCurrent;
+  _25 = _24->resourceLockTime;
+  _26 = (unsigned int) r;
+  _27 = _26 * 4;
+  _28 = _25 + _27;
+  _29 = *_28;
+  if (_29 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_startResLockTimingFp.2_30 = OS_startResLockTimingFp;
+  _31 = OS_kernelData.taskCurrent;
+  _32 = _31->resourceLockTime;
+  _33 = (unsigned int) r;
+  _34 = _33 * 4;
+  _35 = _32 + _34;
+  _36 = *_35;
+  OS_startResLockTimingFp.2_30 (rd, _36);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _37 = td->state;
+  if (_37 == 5)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _38 = rs->prio;
+  _39 = rd->lastPrio;
+  if (_38 > _39)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _40 = rs->prio;
+  OS_RaiseTaskPriority (td, _40);
+  # DEBUG BEGIN_STMT
+  _41 = rs->prio;
+  if (_41 > 255)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _42 = rs->prio;
+  newLevel = 272 - _42;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (newLevel);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.7440 = result;
+  return D.7440;
+
+}
+
+

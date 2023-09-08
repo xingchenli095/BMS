@@ -1,0 +1,1115 @@
+Dcm_Dsp_RoutineControl_ModeRuleResult (Dcm_NegativeResponseCodeType * CurrentNrc)
+{
+  const struct Dcm_DspRoutineServicesType * CurrentRoutineConfig;
+  boolean ModeRuleCheckResult;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.4_1;
+  int _2;
+  boolean (*<T6eb>) (uint8 *) _3;
+  boolean (*<T6eb>) (uint8 *) _4;
+  boolean _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ModeRuleCheckResult_7 = 0;
+  # DEBUG ModeRuleCheckResult => ModeRuleCheckResult_7
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.4_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.4_1;
+  CurrentRoutineConfig_9 = &Dcm_DspRoutineConfig[_2];
+  # DEBUG CurrentRoutineConfig => CurrentRoutineConfig_9
+  # DEBUG BEGIN_STMT
+  _3 = CurrentRoutineConfig_9->ModeRuleRoutineFunction;
+  if (_3 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = CurrentRoutineConfig_9->ModeRuleRoutineFunction;
+  ModeRuleCheckResult_13 = _4 (CurrentNrc_11(D));
+  # DEBUG ModeRuleCheckResult => ModeRuleCheckResult_13
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ModeRuleCheckResult_10 = 1;
+  # DEBUG ModeRuleCheckResult => ModeRuleCheckResult_10
+
+  <bb 5> :
+  # ModeRuleCheckResult_5 = PHI <ModeRuleCheckResult_13(3), ModeRuleCheckResult_10(4)>
+  # DEBUG ModeRuleCheckResult => ModeRuleCheckResult_5
+  # DEBUG BEGIN_STMT
+  _14 = ModeRuleCheckResult_5;
+  return _14;
+
+}
+
+
+Dcm_Dsp_RoutineControl_IsRoutineAvailableInCurrentSecurityLevel ()
+{
+  uint8_least SecurityLevelIndex;
+  Dcm_SecLevelType CurrentSecLevel;
+  const struct Dcm_DspRoutineServicesInfoType * CurrentRoutineConfigInfo;
+  boolean RoutineIsAvailableInCurrentSecLevel;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.3_1;
+  int _2;
+  unsigned char _3;
+  const Dcm_SecLevelType * _4;
+  const Dcm_SecLevelType * _5;
+  unsigned char _6;
+  unsigned char _7;
+  long unsigned int _8;
+  boolean _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSecLevel_14 = 0;
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_14
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.3_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.3_1;
+  CurrentRoutineConfigInfo_16 = Dcm_DspRoutineConfig[_2].RoutineInfoRef;
+  # DEBUG CurrentRoutineConfigInfo => CurrentRoutineConfigInfo_16
+  # DEBUG BEGIN_STMT
+  _3 = CurrentRoutineConfigInfo_16->NumSecLevels;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CurrentSecLevel_19 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  # DEBUG CurrentSecLevel => CurrentSecLevel_19
+  # DEBUG BEGIN_STMT
+  if (CurrentSecLevel_19 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SecurityLevelIndex_20 = 0;
+  # DEBUG SecurityLevelIndex => SecurityLevelIndex_20
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = CurrentRoutineConfigInfo_16->SecurityLevelRef;
+  _5 = _4 + SecurityLevelIndex_12;
+  _6 = *_5;
+  if (CurrentSecLevel_19 == _6)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSecLevel_21 = 1;
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_21
+
+  <bb 7> :
+  # RoutineIsAvailableInCurrentSecLevel_9 = PHI <RoutineIsAvailableInCurrentSecLevel_10(5), RoutineIsAvailableInCurrentSecLevel_21(6)>
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_9
+  # DEBUG BEGIN_STMT
+  SecurityLevelIndex_22 = SecurityLevelIndex_12 + 1;
+  # DEBUG SecurityLevelIndex => SecurityLevelIndex_22
+
+  <bb 8> :
+  # RoutineIsAvailableInCurrentSecLevel_10 = PHI <RoutineIsAvailableInCurrentSecLevel_14(4), RoutineIsAvailableInCurrentSecLevel_9(7)>
+  # SecurityLevelIndex_12 = PHI <SecurityLevelIndex_20(4), SecurityLevelIndex_22(7)>
+  # DEBUG SecurityLevelIndex => SecurityLevelIndex_12
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_10
+  # DEBUG BEGIN_STMT
+  _7 = CurrentRoutineConfigInfo_16->NumSecLevels;
+  _8 = (long unsigned int) _7;
+  if (SecurityLevelIndex_12 < _8)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (RoutineIsAvailableInCurrentSecLevel_10 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSecLevel_17 = 1;
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_17
+
+  <bb 11> :
+  # RoutineIsAvailableInCurrentSecLevel_11 = PHI <RoutineIsAvailableInCurrentSecLevel_10(8), RoutineIsAvailableInCurrentSecLevel_17(10), RoutineIsAvailableInCurrentSecLevel_14(3), RoutineIsAvailableInCurrentSecLevel_10(9)>
+  # DEBUG RoutineIsAvailableInCurrentSecLevel => RoutineIsAvailableInCurrentSecLevel_11
+  # DEBUG BEGIN_STMT
+  _23 = RoutineIsAvailableInCurrentSecLevel_11;
+  return _23;
+
+}
+
+
+Dcm_Dsp_RoutineControl_IsRoutineAvailableInCurrentSession ()
+{
+  uint8_least SessionIdx;
+  Dcm_SesCtrlType CurrentSesionCtrl;
+  const struct Dcm_DspRoutineServicesInfoType * CurrentRoutineConfigInfo;
+  boolean RoutineIsAvailableInCurrentSession;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.1_1;
+  int _2;
+  unsigned char _3;
+  const Dcm_SesCtrlType * _4;
+  const Dcm_SesCtrlType * _5;
+  unsigned char _6;
+  const Dcm_SesCtrlType * _7;
+  const Dcm_SesCtrlType * _8;
+  unsigned char _9;
+  unsigned char CurrentSesionCtrl.2_10;
+  unsigned char _11;
+  long unsigned int _12;
+  boolean _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSession_18 = 0;
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_18
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.1_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.1_1;
+  CurrentRoutineConfigInfo_20 = Dcm_DspRoutineConfig[_2].RoutineInfoRef;
+  # DEBUG CurrentRoutineConfigInfo => CurrentRoutineConfigInfo_20
+  # DEBUG BEGIN_STMT
+  _3 = CurrentRoutineConfigInfo_20->NumSesLevels;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_GetSesCtrlTypeExt (&CurrentSesionCtrl);
+  # DEBUG BEGIN_STMT
+  SessionIdx_23 = 0;
+  # DEBUG SessionIdx => SessionIdx_23
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = CurrentRoutineConfigInfo_20->SessionRef;
+  _5 = _4 + SessionIdx_16;
+  _6 = *_5;
+  if (_6 == 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _7 = CurrentRoutineConfigInfo_20->SessionRef;
+  _8 = _7 + SessionIdx_16;
+  _9 = *_8;
+  CurrentSesionCtrl.2_10 = CurrentSesionCtrl;
+  if (_9 == CurrentSesionCtrl.2_10)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSession_24 = 1;
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_24
+
+  <bb 7> :
+  # RoutineIsAvailableInCurrentSession_13 = PHI <RoutineIsAvailableInCurrentSession_14(5), RoutineIsAvailableInCurrentSession_24(6)>
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_13
+  # DEBUG BEGIN_STMT
+  SessionIdx_25 = SessionIdx_16 + 1;
+  # DEBUG SessionIdx => SessionIdx_25
+
+  <bb 8> :
+  # RoutineIsAvailableInCurrentSession_14 = PHI <RoutineIsAvailableInCurrentSession_18(3), RoutineIsAvailableInCurrentSession_13(7)>
+  # SessionIdx_16 = PHI <SessionIdx_23(3), SessionIdx_25(7)>
+  # DEBUG SessionIdx => SessionIdx_16
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_14
+  # DEBUG BEGIN_STMT
+  _11 = CurrentRoutineConfigInfo_20->NumSesLevels;
+  _12 = (long unsigned int) _11;
+  if (SessionIdx_16 < _12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (RoutineIsAvailableInCurrentSession_14 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  CurrentSesionCtrl ={v} {CLOBBER};
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RoutineIsAvailableInCurrentSession_21 = 1;
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_21
+
+  <bb 12> :
+  # RoutineIsAvailableInCurrentSession_15 = PHI <RoutineIsAvailableInCurrentSession_14(10), RoutineIsAvailableInCurrentSession_21(11)>
+  # DEBUG RoutineIsAvailableInCurrentSession => RoutineIsAvailableInCurrentSession_15
+  # DEBUG BEGIN_STMT
+  _27 = RoutineIsAvailableInCurrentSession_15;
+  return _27;
+
+}
+
+
+Dcm_Dsp_RoutineControl_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType (*<T6e7>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) Dcm_RoutineControl_SubServiceHandler.5_1;
+  Std_ReturnType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_2 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_SubServiceHandler.5_1 = Dcm_RoutineControl_SubServiceHandler;
+  ServiceProcessStatus_7 = Dcm_RoutineControl_SubServiceHandler.5_1 (OpStatus_4(D), pMsgContext_5(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  _8 = ServiceProcessStatus_7;
+  return _8;
+
+}
+
+
+Dcm_Dsp_RoutineControl_SvcStart (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 SubServiceIdentifier;
+  boolean RoutineIndexFound;
+  Dcm_NegativeResponseCodeType CurrentNrc;
+  boolean RoutineControlIsValid;
+  Std_ReturnType ServiceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char CurrentNrc.0_7;
+  Dcm_MsgItemType * _8;
+  unsigned char _9;
+  Std_ReturnType (*<T6e7>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _10;
+  Std_ReturnType _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_18 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  RoutineControlIsValid_19 = 0;
+  # DEBUG RoutineControlIsValid => RoutineControlIsValid_19
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_21(D)->reqDataLen;
+  if (_1 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 19);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_47 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_47
+  goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CurrentNrc = 16;
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_21(D)->reqData;
+  _3 = _2 + 1;
+  RoutineIndexFound_24 = Dcm_Dsp_RoutineControl_SetCurrentRoutine (_3);
+  # DEBUG RoutineIndexFound => RoutineIndexFound_24
+  # DEBUG BEGIN_STMT
+  if (RoutineIndexFound_24 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 49);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_36 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_36
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsp_RoutineControl_IsRoutineAvailableInCurrentSession ();
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 49);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_Dsp_RoutineControl_IsRoutineAvailableInCurrentSecurityLevel ();
+  if (_5 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 51);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_32 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_32
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_Dsp_RoutineControl_ModeRuleResult (&CurrentNrc);
+  if (_6 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  CurrentNrc.0_7 = CurrentNrc;
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), CurrentNrc.0_7);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_30 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_30
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RoutineControlIsValid_28 = 1;
+  # DEBUG RoutineControlIsValid => RoutineControlIsValid_28
+
+  <bb 13> :
+  # ServiceProcessStatus_11 = PHI <ServiceProcessStatus_36(5), ServiceProcessStatus_34(7), ServiceProcessStatus_32(9), ServiceProcessStatus_30(11), ServiceProcessStatus_18(12)>
+  # RoutineControlIsValid_14 = PHI <RoutineControlIsValid_19(5), RoutineControlIsValid_19(7), RoutineControlIsValid_19(9), RoutineControlIsValid_19(11), RoutineControlIsValid_28(12)>
+  # DEBUG RoutineControlIsValid => RoutineControlIsValid_14
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_11
+  # DEBUG BEGIN_STMT
+  if (RoutineControlIsValid_14 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _8 = pMsgContext_21(D)->reqData;
+  SubServiceIdentifier_37 = *_8;
+  # DEBUG SubServiceIdentifier => SubServiceIdentifier_37
+  # DEBUG BEGIN_STMT
+  _9 = SubServiceIdentifier_37 + 255;
+  if (_9 > 2)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 18);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_44 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_44
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_Dsp_ExtractSubServiceHandler (OpStatus_38(D), pMsgContext_21(D));
+  Dcm_RoutineControl_SubServiceHandler = _10;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_42 = Dcm_Dsp_RoutineControl_SvcCont (OpStatus_38(D), pMsgContext_21(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_42
+
+  <bb 17> :
+  # ServiceProcessStatus_12 = PHI <ServiceProcessStatus_11(13), ServiceProcessStatus_44(15), ServiceProcessStatus_42(16)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_12
+  CurrentNrc ={v} {CLOBBER};
+
+  <bb 18> :
+  # ServiceProcessStatus_13 = PHI <ServiceProcessStatus_47(3), ServiceProcessStatus_12(17)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_13
+  # DEBUG BEGIN_STMT
+  _48 = ServiceProcessStatus_13;
+  return _48;
+
+}
+
+
+Dcm_Dsp_RoutineControl_SetCurrentRoutine (const uint8 * RequestData)
+{
+  const uint16 RoutineID;
+  const uint8 RoutineIdLowByte;
+  const uint8 RoutineIdHighByte;
+  uint16_least RoutineTabIndex;
+  boolean RoutineIdFound;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  boolean _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RoutineIdFound_11 = 0;
+  # DEBUG RoutineIdFound => RoutineIdFound_11
+  # DEBUG BEGIN_STMT
+  RoutineTabIndex_12 = 0;
+  # DEBUG RoutineTabIndex => RoutineTabIndex_12
+  # DEBUG BEGIN_STMT
+  RoutineIdHighByte_15 = *RequestData_14(D);
+  # DEBUG RoutineIdHighByte => RoutineIdHighByte_15
+  # DEBUG BEGIN_STMT
+  RoutineIdLowByte_16 = MEM[(const uint8 *)RequestData_14(D) + 1B];
+  # DEBUG RoutineIdLowByte => RoutineIdLowByte_16
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RoutineIdHighByte_15;
+  _2 = _1 << 8;
+  _3 = (short unsigned int) RoutineIdLowByte_16;
+  RoutineID_17 = _2 | _3;
+  # DEBUG RoutineID => RoutineID_17
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex = 3;
+  # DEBUG BEGIN_STMT
+  RoutineTabIndex_19 = 0;
+  # DEBUG RoutineTabIndex => RoutineTabIndex_19
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_DspRoutineConfig[RoutineTabIndex_8].Identifier;
+  if (RoutineID_17 == _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (short unsigned int) RoutineTabIndex_8;
+  Dcm_RoutineControl_CurrentRoutineConfigIndex = _5;
+  # DEBUG BEGIN_STMT
+  RoutineIdFound_21 = 1;
+  # DEBUG RoutineIdFound => RoutineIdFound_21
+
+  <bb 5> :
+  # RoutineIdFound_6 = PHI <RoutineIdFound_7(3), RoutineIdFound_21(4)>
+  # DEBUG RoutineIdFound => RoutineIdFound_6
+  # DEBUG BEGIN_STMT
+  RoutineTabIndex_22 = RoutineTabIndex_8 + 1;
+  # DEBUG RoutineTabIndex => RoutineTabIndex_22
+
+  <bb 6> :
+  # RoutineIdFound_7 = PHI <RoutineIdFound_11(2), RoutineIdFound_6(5)>
+  # RoutineTabIndex_8 = PHI <RoutineTabIndex_19(2), RoutineTabIndex_22(5)>
+  # DEBUG RoutineTabIndex => RoutineTabIndex_8
+  # DEBUG RoutineIdFound => RoutineIdFound_7
+  # DEBUG BEGIN_STMT
+  if (RoutineTabIndex_8 <= 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (RoutineIdFound_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _23 = RoutineIdFound_7;
+  return _23;
+
+}
+
+
+Dcm_Dsp_RoutineControl_RequestResults_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType RoutineSubfunctionResult;
+  const struct Dcm_DspRoutineServicesType * CurrentRoutineConfig;
+  Dcm_NegativeResponseCodeType ErrorCode;
+  Std_ReturnType ServiceProcessStatus;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.12_1;
+  int _2;
+  Std_ReturnType (*<T793>) (Dcm_OpStatusType, struct Dcm_MsgContextType *, Dcm_NegativeResponseCodeType *) _3;
+  Std_ReturnType (*<T793>) (Dcm_OpStatusType, struct Dcm_MsgContextType *, Dcm_NegativeResponseCodeType *) _4;
+  int _5;
+  unsigned char ErrorCode.13_6;
+  unsigned char ErrorCode.14_7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  Dcm_MsgItemType * _13;
+  Dcm_MsgItemType * _14;
+  Dcm_MsgItemType * _15;
+  unsigned char _16;
+  Std_ReturnType _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_22 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_22
+  # DEBUG BEGIN_STMT
+  ErrorCode = 16;
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.12_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.12_1;
+  CurrentRoutineConfig_25 = &Dcm_DspRoutineConfig[_2];
+  # DEBUG CurrentRoutineConfig => CurrentRoutineConfig_25
+  # DEBUG BEGIN_STMT
+  if (OpStatus_26(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = CurrentRoutineConfig_25->RequestResultsFncHandler;
+  if (_3 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 18);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_29 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+
+  <bb 5> :
+  # ServiceProcessStatus_17 = PHI <ServiceProcessStatus_22(2), ServiceProcessStatus_22(3), ServiceProcessStatus_29(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_17 != 26)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RoutineSubfunctionResult_30 = 1;
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_30
+  # DEBUG BEGIN_STMT
+  _4 = CurrentRoutineConfig_25->RequestResultsFncHandler;
+  RoutineSubfunctionResult_32 = _4 (OpStatus_26(D), pMsgContext_27(D), &ErrorCode);
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_32
+  # DEBUG BEGIN_STMT
+  if (OpStatus_26(D) != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) RoutineSubfunctionResult_32;
+  switch (_5) <default: <L14> [INV], case 0: <L10> [INV], case 1: <L6> [INV], case 10: <L12> [INV], case 12: <L12> [INV], case 131: <L11> [INV]>
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ErrorCode.13_6 = ErrorCode;
+  if (ErrorCode.13_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ErrorCode.14_7 = ErrorCode;
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), ErrorCode.14_7);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 34);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_38 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _8 = pMsgContext_27(D)->resData;
+  *_8 = 3;
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_27(D)->reqData;
+  _10 = pMsgContext_27(D)->resData;
+  _11 = _10 + 1;
+  _12 = *_9;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  _13 = pMsgContext_27(D)->reqData;
+  _14 = pMsgContext_27(D)->resData;
+  _15 = _14 + 2;
+  _16 = MEM[(Dcm_MsgItemType *)_13 + 1B];
+  *_15 = _16;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_42 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_42
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_35 = RoutineSubfunctionResult_32;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_35
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 172, 2);
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 16);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_45 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_45
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_33 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_33
+
+  <bb 17> :
+  # ServiceProcessStatus_18 = PHI <ServiceProcessStatus_17(5), ServiceProcessStatus_42(12), ServiceProcessStatus_33(16), ServiceProcessStatus_38(11), ServiceProcessStatus_45(15), ServiceProcessStatus_35(14), ServiceProcessStatus_34(13)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  _46 = ServiceProcessStatus_18;
+  ErrorCode ={v} {CLOBBER};
+  return _46;
+
+}
+
+
+Dcm_Dsp_RoutineControl_StopRoutine_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType RoutineSubfunctionResult;
+  const struct Dcm_DspRoutineServicesType * CurrentRoutineConfig;
+  Dcm_NegativeResponseCodeType ErrorCode;
+  Std_ReturnType ServiceProcessStatus;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.9_1;
+  int _2;
+  Std_ReturnType (*<T793>) (Dcm_OpStatusType, struct Dcm_MsgContextType *, Dcm_NegativeResponseCodeType *) _3;
+  Std_ReturnType (*<T793>) (Dcm_OpStatusType, struct Dcm_MsgContextType *, Dcm_NegativeResponseCodeType *) _4;
+  int _5;
+  unsigned char ErrorCode.10_6;
+  unsigned char ErrorCode.11_7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  Dcm_MsgItemType * _13;
+  Dcm_MsgItemType * _14;
+  Dcm_MsgItemType * _15;
+  unsigned char _16;
+  Std_ReturnType _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_22 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_22
+  # DEBUG BEGIN_STMT
+  ErrorCode = 16;
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.9_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.9_1;
+  CurrentRoutineConfig_25 = &Dcm_DspRoutineConfig[_2];
+  # DEBUG CurrentRoutineConfig => CurrentRoutineConfig_25
+  # DEBUG BEGIN_STMT
+  if (OpStatus_26(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = CurrentRoutineConfig_25->StopFncHandler;
+  if (_3 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 18);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_29 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+
+  <bb 5> :
+  # ServiceProcessStatus_17 = PHI <ServiceProcessStatus_22(2), ServiceProcessStatus_22(3), ServiceProcessStatus_29(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_17 != 26)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RoutineSubfunctionResult_30 = 1;
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_30
+  # DEBUG BEGIN_STMT
+  _4 = CurrentRoutineConfig_25->StopFncHandler;
+  RoutineSubfunctionResult_32 = _4 (OpStatus_26(D), pMsgContext_27(D), &ErrorCode);
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_32
+  # DEBUG BEGIN_STMT
+  if (OpStatus_26(D) != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) RoutineSubfunctionResult_32;
+  switch (_5) <default: <L14> [INV], case 0: <L10> [INV], case 1: <L6> [INV], case 10: <L12> [INV], case 12: <L12> [INV], case 131: <L11> [INV]>
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ErrorCode.10_6 = ErrorCode;
+  if (ErrorCode.10_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ErrorCode.11_7 = ErrorCode;
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), ErrorCode.11_7);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 34);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_38 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _8 = pMsgContext_27(D)->resData;
+  *_8 = 2;
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_27(D)->reqData;
+  _10 = pMsgContext_27(D)->resData;
+  _11 = _10 + 1;
+  _12 = *_9;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  _13 = pMsgContext_27(D)->reqData;
+  _14 = pMsgContext_27(D)->resData;
+  _15 = _14 + 2;
+  _16 = MEM[(Dcm_MsgItemType *)_13 + 1B];
+  *_15 = _16;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_42 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_42
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_35 = RoutineSubfunctionResult_32;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_35
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 171, 2);
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_27(D), 16);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_45 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_45
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_33 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_33
+
+  <bb 17> :
+  # ServiceProcessStatus_18 = PHI <ServiceProcessStatus_17(5), ServiceProcessStatus_42(12), ServiceProcessStatus_33(16), ServiceProcessStatus_38(11), ServiceProcessStatus_45(15), ServiceProcessStatus_35(14), ServiceProcessStatus_34(13)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  _46 = ServiceProcessStatus_18;
+  ErrorCode ={v} {CLOBBER};
+  return _46;
+
+}
+
+
+Dcm_Dsp_RoutineControl_StartRoutine_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType RoutineSubfunctionResult;
+  Dcm_NegativeResponseCodeType ErrorCode;
+  Std_ReturnType ServiceProcessStatus;
+  short unsigned int Dcm_RoutineControl_CurrentRoutineConfigIndex.6_1;
+  int _2;
+  Std_ReturnType (*<T793>) (Dcm_OpStatusType, struct Dcm_MsgContextType *, Dcm_NegativeResponseCodeType *) _3;
+  int _4;
+  unsigned char ErrorCode.7_5;
+  unsigned char ErrorCode.8_6;
+  Dcm_MsgItemType * _7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  Dcm_MsgItemType * _14;
+  unsigned char _15;
+  Std_ReturnType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_19 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  ErrorCode = 16;
+  # DEBUG BEGIN_STMT
+  RoutineSubfunctionResult_22 = 1;
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_22
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex.6_1 = Dcm_RoutineControl_CurrentRoutineConfigIndex;
+  _2 = (int) Dcm_RoutineControl_CurrentRoutineConfigIndex.6_1;
+  _3 = Dcm_DspRoutineConfig[_2].StartFncHandler;
+  RoutineSubfunctionResult_26 = _3 (OpStatus_23(D), pMsgContext_24(D), &ErrorCode);
+  # DEBUG RoutineSubfunctionResult => RoutineSubfunctionResult_26
+  # DEBUG BEGIN_STMT
+  if (OpStatus_23(D) != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) RoutineSubfunctionResult_26;
+  switch (_4) <default: <L9> [INV], case 0: <L5> [INV], case 1: <L1> [INV], case 10: <L7> [INV], case 12: <L7> [INV], case 131: <L6> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ErrorCode.7_5 = ErrorCode;
+  if (ErrorCode.7_5 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ErrorCode.8_6 = ErrorCode;
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), ErrorCode.8_6);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), 34);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_32 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_32
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _7 = pMsgContext_24(D)->resData;
+  *_7 = 1;
+  # DEBUG BEGIN_STMT
+  _8 = pMsgContext_24(D)->reqData;
+  _9 = pMsgContext_24(D)->resData;
+  _10 = _9 + 1;
+  _11 = *_8;
+  *_10 = _11;
+  # DEBUG BEGIN_STMT
+  _12 = pMsgContext_24(D)->reqData;
+  _13 = pMsgContext_24(D)->resData;
+  _14 = _13 + 2;
+  _15 = MEM[(Dcm_MsgItemType *)_12 + 1B];
+  *_14 = _15;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_36 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_36
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_28 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_28
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_29 = RoutineSubfunctionResult_26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 170, 2);
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), 16);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_39 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_39
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_27 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_27
+
+  <bb 13> :
+  # ServiceProcessStatus_16 = PHI <ServiceProcessStatus_36(8), ServiceProcessStatus_27(12), ServiceProcessStatus_32(7), ServiceProcessStatus_39(11), ServiceProcessStatus_29(10), ServiceProcessStatus_28(9)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_16
+  # DEBUG BEGIN_STMT
+  _40 = ServiceProcessStatus_16;
+  ErrorCode ={v} {CLOBBER};
+  return _40;
+
+}
+
+
+Dcm_Dsp_RoutineControl_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  Std_ReturnType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_4 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_5(D);
+  switch (_1) <default: <L6> [INV], case 0: <L0> [INV], case 1 ... 3: <L1> [INV], case 5 ... 6: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_12 = Dcm_Dsp_RoutineControl_SvcStart (OpStatus_5(D), pMsgContext_8(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = Dcm_Dsp_RoutineControl_SvcCont (OpStatus_5(D), pMsgContext_8(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_13 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_13
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+  # ServiceProcessStatus_2 = PHI <ServiceProcessStatus_12(3), ServiceProcessStatus_10(4), ServiceProcessStatus_6(5), ServiceProcessStatus_13(6)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = ServiceProcessStatus_2;
+  return _14;
+
+}
+
+
+Dcm_Dsp_RoutineControl_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_SubServiceHandler = 0B;
+  # DEBUG BEGIN_STMT
+  Dcm_RoutineControl_CurrentRoutineConfigIndex = 3;
+  return;
+
+}
+
+

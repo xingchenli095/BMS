@@ -1,0 +1,77 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StackCheck
+
+
+Marking externally visible variables:
+
+Clearing variable flags:
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_UserGetStackInfo/1 (OS_UserGetStackInfo) @06ccd000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StackCheck/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_StackCheck/0 (OS_StackCheck) @06ba01c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 (1073741824 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_StackCheck ()
+{
+  register os_stackelement_t * OS_getSpResult;
+  struct os_stackinfo_t info;
+  os_int_t answer;
+  unsigned int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG answer => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_4);
+  # DEBUG OS_getSpResult => OS_getSpResult_4
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) OS_getSpResult_4;
+  info.stackPointer = _1;
+  # DEBUG BEGIN_STMT
+  _2 = OS_UserGetStackInfo (65535, &info);
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  answer_8 = info.stackStatus;
+  # DEBUG answer => answer_8
+
+  <bb 4> [local count: 1073741824]:
+  # answer_3 = PHI <0(2), answer_8(3)>
+  # DEBUG answer => answer_3
+  # DEBUG BEGIN_STMT
+  info ={v} {CLOBBER};
+  return answer_3;
+
+}
+
+

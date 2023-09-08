@@ -1,0 +1,531 @@
+__attribute__((target ("general-regs-only")))
+OS_Error (const struct os_serviceinfo_t * const s, os_error_t e, os_paramtype_t * p)
+{
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  os_int_t i;
+  os_uint8_t en;
+  os_intstatus_t is;
+  const struct os_appcontext_t * app;
+  const struct os_errorentry_t * ep;
+  struct os_errorstatus_t esSave;
+  const struct os_appcontext_t * hookAppSave;
+  os_uint8_t ehNestingSave;
+  os_erroraction_t hooks;
+  os_erroraction_t act;
+  os_result_t res;
+  struct os_kerneldata_t * const kernel_data;
+  unsigned char _1;
+  const struct os_task_t * _2;
+  unsigned char _3;
+  const struct os_isr_t * OS_isrTableBase.2_4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct os_isr_t * _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char en.4_12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char OS_hookSelection.5_15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned int i.6_18;
+  unsigned int _19;
+  os_paramtype_t * _20;
+  unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  void (*<T4f2>) (os_result_t) _24;
+  unsigned char _25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned char _28;
+  unsigned int _29;
+  unsigned int _30;
+  unsigned char _31;
+  void (*<T4f2>) (os_result_t) OS_ptrErrorHook.7_32;
+  unsigned int _33;
+  unsigned int _34;
+  unsigned char _35;
+  void (*<T4f2>) (os_result_t) _36;
+  unsigned char _37;
+  unsigned char _38;
+  signed char hooks.8_39;
+  unsigned char _40;
+  unsigned int _41;
+  unsigned int _42;
+  unsigned char _43;
+  os_erroraction_t (*<T4f8>) (os_result_t) OS_ptrProtectionHook.9_44;
+  const struct os_appcontext_t * iftmp.0_53;
+  const struct os_appcontext_t * iftmp.1_54;
+  const struct os_appcontext_t * iftmp.3_55;
+  const struct os_appcontext_t * iftmp.3_64;
+  const struct os_appcontext_t * iftmp.3_65;
+  const struct os_appcontext_t * iftmp.1_66;
+  const struct os_appcontext_t * iftmp.1_67;
+  const struct os_appcontext_t * iftmp.0_68;
+  const struct os_appcontext_t * iftmp.0_69;
+  os_result_t _128;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_62 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_62
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  _2 = OS_kernelData.taskCurrent;
+  iftmp.0_69 = _2->app;
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  OS_isrTableBase.2_4 = OS_isrTableBase;
+  _5 = OS_kernelData.isrCurrent;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 68;
+  _8 = OS_isrTableBase.2_4 + _7;
+  iftmp.1_67 = _8->app;
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  _9 = OS_kernelData.inFunction;
+  if (_9 == 10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _10 = OS_kernelData.inFunction;
+  if (_10 == 8)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _11 = OS_kernelData.inFunction;
+  if (_11 == 9)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.3_65 = OS_kernelData.hookApp;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.3_64 = 0B;
+
+  <bb 11> :
+  # iftmp.3_55 = PHI <iftmp.3_65(9), iftmp.3_64(10)>
+  iftmp.1_66 = iftmp.3_55;
+
+  <bb 12> :
+  # iftmp.1_54 = PHI <iftmp.1_67(5), iftmp.1_66(11)>
+  iftmp.0_68 = iftmp.1_54;
+
+  <bb 13> :
+  # iftmp.0_53 = PHI <iftmp.0_69(3), iftmp.0_68(12)>
+  app_70 = iftmp.0_53;
+  # DEBUG app => app_70
+  # DEBUG BEGIN_STMT
+  ep_72 = s_71(D)->errorTable;
+  # DEBUG ep => ep_72
+  # DEBUG BEGIN_STMT
+  en_73 = s_71(D)->nErrors;
+  # DEBUG en => en_73
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ep_75 = ep_50 + 3;
+  # DEBUG ep => ep_75
+  # DEBUG BEGIN_STMT
+  en.4_12 = en_51;
+  en_76 = en.4_12 + 255;
+  # DEBUG en => en_76
+
+  <bb 15> :
+  # ep_50 = PHI <ep_72(13), ep_75(14)>
+  # en_51 = PHI <en_73(13), en_76(14)>
+  # DEBUG en => en_51
+  # DEBUG ep => ep_50
+  # DEBUG BEGIN_STMT
+  if (en_51 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  _13 = ep_50->condition;
+  if (e_74(D) != _13)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _14 = ep_50->condition;
+  if (e_74(D) == _14)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  act_79 = ep_50->action;
+  # DEBUG act => act_79
+  # DEBUG BEGIN_STMT
+  res_80 = ep_50->result;
+  # DEBUG res => res_80
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  act_77 = 70;
+  # DEBUG act => act_77
+  # DEBUG BEGIN_STMT
+  res_78 = 21;
+  # DEBUG res => res_78
+
+  <bb 20> :
+  # res_45 = PHI <res_80(18), res_78(19)>
+  # act_47 = PHI <act_79(18), act_77(19)>
+  # DEBUG act => act_47
+  # DEBUG res => res_45
+  # DEBUG BEGIN_STMT
+  OS_hookSelection.5_15 = OS_hookSelection;
+  hooks_81 = act_47 & OS_hookSelection.5_15;
+  # DEBUG hooks => hooks_81
+  # DEBUG BEGIN_STMT
+  act_82 = act_47 & 15;
+  # DEBUG act => act_82
+  # DEBUG BEGIN_STMT
+  if (hooks_81 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 49>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  ehNestingSave_83 = OS_kernelData.errorHookNesting;
+  # DEBUG ehNestingSave => ehNestingSave_83
+  # DEBUG BEGIN_STMT
+  esSave = OS_kernelData.errorStatus;
+  # DEBUG BEGIN_STMT
+  hookAppSave_85 = OS_kernelData.hookApp;
+  # DEBUG hookAppSave => hookAppSave_85
+  # DEBUG BEGIN_STMT
+  is_87 = OS_IntDisableConditional ();
+  # DEBUG is => is_87
+  # DEBUG BEGIN_STMT
+  _16 = OS_kernelData.inFunction;
+  OS_kernelData.errorStatus.calledFrom = _16;
+  # DEBUG BEGIN_STMT
+  _17 = s_71(D)->sid;
+  OS_kernelData.errorStatus.serviceId = _17;
+  # DEBUG BEGIN_STMT
+  if (p_90(D) != 0B)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_91 = 0;
+  # DEBUG i => i_91
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  i.6_18 = (unsigned int) i_52;
+  _19 = i.6_18 * 4;
+  _20 = p_90(D) + _19;
+  _21 = *_20;
+  OS_kernelData.errorStatus.parameter[i_52] = _21;
+  # DEBUG BEGIN_STMT
+  i_93 = i_52 + 1;
+  # DEBUG i => i_93
+
+  <bb 24> :
+  # i_52 = PHI <i_91(22), i_93(23)>
+  # DEBUG i => i_52
+  # DEBUG BEGIN_STMT
+  if (i_52 <= 2)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.errorCondition = e_74(D);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.action = act_82;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.result = res_45;
+  # DEBUG BEGIN_STMT
+  _22 = (unsigned int) hooks_81;
+  _23 = _22 & 32;
+  if (_23 != 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  if (app_70 == 0B)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 27> :
+  _24 = app_70->errorHook;
+  if (_24 == 0B)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  _25 = OS_kernelData.errorHookNesting;
+  if (_25 != 0)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  hooks_97 = hooks_81 | 64;
+  # DEBUG hooks => hooks_97
+
+  <bb 30> :
+  # hooks_49 = PHI <hooks_81(25), hooks_81(28), hooks_97(29)>
+  # DEBUG hooks => hooks_49
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned int) hooks_49;
+  _27 = _26 & 80;
+  if (_27 != 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 31> :
+  _28 = OS_kernelData.errorHookNesting;
+  _29 = (unsigned int) _28;
+  _30 = _29 & 2;
+  if (_30 == 0)
+    goto <bb 32>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _31 = ehNestingSave_83 | 2;
+  OS_kernelData.errorHookNesting = _31;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd_100 = &OS_kernelData;
+  # DEBUG OS_kd => OS_kd_100
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_101 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_101
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 10;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrErrorHook.7_32 = OS_ptrErrorHook;
+  OS_ptrErrorHook.7_32 (res_45);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_101;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorHookNesting = ehNestingSave_83;
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _33 = (unsigned int) hooks_49;
+  _34 = _33 & 32;
+  if (_34 != 0)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  if (app_70 == 0B)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 35> :
+  _35 = OS_kernelData.appsStarted;
+  if (_35 == 0)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 36> :
+  _36 = app_70->errorHook;
+  if (_36 == 0B)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 37> :
+  _37 = OS_kernelData.errorHookNesting;
+  if (_37 != 0)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 38>; [INV]
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  _38 = ehNestingSave_83 | 1;
+  OS_kernelData.errorHookNesting = _38;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = app_70;
+  # DEBUG BEGIN_STMT
+  OS_CallErrorHook (app_70, res_45);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorHookNesting = ehNestingSave_83;
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  hooks.8_39 = (signed char) hooks_49;
+  if (hooks.8_39 < 0)
+    goto <bb 40>; [INV]
+  else
+    goto <bb 48>; [INV]
+
+  <bb 40> :
+  _40 = OS_kernelData.errorHookNesting;
+  _41 = (unsigned int) _40;
+  _42 = _41 & 4;
+  if (_42 == 0)
+    goto <bb 41>; [INV]
+  else
+    goto <bb 48>; [INV]
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  _43 = ehNestingSave_83 | 4;
+  OS_kernelData.errorHookNesting = _43;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd_112 = &OS_kernelData;
+  # DEBUG OS_kd => OS_kd_112
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_113 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_113
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 15;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrProtectionHook.9_44 = OS_ptrProtectionHook;
+  act_116 = OS_ptrProtectionHook.9_44 (res_45);
+  # DEBUG act => act_116
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_113;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorHookNesting = ehNestingSave_83;
+  # DEBUG BEGIN_STMT
+  if (act_116 == 255)
+    goto <bb 48>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 42> :
+  # DEBUG BEGIN_STMT
+  if (act_116 == 254)
+    goto <bb 43>; [INV]
+  else
+    goto <bb 45>; [INV]
+
+  <bb 43> :
+  if (res_45 == 13)
+    goto <bb 44>; [INV]
+  else
+    goto <bb 45>; [INV]
+
+  <bb 44> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.action = 1;
+  goto <bb 48>; [INV]
+
+  <bb 45> :
+  # DEBUG BEGIN_STMT
+  if (act_116 <= 6)
+    goto <bb 46>; [INV]
+  else
+    goto <bb 47>; [INV]
+
+  <bb 46> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.action = act_116;
+  goto <bb 48>; [INV]
+
+  <bb 47> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus.action = 6;
+
+  <bb 48> :
+  # DEBUG BEGIN_STMT
+  act_122 = OS_kernelData.errorStatus.action;
+  # DEBUG act => act_122
+  # DEBUG BEGIN_STMT
+  res_123 = OS_kernelData.errorStatus.result;
+  # DEBUG res => res_123
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_87);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = hookAppSave_85;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.errorStatus = esSave;
+
+  <bb 49> :
+  # res_46 = PHI <res_45(20), res_123(48)>
+  # act_48 = PHI <act_82(20), act_122(48)>
+  # DEBUG act => act_48
+  # DEBUG res => res_46
+  # DEBUG BEGIN_STMT
+  _128 = OS_ErrorAction (act_48, res_46);
+  esSave ={v} {CLOBBER};
+  return _128;
+
+}
+
+

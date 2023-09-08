@@ -1,0 +1,96 @@
+__attribute__((target ("general-regs-only")))
+OS_ActivateAutoAlarms ()
+{
+  const os_coreid_t myCoreId;
+  os_alarmid_t a;
+  const struct os_autoalarm_t * aa;
+  os_uint16_t idx;
+  unsigned char OS_appMode.0_1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int idx.1_9;
+  int _10;
+  short unsigned int OS_nAlarms.2_11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_17 = 0;
+  # DEBUG myCoreId => myCoreId_17
+  # DEBUG BEGIN_STMT
+  OS_appMode.0_1 = OS_appMode;
+  _2 = (int) OS_appMode.0_1;
+  idx_19 = OS_startModeAlarms[_2];
+  # DEBUG idx => idx_19
+  # DEBUG BEGIN_STMT
+  _3 = (int) idx_19;
+  aa_20 = &OS_autoStartAlarms[_3];
+  # DEBUG aa => aa_20
+  # DEBUG BEGIN_STMT
+  a_21 = aa_20->alarm;
+  # DEBUG a => a_21
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = aa_13->method;
+  if (_4 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = aa_13->interval;
+  _6 = aa_13->cycle;
+  OS_KernSetAbsAlarm (a_14, _5, _6);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = aa_13->interval;
+  _8 = aa_13->cycle;
+  OS_KernSetRelAlarm (a_14, _7, _8);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  idx.1_9 = idx_12;
+  idx_24 = idx.1_9 + 1;
+  # DEBUG idx => idx_24
+  # DEBUG BEGIN_STMT
+  _10 = (int) idx_24;
+  aa_25 = &OS_autoStartAlarms[_10];
+  # DEBUG aa => aa_25
+  # DEBUG BEGIN_STMT
+  a_26 = aa_25->alarm;
+  # DEBUG a => a_26
+
+  <bb 7> :
+  # idx_12 = PHI <idx_19(2), idx_24(6)>
+  # aa_13 = PHI <aa_20(2), aa_25(6)>
+  # a_14 = PHI <a_21(2), a_26(6)>
+  # DEBUG a => a_14
+  # DEBUG aa => aa_13
+  # DEBUG idx => idx_12
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.2_11 = OS_nAlarms;
+  if (a_14 < OS_nAlarms.2_11)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

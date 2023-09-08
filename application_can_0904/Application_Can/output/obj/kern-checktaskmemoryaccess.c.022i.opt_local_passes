@@ -1,0 +1,523 @@
+__attribute__((target ("general-regs-only")))
+OS_KernCheckTaskMemoryAccess (os_taskid_t t, const void * ptr, os_size_t len)
+{
+  os_paramtype_t p[3];
+  os_memoryaccess_t a;
+  unsigned int _1;
+  unsigned int ptr.0_2;
+  unsigned char _3;
+  const os_callermask_t * OS_permittedContext.3_4;
+  const os_callermask_t * _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  const os_callermask_t * OS_permittedContext.4_9;
+  const os_callermask_t * _10;
+  short unsigned int _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  const os_callermask_t * OS_permittedContext.5_17;
+  const os_callermask_t * _18;
+  short unsigned int _19;
+  unsigned char _20;
+  int _21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  unsigned int OS_configMode.6_25;
+  unsigned int _26;
+  unsigned char OS_iecMode.7_27;
+  unsigned char _28;
+  const struct os_task_t * _29;
+  struct os_taskdynamic_t * _30;
+  short unsigned int _31;
+  short unsigned int _32;
+  short unsigned int _33;
+  short unsigned int _34;
+  unsigned int OS_configMode.8_35;
+  unsigned int _36;
+  unsigned char OS_nTasks.9_37;
+  unsigned int OS_configMode.10_38;
+  unsigned int _39;
+  _Bool iftmp.1_41;
+  int iftmp.2_42;
+  _Bool iftmp.1_52;
+  int iftmp.2_53;
+  int iftmp.2_54;
+  _Bool iftmp.1_55;
+  os_memoryaccess_t _61;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_44 = 0;
+  # DEBUG a => a_44
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) t_45(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  ptr.0_2 = (unsigned int) ptr_48(D);
+  p[1] = ptr.0_2;
+  # DEBUG BEGIN_STMT
+  p[2] = len_50(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.3_4 = OS_permittedContext;
+  _5 = OS_permittedContext.3_4 + 8;
+  _6 = *_5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1024;
+  if (_8 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.4_9 = OS_permittedContext;
+  _10 = OS_permittedContext.4_9 + 8;
+  _11 = *_10;
+  _12 = OS_kernelData.errorStatus.calledFrom;
+  _13 = (int) _12;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.2_53 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.2_54 = 0;
+
+  <bb 7> :
+  # iftmp.2_42 = PHI <iftmp.2_53(5), iftmp.2_54(6)>
+  iftmp.1_55 = iftmp.2_42 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.5_17 = OS_permittedContext;
+  _18 = OS_permittedContext.5_17 + 8;
+  _19 = *_18;
+  _20 = OS_kernelData.inFunction;
+  _21 = (int) _20;
+  _22 = 1 << _21;
+  _23 = (short unsigned int) _22;
+  _24 = _19 & _23;
+  iftmp.1_52 = _24 == 0;
+
+  <bb 9> :
+  # iftmp.1_41 = PHI <iftmp.1_55(7), iftmp.1_52(8)>
+  if (iftmp.1_41 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.6_25 = OS_configMode;
+  _26 = OS_configMode.6_25 & 1024;
+  if (_26 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckTaskMemoryAccess, 12, &p);
+  goto <bb 22>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.7_27 = OS_iecMode;
+  if (OS_iecMode.7_27 > 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 13> :
+  _28 = OS_kernelData.inFunction;
+  if (_28 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _29 = OS_kernelData.taskCurrent;
+  _30 = _29->dynamic;
+  _31 = BIT_FIELD_REF <MEM[(void *)_30], 16, 160>;
+  _32 = _31;
+  if (_32 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  _33 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _34 = _33;
+  if (_34 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.8_35 = OS_configMode;
+  _36 = OS_configMode.8_35 & 1024;
+  if (_36 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckTaskMemoryAccess, 55, &p);
+  goto <bb 22>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.9_37 = OS_nTasks;
+  if (t_45(D) < OS_nTasks.9_37)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  a_59 = OS_DoCheckTaskMemoryAccess (t_45(D), ptr_48(D), len_50(D));
+  # DEBUG a => a_59
+  goto <bb 22>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.10_38 = OS_configMode;
+  _39 = OS_configMode.10_38 & 1024;
+  if (_39 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckTaskMemoryAccess, 2, &p);
+
+  <bb 22> :
+  # a_40 = PHI <a_44(11), a_44(17), a_59(19), a_44(20), a_44(21), a_44(10), a_44(16)>
+  # DEBUG a => a_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _61 = a_40;
+  p ={v} {CLOBBER};
+  return _61;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DoCheckTaskMemoryAccess (os_taskid_t t, const void * ptr, os_size_t len)
+{
+  os_paramtype_t p[3];
+  os_taskstate_t ts;
+  os_address_t limit;
+  os_address_t base;
+  const struct os_appcontext_t * app;
+  os_address_t last;
+  os_address_t first;
+  const struct os_task_t * tp;
+  os_memoryaccess_t a;
+  unsigned int _1;
+  unsigned int ptr.11_2;
+  const struct os_task_t * OS_taskTableBase.12_3;
+  unsigned int _4;
+  unsigned int _5;
+  os_stackelement_t * _6;
+  unsigned int _7;
+  struct os_taskdynamic_t * _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct os_task_t * _13;
+  os_uint8_t * _14;
+  unsigned int _15;
+  const struct os_task_t * _16;
+  os_uint8_t * _17;
+  unsigned int _18;
+  os_uint8_t * _19;
+  unsigned int _20;
+  os_uint8_t * _21;
+  unsigned int _22;
+  const void * OS_romBase.14_23;
+  unsigned int OS_romBase.15_24;
+  const void * OS_romLimit.16_25;
+  unsigned int OS_romLimit.17_26;
+  const void * OS_ramBase.19_27;
+  unsigned int OS_ramBase.20_28;
+  const void * OS_ramLimit.21_29;
+  unsigned int OS_ramLimit.22_30;
+  unsigned int OS_configMode.23_31;
+  unsigned int _32;
+  unsigned char iftmp.13_34;
+  unsigned char iftmp.18_35;
+  unsigned char iftmp.13_57;
+  unsigned char iftmp.18_58;
+  unsigned char iftmp.18_59;
+  unsigned char iftmp.13_60;
+  os_memoryaccess_t _63;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_37 = 0;
+  # DEBUG a => a_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) t_38(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  ptr.11_2 = (unsigned int) ptr_41(D);
+  p[1] = ptr.11_2;
+  # DEBUG BEGIN_STMT
+  p[2] = len_43(D);
+  # DEBUG BEGIN_STMT
+  first_45 = (os_address_t) ptr_41(D);
+  # DEBUG first => first_45
+  # DEBUG BEGIN_STMT
+  last_46 = first_45 + len_43(D);
+  # DEBUG last => last_46
+  # DEBUG BEGIN_STMT
+  if (ptr_41(D) == 0B)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (last_46 > first_45)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.12_3 = OS_taskTableBase;
+  _4 = (unsigned int) t_38(D);
+  _5 = _4 * 76;
+  tp_48 = OS_taskTableBase.12_3 + _5;
+  # DEBUG tp => tp_48
+  # DEBUG BEGIN_STMT
+  app_49 = tp_48->app;
+  # DEBUG app => app_49
+  # DEBUG BEGIN_STMT
+  _6 = tp_48->stackBase;
+  base_50 = (os_address_t) _6;
+  # DEBUG base => base_50
+  # DEBUG BEGIN_STMT
+  _7 = tp_48->stackLen;
+  limit_51 = base_50 + _7;
+  # DEBUG limit => limit_51
+  # DEBUG BEGIN_STMT
+  if (first_45 >= base_50)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  if (last_46 <= limit_51)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = tp_48->dynamic;
+  ts_52 = _8->state;
+  # DEBUG ts => ts_52
+  # DEBUG BEGIN_STMT
+  _9 = ts_52 + 253;
+  if (_9 <= 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  a_54 = 11;
+  # DEBUG a => a_54
+  goto <bb 29>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  a_53 = 8;
+  # DEBUG a => a_53
+  goto <bb 29>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (app_49 == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _10 = app_49->flags;
+  _11 = (unsigned int) _10;
+  _12 = _11 & 1;
+  if (_12 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  a_62 = 7;
+  # DEBUG a => a_62
+  goto <bb 29>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.taskCurrent;
+  _14 = _13->dataStart;
+  _15 = (unsigned int) _14;
+  if (first_45 >= _15)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  _16 = OS_kernelData.taskCurrent;
+  _17 = _16->dataEnd;
+  _18 = (unsigned int) _17;
+  if (last_46 <= _18)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  a_55 = 3;
+  # DEBUG a => a_55
+  goto <bb 29>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _19 = app_49->dataStart;
+  _20 = (unsigned int) _19;
+  if (first_45 >= _20)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _21 = app_49->dataEnd;
+  _22 = (unsigned int) _21;
+  if (last_46 <= _22)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  a_56 = 3;
+  # DEBUG a => a_56
+  goto <bb 29>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_romBase.14_23 = OS_romBase;
+  OS_romBase.15_24 = (unsigned int) OS_romBase.14_23;
+  if (first_45 < OS_romBase.15_24)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  OS_romLimit.16_25 = OS_romLimit;
+  OS_romLimit.17_26 = (unsigned int) OS_romLimit.16_25;
+  if (last_46 > OS_romLimit.17_26)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 20> :
+  OS_ramBase.19_27 = OS_ramBase;
+  OS_ramBase.20_28 = (unsigned int) OS_ramBase.19_27;
+  if (first_45 >= OS_ramBase.20_28)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 21> :
+  OS_ramLimit.21_29 = OS_ramLimit;
+  OS_ramLimit.22_30 = (unsigned int) OS_ramLimit.21_29;
+  if (last_46 <= OS_ramLimit.22_30)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  iftmp.18_58 = 1;
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  iftmp.18_59 = 0;
+
+  <bb 24> :
+  # iftmp.18_35 = PHI <iftmp.18_58(22), iftmp.18_59(23)>
+  iftmp.13_60 = iftmp.18_35;
+  goto <bb 26>; [INV]
+
+  <bb 25> :
+  iftmp.13_57 = 5;
+
+  <bb 26> :
+  # iftmp.13_34 = PHI <iftmp.13_60(24), iftmp.13_57(25)>
+  a_61 = iftmp.13_34;
+  # DEBUG a => a_61
+  goto <bb 29>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.23_31 = OS_configMode;
+  _32 = OS_configMode.23_31 & 1024;
+  if (_32 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckTaskMemoryAccess, 48, &p);
+
+  <bb 29> :
+  # a_33 = PHI <a_37(2), a_62(11), a_37(27), a_37(28), a_53(8), a_54(7), a_61(26), a_56(17), a_55(14)>
+  # DEBUG a => a_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _63 = a_33;
+  p ={v} {CLOBBER};
+  return _63;
+
+}
+
+

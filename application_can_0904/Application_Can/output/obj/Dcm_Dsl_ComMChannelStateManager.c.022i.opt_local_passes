@@ -1,0 +1,598 @@
+Dcm_Dsl_ComMChannelStateManger_ChannelInfoInit ()
+{
+  uint8_least ChannelIndex;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelIndex_4 = 0;
+  # DEBUG ChannelIndex => ChannelIndex_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_RxComMChannelIDs[ChannelIndex_2];
+  Dcm_ComMChannelInfo[ChannelIndex_2].NetworkID = _1;
+  # DEBUG BEGIN_STMT
+  Dcm_ComMChannelInfo[ChannelIndex_2].ActiveFlag = 0;
+  # DEBUG BEGIN_STMT
+  ChannelIndex_8 = ChannelIndex_2 + 1;
+  # DEBUG ChannelIndex => ChannelIndex_8
+
+  <bb 4> :
+  # ChannelIndex_2 = PHI <ChannelIndex_4(2), ChannelIndex_8(3)>
+  # DEBUG ChannelIndex => ChannelIndex_2
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_RequestInactiveDiagnostic (NetworkHandleType NetworkId)
+{
+  Std_ReturnType Result;
+  boolean NetworkStatusFound;
+  uint8_least NetworkStatusArrayIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  Std_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NetworkStatusFound_13 = 0;
+  # DEBUG NetworkStatusFound => NetworkStatusFound_13
+  # DEBUG BEGIN_STMT
+  Result_14 = 1;
+  # DEBUG Result => Result_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NetworkStatusArrayIndex_15 = 0;
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_15
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ComMChannelInfo[NetworkStatusArrayIndex_4].NetworkID;
+  if (NetworkId_17(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ComMChannelInfo[NetworkStatusArrayIndex_4].ActiveFlag;
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ComMChannelInfo[NetworkStatusArrayIndex_4].NetworkID;
+  ComM_DCM_InactiveDiagnostic (_3);
+  # DEBUG BEGIN_STMT
+  Result_19 = 0;
+  # DEBUG Result => Result_19
+  # DEBUG BEGIN_STMT
+  Dcm_ComMChannelInfo[NetworkStatusArrayIndex_4].ActiveFlag = 0;
+
+  <bb 6> :
+  # Result_7 = PHI <Result_9(4), Result_19(5)>
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  NetworkStatusFound_21 = 1;
+  # DEBUG NetworkStatusFound => NetworkStatusFound_21
+
+  <bb 7> :
+  # NetworkStatusFound_5 = PHI <NetworkStatusFound_6(3), NetworkStatusFound_21(6)>
+  # Result_8 = PHI <Result_9(3), Result_7(6)>
+  # DEBUG Result => Result_8
+  # DEBUG NetworkStatusFound => NetworkStatusFound_5
+  # DEBUG BEGIN_STMT
+  NetworkStatusArrayIndex_22 = NetworkStatusArrayIndex_4 + 1;
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_22
+
+  <bb 8> :
+  # NetworkStatusArrayIndex_4 = PHI <NetworkStatusArrayIndex_15(2), NetworkStatusArrayIndex_22(7)>
+  # NetworkStatusFound_6 = PHI <NetworkStatusFound_13(2), NetworkStatusFound_5(7)>
+  # Result_9 = PHI <Result_14(2), Result_8(7)>
+  # DEBUG Result => Result_9
+  # DEBUG NetworkStatusFound => NetworkStatusFound_6
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_4
+  # DEBUG BEGIN_STMT
+  if (NetworkStatusArrayIndex_4 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (NetworkStatusFound_6 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = Result_9;
+  return _23;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_RequestActiveDiagnostic (NetworkHandleType NetworkId)
+{
+  Std_ReturnType Result;
+  boolean NetworkStatusFound;
+  uint8_least NetworkStatusArrayIndex;
+  unsigned char _1;
+  unsigned char _2;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NetworkStatusFound_12 = 0;
+  # DEBUG NetworkStatusFound => NetworkStatusFound_12
+  # DEBUG BEGIN_STMT
+  Result_13 = 1;
+  # DEBUG Result => Result_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NetworkStatusArrayIndex_14 = 0;
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_14
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ComMChannelInfo[NetworkStatusArrayIndex_3].NetworkID;
+  if (NetworkId_16(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ComMChannelInfo[NetworkStatusArrayIndex_3].ActiveFlag;
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ComM_DCM_ActiveDiagnostic (NetworkId_16(D));
+  # DEBUG BEGIN_STMT
+  Result_18 = 0;
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  Dcm_ComMChannelInfo[NetworkStatusArrayIndex_3].ActiveFlag = 1;
+
+  <bb 6> :
+  # Result_6 = PHI <Result_8(4), Result_18(5)>
+  # DEBUG Result => Result_6
+  # DEBUG BEGIN_STMT
+  NetworkStatusFound_20 = 1;
+  # DEBUG NetworkStatusFound => NetworkStatusFound_20
+
+  <bb 7> :
+  # NetworkStatusFound_4 = PHI <NetworkStatusFound_5(3), NetworkStatusFound_20(6)>
+  # Result_7 = PHI <Result_8(3), Result_6(6)>
+  # DEBUG Result => Result_7
+  # DEBUG NetworkStatusFound => NetworkStatusFound_4
+  # DEBUG BEGIN_STMT
+  NetworkStatusArrayIndex_21 = NetworkStatusArrayIndex_3 + 1;
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_21
+
+  <bb 8> :
+  # NetworkStatusArrayIndex_3 = PHI <NetworkStatusArrayIndex_14(2), NetworkStatusArrayIndex_21(7)>
+  # NetworkStatusFound_5 = PHI <NetworkStatusFound_12(2), NetworkStatusFound_4(7)>
+  # Result_8 = PHI <Result_13(2), Result_7(7)>
+  # DEBUG Result => Result_8
+  # DEBUG NetworkStatusFound => NetworkStatusFound_5
+  # DEBUG NetworkStatusArrayIndex => NetworkStatusArrayIndex_3
+  # DEBUG BEGIN_STMT
+  if (NetworkStatusArrayIndex_3 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (NetworkStatusFound_5 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = Result_8;
+  return _22;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_EnterMode (Dcm_NetworkIdType NetworkId, Dcm_ComMChannelModeType CommunicationMode)
+{
+  uint8_least ChannelIndex;
+  uint8 EnableOp;
+  uint8 CallerServiceIdOnError;
+  int _1;
+  unsigned char Dcm_Initialized.0_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CallerServiceIdOnError_8 = 255;
+  # DEBUG CallerServiceIdOnError => CallerServiceIdOnError_8
+  # DEBUG BEGIN_STMT
+  EnableOp_9 = 0;
+  # DEBUG EnableOp => EnableOp_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) CommunicationMode_10(D);
+  switch (_1) <default: <L13> [INV], case 1: <L0> [INV], case 2: <L1> [INV], case 3: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CallerServiceIdOnError_15 = 33;
+  # DEBUG CallerServiceIdOnError => CallerServiceIdOnError_15
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  EnableOp_13 = 1;
+  # DEBUG EnableOp => EnableOp_13
+  # DEBUG BEGIN_STMT
+  CallerServiceIdOnError_14 = 34;
+  # DEBUG CallerServiceIdOnError => CallerServiceIdOnError_14
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  EnableOp_11 = 3;
+  # DEBUG EnableOp => EnableOp_11
+  # DEBUG BEGIN_STMT
+  CallerServiceIdOnError_12 = 35;
+  # DEBUG CallerServiceIdOnError => CallerServiceIdOnError_12
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  # CallerServiceIdOnError_4 = PHI <CallerServiceIdOnError_15(3), CallerServiceIdOnError_14(4), CallerServiceIdOnError_12(5), CallerServiceIdOnError_8(2)>
+  # EnableOp_5 = PHI <EnableOp_9(3), EnableOp_13(4), EnableOp_11(5), EnableOp_9(2)>
+<L13>:
+  # DEBUG EnableOp => EnableOp_5
+  # DEBUG CallerServiceIdOnError => CallerServiceIdOnError_4
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.0_2 = Dcm_Initialized;
+  if (Dcm_Initialized.0_2 != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, CallerServiceIdOnError_4, 5);
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ChannelIndex_17 = 0;
+  # DEBUG ChannelIndex => ChannelIndex_17
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ComMChannelInfo[ChannelIndex_6].NetworkID;
+  if (NetworkId_18(D) == _3)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_ComMChannelOperationEnabled[ChannelIndex_6] = EnableOp_5;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ChannelIndex_19 = ChannelIndex_6 + 1;
+  # DEBUG ChannelIndex => ChannelIndex_19
+
+  <bb 12> :
+  # ChannelIndex_6 = PHI <ChannelIndex_17(8), ChannelIndex_19(11)>
+  # DEBUG ChannelIndex => ChannelIndex_6
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex_6 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_ComM_FullComModeEntered (uint8 NetworkId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_EnterMode (NetworkId_2(D), 3);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_ComM_SilentComModeEntered (uint8 NetworkId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_EnterMode (NetworkId_2(D), 2);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_ComM_NoComModeEntered (uint8 NetworkId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_EnterMode (NetworkId_2(D), 1);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_GetTxState (NetworkHandleType ComMChannelID)
+{
+  Dcm_ComMChannelOperationStateType TxStateResult;
+  boolean Found;
+  uint8_least ChannelIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  Dcm_ComMChannelOperationStateType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Found_11 = 0;
+  # DEBUG Found => Found_11
+  # DEBUG BEGIN_STMT
+  TxStateResult_12 = 0;
+  # DEBUG TxStateResult => TxStateResult_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelIndex_13 = 0;
+  # DEBUG ChannelIndex => ChannelIndex_13
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ComMChannelInfo[ChannelIndex_5].NetworkID;
+  if (ComMChannelID_15(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ComMChannelOperationEnabled[ChannelIndex_5];
+  _3 = (unsigned int) _2;
+  _4 = _3 & 2;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  TxStateResult_16 = 1;
+  # DEBUG TxStateResult => TxStateResult_16
+
+  <bb 6> :
+  # TxStateResult_8 = PHI <TxStateResult_10(4), TxStateResult_16(5)>
+  # DEBUG TxStateResult => TxStateResult_8
+  # DEBUG BEGIN_STMT
+  Found_17 = 1;
+  # DEBUG Found => Found_17
+
+  <bb 7> :
+  # Found_6 = PHI <Found_7(3), Found_17(6)>
+  # TxStateResult_9 = PHI <TxStateResult_10(3), TxStateResult_8(6)>
+  # DEBUG TxStateResult => TxStateResult_9
+  # DEBUG Found => Found_6
+  # DEBUG BEGIN_STMT
+  ChannelIndex_18 = ChannelIndex_5 + 1;
+  # DEBUG ChannelIndex => ChannelIndex_18
+
+  <bb 8> :
+  # ChannelIndex_5 = PHI <ChannelIndex_13(2), ChannelIndex_18(7)>
+  # Found_7 = PHI <Found_11(2), Found_6(7)>
+  # TxStateResult_10 = PHI <TxStateResult_12(2), TxStateResult_9(7)>
+  # DEBUG TxStateResult => TxStateResult_10
+  # DEBUG Found => Found_7
+  # DEBUG ChannelIndex => ChannelIndex_5
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex_5 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (Found_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = TxStateResult_10;
+  return _19;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_GetRxState (NetworkHandleType ComMChannelID)
+{
+  Dcm_ComMChannelOperationStateType RxStateResult;
+  boolean Found;
+  uint8_least ChannelIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  Dcm_ComMChannelOperationStateType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Found_11 = 0;
+  # DEBUG Found => Found_11
+  # DEBUG BEGIN_STMT
+  RxStateResult_12 = 0;
+  # DEBUG RxStateResult => RxStateResult_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelIndex_13 = 0;
+  # DEBUG ChannelIndex => ChannelIndex_13
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ComMChannelInfo[ChannelIndex_5].NetworkID;
+  if (ComMChannelID_15(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ComMChannelOperationEnabled[ChannelIndex_5];
+  _3 = (unsigned int) _2;
+  _4 = _3 & 1;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RxStateResult_16 = 1;
+  # DEBUG RxStateResult => RxStateResult_16
+
+  <bb 6> :
+  # RxStateResult_8 = PHI <RxStateResult_10(4), RxStateResult_16(5)>
+  # DEBUG RxStateResult => RxStateResult_8
+  # DEBUG BEGIN_STMT
+  Found_17 = 1;
+  # DEBUG Found => Found_17
+
+  <bb 7> :
+  # Found_6 = PHI <Found_7(3), Found_17(6)>
+  # RxStateResult_9 = PHI <RxStateResult_10(3), RxStateResult_8(6)>
+  # DEBUG RxStateResult => RxStateResult_9
+  # DEBUG Found => Found_6
+  # DEBUG BEGIN_STMT
+  ChannelIndex_18 = ChannelIndex_5 + 1;
+  # DEBUG ChannelIndex => ChannelIndex_18
+
+  <bb 8> :
+  # ChannelIndex_5 = PHI <ChannelIndex_13(2), ChannelIndex_18(7)>
+  # Found_7 = PHI <Found_11(2), Found_6(7)>
+  # RxStateResult_10 = PHI <RxStateResult_12(2), RxStateResult_9(7)>
+  # DEBUG RxStateResult => RxStateResult_10
+  # DEBUG Found => Found_7
+  # DEBUG ChannelIndex => ChannelIndex_5
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex_5 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (Found_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = RxStateResult_10;
+  return _19;
+
+}
+
+
+Dcm_Dsl_ComMChannelStateManager_Init ()
+{
+  uint8_least ComMChannelIndex;
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManger_ChannelInfoInit ();
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex_7 = 0;
+  # DEBUG ComMChannelIndex => ComMChannelIndex_7
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ComMChannelOperationEnabled[ComMChannelIndex_3];
+  _2 = _1 & 252;
+  Dcm_ComMChannelOperationEnabled[ComMChannelIndex_3] = _2;
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex_9 = ComMChannelIndex_3 + 1;
+  # DEBUG ComMChannelIndex => ComMChannelIndex_9
+
+  <bb 4> :
+  # ComMChannelIndex_3 = PHI <ComMChannelIndex_7(2), ComMChannelIndex_9(3)>
+  # DEBUG ComMChannelIndex => ComMChannelIndex_3
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

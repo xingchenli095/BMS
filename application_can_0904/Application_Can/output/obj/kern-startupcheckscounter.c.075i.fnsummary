@@ -1,0 +1,210 @@
+
+Analyzing function: OS_StartupChecksCounter/0
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11 12 13
+;;
+;; Loop 1
+;;  header 12, latch 11
+;;  depth 1, outer 0
+;;  nodes: 12 11 10 8 9 5 6 7 4 3
+;; 2 succs { 12 }
+;; 3 succs { 4 5 }
+;; 4 succs { 5 }
+;; 5 succs { 6 8 }
+;; 6 succs { 7 8 }
+;; 7 succs { 8 }
+;; 8 succs { 9 11 }
+;; 9 succs { 10 11 }
+;; 10 succs { 11 }
+;; 11 succs { 12 }
+;; 12 succs { 3 13 }
+;; 13 succs { 1 }
+
+Analyzing function body size: OS_StartupChecksCounter
+
+IPA function summary for OS_StartupChecksCounter/0 inlinable
+  global time:     241.542584
+  self size:       36
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:24.000000, time:177.763638
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+    OS_Panic/2 function body not available
+      loop depth: 1 freq:1.87 size: 3 time: 12
+       op0 is compile time invariant
+    OS_Panic/2 function body not available
+      loop depth: 1 freq:1.87 size: 3 time: 12
+       op0 is compile time invariant
+    OS_Panic/2 function body not available
+      loop depth: 1 freq:1.41 size: 3 time: 12
+       op0 is compile time invariant
+
+Symbol table:
+
+OS_nCounters/3 (OS_nCounters) @06c18b88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksCounter/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Panic/2 (OS_Panic) @06c38c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartupChecksCounter/0 (220750581 (estimated locally),1.87 per call) OS_StartupChecksCounter/0 (220750581 (estimated locally),1.87 per call) OS_StartupChecksCounter/0 (166566348 (estimated locally),1.41 per call) 
+  Calls: 
+OS_counterTableBase/1 (OS_counterTableBase) @06c18a68
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksCounter/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartupChecksCounter/0 (OS_StartupChecksCounter) @06c38a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_counterTableBase/1 (read)OS_nCounters/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Panic/2 (220750581 (estimated locally),1.87 per call) OS_Panic/2 (220750581 (estimated locally),1.87 per call) OS_Panic/2 (166566348 (estimated locally),1.41 per call) 
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksCounter ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_counter_t * const ctr;
+  os_unsigned_t i;
+  os_result_t result;
+  const struct os_counter_t * OS_counterTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_hwt_t * _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned char OS_nCounters.1_8;
+  unsigned int _9;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 12>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.0_1 = OS_counterTableBase;
+  _2 = i_14 * 32;
+  ctr_21 = OS_counterTableBase.0_1 + _2;
+  # DEBUG ctr => ctr_21
+  # DEBUG BEGIN_STMT
+  app_22 = ctr_21->app;
+  # DEBUG app => app_22
+  # DEBUG BEGIN_STMT
+  if (app_22 == 0B)
+    goto <bb 4>; [17.43%]
+  else
+    goto <bb 5>; [82.57%]
+
+  <bb 4> [local count: 166566348]:
+  # DEBUG BEGIN_STMT
+  result_24 = OS_Panic (51);
+  # DEBUG result => result_24
+
+  <bb 5> [local count: 955630223]:
+  # result_10 = PHI <result_24(4), result_13(3)>
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms_25 = ctr_21->permissions;
+  # DEBUG perms => perms_25
+  # DEBUG BEGIN_STMT
+  if (app_22 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 8>; [30.00%]
+
+  <bb 6> [local count: 668941156]:
+  _3 = app_22->permissionBit;
+  _4 = _3 & perms_25;
+  if (_4 == 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 220750581]:
+  # DEBUG BEGIN_STMT
+  result_27 = OS_Panic (50);
+  # DEBUG result => result_27
+
+  <bb 8> [local count: 955630223]:
+  # result_11 = PHI <result_10(5), result_10(6), result_27(7)>
+  # DEBUG result => result_11
+  # DEBUG BEGIN_STMT
+  _5 = ctr_21->hwt;
+  if (_5 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 11>; [30.00%]
+
+  <bb 9> [local count: 668941156]:
+  # DEBUG BEGIN_STMT
+  _6 = ctr_21->maxallowedvalue;
+  _7 = _5->wrapMask;
+  if (_6 < _7)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+
+  <bb 10> [local count: 220750581]:
+  # DEBUG BEGIN_STMT
+  result_29 = OS_Panic (23);
+  # DEBUG result => result_29
+
+  <bb 11> [local count: 955630223]:
+  # result_12 = PHI <result_29(10), result_11(8), result_11(9)>
+  # DEBUG result => result_12
+  # DEBUG BEGIN_STMT
+  i_30 = i_14 + 1;
+  # DEBUG i => i_30
+
+  <bb 12> [local count: 1073741824]:
+  # result_13 = PHI <0(2), result_12(11)>
+  # i_14 = PHI <0(2), i_30(11)>
+  # DEBUG i => i_14
+  # DEBUG result => result_13
+  # DEBUG BEGIN_STMT
+  OS_nCounters.1_8 = OS_nCounters;
+  _9 = (unsigned int) OS_nCounters.1_8;
+  if (_9 > i_14)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 13>; [11.00%]
+
+  <bb 13> [local count: 118111601]:
+  # result_20 = PHI <result_13(12)>
+  # DEBUG BEGIN_STMT
+  return result_20;
+
+}
+
+

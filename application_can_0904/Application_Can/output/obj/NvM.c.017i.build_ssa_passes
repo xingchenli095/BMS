@@ -1,0 +1,1721 @@
+NvM_SetRamBlockStatus_Async_CalcCrc_End ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetStoredRamCRCAddress ();
+  NvM_CurrentBlockDescriptorPtr.51_2 = NvM_CurrentBlockDescriptorPtr;
+  _3 = NvM_CurrentBlockDescriptorPtr.51_2->blockDesc;
+  NvM_CopyCrc (_1, &NvM_CalcCrc_CalcBuffer, _3);
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 0;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_RemoveElement ();
+  return;
+
+}
+
+
+NvM_SetRamBlockStatus_Async_CalcCrc_Start ()
+{
+  uint8 * BufferAddr;
+  Std_ReturnType ReturnVal;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnVal = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BufferAddr = NvM_GetUserRamBlockAddress ();
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.45_1 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.45_1 != 25)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 5;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.46_2 = NvM_GlobalWorkingStatus;
+  _3 = (unsigned int) NvM_GlobalWorkingStatus.46_2;
+  _4 = _3 & 4096;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.47_5 = NvM_CurrentBlockDescriptorPtr;
+  _6 = NvM_CurrentBlockDescriptorPtr.47_5->writeRamToNvCallback;
+  ReturnVal = NvM_MirrorCopy (0B, _6, BufferAddr);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ReturnVal != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount.48_7 = NvM_MirrorRetryCount;
+  if (NvM_MirrorRetryCount.48_7 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.49_8 = NvM_GlobalCallLevel;
+  _9 = (int) NvM_GlobalCallLevel.49_8;
+  NvM_CurrentFunctionPtr[_9] = NvM_SetRamBlockStatus_Async_CalcCrc_Start;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.50_10 = NvM_GlobalCallLevel;
+  _11 = (int) NvM_GlobalCallLevel.50_10;
+  NvM_CurrentFunctionPtr[_11] = NvM_SetRamBlockStatus_Async_CalcCrc_End;
+  # DEBUG BEGIN_STMT
+  NvM_CalculateCrc (BufferAddr);
+
+  <bb 10> :
+  return;
+
+}
+
+
+NvM_EraseNvBlock_Async_State1 ()
+{
+  MemIf_StatusType Status;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = Fee_GetStatus ();
+  # DEBUG BEGIN_STMT
+  if (Status != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetMergedBlockNumber ();
+  _2 = Fee_EraseImmediateBlock (_1);
+  if (_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.32_3 = NvM_GlobalCallLevel;
+  _4 = (int) NvM_GlobalCallLevel.32_3;
+  NvM_CurrentFunctionPtr[_4] = NvM_StateMachine_ProcessJobResult;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_RedundantBlockError ();
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 2;
+
+  <bb 7> :
+  return;
+
+}
+
+
+NvM_EraseNvBlock_Async ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 9;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_ProcessRedundantBlock (NvM_EraseNvBlock_Async_State1);
+  return;
+
+}
+
+
+NvM_InvalidateNvBlock_Async_State1 ()
+{
+  MemIf_StatusType Status;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = Fee_GetStatus ();
+  # DEBUG BEGIN_STMT
+  if (Status != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = NvM_GetMergedBlockNumber ();
+  _2 = Fee_InvalidateBlock (_1);
+  if (_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.33_3 = NvM_GlobalCallLevel;
+  _4 = (int) NvM_GlobalCallLevel.33_3;
+  NvM_CurrentFunctionPtr[_4] = NvM_StateMachine_ProcessJobResult;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_RedundantBlockError ();
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 2;
+
+  <bb 7> :
+  return;
+
+}
+
+
+NvM_InvalidateNvBlock_Async ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 11;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_ProcessRedundantBlock (NvM_InvalidateNvBlock_Async_State1);
+  return;
+
+}
+
+
+NvM_JobErrorNotification ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_JobEndNotification ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_ASR40_CancelJobs (NvM_BlockIdType BlockId)
+{
+  boolean RequestFound;
+  uint16 Queue_Standard_TopIndex;
+  struct NvM_QueueItemType QueueTemp;
+  uint16 QueueCopyIndex;
+  uint16 QueueIndex;
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11388;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RequestFound = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_CheckCondCancelJobs (BlockId);
+  # DEBUG BEGIN_STMT
+  if (BlockIndex != 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.37_1 = NvM_Queue_IndexStandard;
+  NvM_Queue_CancelledStandardJobs.38_2 = NvM_Queue_CancelledStandardJobs;
+  Queue_Standard_TopIndex = NvM_Queue_IndexStandard.37_1 - NvM_Queue_CancelledStandardJobs.38_2;
+  # DEBUG BEGIN_STMT
+  _3 = (int) BlockIndex;
+  _4 = NvM_AdminBlockTable[_3].NvMResult;
+  if (_4 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 4> :
+  NvM_GlobalBlockNumber.39_5 = NvM_GlobalBlockNumber;
+  if (BlockIndex != NvM_GlobalBlockNumber.39_5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) BlockIndex;
+  NvM_AdminBlockTable[_6].NvMResult = 6;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs.40_7 = NvM_Queue_CancelledStandardJobs;
+  NvM_Queue_CancelledStandardJobs.41_8 = NvM_Queue_CancelledStandardJobs.40_7;
+  _9 = NvM_Queue_CancelledStandardJobs.41_8 + 1;
+  NvM_Queue_CancelledStandardJobs = _9;
+  # DEBUG BEGIN_STMT
+  QueueIndex = Queue_Standard_TopIndex;
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) QueueIndex;
+  _11 = NvM_Queue_Standard[_10].NvMBlockDescriptorIndex;
+  if (BlockIndex == _11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) QueueIndex;
+  QueueTemp = NvM_Queue_Standard[_12];
+  # DEBUG BEGIN_STMT
+  QueueCopyIndex = QueueIndex;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = (unsigned int) QueueCopyIndex;
+  _14 = _13 + 1;
+  _15 = (int) QueueCopyIndex;
+  NvM_Queue_Standard[_15] = NvM_Queue_Standard[_14];
+  # DEBUG BEGIN_STMT
+  QueueCopyIndex.42_16 = QueueCopyIndex;
+  QueueCopyIndex = QueueCopyIndex.42_16 + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (QueueCopyIndex < Queue_Standard_TopIndex)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs.43_17 = NvM_Queue_CancelledStandardJobs;
+  _18 = (unsigned int) NvM_Queue_CancelledStandardJobs.43_17;
+  _19 = 4 - _18;
+  NvM_Queue_Standard[_19] = QueueTemp;
+  # DEBUG BEGIN_STMT
+  RequestFound = 1;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  QueueIndex.44_20 = QueueIndex;
+  QueueIndex = QueueIndex.44_20 + 65535;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (QueueIndex != 65535)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  if (RequestFound == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11388 = Result;
+  QueueTemp = {CLOBBER};
+  return D.11388;
+
+}
+
+
+NvM_SetBlockLockStatus (NvM_ASR40_BlockIdType BlockId, boolean BlockLocked)
+{
+  uint16 BlockIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.36_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.36_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 20);
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex == 9)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 10);
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_AdminBlockTable[_4].NvMResult;
+  if (_5 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 19, 21);
+  goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) BlockIndex;
+  _7 = NvM_BlockDescriptorTable[_6].ramBlockDataAddress;
+  if (_7 != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _8 = (int) BlockIndex;
+  _9 = NvM_BlockDescriptorTable[_8].blockDesc;
+  _10 = _9 & 131072;
+  if (_10 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (BlockLocked == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) BlockIndex;
+  _12 = NvM_AdminBlockTable[_11].NvMDynStatus;
+  _13 = (int) BlockIndex;
+  _14 = _12 | 8;
+  NvM_AdminBlockTable[_13].NvMDynStatus = _14;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) BlockIndex;
+  _16 = NvM_AdminBlockTable[_15].NvMDynStatus;
+  _17 = (int) BlockIndex;
+  _18 = _16 & 65527;
+  NvM_AdminBlockTable[_17].NvMDynStatus = _18;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_ASR40_SetRamBlockStatus (NvM_ASR40_BlockIdType BlockId, boolean BlockChanged)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorLocalPtr;
+  Std_ReturnType D.11362;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorLocalPtr = 0B;
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex == 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 10);
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.35_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.35_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 20);
+  goto <bb 20>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_AdminBlockTable[_4].NvMResult;
+  if (_5 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 21);
+  goto <bb 20>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) BlockIndex;
+  _7 = NvM_AdminBlockTable[_6].NvMDynStatus;
+  _8 = (int) _7;
+  _9 = _8 & 8;
+  if (_9 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 5, 25);
+  goto <bb 20>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) BlockIndex;
+  _11 = NvM_AdminBlockTable[_10].NvMResult;
+  if (_11 != 2)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) BlockIndex;
+  NvM_CurrentBlockDescriptorLocalPtr = &NvM_BlockDescriptorTable[_12];
+  # DEBUG BEGIN_STMT
+  _13 = NvM_CurrentBlockDescriptorLocalPtr->blockDesc;
+  _14 = _13 & 4194304;
+  if (_14 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 12> :
+  _15 = NvM_CurrentBlockDescriptorLocalPtr->ramBlockDataAddress;
+  if (_15 != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _16 = NvM_CurrentBlockDescriptorLocalPtr->blockDesc;
+  _17 = _16 & 131072;
+  if (_17 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (BlockChanged == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) BlockIndex;
+  NvM_AdminBlockTable[_18].NvMValid = 165;
+  # DEBUG BEGIN_STMT
+  _19 = (int) BlockIndex;
+  _20 = NvM_AdminBlockTable[_19].NvMDynStatus;
+  _21 = (int) BlockIndex;
+  _22 = _20 | 8193;
+  NvM_AdminBlockTable[_21].NvMDynStatus = _22;
+  # DEBUG BEGIN_STMT
+  _23 = NvM_CurrentBlockDescriptorLocalPtr->blockDesc;
+  _24 = _23 & 8;
+  if (_24 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  _25 = (int) BlockIndex;
+  _26 = NvM_AdminBlockTable[_25].NvMExtendedStatus;
+  _27 = (unsigned int) _26;
+  _28 = _27 & 2;
+  if (_28 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _29 = (int) BlockIndex;
+  NvM_AdminBlockTable[_29].NvMResult = 0;
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_EnqueueElement (BlockIndex);
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _30 = (int) BlockIndex;
+  _31 = NvM_AdminBlockTable[_30].NvMDynStatus;
+  _32 = (int) BlockIndex;
+  _33 = _31 & 65534;
+  NvM_AdminBlockTable[_32].NvMDynStatus = _33;
+  # DEBUG BEGIN_STMT
+  _34 = (int) BlockIndex;
+  NvM_AdminBlockTable[_34].NvMValid = 255;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11362 = Result;
+  return D.11362;
+
+}
+
+
+NvM_ASR40_SetBlockProtection (NvM_ASR40_BlockIdType BlockId, boolean ProtectionEnabled)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11334;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex == 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 10);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.34_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.34_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 20);
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_AdminBlockTable[_4].NvMDynStatus;
+  _6 = (int) _5;
+  _7 = _6 & 8;
+  if (_7 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 3, 25);
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) BlockIndex;
+  _9 = NvM_AdminBlockTable[_8].NvMResult;
+  if (_9 != 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ProtectionEnabled == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) BlockIndex;
+  _11 = NvM_AdminBlockTable[_10].NvMDynStatus;
+  _12 = (int) BlockIndex;
+  _13 = _11 | 2;
+  NvM_AdminBlockTable[_12].NvMDynStatus = _13;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) BlockIndex;
+  _15 = NvM_AdminBlockTable[_14].NvMDynStatus;
+  _16 = (int) BlockIndex;
+  _17 = _15 & 65533;
+  NvM_AdminBlockTable[_16].NvMDynStatus = _17;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11334 = Result;
+  return D.11334;
+
+}
+
+
+NvM_ASR40_InvalidateNvBlock (NvM_ASR40_BlockIdType BlockId)
+{
+  boolean ReportWriteOnceUnknown;
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11312;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  ReportWriteOnceUnknown = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_CheckCondInvalidateNvBlock (BlockId);
+  # DEBUG BEGIN_STMT
+  if (BlockIndex != 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = NvM_CheckWriteProtection (BlockIndex);
+  if (_1 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = NvM_CheckDataSetRomBlock (BlockIndex);
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  _3 = (int) BlockIndex;
+  _4 = NvM_AdminBlockTable[_3].NvMDynStatus;
+  _5 = (int) _4;
+  _6 = _5 & 8;
+  if (_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) BlockIndex;
+  _8 = NvM_AdminBlockTable[_7].NvMResult;
+  if (_8 != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Result = NvM_Queue_InsertStandard (BlockIndex, 0B, NvM_InvalidateNvBlock_Async);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) BlockIndex;
+  NvM_AdminBlockTable[_9].NvMCurrentServiceId = 11;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ReportWriteOnceUnknown == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 11, 26);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11312 = Result;
+  return D.11312;
+
+}
+
+
+NvM_ASR40_EraseNvBlock (NvM_ASR40_BlockIdType BlockId)
+{
+  boolean ReportWriteOnceUnknown;
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11288;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  ReportWriteOnceUnknown = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_CheckCondEraseNvBlock (BlockId);
+  # DEBUG BEGIN_STMT
+  if (BlockIndex != 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = NvM_CheckWriteProtection (BlockIndex);
+  if (_1 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = NvM_CheckDataSetRomBlock (BlockIndex);
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  _3 = (int) BlockIndex;
+  _4 = NvM_AdminBlockTable[_3].NvMDynStatus;
+  _5 = (int) _4;
+  _6 = _5 & 8;
+  if (_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) BlockIndex;
+  _8 = NvM_AdminBlockTable[_7].NvMResult;
+  if (_8 != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Result = NvM_Queue_InsertStandard (BlockIndex, 0B, NvM_EraseNvBlock_Async);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) BlockIndex;
+  NvM_AdminBlockTable[_9].NvMCurrentServiceId = 9;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ReportWriteOnceUnknown == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 9, 26);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11288 = Result;
+  return D.11288;
+
+}
+
+
+NvM_ASR40_GetDataIndex (NvM_ASR40_BlockIdType BlockId, uint8 * DataIndex)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11270;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex == 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 10);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.31_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.31_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 20);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataIndex == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 14);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_BlockDescriptorTable[_4].blockDesc;
+  _6 = _5 >> 7;
+  _7 = (unsigned char) _6;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 3;
+  if (_9 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) BlockIndex;
+  _11 = NvM_AdminBlockTable[_10].NvMDatasetBlockIndex;
+  *DataIndex = _11;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 2, 11);
+  # DEBUG BEGIN_STMT
+  *DataIndex = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11270 = Result;
+  return D.11270;
+
+}
+
+
+NvM_ASR40_SetDataIndex (NvM_ASR40_BlockIdType BlockId, uint8 DataIndex)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11256;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.30_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.30_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 20);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex == 9)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 10);
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_BlockDescriptorTable[_4].blockDesc;
+  _6 = _5 >> 7;
+  _7 = (unsigned char) _6;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 3;
+  if (_9 != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 11);
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) DataIndex;
+  _11 = (int) BlockIndex;
+  _12 = NvM_BlockDescriptorTable[_11].nvBlockNum;
+  _13 = (int) _12;
+  _14 = (int) BlockIndex;
+  _15 = NvM_BlockDescriptorTable[_14].romBlockNum;
+  _16 = (int) _15;
+  _17 = _13 + _16;
+  if (_10 >= _17)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 12);
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) BlockIndex;
+  _19 = NvM_AdminBlockTable[_18].NvMResult;
+  if (_19 == 2)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 1, 21);
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _20 = (int) BlockIndex;
+  _21 = NvM_BlockDescriptorTable[_20].blockDesc;
+  _22 = _21 >> 7;
+  _23 = (unsigned char) _22;
+  _24 = (unsigned int) _23;
+  _25 = _24 & 3;
+  if (_25 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _26 = (int) BlockIndex;
+  _27 = NvM_AdminBlockTable[_26].NvMResult;
+  if (_27 != 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _28 = (int) BlockIndex;
+  NvM_AdminBlockTable[_28].NvMDatasetBlockIndex = DataIndex;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11256 = Result;
+  return D.11256;
+
+}
+
+
+NvM_ASR40_GetErrorStatus (NvM_ASR40_BlockIdType BlockId, NvM_ASR40_RequestResultType * RequestResultPtr)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+  Std_ReturnType D.11235;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockId != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = NvM_GetBlockIndexForValidId (BlockId);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BlockIndex = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex > 8)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 10);
+  goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.29_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.29_1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 20);
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (RequestResultPtr == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (20, 0, 4, 14);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) BlockIndex;
+  _5 = NvM_AdminBlockTable[_4].NvMResult;
+  *RequestResultPtr = _5;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.11235 = Result;
+  return D.11235;
+
+}
+
+
+NvM_ProcessBlockCallback ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.24_1 = NvM_CurrentServiceId;
+  _2 = NvM_CurrentServiceId.24_1 + 244;
+  if (_2 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  NvM_CurrentServiceId.25_3 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.25_3 == 25)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.26_4 = NvM_GlobalBlockNumber;
+  NvM_CurrentServiceId.27_5 = NvM_CurrentServiceId;
+  NvM_GlobalErrorStatus.28_6 = NvM_GlobalErrorStatus;
+  NvM_InvokeSingleBlockCallback (NvM_GlobalBlockNumber.26_4, NvM_CurrentServiceId.27_5, NvM_GlobalErrorStatus.28_6);
+
+  <bb 5> :
+  return;
+
+}
+
+
+NvM_ProcessCanceledJob ()
+{
+  uint16 CurrentBlock;
+  boolean ExecuteBlockCallback;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ExecuteBlockCallback = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.17_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.17_1;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = Nvm_Queue_CheckEmpty ();
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.18_5 = NvM_GlobalGenericStatus;
+  _6 = NvM_GlobalGenericStatus.18_5 & 65533;
+  NvM_GlobalGenericStatus = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 6;
+  # DEBUG BEGIN_STMT
+  ExecuteBlockCallback = 1;
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.19_7 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.19_7 != 65535)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  NvM_Queue_CancelledStandardJobs.20_8 = NvM_Queue_CancelledStandardJobs;
+  if (NvM_Queue_CancelledStandardJobs.20_8 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.21_9 = NvM_Queue_IndexStandard;
+  NvM_Queue_CancelledStandardJobs.22_10 = NvM_Queue_CancelledStandardJobs;
+  _11 = NvM_Queue_IndexStandard.21_9 - NvM_Queue_CancelledStandardJobs.22_10;
+  NvM_Queue_IndexStandard = _11;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs = 0;
+  # DEBUG BEGIN_STMT
+  ExecuteBlockCallback = 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ExecuteBlockCallback == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _12 = NvM_AdminBlockTable[0].NvMResult;
+  if (_12 == 6)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  CurrentBlock = 1;
+  goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) CurrentBlock;
+  _14 = NvM_AdminBlockTable[_13].NvMResult;
+  if (_14 == 6)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _15 = (int) CurrentBlock;
+  _16 = NvM_AdminBlockTable[_15].NvMCurrentServiceId;
+  if (_16 != 255)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _17 = (int) CurrentBlock;
+  _18 = NvM_AdminBlockTable[_17].NvMCurrentServiceId;
+  NvM_InvokeSingleBlockCallback (CurrentBlock, _18, 6);
+  # DEBUG BEGIN_STMT
+  _19 = (int) CurrentBlock;
+  NvM_AdminBlockTable[_19].NvMCurrentServiceId = 255;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  CurrentBlock.23_20 = CurrentBlock;
+  CurrentBlock = CurrentBlock.23_20 + 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (CurrentBlock <= 8)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  return;
+
+}
+
+
+NvM_MainFunction ()
+{
+  boolean ExecuteMainFunction;
+  uint8 JobEndIndicator;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  JobEndIndicator = 0;
+  # DEBUG BEGIN_STMT
+  ExecuteMainFunction = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.3_1 = NvM_GlobalGenericStatus;
+  _2 = (unsigned int) NvM_GlobalGenericStatus.3_1;
+  _3 = _2 & 5;
+  if (_3 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.4_4 = NvM_GlobalGenericStatus;
+  _5 = NvM_GlobalGenericStatus.4_4 | 4;
+  NvM_GlobalGenericStatus = _5;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ExecuteMainFunction = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ExecuteMainFunction == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_ProcessCanceledJob ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.5_6 = NvM_GlobalCallLevel;
+  if (NvM_GlobalCallLevel.5_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = Nvm_Queue_CheckEmpty ();
+  if (_7 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  NvM_RamBlockCrcCalcCount.6_8 = NvM_RamBlockCrcCalcCount;
+  if (NvM_RamBlockCrcCalcCount.6_8 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_SetNextRequest ();
+  # DEBUG BEGIN_STMT
+  NvM_PreService_Function ();
+  # DEBUG BEGIN_STMT
+  JobEndIndicator = 1;
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.7_9 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.7_9 == 5)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  NvM_Queue_IndexStandard.8_10 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.8_10 != 65535)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  NvM_ProcessStandardPriorityJob ();
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  JobEndIndicator = 1;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.9_11 = NvM_GlobalCallLevel;
+  _12 = (int) NvM_GlobalCallLevel.9_11;
+  _13 = NvM_CurrentFunctionPtr[_12];
+  _13 ();
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.10_14 = NvM_GlobalCallLevel;
+  if (NvM_GlobalCallLevel.10_14 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  NvM_GlobalErrorStatus.11_15 = NvM_GlobalErrorStatus;
+  if (NvM_GlobalErrorStatus.11_15 != 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (JobEndIndicator == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 17> :
+  NvM_GlobalCallLevel.12_16 = NvM_GlobalCallLevel;
+  if (NvM_GlobalCallLevel.12_16 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  NvM_PostService_Function ();
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId.13_17 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.13_17 != 5)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_RemoveFirstItem ();
+  # DEBUG BEGIN_STMT
+  NvM_ProcessBlockCallback ();
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.14_18 = NvM_GlobalBlockNumber;
+  _19 = (int) NvM_GlobalBlockNumber.14_18;
+  _20 = NvM_AdminBlockTable[_19].NvMResult;
+  if (_20 != 2)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.15_21 = NvM_GlobalBlockNumber;
+  _22 = (int) NvM_GlobalBlockNumber.15_21;
+  NvM_AdminBlockTable[_22].NvMCurrentServiceId = 255;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber = 9;
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.16_23 = NvM_GlobalGenericStatus;
+  _24 = NvM_GlobalGenericStatus.16_23 & 65531;
+  NvM_GlobalGenericStatus = _24;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_Init ()
+{
+  struct NvM_AdminBlockType * CurrentAdminBlockPtr;
+  uint16 i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus = 0;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard = 65535;
+  # DEBUG BEGIN_STMT
+  NvM_Queue_CancelledStandardJobs = 0;
+  # DEBUG BEGIN_STMT
+  NvM_InitStoredCrcBuf ();
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i;
+  CurrentAdminBlockPtr = &NvM_AdminBlockTable[_1];
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr->NvMDatasetBlockIndex = 0;
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr->NvMResult = 0;
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr->NvMDynStatus = 0;
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr->NvMExtendedStatus = 0;
+  # DEBUG BEGIN_STMT
+  CurrentAdminBlockPtr->NvMCurrentServiceId = 255;
+  # DEBUG BEGIN_STMT
+  _2 = (int) i;
+  _3 = NvM_BlockDescriptorTable[_2].blockDesc;
+  _4 = _3 & 16;
+  if (_4 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) i;
+  _6 = NvM_AdminBlockTable[_5].NvMDynStatus;
+  _7 = (int) i;
+  _8 = _6 | 2;
+  NvM_AdminBlockTable[_7].NvMDynStatus = _8;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i.0_9 = i;
+  i = i.0_9 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (i <= 8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) i;
+  NvM_CrcQueue[_10] = 0;
+  # DEBUG BEGIN_STMT
+  i.1_11 = i;
+  i = i.1_11 + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (i <= 4)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  NvM_TempRamBlockAddress = 0B;
+  # DEBUG BEGIN_STMT
+  NvM_RamBlockCrcCalcCount = 0;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalGenericStatus.2_12 = NvM_GlobalGenericStatus;
+  _13 = NvM_GlobalGenericStatus.2_12 | 1;
+  NvM_GlobalGenericStatus = _13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

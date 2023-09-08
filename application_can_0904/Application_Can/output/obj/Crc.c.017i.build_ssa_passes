@@ -1,0 +1,157 @@
+Crc_CalculateCRC32 (const uint8 * Crc_DataPtr, uint32 Crc_Length, uint32 Crc_StartValue32, boolean Crc_IsFirstCall)
+{
+  uint32 D.5469;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Crc_IsFirstCall == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crc_StartValue32 = 4294967295;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Crc_StartValue32 = ~Crc_StartValue32;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = *Crc_DataPtr;
+  _2 = (long unsigned int) _1;
+  _3 = Crc_StartValue32 ^ _2;
+  _4 = _3 & 15;
+  _5 = Crc_Table32[_4];
+  _6 = Crc_StartValue32 >> 4;
+  Crc_StartValue32 = _5 ^ _6;
+  # DEBUG BEGIN_STMT
+  _7 = *Crc_DataPtr;
+  _8 = _7 >> 4;
+  _9 = (long unsigned int) _8;
+  _10 = Crc_StartValue32 ^ _9;
+  _11 = _10 & 15;
+  _12 = Crc_Table32[_11];
+  _13 = Crc_StartValue32 >> 4;
+  Crc_StartValue32 = _12 ^ _13;
+  # DEBUG BEGIN_STMT
+  Crc_DataPtr = Crc_DataPtr + 1;
+  # DEBUG BEGIN_STMT
+  Crc_Length = Crc_Length + 4294967295;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Crc_Length != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Crc_StartValue32 = ~Crc_StartValue32;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5469 = Crc_StartValue32;
+  return D.5469;
+
+}
+
+
+Crc_CalculateCRC16 (const uint8 * Crc_DataPtr, uint32 Crc_Length, uint16 Crc_StartValue16, boolean Crc_IsFirstCall)
+{
+  uint16 D.5464;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Crc_IsFirstCall == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crc_StartValue16 = 65535;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = Crc_StartValue16 >> 12;
+  _2 = (unsigned char) _1;
+  _3 = *Crc_DataPtr;
+  _4 = _3 >> 4;
+  _5 = _2 ^ _4;
+  _6 = (int) _5;
+  _7 = Crc_Table16[_6];
+  _8 = Crc_StartValue16 << 4;
+  Crc_StartValue16 = _7 ^ _8;
+  # DEBUG BEGIN_STMT
+  _9 = Crc_StartValue16 >> 12;
+  _10 = (unsigned char) _9;
+  _11 = (unsigned int) _10;
+  _12 = *Crc_DataPtr;
+  _13 = (unsigned int) _12;
+  _14 = _13 & 15;
+  _15 = _11 ^ _14;
+  _16 = Crc_Table16[_15];
+  _17 = Crc_StartValue16 << 4;
+  Crc_StartValue16 = _16 ^ _17;
+  # DEBUG BEGIN_STMT
+  Crc_DataPtr = Crc_DataPtr + 1;
+  # DEBUG BEGIN_STMT
+  Crc_Length = Crc_Length + 4294967295;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (Crc_Length != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5464 = Crc_StartValue16;
+  return D.5464;
+
+}
+
+
+Crc_GetVersionInfo (struct Std_VersionInfoType * VersionInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VersionInfoPtr == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (201, 0, 4, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr->vendorID = 1;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr->moduleID = 201;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr->sw_major_version = 6;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr->sw_minor_version = 11;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr->sw_patch_version = 16;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

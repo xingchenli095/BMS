@@ -1,0 +1,174 @@
+Supervisor_WdgM_GetElapsedTimeCallout (uint32 * PreviousTime, uint32 * ElapsedTime)
+{
+  uint32 CurrentTime;
+  long unsigned int CurrentTime.0_1;
+  long unsigned int _2;
+  long unsigned int CurrentTime.1_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int CurrentTime.2_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FreeTimer_StartTimeMeasurement (&CurrentTime);
+  # DEBUG BEGIN_STMT
+  CurrentTime.0_1 = CurrentTime;
+  _2 = FreeTimer_ConvertTicks2Us (CurrentTime.0_1);
+  CurrentTime = _2;
+  # DEBUG BEGIN_STMT
+  CurrentTime.1_3 = CurrentTime;
+  _4 = *PreviousTime_11(D);
+  _5 = CurrentTime.1_3 - _4;
+  *ElapsedTime_12(D) = _5;
+  # DEBUG BEGIN_STMT
+  CurrentTime.2_6 = CurrentTime;
+  *PreviousTime_11(D) = CurrentTime.2_6;
+  CurrentTime ={v} {CLOBBER};
+  return;
+
+}
+
+
+Supervisor_WdgM_GetExpectedWdgMModeCallout (WdgM_ModeType * WdgMMode)
+{
+  Std_ReturnType RetValue;
+  uint8 currentMode;
+  int _1;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetValue_4 = 0;
+  # DEBUG RetValue => RetValue_4
+  # DEBUG BEGIN_STMT
+  currentMode_7 = Rte_Mode_SWC_AppStateHandler_AppState_AppStateMode ();
+  # DEBUG currentMode => currentMode_7
+  # DEBUG BEGIN_STMT
+  _1 = (int) currentMode_7;
+  switch (_1) <default: <L3> [INV], case 1: <L0> [INV], case 2: <L1> [INV], case 3: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  *WdgMMode_8(D) = 0;
+  # DEBUG BEGIN_STMT
+  RetValue_14 = 0;
+  # DEBUG RetValue => RetValue_14
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  *WdgMMode_8(D) = 1;
+  # DEBUG BEGIN_STMT
+  RetValue_12 = 0;
+  # DEBUG RetValue => RetValue_12
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  *WdgMMode_8(D) = 2;
+  # DEBUG BEGIN_STMT
+  RetValue_10 = 0;
+  # DEBUG RetValue => RetValue_10
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  *WdgMMode_8(D) = 1;
+  # DEBUG BEGIN_STMT
+  RetValue_16 = 1;
+  # DEBUG RetValue => RetValue_16
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+  # RetValue_2 = PHI <RetValue_14(3), RetValue_12(4), RetValue_10(5), RetValue_16(6)>
+  # DEBUG RetValue => RetValue_2
+  # DEBUG BEGIN_STMT
+  _17 = RetValue_2;
+  return _17;
+
+}
+
+
+Supervisor_WdgM_GetExpectedInitStateCallout (WdgM_EB_InitStatusType * InitStatus)
+{
+  uint8 currentMode;
+  int _1;
+  Std_ReturnType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  currentMode_5 = Rte_Mode_SWC_AppStateHandler_AppState_AppStateMode ();
+  # DEBUG currentMode => currentMode_5
+  # DEBUG BEGIN_STMT
+  _1 = (int) currentMode_5;
+  switch (_1) <default: <L6> [INV], case 1: <L0> [INV], case 2: <L1> [INV], case 3: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  *InitStatus_6(D) = 85;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  *InitStatus_6(D) = 85;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  *InitStatus_6(D) = 170;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _10 = 0;
+  return _10;
+
+}
+
+
+WdgM_Appl_WdgM_DeadLineMonitorStop ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WdgM_CheckpointReached (2, 1);
+  return;
+
+}
+
+
+WdgM_Appl_WdgM_DeadLineMonitorStart ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WdgM_CheckpointReached (2, 0);
+  return;
+
+}
+
+
+WdgM_Appl_WdgM_TriggerSWC_Cyclic ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WdgM_CheckpointReached (0, 0);
+  return;
+
+}
+
+

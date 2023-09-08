@@ -1,0 +1,75 @@
+Dcm_Dsl_SecurityLevelHandler_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  boolean PreemptionOccured;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PreemptionOccured = Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured ();
+  # DEBUG BEGIN_STMT
+  if (OldSession != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (PreemptionOccured == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (0);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ()
+{
+  Dcm_SecLevelType CurrentSecurityLevel;
+  Dcm_SecLevelType D.6587;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentSecurityLevel = Dcm_CurrentSecurityLevel;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6587 = CurrentSecurityLevel;
+  return D.6587;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (Dcm_SecLevelType newSecLevel)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CurrentSecurityLevel = newSecLevel;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CurrentSecurityLevel = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

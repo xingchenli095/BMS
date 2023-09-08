@@ -1,0 +1,510 @@
+Csm_Int_CallbackNotification (const struct Crypto_JobType * job, Std_ReturnType result)
+{
+  long unsigned int _1;
+  void (*<T4b8>) (Crypto_ResultType) _2;
+  long unsigned int _3;
+  void (*<T4b8>) (Crypto_ResultType) _4;
+  long unsigned int _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned char _9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct Crypto_JobPrimitiveInfoType * _12;
+  long unsigned int _13;
+  const struct Crypto_JobPrimitiveInfoType * _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned int _17;
+  unsigned int _18;
+  long unsigned int _19;
+  void (*<T4b8>) (Crypto_ResultType) _20;
+  long unsigned int _21;
+  void (*<T4b8>) (Crypto_ResultType) _22;
+  long unsigned int _23;
+  unsigned char _24;
+  long unsigned int _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (result_29(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = job_31(D)->jobId;
+  _2 = Csm_JobExtraCnfg[_1].csmSWCCallback;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = job_31(D)->jobId;
+  _4 = Csm_JobExtraCnfg[_3].csmSWCCallback;
+  _4 (result_29(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = job_31(D)->jobId;
+  Csm_JobExtraData[_5].csmQueueLevel = 0;
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = job_31(D)->jobPrimitiveInputOutput.mode;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 2;
+  if (_8 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  _9 = job_31(D)->jobPrimitiveInputOutput.mode;
+  _10 = (unsigned int) _9;
+  _11 = _10 & 7;
+  if (_11 != 7)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _12 = job_31(D)->jobPrimitiveInfo;
+  _13 = _12->callbackId;
+  if (_13 != 4294967295)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  _14 = job_31(D)->jobPrimitiveInfo;
+  _15 = _14->callbackUpdateNotification;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = job_31(D)->jobPrimitiveInputOutput.mode;
+  _17 = (unsigned int) _16;
+  _18 = _17 & 4;
+  if (_18 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _19 = job_31(D)->jobId;
+  _20 = Csm_JobExtraCnfg[_19].csmSWCCallback;
+  if (_20 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _21 = job_31(D)->jobId;
+  _22 = Csm_JobExtraCnfg[_21].csmSWCCallback;
+  _22 (result_29(D));
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = job_31(D)->jobId;
+  _24 = Csm_JobExtraData[_23].csmQueueLevel;
+  if (_24 == 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _25 = job_31(D)->jobId;
+  Csm_JobExtraData[_25].csmQueueLevel = 0;
+
+  <bb 15> :
+  return;
+
+}
+
+
+Csm_QueueDelJob (struct Csm_QueueType * csmQueuePtr, struct Crypto_JobType * csmJobPtr)
+{
+  struct Csm_QueueElementType * previous;
+  struct Csm_QueueElementType * current;
+  Std_ReturnType retVal;
+  struct Crypto_JobType * _1;
+  struct Csm_QueueElementType * _2;
+  struct Csm_QueueElement * _3;
+  struct Csm_QueueElement * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  struct Crypto_JobType * _7;
+  const struct Crypto_JobInfoType * _8;
+  long unsigned int _9;
+  const struct Crypto_JobInfoType * _10;
+  long unsigned int _11;
+  Std_ReturnType _34;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_17 = 1;
+  # DEBUG retVal => retVal_17
+  # DEBUG BEGIN_STMT
+  current_18 = 0B;
+  # DEBUG current => current_18
+  # DEBUG BEGIN_STMT
+  previous_19 = 0B;
+  # DEBUG previous => previous_19
+  # DEBUG BEGIN_STMT
+  if (csmQueuePtr_20(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  retVal_33 = 1;
+  # DEBUG retVal => retVal_33
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (csmJobPtr_21(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_32 = 1;
+  # DEBUG retVal => retVal_32
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  current_23 = csmQueuePtr_20(D)->head;
+  # DEBUG current => current_23
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _1 = current_13->job;
+  if (csmJobPtr_21(D) == _1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = csmQueuePtr_20(D)->head;
+  if (current_13 == _2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _3 = current_13->next;
+  csmQueuePtr_20(D)->head = _3;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _4 = current_13->next;
+  previous_14->next = _4;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  current_13->job = 0B;
+  # DEBUG BEGIN_STMT
+  current_13->next = 0B;
+  # DEBUG BEGIN_STMT
+  _5 = csmQueuePtr_20(D)->currentSize;
+  _6 = _5 + 4294967295;
+  csmQueuePtr_20(D)->currentSize = _6;
+  # DEBUG BEGIN_STMT
+  retVal_31 = 0;
+  # DEBUG retVal => retVal_31
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  previous_24 = current_13;
+  # DEBUG previous => previous_24
+  # DEBUG BEGIN_STMT
+  current_25 = current_13->next;
+  # DEBUG current => current_25
+
+  <bb 13> :
+  # current_13 = PHI <current_23(6), current_25(12)>
+  # previous_14 = PHI <previous_19(6), previous_24(12)>
+  # DEBUG previous => previous_14
+  # DEBUG current => current_13
+  # DEBUG BEGIN_STMT
+  if (current_13 != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _7 = current_13->job;
+  _8 = _7->jobInfo;
+  _9 = _8->jobPriority;
+  _10 = csmJobPtr_21(D)->jobInfo;
+  _11 = _10->jobPriority;
+  if (_9 >= _11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # retVal_12 = PHI <retVal_33(3), retVal_32(5), retVal_31(11), retVal_17(13), retVal_17(14)>
+  # DEBUG retVal => retVal_12
+  # DEBUG BEGIN_STMT
+  _34 = retVal_12;
+  return _34;
+
+}
+
+
+Csm_QueuePushJob (struct Csm_QueueType * csmQueuePtr, struct Crypto_JobType * csmJobPtr)
+{
+  struct Csm_QueueElementType * newElement;
+  struct Csm_QueueElementType * previous;
+  struct Csm_QueueElementType * current;
+  uint32 queueElementIndex;
+  Std_ReturnType retVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  struct Csm_QueueElementType * _3;
+  struct Csm_QueueElementType * _4;
+  struct Csm_QueueElementType * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  struct Csm_QueueElementType * _8;
+  long unsigned int _9;
+  struct Csm_QueueElementType * _10;
+  struct Crypto_JobType * _11;
+  struct Csm_QueueElementType * _12;
+  long unsigned int _13;
+  struct Csm_QueueElementType * _14;
+  struct Csm_QueueElementType * _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  struct Crypto_JobType * _18;
+  const struct Crypto_JobInfoType * _19;
+  long unsigned int _20;
+  const struct Crypto_JobInfoType * _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  Std_ReturnType _61;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_33 = 1;
+  # DEBUG retVal => retVal_33
+  # DEBUG BEGIN_STMT
+  queueElementIndex_34 = 0;
+  # DEBUG queueElementIndex => queueElementIndex_34
+  # DEBUG BEGIN_STMT
+  current_35 = 0B;
+  # DEBUG current => current_35
+  # DEBUG BEGIN_STMT
+  previous_36 = 0B;
+  # DEBUG previous => previous_36
+  # DEBUG BEGIN_STMT
+  newElement_37 = 0B;
+  # DEBUG newElement => newElement_37
+  # DEBUG BEGIN_STMT
+  if (csmQueuePtr_38(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  retVal_60 = 1;
+  # DEBUG retVal => retVal_60
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (csmJobPtr_39(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_59 = 1;
+  # DEBUG retVal => retVal_59
+  goto <bb 22>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = csmQueuePtr_38(D)->currentSize;
+  _2 = csmQueuePtr_38(D)->maxSize;
+  if (_1 >= _2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  retVal_58 = 5;
+  # DEBUG retVal => retVal_58
+  goto <bb 22>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  current_41 = csmQueuePtr_38(D)->head;
+  # DEBUG current => current_41
+  # DEBUG BEGIN_STMT
+  if (current_41 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _3 = csmQueuePtr_38(D)->data;
+  _3->job = csmJobPtr_39(D);
+  # DEBUG BEGIN_STMT
+  _4 = csmQueuePtr_38(D)->data;
+  _4->next = 0B;
+  # DEBUG BEGIN_STMT
+  _5 = csmQueuePtr_38(D)->data;
+  csmQueuePtr_38(D)->head = _5;
+  # DEBUG BEGIN_STMT
+  _6 = csmQueuePtr_38(D)->currentSize;
+  _7 = _6 + 1;
+  csmQueuePtr_38(D)->currentSize = _7;
+  # DEBUG BEGIN_STMT
+  retVal_57 = 0;
+  # DEBUG retVal => retVal_57
+  goto <bb 22>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  queueElementIndex_42 = 0;
+  # DEBUG queueElementIndex => queueElementIndex_42
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _8 = csmQueuePtr_38(D)->data;
+  _9 = queueElementIndex_26 * 8;
+  _10 = _8 + _9;
+  _11 = _10->job;
+  if (_11 == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _12 = csmQueuePtr_38(D)->data;
+  _13 = queueElementIndex_26 * 8;
+  _14 = _12 + _13;
+  _14->job = csmJobPtr_39(D);
+  # DEBUG BEGIN_STMT
+  _15 = csmQueuePtr_38(D)->data;
+  _16 = queueElementIndex_26 * 8;
+  newElement_45 = _15 + _16;
+  # DEBUG newElement => newElement_45
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  queueElementIndex_43 = queueElementIndex_26 + 1;
+  # DEBUG queueElementIndex => queueElementIndex_43
+
+  <bb 14> :
+  # queueElementIndex_26 = PHI <queueElementIndex_42(10), queueElementIndex_43(13)>
+  # DEBUG queueElementIndex => queueElementIndex_26
+  # DEBUG BEGIN_STMT
+  _17 = csmQueuePtr_38(D)->maxSize;
+  if (queueElementIndex_26 < _17)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  previous_46 = current_27;
+  # DEBUG previous => previous_46
+  # DEBUG BEGIN_STMT
+  current_47 = current_27->next;
+  # DEBUG current => current_47
+
+  <bb 16> :
+  # current_27 = PHI <current_41(14), current_47(15), current_41(12)>
+  # previous_28 = PHI <previous_36(14), previous_46(15), previous_36(12)>
+  # newElement_29 = PHI <newElement_37(14), newElement_29(15), newElement_45(12)>
+  # DEBUG newElement => newElement_29
+  # DEBUG previous => previous_28
+  # DEBUG current => current_27
+  # DEBUG BEGIN_STMT
+  if (current_27 != 0B)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  _18 = current_27->job;
+  _19 = _18->jobInfo;
+  _20 = _19->jobPriority;
+  _21 = csmJobPtr_39(D)->jobInfo;
+  _22 = _21->jobPriority;
+  if (_20 >= _22)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (previous_28 == 0B)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  csmQueuePtr_38(D)->head = newElement_29;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  previous_28->next = newElement_29;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  newElement_29->next = current_27;
+  # DEBUG BEGIN_STMT
+  _23 = csmQueuePtr_38(D)->currentSize;
+  _24 = _23 + 1;
+  csmQueuePtr_38(D)->currentSize = _24;
+  # DEBUG BEGIN_STMT
+  retVal_52 = 0;
+  # DEBUG retVal => retVal_52
+
+  <bb 22> :
+  # retVal_25 = PHI <retVal_60(3), retVal_59(5), retVal_58(7), retVal_57(9), retVal_52(21)>
+  # DEBUG retVal => retVal_25
+  # DEBUG BEGIN_STMT
+  _61 = retVal_25;
+  return _61;
+
+}
+
+

@@ -1,0 +1,91 @@
+__attribute__((target ("general-regs-only")))
+OS_KernTerminateTask ()
+{
+  os_result_t r;
+  struct os_taskdynamic_t * td;
+  const struct os_task_t * tp;
+  os_result_t D.7426;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  tp = OS_kernelData.taskCurrent;
+  # DEBUG BEGIN_STMT
+  td = tp->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_2 = OS_iecMode;
+  if (OS_iecMode.0_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = BIT_FIELD_REF <MEM[(void *)td], 16, 160>;
+  _4 = _3;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 55, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = td->lastLock;
+  if (_5 != 4294967295)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = td->lastLock;
+  _7 = _6 >> 24;
+  if (_7 == 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 156, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 13, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_DoTerminateTask (tp, td);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 12, 0B);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7426 = r;
+  return D.7426;
+
+}
+
+

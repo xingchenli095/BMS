@@ -1,0 +1,79 @@
+ComM_COMCbk_SGCanNmPnEiraRxNSdu ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ComM_RxEiraSignalStatus = 1;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+ComM_MainFunction_0 ()
+{
+  unsigned char ComM_InitStatus.0_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.1_2;
+  unsigned char _3;
+  struct ComM_HsmInstType * _4;
+  unsigned char _5;
+  void (*<T682>) (uint8) ComM_RteNotificationDoActFkp.2_6;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.0_1 = ComM_InitStatus;
+  if (ComM_InitStatus.0_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.1_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.1_2->ComMPncEnabled;
+  if (_3 != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  ComM_PncProcessTimers ();
+  # DEBUG BEGIN_STMT
+  ComM_PncMainFunction ();
+
+  <bb 5> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  ComM_ProcessTimers (0);
+  # DEBUG BEGIN_STMT
+  _4 = ComM_HsmScComM.instances;
+  _5 = _4->evQueueFill;
+  if (_5 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmMainInst (&ComM_HsmScComM, 0);
+
+  <bb 7> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationDoActFkp.2_6 = ComM_RteNotificationDoActFkp;
+  if (ComM_RteNotificationDoActFkp.2_6 != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+
+  <bb 8> [local count: 375809638]:
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationDoActFkp.2_6 (0);
+
+  <bb 9> [local count: 1073741824]:
+  return;
+
+}
+
+

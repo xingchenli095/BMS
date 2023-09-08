@@ -1,0 +1,898 @@
+Dcm_Dsp_CommunicationControl_ResetOnSessionChange (Dcm_SesCtrlType NewSession)
+{
+  Dcm_ProtocolIndexType ProtocolIdx;
+  const struct Dcm_SidTabEntryConfigType * SidConfig;
+  boolean CommunicationControlConfigExist;
+  boolean ResetCommunicationControl;
+  uint8_least sessionIdx;
+  short unsigned int _1;
+  unsigned char _2;
+  const struct Dcm_SidTabEntryConfigType * SidConfig.11_3;
+  unsigned char _4;
+  const struct Dcm_SidTabEntryConfigType * SidConfig.12_5;
+  const Dcm_SesCtrlType * _6;
+  const Dcm_SesCtrlType * _7;
+  unsigned char _8;
+  const struct Dcm_SidTabEntryConfigType * SidConfig.13_9;
+  const Dcm_SesCtrlType * _10;
+  const Dcm_SesCtrlType * _11;
+  unsigned char _12;
+  const struct Dcm_SidTabEntryConfigType * SidConfig.14_13;
+  unsigned char _14;
+  long unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ResetCommunicationControl_19 = 1;
+  # DEBUG ResetCommunicationControl => ResetCommunicationControl_19
+  # DEBUG BEGIN_STMT
+  CommunicationControlConfigExist_20 = 0;
+  # DEBUG CommunicationControlConfigExist => CommunicationControlConfigExist_20
+  # DEBUG BEGIN_STMT
+  SidConfig = 0B;
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _2 = (unsigned char) _1;
+  ProtocolIdx_24 = _2 + 244;
+  # DEBUG ProtocolIdx => ProtocolIdx_24
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CommunicationControlConfigExist_26 = Dcm_DspInternal_GetSidConfig (ProtocolIdx_24, 40, &SidConfig);
+  # DEBUG CommunicationControlConfigExist => CommunicationControlConfigExist_26
+  # DEBUG BEGIN_STMT
+  if (CommunicationControlConfigExist_26 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SidConfig.11_3 = SidConfig;
+  _4 = SidConfig.11_3->NumSesCtrls;
+  if (_4 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  sessionIdx_28 = 0;
+  # DEBUG sessionIdx => sessionIdx_28
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SidConfig.12_5 = SidConfig;
+  _6 = SidConfig.12_5->SesCtrls;
+  _7 = _6 + sessionIdx_16;
+  _8 = *_7;
+  if (_8 == 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  SidConfig.13_9 = SidConfig;
+  _10 = SidConfig.13_9->SesCtrls;
+  _11 = _10 + sessionIdx_16;
+  _12 = *_11;
+  if (NewSession_29(D) == _12)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ResetCommunicationControl_31 = 0;
+  # DEBUG ResetCommunicationControl => ResetCommunicationControl_31
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sessionIdx_30 = sessionIdx_16 + 1;
+  # DEBUG sessionIdx => sessionIdx_30
+
+  <bb 9> :
+  # sessionIdx_16 = PHI <sessionIdx_28(4), sessionIdx_30(8)>
+  # DEBUG sessionIdx => sessionIdx_16
+  # DEBUG BEGIN_STMT
+  SidConfig.14_13 = SidConfig;
+  _14 = SidConfig.14_13->NumSesCtrls;
+  _15 = (long unsigned int) _14;
+  if (sessionIdx_16 < _15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ResetCommunicationControl_27 = 0;
+  # DEBUG ResetCommunicationControl => ResetCommunicationControl_27
+
+  <bb 11> :
+  # ResetCommunicationControl_17 = PHI <ResetCommunicationControl_19(9), ResetCommunicationControl_27(10), ResetCommunicationControl_31(7)>
+  # DEBUG ResetCommunicationControl => ResetCommunicationControl_17
+  # DEBUG BEGIN_STMT
+  if (ResetCommunicationControl_17 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_ResetCommunicationControl ();
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SidConfig ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_ClearInternalVariables ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeConfirmation = 255;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeDeclarationConfirmation = 255;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubServiceHandler = 0B;
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_SetComMode_ModeDeclarationTrue (uint8 SubnetNumber, PduIdType DcmRxPduId)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  uint8 SpecificAndAllChIndex;
+  boolean EntryFoundInLookUpTable;
+  uint8_least LookUpAndModeIndex;
+  NetworkHandleType NetworkId;
+  unsigned char _1;
+  Std_ReturnType (*<T737>) (uint8) _2;
+  unsigned char Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.4_3;
+  unsigned char Dcm_CommunicationControl_RequestedModeConfirmation.5_4;
+  unsigned char Dcm_CommunicationControl_RequestedModeConfirmation.6_5;
+  unsigned char _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  Std_ReturnType (*<T737>) (uint8) _10;
+  unsigned char Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.7_11;
+  int _12;
+  unsigned char _13;
+  unsigned char Dcm_CommunicationControl_RequestedModeConfirmation.8_14;
+  unsigned char Dcm_CommunicationControl_RequestedModeConfirmation.9_15;
+  unsigned char SpecificAndAllChIndex.10_16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LookUpAndModeIndex_30 = 0;
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_30
+  # DEBUG BEGIN_STMT
+  EntryFoundInLookUpTable_31 = 0;
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_31
+  # DEBUG BEGIN_STMT
+  SpecificAndAllChIndex_32 = 0;
+  # DEBUG SpecificAndAllChIndex => SpecificAndAllChIndex_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SubnetNumber_33(D) == 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (DcmRxPduId_44(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  NetworkId_46 = RxPduIdInfo.ComMChannelId;
+  # DEBUG NetworkId => NetworkId_46
+  # DEBUG BEGIN_STMT
+  LookUpAndModeIndex_47 = 0;
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_47
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CommunicationControlLookUpTable[LookUpAndModeIndex_17].ComMChannelId;
+  if (NetworkId_46 == _1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_CommunicationControlLookUpTable[LookUpAndModeIndex_17].SchMSwitchCommunicationControl;
+  Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.4_3 = Dcm_CommunicationControl_RequestedModeDeclarationConfirmation;
+  _2 (Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.4_3);
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeConfirmation.5_4 = Dcm_CommunicationControl_RequestedModeConfirmation;
+  BswM_Dcm_CommunicationMode_CurrentState (NetworkId_46, Dcm_CommunicationControl_RequestedModeConfirmation.5_4);
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeConfirmation.6_5 = Dcm_CommunicationControl_RequestedModeConfirmation;
+  Dcm_CommunicationControl_CommunicationMode[LookUpAndModeIndex_17] = Dcm_CommunicationControl_RequestedModeConfirmation.6_5;
+  # DEBUG BEGIN_STMT
+  EntryFoundInLookUpTable_51 = 1;
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_51
+
+  <bb 6> :
+  # EntryFoundInLookUpTable_19 = PHI <EntryFoundInLookUpTable_20(4), EntryFoundInLookUpTable_51(5)>
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_19
+  # DEBUG BEGIN_STMT
+  LookUpAndModeIndex_52 = LookUpAndModeIndex_17 + 1;
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_52
+
+  <bb 7> :
+  # LookUpAndModeIndex_17 = PHI <LookUpAndModeIndex_47(3), LookUpAndModeIndex_52(6)>
+  # EntryFoundInLookUpTable_20 = PHI <EntryFoundInLookUpTable_31(3), EntryFoundInLookUpTable_19(6)>
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_20
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_17
+  # DEBUG BEGIN_STMT
+  if (LookUpAndModeIndex_17 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 8> :
+  if (EntryFoundInLookUpTable_20 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = SubnetNumber_33(D) + 255;
+  if (_6 <= 13)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SpecificAndAllChIndex_35 = 0;
+  # DEBUG SpecificAndAllChIndex => SpecificAndAllChIndex_35
+  goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EntryFoundInLookUpTable_36 = 0;
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_36
+  # DEBUG BEGIN_STMT
+  LookUpAndModeIndex_37 = 0;
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_37
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_CommunicationControlLookUpTable[LookUpAndModeIndex_18].ComMChannelId;
+  _8 = (int) SpecificAndAllChIndex_23;
+  _9 = Dcm_CommunicationControlAllChannel[_8];
+  if (_7 == _9)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_CommunicationControlLookUpTable[LookUpAndModeIndex_18].SchMSwitchCommunicationControl;
+  Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.7_11 = Dcm_CommunicationControl_RequestedModeDeclarationConfirmation;
+  _10 (Dcm_CommunicationControl_RequestedModeDeclarationConfirmation.7_11);
+  # DEBUG BEGIN_STMT
+  _12 = (int) SpecificAndAllChIndex_23;
+  _13 = Dcm_CommunicationControlAllChannel[_12];
+  Dcm_CommunicationControl_RequestedModeConfirmation.8_14 = Dcm_CommunicationControl_RequestedModeConfirmation;
+  BswM_Dcm_CommunicationMode_CurrentState (_13, Dcm_CommunicationControl_RequestedModeConfirmation.8_14);
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeConfirmation.9_15 = Dcm_CommunicationControl_RequestedModeConfirmation;
+  Dcm_CommunicationControl_CommunicationMode[LookUpAndModeIndex_18] = Dcm_CommunicationControl_RequestedModeConfirmation.9_15;
+  # DEBUG BEGIN_STMT
+  EntryFoundInLookUpTable_41 = 1;
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_41
+
+  <bb 14> :
+  # EntryFoundInLookUpTable_21 = PHI <EntryFoundInLookUpTable_22(12), EntryFoundInLookUpTable_41(13)>
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_21
+  # DEBUG BEGIN_STMT
+  LookUpAndModeIndex_42 = LookUpAndModeIndex_18 + 1;
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_42
+
+  <bb 15> :
+  # LookUpAndModeIndex_18 = PHI <LookUpAndModeIndex_37(11), LookUpAndModeIndex_42(14)>
+  # EntryFoundInLookUpTable_22 = PHI <EntryFoundInLookUpTable_36(11), EntryFoundInLookUpTable_21(14)>
+  # DEBUG EntryFoundInLookUpTable => EntryFoundInLookUpTable_22
+  # DEBUG LookUpAndModeIndex => LookUpAndModeIndex_18
+  # DEBUG BEGIN_STMT
+  if (LookUpAndModeIndex_18 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (EntryFoundInLookUpTable_22 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SpecificAndAllChIndex.10_16 = SpecificAndAllChIndex_23;
+  SpecificAndAllChIndex_43 = SpecificAndAllChIndex.10_16 + 1;
+  # DEBUG SpecificAndAllChIndex => SpecificAndAllChIndex_43
+
+  <bb 18> :
+  # SpecificAndAllChIndex_23 = PHI <SpecificAndAllChIndex_35(10), SpecificAndAllChIndex_43(17)>
+  # DEBUG SpecificAndAllChIndex => SpecificAndAllChIndex_23
+  # DEBUG BEGIN_STMT
+  if (SpecificAndAllChIndex_23 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  RxPduIdInfo ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_CommonUnenhancedAddressInformation (Dcm_OpStatusType OpStatus, uint8 subService, struct Dcm_MsgContextType * pMsgContext)
+{
+  boolean ValidSubNetAndCommType;
+  const uint8 SubnetNumber;
+  const uint8 MessageType;
+  Std_ReturnType ServiceProcessStatus;
+  Dcm_MsgItemType * _1;
+  unsigned char _2;
+  Dcm_MsgItemType * _3;
+  unsigned char _4;
+  int _5;
+  long unsigned int _6;
+  int _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  int _11;
+  unsigned char _12;
+  Dcm_MsgItemType * _13;
+  unsigned char Dcm_CommunicationControl_PositiveResponse.3_14;
+  unsigned char _15;
+  short unsigned int _16;
+  Std_ReturnType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_22 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_22
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_24(D)->reqData;
+  _2 = *_1;
+  MessageType_25 = _2 & 3;
+  # DEBUG MessageType => MessageType_25
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_24(D)->reqData;
+  _4 = *_3;
+  SubnetNumber_26 = _4 >> 4;
+  # DEBUG SubnetNumber => SubnetNumber_26
+  # DEBUG BEGIN_STMT
+  _5 = (int) OpStatus_27(D);
+  switch (_5) <default: <L12> [INV], case 0: <L0> [INV], case 5: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_24(D)->reqDataLen;
+  if (_6 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ValidSubNetAndCommType_35 = 0;
+  # DEBUG ValidSubNetAndCommType => ValidSubNetAndCommType_35
+  # DEBUG BEGIN_STMT
+  ValidSubNetAndCommType_37 = Dcm_Dsp_CommunicationControl_CheckSubnetNumberAndCommType (MessageType_25, SubnetNumber_26);
+  # DEBUG ValidSubNetAndCommType => ValidSubNetAndCommType_37
+  # DEBUG BEGIN_STMT
+  if (ValidSubNetAndCommType_37 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse = 1;
+  # DEBUG BEGIN_STMT
+  _7 = (int) MessageType_25;
+  _8 = (int) subService_42(D);
+  _9 = Dcm_AllCommunicationMode[_7][_8];
+  Dcm_CommunicationControl_RequestedModeConfirmation = _9;
+  # DEBUG BEGIN_STMT
+  _10 = (int) MessageType_25;
+  _11 = (int) subService_42(D);
+  _12 = Dcm_AllCommunicationControlModeDeclarations[_10][_11];
+  Dcm_CommunicationControl_RequestedModeDeclarationConfirmation = _12;
+  # DEBUG BEGIN_STMT
+  pMsgContext_24(D)->resDataLen = 1;
+  # DEBUG BEGIN_STMT
+  _13 = pMsgContext_24(D)->resData;
+  *_13 = subService_42(D);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_47 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_47
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), 49);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_40 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_40
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), 19);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+
+  <bb 8> :
+  # ServiceProcessStatus_17 = PHI <ServiceProcessStatus_40(6), ServiceProcessStatus_34(7), ServiceProcessStatus_47(5)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse.3_14 = Dcm_CommunicationControl_PositiveResponse;
+  if (Dcm_CommunicationControl_PositiveResponse.3_14 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = Dcm_Dsl_DiagnosticSessionHandler_GetResetToDefaultSessionOccured (40);
+  if (_15 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _16 = pMsgContext_24(D)->dcmRxPduId;
+  Dcm_Dsp_CommunicationControl_SetComMode_ModeDeclarationTrue (SubnetNumber_26, _16);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_ClearInternalVariables ();
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_31 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_31
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_ClearInternalVariables ();
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_50 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_50
+  # DEBUG BEGIN_STMT
+
+  <bb 14> :
+  # ServiceProcessStatus_18 = PHI <ServiceProcessStatus_17(8), ServiceProcessStatus_31(12), ServiceProcessStatus_50(13)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  _51 = ServiceProcessStatus_18;
+  return _51;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_CheckSubnetNumberAndCommType (uint8 MessageType, uint8 SubnetNumber)
+{
+  boolean ValidSubNetAndCommType;
+  unsigned char _1;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ValidSubNetAndCommType_3 = 0;
+  # DEBUG ValidSubNetAndCommType => ValidSubNetAndCommType_3
+  # DEBUG BEGIN_STMT
+  if (MessageType_4(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = SubnetNumber_5(D) + 255;
+  if (_1 <= 13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ValidSubNetAndCommType_6 = 1;
+  # DEBUG ValidSubNetAndCommType => ValidSubNetAndCommType_6
+
+  <bb 5> :
+  # ValidSubNetAndCommType_2 = PHI <ValidSubNetAndCommType_3(2), ValidSubNetAndCommType_3(3), ValidSubNetAndCommType_6(4)>
+  # DEBUG ValidSubNetAndCommType => ValidSubNetAndCommType_2
+  # DEBUG BEGIN_STMT
+  _7 = ValidSubNetAndCommType_2;
+  return _7;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) Dcm_CommunicationControl_SubServiceHandler.1_1;
+  unsigned char Dcm_CommunicationControl_SubFunctionHandlerIsInternal.2_2;
+  Std_ReturnType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_4 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubServiceHandler.1_1 = Dcm_CommunicationControl_SubServiceHandler;
+  ServiceProcessStatus_9 = Dcm_CommunicationControl_SubServiceHandler.1_1 (OpStatus_6(D), pMsgContext_7(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal.2_2 = Dcm_CommunicationControl_SubFunctionHandlerIsInternal;
+  if (Dcm_CommunicationControl_SubFunctionHandlerIsInternal.2_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (ServiceProcessStatus_9 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+
+  <bb 5> :
+  # ServiceProcessStatus_3 = PHI <ServiceProcessStatus_9(2), ServiceProcessStatus_9(3), ServiceProcessStatus_10(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = ServiceProcessStatus_3;
+  return _11;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_SvcStart (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _1;
+  Std_ReturnType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_2 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal = 0;
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsp_ExtractSubServiceHandler (OpStatus_5(D), pMsgContext_6(D));
+  Dcm_CommunicationControl_SubServiceHandler = _1;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = Dcm_Dsp_CommunicationControl_SvcCont (OpStatus_5(D), pMsgContext_6(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = ServiceProcessStatus_10;
+  return _11;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NewSession_2(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_ResetCommunicationControl ();
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_ResetOnSessionChange (NewSession_2(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_ResetCommunicationControl ()
+{
+  uint8_least ModeAndLookUpIndex;
+  unsigned char _1;
+  Std_ReturnType (*<T737>) (uint8) _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ModeAndLookUpIndex_7 = 0;
+  # DEBUG ModeAndLookUpIndex => ModeAndLookUpIndex_7
+  # DEBUG BEGIN_STMT
+  ModeAndLookUpIndex_8 = 0;
+  # DEBUG ModeAndLookUpIndex => ModeAndLookUpIndex_8
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CommunicationControl_CommunicationMode[ModeAndLookUpIndex_4];
+  if (_1 != 8)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_CommunicationControlLookUpTable[ModeAndLookUpIndex_4].SchMSwitchCommunicationControl;
+  _2 (8);
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_CommunicationControlLookUpTable[ModeAndLookUpIndex_4].ComMChannelId;
+  BswM_Dcm_CommunicationMode_CurrentState (_3, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_CommunicationMode[ModeAndLookUpIndex_4] = 8;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ModeAndLookUpIndex_13 = ModeAndLookUpIndex_4 + 1;
+  # DEBUG ModeAndLookUpIndex => ModeAndLookUpIndex_13
+
+  <bb 6> :
+  # ModeAndLookUpIndex_4 = PHI <ModeAndLookUpIndex_8(2), ModeAndLookUpIndex_13(5)>
+  # DEBUG ModeAndLookUpIndex => ModeAndLookUpIndex_4
+  # DEBUG BEGIN_STMT
+  if (ModeAndLookUpIndex_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_DisableRxAndTx_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = Dcm_Dsp_CommunicationControl_CommonUnenhancedAddressInformation (OpStatus_3(D), 3, pMsgContext_4(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_DisableRxAndEnableTx_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = Dcm_Dsp_CommunicationControl_CommonUnenhancedAddressInformation (OpStatus_3(D), 2, pMsgContext_4(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_EnableRxAndDisableTx_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = Dcm_Dsp_CommunicationControl_CommonUnenhancedAddressInformation (OpStatus_3(D), 1, pMsgContext_4(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_EnableRxAndTx_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = Dcm_Dsp_CommunicationControl_CommonUnenhancedAddressInformation (OpStatus_3(D), 0, pMsgContext_4(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&Dcm_CommunicationControl_CommunicationMode, 8, 1);
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeConfirmation = 255;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_RequestedModeDeclarationConfirmation = 255;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_PositiveResponse = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubServiceHandler = 0B;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_CommunicationControl_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  unsigned char Dcm_CommunicationControl_SubFunctionHandlerIsInternal.0_2;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_5 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_6(D);
+  switch (_1) <default: <L8> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV], case 5 ... 6: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_17 = Dcm_Dsp_CommunicationControl_SvcStart (0, pMsgContext_9(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_15 = Dcm_Dsp_CommunicationControl_SvcCont (1, pMsgContext_9(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_15
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_13 = Dcm_Dsp_CommunicationControl_SvcCont (2, pMsgContext_9(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_13
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationControl_SubFunctionHandlerIsInternal.0_2 = Dcm_CommunicationControl_SubFunctionHandlerIsInternal;
+  if (Dcm_CommunicationControl_SubFunctionHandlerIsInternal.0_2 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_11 = Dcm_Dsp_CommunicationControl_SvcCont (OpStatus_6(D), pMsgContext_9(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_11
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_8 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_8
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_18 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # ServiceProcessStatus_3 = PHI <ServiceProcessStatus_17(3), ServiceProcessStatus_15(4), ServiceProcessStatus_13(5), ServiceProcessStatus_8(8), ServiceProcessStatus_18(9), ServiceProcessStatus_11(7)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = ServiceProcessStatus_3;
+  return _19;
+
+}
+
+

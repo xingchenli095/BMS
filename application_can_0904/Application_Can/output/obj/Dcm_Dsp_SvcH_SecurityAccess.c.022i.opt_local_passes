@@ -1,0 +1,1664 @@
+Dcm_Dsp_SecurityAccess_SendKey_SSvcH (Dcm_OpStatusType OpStatus, uint8 * Nrc, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_7 = Dcm_Dsp_SecurityAccess_CompareKey_Operation (OpStatus_3(D), Nrc_4(D), MsgContextPtr_5(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  _8 = ServiceProcessStatus_7;
+  return _8;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_CompareKey_Operation (Dcm_OpStatusType OpStatus, uint8 * Nrc, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  const Dcm_SecLevelType NewSecLevel;
+  const struct Dcm_SecurityLevelEntryConfigType * NewSecTabEntry;
+  Std_ReturnType SendKeyStatus;
+  Std_ReturnType ServiceProcessStatus;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.9_1;
+  int _2;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.10_3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  Std_ReturnType (*<T754>) (const uint8 *, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _7;
+  Dcm_MsgItemType * _8;
+  Std_ReturnType (*<T74f>) (const uint8 *, Dcm_OpStatusType) _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  Std_ReturnType (*<T75e>) (const uint8 *, Dcm_NegativeResponseCodeType *) _12;
+  Dcm_MsgItemType * _13;
+  Std_ReturnType (*<T759>) (const uint8 *) _14;
+  Dcm_MsgItemType * _15;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.11_16;
+  int _17;
+  unsigned char _18;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.12_19;
+  int _20;
+  unsigned char Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.13_21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.14_24;
+  unsigned char _25;
+  Std_ReturnType _68;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  SendKeyStatus_35 = 1;
+  # DEBUG SendKeyStatus => SendKeyStatus_35
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.9_1 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _2 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.9_1;
+  NewSecTabEntry_37 = &Dcm_SecurityLevelEntryConfig[_2];
+  # DEBUG NewSecTabEntry => NewSecTabEntry_37
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.10_3 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _4 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.10_3;
+  NewSecLevel_38 = Dcm_SecurityLevelEntryConfig[_4].SecLevel;
+  # DEBUG NewSecLevel => NewSecLevel_38
+  # DEBUG BEGIN_STMT
+  _5 = NewSecTabEntry_37->SecAccessInterface;
+  if (_5 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _6 = NewSecTabEntry_37->SecAccessAutosarVersion;
+  if (_6 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = NewSecTabEntry_37->SecurityCompareKeyFncAsync_ASR42;
+  _8 = MsgContextPtr_39(D)->reqData;
+  SendKeyStatus_49 = _7 (_8, OpStatus_45(D), Nrc_42(D));
+  # DEBUG SendKeyStatus => SendKeyStatus_49
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = NewSecTabEntry_37->SecurityCompareKeyFncAsync_ASR40;
+  _10 = MsgContextPtr_39(D)->reqData;
+  SendKeyStatus_47 = _9 (_10, OpStatus_45(D));
+  # DEBUG SendKeyStatus => SendKeyStatus_47
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = NewSecTabEntry_37->SecAccessAutosarVersion;
+  if (_11 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = NewSecTabEntry_37->SecurityCompareKeyFncSync_ASR42;
+  _13 = MsgContextPtr_39(D)->reqData;
+  SendKeyStatus_44 = _12 (_13, Nrc_42(D));
+  # DEBUG SendKeyStatus => SendKeyStatus_44
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _14 = NewSecTabEntry_37->SecurityCompareKeyFncSync_ASR40;
+  _15 = MsgContextPtr_39(D)->reqData;
+  SendKeyStatus_41 = _14 (_15);
+  # DEBUG SendKeyStatus => SendKeyStatus_41
+
+  <bb 9> :
+  # SendKeyStatus_27 = PHI <SendKeyStatus_47(5), SendKeyStatus_44(7), SendKeyStatus_41(8), SendKeyStatus_49(4)>
+  # DEBUG SendKeyStatus => SendKeyStatus_27
+  # DEBUG BEGIN_STMT
+  if (OpStatus_45(D) != 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (SendKeyStatus_27 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.11_16 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _17 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.11_16;
+  _18 = Dcm_Dsp_SecurityAccess_DelayTimers[_17].AttemptCounter;
+  if (_18 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.12_19 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _20 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.12_19;
+  Dcm_Dsp_SecurityAccess_DelayTimers[_20].AttemptCounter = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.13_21 = Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel;
+  if (Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.13_21 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (NewSecLevel_38);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *Nrc_42(D) = 0;
+  # DEBUG BEGIN_STMT
+  MsgContextPtr_39(D)->resDataLen = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_67 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_67
+  goto <bb 32>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (SendKeyStatus_27 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  if (SendKeyStatus_27 == 11)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _22 = NewSecTabEntry_37->SecAccessAutosarVersion;
+  if (_22 == 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (SendKeyStatus_27 == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _23 = *Nrc_42(D);
+  if (_23 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  *Nrc_42(D) = 34;
+  goto <bb 24>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  *Nrc_42(D) = 53;
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  *Nrc_42(D) = 53;
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SendKeyStatus_27 == 11)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.14_24 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  Dcm_Dsp_SecurityAccess_CompareKey_TreatAttemptCounters (Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.14_24, Nrc_42(D));
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_59 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_59
+  goto <bb 32>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  if (SendKeyStatus_27 == 10)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 28> :
+  _25 = NewSecTabEntry_37->SecAccessInterface;
+  if (_25 <= 1)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_51 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_51
+  goto <bb 32>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  *Nrc_42(D) = 16;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_53 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_53
+  goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_50 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_50
+
+  <bb 32> :
+  # ServiceProcessStatus_26 = PHI <ServiceProcessStatus_59(26), ServiceProcessStatus_50(31), ServiceProcessStatus_67(15), ServiceProcessStatus_53(30), ServiceProcessStatus_51(29)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_26
+  # DEBUG BEGIN_STMT
+  _68 = ServiceProcessStatus_26;
+  return _68;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_CompareKey_TreatAttemptCounters (uint8 SecLevelIndex, uint8 * Nrc)
+{
+  const struct Dcm_SecurityLevelEntryConfigType * NewSecTabEntry;
+  int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  int _11;
+  unsigned char _12;
+  unsigned char _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) SecLevelIndex_16(D);
+  NewSecTabEntry_17 = &Dcm_SecurityLevelEntryConfig[_1];
+  # DEBUG NewSecTabEntry => NewSecTabEntry_17
+  # DEBUG BEGIN_STMT
+  _2 = (int) SecLevelIndex_16(D);
+  _3 = Dcm_Dsp_SecurityAccess_DelayTimers[_2].AttemptCounter;
+  _4 = NewSecTabEntry_17->SecurityNumAttDelay;
+  if (_3 < _4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) SecLevelIndex_16(D);
+  _6 = Dcm_Dsp_SecurityAccess_DelayTimers[_5].AttemptCounter;
+  if (_6 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) SecLevelIndex_16(D);
+  _8 = Dcm_Dsp_SecurityAccess_DelayTimers[_7].AttemptCounter;
+  _9 = _8;
+  _10 = _9 + 1;
+  Dcm_Dsp_SecurityAccess_DelayTimers[_7].AttemptCounter = _10;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) SecLevelIndex_16(D);
+  _12 = Dcm_Dsp_SecurityAccess_DelayTimers[_11].AttemptCounter;
+  _13 = NewSecTabEntry_17->SecurityNumAttDelay;
+  if (_12 >= _13)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *Nrc_20(D) = 54;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_LockSecurityLevel = SecLevelIndex_16(D);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *Nrc_20(D) = 53;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_GetSeed_Operation (Dcm_OpStatusType OpStatus, uint8 * Nrc, const struct Dcm_SecurityLevelEntryConfigType * NewSecTabEntry, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  uint8 * SecurityAccessDataRecord;
+  Std_ReturnType RetVal;
+  Std_ReturnType GetSeedStatus;
+  long unsigned int _1;
+  unsigned char _2;
+  Std_ReturnType (*<T73b>) (const uint8 *, Dcm_OpStatusType, uint8 *, Dcm_NegativeResponseCodeType *) _3;
+  Dcm_MsgItemType * _4;
+  Dcm_MsgItemType * _5;
+  Std_ReturnType (*<T740>) (const uint8 *, uint8 *, Dcm_NegativeResponseCodeType *) _6;
+  Dcm_MsgItemType * _7;
+  Dcm_MsgItemType * _8;
+  unsigned char _9;
+  Std_ReturnType (*<T745>) (Dcm_OpStatusType, uint8 *, Dcm_NegativeResponseCodeType *) _10;
+  Dcm_MsgItemType * _11;
+  Dcm_MsgItemType * _12;
+  Std_ReturnType (*<T74a>) (uint8 *, Dcm_NegativeResponseCodeType *) _13;
+  Dcm_MsgItemType * _14;
+  Dcm_MsgItemType * _15;
+  Std_ReturnType _57;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GetSeedStatus_18 = 1;
+  # DEBUG GetSeedStatus => GetSeedStatus_18
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 1;
+  # DEBUG RetVal => RetVal_19
+  # DEBUG BEGIN_STMT
+  _1 = NewSecTabEntry_21(D)->ADRSize;
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SecurityAccessDataRecord_41 = MsgContextPtr_22(D)->reqData;
+  # DEBUG SecurityAccessDataRecord => SecurityAccessDataRecord_41
+  # DEBUG BEGIN_STMT
+  _2 = NewSecTabEntry_21(D)->SecAccessInterface;
+  if (_2 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = NewSecTabEntry_21(D)->SecurityGetSeedFncADRAsync;
+  _4 = MsgContextPtr_22(D)->resData;
+  _5 = _4 + 1;
+  GetSeedStatus_50 = _3 (SecurityAccessDataRecord_41, OpStatus_31(D), _5, Nrc_23(D));
+  # DEBUG GetSeedStatus => GetSeedStatus_50
+  # DEBUG BEGIN_STMT
+  if (OpStatus_31(D) != 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_50 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_50 == 131)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (GetSeedStatus_50 == 10)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_56 = 10;
+  # DEBUG RetVal => RetVal_56
+  goto <bb 31>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_50 == 1)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 16;
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 145, 2);
+  goto <bb 31>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_53 = 0;
+  # DEBUG RetVal => RetVal_53
+  goto <bb 31>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RetVal_51 = 1;
+  # DEBUG RetVal => RetVal_51
+  goto <bb 31>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _6 = NewSecTabEntry_21(D)->SecurityGetSeedFncADRSync;
+  _7 = MsgContextPtr_22(D)->resData;
+  _8 = _7 + 1;
+  GetSeedStatus_43 = _6 (SecurityAccessDataRecord_41, _8, Nrc_23(D));
+  # DEBUG GetSeedStatus => GetSeedStatus_43
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_43 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_43 != 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 16;
+  # DEBUG BEGIN_STMT
+  RetVal_47 = GetSeedStatus_43;
+  # DEBUG RetVal => RetVal_47
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 146, 2);
+  goto <bb 31>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_45 = 0;
+  # DEBUG RetVal => RetVal_45
+  goto <bb 31>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _9 = NewSecTabEntry_21(D)->SecAccessInterface;
+  if (_9 <= 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _10 = NewSecTabEntry_21(D)->SecurityGetSeedFncAsync;
+  _11 = MsgContextPtr_22(D)->resData;
+  _12 = _11 + 1;
+  GetSeedStatus_33 = _10 (OpStatus_31(D), _12, Nrc_23(D));
+  # DEBUG GetSeedStatus => GetSeedStatus_33
+  # DEBUG BEGIN_STMT
+  if (OpStatus_31(D) != 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_33 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_33 == 131)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  if (GetSeedStatus_33 == 10)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  RetVal_40 = 10;
+  # DEBUG RetVal => RetVal_40
+  goto <bb 31>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_33 == 1)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 16;
+  # DEBUG BEGIN_STMT
+  RetVal_38 = GetSeedStatus_33;
+  # DEBUG RetVal => RetVal_38
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 147, 2);
+  goto <bb 31>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 0;
+  # DEBUG RetVal => RetVal_36
+  goto <bb 31>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  goto <bb 31>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _13 = NewSecTabEntry_21(D)->SecurityGetSeedFncSync;
+  _14 = MsgContextPtr_22(D)->resData;
+  _15 = _14 + 1;
+  GetSeedStatus_25 = _13 (_15, Nrc_23(D));
+  # DEBUG GetSeedStatus => GetSeedStatus_25
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_25 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_25 != 1)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 16;
+  # DEBUG BEGIN_STMT
+  RetVal_29 = GetSeedStatus_25;
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 148, 2);
+  goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_27 = 0;
+  # DEBUG RetVal => RetVal_27
+
+  <bb 31> :
+  # RetVal_16 = PHI <RetVal_47(15), RetVal_34(26), RetVal_29(29), RetVal_27(30), RetVal_51(12), RetVal_19(14), RetVal_19(9), RetVal_19(10), RetVal_56(8), RetVal_53(11), RetVal_45(16), RetVal_36(25), RetVal_40(22), RetVal_38(24), RetVal_19(23), RetVal_19(28)>
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  _57 = RetVal_16;
+  return _57;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_RequestSeed_SSvcH (Dcm_OpStatusType OpStatus, uint8 * Nrc, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 curProtocolId;
+  const Dcm_SecLevelType ActiveSecLevel;
+  const Dcm_SecLevelType NewSecLevel;
+  const struct Dcm_SecurityLevelEntryConfigType * NewSecTabEntry;
+  Std_ReturnType GetSeedStatus;
+  Std_ReturnType ServiceProcessStatus;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.7_1;
+  int _2;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.8_3;
+  int _4;
+  Dcm_MsgItemType * _5;
+  Dcm_MsgItemType * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  int _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  unsigned char _24;
+  Std_ReturnType _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_29 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+  # DEBUG BEGIN_STMT
+  GetSeedStatus_30 = 0;
+  # DEBUG GetSeedStatus => GetSeedStatus_30
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.7_1 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _2 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.7_1;
+  NewSecTabEntry_32 = &Dcm_SecurityLevelEntryConfig[_2];
+  # DEBUG NewSecTabEntry => NewSecTabEntry_32
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.8_3 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _4 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.8_3;
+  NewSecLevel_33 = Dcm_SecurityLevelEntryConfig[_4].SecLevel;
+  # DEBUG NewSecLevel => NewSecLevel_33
+  # DEBUG BEGIN_STMT
+  ActiveSecLevel_35 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  # DEBUG ActiveSecLevel => ActiveSecLevel_35
+  # DEBUG BEGIN_STMT
+  if (NewSecLevel_33 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (NewSecLevel_33 == ActiveSecLevel_35)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = MsgContextPtr_36(D)->resData;
+  _6 = _5 + 1;
+  _7 = NewSecTabEntry_32->SeedSize;
+  TS_MemSet32 (_6, 0, _7);
+  # DEBUG BEGIN_STMT
+  _8 = NewSecTabEntry_32->SeedSize;
+  _9 = _8 + 1;
+  MsgContextPtr_36(D)->resDataLen = _9;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_40 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_40
+  goto <bb 16>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 = MsgContextPtr_36(D)->dcmRxPduId;
+  _11 = (int) _10;
+  _12 = Dcm_RxPduIdConfig[_11].MainConnectionIndex;
+  _13 = (int) _12;
+  curProtocolId_41 = Dcm_MainConnectionConfig[_13].ProtocolIndex;
+  # DEBUG curProtocolId => curProtocolId_41
+  # DEBUG BEGIN_STMT
+  _14 = (int) curProtocolId_41;
+  curHsmInfo_42 = &Dcm_HsmInfo[_14];
+  # DEBUG curHsmInfo => curHsmInfo_42
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo_42->serviceId;
+  _16 = Dcm_Dsl_DiagnosticSessionHandler_GetResetToDefaultSessionOccured (_15);
+  if (_16 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _17 = curHsmInfo_42->subServiceId;
+  _18 = _17 + 1;
+  _19 = _18 / 2;
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = _19;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  GetSeedStatus_50 = Dcm_Dsp_SecurityAccess_GetSeed_Operation (OpStatus_47(D), Nrc_48(D), NewSecTabEntry_32, MsgContextPtr_36(D));
+  # DEBUG GetSeedStatus => GetSeedStatus_50
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_50 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _20 = MsgContextPtr_36(D)->resDataLen;
+  _21 = NewSecTabEntry_32->SeedSize;
+  _22 = _20 + _21;
+  _23 = _22 + 1;
+  MsgContextPtr_36(D)->resDataLen = _23;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_55 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_55
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (GetSeedStatus_50 == 10)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_53 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_53
+  goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_47(D) != 2)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  if (GetSeedStatus_50 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  _24 = *Nrc_48(D);
+  if (_24 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  *Nrc_48(D) = 34;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_52 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_52
+
+  <bb 16> :
+  # ServiceProcessStatus_25 = PHI <ServiceProcessStatus_40(4), ServiceProcessStatus_55(8), ServiceProcessStatus_53(10), ServiceProcessStatus_52(15)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_25
+  # DEBUG BEGIN_STMT
+  _56 = ServiceProcessStatus_25;
+  return _56;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  Dcm_NegativeResponseCodeType Nrc;
+  Dcm_SecStateType SecState;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 curProtocolId;
+  Std_ReturnType ServiceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  int _5;
+  unsigned char _6;
+  unsigned char Dcm_Dsp_SecurityAccess_InitState.2_7;
+  long unsigned int Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.3_8;
+  unsigned char Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.4_9;
+  int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  unsigned char Nrc.5_13;
+  unsigned char Nrc.6_14;
+  Std_ReturnType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_19 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  _1 = MsgContextPtr_21(D)->dcmRxPduId;
+  _2 = (int) _1;
+  _3 = Dcm_RxPduIdConfig[_2].MainConnectionIndex;
+  _4 = (int) _3;
+  curProtocolId_22 = Dcm_MainConnectionConfig[_4].ProtocolIndex;
+  # DEBUG curProtocolId => curProtocolId_22
+  # DEBUG BEGIN_STMT
+  _5 = (int) curProtocolId_22;
+  curHsmInfo_23 = &Dcm_HsmInfo[_5];
+  # DEBUG curHsmInfo => curHsmInfo_23
+  # DEBUG BEGIN_STMT
+  _6 = curHsmInfo_23->subServiceId;
+  SecState_24 = _6 & 1;
+  # DEBUG SecState => SecState_24
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  if (SecState_24 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_InitState.2_7 = Dcm_Dsp_SecurityAccess_InitState;
+  if (Dcm_Dsp_SecurityAccess_InitState.2_7 != 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Nrc = 34;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.3_8 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked;
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.4_9 = Dcm_Dsp_SecurityAccess_ReqSecLevelIndex;
+  _10 = (int) Dcm_Dsp_SecurityAccess_ReqSecLevelIndex.4_9;
+  _11 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.3_8 >> _10;
+  _12 = _11 & 1;
+  if (_12 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Nrc = 55;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_30 = Dcm_Dsp_SecurityAccess_RequestSeed_SSvcH (OpStatus_26(D), &Nrc, MsgContextPtr_21(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_30
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_28 = Dcm_Dsp_SecurityAccess_SendKey_SSvcH (OpStatus_26(D), &Nrc, MsgContextPtr_21(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_28
+
+  <bb 9> :
+  # ServiceProcessStatus_15 = PHI <ServiceProcessStatus_19(6), ServiceProcessStatus_28(8), ServiceProcessStatus_19(4), ServiceProcessStatus_30(7)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_15
+  # DEBUG BEGIN_STMT
+  Nrc.5_13 = Nrc;
+  if (Nrc.5_13 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Nrc.6_14 = Nrc;
+  curHsmInfo_23->negativeResponseCode = Nrc.6_14;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_36 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_36
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+
+  <bb 11> :
+  # ServiceProcessStatus_16 = PHI <ServiceProcessStatus_15(9), ServiceProcessStatus_36(10)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_16
+  # DEBUG BEGIN_STMT
+  _38 = ServiceProcessStatus_16;
+  Nrc ={v} {CLOBBER};
+  return _38;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_SvcStart (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  Dcm_SecLevelType NewSecLevel;
+  uint8 SecIdx;
+  Dcm_NegativeResponseCodeType Nrc;
+  const struct Dcm_SecurityLevelEntryConfigType * NewSecTabEntry;
+  Dcm_SecStateType SecState;
+  Std_ReturnType ServiceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  unsigned char _3;
+  unsigned char _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  int _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  unsigned int _12;
+  unsigned char Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.1_13;
+  unsigned int _14;
+  unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  Dcm_MsgItemType * _22;
+  Dcm_MsgItemType * _23;
+  unsigned char _24;
+  Dcm_MsgItemType * _25;
+  Dcm_MsgItemType * _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  Std_ReturnType _65;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_39 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_39
+  # DEBUG BEGIN_STMT
+  SecState_40 = 0;
+  # DEBUG SecState => SecState_40
+  # DEBUG BEGIN_STMT
+  NewSecTabEntry_41 = 0B;
+  # DEBUG NewSecTabEntry => NewSecTabEntry_41
+  # DEBUG BEGIN_STMT
+  Nrc_42 = 0;
+  # DEBUG Nrc => Nrc_42
+  # DEBUG BEGIN_STMT
+  _1 = MsgContextPtr_44(D)->reqDataLen;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Nrc_53 = 19;
+  # DEBUG Nrc => Nrc_53
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = MsgContextPtr_44(D)->reqData;
+  _3 = *_2;
+  _4 = _3 + 1;
+  NewSecLevel_45 = _4 / 2;
+  # DEBUG NewSecLevel => NewSecLevel_45
+  # DEBUG BEGIN_STMT
+  _5 = MsgContextPtr_44(D)->reqData;
+  _6 = *_5;
+  SecState_46 = _6 & 1;
+  # DEBUG SecState => SecState_46
+  # DEBUG BEGIN_STMT
+  SecIdx_47 = 0;
+  # DEBUG SecIdx => SecIdx_47
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) SecIdx_35;
+  _8 = Dcm_SecurityLevelEntryConfig[_7].SecLevel;
+  if (NewSecLevel_45 == _8)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) SecIdx_35;
+  NewSecTabEntry_49 = &Dcm_SecurityLevelEntryConfig[_9];
+  # DEBUG NewSecTabEntry => NewSecTabEntry_49
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex = SecIdx_35;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SecIdx_48 = SecIdx_35 + 1;
+  # DEBUG SecIdx => SecIdx_48
+
+  <bb 8> :
+  # SecIdx_35 = PHI <SecIdx_47(4), SecIdx_48(7)>
+  # DEBUG SecIdx => SecIdx_35
+  # DEBUG BEGIN_STMT
+  if (SecIdx_35 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # NewSecTabEntry_31 = PHI <NewSecTabEntry_49(6), NewSecTabEntry_41(8)>
+  # DEBUG NewSecTabEntry => NewSecTabEntry_31
+  # DEBUG BEGIN_STMT
+  if (SecIdx_35 > 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Nrc_52 = 18;
+  # DEBUG Nrc => Nrc_52
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (SecState_46 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _10 = MsgContextPtr_44(D)->reqData;
+  _11 = *_10;
+  _12 = (unsigned int) _11;
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.1_13 = Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel;
+  _14 = (unsigned int) Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel.1_13;
+  _15 = _14 * 2;
+  if (_12 != _15)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Nrc_51 = 36;
+  # DEBUG Nrc => Nrc_51
+
+  <bb 14> :
+  # SecState_30 = PHI <SecState_40(3), SecState_46(10), SecState_46(11), SecState_46(12), SecState_46(13)>
+  # NewSecTabEntry_32 = PHI <NewSecTabEntry_41(3), NewSecTabEntry_31(10), NewSecTabEntry_31(11), NewSecTabEntry_31(12), NewSecTabEntry_31(13)>
+  # Nrc_33 = PHI <Nrc_53(3), Nrc_52(10), Nrc_42(11), Nrc_42(12), Nrc_51(13)>
+  # DEBUG Nrc => Nrc_33
+  # DEBUG NewSecTabEntry => NewSecTabEntry_32
+  # DEBUG SecState => SecState_30
+  # DEBUG BEGIN_STMT
+  if (Nrc_33 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (SecState_30 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _16 = MsgContextPtr_44(D)->reqDataLen;
+  _17 = NewSecTabEntry_32->KeySize;
+  _18 = _17 + 1;
+  if (_16 != _18)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Nrc_54 = 19;
+  # DEBUG Nrc => Nrc_54
+  goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (SecState_30 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  _19 = MsgContextPtr_44(D)->reqDataLen;
+  _20 = NewSecTabEntry_32->ADRSize;
+  _21 = _20 + 1;
+  if (_19 != _21)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Nrc_55 = 19;
+  # DEBUG Nrc => Nrc_55
+
+  <bb 21> :
+  # Nrc_34 = PHI <Nrc_33(14), Nrc_54(17), Nrc_33(18), Nrc_33(19), Nrc_55(20)>
+  # DEBUG Nrc => Nrc_34
+  # DEBUG BEGIN_STMT
+  if (Nrc_34 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _22 = MsgContextPtr_44(D)->reqData;
+  _23 = MsgContextPtr_44(D)->resData;
+  _24 = *_22;
+  *_23 = _24;
+  # DEBUG BEGIN_STMT
+  _25 = MsgContextPtr_44(D)->reqData;
+  _26 = _25 + 1;
+  MsgContextPtr_44(D)->reqData = _26;
+  # DEBUG BEGIN_STMT
+  _27 = MsgContextPtr_44(D)->reqDataLen;
+  _28 = _27 + 4294967295;
+  MsgContextPtr_44(D)->reqDataLen = _28;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_64 = Dcm_Dsp_SecurityAccess_SvcCont (OpStatus_62(D), MsgContextPtr_44(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_64
+  goto <bb 26>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (MsgContextPtr_44(D), Nrc_34);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_57 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_57
+  # DEBUG BEGIN_STMT
+  if (Nrc_34 != 18)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 24> :
+  if (Nrc_34 != 36)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+
+  <bb 26> :
+  # ServiceProcessStatus_29 = PHI <ServiceProcessStatus_64(22), ServiceProcessStatus_57(23), ServiceProcessStatus_57(24), ServiceProcessStatus_57(25)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+  # DEBUG BEGIN_STMT
+  _65 = ServiceProcessStatus_29;
+  return _65;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_DelayTimers_Decrement ()
+{
+  uint8_least StartFromIndex;
+  uint8_least SecLevelIndex;
+  long unsigned int Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.17_1;
+  long unsigned int Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.18_2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.19_12;
+  long unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  StartFromIndex_18 = 0;
+  # DEBUG StartFromIndex => StartFromIndex_18
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.17_1 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked;
+  if (Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.17_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_20 = StartFromIndex_18;
+  # DEBUG SecLevelIndex => SecLevelIndex_20
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.18_2 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked;
+  _3 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.18_2 >> SecLevelIndex_14;
+  _4 = _3 & 1;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  _5 = Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_14].InfiniteDelay;
+  if (_5 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_14].DelayTimer;
+  if (_6 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_14].DelayTimer;
+  _8 = _7 + 4294967295;
+  Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_14].DelayTimer = _8;
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_14].DelayTimer;
+  if (_9 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _10 = 1 << SecLevelIndex_14;
+  _11 = ~_10;
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.19_12 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked;
+  _13 = _11 & Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.19_12;
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked = _13;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_23 = SecLevelIndex_14 + 1;
+  # DEBUG SecLevelIndex => SecLevelIndex_23
+
+  <bb 10> :
+  # SecLevelIndex_14 = PHI <SecLevelIndex_20(3), SecLevelIndex_23(9)>
+  # DEBUG SecLevelIndex => SecLevelIndex_14
+  # DEBUG BEGIN_STMT
+  if (SecLevelIndex_14 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_StartDelayTimer (uint8 SecLevelIndex, uint32 Value, boolean InfiniteDelay)
+{
+  int _1;
+  int _2;
+  int _3;
+  long unsigned int _4;
+  long unsigned int Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.15_5;
+  long unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (Value_8(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (InfiniteDelay_9(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) SecLevelIndex_11(D);
+  Dcm_Dsp_SecurityAccess_DelayTimers[_1].DelayTimer = Value_8(D);
+  # DEBUG BEGIN_STMT
+  _2 = (int) SecLevelIndex_11(D);
+  Dcm_Dsp_SecurityAccess_DelayTimers[_2].InfiniteDelay = InfiniteDelay_9(D);
+  # DEBUG BEGIN_STMT
+  _3 = (int) SecLevelIndex_11(D);
+  _4 = 1 << _3;
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.15_5 = Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked;
+  _6 = _4 | Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked.15_5;
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked = _6;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_StartDelayTimersOnStartup ()
+{
+  uint32 DelayTimerValue;
+  uint8_least SecLevelIndex;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_13 = 0;
+  # DEBUG SecLevelIndex => SecLevelIndex_13
+  # DEBUG BEGIN_STMT
+  DelayTimerValue_14 = 0;
+  # DEBUG DelayTimerValue => DelayTimerValue_14
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_15 = 0;
+  # DEBUG SecLevelIndex => SecLevelIndex_15
+  goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTimeOnBootOverride;
+  if (_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned char) SecLevelIndex_9;
+  _3 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTimeOnBoot;
+  Dcm_Dsp_SecurityAccess_StartDelayTimer (_2, _3, 0);
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_9].AttemptCounter;
+  _5 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].SecurityNumAttDelay;
+  if (_4 >= _5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DelayTimerValue_17 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTimeOnBoot;
+  # DEBUG DelayTimerValue => DelayTimerValue_17
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTime;
+  if (DelayTimerValue_17 < _6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  DelayTimerValue_18 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTime;
+  # DEBUG DelayTimerValue => DelayTimerValue_18
+
+  <bb 8> :
+  # DelayTimerValue_10 = PHI <DelayTimerValue_17(6), DelayTimerValue_18(7)>
+  # DEBUG DelayTimerValue => DelayTimerValue_10
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned char) SecLevelIndex_9;
+  _8 = Dcm_SecurityLevelEntryConfig[SecLevelIndex_9].DelayTimeInfinite;
+  Dcm_Dsp_SecurityAccess_StartDelayTimer (_7, DelayTimerValue_10, _8);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_21 = SecLevelIndex_9 + 1;
+  # DEBUG SecLevelIndex => SecLevelIndex_21
+
+  <bb 10> :
+  # SecLevelIndex_9 = PHI <SecLevelIndex_15(2), SecLevelIndex_21(9)>
+  # DEBUG SecLevelIndex => SecLevelIndex_9
+  # DEBUG BEGIN_STMT
+  if (SecLevelIndex_9 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_Reset ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_MainFunction ()
+{
+  unsigned char Dcm_Dsp_SecurityAccess_InitState.16_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_InitState.16_1 = Dcm_Dsp_SecurityAccess_InitState;
+  if (Dcm_Dsp_SecurityAccess_InitState.16_1 == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_DelayTimers_Decrement ();
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StartDelayTimersOnStartup ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_InitState = 3;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * MsgContextPtr)
+{
+  const uint8 LockSecurityLevel;
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  unsigned char Dcm_Dsp_SecurityAccess_LockSecurityLevel.0_2;
+  int _3;
+  long unsigned int _4;
+  int _5;
+  unsigned char _6;
+  Std_ReturnType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_11(D);
+  switch (_1) <default: <L11> [INV], case 0: <L0> [INV], case 1: <L2> [INV], case 2: <L3> [INV], case 3: <L1> [INV], case 5 ... 6: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_25 = Dcm_Dsp_SecurityAccess_SvcStart (OpStatus_11(D), MsgContextPtr_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_25
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_19 = Dcm_Dsp_SecurityAccess_SvcCont (OpStatus_11(D), MsgContextPtr_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_23 = Dcm_Dsp_SecurityAccess_SvcCont (OpStatus_11(D), MsgContextPtr_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_21 = Dcm_Dsp_SecurityAccess_SvcCont (OpStatus_11(D), MsgContextPtr_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_LockSecurityLevel.0_2 = Dcm_Dsp_SecurityAccess_LockSecurityLevel;
+  if (Dcm_Dsp_SecurityAccess_LockSecurityLevel.0_2 != 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  LockSecurityLevel_13 = Dcm_Dsp_SecurityAccess_LockSecurityLevel;
+  # DEBUG LockSecurityLevel => LockSecurityLevel_13
+  # DEBUG BEGIN_STMT
+  _3 = (int) LockSecurityLevel_13;
+  _4 = Dcm_SecurityLevelEntryConfig[_3].DelayTime;
+  _5 = (int) LockSecurityLevel_13;
+  _6 = Dcm_SecurityLevelEntryConfig[_5].DelayTimeInfinite;
+  Dcm_Dsp_SecurityAccess_StartDelayTimer (LockSecurityLevel_13, _4, _6);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_LockSecurityLevel = 2;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_16 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_16
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # ServiceProcessStatus_7 = PHI <ServiceProcessStatus_25(3), ServiceProcessStatus_19(4), ServiceProcessStatus_23(5), ServiceProcessStatus_21(6), ServiceProcessStatus_16(9), ServiceProcessStatus_10(2)>
+<L11>:
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _26 = ServiceProcessStatus_7;
+  return _26;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_Init ()
+{
+  uint8_least SecLevelIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_SecurityLevelsBlocked = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_LockSecurityLevel = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_InitState = 1;
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_7 = 0;
+  # DEBUG SecLevelIndex => SecLevelIndex_7
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_1].AttemptCounter = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_1].DelayTimer = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_DelayTimers[SecLevelIndex_1].InfiniteDelay = 0;
+  # DEBUG BEGIN_STMT
+  SecLevelIndex_13 = SecLevelIndex_1 + 1;
+  # DEBUG SecLevelIndex => SecLevelIndex_13
+
+  <bb 4> :
+  # SecLevelIndex_1 = PHI <SecLevelIndex_7(2), SecLevelIndex_13(3)>
+  # DEBUG SecLevelIndex => SecLevelIndex_1
+  # DEBUG BEGIN_STMT
+  if (SecLevelIndex_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_ReqSecLevelIndex = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_Reset ();
+  return;
+
+}
+
+
+Dcm_Dsp_SecurityAccess_Reset ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_StrictCheckingReqSecLevel = 0;
+  return;
+
+}
+
+

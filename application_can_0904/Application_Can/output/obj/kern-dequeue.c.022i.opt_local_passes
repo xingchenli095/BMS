@@ -1,0 +1,121 @@
+__attribute__((target ("general-regs-only")))
+OS_Dequeue (os_tasklink_t tAct)
+{
+  os_tasklink_t qAct;
+  os_tasklink_t * const taskActivations;
+  unsigned int _1;
+  unsigned int _2;
+  os_tasklink_t * _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  int _6;
+  const struct os_task_t * _7;
+  unsigned int _8;
+  unsigned int _9;
+  os_tasklink_t * _10;
+  unsigned int _11;
+  unsigned int _12;
+  os_tasklink_t * _13;
+  unsigned int _14;
+  unsigned int _15;
+  os_tasklink_t * _16;
+  short unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  os_tasklink_t * _20;
+  unsigned int _21;
+  unsigned int _22;
+  os_tasklink_t * _23;
+  short unsigned int _24;
+  unsigned int _25;
+  unsigned int _26;
+  os_tasklink_t * _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations_30 = &OS_taskActivations;
+  # DEBUG taskActivations => taskActivations_30
+  # DEBUG BEGIN_STMT
+  qAct_32 = OS_taskActivations[0];
+  # DEBUG qAct => qAct_32
+  # DEBUG BEGIN_STMT
+  if (tAct_33(D) == qAct_32)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) tAct_33(D);
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  _4 = *_3;
+  OS_taskActivations[0] = _4;
+  # DEBUG BEGIN_STMT
+  _5 = OS_taskActivations[0];
+  _6 = (int) _5;
+  _7 = OS_taskPtrs[_6];
+  OS_kernelData.taskQueueHead = _7;
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) tAct_33(D);
+  _9 = _8 * 2;
+  _10 = &OS_taskActivations + _9;
+  *_10 = 0;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) qAct_28;
+  _12 = _11 * 2;
+  _13 = &OS_taskActivations + _12;
+  qAct_34 = *_13;
+  # DEBUG qAct => qAct_34
+
+  <bb 5> :
+  # qAct_28 = PHI <qAct_32(2), qAct_34(4)>
+  # DEBUG qAct => qAct_28
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) qAct_28;
+  _15 = _14 * 2;
+  _16 = &OS_taskActivations + _15;
+  _17 = *_16;
+  if (tAct_33(D) != _17)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  if (qAct_28 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (qAct_28 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) tAct_33(D);
+  _19 = _18 * 2;
+  _20 = &OS_taskActivations + _19;
+  _21 = (unsigned int) qAct_28;
+  _22 = _21 * 2;
+  _23 = &OS_taskActivations + _22;
+  _24 = *_20;
+  *_23 = _24;
+  # DEBUG BEGIN_STMT
+  _25 = (unsigned int) tAct_33(D);
+  _26 = _25 * 2;
+  _27 = &OS_taskActivations + _26;
+  *_27 = 0;
+
+  <bb 9> :
+  return;
+
+}
+
+

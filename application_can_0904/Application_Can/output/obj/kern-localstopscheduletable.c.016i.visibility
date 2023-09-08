@@ -1,0 +1,226 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalStopScheduleTable
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nSchedules/6 (OS_nSchedules) @06c18cf0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalStopScheduleTable/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_scheduleTableBase/5 (OS_scheduleTableBase) @06c18ca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalStopScheduleTable/0 (read)OS_LocalStopScheduleTable/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_KillAlarm/4 (OS_KillAlarm) @06c38ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalStopScheduleTable/0 
+  Calls: 
+OS_AppIsAccessible/3 (OS_AppIsAccessible) @06c38e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalStopScheduleTable/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c38d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalStopScheduleTable/0 OS_LocalStopScheduleTable/0 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06c18b88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalStopScheduleTable/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalStopScheduleTable/0 (OS_LocalStopScheduleTable) @06c38a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)OS_scheduleTableBase/5 (read)OS_nSchedules/6 (read)OS_scheduleTableBase/5 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 OS_KillAlarm/4 OS_AppIsAccessible/3 OS_CORTEXM_IntSetDisablingLevel/2 
+__attribute__((target ("general-regs-only")))
+OS_LocalStopScheduleTable (os_scheduleid_t s, const struct os_schedule_t * ss)
+{
+  os_scheduleid_t i;
+  os_intstatus_t is;
+  os_errorresult_t result;
+  os_schedulestatus_t oldstatus;
+  os_scheduleid_t chain;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t D.7437;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = sd->status;
+  oldstatus = _2 & 3;
+  # DEBUG BEGIN_STMT
+  _3 = ss->app;
+  _4 = OS_AppIsAccessible (_3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (oldstatus == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result = 41;
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  chain = sd->chain;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd->next = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = 0;
+  # DEBUG BEGIN_STMT
+  if (oldstatus == 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = ss->alarm;
+  OS_KillAlarm (_5, 0);
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (oldstatus == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.1_6 = OS_scheduleTableBase;
+  _7 = (unsigned int) i;
+  _8 = _7 * 36;
+  _9 = OS_scheduleTableBase.1_6 + _8;
+  sd = _9->dynamic;
+  # DEBUG BEGIN_STMT
+  _10 = sd->chain;
+  if (s == _10)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  i.2_11 = i;
+  i = i.2_11 + 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.3_12 = OS_nSchedules;
+  if (i < OS_nSchedules.3_12)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.4_13 = OS_scheduleTableBase;
+  _14 = (unsigned int) chain;
+  _15 = _14 * 36;
+  _16 = OS_scheduleTableBase.4_13 + _15;
+  sd = _16->dynamic;
+  # DEBUG BEGIN_STMT
+  sd->status = 0;
+  # DEBUG BEGIN_STMT
+  chain = sd->chain;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (chain != 255)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7437 = result;
+  return D.7437;
+
+}
+
+

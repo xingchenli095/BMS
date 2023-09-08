@@ -1,0 +1,203 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_DoTerminateTask
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_Dequeue/6 (OS_Dequeue) @06c77ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoTerminateTask/0 
+  Calls: 
+OS_ptrPostTaskHook/5 (OS_ptrPostTaskHook) @06c53d80
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoTerminateTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/4 (OS_kernelData) @06c53d38
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoTerminateTask/0 (addr)OS_DoTerminateTask/0 (read)OS_DoTerminateTask/0 (write)OS_DoTerminateTask/0 (write)
+  Availability: not_available
+  Varpool flags:
+OS_stopTaskExecTimingFp/3 (OS_stopTaskExecTimingFp) @06c53c60
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoTerminateTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c77d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoTerminateTask/0 OS_DoTerminateTask/0 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06c53bd0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoTerminateTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_DoTerminateTask/0 (OS_DoTerminateTask) @06c77b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)OS_stopTaskExecTimingFp/3 (read)OS_kernelData/4 (addr)OS_kernelData/4 (read)OS_kernelData/4 (write)OS_ptrPostTaskHook/5 (read)OS_kernelData/4 (write)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 OS_Dequeue/6 OS_CORTEXM_IntSetDisablingLevel/2 
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_DoTerminateTask (const struct os_task_t * tp, struct os_taskdynamic_t * td)
+{
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  os_intstatus_t is;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = td->state;
+  if (_2 == 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_stopTaskExecTimingFp.1_3 = OS_stopTaskExecTimingFp;
+  OS_stopTaskExecTimingFp.1_3 (tp);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = td->state;
+  if (_4 == 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp = OS_kernelData.inFunction;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPostTaskHook.2_5 = OS_ptrPostTaskHook;
+  OS_ptrPostTaskHook.2_5 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = tp->linkBase;
+  _7 = td->cAct;
+  _8 = (short unsigned int) _7;
+  _9 = _6 + _8;
+  OS_Dequeue (_9);
+  # DEBUG BEGIN_STMT
+  _10 = td->nAct;
+  if (_10 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 = td->nAct;
+  _12 = _11;
+  _13 = _12 + 255;
+  td->nAct = _13;
+  # DEBUG BEGIN_STMT
+  _14 = tp->queuePrio;
+  _15 = (short unsigned int) _14;
+  td->prio = _15;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td->state = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = tp->accounting;
+  if (_16 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _17 = tp->accounting;
+  _17->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _18 = tp->accounting;
+  _18->etType = 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = td->cAct;
+  _20 = tp->maxAct;
+  if (_19 >= _20)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  td->cAct = 0;
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _21 = td->cAct;
+  _22 = _21;
+  _23 = _22 + 1;
+  td->cAct = _23;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td->state = 0;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  return;
+
+}
+
+

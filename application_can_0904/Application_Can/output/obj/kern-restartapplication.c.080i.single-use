@@ -1,0 +1,187 @@
+__attribute__((target ("general-regs-only")))
+OS_RestartApplication (const struct os_appcontext_t * app)
+{
+  const struct os_schedule_t * schedule;
+  const struct os_alarm_t * alarm;
+  const struct os_task_t * task;
+  os_scheduleid_t scheduleid;
+  os_alarmid_t alarmid;
+  os_taskid_t taskid;
+  struct os_appdynamic_t * _1;
+  const struct os_appcontext_t * _2;
+  os_result_t (*<T562>) (os_alarmid_t, os_uint8_t) OS_killAlarmFunc.0_3;
+  short unsigned int OS_nAlarms.2_4;
+  const struct os_appcontext_t * _5;
+  os_result_t (*<T57f>) (os_scheduleid_t, os_schedulestatus_t) OS_killScheduleFunc.3_6;
+  unsigned char OS_nSchedules.5_7;
+  const struct os_appcontext_t * _8;
+  os_result_t (*<T69c>) (const struct os_task_t *, os_taskstate_t) OS_killTaskFunc.6_9;
+  unsigned char OS_nTasks.8_10;
+  unsigned char _11;
+  unsigned char OS_nTasks.8_12;
+  void (*<T62f>) (const struct os_task_t *) OS_actiTaskFunc.10_13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct os_task_t * _16;
+
+  <bb 2> [local count: 118111599]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = app_31(D)->dynamic;
+  _1->appstate = 1;
+  # DEBUG BEGIN_STMT
+  alarm_33 = OS_alarmTableBase;
+  # DEBUG alarm => alarm_33
+  # DEBUG BEGIN_STMT
+  # DEBUG alarmid => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 955630214]:
+  # DEBUG BEGIN_STMT
+  _2 = alarm_21->app;
+  if (_2 == app_31(D))
+    goto <bb 4>; [30.00%]
+  else
+    goto <bb 5>; [70.00%]
+
+  <bb 4> [local count: 286689064]:
+  # DEBUG BEGIN_STMT
+  OS_killAlarmFunc.0_3 = OS_killAlarmFunc;
+  OS_killAlarmFunc.0_3 (alarmid_18, 0);
+
+  <bb 5> [local count: 955630214]:
+  # DEBUG BEGIN_STMT
+  alarm_44 = alarm_21 + 28;
+  # DEBUG alarm => alarm_44
+  # DEBUG BEGIN_STMT
+  alarmid_45 = alarmid_18 + 1;
+  # DEBUG alarmid => alarmid_45
+
+  <bb 6> [local count: 1073741815]:
+  # alarmid_18 = PHI <0(2), alarmid_45(5)>
+  # alarm_21 = PHI <alarm_33(2), alarm_44(5)>
+  # DEBUG alarm => alarm_21
+  # DEBUG alarmid => alarmid_18
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.2_4 = OS_nAlarms;
+  if (OS_nAlarms.2_4 > alarmid_18)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111599]:
+  # DEBUG BEGIN_STMT
+  schedule_34 = OS_scheduleTableBase;
+  # DEBUG schedule => schedule_34
+  # DEBUG BEGIN_STMT
+  # DEBUG scheduleid => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 955630217]:
+  # DEBUG BEGIN_STMT
+  _5 = schedule_22->app;
+  if (_5 == app_31(D))
+    goto <bb 9>; [30.00%]
+  else
+    goto <bb 10>; [70.00%]
+
+  <bb 9> [local count: 286689065]:
+  # DEBUG BEGIN_STMT
+  OS_killScheduleFunc.3_6 = OS_killScheduleFunc;
+  OS_killScheduleFunc.3_6 (scheduleid_19, 0);
+
+  <bb 10> [local count: 955630217]:
+  # DEBUG BEGIN_STMT
+  schedule_41 = schedule_22 + 36;
+  # DEBUG schedule => schedule_41
+  # DEBUG BEGIN_STMT
+  scheduleid_42 = scheduleid_19 + 1;
+  # DEBUG scheduleid => scheduleid_42
+
+  <bb 11> [local count: 1073741818]:
+  # scheduleid_19 = PHI <0(7), scheduleid_42(10)>
+  # schedule_22 = PHI <schedule_34(7), schedule_41(10)>
+  # DEBUG schedule => schedule_22
+  # DEBUG scheduleid => scheduleid_19
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.5_7 = OS_nSchedules;
+  if (OS_nSchedules.5_7 > scheduleid_19)
+    goto <bb 8>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+
+  <bb 12> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  task_35 = OS_taskTableBase;
+  # DEBUG task => task_35
+  # DEBUG BEGIN_STMT
+  # DEBUG taskid => 0
+  goto <bb 16>; [100.00%]
+
+  <bb 13> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  _8 = task_20->app;
+  if (_8 == app_31(D))
+    goto <bb 14>; [30.00%]
+  else
+    goto <bb 15>; [70.00%]
+
+  <bb 14> [local count: 286689067]:
+  # DEBUG BEGIN_STMT
+  OS_killTaskFunc.6_9 = OS_killTaskFunc;
+  OS_killTaskFunc.6_9 (task_20, 0);
+
+  <bb 15> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  task_38 = task_20 + 76;
+  # DEBUG task => task_38
+  # DEBUG BEGIN_STMT
+  taskid_39 = taskid_17 + 1;
+  # DEBUG taskid => taskid_39
+
+  <bb 16> [local count: 1073741824]:
+  # taskid_17 = PHI <0(12), taskid_39(15)>
+  # task_20 = PHI <task_35(12), task_38(15)>
+  # DEBUG task => task_20
+  # DEBUG taskid => taskid_17
+  # DEBUG BEGIN_STMT
+  OS_nTasks.8_10 = OS_nTasks;
+  if (OS_nTasks.8_10 > taskid_17)
+    goto <bb 13>; [89.00%]
+  else
+    goto <bb 17>; [11.00%]
+
+  <bb 17> [local count: 118111601]:
+  # OS_nTasks.8_12 = PHI <OS_nTasks.8_10(16)>
+  # DEBUG BEGIN_STMT
+  _11 = app_31(D)->restartTask;
+  if (_11 < OS_nTasks.8_12)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 20>; [50.00%]
+
+  <bb 18> [local count: 59055800]:
+  OS_actiTaskFunc.10_13 = OS_actiTaskFunc;
+  if (OS_actiTaskFunc.10_13 != 0B)
+    goto <bb 19>; [70.00%]
+  else
+    goto <bb 20>; [30.00%]
+
+  <bb 19> [local count: 41339060]:
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) _11;
+  _15 = _14 * 76;
+  _16 = task_35 + _15;
+  OS_actiTaskFunc.10_13 (_16);
+
+  <bb 20> [local count: 118111601]:
+  return;
+
+}
+
+

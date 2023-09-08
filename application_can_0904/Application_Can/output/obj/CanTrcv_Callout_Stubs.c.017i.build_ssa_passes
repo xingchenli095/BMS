@@ -1,0 +1,78 @@
+CanTrcv_Callout_SimulatedWakeup ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_SetWakeupEvent (32);
+  return;
+
+}
+
+
+CanTrcv_Callout_SimulatedShutDown ()
+{
+  CanIf_PduModeType PduMode;
+  CanIf_ControllerModeType ControllerMode;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuM_OnGoOffOne ();
+  # DEBUG BEGIN_STMT
+  BswM_Deinit ();
+  # DEBUG BEGIN_STMT
+  EcuM_SchM_Deinit ();
+  # DEBUG BEGIN_STMT
+  CanIf_GetPduMode (0, &PduMode);
+  # DEBUG BEGIN_STMT
+  PduMode.0_1 = PduMode;
+  if (PduMode.0_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanIf_SetPduMode (0, 1);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_GetControllerMode (0, &ControllerMode);
+  # DEBUG BEGIN_STMT
+  ControllerMode.1_2 = ControllerMode;
+  if (ControllerMode.1_2 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CanIf_SetControllerMode (0, 2);
+  # DEBUG BEGIN_STMT
+  CanIf_SetControllerMode (0, 1);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanNm_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Nm_MainFunction ();
+  # DEBUG BEGIN_STMT
+  ComM_MainFunction_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = ComM_ChanState[0];
+  if (_3 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Mcu_PerformReset ();
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+}
+
+

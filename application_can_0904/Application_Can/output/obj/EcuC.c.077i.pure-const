@@ -1,0 +1,1717 @@
+
+
+ local analysis of EcuC_TpTransmission_entry_IDLE
+   scanning: TS_MemBZero32 (TxControlInfoPtr_2(D), 4);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of EcuC_TpReception_entry_IDLE
+   scanning: TS_MemBZero32 (RxControlInfoPtr_2(D), 6);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of EcuC_TpTxConfirmation
+   scanning: if (Result_3(D) == 0)
+  scanning: _1 = TxControlInfoPtr_5(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 0)
+  scanning: EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_5(D));
+  scanning: return retVal_2;
+Function is locally pure.
+
+
+ local analysis of EcuC_TpTransmit
+   scanning: _1 = TxControlInfoPtr_6(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 2)
+  scanning: if (LoTpTransmitFunctPtr_7(D) != 0B)
+  scanning: _2 = TxBufferInfoPtr_8(D)->SduLength;
+    Indirect ref read is not const
+  scanning: TxControlInfoPtr_6(D)->remainMsgSize = _2;
+    Indirect ref write is not const/pure
+  scanning: TxControlInfoPtr_6(D)->state = 2;
+    Indirect ref write is not const/pure
+  scanning: retVal_13 = LoTpTransmitFunctPtr_7(D) (PduId_11(D), TxBufferInfoPtr_8(D));
+  scanning: if (retVal_13 != 0)
+  scanning: EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_6(D));
+  scanning: return retVal_3;
+
+
+ local analysis of EcuC_TxBufferIsLocked
+   scanning: _1 = TxControlInfoPtr_4(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 2)
+  scanning: <L1>:
+  scanning: <L6>:
+  scanning: return retVal_2;
+Function is locally pure.
+
+
+ local analysis of EcuC_CopyTxData
+   scanning: _1 = TxControlInfoPtr_27(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 2)
+  scanning: _2 = TxBufferInfoPtr_28(D)->SduLength;
+    Indirect ref read is not const
+  scanning: _3 = TxControlInfoPtr_27(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: copiedOffset_29 = _2 - _3;
+  scanning: if (RetryInfoPtr_30(D) != 0B)
+  scanning: _4 = RetryInfoPtr_30(D)->TpDataState;
+    Indirect ref read is not const
+  scanning: if (_4 == 1)
+  scanning: _5 = RetryInfoPtr_30(D)->TxTpDataCnt;
+    Indirect ref read is not const
+  scanning: if (_5 > copiedOffset_29)
+  scanning: _6 = PduInfoPtr_31(D)->SduLength;
+    Indirect ref read is not const
+  scanning: _7 = (int) _6;
+  scanning: _8 = (int) _3;
+  scanning: _9 = (int) retry_36;
+  scanning: _10 = _8 + _9;
+  scanning: if (_7 > _10)
+  scanning: if (_6 != 0)
+  scanning: _11 = PduInfoPtr_31(D)->SduDataPtr;
+    Indirect ref read is not const
+  scanning: _12 = TxBufferInfoPtr_28(D)->SduDataPtr;
+    Indirect ref read is not const
+  scanning: _13 = (int) copiedOffset_29;
+  scanning: _14 = _13 - _9;
+  scanning: _15 = (sizetype) _14;
+  scanning: _16 = _12 + _15;
+  scanning: _17 = (long unsigned int) _6;
+  scanning: TS_MemCpy32 (_11, _16, _17);
+  scanning: _18 = PduInfoPtr_31(D)->SduLength;
+    Indirect ref read is not const
+  scanning: if (_18 > retry_36)
+  scanning: _19 = TxControlInfoPtr_27(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: _20 = retry_36 - _18;
+  scanning: _21 = _19 + _20;
+  scanning: TxControlInfoPtr_27(D)->remainMsgSize = _21;
+    Indirect ref write is not const/pure
+  scanning: _22 = TxControlInfoPtr_27(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: *TxDataCntPtr_34(D) = _22;
+    Indirect ref write is not const/pure
+  scanning: return retVal_23;
+
+
+ local analysis of EcuC_InitTx
+   scanning: EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_2(D));
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of EcuC_TpRxIndication
+   scanning: _1 = RxControlInfoPtr_9(D)->totalMsgSize;
+    Indirect ref read is not const
+  scanning: _2 = RxControlInfoPtr_9(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: _3 = _1 - _2;
+  scanning: *CopiedDataSize_10(D) = _3;
+    Indirect ref write is not const/pure
+  scanning: _4 = RxControlInfoPtr_9(D)->state;
+    Indirect ref read is not const
+  scanning: if (_4 == 1)
+  scanning: <L1>:
+  scanning: if (Result_12(D) == 0)
+  scanning: EcuC_TpReception_entry_IDLE (RxControlInfoPtr_9(D));
+  scanning: <L9>:
+  scanning: return retVal_6;
+
+
+ local analysis of EcuC_StartOfReceptionDet
+   scanning: if (RxBufferSizePtr_2(D) == 0B)
+  scanning: return Result_1;
+Function is locally const.
+
+
+ local analysis of EcuC_CopyRxDataDet
+   scanning: if (PduInfoPtr_4(D) == 0B)
+  scanning: if (RxBufferSizePtr_5(D) == 0B)
+  scanning: _1 = PduInfoPtr_4(D)->SduLength;
+    Indirect ref read is not const
+  scanning: if (_1 != 0)
+  scanning: _2 = PduInfoPtr_4(D)->SduDataPtr;
+    Indirect ref read is not const
+  scanning: if (_2 == 0B)
+  scanning: return Result_3;
+Function is locally pure.
+
+
+ local analysis of EcuC_RxBufferIsLocked
+   scanning: _1 = RxControlInfoPtr_4(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 0)
+  scanning: <L0>:
+  scanning: <L6>:
+  scanning: return Result_2;
+Function is locally pure.
+
+
+ local analysis of EcuC_CopyRxData
+   scanning: _1 = RxControlInfoPtr_20(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 1)
+  scanning: <L1>:
+  scanning: _2 = PduInfoPtr_21(D)->SduLength;
+    Indirect ref read is not const
+  scanning: if (_2 == 0)
+  scanning: _3 = RxControlInfoPtr_20(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: *RxBufferSizePtr_25(D) = _3;
+    Indirect ref write is not const/pure
+  scanning: _4 = RxControlInfoPtr_20(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: if (_2 > _4)
+  scanning: EcuC_TpReception_entry_IDLE (RxControlInfoPtr_20(D));
+  scanning: _5 = RxBufferInfoPtr_22(D)->SduDataPtr;
+    Indirect ref read is not const
+  scanning: _6 = RxControlInfoPtr_20(D)->totalMsgSize;
+    Indirect ref read is not const
+  scanning: _7 = (int) _6;
+  scanning: _8 = (int) _4;
+  scanning: _9 = _7 - _8;
+  scanning: _10 = (sizetype) _9;
+  scanning: _11 = _5 + _10;
+  scanning: _12 = PduInfoPtr_21(D)->SduDataPtr;
+    Indirect ref read is not const
+  scanning: _13 = (long unsigned int) _2;
+  scanning: TS_MemCpy32 (_11, _12, _13);
+  scanning: _14 = RxControlInfoPtr_20(D)->remainMsgSize;
+    Indirect ref read is not const
+  scanning: _15 = PduInfoPtr_21(D)->SduLength;
+    Indirect ref read is not const
+  scanning: _16 = _14 - _15;
+  scanning: RxControlInfoPtr_20(D)->remainMsgSize = _16;
+    Indirect ref write is not const/pure
+  scanning: *RxBufferSizePtr_25(D) = _16;
+    Indirect ref write is not const/pure
+  scanning: <L12>:
+  scanning: return Result_17;
+
+
+ local analysis of EcuC_StartOfReception
+   scanning: _1 = RxControlInfoPtr_7(D)->state;
+    Indirect ref read is not const
+  scanning: if (_1 == 0)
+  scanning: <L0>:
+  scanning: _2 = RxBufferInfoPtr_8(D)->SduLength;
+    Indirect ref read is not const
+  scanning: if (_2 < TpSduLength_9(D))
+  scanning: if (TpSduLength_9(D) == 0)
+  scanning: RxControlInfoPtr_7(D)->remainMsgSize = msgSize_4;
+    Indirect ref write is not const/pure
+  scanning: RxControlInfoPtr_7(D)->totalMsgSize = msgSize_4;
+    Indirect ref write is not const/pure
+  scanning: RxControlInfoPtr_7(D)->state = 1;
+    Indirect ref write is not const/pure
+  scanning: *RxBufferSizePtr_13(D) = msgSize_4;
+    Indirect ref write is not const/pure
+  scanning: <L12>:
+  scanning: return Result_3;
+
+
+ local analysis of EcuC_InitRx
+   scanning: EcuC_TpReception_entry_IDLE (RxControlInfoPtr_2(D));
+  scanning: return;
+Function is locally const.
+callgraph:
+
+EcuC_TpReception_entry_IDLE/19 (EcuC_TpReception_entry_IDLE) @06c2eee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 17
+  Aux: @06b8ab68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/19 is inline copy in EcuC_TpRxIndication/6
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:365072220 (estimated locally) body local optimize_size
+  Called by: EcuC_TpRxIndication/6 (inlined) (365072220 (estimated locally),0.34 per call) 
+  Calls: TS_MemBZero32/14 (365072220 (estimated locally),0.34 per call) 
+EcuC_TpTransmission_entry_IDLE/18 (EcuC_TpTransmission_entry_IDLE) @06c2ee00
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 16
+  Aux: @06b8a988
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/18 is inline copy in EcuC_TpTxConfirmation/11
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTxConfirmation/11 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpReception_entry_IDLE/17 (EcuC_TpReception_entry_IDLE) @06c2ed20
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 12
+  previous sharing asm name: 19
+  Aux: @06b8a908
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/17 is inline copy in EcuC_InitRx/0
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitRx/0 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/16 (EcuC_TpTransmission_entry_IDLE) @06c2ec40
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 13
+  previous sharing asm name: 18
+  Aux: @06b8a948
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/16 is inline copy in EcuC_InitTx/7
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitTx/7 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+TS_MemCpy32/15 (TS_MemCpy32) @06bda7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: EcuC_CopyTxData/8 (68989340 (estimated locally),0.06 per call) EcuC_CopyRxData/2 (91268055 (estimated locally),0.08 per call) 
+  Calls: 
+TS_MemBZero32/14 (TS_MemBZero32) @06bda540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: EcuC_TpReception_entry_IDLE/19 (365072220 (estimated locally),0.34 per call) EcuC_TpTransmission_entry_IDLE/18 (1073741824 (estimated locally),1.00 per call) EcuC_TpReception_entry_IDLE/17 (1073741824 (estimated locally),1.00 per call) EcuC_TpTransmission_entry_IDLE/16 (1073741824 (estimated locally),1.00 per call) EcuC_TpTransmission_entry_IDLE/13 (163702678 (estimated locally),0.15 per call) EcuC_TpReception_entry_IDLE/12 (91268055 (estimated locally),0.08 per call) 
+  Calls: 
+EcuC_TpTransmission_entry_IDLE/13 (EcuC_TpTransmission_entry_IDLE) @06bda2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 16
+  Aux: @06b8a7a8
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/13 is inline copy in EcuC_TpTransmit/10
+  Availability: local
+  Function flags: count:163702678 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTransmit/10 (inlined) (163702678 (estimated locally),0.15 per call) 
+  Calls: TS_MemBZero32/14 (163702678 (estimated locally),0.15 per call) 
+EcuC_TpReception_entry_IDLE/12 (EcuC_TpReception_entry_IDLE) @06bda000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 17
+  Aux: @06b8aa48
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/12 is inline copy in EcuC_CopyRxData/2
+  Availability: local
+  Function flags: count:91268055 (estimated locally) body local optimize_size
+  Called by: EcuC_CopyRxData/2 (inlined) (91268055 (estimated locally),0.08 per call) 
+  Calls: TS_MemBZero32/14 (91268055 (estimated locally),0.08 per call) 
+EcuC_TpTxConfirmation/11 (EcuC_TpTxConfirmation) @06bd3d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a7c8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/18 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmit/10 (EcuC_TpTransmit) @06bd3b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/13 (inlined) (163702678 (estimated locally),0.15 per call) 
+   Indirect call(496068723 (estimated locally),0.46 per call)  of param:3 (vptr maybe changed)
+EcuC_TxBufferIsLocked/9 (EcuC_TxBufferIsLocked) @06bd39a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a888
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyTxData/8 (EcuC_CopyTxData) @06bd37e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aaa8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (68989340 (estimated locally),0.06 per call) 
+EcuC_InitTx/7 (EcuC_InitTx) @06bd3620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a788
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/16 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpRxIndication/6 (EcuC_TpRxIndication) @06bd3460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a968
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/19 (inlined) (365072220 (estimated locally),0.34 per call) 
+EcuC_StartOfReceptionDet/5 (EcuC_StartOfReceptionDet) @06bd32a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxDataDet/4 (EcuC_CopyRxDataDet) @06bd30e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9c8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_RxBufferIsLocked/3 (EcuC_RxBufferIsLocked) @06b9aee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a828
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxData/2 (EcuC_CopyRxData) @06b9ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aa08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (91268055 (estimated locally),0.08 per call) EcuC_TpReception_entry_IDLE/12 (inlined) (91268055 (estimated locally),0.08 per call) 
+EcuC_StartOfReception/1 (EcuC_StartOfReception) @06b9ab60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a848
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_InitRx/0 (EcuC_InitRx) @06b9a9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8e8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/17 (inlined) (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+EcuC_TpReception_entry_IDLE/19 (EcuC_TpReception_entry_IDLE) @06c2eee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 17
+  Aux: @06b8ab68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/19 is inline copy in EcuC_TpRxIndication/6
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:365072220 (estimated locally) body local optimize_size
+  Called by: EcuC_TpRxIndication/6 (inlined) (365072220 (estimated locally),0.34 per call) 
+  Calls: TS_MemBZero32/14 (365072220 (estimated locally),0.34 per call) 
+EcuC_TpTransmission_entry_IDLE/18 (EcuC_TpTransmission_entry_IDLE) @06c2ee00
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 16
+  Aux: @06b8a988
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/18 is inline copy in EcuC_TpTxConfirmation/11
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTxConfirmation/11 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpReception_entry_IDLE/17 (EcuC_TpReception_entry_IDLE) @06c2ed20
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 12
+  previous sharing asm name: 19
+  Aux: @06b8a908
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/17 is inline copy in EcuC_InitRx/0
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitRx/0 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/16 (EcuC_TpTransmission_entry_IDLE) @06c2ec40
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 13
+  previous sharing asm name: 18
+  Aux: @06b8a948
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/16 is inline copy in EcuC_InitTx/7
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitTx/7 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/13 (EcuC_TpTransmission_entry_IDLE) @06bda2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 16
+  Aux: @06b8a7a8
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/13 is inline copy in EcuC_TpTransmit/10
+  Availability: local
+  Function flags: count:163702678 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTransmit/10 (inlined) (163702678 (estimated locally),0.15 per call) 
+  Calls: TS_MemBZero32/14 (163702678 (estimated locally),0.15 per call) 
+EcuC_TpReception_entry_IDLE/12 (EcuC_TpReception_entry_IDLE) @06bda000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 17
+  Aux: @06b8aa48
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/12 is inline copy in EcuC_CopyRxData/2
+  Availability: local
+  Function flags: count:91268055 (estimated locally) body local optimize_size
+  Called by: EcuC_CopyRxData/2 (inlined) (91268055 (estimated locally),0.08 per call) 
+  Calls: TS_MemBZero32/14 (91268055 (estimated locally),0.08 per call) 
+EcuC_TpTxConfirmation/11 (EcuC_TpTxConfirmation) @06bd3d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a7c8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/18 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmit/10 (EcuC_TpTransmit) @06bd3b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/13 (inlined) (163702678 (estimated locally),0.15 per call) 
+   Indirect call(496068723 (estimated locally),0.46 per call)  of param:3 (vptr maybe changed)
+EcuC_TxBufferIsLocked/9 (EcuC_TxBufferIsLocked) @06bd39a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a888
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyTxData/8 (EcuC_CopyTxData) @06bd37e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aaa8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (68989340 (estimated locally),0.06 per call) 
+EcuC_InitTx/7 (EcuC_InitTx) @06bd3620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a788
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/16 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpRxIndication/6 (EcuC_TpRxIndication) @06bd3460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a968
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/19 (inlined) (365072220 (estimated locally),0.34 per call) 
+EcuC_StartOfReceptionDet/5 (EcuC_StartOfReceptionDet) @06bd32a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxDataDet/4 (EcuC_CopyRxDataDet) @06bd30e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9c8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_RxBufferIsLocked/3 (EcuC_RxBufferIsLocked) @06b9aee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a828
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxData/2 (EcuC_CopyRxData) @06b9ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aa08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (91268055 (estimated locally),0.08 per call) EcuC_TpReception_entry_IDLE/12 (inlined) (91268055 (estimated locally),0.08 per call) 
+EcuC_StartOfReception/1 (EcuC_StartOfReception) @06b9ab60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a848
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_InitRx/0 (EcuC_InitRx) @06b9a9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8e8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/17 (inlined) (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTxConfirmation: malloc_bottom
+EcuC_TpTransmit: malloc_bottom
+EcuC_TxBufferIsLocked: malloc_bottom
+EcuC_CopyTxData: malloc_bottom
+EcuC_InitTx: malloc_bottom
+EcuC_TpRxIndication: malloc_bottom
+EcuC_StartOfReceptionDet: malloc_bottom
+EcuC_CopyRxDataDet: malloc_bottom
+EcuC_RxBufferIsLocked: malloc_bottom
+EcuC_CopyRxData: malloc_bottom
+EcuC_StartOfReception: malloc_bottom
+EcuC_InitRx: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpTransmission_entry_IDLE: malloc_bottom
+EcuC_TpReception_entry_IDLE: malloc_bottom
+EcuC_TpTxConfirmation: malloc_bottom
+EcuC_TpTransmit: malloc_bottom
+EcuC_TxBufferIsLocked: malloc_bottom
+EcuC_CopyTxData: malloc_bottom
+EcuC_InitTx: malloc_bottom
+EcuC_TpRxIndication: malloc_bottom
+EcuC_StartOfReceptionDet: malloc_bottom
+EcuC_CopyRxDataDet: malloc_bottom
+EcuC_RxBufferIsLocked: malloc_bottom
+EcuC_CopyRxData: malloc_bottom
+EcuC_StartOfReception: malloc_bottom
+EcuC_InitRx: malloc_bottom
+callgraph:
+
+EcuC_TpReception_entry_IDLE/19 (EcuC_TpReception_entry_IDLE) @06c2eee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 17
+  Aux: @06b8aa68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/19 is inline copy in EcuC_TpRxIndication/6
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:365072220 (estimated locally) body local optimize_size
+  Called by: EcuC_TpRxIndication/6 (inlined) (365072220 (estimated locally),0.34 per call) 
+  Calls: TS_MemBZero32/14 (365072220 (estimated locally),0.34 per call) 
+EcuC_TpTransmission_entry_IDLE/18 (EcuC_TpTransmission_entry_IDLE) @06c2ee00
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 16
+  Aux: @06b8aa08
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/18 is inline copy in EcuC_TpTxConfirmation/11
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTxConfirmation/11 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpReception_entry_IDLE/17 (EcuC_TpReception_entry_IDLE) @06c2ed20
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 12
+  previous sharing asm name: 19
+  Aux: @06b8ab68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/17 is inline copy in EcuC_InitRx/0
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitRx/0 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/16 (EcuC_TpTransmission_entry_IDLE) @06c2ec40
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 13
+  previous sharing asm name: 18
+  Aux: @06b8a908
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/16 is inline copy in EcuC_InitTx/7
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitTx/7 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+TS_MemCpy32/15 (TS_MemCpy32) @06bda7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: EcuC_CopyTxData/8 (68989340 (estimated locally),0.06 per call) EcuC_CopyRxData/2 (91268055 (estimated locally),0.08 per call) 
+  Calls: 
+TS_MemBZero32/14 (TS_MemBZero32) @06bda540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: EcuC_TpReception_entry_IDLE/19 (365072220 (estimated locally),0.34 per call) EcuC_TpTransmission_entry_IDLE/18 (1073741824 (estimated locally),1.00 per call) EcuC_TpReception_entry_IDLE/17 (1073741824 (estimated locally),1.00 per call) EcuC_TpTransmission_entry_IDLE/16 (1073741824 (estimated locally),1.00 per call) EcuC_TpTransmission_entry_IDLE/13 (163702678 (estimated locally),0.15 per call) EcuC_TpReception_entry_IDLE/12 (91268055 (estimated locally),0.08 per call) 
+  Calls: 
+EcuC_TpTransmission_entry_IDLE/13 (EcuC_TpTransmission_entry_IDLE) @06bda2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 16
+  Aux: @06b8a7c8
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/13 is inline copy in EcuC_TpTransmit/10
+  Availability: local
+  Function flags: count:163702678 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTransmit/10 (inlined) (163702678 (estimated locally),0.15 per call) 
+  Calls: TS_MemBZero32/14 (163702678 (estimated locally),0.15 per call) 
+EcuC_TpReception_entry_IDLE/12 (EcuC_TpReception_entry_IDLE) @06bda000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 17
+  Aux: @06b8a948
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/12 is inline copy in EcuC_CopyRxData/2
+  Availability: local
+  Function flags: count:91268055 (estimated locally) body local optimize_size
+  Called by: EcuC_CopyRxData/2 (inlined) (91268055 (estimated locally),0.08 per call) 
+  Calls: TS_MemBZero32/14 (91268055 (estimated locally),0.08 per call) 
+EcuC_TpTxConfirmation/11 (EcuC_TpTxConfirmation) @06bd3d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aa48
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/18 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmit/10 (EcuC_TpTransmit) @06bd3b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a788
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/13 (inlined) (163702678 (estimated locally),0.15 per call) 
+   Indirect call(496068723 (estimated locally),0.46 per call)  of param:3 (vptr maybe changed)
+EcuC_TxBufferIsLocked/9 (EcuC_TxBufferIsLocked) @06bd39a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a988
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyTxData/8 (EcuC_CopyTxData) @06bd37e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (68989340 (estimated locally),0.06 per call) 
+EcuC_InitTx/7 (EcuC_InitTx) @06bd3620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a828
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/16 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpRxIndication/6 (EcuC_TpRxIndication) @06bd3460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aaa8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/19 (inlined) (365072220 (estimated locally),0.34 per call) 
+EcuC_StartOfReceptionDet/5 (EcuC_StartOfReceptionDet) @06bd32a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a868
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxDataDet/4 (EcuC_CopyRxDataDet) @06bd30e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a7a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_RxBufferIsLocked/3 (EcuC_RxBufferIsLocked) @06b9aee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a848
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxData/2 (EcuC_CopyRxData) @06b9ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a888
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (91268055 (estimated locally),0.08 per call) EcuC_TpReception_entry_IDLE/12 (inlined) (91268055 (estimated locally),0.08 per call) 
+EcuC_StartOfReception/1 (EcuC_StartOfReception) @06b9ab60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_InitRx/0 (EcuC_InitRx) @06b9a9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8e8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/17 (inlined) (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+EcuC_TpTxConfirmation/11 (EcuC_TpTxConfirmation) @06bd3d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aa48
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/18 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/18 (EcuC_TpTransmission_entry_IDLE) @06c2ee00
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 16
+  Aux: @06b8aa08
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/18 is inline copy in EcuC_TpTxConfirmation/11
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTxConfirmation/11 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmit/10 (EcuC_TpTransmit) @06bd3b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a788
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/13 (inlined) (163702678 (estimated locally),0.15 per call) 
+   Indirect call(496068723 (estimated locally),0.46 per call)  of param:3 (vptr maybe changed)
+EcuC_TpTransmission_entry_IDLE/13 (EcuC_TpTransmission_entry_IDLE) @06bda2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 16
+  Aux: @06b8a7c8
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/13 is inline copy in EcuC_TpTransmit/10
+  Availability: local
+  Function flags: count:163702678 (estimated locally) body local optimize_size
+  Called by: EcuC_TpTransmit/10 (inlined) (163702678 (estimated locally),0.15 per call) 
+  Calls: TS_MemBZero32/14 (163702678 (estimated locally),0.15 per call) 
+EcuC_TxBufferIsLocked/9 (EcuC_TxBufferIsLocked) @06bd39a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a988
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyTxData/8 (EcuC_CopyTxData) @06bd37e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a9a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (68989340 (estimated locally),0.06 per call) 
+EcuC_InitTx/7 (EcuC_InitTx) @06bd3620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a828
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpTransmission_entry_IDLE/16 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpTransmission_entry_IDLE/16 (EcuC_TpTransmission_entry_IDLE) @06c2ec40
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 13
+  previous sharing asm name: 18
+  Aux: @06b8a908
+  References: 
+  Referring: 
+  Function EcuC_TpTransmission_entry_IDLE/16 is inline copy in EcuC_InitTx/7
+  Clone of EcuC_TpTransmission_entry_IDLE/13
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitTx/7 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpRxIndication/6 (EcuC_TpRxIndication) @06bd3460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8aaa8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/19 (inlined) (365072220 (estimated locally),0.34 per call) 
+EcuC_TpReception_entry_IDLE/19 (EcuC_TpReception_entry_IDLE) @06c2eee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 17
+  Aux: @06b8aa68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/19 is inline copy in EcuC_TpRxIndication/6
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:365072220 (estimated locally) body local optimize_size
+  Called by: EcuC_TpRxIndication/6 (inlined) (365072220 (estimated locally),0.34 per call) 
+  Calls: TS_MemBZero32/14 (365072220 (estimated locally),0.34 per call) 
+EcuC_StartOfReceptionDet/5 (EcuC_StartOfReceptionDet) @06bd32a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a868
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxDataDet/4 (EcuC_CopyRxDataDet) @06bd30e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a7a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_RxBufferIsLocked/3 (EcuC_RxBufferIsLocked) @06b9aee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a848
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_CopyRxData/2 (EcuC_CopyRxData) @06b9ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a888
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: TS_MemCpy32/15 (91268055 (estimated locally),0.08 per call) EcuC_TpReception_entry_IDLE/12 (inlined) (91268055 (estimated locally),0.08 per call) 
+EcuC_TpReception_entry_IDLE/12 (EcuC_TpReception_entry_IDLE) @06bda000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 17
+  Aux: @06b8a948
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/12 is inline copy in EcuC_CopyRxData/2
+  Availability: local
+  Function flags: count:91268055 (estimated locally) body local optimize_size
+  Called by: EcuC_CopyRxData/2 (inlined) (91268055 (estimated locally),0.08 per call) 
+  Calls: TS_MemBZero32/14 (91268055 (estimated locally),0.08 per call) 
+EcuC_StartOfReception/1 (EcuC_StartOfReception) @06b9ab60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8a8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+EcuC_InitRx/0 (EcuC_InitRx) @06b9a9a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b8a8e8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: EcuC_TpReception_entry_IDLE/17 (inlined) (1073741824 (estimated locally),1.00 per call) 
+EcuC_TpReception_entry_IDLE/17 (EcuC_TpReception_entry_IDLE) @06c2ed20
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 12
+  previous sharing asm name: 19
+  Aux: @06b8ab68
+  References: 
+  Referring: 
+  Function EcuC_TpReception_entry_IDLE/17 is inline copy in EcuC_InitRx/0
+  Clone of EcuC_TpReception_entry_IDLE/12
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: EcuC_InitRx/0 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: TS_MemBZero32/14 (1073741824 (estimated locally),1.00 per call) 
+
+Function found not to call free: EcuC_StartOfReception
+Function found not to call free: EcuC_RxBufferIsLocked
+Function found not to call free: EcuC_CopyRxDataDet
+Function found not to call free: EcuC_StartOfReceptionDet
+Function found not to call free: EcuC_TxBufferIsLocked
+EcuC_TpTransmission_entry_IDLE (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (TxControlInfoPtr_2(D), 4);
+  return;
+
+}
+
+
+EcuC_TpReception_entry_IDLE (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (RxControlInfoPtr_2(D), 6);
+  return;
+
+}
+
+
+EcuC_TpTxConfirmation (struct EcuC_TxControlInfoType * TxControlInfoPtr, NotifResultType Result)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result_3(D) == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_5(D)->state;
+  if (_1 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 5> [local count: 1073741824]:
+  # retVal_2 = PHI <0(4), 1(2), 1(3)>
+  # DEBUG retVal => retVal_2
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_5(D));
+  # DEBUG BEGIN_STMT
+  return retVal_2;
+
+}
+
+
+EcuC_TpTransmit (struct EcuC_TxControlInfoType * TxControlInfoPtr, PduIdType PduId, const struct PduInfoType * TxBufferInfoPtr, Std_ReturnType (*EcuC_LoTpTransmitFunctPtrType) (PduIdType, const struct PduInfoType *) LoTpTransmitFunctPtr)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_6(D)->state;
+  if (_1 == 2)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  if (LoTpTransmitFunctPtr_7(D) != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+
+  <bb 4> [local count: 496068723]:
+  # DEBUG BEGIN_STMT
+  _2 = TxBufferInfoPtr_8(D)->SduLength;
+  TxControlInfoPtr_6(D)->remainMsgSize = _2;
+  # DEBUG BEGIN_STMT
+  TxControlInfoPtr_6(D)->state = 2;
+  # DEBUG BEGIN_STMT
+  retVal_13 = LoTpTransmitFunctPtr_7(D) (PduId_11(D), TxBufferInfoPtr_8(D));
+  # DEBUG retVal => retVal_13
+  # DEBUG BEGIN_STMT
+  if (retVal_13 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 163702678]:
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_6(D));
+
+  <bb 6> [local count: 1073741824]:
+  # retVal_3 = PHI <1(2), 1(3), retVal_13(4), retVal_13(5)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+
+EcuC_TxBufferIsLocked (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  boolean retVal;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_4(D)->state;
+  if (_1 == 2)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+
+  <bb 4> [local count: 1073741824]:
+  # retVal_2 = PHI <0(2), 1(3)>
+<L6>:
+  # DEBUG retVal => retVal_2
+  # DEBUG BEGIN_STMT
+  return retVal_2;
+
+}
+
+
+EcuC_CopyTxData (struct EcuC_TxControlInfoType * TxControlInfoPtr, const struct PduInfoType * TxBufferInfoPtr, struct PduInfoType * PduInfoPtr, struct RetryInfoType * RetryInfoPtr, PduLengthType * TxDataCntPtr)
+{
+  PduLengthType retry;
+  PduLengthType copiedOffset;
+  BufReq_ReturnType retVal;
+  unsigned char _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  <unnamed type> _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  uint8 * _11;
+  uint8 * _12;
+  int _13;
+  int _14;
+  sizetype _15;
+  uint8 * _16;
+  long unsigned int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_27(D)->state;
+  if (_1 == 2)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  _2 = TxBufferInfoPtr_28(D)->SduLength;
+  _3 = TxControlInfoPtr_27(D)->remainMsgSize;
+  copiedOffset_29 = _2 - _3;
+  # DEBUG copiedOffset => copiedOffset_29
+  # DEBUG BEGIN_STMT
+  # DEBUG retry => 0
+  # DEBUG BEGIN_STMT
+  if (RetryInfoPtr_30(D) != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+
+  <bb 4> [local count: 255550554]:
+  # DEBUG BEGIN_STMT
+  _4 = RetryInfoPtr_30(D)->TpDataState;
+  if (_4 == 1)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 86887188]:
+  # DEBUG BEGIN_STMT
+  _5 = RetryInfoPtr_30(D)->TxTpDataCnt;
+  if (_5 > copiedOffset_29)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 321628626]:
+  # retry_36 = PHI <0(4), 0(3), _5(5)>
+  # DEBUG retry => NULL
+  # DEBUG retVal => NULL
+  # DEBUG BEGIN_STMT
+  _6 = PduInfoPtr_31(D)->SduLength;
+  _7 = (int) _6;
+  _8 = (int) _3;
+  _9 = (int) retry_36;
+  _10 = _8 + _9;
+  if (_7 > _10)
+    goto <bb 11>; [35.00%]
+  else
+    goto <bb 7>; [65.00%]
+
+  <bb 7> [local count: 209058607]:
+  # DEBUG BEGIN_STMT
+  if (_6 != 0)
+    goto <bb 8>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 8> [local count: 68989340]:
+  # DEBUG BEGIN_STMT
+  _11 = PduInfoPtr_31(D)->SduDataPtr;
+  _12 = TxBufferInfoPtr_28(D)->SduDataPtr;
+  _13 = (int) copiedOffset_29;
+  _14 = _13 - _9;
+  _15 = (sizetype) _14;
+  _16 = _12 + _15;
+  _17 = (long unsigned int) _6;
+  TS_MemCpy32 (_11, _16, _17);
+  # DEBUG BEGIN_STMT
+  _18 = PduInfoPtr_31(D)->SduLength;
+  if (_18 > retry_36)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 34494670]:
+  # DEBUG BEGIN_STMT
+  _19 = TxControlInfoPtr_27(D)->remainMsgSize;
+  _20 = retry_36 - _18;
+  _21 = _19 + _20;
+  TxControlInfoPtr_27(D)->remainMsgSize = _21;
+
+  <bb 10> [local count: 209058607]:
+  # DEBUG BEGIN_STMT
+  _22 = TxControlInfoPtr_27(D)->remainMsgSize;
+  *TxDataCntPtr_34(D) = _22;
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 11> [local count: 1073741824]:
+  # retVal_23 = PHI <2(6), 1(2), 1(5), 0(10)>
+  # DEBUG retry => NULL
+  # DEBUG retVal => retVal_23
+  # DEBUG BEGIN_STMT
+  return retVal_23;
+
+}
+
+
+EcuC_InitTx (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_2(D));
+  return;
+
+}
+
+
+EcuC_TpRxIndication (struct EcuC_RxControlInfoType * RxControlInfoPtr, NotifResultType Result, PduLengthType * CopiedDataSize)
+{
+  Std_ReturnType retVal;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_9(D)->totalMsgSize;
+  _2 = RxControlInfoPtr_9(D)->remainMsgSize;
+  _3 = _1 - _2;
+  *CopiedDataSize_10(D) = _3;
+  # DEBUG BEGIN_STMT
+  _4 = RxControlInfoPtr_9(D)->state;
+  if (_4 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  if (Result_12(D) == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+
+  <bb 5> [local count: 365072220]:
+  # retVal_5 = PHI <0(3), 1(4)>
+  # DEBUG retVal => retVal_5
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_9(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 6> [local count: 1073741824]:
+  # retVal_6 = PHI <1(2), retVal_5(5)>
+<L9>:
+  # DEBUG retVal => retVal_6
+  # DEBUG BEGIN_STMT
+  return retVal_6;
+
+}
+
+
+EcuC_StartOfReceptionDet (PduLengthType TpSduLength, PduLengthType * RxBufferSizePtr)
+{
+  Std_ReturnType Result;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (RxBufferSizePtr_2(D) == 0B)
+    goto <bb 4>; [30.00%]
+  else
+    goto <bb 3>; [70.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 4> [local count: 1073741824]:
+  # Result_1 = PHI <1(2), 0(3)>
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  return Result_1;
+
+}
+
+
+EcuC_CopyRxDataDet (const struct PduInfoType * PduInfoPtr, PduLengthType * RxBufferSizePtr)
+{
+  Std_ReturnType Result;
+  short unsigned int _1;
+  uint8 * _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_4(D) == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 3>; [70.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  if (RxBufferSizePtr_5(D) == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 4>; [70.00%]
+
+  <bb 4> [local count: 526133494]:
+  # DEBUG BEGIN_STMT
+  _1 = PduInfoPtr_4(D)->SduLength;
+  if (_1 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 263066747]:
+  _2 = PduInfoPtr_4(D)->SduDataPtr;
+  if (_2 == 0B)
+    goto <bb 7>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 6> [local count: 447213470]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 7> [local count: 1073741824]:
+  # Result_3 = PHI <1(2), 1(3), 1(5), 0(6)>
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  return Result_3;
+
+}
+
+
+EcuC_RxBufferIsLocked (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  boolean Result;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_4(D)->state;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  # DEBUG BEGIN_STMT
+
+  <bb 4> [local count: 1073741824]:
+  # Result_2 = PHI <0(3), 1(2)>
+<L6>:
+  # DEBUG Result => Result_2
+  # DEBUG BEGIN_STMT
+  return Result_2;
+
+}
+
+
+EcuC_CopyRxData (struct EcuC_RxControlInfoType * RxControlInfoPtr, struct PduInfoType * RxBufferInfoPtr, const struct PduInfoType * PduInfoPtr, PduLengthType * RxBufferSizePtr)
+{
+  BufReq_ReturnType Result;
+  unsigned char _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  uint8 * _5;
+  short unsigned int _6;
+  int _7;
+  int _8;
+  int _9;
+  sizetype _10;
+  uint8 * _11;
+  uint8 * _12;
+  long unsigned int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_20(D)->state;
+  if (_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _2 = PduInfoPtr_21(D)->SduLength;
+  if (_2 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  _3 = RxControlInfoPtr_20(D)->remainMsgSize;
+  *RxBufferSizePtr_25(D) = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  _4 = RxControlInfoPtr_20(D)->remainMsgSize;
+  if (_2 > _4)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_20(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  _5 = RxBufferInfoPtr_22(D)->SduDataPtr;
+  _6 = RxControlInfoPtr_20(D)->totalMsgSize;
+  _7 = (int) _6;
+  _8 = (int) _4;
+  _9 = _7 - _8;
+  _10 = (sizetype) _9;
+  _11 = _5 + _10;
+  _12 = PduInfoPtr_21(D)->SduDataPtr;
+  _13 = (long unsigned int) _2;
+  TS_MemCpy32 (_11, _12, _13);
+  # DEBUG BEGIN_STMT
+  _14 = RxControlInfoPtr_20(D)->remainMsgSize;
+  _15 = PduInfoPtr_21(D)->SduLength;
+  _16 = _14 - _15;
+  RxControlInfoPtr_20(D)->remainMsgSize = _16;
+  # DEBUG BEGIN_STMT
+  *RxBufferSizePtr_25(D) = _16;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 8> [local count: 1073741824]:
+  # Result_17 = PHI <0(7), 1(6), 1(2), 0(4)>
+<L12>:
+  # DEBUG Result => Result_17
+  # DEBUG BEGIN_STMT
+  return Result_17;
+
+}
+
+
+EcuC_StartOfReception (struct EcuC_RxControlInfoType * RxControlInfoPtr, struct PduInfoType * RxBufferInfoPtr, PduLengthType TpSduLength, PduLengthType * RxBufferSizePtr)
+{
+  PduLengthType msgSize;
+  BufReq_ReturnType Result;
+  unsigned char _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_7(D)->state;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  # DEBUG msgSize => 0
+  # DEBUG BEGIN_STMT
+  _2 = RxBufferInfoPtr_8(D)->SduLength;
+  if (_2 < TpSduLength_9(D))
+    goto <bb 7>; [35.00%]
+  else
+    goto <bb 4>; [65.00%]
+
+  <bb 4> [local count: 348966093]:
+  # DEBUG BEGIN_STMT
+  if (TpSduLength_9(D) == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 174483046]:
+  # DEBUG BEGIN_STMT
+  # DEBUG msgSize => _2
+
+  <bb 6> [local count: 348966093]:
+  # msgSize_4 = PHI <_2(5), TpSduLength_9(D)(4)>
+  # DEBUG msgSize => msgSize_4
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_7(D)->remainMsgSize = msgSize_4;
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_7(D)->totalMsgSize = msgSize_4;
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_7(D)->state = 1;
+  # DEBUG BEGIN_STMT
+  *RxBufferSizePtr_13(D) = msgSize_4;
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 0
+
+  <bb 7> [local count: 1073741824]:
+  # Result_3 = PHI <0(6), 3(3), 1(2)>
+<L12>:
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  return Result_3;
+
+}
+
+
+EcuC_InitRx (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_2(D));
+  return;
+
+}
+
+

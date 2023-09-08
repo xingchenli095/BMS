@@ -1,0 +1,3438 @@
+Dem_ApplyDTCOrder (uint8 ClientId, Dem_DTCOriginType DTCOrigin)
+{
+  Dem_EventIdType * const ClientOrderedEventId;
+  uint8 * const EventsInMemoryPtr;
+  Dem_SizeEvMemEntryType EvIdx2;
+  Dem_SizeEvMemEntryType EvIdx1;
+  Dem_EventIdType SwapEvId;
+  Dem_OccOrderType SwapOcc;
+  Dem_OccOrderType EventMemOccOrder[2];
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  struct Dem_EventMemoryEntryType * const EvMemEntry;
+  unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  int _5;
+  int _6;
+  unsigned int _7;
+  unsigned int _8;
+  struct Dem_EventMemoryEntryType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  Dem_EventIdType * _12;
+  short unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  Dem_EventIdType * _16;
+  short unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  struct Dem_EventMemoryEntryType * _20;
+  int _21;
+  short unsigned int _22;
+  unsigned char _23;
+  unsigned char _24;
+  int _25;
+  int _26;
+  short unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  short unsigned int _30;
+  int _31;
+  unsigned int _32;
+  unsigned int _33;
+  Dem_EventIdType * _34;
+  unsigned int _35;
+  unsigned int _36;
+  int _37;
+  short unsigned int _38;
+  sizetype _39;
+  sizetype _40;
+  sizetype _41;
+  Dem_EventIdType * _42;
+  unsigned int _43;
+  unsigned int _44;
+  Dem_EventIdType * _45;
+  short unsigned int _46;
+  unsigned int _47;
+  unsigned int _48;
+  sizetype _49;
+  sizetype _50;
+  sizetype _51;
+  Dem_EventIdType * _52;
+  unsigned int _53;
+  int _54;
+  int _55;
+  int _56;
+  unsigned int _57;
+  unsigned int _58;
+  unsigned int _59;
+  unsigned int _60;
+  unsigned int _61;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) DTCOrigin_70(D);
+  _2 = _1 + 4294967295;
+  EvMemEntry_72 = Dem_EventMem[_2];
+  # DEBUG EvMemEntry => EvMemEntry_72
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) DTCOrigin_70(D);
+  _4 = _3 + 4294967295;
+  SizeEventMem_73 = Dem_SizeEventMem[_4];
+  # DEBUG SizeEventMem => SizeEventMem_73
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClientId_74(D);
+  EventsInMemoryPtr_75 = &Dem_DTCFilter[_5].EventsInMemory;
+  # DEBUG EventsInMemoryPtr => EventsInMemoryPtr_75
+  # DEBUG BEGIN_STMT
+  _6 = (int) ClientId_74(D);
+  ClientOrderedEventId_76 = &Dem_OrderedEventId[_6][0];
+  # DEBUG ClientOrderedEventId => ClientOrderedEventId_76
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *EventsInMemoryPtr_75 = 0;
+  # DEBUG BEGIN_STMT
+  EvIdx1_79 = 0;
+  # DEBUG EvIdx1 => EvIdx1_79
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) EvIdx1_62;
+  _8 = _7 * 16;
+  _9 = EvMemEntry_72 + _8;
+  _10 = (unsigned int) EvIdx1_62;
+  _11 = _10 * 2;
+  _12 = ClientOrderedEventId_76 + _11;
+  _13 = _9->EventId;
+  *_12 = _13;
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) EvIdx1_62;
+  _15 = _14 * 2;
+  _16 = ClientOrderedEventId_76 + _15;
+  _17 = *_16;
+  if (_17 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) EvIdx1_62;
+  _19 = _18 * 16;
+  _20 = EvMemEntry_72 + _19;
+  _21 = (int) EvIdx1_62;
+  _22 = _20->OccOrder;
+  EventMemOccOrder[_21] = _22;
+  # DEBUG BEGIN_STMT
+  _23 = *EventsInMemoryPtr_75;
+  _24 = _23 + 1;
+  *EventsInMemoryPtr_75 = _24;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _25 = (int) EvIdx1_62;
+  EventMemOccOrder[_25] = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EvIdx1_96 = EvIdx1_62 + 1;
+  # DEBUG EvIdx1 => EvIdx1_96
+
+  <bb 7> :
+  # EvIdx1_62 = PHI <EvIdx1_79(2), EvIdx1_96(6)>
+  # DEBUG EvIdx1 => EvIdx1_62
+  # DEBUG BEGIN_STMT
+  if (EvIdx1_62 < SizeEventMem_73)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EvIdx1_81 = 0;
+  # DEBUG EvIdx1 => EvIdx1_81
+  goto <bb 15>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EvIdx2_83 = 0;
+  # DEBUG EvIdx2 => EvIdx2_83
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _26 = (int) EvIdx2_64;
+  _27 = EventMemOccOrder[_26];
+  _28 = (unsigned int) EvIdx2_64;
+  _29 = _28 + 1;
+  _30 = EventMemOccOrder[_29];
+  if (_27 < _30)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _31 = (int) EvIdx2_64;
+  SwapOcc_85 = EventMemOccOrder[_31];
+  # DEBUG SwapOcc => SwapOcc_85
+  # DEBUG BEGIN_STMT
+  _32 = (unsigned int) EvIdx2_64;
+  _33 = _32 * 2;
+  _34 = ClientOrderedEventId_76 + _33;
+  SwapEvId_86 = *_34;
+  # DEBUG SwapEvId => SwapEvId_86
+  # DEBUG BEGIN_STMT
+  _35 = (unsigned int) EvIdx2_64;
+  _36 = _35 + 1;
+  _37 = (int) EvIdx2_64;
+  _38 = EventMemOccOrder[_36];
+  EventMemOccOrder[_37] = _38;
+  # DEBUG BEGIN_STMT
+  _39 = (sizetype) EvIdx2_64;
+  _40 = _39 + 1;
+  _41 = _40 * 2;
+  _42 = ClientOrderedEventId_76 + _41;
+  _43 = (unsigned int) EvIdx2_64;
+  _44 = _43 * 2;
+  _45 = ClientOrderedEventId_76 + _44;
+  _46 = *_42;
+  *_45 = _46;
+  # DEBUG BEGIN_STMT
+  _47 = (unsigned int) EvIdx2_64;
+  _48 = _47 + 1;
+  EventMemOccOrder[_48] = SwapOcc_85;
+  # DEBUG BEGIN_STMT
+  _49 = (sizetype) EvIdx2_64;
+  _50 = _49 + 1;
+  _51 = _50 * 2;
+  _52 = ClientOrderedEventId_76 + _51;
+  *_52 = SwapEvId_86;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EvIdx2_91 = EvIdx2_64 + 1;
+  # DEBUG EvIdx2 => EvIdx2_91
+
+  <bb 13> :
+  # EvIdx2_64 = PHI <EvIdx2_83(9), EvIdx2_91(12)>
+  # DEBUG EvIdx2 => EvIdx2_64
+  # DEBUG BEGIN_STMT
+  _53 = (unsigned int) EvIdx2_64;
+  _54 = (int) SizeEventMem_73;
+  _55 = (int) EvIdx1_63;
+  _56 = _54 - _55;
+  _57 = (unsigned int) _56;
+  _58 = _57 + 4294967295;
+  if (_53 < _58)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EvIdx1_84 = EvIdx1_63 + 1;
+  # DEBUG EvIdx1 => EvIdx1_84
+
+  <bb 15> :
+  # EvIdx1_63 = PHI <EvIdx1_81(8), EvIdx1_84(14)>
+  # DEBUG EvIdx1 => EvIdx1_63
+  # DEBUG BEGIN_STMT
+  _59 = (unsigned int) EvIdx1_63;
+  _60 = (unsigned int) SizeEventMem_73;
+  _61 = _60 + 4294967295;
+  if (_59 < _61)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  EventMemOccOrder ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dem_ApplyDTCFilter (uint8 ClientId, Dem_EventIdType EventId, Dem_DTCStatusMaskType * DTCStatus, sint8 * FDC, uint32 * DTC)
+{
+  Std_ReturnType Ret;
+  Dem_DTCSeverityType DTCSeverity;
+  const Dem_DTCKindType DTCKind;
+  struct Dem_DTCFilterType * const ClientDTCFilter;
+  boolean Result;
+  int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned char _21;
+  <unnamed type> _22;
+  Std_ReturnType (*<T726>) (Dem_EventIdType, sint8 *) _23;
+  <unnamed type> _24;
+  Std_ReturnType (*<T726>) (Dem_EventIdType, sint8 *) _25;
+  signed char _26;
+  unsigned char _27;
+  unsigned char _28;
+  boolean _59;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_35 = 0;
+  # DEBUG Result => Result_35
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClientId_36(D);
+  ClientDTCFilter_37 = &Dem_DTCFilter[_1];
+  # DEBUG ClientDTCFilter => ClientDTCFilter_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = ClientDTCFilter_37->DTCFormat;
+  _3 = Dem_GetVisibleCmbDTC (_2, EventId_39(D));
+  *DTC_41(D) = _3;
+  # DEBUG BEGIN_STMT
+  _4 = *DTC_41(D);
+  if (_4 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTCKind_44 = Dem_GbiDTCKind (EventId_39(D));
+  # DEBUG DTCKind => DTCKind_44
+  # DEBUG BEGIN_STMT
+  _5 = ClientDTCFilter_37->DTCKind;
+  if (_5 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _6 = ClientDTCFilter_37->DTCKind;
+  if (DTCKind_44 == _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) EventId_39(D);
+  _8 = Dem_NvData.DTCStatusMask[_7];
+  *DTCStatus_45(D) = _8;
+  # DEBUG BEGIN_STMT
+  _9 = ClientDTCFilter_37->DTCStatusMask;
+  if (_9 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _10 = ClientDTCFilter_37->DTCStatusMask;
+  _11 = *DTCStatus_45(D);
+  _12 = _10 & _11;
+  if (_12 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = ClientDTCFilter_37->DTCOrigin;
+  _14 = Dem_GbiDTCOrigin (EventId_39(D));
+  if (_13 == _14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _15 = ClientDTCFilter_37->DTCOrigin;
+  if (_15 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  DTCSeverity_48 = 0;
+  # DEBUG DTCSeverity => DTCSeverity_48
+  # DEBUG BEGIN_STMT
+  _16 = ClientDTCFilter_37->FilterWithSeverity;
+  if (_16 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  DTCSeverity_50 = Dem_GbiDTCSeverity (EventId_39(D));
+  # DEBUG DTCSeverity => DTCSeverity_50
+
+  <bb 11> :
+  # DTCSeverity_30 = PHI <DTCSeverity_48(9), DTCSeverity_50(10)>
+  # DEBUG DTCSeverity => DTCSeverity_30
+  # DEBUG BEGIN_STMT
+  _17 = ClientDTCFilter_37->FilterWithSeverity;
+  if (_17 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _18 = ClientDTCFilter_37->DTCSeverityMask;
+  if (DTCSeverity_30 == _18)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _19 = ClientDTCFilter_37->DTCSeverityMask;
+  _20 = DTCSeverity_30 & _19;
+  if (_20 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _21 = ClientDTCFilter_37->FilterForFDC;
+  if (_21 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Result_58 = 1;
+  # DEBUG Result => Result_58
+  goto <bb 21>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Ret_51 = 1;
+  # DEBUG Ret => Ret_51
+  # DEBUG BEGIN_STMT
+  _22 = Dem_GbiDebounceAlgo (EventId_39(D));
+  _23 = Dem_DebounceFctPtrTable[_22].GetFDCFct;
+  if (_23 != 0B)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _24 = Dem_GbiDebounceAlgo (EventId_39(D));
+  _25 = Dem_DebounceFctPtrTable[_24].GetFDCFct;
+  Ret_56 = _25 (EventId_39(D), FDC_54(D));
+  # DEBUG Ret => Ret_56
+
+  <bb 18> :
+  # Ret_31 = PHI <Ret_51(16), Ret_56(17)>
+  # DEBUG Ret => Ret_31
+  # DEBUG BEGIN_STMT
+  if (Ret_31 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  _26 = *FDC_54(D);
+  _27 = (unsigned char) _26;
+  _28 = _27 + 255;
+  if (_28 <= 125)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Result_57 = 1;
+  # DEBUG Result => Result_57
+
+  <bb 21> :
+  # Result_29 = PHI <Result_35(2), Result_35(4), Result_35(6), Result_35(8), Result_35(13), Result_58(15), Result_35(18), Result_35(19), Result_57(20)>
+  # DEBUG Result => Result_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _59 = Result_29;
+  return _59;
+
+}
+
+
+Dem_DcmGetNextFilteredStoredDTC (uint8 ClientId, uint32 * DTC)
+{
+  struct Dem_EventMemoryEntryType * const EventMem;
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  Dem_EventIdType EventId;
+  uint32 StoredDTC;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.31_1;
+  unsigned char Dem_StoredDTCFilterLockByClientId.32_2;
+  unsigned char Dem_StoredDTCFilterLockByClientId.33_3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  unsigned int _9;
+  unsigned int _10;
+  struct Dem_EventMemoryEntryType * _11;
+  unsigned char _12;
+  short unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  Std_ReturnType _50;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_26 = 1;
+  # DEBUG Result => Result_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.31_1 = Dem_InitializationState;
+  if (Dem_InitializationState.31_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 209, 32);
+  goto <bb 25>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_28(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 209, 16);
+  goto <bb 25>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTC_29(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 209, 17);
+  goto <bb 25>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId.32_2 = Dem_StoredDTCFilterLockByClientId;
+  if (ClientId_28(D) != Dem_StoredDTCFilterLockByClientId.32_2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 209, 64);
+  goto <bb 25>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId.33_3 = Dem_StoredDTCFilterLockByClientId;
+  if (ClientId_28(D) == Dem_StoredDTCFilterLockByClientId.33_3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  StoredDTC_30 = 0;
+  # DEBUG StoredDTC => StoredDTC_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Dem_StoredDTCFilter.DTCOriginIdx;
+  _5 = (int) _4;
+  SizeEventMem_31 = Dem_SizeEventMem[_5];
+  # DEBUG SizeEventMem => SizeEventMem_31
+  # DEBUG BEGIN_STMT
+  _6 = Dem_StoredDTCFilter.DTCOriginIdx;
+  _7 = (int) _6;
+  EventMem_32 = Dem_EventMem[_7];
+  # DEBUG EventMem => EventMem_32
+  # DEBUG BEGIN_STMT
+  Result_33 = 48;
+  # DEBUG Result => Result_33
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = Dem_StoredDTCFilter.NextEntryIdx;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 16;
+  _11 = EventMem_32 + _10;
+  EventId_35 = _11->EventId;
+  # DEBUG EventId => EventId_35
+  # DEBUG BEGIN_STMT
+  if (EventId_35 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  StoredDTC_37 = Dem_GetVisibleUdsDTC (EventId_35);
+  # DEBUG StoredDTC => StoredDTC_37
+  # DEBUG BEGIN_STMT
+  if (StoredDTC_37 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _12 = Dem_StoredDTCFilter.DataKind;
+  if (_12 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _13 = Dem_GbiFFClassIdx (EventId_35);
+  if (_13 != 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Result_41 = 0;
+  # DEBUG Result => Result_41
+  goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _14 = Dem_GbiEDClassIdx (EventId_35);
+  if (_14 != 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Result_39 = 0;
+  # DEBUG Result => Result_39
+
+  <bb 19> :
+  # Result_18 = PHI <Result_19(12), Result_19(13), Result_41(16), Result_19(17), Result_39(18), Result_19(15)>
+  # StoredDTC_21 = PHI <StoredDTC_22(12), StoredDTC_37(13), StoredDTC_37(16), StoredDTC_37(17), StoredDTC_37(18), StoredDTC_37(15)>
+  # DEBUG StoredDTC => StoredDTC_21
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  _15 = Dem_StoredDTCFilter.NextEntryIdx;
+  _16 = _15 + 1;
+  Dem_StoredDTCFilter.NextEntryIdx = _16;
+
+  <bb 20> :
+  # Result_19 = PHI <Result_33(11), Result_18(19)>
+  # StoredDTC_22 = PHI <StoredDTC_30(11), StoredDTC_21(19)>
+  # DEBUG StoredDTC => StoredDTC_22
+  # DEBUG Result => Result_19
+  # DEBUG BEGIN_STMT
+  _17 = Dem_StoredDTCFilter.NextEntryIdx;
+  if (SizeEventMem_31 > _17)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  if (Result_19 == 48)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Result_19 == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  *DTC_29(D) = StoredDTC_22;
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Dem_ReadStoredDTCOpDone = 1;
+
+  <bb 25> :
+  # Result_20 = PHI <Result_26(3), Result_26(5), Result_26(7), Result_26(9), Result_26(10), Result_19(23), Result_19(24)>
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _50 = Result_20;
+  return _50;
+
+}
+
+
+Dem_DcmSetStoredDTCFilter (uint8 ClientId, Dem_DTCOriginType DTCOrigin, Dem_DataKindType DataKind)
+{
+  Dem_DTCOriginType MappedDTCOrigin;
+  boolean LockingStoredDTCFilter;
+  boolean ValidDTCOrigin;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.27_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned char Dem_StoredDTCFilterLockByClientId.28_5;
+  unsigned char Dem_StoredDTCFilterLockByClientId.29_6;
+  unsigned char Dem_ReadStoredDTCOpDone.30_7;
+  unsigned char _8;
+  unsigned char _9;
+  Std_ReturnType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_15 = 1;
+  # DEBUG Result => Result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.27_1 = Dem_InitializationState;
+  if (Dem_InitializationState.27_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 208, 32);
+  goto <bb 28>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_17(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 208, 16);
+  goto <bb 28>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataKind_18(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 208, 18);
+  goto <bb 28>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (DTCOrigin_19(D) > 511)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (DTCOrigin_19(D) <= 255)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 10> :
+  if (DTCOrigin_19(D) != 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  if (DTCOrigin_19(D) != 2)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  if (DTCOrigin_19(D) != 3)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  if (DTCOrigin_19(D) != 4)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 208, 18);
+  goto <bb 28>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ValidDTCOrigin_20 = 0;
+  # DEBUG ValidDTCOrigin => ValidDTCOrigin_20
+  # DEBUG BEGIN_STMT
+  LockingStoredDTCFilter_21 = 0;
+  # DEBUG LockingStoredDTCFilter => LockingStoredDTCFilter_21
+  # DEBUG BEGIN_STMT
+  MappedDTCOrigin_23 = Dem_GetMappedDTCOrigin (DTCOrigin_19(D), 0);
+  # DEBUG MappedDTCOrigin => MappedDTCOrigin_23
+  # DEBUG BEGIN_STMT
+  if (MappedDTCOrigin_23 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) MappedDTCOrigin_23;
+  _3 = _2 + 4294967295;
+  _4 = Dem_SizeEventMem[_3];
+  if (_4 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  ValidDTCOrigin_24 = 1;
+  # DEBUG ValidDTCOrigin => ValidDTCOrigin_24
+
+  <bb 18> :
+  # ValidDTCOrigin_11 = PHI <ValidDTCOrigin_20(15), ValidDTCOrigin_20(16), ValidDTCOrigin_24(17)>
+  # DEBUG ValidDTCOrigin => ValidDTCOrigin_11
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId.28_5 = Dem_StoredDTCFilterLockByClientId;
+  if (Dem_StoredDTCFilterLockByClientId.28_5 == 4)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  Dem_StoredDTCFilterLockByClientId.29_6 = Dem_StoredDTCFilterLockByClientId;
+  if (ClientId_17(D) == Dem_StoredDTCFilterLockByClientId.29_6)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  Dem_ReadStoredDTCOpDone.30_7 = Dem_ReadStoredDTCOpDone;
+  if (Dem_ReadStoredDTCOpDone.30_7 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  if (ValidDTCOrigin_11 == 1)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId = ClientId_17(D);
+  # DEBUG BEGIN_STMT
+  LockingStoredDTCFilter_28 = 1;
+  # DEBUG LockingStoredDTCFilter => LockingStoredDTCFilter_28
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId = 4;
+
+  <bb 24> :
+  # LockingStoredDTCFilter_12 = PHI <LockingStoredDTCFilter_21(20), LockingStoredDTCFilter_28(22), LockingStoredDTCFilter_21(23)>
+  # DEBUG LockingStoredDTCFilter => LockingStoredDTCFilter_12
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (LockingStoredDTCFilter_12 == 1)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned char) MappedDTCOrigin_23;
+  _9 = _8 + 255;
+  Dem_StoredDTCFilter.DTCOriginIdx = _9;
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilter.DataKind = DataKind_18(D);
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilter.NextEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ReadStoredDTCOpDone = 0;
+  # DEBUG BEGIN_STMT
+  Result_35 = 0;
+  # DEBUG Result => Result_35
+  goto <bb 28>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  if (ValidDTCOrigin_11 == 1)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 208, 64);
+
+  <bb 28> :
+  # Result_10 = PHI <Result_15(3), Result_15(5), Result_15(7), Result_15(14), Result_35(25), Result_15(26), Result_15(27)>
+  # DEBUG Result => Result_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _40 = Result_10;
+  return _40;
+
+}
+
+
+Dem_GetFunctionalUnitOfDTC (uint8 ClientId, uint8 * DTCFunctionalUnit)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.25_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int EventId.26_5;
+  unsigned char _6;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_13 = 1;
+  # DEBUG Result => Result_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.25_1 = Dem_InitializationState;
+  if (Dem_InitializationState.25_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 52, 32);
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_15(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 52, 16);
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTCFunctionalUnit_16(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 52, 17);
+  goto <bb 16>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_15(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 52, 64);
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId_15(D), &EventId);
+  _4 = (int) _3;
+  switch (_4) <default: <L19> [INV], case 2: <L9> [INV], case 3: <L11> [INV], case 4: <L9> [INV], case 5: <L8> [INV]>
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  EventId.26_5 = EventId;
+  _6 = Dem_GbiDTCFunctionalUnit (EventId.26_5);
+  *DTCFunctionalUnit_16(D) = _6;
+  # DEBUG BEGIN_STMT
+  Result_21 = 0;
+  # DEBUG Result => Result_21
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Result_23 = 8;
+  # DEBUG Result => Result_23
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  Result_22 = 9;
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+
+  <bb 14> :
+  # Result_7 = PHI <Result_21(11), Result_23(12), Result_22(13), Result_13(10)>
+<L19>:
+  # DEBUG Result => Result_7
+  EventId ={v} {CLOBBER};
+
+  <bb 15> :
+  # Result_8 = PHI <Result_13(9), Result_7(14)>
+  # DEBUG Result => Result_8
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 16> :
+  # Result_9 = PHI <Result_13(3), Result_13(5), Result_13(7), Result_8(15)>
+  # DEBUG Result => Result_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = Result_9;
+  return _30;
+
+}
+
+
+Dem_GetSeverityOfDTC (uint8 ClientId, Dem_DTCSeverityType * DTCSeverity)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.23_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int EventId.24_5;
+  unsigned char _6;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_13 = 1;
+  # DEBUG Result => Result_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.23_1 = Dem_InitializationState;
+  if (Dem_InitializationState.23_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 14, 32);
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_15(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 14, 16);
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTCSeverity_16(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 14, 17);
+  goto <bb 16>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_15(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 14, 64);
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId_15(D), &EventId);
+  _4 = (int) _3;
+  switch (_4) <default: <L19> [INV], case 2: <L9> [INV], case 3: <L11> [INV], case 4: <L9> [INV], case 5: <L8> [INV]>
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  EventId.24_5 = EventId;
+  _6 = Dem_GbiDTCSeverity (EventId.24_5);
+  *DTCSeverity_16(D) = _6;
+  # DEBUG BEGIN_STMT
+  Result_21 = 0;
+  # DEBUG Result => Result_21
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Result_23 = 8;
+  # DEBUG Result => Result_23
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  Result_22 = 9;
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+
+  <bb 14> :
+  # Result_7 = PHI <Result_21(11), Result_23(12), Result_22(13), Result_13(10)>
+<L19>:
+  # DEBUG Result => Result_7
+  EventId ={v} {CLOBBER};
+
+  <bb 15> :
+  # Result_8 = PHI <Result_13(9), Result_7(14)>
+  # DEBUG Result => Result_8
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 16> :
+  # Result_9 = PHI <Result_13(3), Result_13(5), Result_13(7), Result_8(15)>
+  # DEBUG Result => Result_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = Result_9;
+  return _30;
+
+}
+
+
+Dem_GetTranslationType (uint8 ClientId)
+{
+  Dem_DTCTranslationFormatType _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1;
+  return _1;
+
+}
+
+
+Dem_GetNextFilteredDTCAndSeverity (uint8 ClientId, uint32 * DTC, uint8 * DTCStatus, Dem_DTCSeverityType * DTCSeverity, uint8 * DTCFunctionalUnit)
+{
+  uint8 DTCStatusValue;
+  const Dem_EventIdType NextEventId;
+  sint8 IdleFDC;
+  boolean FilterResult;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.20_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  unsigned char DTCStatusValue.21_9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char DTCStatusValue.22_12;
+  int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  int _16;
+  short unsigned int _17;
+  Std_ReturnType _57;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_25 = 1;
+  # DEBUG Result => Result_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.20_1 = Dem_InitializationState;
+  if (Dem_InitializationState.20_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 32);
+  goto <bb 26>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_27(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 16);
+  goto <bb 26>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTC_28(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 17);
+  goto <bb 26>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (DTCStatus_29(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 17);
+  goto <bb 26>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (DTCSeverity_30(D) == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 17);
+  goto <bb 26>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (DTCFunctionalUnit_31(D) == 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 17);
+  goto <bb 26>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_27(D);
+  _3 = Dem_DTCFilter[_2].IsSet;
+  if (_3 != 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 64);
+  goto <bb 26>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_27(D);
+  _5 = Dem_DTCFilter[_4].DTCOrigin;
+  if (_5 == 3)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 64);
+  goto <bb 26>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) ClientId_27(D);
+  _7 = Dem_DTCFilter[_6].FilterWithSeverity;
+  if (_7 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 61, 64);
+  goto <bb 26>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  FilterResult_32 = 0;
+  # DEBUG FilterResult => FilterResult_32
+  # DEBUG BEGIN_STMT
+  Result_33 = 48;
+  # DEBUG Result => Result_33
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = (int) ClientId_27(D);
+  NextEventId_34 = Dem_DTCFilter[_8].NextItem;
+  # DEBUG NextEventId => NextEventId_34
+  # DEBUG BEGIN_STMT
+  DTCStatusValue = 0;
+  # DEBUG BEGIN_STMT
+  FilterResult_37 = Dem_ApplyDTCFilter (ClientId_27(D), NextEventId_34, &DTCStatusValue, &IdleFDC, DTC_28(D));
+  # DEBUG FilterResult => FilterResult_37
+  # DEBUG BEGIN_STMT
+  if (FilterResult_37 == 1)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  DTCStatusValue.21_9 = DTCStatusValue;
+  DTCStatusValue = DTCStatusValue.21_9;
+  # DEBUG BEGIN_STMT
+  _10 = Dem_GbiDTCSeverity (NextEventId_34);
+  *DTCSeverity_30(D) = _10;
+  # DEBUG BEGIN_STMT
+  _11 = Dem_GbiDTCFunctionalUnit (NextEventId_34);
+  *DTCFunctionalUnit_31(D) = _11;
+  # DEBUG BEGIN_STMT
+  Result_43 = 0;
+  # DEBUG Result => Result_43
+
+  <bb 23> :
+  # Result_18 = PHI <Result_19(21), Result_43(22)>
+  # DEBUG Result => Result_18
+  # DEBUG BEGIN_STMT
+  DTCStatusValue.22_12 = DTCStatusValue;
+  *DTCStatus_29(D) = DTCStatusValue.22_12;
+  DTCStatusValue ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  _13 = (int) ClientId_27(D);
+  _14 = Dem_DTCFilter[_13].NextItem;
+  _15 = _14 + 1;
+  Dem_DTCFilter[_13].NextItem = _15;
+  IdleFDC ={v} {CLOBBER};
+
+  <bb 24> :
+  # Result_19 = PHI <Result_33(20), Result_18(23)>
+  # FilterResult_21 = PHI <FilterResult_32(20), FilterResult_37(23)>
+  # DEBUG FilterResult => FilterResult_21
+  # DEBUG Result => Result_19
+  # DEBUG BEGIN_STMT
+  _16 = (int) ClientId_27(D);
+  _17 = Dem_DTCFilter[_16].NextItem;
+  if (_17 <= 14)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  if (FilterResult_21 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 26> :
+  # Result_20 = PHI <Result_25(3), Result_25(5), Result_25(7), Result_25(9), Result_25(11), Result_25(13), Result_25(15), Result_25(17), Result_25(19), Result_19(24), Result_19(25)>
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _57 = Result_20;
+  return _57;
+
+}
+
+
+Dem_GetNextFilteredDTCAndFDC (uint8 ClientId, uint32 * DTC, sint8 * DTCFaultDetectionCounter)
+{
+  const Dem_EventIdType NextEventId;
+  Dem_DTCStatusMaskType IdleDTCStatus;
+  boolean FilterResult;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.19_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  short unsigned int _7;
+  int _8;
+  int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  int _12;
+  short unsigned int _13;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_20 = 1;
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.19_1 = Dem_InitializationState;
+  if (Dem_InitializationState.19_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 32);
+  goto <bb 21>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_22(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 16);
+  goto <bb 21>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTC_23(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (DTCFaultDetectionCounter_24(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 17);
+  goto <bb 21>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_22(D);
+  _3 = Dem_DTCFilter[_2].IsSet;
+  if (_3 != 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 64);
+  goto <bb 21>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_22(D);
+  _5 = Dem_DTCFilter[_4].FilterForFDC;
+  if (_5 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 64);
+  goto <bb 21>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) ClientId_22(D);
+  _7 = Dem_DTCFilter[_6].DTCOrigin;
+  if (_7 == 3)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 59, 64);
+  goto <bb 21>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  FilterResult_25 = 0;
+  # DEBUG FilterResult => FilterResult_25
+  # DEBUG BEGIN_STMT
+  Result_26 = 48;
+  # DEBUG Result => Result_26
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = (int) ClientId_22(D);
+  NextEventId_27 = Dem_DTCFilter[_8].NextItem;
+  # DEBUG NextEventId => NextEventId_27
+  # DEBUG BEGIN_STMT
+  FilterResult_29 = Dem_ApplyDTCFilter (ClientId_22(D), NextEventId_27, &IdleDTCStatus, DTCFaultDetectionCounter_24(D), DTC_23(D));
+  # DEBUG FilterResult => FilterResult_29
+  # DEBUG BEGIN_STMT
+  if (FilterResult_29 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Result_30 = 0;
+  # DEBUG Result => Result_30
+
+  <bb 18> :
+  # Result_14 = PHI <Result_15(16), Result_30(17)>
+  # DEBUG Result => Result_14
+  # DEBUG BEGIN_STMT
+  _9 = (int) ClientId_22(D);
+  _10 = Dem_DTCFilter[_9].NextItem;
+  _11 = _10 + 1;
+  Dem_DTCFilter[_9].NextItem = _11;
+  IdleDTCStatus ={v} {CLOBBER};
+
+  <bb 19> :
+  # Result_15 = PHI <Result_26(15), Result_14(18)>
+  # FilterResult_17 = PHI <FilterResult_25(15), FilterResult_29(18)>
+  # DEBUG FilterResult => FilterResult_17
+  # DEBUG Result => Result_15
+  # DEBUG BEGIN_STMT
+  _12 = (int) ClientId_22(D);
+  _13 = Dem_DTCFilter[_12].NextItem;
+  if (_13 <= 14)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  if (FilterResult_17 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # Result_16 = PHI <Result_20(3), Result_20(5), Result_20(8), Result_20(10), Result_20(12), Result_20(14), Result_15(19), Result_15(20)>
+  # DEBUG Result => Result_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _39 = Result_16;
+  return _39;
+
+}
+
+
+Dem_GetNextFilteredRecord (uint8 ClientId, uint32 * DTC, uint8 * RecordNumber)
+{
+  Dem_FFIdxType NumStoredFFs;
+  const uint32 DTCValue;
+  boolean FFRecordFound;
+  const Dem_EventIdType EventId;
+  struct Dem_EventMemoryEntryType * const EvMemEntry;
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  Dem_FFIdxType MaxNumFF;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  Dem_EventIdType StoredOBDFFEventId;
+  struct Dem_EventMemoryEntryType * const Entry;
+  struct Dem_RecordFilterType * const ClientFFRecordFilter;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.17_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  struct Dem_EventMemoryEntryType * _5;
+  unsigned char SelectedEntryIdx.18_6;
+  unsigned int _7;
+  unsigned int _8;
+  struct Dem_EventMemoryEntryType * _9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  int _18;
+  const Dem_FFIdxType * _19;
+  unsigned char _20;
+  sizetype _21;
+  const Dem_FFIdxType * _22;
+  unsigned char _23;
+  unsigned char _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+  unsigned char _28;
+  unsigned char _29;
+  unsigned char _30;
+  Std_ReturnType _85;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_42 = 1;
+  # DEBUG Result => Result_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.17_1 = Dem_InitializationState;
+  if (Dem_InitializationState.17_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 58, 32);
+  goto <bb 27>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_44(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 58, 16);
+  goto <bb 27>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTC_45(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 58, 17);
+  goto <bb 27>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (RecordNumber_46(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 58, 17);
+  goto <bb 27>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_44(D);
+  ClientFFRecordFilter_47 = &Dem_RecordFilter[_2];
+  # DEBUG ClientFFRecordFilter => ClientFFRecordFilter_47
+  # DEBUG BEGIN_STMT
+  _3 = ClientFFRecordFilter_47->RecordFilterIsSet;
+  if (_3 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Entry_49 = Dem_EventMem[0];
+  # DEBUG Entry => Entry_49
+  # DEBUG BEGIN_STMT
+  StoredOBDFFEventId_50 = 0;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_50
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  MaxNumFF_52 = 0;
+  # DEBUG MaxNumFF => MaxNumFF_52
+  # DEBUG BEGIN_STMT
+  SizeEventMem_53 = Dem_SizeEventMem[0];
+  # DEBUG SizeEventMem => SizeEventMem_53
+  # DEBUG BEGIN_STMT
+  Result_54 = 48;
+  # DEBUG Result => Result_54
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 1);
+  if (_4 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _5 = Dem_EventMem[0];
+  SelectedEntryIdx.18_6 = SelectedEntryIdx;
+  _7 = (unsigned int) SelectedEntryIdx.18_6;
+  _8 = _7 * 16;
+  _9 = _5 + _8;
+  StoredOBDFFEventId_57 = _9->EventId;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_57
+  goto <bb 24>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _10 = ClientFFRecordFilter_47->EntryIdx;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 16;
+  EvMemEntry_58 = Entry_49 + _12;
+  # DEBUG EvMemEntry => EvMemEntry_58
+  # DEBUG BEGIN_STMT
+  EventId_59 = EvMemEntry_58->EventId;
+  # DEBUG EventId => EventId_59
+  # DEBUG BEGIN_STMT
+  if (EventId_59 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  FFRecordFound_60 = 0;
+  # DEBUG FFRecordFound => FFRecordFound_60
+  # DEBUG BEGIN_STMT
+  _13 = ClientFFRecordFilter_47->DTCFormat;
+  DTCValue_62 = Dem_GetVisibleDTC (_13, EventId_59);
+  # DEBUG DTCValue => DTCValue_62
+  # DEBUG BEGIN_STMT
+  MaxNumFF_64 = Dem_GbiMaxNumFFRecs (EventId_59);
+  # DEBUG MaxNumFF => MaxNumFF_64
+  # DEBUG BEGIN_STMT
+  if (DTCValue_62 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _14 = EvMemEntry_58->OccCtr;
+  NumStoredFFs_65 = MIN_EXPR <MaxNumFF_64, _14>;
+  # DEBUG NumStoredFFs => NumStoredFFs_65
+  # DEBUG BEGIN_STMT
+  if (StoredOBDFFEventId_33 == EventId_59)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _15 = ClientFFRecordFilter_47->ObdFFConsidered;
+  if (_15 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  *DTC_45(D) = DTCValue_62;
+  # DEBUG BEGIN_STMT
+  *RecordNumber_46(D) = 0;
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_47->ObdFFConsidered = 1;
+  # DEBUG BEGIN_STMT
+  FFRecordFound_69 = 1;
+  # DEBUG FFRecordFound => FFRecordFound_69
+
+  <bb 18> :
+  # FFRecordFound_34 = PHI <FFRecordFound_60(15), FFRecordFound_60(16), FFRecordFound_69(17)>
+  # DEBUG FFRecordFound => FFRecordFound_34
+  # DEBUG BEGIN_STMT
+  _16 = ClientFFRecordFilter_47->RecNumIdx;
+  if (NumStoredFFs_65 > _16)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  if (FFRecordFound_34 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  *DTC_45(D) = DTCValue_62;
+  # DEBUG BEGIN_STMT
+  _17 = Dem_GbiFFRecNumClassIdx (EventId_59);
+  _18 = (int) _17;
+  _19 = Dem_FFRecNumerationClass[_18].Dem_FFRecNumClassIdx;
+  _20 = ClientFFRecordFilter_47->RecNumIdx;
+  _21 = (sizetype) _20;
+  _22 = _19 + _21;
+  _23 = *_22;
+  *RecordNumber_46(D) = _23;
+  # DEBUG BEGIN_STMT
+  _24 = ClientFFRecordFilter_47->RecNumIdx;
+  _25 = _24;
+  _26 = _25 + 1;
+  ClientFFRecordFilter_47->RecNumIdx = _26;
+  # DEBUG BEGIN_STMT
+  FFRecordFound_74 = 1;
+  # DEBUG FFRecordFound => FFRecordFound_74
+
+  <bb 21> :
+  # FFRecordFound_35 = PHI <FFRecordFound_60(14), FFRecordFound_34(18), FFRecordFound_34(19), FFRecordFound_74(20)>
+  # DEBUG FFRecordFound => FFRecordFound_35
+  # DEBUG BEGIN_STMT
+  if (FFRecordFound_35 == 1)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Result_75 = 0;
+  # DEBUG Result => Result_75
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_47->ObdFFConsidered = 0;
+  # DEBUG BEGIN_STMT
+  _27 = ClientFFRecordFilter_47->EntryIdx;
+  _28 = _27;
+  _29 = _28 + 1;
+  ClientFFRecordFilter_47->EntryIdx = _29;
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_47->RecNumIdx = 0;
+
+  <bb 24> :
+  # StoredOBDFFEventId_33 = PHI <StoredOBDFFEventId_57(12), StoredOBDFFEventId_33(23), StoredOBDFFEventId_50(11)>
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_33
+  # DEBUG BEGIN_STMT
+  _30 = ClientFFRecordFilter_47->EntryIdx;
+  if (SizeEventMem_53 > _30)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  # Result_31 = PHI <Result_75(22), Result_54(24)>
+  # DEBUG Result => Result_31
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  SelectedEntryIdx ={v} {CLOBBER};
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 58, 64);
+
+  <bb 27> :
+  # Result_32 = PHI <Result_42(3), Result_42(5), Result_42(7), Result_42(9), Result_31(25), Result_42(26)>
+  # DEBUG Result => Result_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _85 = Result_32;
+  return _85;
+
+}
+
+
+Dem_GetDTCByOccurrenceTime (uint8 ClientId, Dem_DTCRequestType DTCRequest, uint32 * DTC)
+{
+  Dem_EventIdType EventId;
+  uint32 OccurKindDTC;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.16_1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  Std_ReturnType _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_7 = 1;
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.16_1 = Dem_InitializationState;
+  if (Dem_InitializationState.16_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 25, 32);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_9(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 25, 16);
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = DTCRequest_10(D) + 255;
+  if (_2 > 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 25, 18);
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (DTC_11(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 25, 17);
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result_12 = 48;
+  # DEBUG Result => Result_12
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) DTCRequest_10(D);
+  _4 = _3 + 4294967295;
+  EventId_14 = Dem_NvData.OccurKindEventId[_4];
+  # DEBUG EventId => EventId_14
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EventId_14 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OccurKindDTC_17 = Dem_GetVisibleUdsDTC (EventId_14);
+  # DEBUG OccurKindDTC => OccurKindDTC_17
+  # DEBUG BEGIN_STMT
+  if (OccurKindDTC_17 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *DTC_11(D) = OccurKindDTC_17;
+  # DEBUG BEGIN_STMT
+  Result_19 = 0;
+  # DEBUG Result => Result_19
+
+  <bb 13> :
+  # Result_5 = PHI <Result_7(3), Result_7(5), Result_7(7), Result_7(9), Result_12(10), Result_12(11), Result_19(12)>
+  # DEBUG Result => Result_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _24 = Result_5;
+  return _24;
+
+}
+
+
+Dem_GetNextFilteredDTC (uint8 ClientId, uint32 * DTC, Dem_DTCStatusMaskType * DTCStatus)
+{
+  Dem_EventIdType NextEventId;
+  const uint8 NvStatus;
+  const Dem_EventIdType CheckedEventId;
+  const Dem_PermanentMemoryEntryType PermanentMemoryEntry;
+  const Dem_SizeEvMemEntryType NextEvMemEntryIdx;
+  Dem_DTCStatusMaskType DTCStatusValue;
+  uint32 DTCValue;
+  boolean FilterResult;
+  struct Dem_DTCFilterType * const ClientDTCFilter;
+  sint8 IdleFDC;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.12_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  unsigned char _7;
+  int _8;
+  int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  short unsigned int _13;
+  unsigned char _14;
+  int _15;
+  short unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned char DTCStatusValue.13_19;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  unsigned char _24;
+  short unsigned int _25;
+  unsigned char _26;
+  short unsigned int _27;
+  long unsigned int DTCValue.14_28;
+  unsigned char DTCStatusValue.15_29;
+  Std_ReturnType _79;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_46 = 1;
+  # DEBUG Result => Result_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.12_1 = Dem_InitializationState;
+  if (Dem_InitializationState.12_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 24, 32);
+  goto <bb 30>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_48(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 24, 16);
+  goto <bb 30>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTCStatus_49(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (DTC_50(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 24, 17);
+  goto <bb 30>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_48(D);
+  _3 = Dem_DTCFilter[_2].IsSet;
+  if (_3 != 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 24, 64);
+  goto <bb 30>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_48(D);
+  ClientDTCFilter_51 = &Dem_DTCFilter[_4];
+  # DEBUG ClientDTCFilter => ClientDTCFilter_51
+  # DEBUG BEGIN_STMT
+  FilterResult_52 = 0;
+  # DEBUG FilterResult => FilterResult_52
+  # DEBUG BEGIN_STMT
+  DTCValue = 0;
+  # DEBUG BEGIN_STMT
+  DTCStatusValue = 0;
+  # DEBUG BEGIN_STMT
+  Result_55 = 48;
+  # DEBUG Result => Result_55
+  # DEBUG BEGIN_STMT
+  _5 = ClientDTCFilter_51->DTCOrigin;
+  if (_5 == 3)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _6 = ClientDTCFilter_51->NextItem;
+  _7 = (unsigned char) _6;
+  NextEvMemEntryIdx_63 = _7 + 255;
+  # DEBUG NextEvMemEntryIdx => NextEvMemEntryIdx_63
+  # DEBUG BEGIN_STMT
+  _8 = (int) NextEvMemEntryIdx_63;
+  PermanentMemoryEntry_64 = Dem_EventMemoryPermanent[_8];
+  # DEBUG PermanentMemoryEntry => PermanentMemoryEntry_64
+  # DEBUG BEGIN_STMT
+  CheckedEventId_65 = PermanentMemoryEntry_64 & 8191;
+  # DEBUG CheckedEventId => CheckedEventId_65
+  # DEBUG BEGIN_STMT
+  _9 = (int) NextEvMemEntryIdx_63;
+  NvStatus_66 = Dem_EventMemoryPermanentNonVolatileStored[_9];
+  # DEBUG NvStatus => NvStatus_66
+  # DEBUG BEGIN_STMT
+  if (CheckedEventId_65 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  if (NvStatus_66 == 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  FilterResult_68 = Dem_ApplyDTCFilter (ClientId_48(D), CheckedEventId_65, &DTCStatusValue, &IdleFDC, &DTCValue);
+  # DEBUG FilterResult => FilterResult_68
+  # DEBUG BEGIN_STMT
+  if (FilterResult_68 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Result_69 = 0;
+  # DEBUG Result => Result_69
+
+  <bb 16> :
+  # Result_30 = PHI <Result_31(12), Result_31(13), Result_31(14), Result_69(15)>
+  # FilterResult_36 = PHI <FilterResult_37(12), FilterResult_37(13), FilterResult_68(14), FilterResult_68(15)>
+  # DEBUG FilterResult => FilterResult_36
+  # DEBUG Result => Result_30
+  # DEBUG BEGIN_STMT
+  _10 = ClientDTCFilter_51->NextItem;
+  _11 = _10;
+  _12 = _11 + 1;
+  ClientDTCFilter_51->NextItem = _12;
+
+  <bb 17> :
+  # Result_31 = PHI <Result_55(11), Result_30(16)>
+  # FilterResult_37 = PHI <FilterResult_52(11), FilterResult_36(16)>
+  # DEBUG FilterResult => FilterResult_37
+  # DEBUG Result => Result_31
+  # DEBUG BEGIN_STMT
+  if (FilterResult_37 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 18> :
+  _13 = ClientDTCFilter_51->NextItem;
+  if (_13 <= 4)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = ClientDTCFilter_51->OccOrdering;
+  if (_14 == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) ClientId_48(D);
+  _16 = ClientDTCFilter_51->NextItem;
+  _17 = (unsigned int) _16;
+  _18 = _17 + 4294967295;
+  NextEventId_57 = Dem_OrderedEventId[_15][_18];
+  # DEBUG NextEventId => NextEventId_57
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  NextEventId_56 = ClientDTCFilter_51->NextItem;
+  # DEBUG NextEventId => NextEventId_56
+
+  <bb 22> :
+  # NextEventId_39 = PHI <NextEventId_57(20), NextEventId_56(21)>
+  # DEBUG NextEventId => NextEventId_39
+  # DEBUG BEGIN_STMT
+  FilterResult_59 = Dem_ApplyDTCFilter (ClientId_48(D), NextEventId_39, &DTCStatusValue, &IdleFDC, &DTCValue);
+  # DEBUG FilterResult => FilterResult_59
+  # DEBUG BEGIN_STMT
+  if (FilterResult_59 == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  DTCStatusValue.13_19 = DTCStatusValue;
+  DTCStatusValue = DTCStatusValue.13_19;
+  # DEBUG BEGIN_STMT
+  Result_61 = 0;
+  # DEBUG Result => Result_61
+
+  <bb 24> :
+  # Result_32 = PHI <Result_33(22), Result_61(23)>
+  # DEBUG Result => Result_32
+  # DEBUG BEGIN_STMT
+  _20 = ClientDTCFilter_51->NextItem;
+  _21 = _20;
+  _22 = _21 + 1;
+  ClientDTCFilter_51->NextItem = _22;
+
+  <bb 25> :
+  # Result_33 = PHI <Result_55(11), Result_32(24)>
+  # FilterResult_38 = PHI <FilterResult_52(11), FilterResult_59(24)>
+  # DEBUG FilterResult => FilterResult_38
+  # DEBUG Result => Result_33
+  # DEBUG BEGIN_STMT
+  _23 = ClientDTCFilter_51->NextItem;
+  if (_23 <= 14)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 26> :
+  if (FilterResult_38 == 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 27> :
+  _24 = ClientDTCFilter_51->OccOrdering;
+  if (_24 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  _25 = ClientDTCFilter_51->NextItem;
+  _26 = ClientDTCFilter_51->EventsInMemory;
+  _27 = (short unsigned int) _26;
+  if (_25 <= _27)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 29> :
+  # Result_34 = PHI <Result_31(18), Result_33(25), Result_33(26), Result_33(28), Result_31(17)>
+  # DEBUG Result => Result_34
+  # DEBUG BEGIN_STMT
+  DTCValue.14_28 = DTCValue;
+  *DTC_50(D) = DTCValue.14_28;
+  # DEBUG BEGIN_STMT
+  DTCStatusValue.15_29 = DTCStatusValue;
+  *DTCStatus_49(D) = DTCStatusValue.15_29;
+  DTCValue ={v} {CLOBBER};
+  DTCStatusValue ={v} {CLOBBER};
+
+  <bb 30> :
+  # Result_35 = PHI <Result_46(3), Result_46(5), Result_46(8), Result_46(10), Result_34(29)>
+  # DEBUG Result => Result_35
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _79 = Result_35;
+  IdleFDC ={v} {CLOBBER};
+  return _79;
+
+}
+
+
+Dem_GetNumberOfFilteredDTC (uint8 ClientId, uint16 * NumberOfFilteredDTC)
+{
+  const uint8 EventsInMemory;
+  Dem_SizeEvMemEntryType EvIdx;
+  const uint8 NvStatus;
+  const Dem_EventIdType CheckedEventId;
+  const Dem_PermanentMemoryEntryType PermanentMemoryEntry;
+  Dem_SizeEvMemEntryType EvMemEntryIdx;
+  Dem_EvIdLeastType EvId;
+  uint16 NrOfFilteredDTCs;
+  uint32 IdleDTC;
+  sint8 IdleFDC;
+  Dem_DTCStatusMaskType IdleDTCStatus;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.9_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int _5;
+  int _6;
+  int _7;
+  unsigned char _8;
+  unsigned char EvMemEntryIdx.10_9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  int _14;
+  short unsigned int _15;
+  unsigned char _16;
+  unsigned char EvIdx.11_17;
+  short unsigned int _18;
+  unsigned char _19;
+  Std_ReturnType _68;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_37 = 1;
+  # DEBUG Result => Result_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.9_1 = Dem_InitializationState;
+  if (Dem_InitializationState.9_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 23, 32);
+  goto <bb 30>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_39(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 23, 16);
+  goto <bb 30>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (NumberOfFilteredDTC_40(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 23, 17);
+  goto <bb 30>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_39(D);
+  _3 = Dem_DTCFilter[_2].IsSet;
+  if (_3 != 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 23, 64);
+  goto <bb 30>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IdleDTC = 0;
+  # DEBUG BEGIN_STMT
+  NrOfFilteredDTCs_42 = 0;
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_39(D);
+  _5 = Dem_DTCFilter[_4].DTCOrigin;
+  if (_5 == 3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EvMemEntryIdx_52 = 0;
+  # DEBUG EvMemEntryIdx => EvMemEntryIdx_52
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) EvMemEntryIdx_29;
+  PermanentMemoryEntry_53 = Dem_EventMemoryPermanent[_6];
+  # DEBUG PermanentMemoryEntry => PermanentMemoryEntry_53
+  # DEBUG BEGIN_STMT
+  CheckedEventId_54 = PermanentMemoryEntry_53 & 8191;
+  # DEBUG CheckedEventId => CheckedEventId_54
+  # DEBUG BEGIN_STMT
+  _7 = (int) EvMemEntryIdx_29;
+  NvStatus_55 = Dem_EventMemoryPermanentNonVolatileStored[_7];
+  # DEBUG NvStatus => NvStatus_55
+  # DEBUG BEGIN_STMT
+  if (CheckedEventId_54 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  if (NvStatus_55 == 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _8 = Dem_ApplyDTCFilter (ClientId_39(D), CheckedEventId_54, &IdleDTCStatus, &IdleFDC, &IdleDTC);
+  if (_8 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  NrOfFilteredDTCs_57 = NrOfFilteredDTCs_22 + 1;
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_57
+
+  <bb 16> :
+  # NrOfFilteredDTCs_21 = PHI <NrOfFilteredDTCs_22(12), NrOfFilteredDTCs_22(13), NrOfFilteredDTCs_22(14), NrOfFilteredDTCs_57(15)>
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_21
+  # DEBUG BEGIN_STMT
+  EvMemEntryIdx.10_9 = EvMemEntryIdx_29;
+  EvMemEntryIdx_58 = EvMemEntryIdx.10_9 + 1;
+  # DEBUG EvMemEntryIdx => EvMemEntryIdx_58
+
+  <bb 17> :
+  # NrOfFilteredDTCs_22 = PHI <NrOfFilteredDTCs_42(11), NrOfFilteredDTCs_21(16)>
+  # EvMemEntryIdx_29 = PHI <EvMemEntryIdx_52(11), EvMemEntryIdx_58(16)>
+  # DEBUG EvMemEntryIdx => EvMemEntryIdx_29
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_22
+  # DEBUG BEGIN_STMT
+  if (EvMemEntryIdx_29 <= 3)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) ClientId_39(D);
+  _11 = Dem_DTCFilter[_10].OccOrdering;
+  if (_11 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = (int) ClientId_39(D);
+  EventsInMemory_47 = Dem_DTCFilter[_12].EventsInMemory;
+  # DEBUG EventsInMemory => EventsInMemory_47
+  # DEBUG BEGIN_STMT
+  EvIdx_48 = 0;
+  # DEBUG EvIdx => EvIdx_48
+  goto <bb 23>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) ClientId_39(D);
+  _14 = (int) EvIdx_30;
+  _15 = Dem_OrderedEventId[_13][_14];
+  _16 = Dem_ApplyDTCFilter (ClientId_39(D), _15, &IdleDTCStatus, &IdleFDC, &IdleDTC);
+  if (_16 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  NrOfFilteredDTCs_50 = NrOfFilteredDTCs_24 + 1;
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_50
+
+  <bb 22> :
+  # NrOfFilteredDTCs_23 = PHI <NrOfFilteredDTCs_24(20), NrOfFilteredDTCs_50(21)>
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_23
+  # DEBUG BEGIN_STMT
+  EvIdx.11_17 = EvIdx_30;
+  EvIdx_51 = EvIdx.11_17 + 1;
+  # DEBUG EvIdx => EvIdx_51
+
+  <bb 23> :
+  # NrOfFilteredDTCs_24 = PHI <NrOfFilteredDTCs_42(19), NrOfFilteredDTCs_23(22)>
+  # EvIdx_30 = PHI <EvIdx_48(19), EvIdx_51(22)>
+  # DEBUG EvIdx => EvIdx_30
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_24
+  # DEBUG BEGIN_STMT
+  if (EvIdx_30 < EventsInMemory_47)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  EvId_43 = 1;
+  # DEBUG EvId => EvId_43
+  goto <bb 28>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _18 = (short unsigned int) EvId_28;
+  _19 = Dem_ApplyDTCFilter (ClientId_39(D), _18, &IdleDTCStatus, &IdleFDC, &IdleDTC);
+  if (_19 != 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  NrOfFilteredDTCs_45 = NrOfFilteredDTCs_26 + 1;
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_45
+
+  <bb 27> :
+  # NrOfFilteredDTCs_25 = PHI <NrOfFilteredDTCs_26(25), NrOfFilteredDTCs_45(26)>
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_25
+  # DEBUG BEGIN_STMT
+  EvId_46 = EvId_28 + 1;
+  # DEBUG EvId => EvId_46
+
+  <bb 28> :
+  # NrOfFilteredDTCs_26 = PHI <NrOfFilteredDTCs_42(24), NrOfFilteredDTCs_25(27)>
+  # EvId_28 = PHI <EvId_43(24), EvId_46(27)>
+  # DEBUG EvId => EvId_28
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_26
+  # DEBUG BEGIN_STMT
+  if (EvId_28 <= 14)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 29> :
+  # NrOfFilteredDTCs_27 = PHI <NrOfFilteredDTCs_22(17), NrOfFilteredDTCs_24(23), NrOfFilteredDTCs_26(28)>
+  # DEBUG NrOfFilteredDTCs => NrOfFilteredDTCs_27
+  # DEBUG BEGIN_STMT
+  *NumberOfFilteredDTC_40(D) = NrOfFilteredDTCs_27;
+  # DEBUG BEGIN_STMT
+  Result_60 = 0;
+  # DEBUG Result => Result_60
+  IdleDTCStatus ={v} {CLOBBER};
+  IdleFDC ={v} {CLOBBER};
+  IdleDTC ={v} {CLOBBER};
+
+  <bb 30> :
+  # Result_20 = PHI <Result_37(3), Result_37(5), Result_37(7), Result_37(9), Result_60(29)>
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _68 = Result_20;
+  return _68;
+
+}
+
+
+Dem_GetDTCStatusAvailabilityMask (uint8 ClientId, Dem_UdsStatusByteType * DTCStatusMask)
+{
+  Std_ReturnType Result;
+  Std_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_3 = 1;
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DTCStatusMask_4(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 22, 17);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *DTCStatusMask_4(D) = 255;
+  # DEBUG BEGIN_STMT
+  Result_7 = 0;
+  # DEBUG Result => Result_7
+
+  <bb 5> :
+  # Result_1 = PHI <Result_3(3), Result_7(4)>
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = Result_1;
+  return _9;
+
+}
+
+
+Dem_GetStatusOfDTC (uint8 ClientId, Dem_DTCStatusMaskType * DTCStatus)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.7_1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int EventId.8_5;
+  int _6;
+  unsigned char _7;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_14 = 1;
+  # DEBUG Result => Result_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.7_1 = Dem_InitializationState;
+  if (Dem_InitializationState.7_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 21, 32);
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DTCStatus_16(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 21, 17);
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_17(D) > 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 21, 16);
+  goto <bb 16>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId_17(D), &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 21, 64);
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId_17(D), &EventId);
+  _4 = (int) _3;
+  switch (_4) <default: <L19> [INV], case 2: <L8> [INV], case 3: <L10> [INV], case 4: <L8> [INV], case 5: <L11> [INV]>
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  Result_23 = 8;
+  # DEBUG Result => Result_23
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  Result_22 = 9;
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  EventId.8_5 = EventId;
+  _6 = (int) EventId.8_5;
+  _7 = Dem_NvData.DTCStatusMask[_6];
+  *DTCStatus_16(D) = _7;
+  # DEBUG BEGIN_STMT
+  Result_21 = 0;
+  # DEBUG Result => Result_21
+  # DEBUG BEGIN_STMT
+
+  <bb 14> :
+  # Result_8 = PHI <Result_23(11), Result_22(12), Result_21(13), Result_14(10)>
+<L19>:
+  # DEBUG Result => Result_8
+  EventId ={v} {CLOBBER};
+
+  <bb 15> :
+  # Result_9 = PHI <Result_14(9), Result_8(14)>
+  # DEBUG Result => Result_9
+  DTCSelection ={v} {CLOBBER};
+
+  <bb 16> :
+  # Result_10 = PHI <Result_14(3), Result_14(5), Result_14(7), Result_9(15)>
+  # DEBUG Result => Result_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = Result_10;
+  return _30;
+
+}
+
+
+Dem_SetFreezeFrameRecordFilter (uint8 ClientId, Dem_DTCFormatType DTCFormat, uint16 * NumberOfFilteredRecords)
+{
+  const Dem_EventIdType EvId;
+  uint16 NumOfFilteredRecs;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  Dem_EventIdType StoredOBDFFEventId;
+  Dem_SizeEvMemEntryType Index;
+  struct Dem_EventMemoryEntryType * const Entry;
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  struct Dem_RecordFilterType * const ClientFFRecordFilter;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.2_1;
+  int _2;
+  unsigned char _3;
+  struct Dem_EventMemoryEntryType * _4;
+  unsigned char SelectedEntryIdx.3_5;
+  unsigned int _6;
+  unsigned int _7;
+  struct Dem_EventMemoryEntryType * _8;
+  unsigned int _9;
+  unsigned int _10;
+  struct Dem_EventMemoryEntryType * _11;
+  long unsigned int _12;
+  short unsigned int NumOfFilteredRecs.4_13;
+  unsigned int _14;
+  unsigned int _15;
+  struct Dem_EventMemoryEntryType * _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned int _19;
+  unsigned int _20;
+  struct Dem_EventMemoryEntryType * _21;
+  short unsigned int _22;
+  unsigned char iftmp.5_29;
+  unsigned char iftmp.5_62;
+  unsigned char iftmp.5_64;
+  unsigned char iftmp.6_65;
+  Std_ReturnType _72;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_34 = 1;
+  # DEBUG Result => Result_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.2_1 = Dem_InitializationState;
+  if (Dem_InitializationState.2_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 63, 32);
+  goto <bb 25>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_36(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 63, 16);
+  goto <bb 25>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTCFormat_37(D) > 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 63, 18);
+  goto <bb 25>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (NumberOfFilteredRecords_38(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 63, 17);
+  goto <bb 25>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (DTCFormat_37(D) != 2)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId_36(D);
+  ClientFFRecordFilter_39 = &Dem_RecordFilter[_2];
+  # DEBUG ClientFFRecordFilter => ClientFFRecordFilter_39
+  # DEBUG BEGIN_STMT
+  SizeEventMem_40 = Dem_SizeEventMem[0];
+  # DEBUG SizeEventMem => SizeEventMem_40
+  # DEBUG BEGIN_STMT
+  Entry_41 = Dem_EventMem[0];
+  # DEBUG Entry => Entry_41
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  StoredOBDFFEventId_42 = 0;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_42
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  NumOfFilteredRecs_44 = 0;
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_44
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 1);
+  if (_3 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _4 = Dem_EventMem[0];
+  SelectedEntryIdx.3_5 = SelectedEntryIdx;
+  _6 = (unsigned int) SelectedEntryIdx.3_5;
+  _7 = _6 * 16;
+  _8 = _4 + _7;
+  StoredOBDFFEventId_47 = _8->EventId;
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_47
+
+  <bb 13> :
+  # StoredOBDFFEventId_25 = PHI <StoredOBDFFEventId_42(11), StoredOBDFFEventId_47(12)>
+  # DEBUG StoredOBDFFEventId => StoredOBDFFEventId_25
+  # DEBUG BEGIN_STMT
+  Index_48 = 0;
+  # DEBUG Index => Index_48
+  goto <bb 23>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) Index_24;
+  _10 = _9 * 16;
+  _11 = Entry_41 + _10;
+  EvId_58 = _11->EventId;
+  # DEBUG EvId => EvId_58
+  # DEBUG BEGIN_STMT
+  if (EvId_58 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _12 = Dem_GetVisibleDTC (DTCFormat_37(D), EvId_58);
+  if (_12 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (EvId_58 == StoredOBDFFEventId_25)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  NumOfFilteredRecs.4_13 = NumOfFilteredRecs_28;
+  NumOfFilteredRecs_60 = NumOfFilteredRecs.4_13 + 1;
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_60
+
+  <bb 18> :
+  # NumOfFilteredRecs_26 = PHI <NumOfFilteredRecs_28(16), NumOfFilteredRecs_60(17)>
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_26
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) Index_24;
+  _15 = _14 * 16;
+  _16 = Entry_41 + _15;
+  _17 = _16->OccCtr;
+  _18 = Dem_GbiMaxNumFFRecs (EvId_58);
+  if (_17 > _18)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  iftmp.5_64 = Dem_GbiMaxNumFFRecs (EvId_58);
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  _19 = (unsigned int) Index_24;
+  _20 = _19 * 16;
+  _21 = Entry_41 + _20;
+  iftmp.5_62 = _21->OccCtr;
+
+  <bb 21> :
+  # iftmp.5_29 = PHI <iftmp.5_64(19), iftmp.5_62(20)>
+  iftmp.6_65 = iftmp.5_29;
+  _22 = (short unsigned int) iftmp.6_65;
+  NumOfFilteredRecs_66 = NumOfFilteredRecs_26 + _22;
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_66
+
+  <bb 22> :
+  # NumOfFilteredRecs_27 = PHI <NumOfFilteredRecs_28(14), NumOfFilteredRecs_28(15), NumOfFilteredRecs_66(21)>
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_27
+  # DEBUG BEGIN_STMT
+  Index_67 = Index_24 + 1;
+  # DEBUG Index => Index_67
+
+  <bb 23> :
+  # Index_24 = PHI <Index_48(13), Index_67(22)>
+  # NumOfFilteredRecs_28 = PHI <NumOfFilteredRecs_44(13), NumOfFilteredRecs_27(22)>
+  # DEBUG NumOfFilteredRecs => NumOfFilteredRecs_28
+  # DEBUG Index => Index_24
+  # DEBUG BEGIN_STMT
+  if (Index_24 < SizeEventMem_40)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_39->EntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_39->RecNumIdx = 0;
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_39->ObdFFConsidered = 0;
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_39->DTCFormat = DTCFormat_37(D);
+  # DEBUG BEGIN_STMT
+  ClientFFRecordFilter_39->RecordFilterIsSet = 1;
+  # DEBUG BEGIN_STMT
+  *NumberOfFilteredRecords_38(D) = NumOfFilteredRecs_28;
+  # DEBUG BEGIN_STMT
+  Result_56 = 0;
+  # DEBUG Result => Result_56
+  SelectedEntryIdx ={v} {CLOBBER};
+
+  <bb 25> :
+  # Result_23 = PHI <Result_34(3), Result_34(5), Result_34(7), Result_34(9), Result_34(10), Result_56(24)>
+  # DEBUG Result => Result_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _72 = Result_23;
+  return _72;
+
+}
+
+
+Dem_SetDTCFilter (uint8 ClientId, uint8 DTCStatusMask, Dem_DTCFormatType DTCFormat, Dem_DTCOriginType DTCOrigin, boolean FilterWithSeverity, Dem_DTCSeverityType DTCSeverityMask, boolean FilterForFaultDetectionCounter)
+{
+  Dem_DTCStatusMaskType OccOrderingMask;
+  Dem_DTCStatusMaskType AvailableDTCStatusMask;
+  Dem_DTCOriginType MappedDTCOrigin;
+  struct Dem_DTCFilterType * const ClientDTCFilter;
+  Std_ReturnType Result;
+  <unnamed type> Dem_InitializationState.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  int _4;
+  int _5;
+  int _6;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  Dem_DTCKindType iftmp.1_16;
+  Dem_DTCKindType iftmp.1_41;
+  Dem_DTCKindType iftmp.1_42;
+  Std_ReturnType _59;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_20 = 1;
+  # DEBUG Result => Result_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.0_1 = Dem_InitializationState;
+  if (Dem_InitializationState.0_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 32);
+  goto <bb 36>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId_22(D) > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 16);
+  goto <bb 36>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DTCFormat_23(D) > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 18);
+  goto <bb 36>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (DTCOrigin_24(D) > 511)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (DTCOrigin_24(D) <= 255)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 10> :
+  if (DTCOrigin_24(D) != 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  if (DTCOrigin_24(D) != 2)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  if (DTCOrigin_24(D) != 3)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  if (DTCOrigin_24(D) != 4)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 18);
+  goto <bb 36>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (FilterWithSeverity_25(D) > 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 18);
+  goto <bb 36>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (DTCSeverityMask_26(D) != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  _2 = (unsigned int) DTCSeverityMask_26(D);
+  _3 = _2 & 31;
+  if (_3 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 18);
+  goto <bb 36>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  if (FilterForFaultDetectionCounter_28(D) > 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 19, 18);
+  goto <bb 36>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId_22(D);
+  ClientDTCFilter_29 = &Dem_DTCFilter[_4];
+  # DEBUG ClientDTCFilter => ClientDTCFilter_29
+  # DEBUG BEGIN_STMT
+  MappedDTCOrigin_31 = Dem_GetMappedDTCOrigin (DTCOrigin_24(D), 0);
+  # DEBUG MappedDTCOrigin => MappedDTCOrigin_31
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->NextItem = 1;
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->IsSet = 0;
+  # DEBUG BEGIN_STMT
+  if (MappedDTCOrigin_31 != 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) MappedDTCOrigin_31;
+  _6 = _5 + -1;
+  _7 = Dem_SizeEventMem[_6];
+  if (_7 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  if (MappedDTCOrigin_31 != 3)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  AvailableDTCStatusMask_35 = DTCStatusMask_34(D);
+  # DEBUG AvailableDTCStatusMask => AvailableDTCStatusMask_35
+  # DEBUG BEGIN_STMT
+  OccOrderingMask_36 = 0;
+  # DEBUG OccOrderingMask => OccOrderingMask_36
+  # DEBUG BEGIN_STMT
+  OccOrderingMask_37 = OccOrderingMask_36 | 8;
+  # DEBUG OccOrderingMask => OccOrderingMask_37
+  # DEBUG BEGIN_STMT
+  _8 = AvailableDTCStatusMask_35 & OccOrderingMask_37;
+  if (_8 != 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 26> :
+  _9 = ~OccOrderingMask_37;
+  _10 = AvailableDTCStatusMask_35 & _9;
+  if (_10 == 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 27> :
+  _11 = (unsigned int) MappedDTCOrigin_31;
+  _12 = _11 + 4294967295;
+  _13 = Dem_SizeEventMem[_12];
+  if (_13 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->OccOrdering = 1;
+  goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->OccOrdering = 0;
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->DTCStatusMask = AvailableDTCStatusMask_35;
+  # DEBUG BEGIN_STMT
+  if (DTCOrigin_24(D) == 4)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  iftmp.1_42 = 2;
+  goto <bb 33>; [INV]
+
+  <bb 32> :
+  iftmp.1_41 = 1;
+
+  <bb 33> :
+  # iftmp.1_16 = PHI <iftmp.1_42(31), iftmp.1_41(32)>
+  ClientDTCFilter_29->DTCKind = iftmp.1_16;
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->DTCFormat = DTCFormat_23(D);
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->DTCOrigin = MappedDTCOrigin_31;
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->FilterWithSeverity = FilterWithSeverity_25(D);
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->DTCSeverityMask = DTCSeverityMask_26(D);
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->FilterForFDC = FilterForFaultDetectionCounter_28(D);
+  # DEBUG BEGIN_STMT
+  _14 = ClientDTCFilter_29->OccOrdering;
+  if (_14 == 1)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  Dem_ApplyDTCOrder (ClientId_22(D), MappedDTCOrigin_31);
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->NextItem = 1;
+  # DEBUG BEGIN_STMT
+  ClientDTCFilter_29->IsSet = 1;
+  # DEBUG BEGIN_STMT
+  Result_52 = 0;
+  # DEBUG Result => Result_52
+
+  <bb 36> :
+  # Result_15 = PHI <Result_20(3), Result_20(5), Result_20(7), Result_20(14), Result_20(16), Result_20(19), Result_20(21), Result_20(22), Result_20(24), Result_52(35)>
+  # DEBUG Result => Result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _59 = Result_15;
+  return _59;
+
+}
+
+
+Dem_InitDTCMemoryFilter ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_StoredDTCFilterLockByClientId = 4;
+  # DEBUG BEGIN_STMT
+  Dem_ReadStoredDTCOpDone = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_InitRecordFilter ()
+{
+  uint8_least Idx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Idx_3 = 0;
+  # DEBUG Idx => Idx_3
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dem_RecordFilter[Idx_1].RecordFilterIsSet = 0;
+  # DEBUG BEGIN_STMT
+  Idx_6 = Idx_1 + 1;
+  # DEBUG Idx => Idx_6
+
+  <bb 4> :
+  # Idx_1 = PHI <Idx_3(2), Idx_6(3)>
+  # DEBUG Idx => Idx_1
+  # DEBUG BEGIN_STMT
+  if (Idx_1 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dem_InitDTCFilter ()
+{
+  uint8_least Idx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Idx_3 = 0;
+  # DEBUG Idx => Idx_3
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dem_DTCFilter[Idx_1].IsSet = 0;
+  # DEBUG BEGIN_STMT
+  Idx_6 = Idx_1 + 1;
+  # DEBUG Idx => Idx_6
+
+  <bb 4> :
+  # Idx_1 = PHI <Idx_3(2), Idx_6(3)>
+  # DEBUG Idx => Idx_1
+  # DEBUG BEGIN_STMT
+  if (Idx_1 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

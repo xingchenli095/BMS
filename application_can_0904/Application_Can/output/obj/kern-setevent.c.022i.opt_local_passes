@@ -1,0 +1,349 @@
+__attribute__((target ("general-regs-only")))
+OS_KernSetEvent (os_taskid_t t, os_eventmask_t evt)
+{
+  os_errorresult_t e;
+  const struct os_appcontext_t * const app;
+  const struct os_task_t * const ts;
+  os_paramtype_t p[3];
+  os_result_t r;
+  unsigned int _1;
+  unsigned char _2;
+  const os_callermask_t * OS_permittedContext.2_3;
+  const os_callermask_t * _4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  const os_callermask_t * OS_permittedContext.3_8;
+  const os_callermask_t * _9;
+  short unsigned int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  const os_callermask_t * OS_permittedContext.4_16;
+  const os_callermask_t * _17;
+  short unsigned int _18;
+  unsigned char _19;
+  int _20;
+  int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  unsigned char OS_iecMode.5_24;
+  unsigned char _25;
+  const struct os_task_t * _26;
+  struct os_taskdynamic_t * _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  short unsigned int _30;
+  short unsigned int _31;
+  unsigned char OS_nTasks.6_32;
+  const struct os_task_t * OS_taskTableBase.7_33;
+  unsigned int _34;
+  unsigned int _35;
+  unsigned char _36;
+  const struct os_task_t * _37;
+  unsigned char _38;
+  const struct os_isr_t * OS_isrTableBase.10_39;
+  short unsigned int _40;
+  unsigned int _41;
+  unsigned int _42;
+  const struct os_isr_t * _43;
+  unsigned char _44;
+  unsigned char _45;
+  unsigned char _46;
+  unsigned int _47;
+  unsigned int _48;
+  unsigned int _49;
+  unsigned char _50;
+  unsigned int _51;
+  unsigned int _52;
+  _Bool iftmp.0_54;
+  int iftmp.1_55;
+  const struct os_appcontext_t * iftmp.8_56;
+  const struct os_appcontext_t * iftmp.9_57;
+  const struct os_appcontext_t * iftmp.11_58;
+  _Bool iftmp.0_66;
+  int iftmp.1_67;
+  int iftmp.1_68;
+  _Bool iftmp.0_69;
+  const struct os_appcontext_t * iftmp.11_73;
+  const struct os_appcontext_t * iftmp.11_74;
+  const struct os_appcontext_t * iftmp.9_75;
+  const struct os_appcontext_t * iftmp.9_76;
+  const struct os_appcontext_t * iftmp.8_77;
+  const struct os_appcontext_t * iftmp.8_78;
+  os_result_t _92;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r_60 = 0;
+  # DEBUG r => r_60
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) t_61(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  p[1] = evt_64(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = OS_permittedContext.2_3 + 64;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_8 = OS_permittedContext;
+  _9 = OS_permittedContext.3_8 + 64;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1_67 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1_68 = 0;
+
+  <bb 7> :
+  # iftmp.1_55 = PHI <iftmp.1_67(5), iftmp.1_68(6)>
+  iftmp.0_69 = iftmp.1_55 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_16 = OS_permittedContext;
+  _17 = OS_permittedContext.4_16 + 64;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.0_66 = _23 == 0;
+
+  <bb 9> :
+  # iftmp.0_54 = PHI <iftmp.0_69(7), iftmp.0_66(8)>
+  if (iftmp.0_54 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r_91 = OS_Error (&OS_svc_SetEvent, 12, &p);
+  # DEBUG r => r_91
+  goto <bb 36>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.5_24 = OS_iecMode;
+  if (OS_iecMode.5_24 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _25 = OS_kernelData.inFunction;
+  if (_25 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _26 = OS_kernelData.taskCurrent;
+  _27 = _26->dynamic;
+  _28 = BIT_FIELD_REF <MEM[(void *)_27], 16, 160>;
+  _29 = _28;
+  if (_29 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _30 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _31 = _30;
+  if (_31 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  r_71 = OS_Error (&OS_svc_SetEvent, 55, &p);
+  # DEBUG r => r_71
+  goto <bb 36>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.6_32 = OS_nTasks;
+  if (t_61(D) >= OS_nTasks.6_32)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r_89 = OS_Error (&OS_svc_SetEvent, 2, &p);
+  # DEBUG r => r_89
+  goto <bb 36>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.7_33 = OS_taskTableBase;
+  _34 = (unsigned int) t_61(D);
+  _35 = _34 * 76;
+  ts_72 = OS_taskTableBase.7_33 + _35;
+  # DEBUG ts => ts_72
+  # DEBUG BEGIN_STMT
+  _36 = OS_kernelData.inFunction;
+  if (_36 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  _37 = OS_kernelData.taskCurrent;
+  iftmp.8_78 = _37->app;
+  goto <bb 29>; [INV]
+
+  <bb 20> :
+  _38 = OS_kernelData.inFunction;
+  if (_38 == 3)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  OS_isrTableBase.10_39 = OS_isrTableBase;
+  _40 = OS_kernelData.isrCurrent;
+  _41 = (unsigned int) _40;
+  _42 = _41 * 68;
+  _43 = OS_isrTableBase.10_39 + _42;
+  iftmp.9_76 = _43->app;
+  goto <bb 28>; [INV]
+
+  <bb 22> :
+  _44 = OS_kernelData.inFunction;
+  if (_44 == 10)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _45 = OS_kernelData.inFunction;
+  if (_45 == 8)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  _46 = OS_kernelData.inFunction;
+  if (_46 == 9)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  iftmp.11_74 = OS_kernelData.hookApp;
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  iftmp.11_73 = 0B;
+
+  <bb 27> :
+  # iftmp.11_58 = PHI <iftmp.11_74(25), iftmp.11_73(26)>
+  iftmp.9_75 = iftmp.11_58;
+
+  <bb 28> :
+  # iftmp.9_57 = PHI <iftmp.9_76(21), iftmp.9_75(27)>
+  iftmp.8_77 = iftmp.9_57;
+
+  <bb 29> :
+  # iftmp.8_56 = PHI <iftmp.8_78(19), iftmp.8_77(28)>
+  app_79 = iftmp.8_56;
+  # DEBUG app => app_79
+  # DEBUG BEGIN_STMT
+  if (app_79 != 0B)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 30> :
+  _47 = app_79->permissionBit;
+  _48 = ts_72->permissions;
+  _49 = _47 & _48;
+  if (_49 == 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  r_81 = OS_Error (&OS_svc_SetEvent, 37, &p);
+  # DEBUG r => r_81
+  goto <bb 36>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _50 = ts_72->flags;
+  _51 = (unsigned int) _50;
+  _52 = _51 & 2;
+  if (_52 == 0)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  r_87 = OS_Error (&OS_svc_SetEvent, 15, &p);
+  # DEBUG r => r_87
+  goto <bb 36>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e_83 = OS_LocalSetEvent (ts_72, evt_64(D));
+  # DEBUG e => e_83
+  # DEBUG BEGIN_STMT
+  if (e_83 != 0)
+    goto <bb 35>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  r_85 = OS_Error (&OS_svc_SetEvent, e_83, &p);
+  # DEBUG r => r_85
+
+  <bb 36> :
+  # r_53 = PHI <r_91(10), r_71(15), r_89(17), r_81(31), r_87(33), r_60(34), r_85(35)>
+  # DEBUG r => r_53
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _92 = r_53;
+  p ={v} {CLOBBER};
+  return _92;
+
+}
+
+

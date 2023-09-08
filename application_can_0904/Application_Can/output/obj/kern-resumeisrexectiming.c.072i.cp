@@ -1,0 +1,193 @@
+
+IPA constant propagation start:
+Determining dynamic type for call: _8 = _7 (_5);
+  Starting walk at: _8 = _7 (_5);
+  instance pointer: _5  Outer instance pointer: _5 offset: 0 (bits) vtbl reference: 
+Determining dynamic type for call: _13 (_5, _8, OS_hwtStartDelta_14);
+  Starting walk at: _13 (_5, _8, OS_hwtStartDelta_14);
+  instance pointer: _5  Outer instance pointer: _5 offset: 0 (bits) vtbl reference: 
+  Function call may change dynamic type:_8 = _7 (_5);
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_ExceedExecTime/2:
+  Jump functions of caller  OS_ResumeIsrExecTiming/0:
+    indirect simple callsite, calling param -1, offset 0, for stmt _13 (_5, _8, OS_hwtStartDelta_14);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+       param 1: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+       param 2: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+    indirect simple callsite, calling param -1, offset 0, for stmt _8 = _7 (_5);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+
+ Propagating constants:
+
+Not considering OS_ResumeIsrExecTiming for cloning; -fipa-cp-clone disabled.
+
+overall_size: 42, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_ResumeIsrExecTiming/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_executionTimer/3 (OS_executionTimer) @06ce8990
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ResumeIsrExecTiming/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_ExceedExecTime/2 (OS_ExceedExecTime) @06d08d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ResumeIsrExecTiming/0 (177167401 (estimated locally),0.17 per call) 
+  Calls: 
+OS_kernelData/1 (OS_kernelData) @06ce8900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ResumeIsrExecTiming/0 (write)OS_ResumeIsrExecTiming/0 (write)OS_ResumeIsrExecTiming/0 (write)OS_ResumeIsrExecTiming/0 (write)OS_ResumeIsrExecTiming/0 (write)OS_ResumeIsrExecTiming/0 (read)OS_ResumeIsrExecTiming/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_ResumeIsrExecTiming/0 (OS_ResumeIsrExecTiming) @06d08a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_executionTimer/3 (read)OS_kernelData/1 (write)OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_ExceedExecTime/2 (177167401 (estimated locally),0.17 per call) 
+   Indirect call(448287211 (estimated locally),0.42 per call) 
+   Indirect call(896574422 (estimated locally),0.83 per call) 
+
+;; Function OS_ResumeIsrExecTiming (OS_ResumeIsrExecTiming, funcdef_no=0, decl_uid=6941, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_ResumeIsrExecTiming/0
+__attribute__((target ("general-regs-only")))
+OS_ResumeIsrExecTiming (struct os_accountingsave_t * save)
+{
+  os_tick_t OS_hwtStartDelta;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_hwt_t * _5;
+  const struct os_hwtdrv_t * _6;
+  os_timervalue_t (*<T526>) (const struct os_hwt_t *) _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct os_hwtdrv_t * _12;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _13;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  _1 = save_17(D)->inFunction;
+  OS_kernelData.accounting.inFunction = _1;
+  # DEBUG BEGIN_STMT
+  _2 = save_17(D)->etType;
+  OS_kernelData.accounting.etType = _2;
+  # DEBUG BEGIN_STMT
+  _3 = save_17(D)->etUsed;
+  OS_kernelData.accounting.etUsed = _3;
+  # DEBUG BEGIN_STMT
+  _4 = save_17(D)->etLimit;
+  OS_kernelData.accounting.etLimit = _4;
+  # DEBUG BEGIN_STMT
+  if (_4 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  if (_3 >= _4)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+  goto <bb 9>; [100.00%]
+
+  <bb 5> [local count: 896574422]:
+  # DEBUG BEGIN_STMT
+  _5 = OS_executionTimer[0];
+  _6 = _5->driver;
+  _7 = _6->hwtRead;
+  _8 = _7 (_5);
+  OS_kernelData.accounting.frc = _8;
+  # DEBUG BEGIN_STMT
+  _9 = OS_kernelData.accounting.etLimit;
+  if (_9 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 6> [local count: 448287211]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.accounting.etUsed;
+  OS_hwtStartDelta_25 = _9 - _10;
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_25
+  # DEBUG BEGIN_STMT
+  _11 = _5->maxDelta;
+  if (_11 < OS_hwtStartDelta_25)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 224143605]:
+  # DEBUG BEGIN_STMT
+  OS_hwtStartDelta_26 = _5->defDelta;
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_26
+
+  <bb 8> [local count: 448287211]:
+  # OS_hwtStartDelta_14 = PHI <OS_hwtStartDelta_25(6), OS_hwtStartDelta_26(7)>
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_14
+  # DEBUG BEGIN_STMT
+  _12 = _5->driver;
+  _13 = _12->hwtStart;
+  _13 (_5, _8, OS_hwtStartDelta_14);
+
+  <bb 9> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

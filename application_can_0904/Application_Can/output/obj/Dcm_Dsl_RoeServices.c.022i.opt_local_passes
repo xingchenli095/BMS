@@ -1,0 +1,1966 @@
+Dcm_Dsl_RoeServices_ResponseOnOneEvent (Dcm_MsgItemType * MsgPtr, Dcm_MsgLenType MsgLen, PduIdType DcmRxPduId)
+{
+  Dcm_StatusType RetVal;
+  Dcm_StatusType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_1 = 6;
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.FilledLength = MsgLen_3(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.Size = MsgLen_3(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.BufferPtr = MsgPtr_6(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxPduId = DcmRxPduId_8(D);
+  # DEBUG BEGIN_STMT
+  RetVal_11 = Dcm_Dsl_RoeServices_RoeEventDispatch (&Dcm_Dsl_RoeRxData);
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  _12 = RetVal_11;
+  return _12;
+
+}
+
+
+Dcm_Dsl_RoeServices_RoeEventDispatch (struct Dcm_RoeRxDataType * RoeRxData)
+{
+  Dcm_RequestTypeType AcceptAs;
+  Dcm_StatusType RetVal;
+  short unsigned int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  Dcm_StatusType _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 6;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  AcceptAs_8 = 17;
+  # DEBUG AcceptAs => AcceptAs_8
+  # DEBUG BEGIN_STMT
+  _1 = RoeRxData_10(D)->RxPduId;
+  AcceptAs_12 = Dcm_Dsl_Supervisor_RequestRxPermission (_1, 0, 2);
+  # DEBUG AcceptAs => AcceptAs_12
+  # DEBUG BEGIN_STMT
+  _2 = AcceptAs_12 + 246;
+  if (_2 <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_GetRoeRxDataInformation (RoeRxData_10(D), &Dcm_Dsl_RoeRxDataCopy);
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_Dsl_RoeRxDataCopy.RxPduId;
+  Dcm_Dsl_Supervisor_IncomingReception (_3, AcceptAs_12);
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeRxDataCopy.RxPduId;
+  Dcm_Dsl_RxConnectionRxIndication (_4, AcceptAs_12, Dcm_Dsl_RoeRxDataCopy.RxBuffer);
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 0;
+  # DEBUG RetVal => RetVal_20
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (AcceptAs_12 == 16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 1;
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 0;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 6;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 7> :
+  # RetVal_5 = PHI <RetVal_20(3), RetVal_15(5), RetVal_13(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _21 = RetVal_5;
+  return _21;
+
+}
+
+
+Dcm_Dsl_RoeServices_GetRoeRxDataInformation (const struct Dcm_RoeRxDataType * RoeRxData, struct Dcm_RoeRxDataType * RoeRxDataCopy)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  Dcm_MsgItemType * _6;
+  short unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = RoeRxData_9(D)->MsgBuf[0];
+  RoeRxDataCopy_10(D)->MsgBuf[0] = _1;
+  # DEBUG BEGIN_STMT
+  _2 = RoeRxData_9(D)->MsgBuf[1];
+  RoeRxDataCopy_10(D)->MsgBuf[1] = _2;
+  # DEBUG BEGIN_STMT
+  _3 = RoeRxData_9(D)->MsgBuf[2];
+  RoeRxDataCopy_10(D)->MsgBuf[2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = RoeRxData_9(D)->RxBuffer.FilledLength;
+  RoeRxDataCopy_10(D)->RxBuffer.FilledLength = _4;
+  # DEBUG BEGIN_STMT
+  _5 = RoeRxData_9(D)->RxBuffer.FilledLength;
+  RoeRxDataCopy_10(D)->RxBuffer.Size = _5;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = &RoeRxDataCopy_10(D)->MsgBuf[0];
+  RoeRxDataCopy_10(D)->RxBuffer.BufferPtr = _6;
+  # DEBUG BEGIN_STMT
+  _7 = RoeRxData_9(D)->RxPduId;
+  RoeRxDataCopy_10(D)->RxPduId = _7;
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_ChangeState (Dcm_RoeEventTypeType Event, Dcm_RoeEventStateType State)
+{
+  int _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  Std_ReturnType (*<T744>) (uint8) _5;
+  unsigned char Dcm_RoeEnqueueEvent.0_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Event_8(D);
+  Dcm_Dsl_RoeServices_Runtime_Data[_1].State = State_10(D);
+  # DEBUG BEGIN_STMT
+  _2 = (int) Event_8(D);
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[_2].PreconfIdx;
+  _4 = (int) _3;
+  _5 = Dcm_RoeSchMSwitchFunctionList[_4];
+  _5 (State_10(D));
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.0_6 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.0_6 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (State_10(D) <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_StartResponseOnEvent (boolean StoreEvent, PduIdType RxPduId)
+{
+  Dcm_SesCtrlType CurrentSession;
+  boolean EventsToStart[2];
+  Dcm_RoeEventTypeType ClearedEvents;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  int _6;
+  unsigned char _7;
+  unsigned char ClearedEvents.16_8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  unsigned char CurrentSession.17_13;
+  int _14;
+  int _15;
+  int _16;
+  unsigned char _17;
+  unsigned char CurrentSession.18_18;
+  int _19;
+  struct Dcm_RoeEventDataType * _20;
+  int _21;
+  struct Dcm_RoeEventDataType * _22;
+  Std_ReturnType _60;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 1;
+  # DEBUG RetVal => RetVal_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClearedEvents_37 = 0;
+  # DEBUG ClearedEvents => ClearedEvents_37
+  # DEBUG BEGIN_STMT
+  EventsToStart = "\x00";
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_40 = 0;
+  # DEBUG EventType => EventType_40
+  goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_26;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventType_26;
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_3].OrigEventWindowTime;
+  if (_4 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  if (StoreEvent_42(D) == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_43 = 49;
+  # DEBUG RetVal => RetVal_43
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) EventType_26;
+  EventsToStart[_5] = 1;
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_26;
+  _7 = Dcm_Dsl_RoeServices_Runtime_Data[_6].State;
+  if (_7 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ClearedEvents.16_8 = ClearedEvents_29;
+  ClearedEvents_41 = ClearedEvents.16_8 + 1;
+  # DEBUG ClearedEvents => ClearedEvents_41
+
+  <bb 10> :
+  # ClearedEvents_28 = PHI <ClearedEvents_29(7), ClearedEvents_29(8), ClearedEvents_41(9)>
+  # DEBUG ClearedEvents => ClearedEvents_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_45 = EventType_26 + 1;
+  # DEBUG EventType => EventType_45
+
+  <bb 11> :
+  # EventType_26 = PHI <EventType_40(2), EventType_45(10)>
+  # ClearedEvents_29 = PHI <ClearedEvents_37(2), ClearedEvents_28(10)>
+  # DEBUG ClearedEvents => ClearedEvents_29
+  # DEBUG EventType => EventType_26
+  # DEBUG BEGIN_STMT
+  if (EventType_26 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # RetVal_23 = PHI <RetVal_43(6), RetVal_36(11)>
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  if (RetVal_23 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  if (ClearedEvents_29 == 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetVal_46 = 36;
+  # DEBUG RetVal => RetVal_46
+
+  <bb 15> :
+  # RetVal_24 = PHI <RetVal_23(12), RetVal_23(13), RetVal_46(14)>
+  # DEBUG RetVal => RetVal_24
+  # DEBUG BEGIN_STMT
+  if (RetVal_24 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  EventType_47 = 0;
+  # DEBUG EventType => EventType_47
+  goto <bb 23>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) EventType_27;
+  _10 = EventsToStart[_9];
+  if (_10 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_GetSesCtrlTypeExt (&CurrentSession);
+  # DEBUG BEGIN_STMT
+  _11 = (int) EventType_27;
+  Dcm_Dsl_RoeServices_Runtime_Data[_11].RxPduId = RxPduId_50(D);
+  # DEBUG BEGIN_STMT
+  _12 = (int) EventType_27;
+  CurrentSession.17_13 = CurrentSession;
+  Dcm_Dsl_RoeServices_Runtime_Data[_12].Session = CurrentSession.17_13;
+  # DEBUG BEGIN_STMT
+  _14 = (int) EventType_27;
+  Dcm_Dsl_RoeServices_Runtime_Data[_14].ActivationCnt = 0;
+  # DEBUG BEGIN_STMT
+  _15 = (int) EventType_27;
+  _16 = (int) EventType_27;
+  _17 = Dcm_Dsl_RoeServices_Runtime_Data[_15].OrigEventWindowTime;
+  Dcm_Dsl_RoeServices_Runtime_Data[_16].EventWindowTime = _17;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_27, 2);
+  # DEBUG BEGIN_STMT
+  if (StoreEvent_42(D) == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  CurrentSession.18_18 = CurrentSession;
+  if (CurrentSession.18_18 == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) EventType_27;
+  _20 = &Dcm_Dsl_RoeServices_Persistent_Data[_19];
+  _21 = (int) EventType_27;
+  _22 = &Dcm_Dsl_RoeServices_Runtime_Data[_21];
+  TS_MemCpy32 (_20, _22, 8);
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 21> :
+  CurrentSession ={v} {CLOBBER};
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  EventType_59 = EventType_27 + 1;
+  # DEBUG EventType => EventType_59
+
+  <bb 23> :
+  # EventType_27 = PHI <EventType_47(16), EventType_59(22)>
+  # DEBUG EventType => EventType_27
+  # DEBUG BEGIN_STMT
+  if (EventType_27 <= 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  RetVal_48 = 0;
+  # DEBUG RetVal => RetVal_48
+
+  <bb 25> :
+  # RetVal_25 = PHI <RetVal_24(15), RetVal_48(24)>
+  # DEBUG RetVal => RetVal_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _60 = RetVal_25;
+  EventsToStart ={v} {CLOBBER};
+  return _60;
+
+}
+
+
+Dcm_Dsl_RoeServices_ReportActivatedEvents (Dcm_MsgItemType * ResData, Dcm_MsgLenType * MsgLen)
+{
+  struct Dcm_RoeEventPreconfListType event;
+  Dcm_RoeEventTypeType EventType;
+  uint8 numOfActiveEvents;
+  Dcm_MsgLenType offset;
+  int _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  unsigned char _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  Dcm_MsgItemType * _13;
+  unsigned char _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  Dcm_MsgItemType * _17;
+  unsigned char _18;
+  short unsigned int _19;
+  Dcm_MsgItemType * _20;
+  unsigned char _21;
+  Dcm_MsgItemType * _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  Dcm_MsgItemType * _25;
+  unsigned char _26;
+  short unsigned int _27;
+  Dcm_MsgItemType * _28;
+  unsigned char _29;
+  Dcm_MsgItemType * _30;
+  unsigned char _31;
+  Dcm_MsgItemType * _32;
+  unsigned char _33;
+  Dcm_MsgItemType * _34;
+  unsigned char _35;
+  Dcm_MsgItemType * _36;
+  unsigned char _37;
+  Dcm_MsgItemType * _38;
+  unsigned char _39;
+  Dcm_MsgItemType * _40;
+  Dcm_MsgItemType * _41;
+  unsigned char numOfActiveEvents.15_42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  offset_53 = 1;
+  # DEBUG offset => offset_53
+  # DEBUG BEGIN_STMT
+  numOfActiveEvents_54 = 0;
+  # DEBUG numOfActiveEvents => numOfActiveEvents_54
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_55 = 0;
+  # DEBUG EventType => EventType_55
+  goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_48;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventType_48;
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_3].PreconfIdx;
+  _5 = (int) _4;
+  event = Dcm_RoeEventPreconfList[_5];
+  # DEBUG BEGIN_STMT
+  _6 = event.EventType;
+  _7 = (int) _6;
+  switch (_7) <default: <L11> [INV], case 0: <L3> [INV], case 1: <L2> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _8 = ResData_57(D) + offset_45;
+  *_8 = 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = ResData_57(D) + offset_45;
+  _10 = *_9;
+  _11 = ResData_57(D) + offset_45;
+  _12 = _10 | 64;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  offset_64 = offset_45 + 1;
+  # DEBUG offset => offset_64
+  # DEBUG BEGIN_STMT
+  _13 = ResData_57(D) + offset_64;
+  _14 = Dcm_Dsl_RoeServices_Runtime_Data[1].EventWindowTime;
+  *_13 = _14;
+  # DEBUG BEGIN_STMT
+  offset_66 = offset_64 + 1;
+  # DEBUG offset => offset_66
+  # DEBUG BEGIN_STMT
+  _15 = event.Did;
+  _16 = _15 >> 8;
+  _17 = ResData_57(D) + offset_66;
+  _18 = (unsigned char) _16;
+  *_17 = _18;
+  # DEBUG BEGIN_STMT
+  offset_68 = offset_66 + 1;
+  # DEBUG offset => offset_68
+  # DEBUG BEGIN_STMT
+  _19 = event.Did;
+  _20 = ResData_57(D) + offset_68;
+  _21 = (unsigned char) _19;
+  *_20 = _21;
+  # DEBUG BEGIN_STMT
+  offset_70 = offset_68 + 1;
+  # DEBUG offset => offset_70
+  # DEBUG BEGIN_STMT
+  _22 = ResData_57(D) + offset_70;
+  *_22 = 34;
+  # DEBUG BEGIN_STMT
+  offset_72 = offset_70 + 1;
+  # DEBUG offset => offset_72
+  # DEBUG BEGIN_STMT
+  _23 = event.Did;
+  _24 = _23 >> 8;
+  _25 = ResData_57(D) + offset_72;
+  _26 = (unsigned char) _24;
+  *_25 = _26;
+  # DEBUG BEGIN_STMT
+  offset_74 = offset_72 + 1;
+  # DEBUG offset => offset_74
+  # DEBUG BEGIN_STMT
+  _27 = event.Did;
+  _28 = ResData_57(D) + offset_74;
+  _29 = (unsigned char) _27;
+  *_28 = _29;
+  # DEBUG BEGIN_STMT
+  offset_76 = offset_74 + 1;
+  # DEBUG offset => offset_76
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _30 = ResData_57(D) + offset_45;
+  *_30 = 1;
+  # DEBUG BEGIN_STMT
+  _31 = Dcm_Dsl_RoeServices_Persistent_Data[0].State;
+  if (_31 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _32 = ResData_57(D) + offset_45;
+  _33 = *_32;
+  _34 = ResData_57(D) + offset_45;
+  _35 = _33 | 64;
+  *_34 = _35;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  offset_79 = offset_45 + 1;
+  # DEBUG offset => offset_79
+  # DEBUG BEGIN_STMT
+  _36 = ResData_57(D) + offset_79;
+  _37 = Dcm_Dsl_RoeServices_Runtime_Data[0].EventWindowTime;
+  *_36 = _37;
+  # DEBUG BEGIN_STMT
+  offset_81 = offset_79 + 1;
+  # DEBUG offset => offset_81
+  # DEBUG BEGIN_STMT
+  _38 = ResData_57(D) + offset_81;
+  _39 = event.DTCStatusMask;
+  *_38 = _39;
+  # DEBUG BEGIN_STMT
+  offset_83 = offset_81 + 1;
+  # DEBUG offset => offset_83
+  # DEBUG BEGIN_STMT
+  _40 = ResData_57(D) + offset_83;
+  *_40 = 25;
+  # DEBUG BEGIN_STMT
+  offset_85 = offset_83 + 1;
+  # DEBUG offset => offset_85
+  # DEBUG BEGIN_STMT
+  _41 = ResData_57(D) + offset_85;
+  *_41 = 14;
+  # DEBUG BEGIN_STMT
+  offset_87 = offset_85 + 1;
+  # DEBUG offset => offset_87
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # offset_43 = PHI <offset_76(5), offset_87(8), offset_45(4)>
+<L11>:
+  # DEBUG offset => offset_43
+  # DEBUG BEGIN_STMT
+  numOfActiveEvents.15_42 = numOfActiveEvents_47;
+  numOfActiveEvents_88 = numOfActiveEvents.15_42 + 1;
+  # DEBUG numOfActiveEvents => numOfActiveEvents_88
+  event ={v} {CLOBBER};
+
+  <bb 10> :
+  # offset_44 = PHI <offset_45(3), offset_43(9)>
+  # numOfActiveEvents_46 = PHI <numOfActiveEvents_47(3), numOfActiveEvents_88(9)>
+  # DEBUG numOfActiveEvents => numOfActiveEvents_46
+  # DEBUG offset => offset_44
+  # DEBUG BEGIN_STMT
+  EventType_90 = EventType_48 + 1;
+  # DEBUG EventType => EventType_90
+
+  <bb 11> :
+  # offset_45 = PHI <offset_53(2), offset_44(10)>
+  # numOfActiveEvents_47 = PHI <numOfActiveEvents_54(2), numOfActiveEvents_46(10)>
+  # EventType_48 = PHI <EventType_55(2), EventType_90(10)>
+  # DEBUG EventType => EventType_48
+  # DEBUG numOfActiveEvents => numOfActiveEvents_47
+  # DEBUG offset => offset_45
+  # DEBUG BEGIN_STMT
+  if (EventType_48 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *ResData_57(D) = numOfActiveEvents_47;
+  # DEBUG BEGIN_STMT
+  *MsgLen_59(D) = offset_45;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_StopResponseOnEvent (boolean StoreEvent)
+{
+  boolean EventsToStop[2];
+  Dcm_RoeEventTypeType ClearedEvents;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  unsigned char ClearedEvents.14_7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  int _14;
+  Std_ReturnType _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_29 = 1;
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClearedEvents_30 = 0;
+  # DEBUG ClearedEvents => ClearedEvents_30
+  # DEBUG BEGIN_STMT
+  EventsToStop = "\x00";
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_33 = 0;
+  # DEBUG EventType => EventType_33
+  goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_18;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  _3 = _2 + 255;
+  if (_3 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) EventType_18;
+  _5 = Dcm_Dsl_RoeServices_Runtime_Data[_4].EventWindowTime;
+  if (_5 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  if (StoreEvent_35(D) == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 49;
+  # DEBUG RetVal => RetVal_36
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_18;
+  EventsToStop[_6] = 1;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClearedEvents.14_7 = ClearedEvents_21;
+  ClearedEvents_34 = ClearedEvents.14_7 + 1;
+  # DEBUG ClearedEvents => ClearedEvents_34
+
+  <bb 9> :
+  # ClearedEvents_20 = PHI <ClearedEvents_21(7), ClearedEvents_34(8)>
+  # DEBUG ClearedEvents => ClearedEvents_20
+  # DEBUG BEGIN_STMT
+  EventType_38 = EventType_18 + 1;
+  # DEBUG EventType => EventType_38
+
+  <bb 10> :
+  # EventType_18 = PHI <EventType_33(2), EventType_38(9)>
+  # ClearedEvents_21 = PHI <ClearedEvents_30(2), ClearedEvents_20(9)>
+  # DEBUG ClearedEvents => ClearedEvents_21
+  # DEBUG EventType => EventType_18
+  # DEBUG BEGIN_STMT
+  if (EventType_18 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # RetVal_15 = PHI <RetVal_36(6), RetVal_29(10)>
+  # DEBUG RetVal => RetVal_15
+  # DEBUG BEGIN_STMT
+  if (RetVal_15 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  if (ClearedEvents_21 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  RetVal_39 = 36;
+  # DEBUG RetVal => RetVal_39
+
+  <bb 14> :
+  # RetVal_16 = PHI <RetVal_15(11), RetVal_15(12), RetVal_39(13)>
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  if (RetVal_16 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  EventType_40 = 0;
+  # DEBUG EventType => EventType_40
+  goto <bb 23>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) EventType_19;
+  _9 = EventsToStop[_8];
+  if (_9 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) EventType_19;
+  _11 = Dcm_Dsl_RoeServices_Runtime_Data[_10].State;
+  if (_11 == 2)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_19, 1);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (StoreEvent_35(D) == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) EventType_19;
+  Dcm_Dsl_RoeServices_Persistent_Data[_12].Session = 0;
+  # DEBUG BEGIN_STMT
+  _13 = (int) EventType_19;
+  Dcm_Dsl_RoeServices_Persistent_Data[_13].State = 1;
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) EventType_19;
+  Dcm_Dsl_RoeServices_Runtime_Data[_14].Session = 0;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  EventType_47 = EventType_19 + 1;
+  # DEBUG EventType => EventType_47
+
+  <bb 23> :
+  # EventType_19 = PHI <EventType_40(15), EventType_47(22)>
+  # DEBUG EventType => EventType_19
+  # DEBUG BEGIN_STMT
+  if (EventType_19 <= 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  RetVal_41 = 0;
+  # DEBUG RetVal => RetVal_41
+
+  <bb 25> :
+  # RetVal_17 = PHI <RetVal_16(14), RetVal_41(24)>
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _48 = RetVal_17;
+  EventsToStop ={v} {CLOBBER};
+  return _48;
+
+}
+
+
+Dcm_Dem_RoeServices_CommonTriggerProcedure (Dcm_RoeEventTypeType EventType)
+{
+  Dcm_MsgLenType ServiceToRespondToLenght;
+  uint8 PreconfIdx;
+  Dcm_StatusType triggerRetVal;
+  int _1;
+  unsigned char Dcm_RoeEnqueueEvent.11_2;
+  int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  unsigned char _6;
+  int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  triggerRetVal_22 = 6;
+  # DEBUG triggerRetVal => triggerRetVal_22
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_23(D);
+  PreconfIdx_25 = Dcm_Dsl_RoeServices_Runtime_Data[_1].PreconfIdx;
+  # DEBUG PreconfIdx => PreconfIdx_25
+  # DEBUG BEGIN_STMT
+  ServiceToRespondToLenght_26 = 0;
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_26
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.11_2 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.11_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EventType_23(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[0] = 25;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[1] = 14;
+  # DEBUG BEGIN_STMT
+  ServiceToRespondToLenght_31 = 2;
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_31
+
+  <bb 6> :
+  # ServiceToRespondToLenght_16 = PHI <ServiceToRespondToLenght_26(4), ServiceToRespondToLenght_31(5)>
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_16
+  # DEBUG BEGIN_STMT
+  if (EventType_23(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[0] = 34;
+  # DEBUG BEGIN_STMT
+  _3 = (int) PreconfIdx_25;
+  _4 = Dcm_RoeEventPreconfList[_3].Did;
+  _5 = _4 >> 8;
+  _6 = (unsigned char) _5;
+  Dcm_Dsl_RoeRxData.MsgBuf[1] = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (int) PreconfIdx_25;
+  _8 = Dcm_RoeEventPreconfList[_7].Did;
+  _9 = (unsigned char) _8;
+  Dcm_Dsl_RoeRxData.MsgBuf[2] = _9;
+  # DEBUG BEGIN_STMT
+  ServiceToRespondToLenght_35 = 3;
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_35
+
+  <bb 8> :
+  # ServiceToRespondToLenght_17 = PHI <ServiceToRespondToLenght_16(6), ServiceToRespondToLenght_35(7)>
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_17
+  # DEBUG BEGIN_STMT
+  _10 = (int) EventType_23(D);
+  _11 = Dcm_Dsl_RoeServices_Runtime_Data[_10].RxPduId;
+  triggerRetVal_37 = Dcm_Dsl_RoeServices_ResponseOnOneEvent (&Dcm_Dsl_RoeRxData.MsgBuf[0], ServiceToRespondToLenght_17, _11);
+  # DEBUG triggerRetVal => triggerRetVal_37
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (triggerRetVal_37 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) EventType_23(D);
+  _13 = Dcm_Dsl_RoeServices_Runtime_Data[_12].ActivationCnt;
+  _14 = _13;
+  _15 = _14 + 1;
+  Dcm_Dsl_RoeServices_Runtime_Data[_12].ActivationCnt = _15;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle = 200;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_TriggerOnDTCStatus (uint8 DTCStatusOld, uint8 DTCStatusNew)
+{
+  uint8 PreconfIdx;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.12_1;
+  unsigned char _2;
+  short unsigned int Dcm_RoeInterMsgCycle.13_3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.12_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.12_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[0].State;
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  Dcm_RoeInterMsgCycle.13_3 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.13_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  PreconfIdx_11 = Dcm_Dsl_RoeServices_Runtime_Data[0].PreconfIdx;
+  # DEBUG PreconfIdx => PreconfIdx_11
+  # DEBUG BEGIN_STMT
+  _4 = ~DTCStatusOld_12(D);
+  _5 = DTCStatusNew_13(D) & _4;
+  _6 = (int) PreconfIdx_11;
+  _7 = Dcm_RoeEventPreconfList[_6].DTCStatusMask;
+  _8 = _5 & _7;
+  if (_8 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dem_RoeServices_CommonTriggerProcedure (0);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_TriggerOnEvent (uint8 RoeEventId)
+{
+  Std_ReturnType RetVal;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.9_1;
+  unsigned char _2;
+  unsigned char _3;
+  short unsigned int Dcm_RoeInterMsgCycle.10_4;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.9_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.9_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[1].PreconfIdx;
+  if (RoeEventId_9(D) == _2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 0;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[1].State;
+  if (_3 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  Dcm_RoeInterMsgCycle.10_4 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.10_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dem_RoeServices_CommonTriggerProcedure (1);
+
+  <bb 7> :
+  # RetVal_5 = PHI <RetVal_7(2), RetVal_7(3), RetVal_10(4), RetVal_10(5), RetVal_10(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = RetVal_5;
+  return _12;
+
+}
+
+
+Dcm_Dsl_RoeServices_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  Dcm_RoeEventTypeType EventType;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.8_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  int _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OldSession_21(D) != NewSession_22(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 3> :
+  Dcm_Dsl_RoeServices_Initialized.8_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.8_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EventType_24 = 0;
+  # DEBUG EventType => EventType_24
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) EventType_14;
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[_2].State;
+  if (_3 == 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_14, 1);
+  # DEBUG BEGIN_STMT
+  _4 = (int) EventType_14;
+  _5 = Dcm_Dsl_RoeServices_Runtime_Data[_4].Session;
+  if (_5 != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_14;
+  Dcm_Dsl_RoeServices_Runtime_Data[_6].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  _7 = (int) EventType_14;
+  Dcm_Dsl_RoeServices_Runtime_Data[_7].Session = 0;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EventType_31 = EventType_14 + 1;
+  # DEBUG EventType => EventType_31
+
+  <bb 9> :
+  # EventType_14 = PHI <EventType_24(4), EventType_31(8)>
+  # DEBUG EventType => EventType_14
+  # DEBUG BEGIN_STMT
+  if (EventType_14 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (NewSession_22(D) == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EventType_25 = 0;
+  # DEBUG EventType => EventType_25
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) EventType_15;
+  _9 = Dcm_Dsl_RoeServices_Runtime_Data[_8].State;
+  if (_9 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  _10 = (int) EventType_15;
+  _11 = Dcm_Dsl_RoeServices_Runtime_Data[_10].EventWindowTime;
+  if (_11 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _12 = (int) EventType_15;
+  _13 = Dcm_Dsl_RoeServices_Runtime_Data[_12].Session;
+  if (_13 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_15, 2);
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  EventType_27 = EventType_15 + 1;
+  # DEBUG EventType => EventType_27
+
+  <bb 17> :
+  # EventType_15 = PHI <EventType_25(11), EventType_27(16)>
+  # DEBUG EventType => EventType_15
+  # DEBUG BEGIN_STMT
+  if (EventType_15 <= 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_GetRxPduId (PduIdType * RxPduId)
+{
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 1;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_9 = 0;
+  # DEBUG EventType => EventType_9
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_6;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventType_6;
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_3].RxPduId;
+  *RxPduId_12(D) = _4;
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 0;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EventType_11 = EventType_6 + 1;
+  # DEBUG EventType => EventType_11
+
+  <bb 6> :
+  # EventType_6 = PHI <EventType_9(2), EventType_11(5)>
+  # DEBUG EventType => EventType_6
+  # DEBUG BEGIN_STMT
+  if (EventType_6 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # RetVal_5 = PHI <RetVal_14(4), RetVal_8(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = RetVal_5;
+  return _15;
+
+}
+
+
+Dcm_Dsl_RoeServices_MapToRelevantCase (Dcm_RoeEventStateType State, RoeEventWindowTimeType EventWindowTime)
+{
+  uint8 ReturnValue;
+  unsigned char _1;
+  uint8 _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_6 = 4;
+  # DEBUG ReturnValue => ReturnValue_6
+  # DEBUG BEGIN_STMT
+  if (State_7(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (EventWindowTime_8(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_9 = 0;
+  # DEBUG ReturnValue => ReturnValue_9
+
+  <bb 5> :
+  # ReturnValue_2 = PHI <ReturnValue_6(2), ReturnValue_6(3), ReturnValue_9(4)>
+  # DEBUG ReturnValue => ReturnValue_2
+  # DEBUG BEGIN_STMT
+  _1 = State_7(D) + 255;
+  if (_1 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (EventWindowTime_8(D) == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_10 = 1;
+  # DEBUG ReturnValue => ReturnValue_10
+
+  <bb 8> :
+  # ReturnValue_3 = PHI <ReturnValue_2(5), ReturnValue_2(6), ReturnValue_10(7)>
+  # DEBUG ReturnValue => ReturnValue_3
+  # DEBUG BEGIN_STMT
+  if (State_7(D) == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (EventWindowTime_8(D) != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_11 = 2;
+  # DEBUG ReturnValue => ReturnValue_11
+
+  <bb 11> :
+  # ReturnValue_4 = PHI <ReturnValue_3(8), ReturnValue_3(9), ReturnValue_11(10)>
+  # DEBUG ReturnValue => ReturnValue_4
+  # DEBUG BEGIN_STMT
+  if (State_7(D) == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_12 = 3;
+  # DEBUG ReturnValue => ReturnValue_12
+
+  <bb 13> :
+  # ReturnValue_5 = PHI <ReturnValue_4(11), ReturnValue_12(12)>
+  # DEBUG ReturnValue => ReturnValue_5
+  # DEBUG BEGIN_STMT
+  _13 = ReturnValue_5;
+  return _13;
+
+}
+
+
+Dcm_Dsl_RoeServices_InitInternal ()
+{
+  uint8 State_Time_Scenario;
+  boolean NvMChanged;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType NvMRetVal;
+  NvM_RequestResultType RestoredNvmData;
+  unsigned char RestoredNvmData.5_1;
+  unsigned char RestoredNvmData.6_2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  int _9;
+  int _10;
+  int _11;
+  unsigned char _12;
+  int _13;
+  unsigned char _14;
+  int _15;
+  int _16;
+  struct Dcm_RoeEventDataType * _17;
+  int _18;
+  struct Dcm_RoeEventDataType * _19;
+  int _20;
+  struct Dcm_RoeEventDataType * _21;
+  int _22;
+  struct Dcm_RoeEventDataType * _23;
+  int _24;
+  struct Dcm_RoeEventDataType * _25;
+  int _26;
+  struct Dcm_RoeEventDataType * _27;
+  int _28;
+  int _29;
+  struct Dcm_RoeEventDataType * _30;
+  int _31;
+  struct Dcm_RoeEventDataType * _32;
+  unsigned char RestoredNvmData.7_33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RestoredNvmData = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMRetVal_48 = NvM_ASR40_GetErrorStatus (3, &RestoredNvmData);
+  # DEBUG NvMRetVal => NvMRetVal_48
+  # DEBUG BEGIN_STMT
+  if (NvMRetVal_48 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RestoredNvmData.5_1 = RestoredNvmData;
+  if (RestoredNvmData.5_1 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  RestoredNvmData.6_2 = RestoredNvmData;
+  if (RestoredNvmData.6_2 == 7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMChanged_56 = 0;
+  # DEBUG NvMChanged => NvMChanged_56
+  # DEBUG BEGIN_STMT
+  EventType_57 = 0;
+  # DEBUG EventType => EventType_57
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventType_34;
+  _4 = Dcm_Dsl_RoeServices_Persistent_Data[_3].State;
+  _5 = _4 + 255;
+  if (_5 <= 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_34;
+  _7 = Dcm_Dsl_RoeServices_Persistent_Data[_6].EventWindowTime;
+  _8 = (int) _7;
+  switch (_8) <default: <L32> [INV], case 3: <L5> [INV], case 4: <L6> [INV]>
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _9 = (int) EventType_34;
+  Dcm_Dsl_RoeServices_Persistent_Data[_9].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  NvMChanged_76 = 1;
+  # DEBUG NvMChanged => NvMChanged_76
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _10 = (int) EventType_34;
+  Dcm_Dsl_RoeServices_Persistent_Data[_10].EventWindowTime = 3;
+  # DEBUG BEGIN_STMT
+  NvMChanged_74 = 1;
+  # DEBUG NvMChanged => NvMChanged_74
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # NvMChanged_36 = PHI <NvMChanged_37(6), NvMChanged_76(8), NvMChanged_74(9), NvMChanged_37(7)>
+<L32>:
+  # DEBUG NvMChanged => NvMChanged_36
+  # DEBUG BEGIN_STMT
+  EventType_77 = EventType_34 + 1;
+  # DEBUG EventType => EventType_77
+
+  <bb 11> :
+  # EventType_34 = PHI <EventType_57(5), EventType_77(10)>
+  # NvMChanged_37 = PHI <NvMChanged_56(5), NvMChanged_36(10)>
+  # DEBUG NvMChanged => NvMChanged_37
+  # DEBUG EventType => EventType_34
+  # DEBUG BEGIN_STMT
+  if (EventType_34 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (NvMChanged_37 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EventType_59 = 0;
+  # DEBUG EventType => EventType_59
+  goto <bb 21>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) EventType_35;
+  _12 = Dcm_Dsl_RoeServices_Persistent_Data[_11].State;
+  _13 = (int) EventType_35;
+  _14 = Dcm_Dsl_RoeServices_Persistent_Data[_13].EventWindowTime;
+  State_Time_Scenario_62 = Dcm_Dsl_RoeServices_MapToRelevantCase (_12, _14);
+  # DEBUG State_Time_Scenario => State_Time_Scenario_62
+  # DEBUG BEGIN_STMT
+  _15 = (int) State_Time_Scenario_62;
+  switch (_15) <default: <L33> [INV], case 0: <L15> [INV], case 1: <L16> [INV], case 2: <L17> [INV], case 3: <L18> [INV]>
+
+  <bb 16> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  _16 = (int) EventType_35;
+  _17 = &Dcm_Dsl_RoeServices_Runtime_Data[_16];
+  _18 = (int) EventType_35;
+  _19 = &Dcm_Dsl_RoeServices_Persistent_Data[_18];
+  TS_MemCpy32 (_17, _19, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_35, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 17> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  _20 = (int) EventType_35;
+  _21 = &Dcm_Dsl_RoeServices_Runtime_Data[_20];
+  _22 = (int) EventType_35;
+  _23 = &Dcm_Dsl_RoeServices_Persistent_Data[_22];
+  TS_MemCpy32 (_21, _23, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_35, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+<L17>:
+  # DEBUG BEGIN_STMT
+  _24 = (int) EventType_35;
+  _25 = &Dcm_Dsl_RoeServices_Runtime_Data[_24];
+  _26 = (int) EventType_35;
+  _27 = &Dcm_Dsl_RoeServices_Persistent_Data[_26];
+  TS_MemCpy32 (_25, _27, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_35, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _28 = (int) EventType_35;
+  Dcm_Dsl_RoeServices_Persistent_Data[_28].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  _29 = (int) EventType_35;
+  _30 = &Dcm_Dsl_RoeServices_Runtime_Data[_29];
+  _31 = (int) EventType_35;
+  _32 = &Dcm_Dsl_RoeServices_Persistent_Data[_31];
+  TS_MemCpy32 (_30, _32, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_35, 0);
+  # DEBUG BEGIN_STMT
+
+  <bb 20> :
+<L33>:
+  # DEBUG BEGIN_STMT
+  EventType_72 = EventType_35 + 1;
+  # DEBUG EventType => EventType_72
+
+  <bb 21> :
+  # EventType_35 = PHI <EventType_59(14), EventType_72(20)>
+  # DEBUG EventType => EventType_35
+  # DEBUG BEGIN_STMT
+  if (EventType_35 <= 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+  goto <bb 28>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  RestoredNvmData.7_33 = RestoredNvmData;
+  if (RestoredNvmData.7_33 == 2)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitPreconf ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+  goto <bb 28>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  if (NvMRetVal_48 != 1)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 213, 2);
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitPreconf ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+
+  <bb 28> :
+  RestoredNvmData ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_InitPreconf ()
+{
+  const Dcm_RoeEventTypeType EventType;
+  boolean NvMChanged;
+  uint8 PreconfEventIndex;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  struct Dcm_RoeEventDataType * _9;
+  int _10;
+  struct Dcm_RoeEventDataType * _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMChanged_18 = 0;
+  # DEBUG NvMChanged => NvMChanged_18
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ClearEvents (0);
+  # DEBUG BEGIN_STMT
+  PreconfEventIndex_21 = 0;
+  # DEBUG PreconfEventIndex => PreconfEventIndex_21
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) PreconfEventIndex_12;
+  _2 = Dcm_RoeEventPreconfList[_1].InitialEventStatus;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) PreconfEventIndex_12;
+  EventType_23 = Dcm_RoeEventPreconfList[_3].EventType;
+  # DEBUG EventType => EventType_23
+  # DEBUG BEGIN_STMT
+  _4 = (int) EventType_23;
+  Dcm_Dsl_RoeServices_Runtime_Data[_4].PreconfIdx = PreconfEventIndex_12;
+  # DEBUG BEGIN_STMT
+  _5 = (int) EventType_23;
+  Dcm_Dsl_RoeServices_Runtime_Data[_5].OrigEventWindowTime = 2;
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_23;
+  Dcm_Dsl_RoeServices_Runtime_Data[_6].EventWindowTime = 2;
+  # DEBUG BEGIN_STMT
+  _7 = (int) EventType_23;
+  Dcm_Dsl_RoeServices_Runtime_Data[_7].Session = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_23, 1);
+  # DEBUG BEGIN_STMT
+  _8 = (int) EventType_23;
+  _9 = &Dcm_Dsl_RoeServices_Persistent_Data[_8];
+  _10 = (int) EventType_23;
+  _11 = &Dcm_Dsl_RoeServices_Runtime_Data[_10];
+  TS_MemCpy32 (_9, _11, 8);
+  # DEBUG BEGIN_STMT
+  NvMChanged_30 = 1;
+  # DEBUG NvMChanged => NvMChanged_30
+
+  <bb 5> :
+  # NvMChanged_13 = PHI <NvMChanged_14(3), NvMChanged_30(4)>
+  # DEBUG NvMChanged => NvMChanged_13
+  # DEBUG BEGIN_STMT
+  PreconfEventIndex_31 = PreconfEventIndex_12 + 1;
+  # DEBUG PreconfEventIndex => PreconfEventIndex_31
+
+  <bb 6> :
+  # PreconfEventIndex_12 = PHI <PreconfEventIndex_21(2), PreconfEventIndex_31(5)>
+  # NvMChanged_14 = PHI <NvMChanged_18(2), NvMChanged_13(5)>
+  # DEBUG NvMChanged => NvMChanged_14
+  # DEBUG PreconfEventIndex => PreconfEventIndex_12
+  # DEBUG BEGIN_STMT
+  if (PreconfEventIndex_12 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (NvMChanged_14 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 9> :
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_IsInitialized ()
+{
+  boolean Initialized;
+  boolean _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Initialized_2 = Dcm_Dsl_RoeServices_Initialized;
+  # DEBUG Initialized => Initialized_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Initialized_2;
+  return _3;
+
+}
+
+
+Dcm_Dsl_RoeServices_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_MainFunction ()
+{
+  unsigned char Dcm_Dsl_RoeServices_Initialized.1_1;
+  short unsigned int Dcm_RoeInterMsgCycle.2_2;
+  short unsigned int Dcm_RoeInterMsgCycle.3_3;
+  short unsigned int _4;
+  unsigned char Dcm_RoeEnqueueEvent.4_5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.1_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.1_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitInternal ();
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle.2_2 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.2_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle.3_3 = Dcm_RoeInterMsgCycle;
+  _4 = Dcm_RoeInterMsgCycle.3_3 + 65535;
+  Dcm_RoeInterMsgCycle = _4;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.4_5 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.4_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_RoeEventDispatch (&Dcm_Dsl_RoeRxData);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_ClearEvents (boolean ServiceCall)
+{
+  Dcm_RoeEventTypeType EventType;
+  int _1;
+  int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&Dcm_Dsl_RoeServices_Runtime_Data, 16);
+  # DEBUG BEGIN_STMT
+  EventType_9 = 0;
+  # DEBUG EventType => EventType_9
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ServiceCall_10(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_3, 0);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_3;
+  Dcm_Dsl_RoeServices_Runtime_Data[_1].State = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) EventType_3;
+  Dcm_Dsl_RoeServices_Persistent_Data[_2].State = 0;
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+  # DEBUG BEGIN_STMT
+  EventType_16 = EventType_3 + 1;
+  # DEBUG EventType => EventType_16
+
+  <bb 7> :
+  # EventType_3 = PHI <EventType_9(2), EventType_16(6)>
+  # DEBUG EventType => EventType_3
+  # DEBUG BEGIN_STMT
+  if (EventType_3 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (ServiceCall_10(D) == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 10> :
+  return;
+
+}
+
+

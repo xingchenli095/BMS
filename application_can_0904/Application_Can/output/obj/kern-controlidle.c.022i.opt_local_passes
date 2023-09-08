@@ -1,0 +1,157 @@
+__attribute__((target ("general-regs-only")))
+OS_KernControlIdle (os_coreid_t c, os_idlemode_t mode)
+{
+  os_paramtype_t p[3];
+  os_errorresult_t e;
+  os_result_t r;
+  unsigned int _1;
+  unsigned int _2;
+  unsigned char _3;
+  const os_callermask_t * OS_permittedContext.2_4;
+  const os_callermask_t * _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  const os_callermask_t * OS_permittedContext.3_9;
+  const os_callermask_t * _10;
+  short unsigned int _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  const os_callermask_t * OS_permittedContext.4_17;
+  const os_callermask_t * _18;
+  short unsigned int _19;
+  unsigned char _20;
+  int _21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  _Bool iftmp.0_26;
+  int iftmp.1_27;
+  _Bool iftmp.0_35;
+  int iftmp.1_36;
+  int iftmp.1_37;
+  _Bool iftmp.0_38;
+  os_result_t _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r_29 = 0;
+  # DEBUG r => r_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) c_30(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) mode_33(D);
+  p[1] = _2;
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_4 = OS_permittedContext;
+  _5 = OS_permittedContext.2_4 + 106;
+  _6 = *_5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1024;
+  if (_8 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_9 = OS_permittedContext;
+  _10 = OS_permittedContext.3_9 + 106;
+  _11 = *_10;
+  _12 = OS_kernelData.errorStatus.calledFrom;
+  _13 = (int) _12;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1_36 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1_37 = 0;
+
+  <bb 7> :
+  # iftmp.1_27 = PHI <iftmp.1_36(5), iftmp.1_37(6)>
+  iftmp.0_38 = iftmp.1_27 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_17 = OS_permittedContext;
+  _18 = OS_permittedContext.4_17 + 106;
+  _19 = *_18;
+  _20 = OS_kernelData.inFunction;
+  _21 = (int) _20;
+  _22 = 1 << _21;
+  _23 = (short unsigned int) _22;
+  _24 = _19 & _23;
+  iftmp.0_35 = _24 == 0;
+
+  <bb 9> :
+  # iftmp.0_26 = PHI <iftmp.0_38(7), iftmp.0_35(8)>
+  if (iftmp.0_26 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r_46 = OS_Error (&OS_svc_ControlIdle, 12, &p);
+  # DEBUG r => r_46
+  goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (mode_33(D) > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  r_44 = OS_Error (&OS_svc_ControlIdle, 175, &p);
+  # DEBUG r => r_44
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  e_40 = OS_DoControlIdle (mode_33(D));
+  # DEBUG e => e_40
+  # DEBUG BEGIN_STMT
+  if (e_40 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  r_42 = OS_Error (&OS_svc_ControlIdle, e_40, &p);
+  # DEBUG r => r_42
+
+  <bb 15> :
+  # r_25 = PHI <r_46(10), r_44(12), r_29(13), r_42(14)>
+  # DEBUG r => r_25
+  # DEBUG BEGIN_STMT
+  _47 = r_25;
+  p ={v} {CLOBBER};
+  return _47;
+
+}
+
+

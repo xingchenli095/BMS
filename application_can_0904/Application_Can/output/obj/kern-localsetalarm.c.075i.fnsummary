@@ -1,0 +1,296 @@
+
+Analyzing function: OS_LocalSetAlarm/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
+;; 2 succs { 21 3 }
+;; 3 succs { 4 6 }
+;; 4 succs { 5 6 }
+;; 5 succs { 6 }
+;; 6 succs { 7 14 }
+;; 7 succs { 8 9 }
+;; 8 succs { 13 }
+;; 9 succs { 10 11 }
+;; 10 succs { 12 }
+;; 11 succs { 12 }
+;; 12 succs { 13 }
+;; 13 succs { 17 }
+;; 14 succs { 17 15 }
+;; 15 succs { 16 17 }
+;; 16 succs { 17 }
+;; 17 succs { 18 21 }
+;; 18 succs { 19 21 }
+;; 19 succs { 20 21 }
+;; 20 succs { 21 }
+;; 21 succs { 1 }
+
+Analyzing function body size: OS_LocalSetAlarm
+
+IPA function summary for OS_LocalSetAlarm/0 inlinable
+  global time:     59.229215
+  self size:       70
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:27.000000, time:12.998065
+    size:5.000000, time:2.802425,  executed if:(not inlined)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op1[ref offset: 192] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op1[ref offset: 192] changed)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op2[ref offset: 224] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op2[ref offset: 224] changed)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op1[ref offset: 0] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op1[ref offset: 0] changed)
+    size:2.000000, time:0.871000,  nonconst if:(op5 changed)
+    size:8.500000, time:1.360938,  executed if:(op5 == 0)
+    size:0.500000, time:0.054438,  executed if:(op5 == 0) && (not inlined)
+    size:1.000000, time:0.217750,  executed if:(op5 != 0)
+  calls:
+    OS_CORTEXM_IntSetDisablingLevel/3 function body not available
+      loop depth: 0 freq:0.21 size: 2 time: 11
+    OS_CORTEXM_IntSetDisablingLevel/3 function body not available
+      loop depth: 0 freq:0.44 size: 2 time: 11
+    OS_EnqueueAlarm/4 function body not available
+      loop depth: 0 freq:0.44 size: 5 time: 14
+    OS_CORTEXM_IntSetDisablingLevel/3 function body not available
+      loop depth: 0 freq:0.65 size: 3 time: 12
+    OS_AppIsAccessible/1 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+    indirect call loop depth: 0 freq:0.08 size: 4 time: 16
+    indirect call loop depth: 0 freq:0.23 size: 4 time: 16
+
+Symbol table:
+
+OS_EnqueueAlarm/4 (OS_EnqueueAlarm) @06ce1000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 (467614563 (estimated locally),0.44 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c2e000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 (230317621 (estimated locally),0.21 per call) OS_LocalSetAlarm/0 (467614563 (estimated locally),0.44 per call) OS_LocalSetAlarm/0 (697932185 (estimated locally),0.65 per call) 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06c06e58
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06c2eee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetAlarm/0 (1073741823 (estimated locally),1.00 per call) 
+  Calls: 
+OS_LocalSetAlarm/0 (OS_LocalSetAlarm) @06c2ec40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 (230317621 (estimated locally),0.21 per call) OS_CORTEXM_IntSetDisablingLevel/3 (467614563 (estimated locally),0.44 per call) OS_EnqueueAlarm/4 (467614563 (estimated locally),0.44 per call) OS_CORTEXM_IntSetDisablingLevel/3 (697932185 (estimated locally),0.65 per call) OS_AppIsAccessible/1 (1073741823 (estimated locally),1.00 per call) 
+   Indirect call(83053930 (estimated locally),0.08 per call)  of param:2 loaded from aggregate passed by reference at offset 32 (vptr maybe changed)
+   Indirect call(244276264 (estimated locally),0.23 per call)  of param:2 loaded from aggregate passed by reference at offset 32 (vptr maybe changed)
+__attribute__((target ("general-regs-only")))
+OS_LocalSetAlarm (os_alarmid_t a, const struct os_alarm_t * as, const struct os_counter_t * cs, os_tick_t val, os_tick_t per, os_boolean_t rel)
+{
+  struct os_counterdynamic_t * cd;
+  struct os_alarmdynamic_t * ad;
+  os_errorresult_t result;
+  os_intstatus_t is;
+  const struct os_appcontext_t * _1;
+  int _2;
+  const struct os_hwt_t * _3;
+  unsigned char _4;
+  void (*<T540>) (const struct os_counter_t *) _5;
+  short unsigned int OS_kernDisableLevel.0_6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct os_hwt_t * _11;
+  unsigned char _12;
+  short unsigned int _13;
+  void (*<T540>) (const struct os_counter_t *) _14;
+  os_tick_t iftmp.1_17;
+  os_tick_t iftmp.1_38;
+  os_tick_t iftmp.1_39;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ad_24 = as_23(D)->dynamic;
+  # DEBUG ad => ad_24
+  # DEBUG BEGIN_STMT
+  cd_26 = cs_25(D)->dynamic;
+  # DEBUG cd => cd_26
+  # DEBUG BEGIN_STMT
+  _1 = as_23(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 21>; [35.00%]
+  else
+    goto <bb 3>; [65.00%]
+
+  <bb 3> [local count: 697932185]:
+  # DEBUG BEGIN_STMT
+  _3 = cs_25(D)->hwt;
+  if (_3 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 6>; [30.00%]
+
+  <bb 4> [local count: 488552528]:
+  # DEBUG BEGIN_STMT
+  _4 = cd_26->lock;
+  if (_4 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 244276264]:
+  # DEBUG BEGIN_STMT
+  _5 = cs_25(D)->updFunc;
+  _5 (cs_25(D));
+
+  <bb 6> [local count: 697932185]:
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_6 = OS_kernDisableLevel;
+  is_30 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_6);
+  # DEBUG is => is_30
+  # DEBUG BEGIN_STMT
+  result_31 = ad_24->inUse;
+  # DEBUG result => result_31
+  # DEBUG BEGIN_STMT
+  if (result_31 == 0)
+    goto <bb 7>; [67.00%]
+  else
+    goto <bb 14>; [33.00%]
+
+  <bb 7> [local count: 467614563]:
+  # DEBUG BEGIN_STMT
+  ad_24->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad_24->period = per_34(D);
+  # DEBUG BEGIN_STMT
+  if (rel_36(D) != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 233807282]:
+  # DEBUG BEGIN_STMT
+  ad_24->delta = val_37(D);
+  goto <bb 13>; [100.00%]
+
+  <bb 9> [local count: 233807282]:
+  # DEBUG BEGIN_STMT
+  _7 = cd_26->current;
+  if (_7 > val_37(D))
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 116903641]:
+  _8 = val_37(D) - _7;
+  _9 = cs_25(D)->maxallowedvalue;
+  _10 = _8 + _9;
+  iftmp.1_39 = _10 + 1;
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 116903641]:
+  iftmp.1_38 = val_37(D) - _7;
+
+  <bb 12> [local count: 233807282]:
+  # iftmp.1_17 = PHI <iftmp.1_39(10), iftmp.1_38(11)>
+  ad_24->delta = iftmp.1_17;
+
+  <bb 13> [local count: 467614563]:
+  # DEBUG BEGIN_STMT
+  OS_EnqueueAlarm (cs_25(D), cd_26, a_42(D), ad_24);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_30);
+  goto <bb 17>; [100.00%]
+
+  <bb 14> [local count: 230317621]:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_30);
+  # DEBUG BEGIN_STMT
+  if (result_31 == 1)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 15> [local count: 152009630]:
+  # DEBUG BEGIN_STMT
+  if (result_31 == 2)
+    goto <bb 16>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 16> [local count: 51683274]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 4
+
+  <bb 17> [local count: 697932186]:
+  # result_15 = PHI <0(13), 20(14), result_31(15), 4(16)>
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = cs_25(D)->hwt;
+  if (_11 != 0B)
+    goto <bb 18>; [70.00%]
+  else
+    goto <bb 21>; [30.00%]
+
+  <bb 18> [local count: 488552529]:
+  # DEBUG BEGIN_STMT
+  _12 = cd_26->lock;
+  if (_12 == 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 19> [local count: 244276265]:
+  _13 = cd_26->head;
+  if (_13 == a_42(D))
+    goto <bb 20>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 20> [local count: 83053930]:
+  # DEBUG BEGIN_STMT
+  _14 = cs_25(D)->updFunc;
+  _14 (cs_25(D));
+
+  <bb 21> [local count: 1073741824]:
+  # result_16 = PHI <154(2), result_15(17), result_15(18), result_15(19), result_15(20)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  return result_16;
+
+}
+
+

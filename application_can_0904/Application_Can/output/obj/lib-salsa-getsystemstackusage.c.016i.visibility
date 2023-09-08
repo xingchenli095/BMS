@@ -1,0 +1,75 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: GetSystemStackUsage
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_UserGetStackInfo/1 (OS_UserGetStackInfo) @06bd0d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: GetSystemStackUsage/0 
+  Calls: 
+GetSystemStackUsage/0 (GetSystemStackUsage) @06bd0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 
+__attribute__((target ("general-regs-only")))
+GetSystemStackUsage ()
+{
+  struct os_stackinfo_t info;
+  os_uint8_t answer;
+  os_uint8_t D.5807;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  answer = 255;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  info.stackPointer = 0;
+  # DEBUG BEGIN_STMT
+  _1 = OS_UserGetStackInfo (4351, &info);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = info.stackLen;
+  _3 = info.stackClean;
+  _4 = _2 - _3;
+  _5 = _4 * 100;
+  _6 = info.stackLen;
+  _7 = _6 / 2;
+  _8 = _5 + _7;
+  _9 = info.stackLen;
+  _10 = _8 / _9;
+  answer = (os_uint8_t) _10;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.5807 = answer;
+  info = {CLOBBER};
+  return D.5807;
+
+}
+
+

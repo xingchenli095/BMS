@@ -1,0 +1,109 @@
+Parsed function:OS_LocalSetScheduleTableAsync
+Dump after hash based groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Dump after WPA based types groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Worklist has been filled with: 0
+Address reference subdivision created: 0 new classes.
+Dump after callgraph-based congruence reduction
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Init called for 0 items (0.00%).
+Dump after full equality comparison of groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Worklist has been filled with: 0
+Address reference subdivision created: 0 new classes.
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+
+Item count: 1
+Congruent classes before: 1, after: 1
+Average class size before: 1.00, after: 1.00
+Average non-singular class size: 0.00, count: 0
+Equal symbols: 0
+Fraction of visited symbols: 0.00%
+
+__attribute__((target ("general-regs-only")))
+OS_LocalSetScheduleTableAsync (os_scheduleid_t s)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  struct os_scheduledynamic_t * sd;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_schedule_t * _4;
+  short unsigned int OS_kernDisableLevel.1_5;
+  const struct os_appcontext_t * _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _12;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s_14(D);
+  _3 = _2 * 36;
+  _4 = OS_scheduleTableBase.0_1 + _3;
+  sd_15 = _4->dynamic;
+  # DEBUG sd => sd_15
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_5 = OS_kernDisableLevel;
+  is_17 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_5);
+  # DEBUG is => is_17
+  # DEBUG BEGIN_STMT
+  _6 = _4->app;
+  _7 = OS_AppIsAccessible (_6);
+  if (_7 == 0)
+    goto <bb 5>; [35.00%]
+  else
+    goto <bb 3>; [65.00%]
+
+  <bb 3> [local count: 697932186]:
+  # DEBUG BEGIN_STMT
+  _8 = sd_15->status;
+  _12 = _8 & 7;
+  if (_12 == 3)
+    goto <bb 4>; [48.89%]
+  else
+    goto <bb 5>; [51.11%]
+
+  <bb 4> [local count: 341219046]:
+  # DEBUG BEGIN_STMT
+  _9 = _8 & 199;
+  sd_15->status = _9;
+
+  <bb 5> [local count: 1073741824]:
+  # result_10 = PHI <154(2), 0(4), 41(3)>
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_17);
+  # DEBUG BEGIN_STMT
+  return result_10;
+
+}
+
+

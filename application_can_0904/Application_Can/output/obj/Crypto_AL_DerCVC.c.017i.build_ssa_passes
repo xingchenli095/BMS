@@ -1,0 +1,212 @@
+Crypto_AL_DerCVCGetDate (const uint8 * Encoding, struct Crypto_CVDateInfoType * CVDate)
+{
+  uint32 CurrentPos;
+  uint32 ThingLengthPtr;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentPos = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsTBSCert[5], &ThingLengthPtr, 0);
+  # DEBUG BEGIN_STMT
+  _1 = &CVDate->EffectiveDate;
+  _2 = Encoding + CurrentPos;
+  TS_MemCpy32 (_1, _2, 6);
+  # DEBUG BEGIN_STMT
+  CurrentPos = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsTBSCert[6], &ThingLengthPtr, 0);
+  # DEBUG BEGIN_STMT
+  _3 = &CVDate->ExpirationDate;
+  _4 = Encoding + CurrentPos;
+  TS_MemCpy32 (_3, _4, 6);
+  ThingLengthPtr = {CLOBBER};
+  return;
+
+}
+
+
+Crypto_AL_DerCVCRSAPubKeyGetModulos (uint8 * Encoding, uint32 * ModulusLengthPtr)
+{
+  uint8 * D.6123;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsSbjPbKeyRsaInfo[1], ModulusLengthPtr, 0);
+  D.6123 = Encoding + _1;
+  return D.6123;
+
+}
+
+
+Crypto_AL_DerCVCRSAPubKeyGetOid (const uint8 * Encoding)
+{
+  uint8 RetVal;
+  uint8 IdTaRsaPssSha256[10];
+  uint32 OidLength;
+  const uint8 * OidPtr;
+  uint8 i;
+  uint8 D.6120;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OidPtr = 0B;
+  # DEBUG BEGIN_STMT
+  OidLength = 0;
+  # DEBUG BEGIN_STMT
+  IdTaRsaPssSha256 = "\x04\x00\x7f\x00\x07\x02\x02\x02\x01\x04";
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsSbjPbKeyRsaInfo[0], &OidLength, 0);
+  OidPtr = Encoding + _1;
+  # DEBUG BEGIN_STMT
+  OidLength.4_2 = OidLength;
+  if (OidLength.4_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) i;
+  _4 = IdTaRsaPssSha256[_3];
+  _5 = (sizetype) i;
+  _6 = OidPtr + _5;
+  _7 = *_6;
+  if (_4 != _7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.5_8 = i;
+  i = i.5_8 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (i <= 9)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.6120 = RetVal;
+  OidLength = {CLOBBER};
+  IdTaRsaPssSha256 = {CLOBBER};
+  return D.6120;
+
+}
+
+
+Crypto_AL_DerCVCRSAPubKeyGetExponent (uint8 * Encoding, uint32 * ExponentLengthPtr)
+{
+  uint8 * D.6114;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsSbjPbKeyRsaInfo[2], ExponentLengthPtr, 0);
+  D.6114 = Encoding + _1;
+  return D.6114;
+
+}
+
+
+Crypto_AL_DerCVCGetSignedData (uint8 * Encoding, uint32 * ThingLengthPtr)
+{
+  uint8 * ResultPtr;
+  uint32 Position;
+  uint8 * D.6111;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &Crypto_DerParseFunctionsSequence;
+  _2 = _1->FindFunction;
+  _2 (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsCertificate[0], &Position, 0);
+  # DEBUG BEGIN_STMT
+  Position.1_3 = Position;
+  _4 = Encoding + Position.1_3;
+  _5 = Crypto_AL_DerEncGetContentsStart (_4);
+  Position.2_6 = Position;
+  _7 = Encoding + Position.2_6;
+  _8 = Crypto_AL_DerEncGetContentsLength (_7);
+  _9 = _5 + _8;
+  *ThingLengthPtr = _9;
+  # DEBUG BEGIN_STMT
+  Position.3_10 = Position;
+  ResultPtr = Encoding + Position.3_10;
+  # DEBUG BEGIN_STMT
+  D.6111 = ResultPtr;
+  Position = {CLOBBER};
+  return D.6111;
+
+}
+
+
+Crypto_AL_DerCVCGetSignatureValue (uint8 * Encoding, uint32 * ThingLengthPtr)
+{
+  uint8 * D.6109;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerSubComponentContents (&Crypto_DerCVCCptCertificate, Encoding, &Crypto_DerCVCSubCptsCertificate[1], ThingLengthPtr, 0);
+  D.6109 = Encoding + _1;
+  return D.6109;
+
+}
+
+
+Crypto_AL_DerCVCCheckCertificate (const uint8 * Encoding, uint32 EncodingLength)
+{
+  Std_ReturnType Valid;
+  uint32 CurrentPos;
+  Std_ReturnType D.6106;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CurrentPos = 0;
+  # DEBUG BEGIN_STMT
+  Valid = 1;
+  # DEBUG BEGIN_STMT
+  _1 = &Crypto_DerParseFunctionsSequence;
+  _2 = _1->CheckFunction;
+  _3 = _2 (&Crypto_DerCVCCptCertificate, Encoding, EncodingLength, &CurrentPos);
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  CurrentPos.0_4 = CurrentPos;
+  if (EncodingLength == CurrentPos.0_4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.6106 = Valid;
+  CurrentPos = {CLOBBER};
+  return D.6106;
+
+}
+
+

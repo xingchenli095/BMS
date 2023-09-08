@@ -1,0 +1,114 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_InitResources/0:
+
+ Propagating constants:
+
+Not considering OS_InitResources for cloning; -fipa-cp-clone disabled.
+
+overall_size: 14, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_InitResources/0:
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nResources/2 (OS_nResources) @06be9828
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitResources/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_resourceTableBase/1 (OS_resourceTableBase) @06be97e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitResources/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_InitResources/0 (OS_InitResources) @06b42a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_resourceTableBase/1 (read)OS_nResources/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+;; Function OS_InitResources (OS_InitResources, funcdef_no=0, decl_uid=6774, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_InitResources/0
+__attribute__((target ("general-regs-only")))
+OS_InitResources ()
+{
+  struct os_resourcedynamic_t * const rd;
+  const struct os_resource_t * const rs;
+  os_unsigned_t i;
+  const struct os_resource_t * OS_resourceTableBase.0_1;
+  unsigned int _2;
+  short unsigned int OS_nResources.2_3;
+  unsigned int _4;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG myCore => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = i_5 * 16;
+  rs_8 = OS_resourceTableBase.0_1 + _2;
+  # DEBUG rs => rs_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  rd_9 = rs_8->dynamic;
+  # DEBUG rd => rd_9
+  # DEBUG BEGIN_STMT
+  rd_9->lastPrio = 0;
+  # DEBUG BEGIN_STMT
+  rd_9->takenBy = 255;
+  # DEBUG BEGIN_STMT
+  rd_9->next = 4294967295;
+  # DEBUG BEGIN_STMT
+  i_13 = i_5 + 1;
+  # DEBUG i => i_13
+
+  <bb 4> [local count: 1073741824]:
+  # i_5 = PHI <0(2), i_13(3)>
+  # DEBUG i => i_5
+  # DEBUG BEGIN_STMT
+  OS_nResources.2_3 = OS_nResources;
+  _4 = (unsigned int) OS_nResources.2_3;
+  if (_4 > i_5)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+

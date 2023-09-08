@@ -1,0 +1,3755 @@
+WdgM_PerformReset.part.0 ()
+{
+  struct WdgM_EB_CoreContextType * const CoreInstance;
+  unsigned char _1;
+
+  <bb 4> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_GlobalStatus = 3;
+  # DEBUG BEGIN_STMT
+  _1 = MEM[(unsigned char *)&WdgM_EB_Context + 20B];
+  # DEBUG D#45 => &WdgM_EB_Context
+  WdgM_EB_UpdateTriggerConditions.isra.0 (_1);
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_UpdateTriggerConditions.isra.0 (WdgM_ModeType ISRA.134)
+{
+  const struct WdgM_EB_TriggerCfgType * const TriggerCfg;
+  WdgM_EB_TriggerIdType TriggerId;
+  WdgM_EB_TriggerConditionType TriggerCondition;
+  unsigned char _2;
+  int _3;
+  unsigned int _6;
+  unsigned int _7;
+  const struct WdgM_EB_TriggerCfgType * _8;
+  unsigned char _9;
+  unsigned char WdgM_EB_GlobalStatus.43_10;
+  unsigned char _14;
+
+  <bb 10> [local count: 118111602]:
+  # DEBUG CoreInstance s=> CoreInstance
+
+  <bb 2> [local count: 118111602]:
+  # DEBUG BEGIN_STMT
+  _2 = ISRA.134_19(D);
+  _3 = (int) _2;
+  # DEBUG D#44 => &WdgM_EB_ModeCfg[_3]
+  # DEBUG ModeCfg => D#44
+  # DEBUG BEGIN_STMT
+  TriggerCfg_4 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_3].TriggerCfg;
+  # DEBUG TriggerCfg => TriggerCfg_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG TriggerId => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned int) TriggerId_5;
+  _7 = _6 * 6;
+  _8 = TriggerCfg_4 + _7;
+  _9 = _8->WatchdogMode;
+  if (_9 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 4> [local count: 477815111]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WdgM_EB_GlobalStatus.43_10 = WdgM_EB_GlobalStatus;
+  if (WdgM_EB_GlobalStatus.43_10 == 3)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 315357973]:
+  # DEBUG BEGIN_STMT
+  TriggerCondition_11 = _8->TriggerCondition;
+  # DEBUG TriggerCondition => TriggerCondition_11
+
+  <bb 6> [local count: 477815111]:
+  # TriggerCondition_12 = PHI <0(4), TriggerCondition_11(5)>
+  # DEBUG TriggerCondition => TriggerCondition_12
+  # DEBUG BEGIN_STMT
+  Wdg_SetTriggerCondition (TriggerCondition_12);
+
+  <bb 7> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  TriggerId_13 = TriggerId_5 + 1;
+  # DEBUG TriggerId => TriggerId_13
+
+  <bb 8> [local count: 1073741824]:
+  # TriggerId_5 = PHI <0(2), TriggerId_13(7)>
+  # DEBUG TriggerId => TriggerId_5
+  # DEBUG BEGIN_STMT
+  _14 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_3].NumTriggers;
+  if (TriggerId_5 < _14)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 9>; [11.00%]
+
+  <bb 9> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_StartCheckpointDeadline.isra.0 (struct WdgM_EB_DMDataType * StartDMData, const struct WdgM_EB_DMDataType * StopDMData, struct WdgM_EB_CPDataType * CPData, const uint16 * ISRA.130, boolean ErrorRecoveryEnabled)
+{
+  Std_ReturnType StartCPRetVal;
+  WdgM_EB_TimestampType TimeStamp;
+  uint16 MaxCycles;
+  boolean IsActive;
+  WdgM_EB_TimestampType ElapsedTime;
+  WdgM_EB_ResultType CPDeadlineResult;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  unsigned char IsActive.14_6;
+  short unsigned int _8;
+  long unsigned int _9;
+  short unsigned int _12;
+  unsigned char _13;
+  unsigned char CPDeadlineResult.15_14;
+
+  <bb 19> [local count: 1073741823]:
+  # DEBUG CPDeadlineCfg s=> CPDeadlineCfg
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (StartDMData_1(D) != StopDMData_2(D))
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+
+  <bb 3> [local count: 751619277]:
+  # DEBUG BEGIN_STMT
+  _3 = StopDMData_2(D)->StartTimestampData;
+  StartDMData_1(D)->StartTimestampData = _3;
+  # DEBUG BEGIN_STMT
+  _4 = StopDMData_2(D)->StartTimestampDataInv;
+  StartDMData_1(D)->StartTimestampDataInv = _4;
+
+  <bb 4> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  _5 = WdgM_EB_GetCheckedDMData (StartDMData_1(D), &TimeStamp, &MaxCycles, &IsActive);
+  if (_5 != 0)
+    goto <bb 17>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  IsActive.14_6 = IsActive;
+  if (IsActive.14_6 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  if (StartDMData_1(D) == StopDMData_2(D))
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 46788300]:
+  # DEBUG BEGIN_STMT
+  ElapsedTime = 0;
+  # DEBUG BEGIN_STMT
+  Supervisor_WdgM_GetElapsedTimeCallout (&TimeStamp, &ElapsedTime);
+  ElapsedTime ={v} {CLOBBER};
+
+  <bb 8> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _8 = *ISRA.130_43(D);
+  _9 = TimeStamp;
+  # DEBUG D#8 => &TimeStamp
+  WdgM_EB_StoreDMData.isra.0 (StartDMData_1(D), _9, _8, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG StartCPRetVal => 0
+
+  <bb 9> [local count: 536870911]:
+  # StartCPRetVal_15 = PHI <1(5), 0(8)>
+  # DEBUG StartCPRetVal => StartCPRetVal_15
+  # DEBUG BEGIN_STMT
+  if (ErrorRecoveryEnabled_10(D) == 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 10> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  CPDeadlineResult = 203;
+  # DEBUG BEGIN_STMT
+  _12 = MEM[(short unsigned int *)CPData_11(D) + 4B];
+  # DEBUG D#10 => CPData_11(D)
+  _13 = WdgM_EB_GetCheckedCPDeadlineData.isra.0 (_12, &CPDeadlineResult);
+  if (_13 != 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 11> [local count: 58465242]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 12> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  CPDeadlineResult.15_14 = CPDeadlineResult;
+  if (CPDeadlineResult.15_14 != 180)
+    goto <bb 13>; [66.00%]
+  else
+    goto <bb 14>; [34.00%]
+
+  <bb 13> [local count: 116930484]:
+  # DEBUG BEGIN_STMT
+  # DEBUG StartCPRetVal => 1
+  CPDeadlineResult ={v} {CLOBBER};
+  # DEBUG StartCPRetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [100.00%]
+
+  <bb 14> [local count: 60236916]:
+  # DEBUG StartCPRetVal => StartCPRetVal_15
+  CPDeadlineResult ={v} {CLOBBER};
+
+  <bb 15> [local count: 419940427]:
+  # DEBUG StartCPRetVal => StartCPRetVal_15
+  # DEBUG BEGIN_STMT
+  if (StartCPRetVal_15 == 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 16> [local count: 209970213]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => CPData_11(D)
+  # DEBUG DeadlineResult => 180
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPDeadlineData
+  # DEBUG CPData => D#9
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineDataRedundant => 75
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 180
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 19380
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_11(D) + 4B] = 19380;
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [100.00%]
+
+  <bb 17> [local count: 863771610]:
+  # StartCPRetVal_17 = PHI <1(4), 1(13), StartCPRetVal_15(15)>
+  # DEBUG StartCPRetVal => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => CPData_11(D)
+  # DEBUG DeadlineResult => 203
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPDeadlineData
+  # DEBUG CPData => D#9
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineDataRedundant => 52
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 203
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 13515
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_11(D) + 4B] = 13515;
+  # DEBUG BEGIN_STMT
+
+  <bb 18> [local count: 1073741824]:
+  # StartCPRetVal_16 = PHI <0(16), StartCPRetVal_17(17)>
+  # DEBUG DeadlineResult => NULL
+  # DEBUG DeadlineDataRedundant => NULL
+  # DEBUG DeadlineData => NULL
+  # DEBUG DeadlineResult => NULL
+  # DEBUG DeadlineDataRedundant => NULL
+  # DEBUG DeadlineData => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeStamp ={v} {CLOBBER};
+  MaxCycles ={v} {CLOBBER};
+  IsActive ={v} {CLOBBER};
+  return StartCPRetVal_16;
+
+}
+
+
+WdgM_EB_GetCheckedCPAliveCounterData.isra.0 (const uint32 ISRA.118, WdgM_EB_IntRamIdxType IntRamIdx, WdgM_EB_AliveCounterType * CPAliveCounter, struct WdgM_EB_CPInternalDataType * const ISRA.119)
+{
+  Std_ReturnType RetVal;
+  const uint32 UncheckedAliveCounterData;
+  const WdgM_EB_AliveCounterType CheckedAliveCounterData;
+  const WdgM_EB_AliveCounterType AliveCounterDataRedundant;
+  const WdgM_EB_AliveCounterType AliveCounterReference;
+  WdgM_EB_AliveCounterType AliveCounterData;
+  const uint32 AliveCounterDataTemp;
+  long unsigned int _4;
+  short unsigned int _5;
+  struct WdgM_EB_CPInternalDataType * _8;
+  long unsigned int _10;
+  struct WdgM_EB_CPInternalDataType * _11;
+  long unsigned int _14;
+  short unsigned int _16;
+
+  <bb 8> [local count: 1073741824]:
+  # DEBUG CPData s=> CPData
+  # DEBUG CoreInstance s=> CoreInstance
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  UncheckedAliveCounterData_2 = ISRA.118_25(D);
+  # DEBUG UncheckedAliveCounterData => UncheckedAliveCounterData_2
+  # DEBUG BEGIN_STMT
+  CheckedAliveCounterData_3 = (const WdgM_EB_AliveCounterType) UncheckedAliveCounterData_2;
+  # DEBUG CheckedAliveCounterData => CheckedAliveCounterData_3
+  # DEBUG BEGIN_STMT
+  _4 = UncheckedAliveCounterData_2 >> 16;
+  _5 = (short unsigned int) _4;
+  AliveCounterDataRedundant_6 = ~_5;
+  # DEBUG AliveCounterDataRedundant => AliveCounterDataRedundant_6
+  # DEBUG BEGIN_STMT
+  _8 = ISRA.119_26(D);
+  _10 = IntRamIdx_9(D) * 2;
+  _11 = _8 + _10;
+  AliveCounterReference_12 = _11->AliveCounterData;
+  # DEBUG AliveCounterReference => AliveCounterReference_12
+  # DEBUG BEGIN_STMT
+  # DEBUG AliveCounterData => CheckedAliveCounterData_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedAliveCounterData_3 == AliveCounterDataRedundant_6)
+    goto <bb 4>; [51.12%]
+  else
+    goto <bb 3>; [48.88%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_20 = PHI <0(2), 1(3)>
+  # DEBUG RetVal => RetVal_20
+  # DEBUG BEGIN_STMT
+  if (CheckedAliveCounterData_3 >= AliveCounterReference_12)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  AliveCounterData_13 = CheckedAliveCounterData_3 - AliveCounterReference_12;
+  # DEBUG AliveCounterData => AliveCounterData_13
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _14 = (long unsigned int) AliveCounterReference_12;
+  AliveCounterDataTemp_15 = 65536 - _14;
+  # DEBUG AliveCounterDataTemp => AliveCounterDataTemp_15
+  # DEBUG BEGIN_STMT
+  _16 = (short unsigned int) AliveCounterDataTemp_15;
+  AliveCounterData_17 = CheckedAliveCounterData_3 + _16;
+  # DEBUG AliveCounterData => AliveCounterData_17
+
+  <bb 7> [local count: 1073741824]:
+  # AliveCounterData_18 = PHI <AliveCounterData_13(5), AliveCounterData_17(6)>
+  # DEBUG AliveCounterData => AliveCounterData_18
+  # DEBUG BEGIN_STMT
+  *CPAliveCounter_19(D) = AliveCounterData_18;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_20;
+
+}
+
+
+WdgM_EB_GetCheckedSeqNumber.part.0 ()
+{
+  Std_ReturnType RetVal;
+  const uint16 UncheckedLastSeqNumber;
+  const uint8 CheckedLastSeqNumber;
+  const uint8 LastSeqNumberRedundant;
+  const WdgM_EB_ExtGraphDataSeqArrayType * IntExtGraphDataSeqPtr;
+  uint8 IndexInGraphDataSeq;
+  uint8 * LastSeqNumber;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#32 s=> IntExtGraphDataSeqPtr
+  # DEBUG IntExtGraphDataSeqPtr => D#32
+  # DEBUG D#31 s=> IndexInGraphDataSeq
+  # DEBUG IndexInGraphDataSeq => D#31
+  # DEBUG D#30 s=> LastSeqNumber
+  # DEBUG LastSeqNumber => D#30
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 3> [local count: 1073741824]:
+  # RetVal_1 = PHI <1(2)>
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_1;
+
+}
+
+
+WdgM_EB_CheckPredCP.part.0 (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId)
+{
+  Std_ReturnType RetVal;
+  WdgM_EB_CPIdType CPIdx;
+  boolean FoundCP;
+  const struct WdgM_EB_SECfgType * const SECfg;
+  const struct WdgM_EB_CPDataType * const LastCPData;
+  WdgM_EB_ResultType CPLogicalResult;
+  const struct WdgM_EB_CPLogicalCfgType * CPLogicalCfg;
+  int _2;
+  struct WdgM_EB_CPDataType * _3;
+  unsigned int _5;
+  unsigned int _6;
+  short unsigned int _8;
+  unsigned char CPLogicalResult.22_10;
+
+  <bb 8> [local count: 1073741824]:
+  # DEBUG D#25 s=> CPLogicalCfg
+  # DEBUG CPLogicalCfg => D#25
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) IntSEId_1(D);
+  # DEBUG D#23 => &WdgM_EB_SECfg[_2]
+  # DEBUG SECfg => D#23
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_2].CPData;
+  _5 = (unsigned int) CPId_4(D);
+  _6 = _5 * 8;
+  LastCPData_7 = _3 + _6;
+  # DEBUG LastCPData => LastCPData_7
+  # DEBUG BEGIN_STMT
+  CPLogicalResult = 203;
+  # DEBUG BEGIN_STMT
+  _8 = MEM[(short unsigned int *)LastCPData_7 + 6B];
+  # DEBUG D#12 => LastCPData_7
+  RetVal_9 = WdgM_EB_GetCheckedCPLogicalData.isra.0 (_8, &CPLogicalResult);
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  if (RetVal_9 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CPLogicalResult.22_10 = CPLogicalResult;
+  if (CPLogicalResult.22_10 != 180)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 5> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 6> [local count: 1073741824]:
+  # RetVal_12 = PHI <RetVal_9(4), 1(5)>
+  # DEBUG RetVal => RetVal_12
+  CPLogicalResult ={v} {CLOBBER};
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_11 = PHI <RetVal_12(6)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_11;
+
+}
+
+
+WdgM_EB_CheckCPAliveCounterData.isra.0 (const uint32 ISRA.109)
+{
+  Std_ReturnType RetVal;
+  const uint32 UncheckedAliveCounterData;
+  const WdgM_EB_AliveCounterType CheckedAliveCounterData;
+  const WdgM_EB_AliveCounterType AliveCounterDataRedundant;
+  long unsigned int _4;
+  short unsigned int _5;
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG CPData s=> CPData
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  UncheckedAliveCounterData_2 = ISRA.109_11(D);
+  # DEBUG UncheckedAliveCounterData => UncheckedAliveCounterData_2
+  # DEBUG BEGIN_STMT
+  CheckedAliveCounterData_3 = (const WdgM_EB_AliveCounterType) UncheckedAliveCounterData_2;
+  # DEBUG CheckedAliveCounterData => CheckedAliveCounterData_3
+  # DEBUG BEGIN_STMT
+  _4 = UncheckedAliveCounterData_2 >> 16;
+  _5 = (short unsigned int) _4;
+  AliveCounterDataRedundant_6 = ~_5;
+  # DEBUG AliveCounterDataRedundant => AliveCounterDataRedundant_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedAliveCounterData_3 == AliveCounterDataRedundant_6)
+    goto <bb 4>; [51.12%]
+  else
+    goto <bb 3>; [48.88%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_7 = PHI <0(2), 1(3)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_7;
+
+}
+
+
+WdgM_EB_SEIsActiveResetData.isra.0 (WdgM_ModeType NewMode, const struct WdgM_EB_SECfgType * SECfg, boolean IsNormalOperation, WdgM_ModeType * ISRA.106)
+{
+  boolean IsActive;
+  WdgM_EB_CPIdType CPId;
+  const struct WdgM_EB_CPCfgType * const CPCfg;
+  const struct WdgM_EB_CPLogicalCfgType * const CPIntLogicalCfgOldMode;
+  const struct WdgM_EB_CPLogicalCfgType * const CPIntLogicalCfgNewMode;
+  const WdgM_EB_GraphIdType GraphId;
+  const struct WdgM_EB_CPLogicalCfgType * const CPExtLogicalCfgNewMode;
+  const WdgM_EB_GraphIdType GraphId;
+  WdgM_EB_ExtGraphDataSeqArrayType * const IntExtGraphDataSeqPtr;
+  uint8 Local_NumOfSEperGraphId;
+  const struct WdgM_EB_CPDeadlineCfgType * const CPDeadlineCfgNewMode;
+  const WdgM_EB_DMIdType DMId;
+  const struct WdgM_EB_CPCfgType * _2;
+  unsigned int _4;
+  unsigned int _5;
+  int _8;
+  const struct WdgM_EB_CPAliveCfgType * _9;
+  unsigned char _11;
+  int _12;
+  int _17;
+  int _20;
+  int _25;
+  unsigned char _27;
+
+  <bb 16> [local count: 118111600]:
+  # DEBUG CoreInstance s=> CoreInstance
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CPId => 0
+  goto <bb 14>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _2 = SECfg_1(D)->CPCfg;
+  _4 = (unsigned int) CPId_3;
+  _5 = _4 * 64;
+  CPCfg_6 = _2 + _5;
+  # DEBUG CPCfg => CPCfg_6
+  # DEBUG BEGIN_STMT
+  _8 = (int) NewMode_7(D);
+  _9 = CPCfg_6->AliveCfgPtr[_8];
+  if (_9 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 4> [local count: 668941156]:
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActive => 1
+
+  <bb 5> [local count: 955630223]:
+  # IsActive_29 = PHI <IsActive_30(3), 1(4)>
+  # DEBUG IsActive => IsActive_29
+  # DEBUG BEGIN_STMT
+  _11 = *ISRA.106_48(D);
+  _12 = (int) _11;
+  CPIntLogicalCfgOldMode_13 = CPCfg_6->IntLogicalCfgPtr[_12];
+  # DEBUG CPIntLogicalCfgOldMode => CPIntLogicalCfgOldMode_13
+  # DEBUG BEGIN_STMT
+  CPIntLogicalCfgNewMode_14 = CPCfg_6->IntLogicalCfgPtr[_8];
+  # DEBUG CPIntLogicalCfgNewMode => CPIntLogicalCfgNewMode_14
+  # DEBUG BEGIN_STMT
+  if (CPIntLogicalCfgNewMode_14 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+
+  <bb 6> [local count: 668941156]:
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActive => 1
+  # DEBUG BEGIN_STMT
+  if (IsNormalOperation_15(D) == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 7> [local count: 334470578]:
+  if (CPIntLogicalCfgOldMode_13 != CPIntLogicalCfgNewMode_14)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+
+  <bb 8> [local count: 568599983]:
+  # DEBUG BEGIN_STMT
+  GraphId_16 = CPIntLogicalCfgNewMode_14->GraphId;
+  # DEBUG GraphId => GraphId_16
+  # DEBUG BEGIN_STMT
+  _17 = (int) GraphId_16;
+  # DEBUG D#17 => &WdgM_EB_InternalGraphData[_17]
+  # DEBUG GraphData => D#17
+  # DEBUG BEGIN_STMT
+  # DEBUG GraphData => D#17
+  # DEBUG IntSEId => 0
+  # DEBUG CPId => 0
+  # DEBUG IsActive => 0
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreGraphData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEIdRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG CPIdRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataUint8 => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 65280
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 65280
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 4278255360
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 65280
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_GraphDataType *)&WdgM_EB_InternalGraphData][_17].LastCPData = 4278255360;
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_GraphDataType *)&WdgM_EB_InternalGraphData][_17].IsActiveData = 65280;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> [local count: 955630223]:
+  # IsActive_31 = PHI <IsActive_29(5), 1(7), 1(8)>
+  # DEBUG GraphData => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG CPId => NULL
+  # DEBUG IsActive => NULL
+  # DEBUG IsActiveDataRedundant => NULL
+  # DEBUG CPIdRedundant => NULL
+  # DEBUG IntSEIdRedundant => NULL
+  # DEBUG IsActiveData => NULL
+  # DEBUG LastCPData => NULL
+  # DEBUG IsActive => IsActive_31
+  # DEBUG BEGIN_STMT
+  CPExtLogicalCfgNewMode_18 = CPCfg_6->ExtLogicalCfgPtr[_8];
+  # DEBUG CPExtLogicalCfgNewMode => CPExtLogicalCfgNewMode_18
+  # DEBUG BEGIN_STMT
+  if (CPExtLogicalCfgNewMode_18 != 0B)
+    goto <bb 10>; [53.47%]
+  else
+    goto <bb 11>; [46.53%]
+
+  <bb 10> [local count: 510975480]:
+  # DEBUG BEGIN_STMT
+  GraphId_19 = CPExtLogicalCfgNewMode_18->GraphId;
+  # DEBUG GraphId => GraphId_19
+  # DEBUG BEGIN_STMT
+  _20 = (int) GraphId_19;
+  # DEBUG D#18 => &WdgM_EB_ExternalGraphData[_20]
+  # DEBUG GraphData => D#18
+  # DEBUG BEGIN_STMT
+  # DEBUG D#15 => &WdgM_EB_ExtGraphDataSeqPtr[_20]
+  # DEBUG ExtGraphDataSeqPtr => D#15
+  # DEBUG BEGIN_STMT
+  IntExtGraphDataSeqPtr_21 = MEM[(const struct WdgM_EB_ExtGraphDataSeqType *)&WdgM_EB_ExtGraphDataSeqPtr][_20].GraphDataPtr;
+  # DEBUG IntExtGraphDataSeqPtr => IntExtGraphDataSeqPtr_21
+  # DEBUG BEGIN_STMT
+  Local_NumOfSEperGraphId_22 = MEM[(const struct WdgM_EB_ExtGraphDataSeqType *)&WdgM_EB_ExtGraphDataSeqPtr][_20].NumOfSEperGraphId;
+  # DEBUG Local_NumOfSEperGraphId => Local_NumOfSEperGraphId_22
+  # DEBUG BEGIN_STMT
+  WdgM_EB_ResetExtGraphDataSeq (IntExtGraphDataSeqPtr_21, Local_NumOfSEperGraphId_22);
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActive => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG GraphData => D#18
+  # DEBUG IntSEId => 0
+  # DEBUG CPId => 0
+  # DEBUG IsActive => 0
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreGraphData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEIdRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG CPIdRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataUint8 => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 65280
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 65280
+  # DEBUG BEGIN_STMT
+  # DEBUG LastCPData => 4278255360
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 65280
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_GraphDataType *)&WdgM_EB_ExternalGraphData][_20].LastCPData = 4278255360;
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_GraphDataType *)&WdgM_EB_ExternalGraphData][_20].IsActiveData = 65280;
+  # DEBUG BEGIN_STMT
+
+  <bb 11> [local count: 955630223]:
+  # IsActive_32 = PHI <IsActive_31(9), 1(10)>
+  # DEBUG GraphData => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG CPId => NULL
+  # DEBUG IsActive => NULL
+  # DEBUG IsActiveDataRedundant => NULL
+  # DEBUG CPIdRedundant => NULL
+  # DEBUG IntSEIdRedundant => NULL
+  # DEBUG IsActiveData => NULL
+  # DEBUG LastCPData => NULL
+  # DEBUG IsActive => IsActive_32
+  # DEBUG BEGIN_STMT
+  CPDeadlineCfgNewMode_23 = CPCfg_6->DeadlineCfgPtr[_8];
+  # DEBUG CPDeadlineCfgNewMode => CPDeadlineCfgNewMode_23
+  # DEBUG BEGIN_STMT
+  if (CPDeadlineCfgNewMode_23 != 0B)
+    goto <bb 12>; [70.00%]
+  else
+    goto <bb 13>; [30.00%]
+
+  <bb 12> [local count: 668941156]:
+  # DEBUG BEGIN_STMT
+  DMId_24 = CPDeadlineCfgNewMode_23->DMId;
+  # DEBUG DMId => DMId_24
+  # DEBUG BEGIN_STMT
+  _25 = (int) DMId_24;
+  # DEBUG D#16 => &WdgM_EB_DMData[_25]
+  # DEBUG DMData => D#16
+  # DEBUG BEGIN_STMT
+  # DEBUG TimeStamp => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActive => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG D#8 => &TimeStamp
+  # DEBUG DMData => D#16
+  # DEBUG MaxCycles => 0
+  # DEBUG IsActive => 0
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreDMData
+  # DEBUG TimeStamp => D#8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataUint8 => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG MaxCyclesRedundant => 65535
+  # DEBUG BEGIN_STMT
+  # DEBUG TimeStampDataRedundant => 4294967295
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveData => 65280
+  # DEBUG BEGIN_STMT
+  # DEBUG MaxCyclesData => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG MaxCyclesData => 4294901760
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_DMDataType *)&WdgM_EB_DMData][_25].StartTimestampData = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_DMDataType *)&WdgM_EB_DMData][_25].StartTimestampDataInv = 4294967295;
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_DMDataType *)&WdgM_EB_DMData][_25].MaxCyclesData = 4294901760;
+  # DEBUG BEGIN_STMT
+  MEM[(struct WdgM_EB_DMDataType *)&WdgM_EB_DMData][_25].IsActiveData = 65280;
+  # DEBUG BEGIN_STMT
+  # DEBUG DMData => NULL
+  # DEBUG MaxCycles => NULL
+  # DEBUG IsActive => NULL
+  # DEBUG IsActiveData => NULL
+  # DEBUG MaxCyclesData => NULL
+  # DEBUG IsActiveDataRedundant => NULL
+  # DEBUG MaxCyclesRedundant => NULL
+  # DEBUG TimeStampDataRedundant => NULL
+  # DEBUG D#14 => {CLOBBER}
+  # DEBUG TimeStamp => D#14
+
+  <bb 13> [local count: 955630223]:
+  # IsActive_33 = PHI <IsActive_32(11), 1(12)>
+  # DEBUG IsActive => IsActive_33
+  # DEBUG BEGIN_STMT
+  CPId_26 = CPId_3 + 1;
+  # DEBUG CPId => CPId_26
+
+  <bb 14> [local count: 1073741824]:
+  # IsActive_30 = PHI <0(2), IsActive_33(13)>
+  # CPId_3 = PHI <0(2), CPId_26(13)>
+  # DEBUG CPId => CPId_3
+  # DEBUG IsActive => IsActive_30
+  # DEBUG BEGIN_STMT
+  _27 = SECfg_1(D)->NumOfCPs;
+  if (CPId_3 < _27)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+
+  <bb 15> [local count: 118111601]:
+  # IsActive_28 = PHI <IsActive_30(14)>
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return IsActive_28;
+
+}
+
+
+WdgM_EB_StoreDMData.isra.0 (struct WdgM_EB_DMDataType * DMData, const WdgM_EB_TimestampType ISRA.91, uint16 MaxCycles, boolean IsActive)
+{
+  uint16 IsActiveData;
+  uint32 MaxCyclesData;
+  const uint8 IsActiveDataRedundant;
+  const uint16 MaxCyclesRedundant;
+  const WdgM_EB_TimestampType TimeStampDataRedundant;
+  long unsigned int _6;
+  short unsigned int _9;
+  short unsigned int _10;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG TimeStamp s=> TimeStamp
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataUint8 => IsActive_1(D)
+  # DEBUG BEGIN_STMT
+  IsActiveDataRedundant_2 = ~IsActive_1(D);
+  # DEBUG IsActiveDataRedundant => IsActiveDataRedundant_2
+  # DEBUG BEGIN_STMT
+  MaxCyclesRedundant_4 = ~MaxCycles_3(D);
+  # DEBUG MaxCyclesRedundant => MaxCyclesRedundant_4
+  # DEBUG BEGIN_STMT
+  _6 = ISRA.91_22(D);
+  TimeStampDataRedundant_7 = ~_6;
+  # DEBUG TimeStampDataRedundant => TimeStampDataRedundant_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IsActiveData_8 = (uint16) IsActive_1(D);
+  # DEBUG IsActiveData => IsActiveData_8
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) IsActiveDataRedundant_2;
+  _10 = _9 << 8;
+  IsActiveData_11 = IsActiveData_8 | _10;
+  # DEBUG IsActiveData => IsActiveData_11
+  # DEBUG BEGIN_STMT
+  MaxCyclesData_12 = (uint32) MaxCycles_3(D);
+  # DEBUG MaxCyclesData => MaxCyclesData_12
+  # DEBUG BEGIN_STMT
+  _13 = (long unsigned int) MaxCyclesRedundant_4;
+  _14 = _13 << 16;
+  MaxCyclesData_15 = MaxCyclesData_12 | _14;
+  # DEBUG MaxCyclesData => MaxCyclesData_15
+  # DEBUG BEGIN_STMT
+  DMData_16(D)->StartTimestampData = _6;
+  # DEBUG BEGIN_STMT
+  DMData_16(D)->StartTimestampDataInv = TimeStampDataRedundant_7;
+  # DEBUG BEGIN_STMT
+  DMData_16(D)->MaxCyclesData = MaxCyclesData_15;
+  # DEBUG BEGIN_STMT
+  DMData_16(D)->IsActiveData = IsActiveData_11;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_ResetCPAliveCounterData.isra.0 (WdgM_EB_IntRamIdxType IntRamIdx, WdgM_EB_AliveCounterType OldAliveCounter, struct WdgM_EB_CPInternalDataType * const ISRA.89)
+{
+  struct WdgM_EB_CPInternalDataType * _2;
+  long unsigned int _4;
+  struct WdgM_EB_CPInternalDataType * _5;
+  short unsigned int _6;
+  short unsigned int _8;
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG CoreInstance s=> CoreInstance
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = ISRA.89_11(D);
+  _4 = IntRamIdx_3(D) * 2;
+  _5 = _2 + _4;
+  _6 = _5->AliveCounterData;
+  _8 = _6 + OldAliveCounter_7(D);
+  _5->AliveCounterData = _8;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_IncrementCPAliveCounterData.isra.0 (uint32 * ISRA.87)
+{
+  const WdgM_EB_AliveCounterType AliveCounter;
+  const WdgM_EB_AliveCounterType AliveCounterRedundant;
+  uint32 AliveCounterData;
+  long unsigned int _2;
+  short unsigned int _3;
+  long unsigned int _7;
+  long unsigned int _8;
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG CPData s=> CPData
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = *ISRA.87_12(D);
+  _3 = (short unsigned int) _2;
+  AliveCounter_4 = _3 + 1;
+  # DEBUG AliveCounter => AliveCounter_4
+  # DEBUG BEGIN_STMT
+  AliveCounterRedundant_5 = ~AliveCounter_4;
+  # DEBUG AliveCounterRedundant => AliveCounterRedundant_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  AliveCounterData_6 = (uint32) AliveCounter_4;
+  # DEBUG AliveCounterData => AliveCounterData_6
+  # DEBUG BEGIN_STMT
+  _7 = (long unsigned int) AliveCounterRedundant_5;
+  _8 = _7 << 16;
+  AliveCounterData_9 = AliveCounterData_6 | _8;
+  # DEBUG AliveCounterData => AliveCounterData_9
+  # DEBUG BEGIN_STMT
+  *ISRA.87_12(D) = AliveCounterData_9;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_GetNewGlobalStatus.isra.0 (WdgM_ModeType ISRA.82)
+{
+  const WdgM_GlobalStatusType OldGlobalStatus;
+  WdgM_EB_SEIdType IntSEId;
+  WdgM_EB_SEIdType NumSEFailed;
+  WdgM_EB_SEIdType NumSEExpired;
+  WdgM_GlobalStatusType NewGlobalStatus;
+  unsigned char _3;
+  int _4;
+  int _6;
+  unsigned char _7;
+  short unsigned int _15;
+  short unsigned int WdgM_EB_ExpiredSupervisionCycleCnt.71_16;
+  short unsigned int _17;
+  short unsigned int _18;
+
+  <bb 17> [local count: 268515986]:
+  # DEBUG CoreInstance s=> CoreInstance
+
+  <bb 2> [local count: 268515986]:
+  # DEBUG BEGIN_STMT
+  OldGlobalStatus_1 = WdgM_EB_GlobalStatus;
+  # DEBUG OldGlobalStatus => OldGlobalStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG NumSEFailed => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG NumSEExpired => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG NewGlobalStatus => OldGlobalStatus_1
+  # DEBUG BEGIN_STMT
+  _3 = ISRA.82_26(D);
+  _4 = (int) _3;
+  # DEBUG D#3 => &WdgM_EB_ModeCfg[_4]
+  # DEBUG ModeCfg => D#3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEId => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  _6 = (int) IntSEId_5;
+  _7 = WdgM_EB_SELocalStatus[_6];
+  switch (_7) <default: <L2> [33.33%], case 1: <L0> [33.33%], case 2: <L1> [33.33%]>
+
+  <bb 4> [local count: 268408612]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  NumSEFailed_9 = NumSEFailed_8 + 1;
+  # DEBUG NumSEFailed => NumSEFailed_9
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 268408612]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  NumSEExpired_11 = NumSEExpired_10 + 1;
+  # DEBUG NumSEExpired => NumSEExpired_11
+  # DEBUG BEGIN_STMT
+
+  <bb 6> [local count: 805225838]:
+  # NumSEFailed_20 = PHI <NumSEFailed_8(3), NumSEFailed_9(4), NumSEFailed_8(5)>
+  # NumSEExpired_21 = PHI <NumSEExpired_10(3), NumSEExpired_10(4), NumSEExpired_11(5)>
+<L2>:
+  # DEBUG NumSEExpired => NumSEExpired_21
+  # DEBUG NumSEFailed => NumSEFailed_20
+  # DEBUG BEGIN_STMT
+  IntSEId_12 = IntSEId_5 + 1;
+  # DEBUG IntSEId => IntSEId_12
+
+  <bb 7> [local count: 1073741824]:
+  # IntSEId_5 = PHI <0(2), IntSEId_12(6)>
+  # NumSEFailed_8 = PHI <0(2), NumSEFailed_20(6)>
+  # NumSEExpired_10 = PHI <0(2), NumSEExpired_21(6)>
+  # DEBUG NumSEExpired => NumSEExpired_10
+  # DEBUG NumSEFailed => NumSEFailed_8
+  # DEBUG IntSEId => IntSEId_5
+  # DEBUG BEGIN_STMT
+  if (IntSEId_5 != 3)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 8>; [25.00%]
+
+  <bb 8> [local count: 268435456]:
+  # NumSEFailed_14 = PHI <NumSEFailed_8(7)>
+  # NumSEExpired_13 = PHI <NumSEExpired_10(7)>
+  # DEBUG BEGIN_STMT
+  switch (OldGlobalStatus_1) <default: <L5> [33.33%], case 0 ... 1: <L3> [33.33%], case 2: <L4> [33.33%]>
+
+  <bb 9> [local count: 89469538]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  if (NumSEExpired_13 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 10> [local count: 44734769]:
+  # DEBUG BEGIN_STMT
+  if (NumSEFailed_14 != 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 11> [local count: 22367384]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NewGlobalStatus => 0
+  goto <bb 16>; [100.00%]
+
+  <bb 12> [local count: 44734769]:
+  # DEBUG BEGIN_STMT
+  _15 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_4].ExpiredSupervisionCycleTol;
+  if (_15 != 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 13> [local count: 22367384]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NewGlobalStatus => 2
+  # DEBUG BEGIN_STMT
+  WdgM_EB_ExpiredSupervisionCycleCnt = 1;
+  goto <bb 16>; [100.00%]
+
+  <bb 14> [local count: 89469538]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_ExpiredSupervisionCycleCnt.71_16 = WdgM_EB_ExpiredSupervisionCycleCnt;
+  _17 = WdgM_EB_ExpiredSupervisionCycleCnt.71_16 + 1;
+  WdgM_EB_ExpiredSupervisionCycleCnt = _17;
+  # DEBUG BEGIN_STMT
+  _18 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_4].ExpiredSupervisionCycleTol;
+  if (_17 > _18)
+    goto <bb 15>; [35.00%]
+  else
+    goto <bb 16>; [65.00%]
+
+  <bb 15> [local count: 31314338]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NewGlobalStatus => 3
+
+  <bb 16> [local count: 268408613]:
+  # NewGlobalStatus_19 = PHI <OldGlobalStatus_1(8), 1(10), 0(11), 3(12), 2(13), OldGlobalStatus_1(14), 3(15)>
+<L5>:
+  # DEBUG NewGlobalStatus => NewGlobalStatus_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return NewGlobalStatus_19;
+
+}
+
+
+WdgM_EB_SEResetData (WdgM_EB_SEIdType IntSEId)
+{
+  struct WdgM_EB_CPDataType * const CPData;
+  WdgM_EB_CPIdType CPId;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_8(D);
+  # DEBUG D#20 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CPId => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) CPId_6;
+  _4 = _3 * 8;
+  CPData_10 = _2 + _4;
+  # DEBUG CPData => CPData_10
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => CPData_10
+  # DEBUG DeadlineResult => 180
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPDeadlineData
+  # DEBUG CPData => D#9
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineDataRedundant => 75
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 180
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 19380
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_10 + 4B] = 19380;
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineResult => NULL
+  # DEBUG DeadlineDataRedundant => NULL
+  # DEBUG DeadlineData => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG D#11 => CPData_10
+  # DEBUG LogicalResult => 180
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPLogicalData
+  # DEBUG CPData => D#11
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalDataRedundant => 75
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 180
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 19380
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_10 + 6B] = 19380;
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalResult => NULL
+  # DEBUG LogicalDataRedundant => NULL
+  # DEBUG LogicalData => NULL
+  # DEBUG BEGIN_STMT
+  CPId_11 = CPId_6 + 1;
+  # DEBUG CPId => CPId_11
+
+  <bb 4> [local count: 1073741824]:
+  # CPId_6 = PHI <0(2), CPId_11(3)>
+  # DEBUG CPId => CPId_6
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].NumOfCPs;
+  if (_5 > CPId_6)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_GetCheckedRedundantData8 (uint16 RedundantData, uint8 * Data)
+{
+  const WdgM_EB_SEIdType ExpiredSEIDRedundant;
+  const WdgM_EB_SEIdType CheckedExpiredSEID;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CheckedExpiredSEID_6 = (const WdgM_EB_SEIdType) RedundantData_5(D);
+  # DEBUG CheckedExpiredSEID => CheckedExpiredSEID_6
+  # DEBUG BEGIN_STMT
+  _1 = RedundantData_5(D) >> 8;
+  _2 = (unsigned char) _1;
+  ExpiredSEIDRedundant_7 = ~_2;
+  # DEBUG ExpiredSEIDRedundant => ExpiredSEIDRedundant_7
+  # DEBUG BEGIN_STMT
+  if (CheckedExpiredSEID_6 == ExpiredSEIDRedundant_7)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  *Data_9(D) = CheckedExpiredSEID_6;
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_3 = PHI <0(3), 1(2)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  return RetVal_3;
+
+}
+
+
+WdgM_EB_StoreRedundantData8 (uint16 * RedundantData, uint8 Data)
+{
+  WdgM_EB_ExpiredSEIDType LocalSEID;
+  const WdgM_EB_SEIdType ExpiredSEIDRedundant;
+  short unsigned int _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ExpiredSEIDRedundant_4 = ~Data_3(D);
+  # DEBUG ExpiredSEIDRedundant => ExpiredSEIDRedundant_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LocalSEID_5 = (WdgM_EB_ExpiredSEIDType) Data_3(D);
+  # DEBUG LocalSEID => LocalSEID_5
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) ExpiredSEIDRedundant_4;
+  _2 = _1 << 8;
+  LocalSEID_6 = _2 | LocalSEID_5;
+  # DEBUG LocalSEID => LocalSEID_6
+  # DEBUG BEGIN_STMT
+  *RedundantData_8(D) = LocalSEID_6;
+  return;
+
+}
+
+
+WdgM_EB_StoreExpiredSEID (WdgM_EB_ExpiredSEIDType * ExpiredSEID, WdgM_EB_SEIdType SEID)
+{
+  WdgM_EB_ExpiredSEIDType LocalSupEntID;
+  const WdgM_EB_SEIdType ExpiredSEIDRedundant;
+  unsigned char WdgM_EB_IsExpiredSEIdSet.67_1;
+  short unsigned int _2;
+  short unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ExpiredSEIDRedundant_6 = ~SEID_5(D);
+  # DEBUG ExpiredSEIDRedundant => ExpiredSEIDRedundant_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WdgM_EB_IsExpiredSEIdSet.67_1 = WdgM_EB_IsExpiredSEIdSet;
+  if (WdgM_EB_IsExpiredSEIdSet.67_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  LocalSupEntID_8 = (WdgM_EB_ExpiredSEIDType) SEID_5(D);
+  # DEBUG LocalSupEntID => LocalSupEntID_8
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) ExpiredSEIDRedundant_6;
+  _3 = _2 << 8;
+  LocalSupEntID_9 = _3 | LocalSupEntID_8;
+  # DEBUG LocalSupEntID => LocalSupEntID_9
+  # DEBUG BEGIN_STMT
+  *ExpiredSEID_10(D) = LocalSupEntID_9;
+  # DEBUG BEGIN_STMT
+  WdgM_EB_IsExpiredSEIdSet = 1;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_ResetExtGraphDataSeq (WdgM_EB_ExtGraphDataSeqArrayType * IntExtGraphDataSeqPtr, uint8 NumOfSEperGraphId)
+{
+  uint8 idx;
+  unsigned int _7;
+  unsigned int _8;
+  WdgM_EB_ExtGraphDataSeqArrayType * _9;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG idx => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  # DEBUG IntExtGraphDataSeqPtr => IntExtGraphDataSeqPtr_5(D)
+  # DEBUG IndexInGraphDataSeq => idx_1
+  # DEBUG SeqNumber => 0
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreSeqNumber
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SeqNumberRedundant => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LastSeqNumber => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG LastSeqNumber => 65280
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) idx_1;
+  _8 = _7 * 2;
+  _9 = IntExtGraphDataSeqPtr_5(D) + _8;
+  *_9 = 65280;
+  # DEBUG BEGIN_STMT
+  # DEBUG IntExtGraphDataSeqPtr => NULL
+  # DEBUG IndexInGraphDataSeq => NULL
+  # DEBUG SeqNumber => NULL
+  # DEBUG SeqNumberRedundant => NULL
+  # DEBUG LastSeqNumber => NULL
+  # DEBUG BEGIN_STMT
+  idx_6 = idx_1 + 1;
+  # DEBUG idx => idx_6
+
+  <bb 4> [local count: 1073741824]:
+  # idx_1 = PHI <0(2), idx_6(3)>
+  # DEBUG idx => idx_1
+  # DEBUG BEGIN_STMT
+  if (idx_1 < NumOfSEperGraphId_4(D))
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_DecMaxCyclesDMData (struct WdgM_EB_DMDataType * DMData)
+{
+  const uint16 MaxCycles;
+  uint32 MaxCyclesData;
+  const uint16 MaxCyclesDataRedundant;
+  const uint16 CheckedMaxCyclesData;
+  const uint8 IsActiveDataRedundant;
+  const uint8 CheckedIsActiveData;
+  const uint32 UncheckedMaxCyclesData;
+  const uint16 UncheckedIsActiveData;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  short unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _17;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  UncheckedIsActiveData_11 = DMData_10(D)->IsActiveData;
+  # DEBUG UncheckedIsActiveData => UncheckedIsActiveData_11
+  # DEBUG BEGIN_STMT
+  UncheckedMaxCyclesData_12 = DMData_10(D)->MaxCyclesData;
+  # DEBUG UncheckedMaxCyclesData => UncheckedMaxCyclesData_12
+  # DEBUG BEGIN_STMT
+  CheckedIsActiveData_13 = (const uint8) UncheckedIsActiveData_11;
+  # DEBUG CheckedIsActiveData => CheckedIsActiveData_13
+  # DEBUG BEGIN_STMT
+  _1 = UncheckedIsActiveData_11 >> 8;
+  _2 = (unsigned char) _1;
+  IsActiveDataRedundant_14 = ~_2;
+  # DEBUG IsActiveDataRedundant => IsActiveDataRedundant_14
+  # DEBUG BEGIN_STMT
+  CheckedMaxCyclesData_15 = (const uint16) UncheckedMaxCyclesData_12;
+  # DEBUG CheckedMaxCyclesData => CheckedMaxCyclesData_15
+  # DEBUG BEGIN_STMT
+  _3 = UncheckedMaxCyclesData_12 >> 16;
+  _4 = (short unsigned int) _3;
+  MaxCyclesDataRedundant_16 = ~_4;
+  # DEBUG MaxCyclesDataRedundant => MaxCyclesDataRedundant_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedIsActiveData_13 == IsActiveDataRedundant_14)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 7>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  if (CheckedMaxCyclesData_15 == MaxCyclesDataRedundant_16)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 186624919]:
+  # DEBUG BEGIN_STMT
+  if (CheckedIsActiveData_13 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 5> [local count: 93312459]:
+  # DEBUG BEGIN_STMT
+  if (CheckedMaxCyclesData_15 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 6> [local count: 46656230]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxCycles_18 = CheckedMaxCyclesData_15 + 65535;
+  # DEBUG MaxCycles => MaxCycles_18
+  # DEBUG BEGIN_STMT
+  _17 = -CheckedMaxCyclesData_15;
+  # DEBUG MaxCyclesRedundant => _17
+  # DEBUG BEGIN_STMT
+  MaxCyclesData_19 = (uint32) MaxCycles_18;
+  # DEBUG MaxCyclesData => MaxCyclesData_19
+  # DEBUG BEGIN_STMT
+  _5 = (long unsigned int) _17;
+  _6 = _5 << 16;
+  MaxCyclesData_20 = _6 | MaxCyclesData_19;
+  # DEBUG MaxCyclesData => MaxCyclesData_20
+  # DEBUG BEGIN_STMT
+  DMData_10(D)->MaxCyclesData = MaxCyclesData_20;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 887116906]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 8> [local count: 1073741824]:
+  # RetVal_7 = PHI <0(4), 1(7), 1(5), 0(6)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_7;
+
+}
+
+
+WdgM_EB_GetCheckedDMData (const struct WdgM_EB_DMDataType * DMData, WdgM_EB_TimestampType * TimeStamp, uint16 * MaxCycles, boolean * ActiveFlag)
+{
+  const uint16 MaxCyclesDataRedundant;
+  const uint16 CheckedMaxCyclesData;
+  const uint8 IsActiveDataRedundant;
+  const uint8 CheckedIsActiveData;
+  const WdgM_EB_TimestampType TimeStampDataRedundant;
+  const WdgM_EB_TimestampType CheckedTimeStampData;
+  const uint32 UncheckedMaxCyclesData;
+  const uint16 UncheckedIsActiveData;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  short unsigned int _2;
+  unsigned char _3;
+  long unsigned int _4;
+  short unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  UncheckedIsActiveData_10 = DMData_9(D)->IsActiveData;
+  # DEBUG UncheckedIsActiveData => UncheckedIsActiveData_10
+  # DEBUG BEGIN_STMT
+  UncheckedMaxCyclesData_11 = DMData_9(D)->MaxCyclesData;
+  # DEBUG UncheckedMaxCyclesData => UncheckedMaxCyclesData_11
+  # DEBUG BEGIN_STMT
+  CheckedTimeStampData_12 = DMData_9(D)->StartTimestampData;
+  # DEBUG CheckedTimeStampData => CheckedTimeStampData_12
+  # DEBUG BEGIN_STMT
+  _1 = DMData_9(D)->StartTimestampDataInv;
+  TimeStampDataRedundant_13 = ~_1;
+  # DEBUG TimeStampDataRedundant => TimeStampDataRedundant_13
+  # DEBUG BEGIN_STMT
+  CheckedIsActiveData_14 = (const uint8) UncheckedIsActiveData_10;
+  # DEBUG CheckedIsActiveData => CheckedIsActiveData_14
+  # DEBUG BEGIN_STMT
+  _2 = UncheckedIsActiveData_10 >> 8;
+  _3 = (unsigned char) _2;
+  IsActiveDataRedundant_15 = ~_3;
+  # DEBUG IsActiveDataRedundant => IsActiveDataRedundant_15
+  # DEBUG BEGIN_STMT
+  CheckedMaxCyclesData_16 = (const uint16) UncheckedMaxCyclesData_11;
+  # DEBUG CheckedMaxCyclesData => CheckedMaxCyclesData_16
+  # DEBUG BEGIN_STMT
+  _4 = UncheckedMaxCyclesData_11 >> 16;
+  _5 = (short unsigned int) _4;
+  MaxCyclesDataRedundant_17 = ~_5;
+  # DEBUG MaxCyclesDataRedundant => MaxCyclesDataRedundant_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedIsActiveData_14 == IsActiveDataRedundant_15)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 6>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  if (CheckedMaxCyclesData_16 == MaxCyclesDataRedundant_17)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 4> [local count: 186624919]:
+  if (CheckedTimeStampData_12 == TimeStampDataRedundant_13)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 63452472]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  *TimeStamp_18(D) = CheckedTimeStampData_12;
+  # DEBUG BEGIN_STMT
+  *MaxCycles_20(D) = CheckedMaxCyclesData_16;
+  # DEBUG BEGIN_STMT
+  *ActiveFlag_22(D) = CheckedIsActiveData_14;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 1010289352]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_6 = PHI <0(5), 1(6)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_6;
+
+}
+
+
+WdgM_EB_StoreSeqNumber (WdgM_EB_ExtGraphDataSeqArrayType * IntExtGraphDataSeqPtr, uint8 IndexInGraphDataSeq, uint8 SeqNumber)
+{
+  const uint8 SeqNumberRedundant;
+  uint16 LastSeqNumber;
+  short unsigned int _1;
+  short unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  WdgM_EB_ExtGraphDataSeqArrayType * _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SeqNumberRedundant_7 = ~SeqNumber_6(D);
+  # DEBUG SeqNumberRedundant => SeqNumberRedundant_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LastSeqNumber_8 = (uint16) SeqNumber_6(D);
+  # DEBUG LastSeqNumber => LastSeqNumber_8
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) SeqNumberRedundant_7;
+  _2 = _1 << 8;
+  LastSeqNumber_9 = _2 | LastSeqNumber_8;
+  # DEBUG LastSeqNumber => LastSeqNumber_9
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) IndexInGraphDataSeq_10(D);
+  _4 = _3 * 2;
+  _5 = IntExtGraphDataSeqPtr_11(D) + _4;
+  *_5 = LastSeqNumber_9;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_GetCheckedSeqNumber (const WdgM_EB_ExtGraphDataSeqArrayType * IntExtGraphDataSeqPtr, uint8 IndexInGraphDataSeq, uint8 * LastSeqNumber)
+{
+  const uint8 LastSeqNumberRedundant;
+  const uint8 CheckedLastSeqNumber;
+  const uint16 UncheckedLastSeqNumber;
+  Std_ReturnType RetVal;
+  unsigned int _1;
+  unsigned int _2;
+  const WdgM_EB_ExtGraphDataSeqArrayType * _3;
+  short unsigned int _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) IndexInGraphDataSeq_7(D);
+  _2 = _1 * 2;
+  _3 = IntExtGraphDataSeqPtr_8(D) + _2;
+  UncheckedLastSeqNumber_10 = *_3;
+  # DEBUG UncheckedLastSeqNumber => UncheckedLastSeqNumber_10
+  # DEBUG BEGIN_STMT
+  CheckedLastSeqNumber_11 = (const uint8) UncheckedLastSeqNumber_10;
+  # DEBUG CheckedLastSeqNumber => CheckedLastSeqNumber_11
+  # DEBUG BEGIN_STMT
+  _4 = UncheckedLastSeqNumber_10 >> 8;
+  _5 = (unsigned char) _4;
+  LastSeqNumberRedundant_12 = ~_5;
+  # DEBUG LastSeqNumberRedundant => LastSeqNumberRedundant_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedLastSeqNumber_11 == LastSeqNumberRedundant_12)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 4>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  *LastSeqNumber_15(D) = CheckedLastSeqNumber_11;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 524845000]:
+  # DEBUG D#27 => IntExtGraphDataSeqPtr_8(D)
+  # DEBUG D#28 => IndexInGraphDataSeq_7(D)
+  # DEBUG D#29 => LastSeqNumber_15(D)
+  RetVal_17 = WdgM_EB_GetCheckedSeqNumber.part.0 ();
+
+  <bb 5> [local count: 1073741824]:
+  # RetVal_6 = PHI <0(3), RetVal_17(4)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_6;
+
+}
+
+
+WdgM_EB_StoreGraphData (struct WdgM_EB_GraphDataType * GraphData, WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId, boolean IsActive)
+{
+  const uint8 IsActiveDataRedundant;
+  const WdgM_EB_CPIdType CPIdRedundant;
+  const WdgM_EB_SEIdType IntSEIdRedundant;
+  uint16 IsActiveData;
+  uint32 LastCPData;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IntSEIdRedundant_10 = ~IntSEId_9(D);
+  # DEBUG IntSEIdRedundant => IntSEIdRedundant_10
+  # DEBUG BEGIN_STMT
+  CPIdRedundant_12 = ~CPId_11(D);
+  # DEBUG CPIdRedundant => CPIdRedundant_12
+  # DEBUG BEGIN_STMT
+  # DEBUG IsActiveDataUint8 => IsActive_13(D)
+  # DEBUG BEGIN_STMT
+  IsActiveDataRedundant_14 = ~IsActive_13(D);
+  # DEBUG IsActiveDataRedundant => IsActiveDataRedundant_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LastCPData_15 = (uint32) IntSEId_9(D);
+  # DEBUG LastCPData => LastCPData_15
+  # DEBUG BEGIN_STMT
+  _1 = (long unsigned int) IntSEIdRedundant_10;
+  _2 = _1 << 8;
+  LastCPData_16 = _2 | LastCPData_15;
+  # DEBUG LastCPData => LastCPData_16
+  # DEBUG BEGIN_STMT
+  _3 = (long unsigned int) CPId_11(D);
+  _4 = _3 << 16;
+  LastCPData_17 = _4 | LastCPData_16;
+  # DEBUG LastCPData => LastCPData_17
+  # DEBUG BEGIN_STMT
+  _5 = (long unsigned int) CPIdRedundant_12;
+  _6 = _5 << 24;
+  LastCPData_18 = _6 | LastCPData_17;
+  # DEBUG LastCPData => LastCPData_18
+  # DEBUG BEGIN_STMT
+  IsActiveData_19 = (uint16) IsActive_13(D);
+  # DEBUG IsActiveData => IsActiveData_19
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) IsActiveDataRedundant_14;
+  _8 = _7 << 8;
+  IsActiveData_20 = _8 | IsActiveData_19;
+  # DEBUG IsActiveData => IsActiveData_20
+  # DEBUG BEGIN_STMT
+  GraphData_22(D)->LastCPData = LastCPData_18;
+  # DEBUG BEGIN_STMT
+  GraphData_22(D)->IsActiveData = IsActiveData_20;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_EB_GetCheckedGraphData (const struct WdgM_EB_GraphDataType * GraphData, WdgM_EB_SEIdType * LastIntSEId, WdgM_EB_CPIdType * LastCPId, boolean * ActiveFlag)
+{
+  const uint8 LastCPIdRedundant;
+  const uint8 CheckedLastCPId;
+  const uint8 LastSEIdRedundant;
+  const uint8 CheckedLastSEId;
+  const uint8 IsActiveDataRedundant;
+  const uint8 CheckedIsActiveData;
+  const uint32 UncheckedLastCPData;
+  const uint16 UncheckedIsActiveData;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  UncheckedIsActiveData_12 = GraphData_11(D)->IsActiveData;
+  # DEBUG UncheckedIsActiveData => UncheckedIsActiveData_12
+  # DEBUG BEGIN_STMT
+  UncheckedLastCPData_13 = GraphData_11(D)->LastCPData;
+  # DEBUG UncheckedLastCPData => UncheckedLastCPData_13
+  # DEBUG BEGIN_STMT
+  CheckedIsActiveData_14 = (const uint8) UncheckedIsActiveData_12;
+  # DEBUG CheckedIsActiveData => CheckedIsActiveData_14
+  # DEBUG BEGIN_STMT
+  _1 = UncheckedIsActiveData_12 >> 8;
+  _2 = (unsigned char) _1;
+  IsActiveDataRedundant_15 = ~_2;
+  # DEBUG IsActiveDataRedundant => IsActiveDataRedundant_15
+  # DEBUG BEGIN_STMT
+  CheckedLastSEId_16 = (const uint8) UncheckedLastCPData_13;
+  # DEBUG CheckedLastSEId => CheckedLastSEId_16
+  # DEBUG BEGIN_STMT
+  _3 = UncheckedLastCPData_13 >> 8;
+  _4 = (unsigned char) _3;
+  LastSEIdRedundant_17 = ~_4;
+  # DEBUG LastSEIdRedundant => LastSEIdRedundant_17
+  # DEBUG BEGIN_STMT
+  _5 = UncheckedLastCPData_13 >> 16;
+  CheckedLastCPId_18 = (const uint8) _5;
+  # DEBUG CheckedLastCPId => CheckedLastCPId_18
+  # DEBUG BEGIN_STMT
+  _6 = UncheckedLastCPData_13 >> 24;
+  _7 = (unsigned char) _6;
+  LastCPIdRedundant_19 = ~_7;
+  # DEBUG LastCPIdRedundant => LastCPIdRedundant_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CheckedIsActiveData_14 == IsActiveDataRedundant_15)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 6>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  if (CheckedLastSEId_16 == LastSEIdRedundant_17)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 4> [local count: 186624919]:
+  if (CheckedLastCPId_18 == LastCPIdRedundant_19)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 63452472]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  *LastIntSEId_20(D) = CheckedLastSEId_16;
+  # DEBUG BEGIN_STMT
+  *LastCPId_22(D) = CheckedLastCPId_18;
+  # DEBUG BEGIN_STMT
+  *ActiveFlag_24(D) = CheckedIsActiveData_14;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 1010289352]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_8 = PHI <0(5), 1(6)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_8;
+
+}
+
+
+WdgM_EB_DetermineLogicalResult (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId)
+{
+  WdgM_EB_ResultType CPLogicalResult;
+  struct WdgM_EB_CPDataType * const CPData;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  WdgM_EB_ResultType _14;
+  short unsigned int _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_7(D);
+  # DEBUG D#40 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#40
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) CPId_9(D);
+  _4 = _3 * 8;
+  CPData_10 = _2 + _4;
+  # DEBUG CPData => CPData_10
+  # DEBUG BEGIN_STMT
+  CPLogicalResult = 203;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = MEM[(short unsigned int *)CPData_10 + 6B];
+  # DEBUG D#12 => CPData_10
+  _5 = WdgM_EB_GetCheckedCPLogicalData.isra.0 (_16, &CPLogicalResult);
+  if (_5 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = CPLogicalResult;
+  CPLogicalResult ={v} {CLOBBER};
+  return _14;
+
+}
+
+
+WdgM_EB_DetermineDeadlineResult (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId)
+{
+  WdgM_EB_ResultType CPDeadlineResult;
+  struct WdgM_EB_CPDataType * const CPData;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  WdgM_EB_ResultType _14;
+  short unsigned int _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_7(D);
+  # DEBUG D#39 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#39
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) CPId_9(D);
+  _4 = _3 * 8;
+  CPData_10 = _2 + _4;
+  # DEBUG CPData => CPData_10
+  # DEBUG BEGIN_STMT
+  CPDeadlineResult = 203;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = MEM[(short unsigned int *)CPData_10 + 4B];
+  # DEBUG D#10 => CPData_10
+  _5 = WdgM_EB_GetCheckedCPDeadlineData.isra.0 (_16, &CPDeadlineResult);
+  if (_5 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = CPDeadlineResult;
+  CPDeadlineResult ={v} {CLOBBER};
+  return _14;
+
+}
+
+
+WdgM_EB_DetermineAliveResult (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId, WdgM_EB_IntRamIdxType IntRamIdx, const struct WdgM_EB_CPAliveCfgType * CPAliveCfg)
+{
+  WdgM_EB_AliveCounterType AliveCounter;
+  struct WdgM_EB_CPDataType * const CPData;
+  uint32 CPRefCycleCnt;
+  WdgM_EB_ResultType AliveResult;
+  int _1;
+  long unsigned int _2;
+  short unsigned int _3;
+  long unsigned int _4;
+  struct WdgM_EB_CPDataType * _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  short unsigned int AliveCounter.61_9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  int _15;
+  unsigned char _16;
+  int _17;
+  int _18;
+  short unsigned int AliveCounter.63_19;
+  struct WdgM_EB_CPInternalDataType * _33;
+  long unsigned int _34;
+  struct WdgM_EB_CPInternalDataType * _35;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_23(D);
+  # DEBUG D#38 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#38
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = WdgM_EB_Context.WdgM_EB_SupervisionCycleCnt;
+  _3 = CPAliveCfg_25(D)->SupervisionReferenceCycle;
+  _4 = (long unsigned int) _3;
+  CPRefCycleCnt_26 = _2 % _4;
+  # DEBUG CPRefCycleCnt => CPRefCycleCnt_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CPRefCycleCnt_26 == 0)
+    goto <bb 3>; [47.77%]
+  else
+    goto <bb 8>; [52.23%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _6 = (unsigned int) CPId_27(D);
+  _7 = _6 * 8;
+  CPData_28 = _5 + _7;
+  # DEBUG CPData => CPData_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _34 = MEM[(long unsigned int *)CPData_28];
+  # DEBUG D#35 => CPData_28
+  _35 = MEM[(struct WdgM_EB_CPInternalDataType * *)&WdgM_EB_Context + 8B];
+  # DEBUG D#36 => &WdgM_EB_Context
+  _8 = WdgM_EB_GetCheckedCPAliveCounterData.isra.0 (_34, IntRamIdx_29(D), &AliveCounter, _35);
+  if (_8 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 256463235]:
+  # DEBUG BEGIN_STMT
+  AliveCounter.61_9 = AliveCounter;
+  _10 = (int) AliveCounter.61_9;
+  _11 = CPAliveCfg_25(D)->ExpectedAliveIndication;
+  _12 = (int) _11;
+  _13 = CPAliveCfg_25(D)->MinMargin;
+  _14 = (int) _13;
+  _15 = _12 - _14;
+  if (_10 < _15)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 128231617]:
+  _16 = CPAliveCfg_25(D)->MaxMargin;
+  _17 = (int) _16;
+  _18 = _12 + _17;
+  if (_10 > _18)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 64115809]:
+  # DEBUG BEGIN_STMT
+  # DEBUG AliveResult => 180
+
+  <bb 7> [local count: 512926470]:
+  # AliveResult_20 = PHI <203(3), 203(5), 180(6), 203(4)>
+  # DEBUG AliveResult => AliveResult_20
+  # DEBUG BEGIN_STMT
+  AliveCounter.63_19 = AliveCounter;
+  _33 = MEM[(struct WdgM_EB_CPInternalDataType * *)&WdgM_EB_Context + 8B];
+  # DEBUG D#7 => &WdgM_EB_Context
+  WdgM_EB_ResetCPAliveCounterData.isra.0 (IntRamIdx_29(D), AliveCounter.63_19, _33);
+  AliveCounter ={v} {CLOBBER};
+
+  <bb 8> [local count: 1073741824]:
+  # AliveResult_21 = PHI <AliveResult_20(7), 163(2)>
+  # DEBUG AliveResult => AliveResult_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return AliveResult_21;
+
+}
+
+
+WdgM_EB_CheckPredCP (const struct WdgM_EB_CPLogicalCfgType * CPLogicalCfg, WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId)
+{
+  boolean FoundCP;
+  WdgM_EB_CPIdType CPIdx;
+  Std_ReturnType RetVal;
+  const struct WdgM_EB_CPType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct WdgM_EB_CPType * _4;
+  unsigned char _5;
+  unsigned char _9;
+  unsigned char _10;
+
+  <bb 2> [local count: 78030430]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundCP => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CPIdx => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 1014686025]:
+  # DEBUG BEGIN_STMT
+  _1 = CPLogicalCfg_15(D)->PredCPs;
+  _2 = (unsigned int) CPIdx_12;
+  _3 = _2 * 2;
+  _4 = _1 + _3;
+  _5 = _4->SEId;
+  if (_5 == IntSEId_16(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 4> [local count: 344993248]:
+  _9 = _4->CPId;
+  if (_9 == CPId_17(D))
+    goto <bb 7>; [5.50%]
+  else
+    goto <bb 5>; [94.50%]
+
+  <bb 5> [local count: 995711397]:
+  # DEBUG BEGIN_STMT
+  CPIdx_18 = CPIdx_12 + 1;
+  # DEBUG CPIdx => CPIdx_18
+
+  <bb 6> [local count: 1073741824]:
+  # CPIdx_12 = PHI <0(2), CPIdx_18(5)>
+  # DEBUG CPIdx => CPIdx_12
+  # DEBUG BEGIN_STMT
+  _10 = CPLogicalCfg_15(D)->NumOfPredCPs;
+  if (_10 > CPIdx_12)
+    goto <bb 3>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+
+  <bb 7> [local count: 78030429]:
+  # FoundCP_13 = PHI <1(4), 0(6)>
+  # DEBUG FoundCP => FoundCP_13
+  # DEBUG BEGIN_STMT
+  if (FoundCP_13 != 0)
+    goto <bb 8>; [33.00%]
+  else
+    goto <bb 9>; [67.00%]
+
+  <bb 8> [local count: 25750041]:
+  # DEBUG D#24 => CPLogicalCfg_15(D)
+  RetVal_6 = WdgM_EB_CheckPredCP.part.0 (IntSEId_16(D), CPId_17(D));
+
+  <bb 9> [local count: 78030429]:
+  # RetVal_11 = PHI <RetVal_6(8), 1(7)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_11;
+
+}
+
+
+WdgM_EB_CheckpointReachedAlive (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId)
+{
+  struct WdgM_EB_CPDataType * const CPData;
+  Std_ReturnType RetVal;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  long unsigned int _14;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_8(D);
+  # DEBUG D#22 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#22
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) CPId_10(D);
+  _4 = _3 * 8;
+  CPData_11 = _2 + _4;
+  # DEBUG CPData => CPData_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = MEM[(long unsigned int *)CPData_11];
+  # DEBUG D#21 => CPData_11
+  _5 = WdgM_EB_CheckCPAliveCounterData.isra.0 (_14);
+  if (_5 != 0)
+    goto <bb 4>; [67.00%]
+  else
+    goto <bb 3>; [33.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#6 => CPData_11
+  WdgM_EB_IncrementCPAliveCounterData.isra.0 (CPData_11);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_6 = PHI <1(2), 0(3)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_6;
+
+}
+
+
+WdgM_EB_CheckDeadlineViolation (WdgM_EB_CPIdType CPId, const struct WdgM_EB_CPDeadlineCfgType * CPDeadlineCfg)
+{
+  struct WdgM_EB_DMDataType * const StartDMData;
+  WdgM_EB_ResultType RetVal;
+  short unsigned int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CPDeadlineCfg_8(D)->DMId;
+  _2 = (int) _1;
+  StartDMData_9 = &WdgM_EB_DMData[_2];
+  # DEBUG StartDMData => StartDMData_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = CPDeadlineCfg_8(D)->StartCPId;
+  if (_3 == CPId_10(D))
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  _4 = WdgM_EB_DecMaxCyclesDMData (StartDMData_9);
+  if (_4 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 108662672]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 203
+
+  <bb 5> [local count: 1073741824]:
+  # RetVal_5 = PHI <203(4), 180(2), 180(3)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_5;
+
+}
+
+
+WdgM_EB_StopCheckpointDeadline (struct WdgM_EB_DMDataType * DMData, struct WdgM_EB_CPDataType * CPData, const struct WdgM_EB_CPDeadlineCfgType * CPDeadlineCfg)
+{
+  WdgM_EB_ResultType CPDeadlineResult;
+  WdgM_EB_TimestampType ElapsedTime;
+  const WdgM_EB_TimestampType WdgMDeadlineMin;
+  const WdgM_EB_TimestampType WdgMDeadlineMax;
+  boolean IsActive;
+  uint16 MaxCycles;
+  WdgM_EB_TimestampType TimeStamp;
+  Std_ReturnType StopCPRetVal;
+  unsigned char _1;
+  unsigned char IsActive.9_2;
+  long unsigned int ElapsedTime.10_3;
+  short unsigned int MaxCycles.12_4;
+  unsigned char _5;
+  unsigned char CPDeadlineResult.13_6;
+  long unsigned int _32;
+  short unsigned int _33;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_GetCheckedDMData (DMData_13(D), &TimeStamp, &MaxCycles, &IsActive);
+  if (_1 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  IsActive.9_2 = IsActive;
+  if (IsActive.9_2 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 9>; [67.00%]
+
+  <bb 5> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  WdgMDeadlineMax_16 = CPDeadlineCfg_15(D)->WdgMDeadlineMax;
+  # DEBUG WdgMDeadlineMax => WdgMDeadlineMax_16
+  # DEBUG BEGIN_STMT
+  WdgMDeadlineMin_17 = CPDeadlineCfg_15(D)->WdgMDeadlineMin;
+  # DEBUG WdgMDeadlineMin => WdgMDeadlineMin_17
+  # DEBUG BEGIN_STMT
+  ElapsedTime = 0;
+  # DEBUG BEGIN_STMT
+  Supervisor_WdgM_GetElapsedTimeCallout (&TimeStamp, &ElapsedTime);
+  # DEBUG BEGIN_STMT
+  ElapsedTime.10_3 = ElapsedTime;
+  if (ElapsedTime.10_3 >= WdgMDeadlineMin_17)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 88583701]:
+  if (ElapsedTime.10_3 <= WdgMDeadlineMax_16)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 7> [local count: 132875551]:
+  # DEBUG BEGIN_STMT
+  # DEBUG StopCPRetVal => 1
+
+  <bb 8> [local count: 177167401]:
+  # StopCPRetVal_7 = PHI <0(6), 1(7)>
+  # DEBUG StopCPRetVal => StopCPRetVal_7
+  # DEBUG BEGIN_STMT
+  MaxCycles.12_4 = MaxCycles;
+  _32 = TimeStamp;
+  # DEBUG D#8 => &TimeStamp
+  WdgM_EB_StoreDMData.isra.0 (DMData_13(D), _32, MaxCycles.12_4, 0);
+  ElapsedTime ={v} {CLOBBER};
+
+  <bb 9> [local count: 536870913]:
+  # StopCPRetVal_8 = PHI <StopCPRetVal_7(8), 0(4)>
+  # DEBUG StopCPRetVal => StopCPRetVal_8
+  # DEBUG BEGIN_STMT
+  CPDeadlineResult = 203;
+  # DEBUG BEGIN_STMT
+  _33 = MEM[(short unsigned int *)CPData_24(D) + 4B];
+  # DEBUG D#10 => CPData_24(D)
+  _5 = WdgM_EB_GetCheckedCPDeadlineData.isra.0 (_33, &CPDeadlineResult);
+  if (_5 != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+
+  <bb 10> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 11> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  CPDeadlineResult.13_6 = CPDeadlineResult;
+  if (CPDeadlineResult.13_6 != 180)
+    goto <bb 12>; [66.00%]
+  else
+    goto <bb 13>; [34.00%]
+
+  <bb 12> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG StopCPRetVal => 1
+  CPDeadlineResult ={v} {CLOBBER};
+  # DEBUG StopCPRetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 13> [local count: 182536110]:
+  # DEBUG StopCPRetVal => StopCPRetVal_8
+  CPDeadlineResult ={v} {CLOBBER};
+  # DEBUG StopCPRetVal => StopCPRetVal_8
+  # DEBUG BEGIN_STMT
+  if (StopCPRetVal_8 == 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 14> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => CPData_24(D)
+  # DEBUG DeadlineResult => 180
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPDeadlineData
+  # DEBUG CPData => D#9
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineDataRedundant => 75
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 180
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 19380
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_24(D) + 4B] = 19380;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 15> [local count: 982473770]:
+  # StopCPRetVal_28 = PHI <StopCPRetVal_8(13), 1(2), 1(12)>
+  # DEBUG StopCPRetVal => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG D#9 => CPData_24(D)
+  # DEBUG DeadlineResult => 203
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPDeadlineData
+  # DEBUG CPData => D#9
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineDataRedundant => 52
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 203
+  # DEBUG BEGIN_STMT
+  # DEBUG DeadlineData => 13515
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_24(D) + 4B] = 13515;
+  # DEBUG BEGIN_STMT
+
+  <bb 16> [local count: 1073741824]:
+  # StopCPRetVal_34 = PHI <0(14), StopCPRetVal_28(15)>
+  # DEBUG DeadlineResult => NULL
+  # DEBUG DeadlineDataRedundant => NULL
+  # DEBUG DeadlineData => NULL
+  # DEBUG DeadlineResult => NULL
+  # DEBUG DeadlineDataRedundant => NULL
+  # DEBUG DeadlineData => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeStamp ={v} {CLOBBER};
+  MaxCycles ={v} {CLOBBER};
+  IsActive ={v} {CLOBBER};
+  return StopCPRetVal_34;
+
+}
+
+
+WdgM_EB_CheckpointReachedDeadline (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId, const struct WdgM_EB_CPDeadlineCfgType * CPDeadlineCfg)
+{
+  Std_ReturnType StopCPRetVal;
+  Std_ReturnType StartCPRetVal;
+  struct WdgM_EB_CPDataType * const StopCPData;
+  struct WdgM_EB_DMDataType * const StopDMData;
+  struct WdgM_EB_DMDataType * const StartDMData;
+  const WdgM_EB_DMIdType StopDMId;
+  const WdgM_EB_DMIdType StartDMId;
+  const WdgM_EB_CPIdType StopStartCPId;
+  const WdgM_EB_CPIdType StopCPId;
+  struct WdgM_EB_CPDataType * const StartCPData;
+  const WdgM_EB_CPIdType StartCPId;
+  Std_ReturnType RetVal;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct WdgM_EB_CPDeadlineCfgStructType * _5;
+  int _6;
+  int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned char _10;
+  const struct WdgM_EB_CPDeadlineCfgType * const iftmp.8_14;
+  unsigned char iftmp.7_23;
+  const uint16 * _35;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  StartCPId_19 = CPDeadlineCfg_18(D)->StartCPId;
+  # DEBUG StartCPId => StartCPId_19
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_20(D);
+  # DEBUG D#43 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#43
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) StartCPId_19;
+  _4 = _3 * 8;
+  StartCPData_21 = _2 + _4;
+  # DEBUG StartCPData => StartCPData_21
+  # DEBUG BEGIN_STMT
+  if (StartCPId_19 == CPId_22(D))
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _5 = CPDeadlineCfg_18(D)->PrevCPDeadlineCfg;
+  if (_5 != 0B)
+    goto <bb 5>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+
+  <bb 4> [local count: 818191271]:
+  # DEBUG IsStartStopCP => 0
+  # DEBUG BEGIN_STMT
+
+  <bb 5> [local count: 1073741824]:
+  # iftmp.8_14 = PHI <_5(3), CPDeadlineCfg_18(D)(4)>
+  # iftmp.7_23 = PHI <1(3), 0(4)>
+  # DEBUG IsStartStopCP => NULL
+  # DEBUG StopCPDeadlineCfg => iftmp.8_14
+  # DEBUG BEGIN_STMT
+  StopCPId_24 = iftmp.8_14->StopCPId;
+  # DEBUG StopCPId => StopCPId_24
+  # DEBUG BEGIN_STMT
+  StopStartCPId_25 = iftmp.8_14->StartCPId;
+  # DEBUG StopStartCPId => StopStartCPId_25
+  # DEBUG BEGIN_STMT
+  StartDMId_26 = CPDeadlineCfg_18(D)->DMId;
+  # DEBUG StartDMId => StartDMId_26
+  # DEBUG BEGIN_STMT
+  StopDMId_27 = iftmp.8_14->DMId;
+  # DEBUG StopDMId => StopDMId_27
+  # DEBUG BEGIN_STMT
+  _6 = (int) StartDMId_26;
+  StartDMData_28 = &WdgM_EB_DMData[_6];
+  # DEBUG StartDMData => StartDMData_28
+  # DEBUG BEGIN_STMT
+  _7 = (int) StopDMId_27;
+  StopDMData_29 = &WdgM_EB_DMData[_7];
+  # DEBUG StopDMData => StopDMData_29
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) StopStartCPId_25;
+  _9 = _8 * 8;
+  StopCPData_30 = _2 + _9;
+  # DEBUG StopCPData => StopCPData_30
+  # DEBUG BEGIN_STMT
+  # DEBUG StartCPRetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG StopCPRetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CPId_22(D) == StopCPId_24)
+    goto <bb 6>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 6> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  StopCPRetVal_32 = WdgM_EB_StopCheckpointDeadline (StopDMData_29, StopCPData_30, iftmp.8_14);
+  # DEBUG StopCPRetVal => StopCPRetVal_32
+
+  <bb 7> [local count: 1073741824]:
+  # StopCPRetVal_13 = PHI <1(5), StopCPRetVal_32(6)>
+  # DEBUG StopCPRetVal => StopCPRetVal_13
+  # DEBUG BEGIN_STMT
+  if (StartCPId_19 == CPId_22(D))
+    goto <bb 8>; [20.24%]
+  else
+    goto <bb 9>; [79.76%]
+
+  <bb 8> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  _10 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].ErrorRecoveryEnabled;
+  _35 = &MEM[(short unsigned int *)CPDeadlineCfg_18(D) + 8B];
+  # DEBUG D#42 => CPDeadlineCfg_18(D)
+  StartCPRetVal_34 = WdgM_EB_StartCheckpointDeadline.isra.0 (StartDMData_28, StopDMData_29, StartCPData_21, _35, _10);
+  # DEBUG StartCPRetVal => StartCPRetVal_34
+
+  <bb 9> [local count: 1073741824]:
+  # StartCPRetVal_12 = PHI <1(7), StartCPRetVal_34(8)>
+  # DEBUG StartCPRetVal => StartCPRetVal_12
+  # DEBUG BEGIN_STMT
+  if (iftmp.7_23 != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 10> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  if (StopCPRetVal_13 == 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 11> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => StopCPRetVal_13
+  goto <bb 14>; [100.00%]
+
+  <bb 12> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  if (StartCPId_19 == CPId_22(D))
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 13> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => StopCPRetVal_13
+
+  <bb 14> [local count: 1073741824]:
+  # RetVal_11 = PHI <StopCPRetVal_13(11), StartCPRetVal_12(12), StopCPRetVal_13(13), StartCPRetVal_12(10)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_11;
+
+}
+
+
+WdgM_EB_CheckpointReachedIntLogical (WdgM_EB_SEIdType IntSEId, WdgM_EB_CPIdType CPId, const struct WdgM_EB_CPLogicalCfgType * CPIntLogicalCfg)
+{
+  WdgM_EB_ResultType CPLogicalResult;
+  boolean ActiveFlag;
+  WdgM_EB_CPIdType LastCPId;
+  WdgM_EB_SEIdType LastIntSEId;
+  struct WdgM_EB_GraphDataType * const GraphData;
+  struct WdgM_EB_CPDataType * const CPData;
+  Std_ReturnType RetVal;
+  int _1;
+  struct WdgM_EB_CPDataType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  short unsigned int _5;
+  int _6;
+  unsigned char _7;
+  unsigned char ActiveFlag.16_8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char LastIntSEId.17_11;
+  unsigned char LastCPId.18_12;
+  unsigned char _13;
+  unsigned char ActiveFlag.19_14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char CPLogicalResult.20_17;
+  short unsigned int _46;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) IntSEId_24(D);
+  # DEBUG D#26 => &WdgM_EB_SECfg[_1]
+  # DEBUG SECfg => D#26
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].CPData;
+  _3 = (unsigned int) CPId_26(D);
+  _4 = _3 * 8;
+  CPData_27 = _2 + _4;
+  # DEBUG CPData => CPData_27
+  # DEBUG BEGIN_STMT
+  _5 = CPIntLogicalCfg_28(D)->GraphId;
+  _6 = (int) _5;
+  GraphData_29 = &WdgM_EB_InternalGraphData[_6];
+  # DEBUG GraphData => GraphData_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = WdgM_EB_GetCheckedGraphData (GraphData_29, &LastIntSEId, &LastCPId, &ActiveFlag);
+  if (_7 != 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  ActiveFlag.16_8 = ActiveFlag;
+  if (ActiveFlag.16_8 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 5> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _9 = CPIntLogicalCfg_28(D)->NumOfPredCPs;
+  if (_9 == 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  _10 = CPIntLogicalCfg_28(D)->IsFinal;
+  if (_10 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 67108864]:
+  # DEBUG BEGIN_STMT
+  ActiveFlag = 0;
+
+  <bb 8> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  LastIntSEId.17_11 = LastIntSEId;
+  LastCPId.18_12 = LastCPId;
+  RetVal_35 = WdgM_EB_CheckPredCP (CPIntLogicalCfg_28(D), LastIntSEId.17_11, LastCPId.18_12);
+  # DEBUG RetVal => RetVal_35
+  goto <bb 11>; [100.00%]
+
+  <bb 9> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _13 = CPIntLogicalCfg_28(D)->NumOfPredCPs;
+  if (_13 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  ActiveFlag = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 11> [local count: 536870911]:
+  # RetVal_18 = PHI <RetVal_35(8), 0(10), 1(9), 1(5)>
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  ActiveFlag.19_14 = ActiveFlag;
+  WdgM_EB_StoreGraphData (GraphData_29, IntSEId_24(D), CPId_26(D), ActiveFlag.19_14);
+  # DEBUG BEGIN_STMT
+  _15 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_1].ErrorRecoveryEnabled;
+  if (_15 == 0)
+    goto <bb 12>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+
+  <bb 12> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  CPLogicalResult = 203;
+  # DEBUG BEGIN_STMT
+  _46 = MEM[(short unsigned int *)CPData_27 + 6B];
+  # DEBUG D#12 => CPData_27
+  _16 = WdgM_EB_GetCheckedCPLogicalData.isra.0 (_46, &CPLogicalResult);
+  if (_16 != 0)
+    goto <bb 13>; [33.00%]
+  else
+    goto <bb 14>; [67.00%]
+
+  <bb 13> [local count: 58465242]:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (6, 1);
+
+  <bb 14> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  CPLogicalResult.20_17 = CPLogicalResult;
+  if (CPLogicalResult.20_17 != 180)
+    goto <bb 15>; [66.00%]
+  else
+    goto <bb 16>; [34.00%]
+
+  <bb 15> [local count: 116930484]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  CPLogicalResult ={v} {CLOBBER};
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [100.00%]
+
+  <bb 16> [local count: 60236916]:
+  # DEBUG RetVal => RetVal_18
+  CPLogicalResult ={v} {CLOBBER};
+
+  <bb 17> [local count: 419940427]:
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  if (RetVal_18 == 0)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 18> [local count: 209970213]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#11 => CPData_27
+  # DEBUG LogicalResult => 180
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPLogicalData
+  # DEBUG CPData => D#11
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalDataRedundant => 75
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 180
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 19380
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_27 + 6B] = 19380;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 19> [local count: 863771610]:
+  # RetVal_40 = PHI <RetVal_18(17), 1(2), 1(15)>
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG D#11 => CPData_27
+  # DEBUG LogicalResult => 203
+  # DEBUG INLINE_ENTRY WdgM_EB_StoreCPLogicalData
+  # DEBUG CPData => D#11
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalDataRedundant => 52
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 203
+  # DEBUG BEGIN_STMT
+  # DEBUG LogicalData => 13515
+  # DEBUG BEGIN_STMT
+  MEM[(uint16 *)CPData_27 + 6B] = 13515;
+  # DEBUG BEGIN_STMT
+
+  <bb 20> [local count: 1073741824]:
+  # RetVal_42 = PHI <0(18), RetVal_40(19)>
+  # DEBUG LogicalResult => NULL
+  # DEBUG LogicalDataRedundant => NULL
+  # DEBUG LogicalData => NULL
+  # DEBUG LogicalResult => NULL
+  # DEBUG LogicalDataRedundant => NULL
+  # DEBUG LogicalData => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LastIntSEId ={v} {CLOBBER};
+  LastCPId ={v} {CLOBBER};
+  ActiveFlag ={v} {CLOBBER};
+  return RetVal_42;
+
+}
+
+
+WdgM_EB_PerformWdgIfModeSwitch (WdgM_ModeType Mode)
+{
+  const struct WdgM_EB_TriggerCfgType * const TriggerCfg;
+  WdgM_EB_TriggerIdType TriggerId;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct WdgM_EB_TriggerCfgType * _5;
+  unsigned char _6;
+
+  <bb 2> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) Mode_15(D);
+  # DEBUG D#51 => &WdgM_EB_ModeCfg[_1]
+  # DEBUG ModeCfg => D#51
+  # DEBUG BEGIN_STMT
+  TriggerCfg_17 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_1].TriggerCfg;
+  # DEBUG TriggerCfg => TriggerCfg_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct WdgM_EB_ModeCfgType *)&WdgM_EB_ModeCfg][_1].NumTriggers;
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 57431766]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 4> [local count: 114863532]:
+  # RetVal_9 = PHI <0(3), 1(2)>
+  # TriggerId_7 = PHI <0(3), 0(2)>
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 1014686025]:
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) TriggerId_12;
+  _4 = _3 * 6;
+  _5 = TriggerCfg_17 + _4;
+  _6 = _5->WatchdogMode;
+  RetVal_19 = Wdg_SetMode (_6);
+  # DEBUG RetVal => RetVal_19
+  # DEBUG BEGIN_STMT
+  if (RetVal_19 != 0)
+    goto <bb 6>; [5.50%]
+  else
+    goto <bb 7>; [94.50%]
+
+  <bb 6> [local count: 55807731]:
+  # RetVal_8 = PHI <RetVal_19(5)>
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatus (5, 1);
+  # DEBUG BEGIN_STMT
+  WdgM_PerformReset ();
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 958878293]:
+  # DEBUG BEGIN_STMT
+  TriggerId_20 = TriggerId_12 + 1;
+  # DEBUG TriggerId => TriggerId_20
+
+  <bb 8> [local count: 1073741824]:
+  # RetVal_10 = PHI <RetVal_9(4), 0(7)>
+  # TriggerId_12 = PHI <TriggerId_7(4), TriggerId_20(7)>
+  # DEBUG TriggerId => TriggerId_12
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  if (_2 > TriggerId_12)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 9>; [5.50%]
+
+  <bb 9> [local count: 114863532]:
+  # RetVal_11 = PHI <RetVal_8(6), RetVal_10(8)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_11;
+
+}
+
+
+WdgM_MainFunction ()
+{
+  const WdgM_EB_InitStatusType DoNotCheckInitRequest;
+  unsigned char _1;
+  WdgM_EB_InitStatusType * _2;
+  WdgM_EB_InitStatusType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  WdgM_EB_InitStatusType * _6;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _29;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_MainFunctionActive;
+  if (_1 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 8, 131);
+  goto <bb 15>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_Context.WdgM_EB_MainFunctionActive = 1;
+  # DEBUG BEGIN_STMT
+  _2 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  DoNotCheckInitRequest_16 = *_2;
+  # DEBUG DoNotCheckInitRequest => DoNotCheckInitRequest_16
+  # DEBUG BEGIN_STMT
+  if (DoNotCheckInitRequest_16 != 170)
+    goto <bb 5>; [48.88%]
+  else
+    goto <bb 6>; [51.12%]
+
+  <bb 5> [local count: 351646152]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_CheckDeinitRequest (&WdgM_EB_Context);
+
+  <bb 6> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_CheckMainFunctionTimingViolation (&WdgM_EB_Context);
+  # DEBUG BEGIN_STMT
+  _3 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _4 = *_3;
+  if (_4 != 170)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 351646152]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_UpdateSupervisionCycleCounter (&WdgM_EB_Context);
+  # DEBUG BEGIN_STMT
+  WdgM_EB_SetLocalStatus (&WdgM_EB_Context);
+  # DEBUG BEGIN_STMT
+  WdgM_EB_SetGlobalStatus (&WdgM_EB_Context);
+  # DEBUG BEGIN_STMT
+  _29 = MEM[(unsigned char *)&WdgM_EB_Context + 20B];
+  # DEBUG D#45 => &WdgM_EB_Context
+  WdgM_EB_UpdateTriggerConditions.isra.0 (_29);
+
+  <bb 8> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (DoNotCheckInitRequest_16 == 170)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 11>; [79.76%]
+
+  <bb 9> [local count: 145607981]:
+  # DEBUG BEGIN_STMT
+  _5 = WdgM_EB_CheckInitRequest (&WdgM_EB_Context);
+  if (_5 != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 72803991]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_Context.WdgM_EB_SupervisionCycleCnt = 0;
+
+  <bb 11> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  _6 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _7 = *_6;
+  if (_7 != 170)
+    goto <bb 12>; [48.88%]
+  else
+    goto <bb 14>; [51.12%]
+
+  <bb 12> [local count: 351646152]:
+  # DEBUG BEGIN_STMT
+  _8 = WdgM_EB_CheckModeSwitchRequest (&WdgM_EB_Context);
+  if (_8 != 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 13> [local count: 175823076]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_Context.WdgM_EB_SupervisionCycleCnt = 0;
+
+  <bb 14> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_Context.WdgM_EB_MainFunctionActive = 0;
+
+  <bb 15> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_GetFirstExpiredSEID (WdgM_SupervisedEntityIdType * SEID)
+{
+  WdgM_EB_SEIdType LocalSEId;
+  Std_ReturnType RetVal;
+  short unsigned int WdgM_EB_ExpiredSEID.45_1;
+  unsigned char LocalSEId.46_2;
+  short unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SEID_6(D) == 0B)
+    goto <bb 3>; [30.00%]
+  else
+    goto <bb 4>; [70.00%]
+
+  <bb 3> [local count: 322122547]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 16, 20);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  LocalSEId = 0;
+  # DEBUG BEGIN_STMT
+  WdgM_EB_ExpiredSEID.45_1 = WdgM_EB_ExpiredSEID;
+  RetVal_10 = WdgM_EB_GetCheckedExpiredSEID (WdgM_EB_ExpiredSEID.45_1, &LocalSEId);
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  LocalSEId.46_2 = LocalSEId;
+  _3 = (short unsigned int) LocalSEId.46_2;
+  *SEID_6(D) = _3;
+  LocalSEId ={v} {CLOBBER};
+
+  <bb 5> [local count: 1073741824]:
+  # RetVal_4 = PHI <1(3), RetVal_10(4)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_4;
+
+}
+
+
+WdgM_PerformReset ()
+{
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 15, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 365072224]:
+  WdgM_PerformReset.part.0 ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+WdgM_GetGlobalStatus (WdgM_GlobalStatusType * Status)
+{
+  Std_ReturnType RetVal;
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+  unsigned char WdgM_EB_GlobalStatus.42_3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 13, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (Status_7(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 95672716]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 13, 20);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 453224104]:
+  # DEBUG BEGIN_STMT
+  WdgM_EB_GlobalStatus.42_3 = WdgM_EB_GlobalStatus;
+  *Status_7(D) = WdgM_EB_GlobalStatus.42_3;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_4 = PHI <1(3), 1(5), 0(6)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_4;
+
+}
+
+
+WdgM_GetLocalStatus (WdgM_SupervisedEntityIdType SEID, WdgM_LocalStatusType * Status)
+{
+  Std_ReturnType RetVal;
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _14;
+  unsigned char _15;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 12, 16);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (Status_8(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 95672716]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 12, 20);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 453224104]:
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => SEID_9(D)
+  # DEBUG IntSEId => &IntSEId
+  # DEBUG INLINE_ENTRY WdgM_EB_SEId2IntSEId
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SEID_9(D) <= 2)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 226612052]:
+  # DEBUG BEGIN_STMT
+  _14 = (int) SEID_9(D);
+  _15 = WdgM_EB_SEIntSEId[_14];
+  # DEBUG IntSEId => _15
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEId => _15
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  _3 = (int) _15;
+  _4 = WdgM_EB_SELocalStatus[_3];
+  *Status_8(D) = _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 226612052]:
+  # DEBUG IntSEId => 0
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 12, 19);
+
+  <bb 9> [local count: 1073741824]:
+  # RetVal_5 = PHI <1(3), 1(5), 1(8), 0(7)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#50 => {CLOBBER}
+  # DEBUG IntSEId => D#50
+  return RetVal_5;
+
+}
+
+
+WdgM_UpdateAliveCounter (WdgM_SupervisedEntityIdType SEID)
+{
+  const struct WdgM_EB_CPCfgType * const CPCfg;
+  WdgM_EB_CPIdType FoundCPId;
+  uint16 NumOfAliveSupervisions;
+  WdgM_EB_CPIdType CPId;
+  Std_ReturnType RetVal;
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+  int _3;
+  const struct WdgM_EB_CPCfgType * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  int _8;
+  const struct WdgM_EB_CPAliveCfgType * _9;
+  unsigned char _10;
+  short unsigned int _11;
+  int _32;
+  unsigned char _33;
+
+  <bb 2> [local count: 694774119]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 458550918]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 4, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 15>; [100.00%]
+
+  <bb 4> [local count: 236223200]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 4, 23);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => SEID_21(D)
+  # DEBUG IntSEId => &IntSEId
+  # DEBUG INLINE_ENTRY WdgM_EB_SEId2IntSEId
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SEID_21(D) <= 2)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  _32 = (int) SEID_21(D);
+  _33 = WdgM_EB_SEIntSEId[_32];
+  # DEBUG IntSEId => _33
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEId => _33
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG NumOfAliveSupervisions => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundCPId => 0
+  # DEBUG BEGIN_STMT
+  _3 = (int) _33;
+  # DEBUG D#49 => &WdgM_EB_SECfg[_3]
+  # DEBUG SECfg => D#49
+  # DEBUG BEGIN_STMT
+  # DEBUG CPId => 0
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 118111600]:
+  # DEBUG IntSEId => 0
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 4, 19);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 15>; [100.00%]
+
+  <bb 7> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_3].CPCfg;
+  _5 = (unsigned int) CPId_13;
+  _6 = _5 * 64;
+  CPCfg_27 = _4 + _6;
+  # DEBUG CPCfg => CPCfg_27
+  # DEBUG BEGIN_STMT
+  _7 = WdgM_EB_Context.WdgM_EB_CurrentModeId;
+  _8 = (int) _7;
+  _9 = CPCfg_27->AliveCfgPtr[_8];
+  if (_9 != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+
+  <bb 8> [local count: 668941156]:
+  # DEBUG BEGIN_STMT
+  NumOfAliveSupervisions_28 = NumOfAliveSupervisions_15 + 1;
+  # DEBUG NumOfAliveSupervisions => NumOfAliveSupervisions_28
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundCPId => CPId_13
+
+  <bb 9> [local count: 955630223]:
+  # NumOfAliveSupervisions_14 = PHI <NumOfAliveSupervisions_15(7), NumOfAliveSupervisions_28(8)>
+  # FoundCPId_16 = PHI <FoundCPId_17(7), CPId_13(8)>
+  # DEBUG FoundCPId => FoundCPId_16
+  # DEBUG NumOfAliveSupervisions => NumOfAliveSupervisions_14
+  # DEBUG BEGIN_STMT
+  CPId_29 = CPId_13 + 1;
+  # DEBUG CPId => CPId_29
+
+  <bb 10> [local count: 1073741824]:
+  # CPId_13 = PHI <0(5), CPId_29(9)>
+  # NumOfAliveSupervisions_15 = PHI <0(5), NumOfAliveSupervisions_14(9)>
+  # FoundCPId_17 = PHI <0(5), FoundCPId_16(9)>
+  # DEBUG FoundCPId => FoundCPId_17
+  # DEBUG NumOfAliveSupervisions => NumOfAliveSupervisions_15
+  # DEBUG CPId => CPId_13
+  # DEBUG BEGIN_STMT
+  _10 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_3].NumOfCPs;
+  if (_10 > CPId_13)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+
+  <bb 11> [local count: 118111601]:
+  # NumOfAliveSupervisions_22 = PHI <NumOfAliveSupervisions_15(10)>
+  # FoundCPId_23 = PHI <FoundCPId_17(10)>
+  # DEBUG BEGIN_STMT
+  if (NumOfAliveSupervisions_22 == 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 12> [local count: 59055800]:
+  # DEBUG BEGIN_STMT
+  if (NumOfAliveSupervisions_22 == 1)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 13> [local count: 20078972]:
+  # DEBUG BEGIN_STMT
+  _11 = (short unsigned int) FoundCPId_23;
+  RetVal_26 = WdgM_CheckpointReached (SEID_21(D), _11);
+  # DEBUG RetVal => RetVal_26
+  goto <bb 15>; [100.00%]
+
+  <bb 14> [local count: 38976828]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 4, 24);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 15> [local count: 694774120]:
+  # RetVal_12 = PHI <1(3), 1(11), 1(6), 1(14), RetVal_26(13)>
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_12;
+
+}
+
+
+WdgM_CheckpointReached (WdgM_SupervisedEntityIdType SEID, WdgM_CheckpointIdType CheckpointID)
+{
+  const struct WdgM_EB_CPLogicalCfgType * const CPExtLogicalCfg;
+  const struct WdgM_EB_CPLogicalCfgType * const CPIntLogicalCfg;
+  const struct WdgM_EB_CPDeadlineCfgType * const CPDeadlineCfg;
+  const struct WdgM_EB_CPAliveCfgType * const CPAliveCfg;
+  const struct WdgM_EB_CPCfgType * const CPCfg;
+  boolean CPFailed;
+  WdgM_EB_CPIdType IntCPId;
+  Std_ReturnType RetVal;
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  WdgM_EB_LocalStatusType * _5;
+  sizetype _6;
+  WdgM_EB_LocalStatusType * _7;
+  unsigned char _8;
+  const struct WdgM_EB_CPCfgType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned char _12;
+  int _13;
+  unsigned char _14;
+  unsigned char _15;
+  int _16;
+  unsigned char _17;
+  unsigned char _18;
+  int _19;
+  unsigned char _20;
+  unsigned char _21;
+  int _48;
+  unsigned char _49;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IntCPId_32 = (WdgM_EB_CPIdType) CheckpointID_31(D);
+  # DEBUG IntCPId => IntCPId_32
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 14, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 22>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => SEID_34(D)
+  # DEBUG IntSEId => &IntSEId
+  # DEBUG INLINE_ENTRY WdgM_EB_SEId2IntSEId
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SEID_34(D) <= 2)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 274448410]:
+  # DEBUG BEGIN_STMT
+  _48 = (int) SEID_34(D);
+  _49 = WdgM_EB_SEIntSEId[_48];
+  # DEBUG IntSEId => _49
+  # DEBUG BEGIN_STMT
+  # DEBUG IntSEId => _49
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  _3 = (int) _49;
+  _4 = WdgM_EB_SECfg[_3].NumOfCPs;
+  if (_4 <= IntCPId_32)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 6> [local count: 274448410]:
+  # DEBUG IntSEId => 0
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG SEId => NULL
+  # DEBUG IntSEId => NULL
+  # DEBUG RetVal => NULL
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 14, 19);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 22>; [100.00%]
+
+  <bb 7> [local count: 90567975]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 14, 22);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 22>; [100.00%]
+
+  <bb 8> [local count: 183880434]:
+  # DEBUG BEGIN_STMT
+  _5 = WdgM_EB_Context.WdgM_EB_SELocalStatus;
+  _6 = (sizetype) _49;
+  _7 = _5 + _6;
+  _8 = *_7;
+  if (_8 == 4)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 10>; [79.76%]
+
+  <bb 9> [local count: 37217400]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 14, 25);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 22>; [100.00%]
+
+  <bb 10> [local count: 146663034]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CPFailed => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG D#47 => &WdgM_EB_SECfg[_3]
+  # DEBUG SECfg => D#47
+  # DEBUG BEGIN_STMT
+  _9 = MEM[(const struct WdgM_EB_SECfgType *)&WdgM_EB_SECfg][_3].CPCfg;
+  _10 = (unsigned int) IntCPId_32;
+  _11 = _10 * 64;
+  CPCfg_35 = _9 + _11;
+  # DEBUG CPCfg => CPCfg_35
+  # DEBUG BEGIN_STMT
+  _12 = WdgM_EB_Context.WdgM_EB_CurrentModeId;
+  _13 = (int) _12;
+  CPAliveCfg_36 = CPCfg_35->AliveCfgPtr[_13];
+  # DEBUG CPAliveCfg => CPAliveCfg_36
+  # DEBUG BEGIN_STMT
+  if (CPAliveCfg_36 != 0B)
+    goto <bb 11>; [53.47%]
+  else
+    goto <bb 13>; [46.53%]
+
+  <bb 11> [local count: 78420724]:
+  # DEBUG BEGIN_STMT
+  _14 = WdgM_EB_CheckpointReachedAlive (_49, IntCPId_32);
+  if (_14 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 39210362]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CPFailed => 1
+
+  <bb 13> [local count: 146663034]:
+  # CPFailed_23 = PHI <0(10), 0(11), 1(12)>
+  # DEBUG CPFailed => CPFailed_23
+  # DEBUG BEGIN_STMT
+  _15 = WdgM_EB_Context.WdgM_EB_CurrentModeId;
+  _16 = (int) _15;
+  CPDeadlineCfg_38 = CPCfg_35->DeadlineCfgPtr[_16];
+  # DEBUG CPDeadlineCfg => CPDeadlineCfg_38
+  # DEBUG BEGIN_STMT
+  if (CPDeadlineCfg_38 != 0B)
+    goto <bb 14>; [53.47%]
+  else
+    goto <bb 16>; [46.53%]
+
+  <bb 14> [local count: 78420724]:
+  # DEBUG BEGIN_STMT
+  _17 = WdgM_EB_CheckpointReachedDeadline (_49, IntCPId_32, CPDeadlineCfg_38);
+  if (_17 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 15> [local count: 39210362]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CPFailed => 1
+
+  <bb 16> [local count: 146663034]:
+  # CPFailed_24 = PHI <CPFailed_23(13), CPFailed_23(14), 1(15)>
+  # DEBUG CPFailed => CPFailed_24
+  # DEBUG BEGIN_STMT
+  _18 = WdgM_EB_Context.WdgM_EB_CurrentModeId;
+  _19 = (int) _18;
+  CPIntLogicalCfg_40 = CPCfg_35->IntLogicalCfgPtr[_19];
+  # DEBUG CPIntLogicalCfg => CPIntLogicalCfg_40
+  # DEBUG BEGIN_STMT
+  CPExtLogicalCfg_41 = CPCfg_35->ExtLogicalCfgPtr[_19];
+  # DEBUG CPExtLogicalCfg => CPExtLogicalCfg_41
+  # DEBUG BEGIN_STMT
+  if (CPIntLogicalCfg_40 != 0B)
+    goto <bb 17>; [53.47%]
+  else
+    goto <bb 19>; [46.53%]
+
+  <bb 17> [local count: 78420724]:
+  # DEBUG BEGIN_STMT
+  _20 = WdgM_EB_CheckpointReachedIntLogical (_49, IntCPId_32, CPIntLogicalCfg_40);
+  if (_20 != 0)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 18> [local count: 39210362]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CPFailed => 1
+
+  <bb 19> [local count: 146663034]:
+  # CPFailed_25 = PHI <CPFailed_24(16), CPFailed_24(17), 1(18)>
+  # DEBUG CPFailed => CPFailed_25
+  # DEBUG BEGIN_STMT
+  if (CPExtLogicalCfg_41 != 0B)
+    goto <bb 20>; [53.47%]
+  else
+    goto <bb 21>; [46.53%]
+
+  <bb 20> [local count: 78420724]:
+  # DEBUG BEGIN_STMT
+  _21 = WdgM_EB_CheckpointReachedExtLogical (_49, IntCPId_32, CPExtLogicalCfg_41, &WdgM_EB_Context);
+  if (_21 != 0)
+    goto <bb 22>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 21> [local count: 107452672]:
+  # DEBUG CPFailed => CPFailed_25
+  # DEBUG BEGIN_STMT
+
+  <bb 22> [local count: 1073741823]:
+  # RetVal_22 = PHI <1(3), 1(6), 1(7), 1(9), CPFailed_25(21), 1(20)>
+  # DEBUG CPFailed => NULL
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#46 => {CLOBBER}
+  # DEBUG IntSEId => D#46
+  return RetVal_22;
+
+}
+
+
+WdgM_GetMode (WdgM_ModeType * Mode)
+{
+  Std_ReturnType RetVal;
+  WdgM_EB_InitStatusType * _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG CoreInstance => &WdgM_EB_Context
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = WdgM_EB_Context.WdgM_EB_InitStatus;
+  _2 = *_1;
+  if (_2 != 85)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 11, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (Mode_7(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 95672716]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (13, 0, 11, 20);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 453224104]:
+  # DEBUG BEGIN_STMT
+  _3 = WdgM_EB_Context.WdgM_EB_CurrentModeId;
+  *Mode_7(D) = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_4 = PHI <1(3), 1(5), 0(6)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_4;
+
+}
+
+

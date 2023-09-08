@@ -1,0 +1,147 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_HwCounterUpdate
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_AdvanceCounter/3 (OS_AdvanceCounter) @06c37000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HwCounterUpdate/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c37ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HwCounterUpdate/0 OS_HwCounterUpdate/0 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06c13900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_HwCounterUpdate/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_HwCounterUpdate/0 (OS_HwCounterUpdate) @06c37d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 OS_AdvanceCounter/3 OS_CORTEXM_IntSetDisablingLevel/2 
+   Indirect call
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_HwCounterUpdate (const struct os_counter_t * cs)
+{
+  os_intstatus_t is;
+  os_boolean_t again;
+  os_tick_t nTicks;
+  os_tick_t delta;
+  os_timervalue_t current;
+  const struct os_hwt_t * hwt;
+  struct os_counterdynamic_t * cd;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  cd = cs->dynamic;
+  # DEBUG BEGIN_STMT
+  hwt = cs->hwt;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = hwt->driver;
+  _3 = _2->hwtStop;
+  _3 (hwt);
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = hwt->driver;
+  _5 = _4->hwtRead;
+  current = _5 (hwt);
+  # DEBUG BEGIN_STMT
+  _6 = hwt->lastValue;
+  _7 = *_6;
+  _8 = current - _7;
+  _9 = hwt->wrapMask;
+  nTicks = _8 & _9;
+  # DEBUG BEGIN_STMT
+  _10 = hwt->lastValue;
+  *_10 = current;
+  # DEBUG BEGIN_STMT
+  delta = OS_AdvanceCounter (cs, cd, nTicks, is);
+  # DEBUG BEGIN_STMT
+  if (delta == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  again = 0;
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _11 = hwt->maxDelta;
+  if (delta > _11)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  delta = hwt->defDelta;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = hwt->driver;
+  _13 = _12->hwtStart;
+  _14 = hwt->lastValue;
+  _15 = *_14;
+  again = _13 (hwt, _15, delta);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (again != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  return;
+
+}
+
+

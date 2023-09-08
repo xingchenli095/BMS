@@ -1,0 +1,102 @@
+__attribute__((target ("general-regs-only")))
+OS_Synchronize (struct os_scheduledynamic_t * sd, const struct os_scheduleentry_t * nextp, os_tick_t delta)
+{
+  os_schedulestatus_t dir;
+  os_tick_t adj;
+  os_tick_t D.7431;
+  const os_tick_t iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = sd->status;
+  dir = _1 & 48;
+  # DEBUG BEGIN_STMT
+  if (dir == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (dir == 16)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0 = nextp->maxDecrease;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0 = nextp->maxIncrease;
+
+  <bb 6> :
+  adj = iftmp.0;
+  # DEBUG BEGIN_STMT
+  _2 = sd->adjRemaining;
+  if (adj > _2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  adj = sd->adjRemaining;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (dir == 16)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (adj > delta)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  adj = delta;
+  # DEBUG BEGIN_STMT
+  delta = 0;
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  delta = delta - adj;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  delta = delta + adj;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _3 = sd->adjRemaining;
+  _4 = _3 - adj;
+  sd->adjRemaining = _4;
+  # DEBUG BEGIN_STMT
+  _5 = sd->adjRemaining;
+  if (_5 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _6 = sd->status;
+  _7 = _6 & 207;
+  sd->status = _7;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  D.7431 = delta;
+  return D.7431;
+
+}
+
+

@@ -1,0 +1,202 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StartupChecksApplication
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nApps/5 (OS_nApps) @06c38dc8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksApplication/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_taskTableBase/4 (OS_taskTableBase) @06c38ca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksApplication/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_configurationId/3 (OS_configurationId) @06c38c18
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksApplication/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Panic/2 (OS_Panic) @06c5cc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartupChecksApplication/0 OS_StartupChecksApplication/0 OS_StartupChecksApplication/0 OS_StartupChecksApplication/0 OS_StartupChecksApplication/0 
+  Calls: 
+OS_appTableBase/1 (OS_appTableBase) @06c38b88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksApplication/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartupChecksApplication/0 (OS_StartupChecksApplication) @06c5ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_appTableBase/1 (read)OS_configurationId/3 (read)OS_taskTableBase/4 (read)OS_nApps/5 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_Panic/2 OS_Panic/2 OS_Panic/2 OS_Panic/2 OS_Panic/2 
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksApplication ()
+{
+  const struct os_appcontext_t * const app;
+  os_permission_t permBits;
+  os_unsigned_t i;
+  os_result_t result;
+  os_result_t D.7433;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  permBits = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = i * 64;
+  app = OS_appTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  _3 = app->appId;
+  _4 = (unsigned int) _3;
+  if (i != _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (45);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = app->buildId;
+  _6 = *_5;
+  OS_configurationId.1_7 = OS_configurationId;
+  if (_6 != OS_configurationId.1_7)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (46);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _8 = app->restartTask;
+  if (_8 != 255)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.2_9 = OS_taskTableBase;
+  _10 = app->restartTask;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 76;
+  _13 = OS_taskTableBase.2_9 + _12;
+  _14 = _13->app;
+  if (app != _14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (47);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = app->permissionBit;
+  if (_15 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (48);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _16 = app->flags;
+  _17 = (unsigned int) _16;
+  _18 = _17 & 2;
+  if (_18 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = app->permissionBit;
+  _20 = permBits & _19;
+  if (_20 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (49);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _21 = app->permissionBit;
+  permBits = permBits | _21;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_nApps.3_22 = OS_nApps;
+  _23 = (unsigned int) OS_nApps.3_22;
+  if (i < _23)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.7433 = result;
+  return D.7433;
+
+}
+
+

@@ -1,0 +1,82 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksResource ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_resource_t * const resource;
+  const os_coreid_t myCoreId;
+  os_resourceid_t i;
+  os_result_t result;
+  os_result_t D.7427;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = (unsigned int) i;
+  _3 = _2 * 16;
+  resource = OS_resourceTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  app = resource->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (51);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms = resource->permissions;
+  # DEBUG BEGIN_STMT
+  if (app != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _4 = app->permissionBit;
+  _5 = perms & _4;
+  if (_5 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (50);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  i.1_6 = i;
+  i = i.1_6 + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_nResources.2_7 = OS_nResources;
+  if (i < OS_nResources.2_7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.7427 = result;
+  return D.7427;
+
+}
+
+

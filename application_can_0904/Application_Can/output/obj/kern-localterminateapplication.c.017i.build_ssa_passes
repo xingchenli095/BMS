@@ -1,0 +1,45 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalTerminateApplication (const struct os_appcontext_t * app, os_restart_t restart)
+{
+  struct os_appdynamic_t * appd;
+  os_errorresult_t result;
+  os_errorresult_t D.7418;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  appd = app->dynamic;
+  # DEBUG BEGIN_STMT
+  _1 = appd->appstate;
+  if (_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_QuarantineApplication (app);
+  # DEBUG BEGIN_STMT
+  if (restart == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_RestartApplication (app);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.7418 = result;
+  return D.7418;
+
+}
+
+

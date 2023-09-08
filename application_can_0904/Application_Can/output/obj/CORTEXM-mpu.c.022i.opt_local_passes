@@ -1,0 +1,561 @@
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_ResetKernStackRw (const struct os_isr_t * isr)
+{
+  struct os_kerneldata_t * const k_data;
+  const struct os_appcontext_t * a;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  os_stackelement_t * _4;
+  unsigned int _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_12 = isr_11(D)->app;
+  # DEBUG a => a_12
+  # DEBUG BEGIN_STMT
+  if (a_12 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _1 = a_12->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  k_data_13 = &OS_kernelData;
+  # DEBUG k_data => k_data_13
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.iStackBase;
+  _5 = (unsigned int) _4;
+  _6 = OS_kernStackMpuSize[0];
+  _7 = (unsigned int) _6;
+  _8 = _7 | 302972929;
+  OS_CORTEXM_SetRegion (2, _5, _8);
+
+  <bb 5> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SetHookProtection (const struct os_appcontext_t * a, struct os_savedcontext_t * savedContext, os_size_t mpuStackSize)
+{
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  os_stackelement_t * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned char _12;
+  os_uint8_t * _13;
+  os_uint8_t * _14;
+  os_uint8_t * _15;
+  unsigned int _16;
+  unsigned char _17;
+  unsigned int _18;
+  unsigned int _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (a_21(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  _1 = a_21(D)->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = savedContext_23(D)->stackLimit;
+  _5 = (unsigned int) _4;
+  _6 = mpuStackSize_24(D) >> 1;
+  _7 = _6 + 1;
+  _8 = 1 << _7;
+  _9 = -_8;
+  _10 = _5 & _9;
+  _11 = mpuStackSize_24(D) | 319750145;
+  OS_CORTEXM_SetRegion (3, _10, _11);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (4, 0, 0);
+  # DEBUG BEGIN_STMT
+  _12 = a_21(D)->archapp.mpuSizeData;
+  if (_12 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _13 = a_21(D)->dataStart;
+  _14 = a_21(D)->dataEnd;
+  if (_13 != _14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _15 = a_21(D)->dataStart;
+  _16 = (unsigned int) _15;
+  _17 = a_21(D)->archapp.mpuSizeData;
+  _18 = (unsigned int) _17;
+  _19 = _18 | 319750145;
+  OS_CORTEXM_SetRegion (5, _16, _19);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (5, 0, 0);
+
+  <bb 8> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SetIsrProtection (const struct os_isr_t * isr, struct os_isrdynamic_t * id)
+{
+  struct os_kerneldata_t * const k_data;
+  const struct os_appcontext_t * a;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  os_stackelement_t * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  unsigned int _9;
+  unsigned int _10;
+  os_stackelement_t * _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned char _16;
+  os_uint8_t * _17;
+  os_uint8_t * _18;
+  os_uint8_t * _19;
+  unsigned int _20;
+  unsigned char _21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned char _24;
+  os_uint8_t * _25;
+  os_uint8_t * _26;
+  os_uint8_t * _27;
+  unsigned int _28;
+  unsigned char _29;
+  unsigned int _30;
+  unsigned int _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_36 = isr_35(D)->app;
+  # DEBUG a => a_36
+  # DEBUG BEGIN_STMT
+  if (a_36 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  _1 = a_36->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  k_data_37 = &OS_kernelData;
+  # DEBUG k_data => k_data_37
+  # DEBUG BEGIN_STMT
+  _4 = id_38(D)->c.stackLimit;
+  _5 = (unsigned int) _4;
+  _6 = isr_35(D)->stackLen;
+  _7 = _5 - _6;
+  _8 = isr_35(D)->arch.mpuSizeStack;
+  _9 = (unsigned int) _8;
+  _10 = _9 | 319750145;
+  OS_CORTEXM_SetRegion (3, _7, _10);
+  # DEBUG BEGIN_STMT
+  _11 = OS_kernelData.iStackBase;
+  _12 = (unsigned int) _11;
+  _13 = OS_kernStackMpuSize[0];
+  _14 = (unsigned int) _13;
+  _15 = _14 | 370081793;
+  OS_CORTEXM_SetRegion (2, _12, _15);
+  # DEBUG BEGIN_STMT
+  _16 = isr_35(D)->arch.mpuSizeData;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _17 = isr_35(D)->dataStart;
+  _18 = isr_35(D)->dataEnd;
+  if (_17 != _18)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _19 = isr_35(D)->dataStart;
+  _20 = (unsigned int) _19;
+  _21 = isr_35(D)->arch.mpuSizeData;
+  _22 = (unsigned int) _21;
+  _23 = _22 | 319750145;
+  OS_CORTEXM_SetRegion (4, _20, _23);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (4, 0, 0);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _24 = a_36->archapp.mpuSizeData;
+  if (_24 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _25 = a_36->dataStart;
+  _26 = a_36->dataEnd;
+  if (_25 != _26)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _27 = a_36->dataStart;
+  _28 = (unsigned int) _27;
+  _29 = a_36->archapp.mpuSizeData;
+  _30 = (unsigned int) _29;
+  _31 = _30 | 319750145;
+  OS_CORTEXM_SetRegion (5, _28, _31);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (5, 0, 0);
+
+  <bb 12> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SetProtection (const struct os_task_t * t)
+{
+  const struct os_appcontext_t * a;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  os_stackelement_t * _4;
+  unsigned int _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned char _9;
+  os_uint8_t * _10;
+  os_uint8_t * _11;
+  os_uint8_t * _12;
+  unsigned int _13;
+  unsigned char _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned char _17;
+  os_uint8_t * _18;
+  os_uint8_t * _19;
+  os_uint8_t * _20;
+  unsigned int _21;
+  unsigned char _22;
+  unsigned int _23;
+  unsigned int _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_29 = t_28(D)->app;
+  # DEBUG a => a_29
+  # DEBUG BEGIN_STMT
+  if (a_29 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _1 = a_29->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetControl (2);
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetControl (3);
+  # DEBUG BEGIN_STMT
+  _4 = t_28(D)->stackBase;
+  _5 = (unsigned int) _4;
+  _6 = t_28(D)->arch.mpuSizeStack;
+  _7 = (unsigned int) _6;
+  _8 = _7 | 319750145;
+  OS_CORTEXM_SetRegion (3, _5, _8);
+  # DEBUG BEGIN_STMT
+  _9 = t_28(D)->arch.mpuSizeData;
+  if (_9 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _10 = t_28(D)->dataStart;
+  _11 = t_28(D)->dataEnd;
+  if (_10 != _11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = t_28(D)->dataStart;
+  _13 = (unsigned int) _12;
+  _14 = t_28(D)->arch.mpuSizeData;
+  _15 = (unsigned int) _14;
+  _16 = _15 | 319750145;
+  OS_CORTEXM_SetRegion (4, _13, _16);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (4, 0, 0);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _17 = a_29->archapp.mpuSizeData;
+  if (_17 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _18 = a_29->dataStart;
+  _19 = a_29->dataEnd;
+  if (_18 != _19)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = a_29->dataStart;
+  _21 = (unsigned int) _20;
+  _22 = a_29->archapp.mpuSizeData;
+  _23 = (unsigned int) _22;
+  _24 = _23 | 319750145;
+  OS_CORTEXM_SetRegion (5, _21, _24);
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (5, 0, 0);
+
+  <bb 13> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CORTEXM_SetRegion (os_uint32_t region, os_uint32_t rbar, os_uint32_t rasr)
+{
+  struct os_mpu_s * _1;
+  struct os_mpu_s * _2;
+  struct os_mpu_s * _3;
+  unsigned int _4;
+  struct os_mpu_s * _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 3758157200B;
+  _1->rnr ={v} region_7(D);
+  # DEBUG BEGIN_STMT
+  _2 = 3758157200B;
+  _2->regions[0].rasr ={v} 0;
+  # DEBUG BEGIN_STMT
+  _3 = 3758157200B;
+  _4 = rbar_10(D) & 4294967264;
+  _3->regions[0].rbar ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 = 3758157200B;
+  _5->regions[0].rasr ={v} rasr_12(D);
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_EnterProtectedMode ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OS_CheckMpuSupported ();
+  # DEBUG BEGIN_STMT
+  OS_SetupStaticRegions ();
+  # DEBUG BEGIN_STMT
+  OS_DisableDynamicRegions ();
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DisableDynamicRegions ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (3, 0, 0);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (4, 0, 0);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_SetRegion (5, 0, 0);
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SetupStaticRegions ()
+{
+  struct os_kerneldata_t * const k_data;
+  const void * OS_romBase.0_1;
+  unsigned int OS_romBase.1_2;
+  unsigned char OS_romMpuSize.2_3;
+  unsigned int _4;
+  unsigned int _5;
+  const void * OS_ramBase.3_6;
+  unsigned int OS_ramBase.4_7;
+  unsigned char OS_ramMpuSize.5_8;
+  unsigned int _9;
+  unsigned int _10;
+  os_stackelement_t * _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  k_data_16 = &OS_kernelData;
+  # DEBUG k_data => k_data_16
+  # DEBUG BEGIN_STMT
+  OS_romBase.0_1 = OS_romBase;
+  OS_romBase.1_2 = (unsigned int) OS_romBase.0_1;
+  OS_romMpuSize.2_3 = OS_romMpuSize;
+  _4 = (unsigned int) OS_romMpuSize.2_3;
+  _5 = _4 | 101646337;
+  OS_CORTEXM_SetRegion (0, OS_romBase.1_2, _5);
+  # DEBUG BEGIN_STMT
+  OS_ramBase.3_6 = OS_ramBase;
+  OS_ramBase.4_7 = (unsigned int) OS_ramBase.3_6;
+  OS_ramMpuSize.5_8 = OS_ramMpuSize;
+  _9 = (unsigned int) OS_ramMpuSize.5_8;
+  _10 = _9 | 370081793;
+  OS_CORTEXM_SetRegion (1, OS_ramBase.4_7, _10);
+  # DEBUG BEGIN_STMT
+  _11 = OS_kernelData.iStackBase;
+  _12 = (unsigned int) _11;
+  _13 = OS_kernStackMpuSize[0];
+  _14 = (unsigned int) _13;
+  _15 = _14 | 302972929;
+  OS_CORTEXM_SetRegion (2, _12, _15);
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CheckMpuSupported ()
+{
+  struct os_mpu_s * _1;
+  unsigned int _2;
+  unsigned int _3;
+  struct os_mpu_s * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 3758157200B;
+  _2 ={v} _1->type;
+  _3 = _2 & 1;
+  if (_3 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_Panic (65);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = 3758157200B;
+  _5 ={v} _4->type;
+  _6 = _5 >> 8;
+  _7 = _6 & 248;
+  if (_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_Panic (65);
+
+  <bb 6> :
+  return;
+
+}
+
+

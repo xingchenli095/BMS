@@ -1,0 +1,92 @@
+
+Analyzing function: OS_MissingTerminateTask/0
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;;
+;; Loop 1
+;;  header 3, latch 4
+;;  depth 1, outer 0
+;;  nodes: 3 4
+;; 2 succs { 3 }
+;; 3 succs { 4 }
+;; 4 succs { 3 }
+
+Analyzing function body size: OS_MissingTerminateTask
+
+IPA function summary for OS_MissingTerminateTask/0 inlinable
+  global time:     21.000000
+  self size:       5
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:0.000000, time:0.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+    OS_UserShutdownOs/2 function body not available
+      loop depth: 0 freq:1.00 size: 2 time: 11
+       op0 is compile time invariant
+    OS_UserTaskReturn/1 function body not available
+      loop depth: 0 freq:1.00 size: 1 time: 10
+
+Symbol table:
+
+OS_UserShutdownOs/2 (OS_UserShutdownOs) @06d090e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_MissingTerminateTask/0 (107374 (estimated locally),1.00 per call) 
+  Calls: 
+OS_UserTaskReturn/1 (OS_UserTaskReturn) @06d09000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_MissingTerminateTask/0 (107374 (estimated locally),1.00 per call) 
+  Calls: 
+OS_MissingTerminateTask/0 (OS_MissingTerminateTask) @06bd61c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:107374 (estimated locally) body executed_once optimize_size
+  Called by: 
+  Calls: OS_UserShutdownOs/2 (107374 (estimated locally),1.00 per call) OS_UserTaskReturn/1 (107374 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_MissingTerminateTask ()
+{
+  <bb 2> [local count: 107374]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserTaskReturn ();
+  # DEBUG BEGIN_STMT
+  OS_UserShutdownOs (17);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG confusion => 0
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG confusion => NULL
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG confusion => NULL
+
+  <bb 4> [local count: 1073741824]:
+  goto <bb 3>; [100.00%]
+
+}
+
+

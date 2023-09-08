@@ -1,0 +1,251 @@
+
+Marking local functions: OS_InitDataArea
+
+
+Marking externally visible functions: OS_InitApplicationData
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nInterrupts/7 (OS_nInterrupts) @06c0bdc8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_isrTableBase/6 (OS_isrTableBase) @06c0bd38
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nTasks/5 (OS_nTasks) @06c0bcf0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_taskTableBase/4 (OS_taskTableBase) @06c0bc60
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nApps/3 (OS_nApps) @06c0bc18
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_appTableBase/2 (OS_appTableBase) @06c0bb88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_InitApplicationData/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_InitDataArea/1 (OS_InitDataArea) @06c2fee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: OS_InitApplicationData/0 OS_InitApplicationData/0 OS_InitApplicationData/0 
+  Calls: 
+OS_InitApplicationData/0 (OS_InitApplicationData) @06c2fd20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_appTableBase/2 (read)OS_nApps/3 (read)OS_taskTableBase/4 (read)OS_nTasks/5 (read)OS_isrTableBase/6 (read)OS_nInterrupts/7 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_InitDataArea/1 OS_InitDataArea/1 OS_InitDataArea/1 
+__attribute__((target ("general-regs-only")))
+OS_InitDataArea (os_uint8_t * dest, os_uint8_t * dlimit, const os_uint8_t * src, const os_uint8_t * slimit)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (dest != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (src != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = *src;
+  *dest = _1;
+  # DEBUG BEGIN_STMT
+  dest = dest + 1;
+  # DEBUG BEGIN_STMT
+  src = src + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (src < slimit)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *dest = 0;
+  # DEBUG BEGIN_STMT
+  dest = dest + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (dest < dlimit)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_InitApplicationData ()
+{
+  const struct os_isr_t * ip;
+  const struct os_task_t * tp;
+  const struct os_appcontext_t * ap;
+  const os_coreid_t myCoreId;
+  os_isrid_t i;
+  os_taskid_t t;
+  os_applicationid_t a;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  a = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = (unsigned int) a;
+  _3 = _2 * 64;
+  ap = OS_appTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = ap->dataStart;
+  _5 = ap->dataEnd;
+  _6 = ap->idataStart;
+  _7 = ap->idataEnd;
+  OS_InitDataArea (_4, _5, _6, _7);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  a.1_8 = a;
+  a = a.1_8 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_nApps.2_9 = OS_nApps;
+  if (a < OS_nApps.2_9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  t = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.3_10 = OS_taskTableBase;
+  _11 = (unsigned int) t;
+  _12 = _11 * 76;
+  tp = OS_taskTableBase.3_10 + _12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = tp->dataStart;
+  _14 = tp->dataEnd;
+  _15 = tp->idataStart;
+  _16 = tp->idataEnd;
+  OS_InitDataArea (_13, _14, _15, _16);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  t.4_17 = t;
+  t = t.4_17 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.5_18 = OS_nTasks;
+  if (t < OS_nTasks.5_18)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.6_19 = OS_isrTableBase;
+  _20 = (unsigned int) i;
+  _21 = _20 * 68;
+  ip = OS_isrTableBase.6_19 + _21;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = ip->dataStart;
+  _23 = ip->dataEnd;
+  _24 = ip->idataStart;
+  _25 = ip->idataEnd;
+  OS_InitDataArea (_22, _23, _24, _25);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.7_26 = i;
+  i = i.7_26 + 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.8_27 = OS_nInterrupts;
+  if (i < OS_nInterrupts.8_27)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  return;
+
+}
+
+

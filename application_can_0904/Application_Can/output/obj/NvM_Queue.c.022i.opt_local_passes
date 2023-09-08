@@ -1,0 +1,368 @@
+NvM_Queue_RemoveFirstItem ()
+{
+  short unsigned int NvM_Queue_IndexStandard.12_1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.12_1 = NvM_Queue_IndexStandard;
+  _2 = NvM_Queue_IndexStandard.12_1 + 65535;
+  NvM_Queue_IndexStandard = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+NvM_Queue_InsertStandard (uint16 BlockIndex, uint8 * DataAddress, void (*NvM_CurrentFunctionPtrType) (void) NvMRequestAsyncPtr)
+{
+  uint16 CurBlockId;
+  uint8 Priority;
+  boolean Found;
+  uint16 Index;
+  Std_ReturnType Result;
+  int _1;
+  short unsigned int NvM_Queue_IndexStandard.4_2;
+  short unsigned int _3;
+  short unsigned int NvM_Queue_IndexStandard.5_4;
+  short unsigned int NvM_Queue_CancelledStandardJobs.6_5;
+  int _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int NvM_GlobalBlockNumber.7_9;
+  unsigned char NvM_CurrentServiceId.8_10;
+  unsigned char _11;
+  unsigned char NvM_CurrentServiceId.9_12;
+  unsigned int _13;
+  unsigned int _14;
+  int _15;
+  short unsigned int Index.10_16;
+  int _17;
+  unsigned char _18;
+  unsigned int _19;
+  unsigned int _20;
+  int _21;
+  short unsigned int Index.11_22;
+  int _23;
+  int _24;
+  int _25;
+  Std_ReturnType _54;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Found_31 = 0;
+  # DEBUG Found => Found_31
+  # DEBUG BEGIN_STMT
+  Priority_32 = 0;
+  # DEBUG Priority => Priority_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result_36 = NvM_Queue_CheckFullStandard (BlockIndex_34(D));
+  # DEBUG Result => Result_36
+  # DEBUG BEGIN_STMT
+  if (Result_36 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockIndex_34(D);
+  NvM_AdminBlockTable[_1].NvMResult = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.4_2 = NvM_Queue_IndexStandard;
+  _3 = NvM_Queue_IndexStandard.4_2 + 1;
+  NvM_Queue_IndexStandard = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.5_4 = NvM_Queue_IndexStandard;
+  NvM_Queue_CancelledStandardJobs.6_5 = NvM_Queue_CancelledStandardJobs;
+  Index_39 = NvM_Queue_IndexStandard.5_4 - NvM_Queue_CancelledStandardJobs.6_5;
+  # DEBUG Index => Index_39
+  # DEBUG BEGIN_STMT
+  _6 = (int) BlockIndex_34(D);
+  Priority_40 = NvM_BlockDescriptorTable[_6].blockJobPriority;
+  # DEBUG Priority => Priority_40
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) Index_27;
+  _8 = _7 + 4294967295;
+  CurBlockId_41 = NvM_Queue_Standard[_8].NvMBlockDescriptorIndex;
+  # DEBUG CurBlockId => CurBlockId_41
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_34(D) == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  NvM_GlobalBlockNumber.7_9 = NvM_GlobalBlockNumber;
+  if (CurBlockId_41 == NvM_GlobalBlockNumber.7_9)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (CurBlockId_41 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  NvM_CurrentServiceId.8_10 = NvM_CurrentServiceId;
+  _11 = NvM_CurrentServiceId.8_10 + 244;
+  if (_11 <= 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  NvM_CurrentServiceId.9_12 = NvM_CurrentServiceId;
+  if (NvM_CurrentServiceId.9_12 == 25)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _13 = (unsigned int) Index_27;
+  _14 = _13 + 4294967295;
+  _15 = (int) Index_27;
+  NvM_Queue_Standard[_15] = NvM_Queue_Standard[_14];
+  # DEBUG BEGIN_STMT
+  Index.10_16 = Index_27;
+  Index_47 = Index.10_16 + 65535;
+  # DEBUG Index => Index_47
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (CurBlockId_41 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Found_45 = 1;
+  # DEBUG Found => Found_45
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _17 = (int) CurBlockId_41;
+  _18 = NvM_BlockDescriptorTable[_17].blockJobPriority;
+  if (Priority_40 < _18)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Found_44 = 1;
+  # DEBUG Found => Found_44
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _19 = (unsigned int) Index_27;
+  _20 = _19 + 4294967295;
+  _21 = (int) Index_27;
+  NvM_Queue_Standard[_21] = NvM_Queue_Standard[_20];
+  # DEBUG BEGIN_STMT
+  Index.11_22 = Index_27;
+  Index_43 = Index.11_22 + 65535;
+  # DEBUG Index => Index_43
+
+  <bb 15> :
+  # Index_27 = PHI <Index_39(3), Index_47(9), Index_27(11), Index_27(13), Index_43(14)>
+  # Found_28 = PHI <Found_31(3), Found_28(9), Found_45(11), Found_44(13), Found_28(14)>
+  # DEBUG Found => Found_28
+  # DEBUG Index => Index_27
+  # DEBUG BEGIN_STMT
+  if (Found_28 != 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (Index_27 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _23 = (int) Index_27;
+  NvM_Queue_Standard[_23].NvMBlockDescriptorIndex = BlockIndex_34(D);
+  # DEBUG BEGIN_STMT
+  _24 = (int) Index_27;
+  NvM_Queue_Standard[_24].NvMRequestAsyncPtr = NvMRequestAsyncPtr_49(D);
+  # DEBUG BEGIN_STMT
+  _25 = (int) Index_27;
+  NvM_Queue_Standard[_25].NvMTempRamBlockDataAddress = DataAddress_51(D);
+  # DEBUG BEGIN_STMT
+  Result_53 = 0;
+  # DEBUG Result => Result_53
+
+  <bb 18> :
+  # Result_26 = PHI <Result_36(2), Result_53(17)>
+  # DEBUG Result => Result_26
+  # DEBUG BEGIN_STMT
+  _54 = Result_26;
+  return _54;
+
+}
+
+
+NvM_Queue_InsertImmediate (uint16 BlockIndex, uint8 * DataAddress, void (*NvM_CurrentFunctionPtrType) (void) NvMRequestAsyncPtr)
+{
+  uint16 Index;
+  Std_ReturnType Result;
+  Std_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_1 = 1;
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  Index_2 = 0;
+  # DEBUG Index => Index_2
+  # DEBUG BEGIN_STMT
+  Result_8 = NvM_Queue_InsertStandard (BlockIndex_4(D), DataAddress_5(D), NvMRequestAsyncPtr_6(D));
+  # DEBUG Result => Result_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = Result_8;
+  return _9;
+
+}
+
+
+NvM_Queue_CheckFullStandard (NvM_BlockIdType BlockId)
+{
+  Std_ReturnType Result;
+  short unsigned int NvM_Queue_IndexStandard.1_1;
+  short unsigned int NvM_Queue_IndexStandard.2_2;
+  short unsigned int NvM_Queue_IndexStandard.3_3;
+  unsigned char _4;
+  uint8 _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_6 = 1;
+  # DEBUG Result => Result_6
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.1_1 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.1_1 == 65535)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result_12 = 0;
+  # DEBUG Result => Result_12
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.2_2 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.2_2 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Result_11 = 0;
+  # DEBUG Result => Result_11
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.3_3 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.3_3 <= 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (BlockId_8(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Result_10 = 0;
+  # DEBUG Result => Result_10
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _4 = NvM_AdminBlockTable[0].NvMResult;
+  if (_4 == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Result_9 = 0;
+  # DEBUG Result => Result_9
+
+  <bb 11> :
+  # Result_5 = PHI <Result_12(3), Result_11(5), Result_6(6), Result_10(8), Result_6(9), Result_9(10)>
+  # DEBUG Result => Result_5
+  # DEBUG BEGIN_STMT
+  _13 = Result_5;
+  return _13;
+
+}
+
+
+Nvm_Queue_CheckEmpty ()
+{
+  uint8 Result;
+  short unsigned int NvM_Queue_IndexStandard.0_1;
+  uint8 _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_3 = 1;
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.0_1 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.0_1 == 65535)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result_5 = 0;
+  # DEBUG Result => Result_5
+
+  <bb 4> :
+  # Result_2 = PHI <Result_3(2), Result_5(3)>
+  # DEBUG Result => Result_2
+  # DEBUG BEGIN_STMT
+  _6 = Result_2;
+  return _6;
+
+}
+
+

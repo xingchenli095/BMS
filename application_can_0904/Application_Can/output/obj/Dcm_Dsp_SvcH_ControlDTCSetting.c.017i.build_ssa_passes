@@ -1,0 +1,673 @@
+Dcm_ResetDTCSettingStatusOnSessionChange (Dcm_SesCtrlType NewSession)
+{
+  Dcm_ProtocolIndexType ProtocolIdx;
+  const struct Dcm_SidTabEntryConfigType * SidConfig;
+  boolean ReEnableControlDTC;
+  uint8_least sessionIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReEnableControlDTC = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsp_ControlDTCSetting_GetState ();
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SidConfig = 0B;
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _3 = (unsigned char) _2;
+  ProtocolIdx = _3 + 244;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_GetSidConfig (ProtocolIdx, 133, &SidConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SidConfig.7_4 = SidConfig;
+  _5 = SidConfig.7_4->NumSesCtrls;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  sessionIdx = 0;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SidConfig.8_6 = SidConfig;
+  _7 = SidConfig.8_6->SesCtrls;
+  _8 = _7 + sessionIdx;
+  _9 = *_8;
+  if (_9 == 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  SidConfig.9_10 = SidConfig;
+  _11 = SidConfig.9_10->SesCtrls;
+  _12 = _11 + sessionIdx;
+  _13 = *_12;
+  if (NewSession == _13)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReEnableControlDTC = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sessionIdx = sessionIdx + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SidConfig.10_14 = SidConfig;
+  _15 = SidConfig.10_14->NumSesCtrls;
+  _16 = (long unsigned int) _15;
+  if (sessionIdx < _16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReEnableControlDTC = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (ReEnableControlDTC == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_ReEnable ();
+
+  <bb 13> :
+  SidConfig = {CLOBBER};
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_SetState (Dcm_DemClientIdType DemClientId, boolean CallModeSwitch, Dcm_Dsp_DtcSettingControlType ControlDTCSettingState)
+{
+  Dcm_ReturnControlDTCSettingType DTCSettingStatus;
+  Dcm_ReturnControlDTCSettingType D.6954;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DTCSettingStatus = 0;
+  # DEBUG BEGIN_STMT
+  if (ControlDTCSettingState == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTCSettingStatus = Dcm_Dsp_DemFacade_ControlDTCSetting_Disable (DemClientId);
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDtcStatus = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ReEnableDemClientId = DemClientId;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DTCSettingStatus = Dcm_Dsp_DemFacade_ControlDTCSetting_Enable (DemClientId);
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDtcStatus = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (CallModeSwitch == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  if (DTCSettingStatus == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ControlDTCSettingState == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmControlDTCSetting (0);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmControlDTCSetting (1);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.6954 = DTCSettingStatus;
+  return D.6954;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType D.6926;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus = 30;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDTCSetting_SubServiceHandler.1_1 = Dcm_ControlDTCSetting_SubServiceHandler;
+  ServiceProcessStatus = Dcm_ControlDTCSetting_SubServiceHandler.1_1 (OpStatus, pMsgContext);
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus = 26;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.6926 = ServiceProcessStatus;
+  return D.6926;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_SvcStart (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType D.6922;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus = 30;
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsp_ExtractSubServiceHandler (OpStatus, pMsgContext);
+  Dcm_ControlDTCSetting_SubServiceHandler = _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDTCSetting_SubServiceHandler.0_2 = Dcm_ControlDTCSetting_SubServiceHandler;
+  ServiceProcessStatus = Dcm_ControlDTCSetting_SubServiceHandler.0_2 (OpStatus, pMsgContext);
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus = 26;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.6922 = ServiceProcessStatus;
+  return D.6922;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NewSession == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsp_ControlDTCSetting_GetState ();
+  if (_1 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_ReEnable ();
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_ResetDTCSettingStatusOnSessionChange (NewSession);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_MainFunction ()
+{
+  Dcm_NegativeResponseCodeType nrc;
+  boolean ModeRuleFailed;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ModeRuleFailed = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DspModeRuleDTCFunction.3_1 = Dcm_DspModeRuleDTCFunction;
+  if (Dcm_DspModeRuleDTCFunction.3_1 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DspModeRuleDTCFunction.4_2 = Dcm_DspModeRuleDTCFunction;
+  Dcm_DspModeRuleDTCFunction.4_2 (&nrc);
+  # DEBUG BEGIN_STMT
+  nrc.5_3 = nrc;
+  if (nrc.5_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ModeRuleFailed = 1;
+
+  <bb 5> :
+  nrc = {CLOBBER};
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsp_ControlDTCSetting_GetState ();
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  if (ModeRuleFailed == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  Dcm_ReAttemptEnableDTCSetting.6_5 = Dcm_ReAttemptEnableDTCSetting;
+  if (Dcm_ReAttemptEnableDTCSetting.6_5 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_ReEnable ();
+
+  <bb 10> :
+  return;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_GetState ()
+{
+  Dcm_Dsp_DtcSettingControlType ControlDtcStatus;
+  Dcm_Dsp_DtcSettingControlType D.6972;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ControlDtcStatus = Dcm_ControlDtcStatus;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6972 = ControlDtcStatus;
+  return D.6972;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_ReEnable ()
+{
+  Std_ReturnType MutexLockState;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  MutexLockState = 31;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MutexLockState = Dcm_Internal_GetLock (&Dcm_ControlDTCSetting_Lock);
+  # DEBUG BEGIN_STMT
+  if (MutexLockState == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ReEnableDemClientId.2_1 = Dcm_ReEnableDemClientId;
+  Dcm_Dsp_ControlDTCSetting_SetState (Dcm_ReEnableDemClientId.2_1, 0, 1);
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDtcStatus = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_ReAttemptEnableDTCSetting = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Internal_ReleaseLock (&Dcm_ControlDTCSetting_Lock);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ReAttemptEnableDTCSetting = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ControlDTCSettingState_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDTCSetting_Lock = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDtcStatus = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_ReAttemptEnableDTCSetting = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ControlDTCSetting_SubServiceHandler = 0B;
+  # DEBUG BEGIN_STMT
+  Dcm_ReEnableDemClientId = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_Off_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_ReturnControlDTCSettingType DTCSettingStatus;
+  Std_ReturnType MutexLockState;
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType D.6967;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 30;
+  # DEBUG BEGIN_STMT
+  MutexLockState = 31;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext->dcmRxPduId;
+  _2 = pMsgContext->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG BEGIN_STMT
+  DemClientId = Dcm_Dsl_GetDemClientId (ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  if (OpStatus == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext->resData;
+  *_4 = 2;
+  # DEBUG BEGIN_STMT
+  pMsgContext->resDataLen = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  MutexLockState = Dcm_Internal_GetLock (&Dcm_ControlDTCSetting_Lock);
+  # DEBUG BEGIN_STMT
+  if (MutexLockState == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DTCSettingStatus = Dcm_Dsp_ControlDTCSetting_SetState (DemClientId, 1, 0);
+  # DEBUG BEGIN_STMT
+  Dcm_Internal_ReleaseLock (&Dcm_ControlDTCSetting_Lock);
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 10;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext, 16);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 10;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6967 = serviceProcessStatus;
+  return D.6967;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_On_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_ReturnControlDTCSettingType DTCSettingStatus;
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType MutexLockState;
+  Std_ReturnType D.6939;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  MutexLockState = 31;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 30;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext->dcmRxPduId;
+  _2 = pMsgContext->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG BEGIN_STMT
+  DemClientId = Dcm_Dsl_GetDemClientId (ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  if (OpStatus == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext->resData;
+  *_4 = 1;
+  # DEBUG BEGIN_STMT
+  pMsgContext->resDataLen = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  MutexLockState = Dcm_Internal_GetLock (&Dcm_ControlDTCSetting_Lock);
+  # DEBUG BEGIN_STMT
+  if (MutexLockState == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DTCSettingStatus = Dcm_Dsp_ControlDTCSetting_SetState (DemClientId, 1, 1);
+  # DEBUG BEGIN_STMT
+  Dcm_Internal_ReleaseLock (&Dcm_ControlDTCSetting_Lock);
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (DTCSettingStatus == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 10;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext, 16);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 10;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6939 = serviceProcessStatus;
+  return D.6939;
+
+}
+
+
+Dcm_Dsp_ControlDTCSetting_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType D.6918;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 30;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus;
+  switch (_1) <default: <L5> [INV], case 0: <L0> [INV], case 1 ... 2: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext->reqDataLen;
+  if (_2 != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext, 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = Dcm_Dsp_ControlDTCSetting_SvcStart (OpStatus, pMsgContext);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = Dcm_Dsp_ControlDTCSetting_SvcCont (OpStatus, pMsgContext);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus = 26;
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6918 = serviceProcessStatus;
+  return D.6918;
+
+}
+
+

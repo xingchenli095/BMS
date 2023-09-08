@@ -1,0 +1,117 @@
+Can_ErrorIrqCallback (uint8 u8Instance, Flexcan_Ip_EventType event, uint32 u32ErrStatus, const struct Flexcan_Ip_StateType * driverState)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (event_2(D) == 11)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Can_ProcessBusOffInterrupt (u8Instance_4(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 4> :
+  return;
+
+}
+
+
+Can_CommonIrqCallback (uint8 u8Instance, Flexcan_Ip_EventType event, uint32 u32buffIdx, const struct Flexcan_Ip_StateType * driverState)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (u32buffIdx_8(D) == 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = driverState_10(D)->enhancedFifoOutput.isPolling;
+  if (_1 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  switch (event_11(D)) <default: <L19> [INV], case 5: <L2> [INV], case 7: <L2> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned char) event_11(D);
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), _2, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = driverState_10(D)->mbs[u32buffIdx_8(D)].isPolling;
+  if (_3 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  switch (event_11(D)) <default: <L19> [INV], case 0: <L10> [INV], case 1: <L11> [INV], case 2: <L12> [INV], case 3: <L13> [INV], case 4: <L9> [INV]>
+
+  <bb 8> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned char) u32buffIdx_8(D);
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), _4, 3);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned char) u32buffIdx_8(D);
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), _5, 0);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned char) u32buffIdx_8(D);
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), _6, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), 6, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  Can_ProcessMesgBufferCommonInterrupt (u8Instance_12(D), 7, 1);
+  # DEBUG BEGIN_STMT
+
+  <bb 13> :
+<L19>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

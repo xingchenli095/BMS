@@ -1,0 +1,265 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StartTaskIntLockTiming
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_ExceedExecTime/4 (OS_ExceedExecTime) @06c0c000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartTaskIntLockTiming/0 
+  Calls: 
+OS_GetTimeUsed/3 (OS_GetTimeUsed) @06c0cee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartTaskIntLockTiming/0 
+  Calls: 
+OS_executionTimer/2 (OS_executionTimer) @06becdc8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06becd80
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartTaskIntLockTiming/0 (addr)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (write)OS_StartTaskIntLockTiming/0 (read)OS_StartTaskIntLockTiming/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_StartTaskIntLockTiming/0 (OS_StartTaskIntLockTiming) @06c0cc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (addr)OS_executionTimer/2 (read)OS_executionTimer/2 (read)OS_kernelData/1 (read)OS_kernelData/1 (write)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (read)OS_executionTimer/2 (read)OS_executionTimer/2 (read)OS_executionTimer/2 (read)OS_executionTimer/2 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_ExceedExecTime/4 OS_GetTimeUsed/3 
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_StartTaskIntLockTiming (const struct os_task_t * tp, os_intlocktype_t locktype)
+{
+  os_tick_t OS_hwtStartDelta;
+  os_tick_t remaining;
+  os_tick_t used;
+  os_tick_t locktime;
+  struct os_taskaccounting_t * acc;
+  struct os_kerneldata_t * const kernel_data;
+  const os_tick_t iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  acc = tp->accounting;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (locktype == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.0 = tp->osLockTime;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0 = tp->allLockTime;
+
+  <bb 5> :
+  locktime = iftmp.0;
+  # DEBUG BEGIN_STMT
+  if (locktime != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = OS_executionTimer[0];
+  _2 = _1->driver;
+  _3 = _2->hwtStop;
+  _4 = OS_executionTimer[0];
+  _3 (_4);
+  # DEBUG BEGIN_STMT
+  used = OS_GetTimeUsed ();
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.etUsed;
+  _6 = used + _5;
+  OS_kernelData.accounting.etUsed = _6;
+  # DEBUG BEGIN_STMT
+  _7 = tp->flags;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 64;
+  if (_9 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _10 = tp->accounting;
+  _11 = _10->etMax;
+  _12 = OS_kernelData.accounting.etUsed;
+  if (_11 < _12)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = tp->accounting;
+  _14 = OS_kernelData.accounting.etUsed;
+  _13->etMax = _14;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = OS_kernelData.accounting.etLimit;
+  if (_15 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _16 = OS_kernelData.accounting.etUsed;
+  _17 = OS_kernelData.accounting.etLimit;
+  if (_16 >= _17)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+  goto <bb 24>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _18 = OS_kernelData.accounting.etLimit;
+  if (_18 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  remaining = 4294967295;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _19 = OS_kernelData.accounting.etLimit;
+  _20 = OS_kernelData.accounting.etUsed;
+  remaining = _19 - _20;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (locktype == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _21 = OS_kernelData.accounting.etType;
+  acc->osSaveType = _21;
+  # DEBUG BEGIN_STMT
+  _22 = OS_kernelData.accounting.etUsed;
+  acc->osSaveUsed = _22;
+  # DEBUG BEGIN_STMT
+  _23 = OS_kernelData.accounting.etLimit;
+  acc->osSaveLimit = _23;
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _24 = OS_kernelData.accounting.etType;
+  acc->allSaveType = _24;
+  # DEBUG BEGIN_STMT
+  _25 = OS_kernelData.accounting.etUsed;
+  acc->allSaveUsed = _25;
+  # DEBUG BEGIN_STMT
+  _26 = OS_kernelData.accounting.etLimit;
+  acc->allSaveLimit = _26;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etUsed = 0;
+  # DEBUG BEGIN_STMT
+  if (locktime >= remaining)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etLimit = remaining;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etLimit = locktime;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.inFunction = 1;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etType = 3;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_hwtStartDelta = OS_kernelData.accounting.etLimit;
+  # DEBUG BEGIN_STMT
+  _27 = OS_executionTimer[0];
+  _28 = _27->maxDelta;
+  if (OS_hwtStartDelta > _28)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _29 = OS_executionTimer[0];
+  OS_hwtStartDelta = _29->defDelta;
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _30 = OS_executionTimer[0];
+  _31 = _30->driver;
+  _32 = _31->hwtStart;
+  _33 = OS_executionTimer[0];
+  _34 = OS_kernelData.accounting.frc;
+  _32 (_33, _34, OS_hwtStartDelta);
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

@@ -1,0 +1,136 @@
+__attribute__((target ("general-regs-only")))
+OS_EnqueueLink (os_tasklink_t tAct, os_prio_t prio)
+{
+  os_tasklink_t lAct;
+  os_tasklink_t qAct;
+  os_tasklink_t * const taskActivations;
+  unsigned int _1;
+  unsigned int _2;
+  os_tasklink_t * _3;
+  int _4;
+  int _5;
+  const struct os_task_t * _6;
+  short unsigned int _7;
+  int _8;
+  int _9;
+  const struct os_task_t * _10;
+  struct os_taskdynamic_t * _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  int _15;
+  const struct os_task_t * _16;
+  struct os_taskdynamic_t * _17;
+  short unsigned int _18;
+  int _19;
+  const struct os_task_t * _20;
+  unsigned char _21;
+  int _22;
+  unsigned int _23;
+  unsigned int _24;
+  os_tasklink_t * _25;
+  unsigned int _26;
+  unsigned int _27;
+  os_tasklink_t * _28;
+  short unsigned int _29;
+  int _30;
+  const struct os_task_t * _31;
+  int iftmp.0_34;
+  int iftmp.0_39;
+  int iftmp.0_40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations_35 = &OS_taskActivations;
+  # DEBUG taskActivations => taskActivations_35
+  # DEBUG BEGIN_STMT
+  qAct_37 = OS_taskActivations[0];
+  # DEBUG qAct => qAct_37
+  # DEBUG BEGIN_STMT
+  lAct_38 = 0;
+  # DEBUG lAct => lAct_38
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  lAct_42 = qAct_32;
+  # DEBUG lAct => lAct_42
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) qAct_32;
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  qAct_43 = *_3;
+  # DEBUG qAct => qAct_43
+
+  <bb 4> :
+  # qAct_32 = PHI <qAct_37(2), qAct_43(3)>
+  # lAct_33 = PHI <lAct_38(2), lAct_42(3)>
+  # DEBUG lAct => lAct_33
+  # DEBUG qAct => qAct_32
+  # DEBUG BEGIN_STMT
+  if (qAct_32 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  _4 = (int) qAct_32;
+  _5 = (int) qAct_32;
+  _6 = OS_taskPtrs[_5];
+  _7 = _6->linkBase;
+  _8 = (int) _7;
+  _9 = (int) qAct_32;
+  _10 = OS_taskPtrs[_9];
+  _11 = _10->dynamic;
+  _12 = _11->cAct;
+  _13 = (int) _12;
+  _14 = _8 + _13;
+  if (_4 == _14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  _15 = (int) qAct_32;
+  _16 = OS_taskPtrs[_15];
+  _17 = _16->dynamic;
+  _18 = _17->prio;
+  iftmp.0_40 = (int) _18;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  _19 = (int) qAct_32;
+  _20 = OS_taskPtrs[_19];
+  _21 = _20->queuePrio;
+  iftmp.0_39 = (int) _21;
+
+  <bb 8> :
+  # iftmp.0_34 = PHI <iftmp.0_40(6), iftmp.0_39(7)>
+  _22 = (int) prio_41(D);
+  if (iftmp.0_34 >= _22)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _23 = (unsigned int) lAct_33;
+  _24 = _23 * 2;
+  _25 = &OS_taskActivations + _24;
+  *_25 = tAct_44(D);
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned int) tAct_44(D);
+  _27 = _26 * 2;
+  _28 = &OS_taskActivations + _27;
+  *_28 = qAct_32;
+  # DEBUG BEGIN_STMT
+  _29 = OS_taskActivations[0];
+  _30 = (int) _29;
+  _31 = OS_taskPtrs[_30];
+  OS_kernelData.taskQueueHead = _31;
+  return;
+
+}
+
+

@@ -1,0 +1,179 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: E2EXf_Inv_NoCheckOutOfPlace_Transformer E2EXf_Inv_NoCheckInPlace_Transformer
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+E2EXf_Inv_CopyOutOfPlaceBuffer/5 (E2EXf_Inv_CopyOutOfPlaceBuffer) @06ad2e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: E2EXf_Inv_NoCheckOutOfPlace_Transformer/1 
+  Calls: 
+E2EXf_Inv_OutOfPlaceTransPreCondCheck/4 (E2EXf_Inv_OutOfPlaceTransPreCondCheck) @06ad2d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: E2EXf_Inv_NoCheckOutOfPlace_Transformer/1 
+  Calls: 
+E2EXf_Inv_InPlaceShiftUpperHeaderToRight/3 (E2EXf_Inv_InPlaceShiftUpperHeaderToRight) @06ad2b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: E2EXf_Inv_NoCheckInPlace_Transformer/0 
+  Calls: 
+E2EXf_Inv_InPlaceTransPreCondCheck/2 (E2EXf_Inv_InPlaceTransPreCondCheck) @06ad2a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: E2EXf_Inv_NoCheckInPlace_Transformer/0 
+  Calls: 
+E2EXf_Inv_NoCheckOutOfPlace_Transformer/1 (E2EXf_Inv_NoCheckOutOfPlace_Transformer) @06ad28c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: E2EXf_Inv_CopyOutOfPlaceBuffer/5 E2EXf_Inv_OutOfPlaceTransPreCondCheck/4 
+E2EXf_Inv_NoCheckInPlace_Transformer/0 (E2EXf_Inv_NoCheckInPlace_Transformer) @06ad2700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: E2EXf_Inv_InPlaceShiftUpperHeaderToRight/3 E2EXf_Inv_InPlaceTransPreCondCheck/2 
+E2EXf_Inv_NoCheckOutOfPlace_Transformer (uint8 * BufferPtr, uint16 * BufferLengthPtr, const uint8 * InputBufferPtr, uint16 InputBufferLength, const struct E2EXf_NoCheck_CheckCfgType * ConfigPtr, E2EXf_StateType E2EXf_PartitionInitState)
+{
+  const struct E2EXf_PXXConfigType * const PXXConfigPtr;
+  Std_ReturnType RetVal;
+  uint8 D.5499;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 255;
+  # DEBUG BEGIN_STMT
+  if (E2EXf_PartitionInitState == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  PXXConfigPtr = &ConfigPtr->PXXConfig;
+  # DEBUG BEGIN_STMT
+  RetVal = E2EXf_Inv_OutOfPlaceTransPreCondCheck (BufferPtr, BufferLengthPtr, InputBufferPtr, InputBufferLength, PXXConfigPtr);
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  E2EXf_Inv_CopyOutOfPlaceBuffer (BufferPtr, InputBufferPtr, InputBufferLength, PXXConfigPtr);
+  # DEBUG BEGIN_STMT
+  if (InputBufferLength == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *BufferLengthPtr = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr->HeaderLength;
+  _2 = _1 / 8;
+  _3 = InputBufferLength - _2;
+  *BufferLengthPtr = _3;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.5499 = RetVal;
+  return D.5499;
+
+}
+
+
+E2EXf_Inv_NoCheckInPlace_Transformer (uint8 * BufferPtr, uint16 * BufferLengthPtr, uint16 InputBufferLength, const struct E2EXf_NoCheck_CheckCfgType * ConfigPtr, E2EXf_StateType E2EXf_PartitionInitState)
+{
+  const struct E2EXf_PXXConfigType * const PXXConfigPtr;
+  Std_ReturnType RetVal;
+  uint8 D.5490;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 255;
+  # DEBUG BEGIN_STMT
+  if (E2EXf_PartitionInitState == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  PXXConfigPtr = &ConfigPtr->PXXConfig;
+  # DEBUG BEGIN_STMT
+  RetVal = E2EXf_Inv_InPlaceTransPreCondCheck (BufferPtr, BufferLengthPtr, InputBufferLength, PXXConfigPtr);
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  E2EXf_Inv_InPlaceShiftUpperHeaderToRight (BufferPtr, PXXConfigPtr);
+  # DEBUG BEGIN_STMT
+  if (InputBufferLength == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *BufferLengthPtr = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr->HeaderLength;
+  _2 = _1 / 8;
+  _3 = InputBufferLength - _2;
+  *BufferLengthPtr = _3;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.5490 = RetVal;
+  return D.5490;
+
+}
+
+

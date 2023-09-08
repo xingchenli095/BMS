@@ -1,0 +1,184 @@
+__attribute__((target ("general-regs-only")))
+OS_KernGetApplicationId ()
+{
+  os_applicationid_t a;
+  unsigned char _1;
+  const os_callermask_t * OS_permittedContext.2_2;
+  short unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  const os_callermask_t * OS_permittedContext.3_6;
+  short unsigned int _7;
+  unsigned char _8;
+  int _9;
+  int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  const os_callermask_t * OS_permittedContext.4_13;
+  short unsigned int _14;
+  unsigned char _15;
+  int _16;
+  int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  unsigned int OS_configMode.5_20;
+  unsigned int _21;
+  unsigned char OS_iecMode.6_22;
+  unsigned char _23;
+  const struct os_task_t * _24;
+  struct os_taskdynamic_t * _25;
+  short unsigned int _26;
+  short unsigned int _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  unsigned int OS_configMode.7_30;
+  unsigned int _31;
+  _Bool iftmp.0_33;
+  int iftmp.1_34;
+  _Bool iftmp.0_38;
+  int iftmp.1_39;
+  int iftmp.1_40;
+  _Bool iftmp.0_41;
+  os_applicationid_t _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  a_36 = 255;
+  # DEBUG a => a_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_2 = OS_permittedContext;
+  _3 = *OS_permittedContext.2_2;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 1024;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_6 = OS_permittedContext;
+  _7 = *OS_permittedContext.3_6;
+  _8 = OS_kernelData.errorStatus.calledFrom;
+  _9 = (int) _8;
+  _10 = 1 << _9;
+  _11 = (short unsigned int) _10;
+  _12 = _7 & _11;
+  if (_12 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1_39 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1_40 = 0;
+
+  <bb 7> :
+  # iftmp.1_34 = PHI <iftmp.1_39(5), iftmp.1_40(6)>
+  iftmp.0_41 = iftmp.1_34 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_13 = OS_permittedContext;
+  _14 = *OS_permittedContext.4_13;
+  _15 = OS_kernelData.inFunction;
+  _16 = (int) _15;
+  _17 = 1 << _16;
+  _18 = (short unsigned int) _17;
+  _19 = _14 & _18;
+  iftmp.0_38 = _19 == 0;
+
+  <bb 9> :
+  # iftmp.0_33 = PHI <iftmp.0_41(7), iftmp.0_38(8)>
+  if (iftmp.0_33 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_20 = OS_configMode;
+  _21 = OS_configMode.5_20 & 1024;
+  if (_21 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_GetApplicationId, 12, 0B);
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_22 = OS_iecMode;
+  if (OS_iecMode.6_22 > 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 13> :
+  _23 = OS_kernelData.inFunction;
+  if (_23 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _24 = OS_kernelData.taskCurrent;
+  _25 = _24->dynamic;
+  _26 = BIT_FIELD_REF <MEM[(void *)_25], 16, 160>;
+  _27 = _26;
+  if (_27 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  _28 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _29 = _28;
+  if (_29 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.7_30 = OS_configMode;
+  _31 = OS_configMode.7_30 & 1024;
+  if (_31 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_GetApplicationId, 55, 0B);
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  a_44 = OS_DoGetApplicationId ();
+  # DEBUG a => a_44
+
+  <bb 19> :
+  # a_32 = PHI <a_36(11), a_36(17), a_44(18), a_36(10), a_36(16)>
+  # DEBUG a => a_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _46 = a_32;
+  return _46;
+
+}
+
+

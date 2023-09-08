@@ -1,0 +1,35 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalClearPendingInterrupt (const struct os_isr_t * isr)
+{
+  os_errorresult_t result;
+  os_errorresult_t D.7414;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  _1 = isr->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = &isr->arch;
+  OS_CORTEXM_IntClearIsr (_3);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.7414 = result;
+  return D.7414;
+
+}
+
+

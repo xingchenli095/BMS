@@ -1,0 +1,1074 @@
+
+Marking local functions: Dcm_HsmFindEvToDispatch Dcm_HsmInitSubstates Dcm_HsmTran Dcm_HsmDelFromQueue
+
+
+Marking externally visible functions: Dcm_HsmMainInst Dcm_HsmMain Dcm_HsmEmitToSelfInst Dcm_HsmEmitInst Dcm_HsmInitInst Dcm_HsmInit
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/11 (SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06ccfe00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_HsmFindEvToDispatch/9 Dcm_HsmMainInst/5 Dcm_HsmEmitToSelfInst/3 Dcm_HsmEmitInst/2 
+  Calls: 
+SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/10 (SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0) @06ccfd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_HsmFindEvToDispatch/9 Dcm_HsmMainInst/5 Dcm_HsmEmitToSelfInst/3 Dcm_HsmEmitInst/2 
+  Calls: 
+Dcm_HsmFindEvToDispatch/9 (Dcm_HsmFindEvToDispatch) @06ccf8c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: Dcm_HsmMainInst/5 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/11 Dcm_HsmDelFromQueue/6 SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/10 
+Dcm_HsmInitSubstates/8 (Dcm_HsmInitSubstates) @06ccf620
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: Dcm_HsmTran/7 Dcm_HsmInitInst/1 
+  Calls: 
+   Indirect call
+Dcm_HsmTran/7 (Dcm_HsmTran) @06ccf460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: Dcm_HsmMainInst/5 
+  Calls: Dcm_HsmInitSubstates/8 
+   Indirect call
+   Indirect call
+   Indirect call
+Dcm_HsmDelFromQueue/6 (Dcm_HsmDelFromQueue) @06ccf1c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: Dcm_HsmFindEvToDispatch/9 Dcm_HsmMainInst/5 
+  Calls: 
+Dcm_HsmMainInst/5 (Dcm_HsmMainInst) @06aa2ee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: Dcm_HsmMain/4 
+  Calls: Dcm_HsmFindEvToDispatch/9 SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/11 Dcm_HsmDelFromQueue/6 SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/10 Dcm_HsmTran/7 
+   Indirect call
+Dcm_HsmMain/4 (Dcm_HsmMain) @06aa2c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Dcm_HsmMainInst/5 
+Dcm_HsmEmitToSelfInst/3 (Dcm_HsmEmitToSelfInst) @06aa2a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/11 SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/10 
+Dcm_HsmEmitInst/2 (Dcm_HsmEmitInst) @06aa27e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/11 SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0/10 
+Dcm_HsmInitInst/1 (Dcm_HsmInitInst) @06aa2540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: Dcm_HsmInit/0 
+  Calls: Dcm_HsmInitSubstates/8 
+   Indirect call
+Dcm_HsmInit/0 (Dcm_HsmInit) @06aa2380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Dcm_HsmInitInst/1 
+Dcm_HsmFindEvToDispatch (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, Dcm_HsmEventType * const event, uint8 * const queueEntryNo)
+{
+  Dcm_HsmEventMaskType eventMask;
+  uint8_least entryNo;
+  Dcm_HsmEventType ev;
+  boolean foundEventToDispatch;
+  const struct Dcm_HsmStateType * const state;
+  struct Dcm_HsmInstType * const inst;
+  boolean D.6836;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  _4 = sc->states;
+  _5 = inst->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  state = _4 + _7;
+  # DEBUG BEGIN_STMT
+  foundEventToDispatch = 0;
+  # DEBUG BEGIN_STMT
+  ev = 255;
+  # DEBUG BEGIN_STMT
+  entryNo = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = sc->events;
+  _9 = (int) instIdx;
+  _10 = sc->evQueueSize;
+  _11 = (int) _10;
+  _12 = _9 * _11;
+  _13 = (unsigned char) entryNo;
+  _14 = (int) _13;
+  _15 = _12 + _14;
+  _16 = (sizetype) _15;
+  _17 = _8 + _16;
+  ev = *_17;
+  # DEBUG BEGIN_STMT
+  _18 = (int) ev;
+  eventMask = 1 << _18;
+  # DEBUG BEGIN_STMT
+  _19 = state->ignoredEventMask;
+  _20 = eventMask & _19;
+  if (_20 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _21 = (unsigned char) entryNo;
+  Dcm_HsmDelFromQueue (sc, instIdx, _21);
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _22 = state->actionEventMask;
+  _23 = eventMask & _22;
+  if (_23 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _24 = inst->evQueueInsertEvNo;
+  _25 = (long unsigned int) _24;
+  if (entryNo >= _25)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned char) entryNo;
+  _27 = _26 + 1;
+  inst->evQueueInsertEvNo = _27;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  foundEventToDispatch = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  entryNo = entryNo + 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _28 = inst->evQueueFill;
+  _29 = (long unsigned int) _28;
+  if (entryNo < _29)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  if (foundEventToDispatch == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *event = ev;
+  # DEBUG BEGIN_STMT
+  _30 = (unsigned char) entryNo;
+  *queueEntryNo = _30;
+  # DEBUG BEGIN_STMT
+  D.6836 = foundEventToDispatch;
+  return D.6836;
+
+}
+
+
+Dcm_HsmInitSubstates (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  const struct Dcm_HsmStateType * state;
+  Dcm_HsmStateIdxType stateIdx;
+  struct Dcm_HsmInstType * const inst;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  _4 = sc->states;
+  _5 = inst->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  _8 = _4 + _7;
+  stateIdx = _8->initId;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _9 = sc->states;
+  _10 = (unsigned int) stateIdx;
+  _11 = _10 * 20;
+  state = _9 + _11;
+  # DEBUG BEGIN_STMT
+  inst->stateId = stateIdx;
+  # DEBUG BEGIN_STMT
+  _12 = state->entryFnIdx;
+  if (_12 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = sc->actions;
+  _14 = state->entryFnIdx;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 4;
+  _17 = _13 + _16;
+  _18 = *_17;
+  _18 (instIdx);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  stateIdx = state->initId;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (stateIdx != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_HsmTran (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const struct Dcm_HsmTranType * const tran)
+{
+  uint8_least i;
+  struct Dcm_HsmInstType * const inst;
+  const struct Dcm_HsmStateType * state;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = tran->target;
+  if (_1 == 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = tran->numSteps;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = sc->actions;
+  _4 = tran->steps;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 4;
+  _8 = _3 + _7;
+  _9 = *_8;
+  _9 (instIdx);
+  goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 = sc->instances;
+  _11 = (unsigned int) instIdx;
+  _12 = _11 * 4;
+  inst = _10 + _12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _13 = sc->states;
+  _14 = inst->stateId;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 20;
+  state = _13 + _16;
+  # DEBUG BEGIN_STMT
+  _17 = state->exitFnIdx;
+  if (_17 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = sc->actions;
+  _19 = state->exitFnIdx;
+  _20 = (unsigned int) _19;
+  _21 = _20 * 4;
+  _22 = _18 + _21;
+  _23 = *_22;
+  _23 (instIdx);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _24 = state->parentId;
+  inst->stateId = _24;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _25 = inst->stateId;
+  _26 = inst->sourceId;
+  if (_25 != _26)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _27 = sc->actions;
+  _28 = tran->steps;
+  _29 = _28 + i;
+  _30 = *_29;
+  _31 = (unsigned int) _30;
+  _32 = _31 * 4;
+  _33 = _27 + _32;
+  _34 = *_33;
+  _34 (instIdx);
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _35 = tran->numSteps;
+  _36 = (long unsigned int) _35;
+  if (i < _36)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _37 = tran->target;
+  inst->stateId = _37;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitSubstates (sc, instIdx);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDelFromQueue (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const uint8 queueEntryNo)
+{
+  uint8_least j;
+  struct Dcm_HsmInstType * const inst;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  j = (uint8_least) queueEntryNo;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = sc->events;
+  _5 = (int) instIdx;
+  _6 = sc->evQueueSize;
+  _7 = (int) _6;
+  _8 = _5 * _7;
+  _9 = (unsigned char) j;
+  _10 = _9 + 1;
+  _11 = (int) _10;
+  _12 = _8 + _11;
+  _13 = (sizetype) _12;
+  _14 = _4 + _13;
+  _15 = sc->events;
+  _16 = (int) instIdx;
+  _17 = sc->evQueueSize;
+  _18 = (int) _17;
+  _19 = _16 * _18;
+  _20 = (unsigned char) j;
+  _21 = (int) _20;
+  _22 = _19 + _21;
+  _23 = (sizetype) _22;
+  _24 = _15 + _23;
+  _25 = *_14;
+  *_24 = _25;
+  # DEBUG BEGIN_STMT
+  j = j + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _26 = j + 1;
+  _27 = inst->evQueueFill;
+  _28 = (long unsigned int) _27;
+  if (_26 < _28)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _29 = inst->evQueueFill;
+  _30 = _29 + 255;
+  inst->evQueueFill = _30;
+  # DEBUG BEGIN_STMT
+  _31 = inst->evQueueInsertEvNo;
+  if (queueEntryNo < _31)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _32 = inst->evQueueInsertEvNo;
+  _33 = _32 + 255;
+  inst->evQueueInsertEvNo = _33;
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_HsmMainInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  boolean guardCond;
+  const struct Dcm_HsmStateType * const state;
+  uint8_least i;
+  boolean triggerFound;
+  const struct Dcm_HsmTranType * trans;
+  uint8 queueEntryNo;
+  Dcm_HsmEventType event;
+  boolean transitionFired;
+  struct Dcm_HsmInstType * const inst;
+  boolean D.6815;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  transitionFired = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inst->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  trans = 0B;
+  # DEBUG BEGIN_STMT
+  triggerFound = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = inst->stateId;
+  inst->sourceId = _4;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = sc->states;
+  _6 = inst->sourceId;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 20;
+  state = _5 + _8;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = state->trans;
+  _10 = i * 8;
+  trans = _9 + _10;
+  # DEBUG BEGIN_STMT
+  _11 = trans->event;
+  event.1_12 = event;
+  if (_11 == event.1_12)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  guardCond = 1;
+  # DEBUG BEGIN_STMT
+  _13 = trans->guardFnIdx;
+  if (_13 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _14 = sc->guards;
+  _15 = trans->guardFnIdx;
+  _16 = (unsigned int) _15;
+  _17 = _16 * 4;
+  _18 = _14 + _17;
+  _19 = *_18;
+  guardCond = _19 (instIdx);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (guardCond == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  triggerFound = 1;
+  # DEBUG BEGIN_STMT
+  transitionFired = 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = state->numTrans;
+  _21 = (long unsigned int) _20;
+  if (i < _21)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  if (triggerFound == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _22 = state->parentId;
+  inst->sourceId = _22;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  _23 = inst->sourceId;
+  if (_23 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmTran (sc, instIdx, trans);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  queueEntryNo.2_24 = queueEntryNo;
+  Dcm_HsmDelFromQueue (sc, instIdx, queueEntryNo.2_24);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _25 = Dcm_HsmFindEvToDispatch (sc, instIdx, &event, &queueEntryNo);
+  if (_25 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6815 = transitionFired;
+  event = {CLOBBER};
+  queueEntryNo = {CLOBBER};
+  return D.6815;
+
+}
+
+
+Dcm_HsmMain (const struct Dcm_HsmStatechartType * const sc)
+{
+  const boolean retVal;
+  uint8_least instIdx;
+  boolean transitionFired;
+  int iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  transitionFired = 0;
+  # DEBUG BEGIN_STMT
+  instIdx = 0;
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  retVal = Dcm_HsmMainInst (sc, _1);
+  # DEBUG BEGIN_STMT
+  if (retVal != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (transitionFired != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.0 = 0;
+
+  <bb 7> :
+  transitionFired = (boolean) iftmp.0;
+  # DEBUG BEGIN_STMT
+  instIdx = instIdx + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = sc->numInstances;
+  _3 = (long unsigned int) _2;
+  if (instIdx < _3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (transitionFired != 0)
+    goto <bb 2>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmEmitToSelfInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const Dcm_HsmEventType event)
+{
+  uint8_least j;
+  struct Dcm_HsmInstType * const inst;
+  Std_ReturnType RetVal;
+  Std_ReturnType D.6795;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = inst->evQueueFill;
+  _5 = sc->evQueueSize;
+  if (_4 < _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = inst->evQueueFill;
+  j = (uint8_least) _6;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = sc->events;
+  _8 = (int) instIdx;
+  _9 = sc->evQueueSize;
+  _10 = (int) _9;
+  _11 = _8 * _10;
+  _12 = (unsigned char) j;
+  _13 = _12 + 255;
+  _14 = (int) _13;
+  _15 = _11 + _14;
+  _16 = (sizetype) _15;
+  _17 = _7 + _16;
+  _18 = sc->events;
+  _19 = (int) instIdx;
+  _20 = sc->evQueueSize;
+  _21 = (int) _20;
+  _22 = _19 * _21;
+  _23 = (unsigned char) j;
+  _24 = (int) _23;
+  _25 = _22 + _24;
+  _26 = (sizetype) _25;
+  _27 = _18 + _26;
+  _28 = *_17;
+  *_27 = _28;
+  # DEBUG BEGIN_STMT
+  j = j + 4294967295;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _29 = inst->evQueueInsertEvNo;
+  _30 = (long unsigned int) _29;
+  if (j > _30)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _31 = inst->evQueueFill;
+  _32 = _31 + 1;
+  inst->evQueueFill = _32;
+  # DEBUG BEGIN_STMT
+  _33 = sc->events;
+  _34 = (int) instIdx;
+  _35 = sc->evQueueSize;
+  _36 = (int) _35;
+  _37 = _34 * _36;
+  _38 = inst->evQueueInsertEvNo;
+  _39 = (int) _38;
+  _40 = _37 + _39;
+  _41 = (sizetype) _40;
+  _42 = _33 + _41;
+  *_42 = event;
+  # DEBUG BEGIN_STMT
+  _43 = inst->evQueueInsertEvNo;
+  _44 = _43;
+  _45 = _44 + 1;
+  inst->evQueueInsertEvNo = _45;
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6795 = RetVal;
+  return D.6795;
+
+}
+
+
+Dcm_HsmEmitInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const Dcm_HsmEventType event)
+{
+  struct Dcm_HsmInstType * const inst;
+  Std_ReturnType RetVal;
+  Std_ReturnType D.6790;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = inst->evQueueFill;
+  _5 = sc->evQueueSize;
+  if (_4 < _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _6 = sc->events;
+  _7 = (int) instIdx;
+  _8 = sc->evQueueSize;
+  _9 = (int) _8;
+  _10 = _7 * _9;
+  _11 = inst->evQueueFill;
+  _12 = (int) _11;
+  _13 = _10 + _12;
+  _14 = (sizetype) _13;
+  _15 = _6 + _14;
+  *_15 = event;
+  # DEBUG BEGIN_STMT
+  _16 = inst->evQueueFill;
+  _17 = _16;
+  _18 = _17 + 1;
+  inst->evQueueFill = _18;
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6790 = RetVal;
+  return D.6790;
+
+}
+
+
+Dcm_HsmInitInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  uint8_least i;
+  struct Dcm_HsmInstType * const inst;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->instances;
+  _2 = (unsigned int) instIdx;
+  _3 = _2 * 4;
+  inst = _1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = sc->topStateId;
+  inst->stateId = _4;
+  # DEBUG BEGIN_STMT
+  inst->sourceId = 255;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = sc->events;
+  _6 = (int) instIdx;
+  _7 = sc->evQueueSize;
+  _8 = (int) _7;
+  _9 = _6 * _8;
+  _10 = (unsigned char) i;
+  _11 = (int) _10;
+  _12 = _9 + _11;
+  _13 = (sizetype) _12;
+  _14 = _5 + _13;
+  *_14 = 0;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _15 = sc->evQueueSize;
+  _16 = (long unsigned int) _15;
+  if (i < _16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  inst->evQueueFill = 0;
+  # DEBUG BEGIN_STMT
+  inst->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  _17 = sc->states;
+  _18 = inst->stateId;
+  _19 = (unsigned int) _18;
+  _20 = _19 * 20;
+  _21 = _17 + _20;
+  _22 = _21->entryFnIdx;
+  if (_22 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = sc->actions;
+  _24 = sc->states;
+  _25 = inst->stateId;
+  _26 = (unsigned int) _25;
+  _27 = _26 * 20;
+  _28 = _24 + _27;
+  _29 = _28->entryFnIdx;
+  _30 = (unsigned int) _29;
+  _31 = _30 * 4;
+  _32 = _23 + _31;
+  _33 = *_32;
+  _33 (instIdx);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitSubstates (sc, instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmInit (const struct Dcm_HsmStatechartType * const sc)
+{
+  uint8 instIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  instIdx = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitInst (sc, instIdx);
+  # DEBUG BEGIN_STMT
+  instIdx = instIdx + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = sc->numInstances;
+  if (instIdx < _1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

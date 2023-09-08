@@ -1,0 +1,110 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_ActivateAutoTasks
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nTasks/5 (OS_nTasks) @06c68870
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ActivateAutoTasks/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_KernActivateTask/4 (OS_KernActivateTask) @06c88c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ActivateAutoTasks/0 
+  Calls: 
+OS_autoStartTasks/3 (OS_autoStartTasks) @06c687e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ActivateAutoTasks/0 (read)OS_ActivateAutoTasks/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_startModeTasks/2 (OS_startModeTasks) @06c68798
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ActivateAutoTasks/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_appMode/1 (OS_appMode) @06c68750
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_ActivateAutoTasks/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_ActivateAutoTasks/0 (OS_ActivateAutoTasks) @06c88a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_appMode/1 (read)OS_startModeTasks/2 (read)OS_autoStartTasks/3 (read)OS_autoStartTasks/3 (read)OS_nTasks/5 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_KernActivateTask/4 
+__attribute__((target ("general-regs-only")))
+OS_ActivateAutoTasks ()
+{
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+  os_uint16_t idx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  OS_appMode.0_1 = OS_appMode;
+  _2 = (int) OS_appMode.0_1;
+  idx = OS_startModeTasks[_2];
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) idx;
+  tid = OS_autoStartTasks[_3];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_KernActivateTask (tid);
+  # DEBUG BEGIN_STMT
+  idx.1_4 = idx;
+  idx = idx.1_4 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) idx;
+  _6 = OS_autoStartTasks[_5];
+  OS_nTasks.2_7 = OS_nTasks;
+  if (_6 < OS_nTasks.2_7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

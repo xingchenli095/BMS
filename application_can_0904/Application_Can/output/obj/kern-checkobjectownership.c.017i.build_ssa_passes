@@ -1,0 +1,420 @@
+__attribute__((target ("general-regs-only")))
+OS_KernCheckObjectOwnership (os_objecttype_t typ, os_objectid_t id)
+{
+  os_paramtype_t p[3];
+  const struct os_appcontext_t * app;
+  os_applicationid_t a;
+  os_boolean_t idValid;
+  os_applicationid_t D.7475;
+  int iftmp.1;
+  _Bool iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  a = 255;
+  # DEBUG BEGIN_STMT
+  app = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) typ;
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  p[1] = id;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = OS_permittedContext.2_3 + 12;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_8 = OS_permittedContext;
+  _9 = OS_permittedContext.3_8 + 12;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1 = 0;
+
+  <bb 7> :
+  iftmp.0 = iftmp.1 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_16 = OS_permittedContext;
+  _17 = OS_permittedContext.4_16 + 12;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.0 = _23 == 0;
+
+  <bb 9> :
+  if (iftmp.0 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_24 = OS_configMode;
+  _25 = OS_configMode.5_24 & 1024;
+  if (_25 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 12, &p);
+  goto <bb 29>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_26 = OS_iecMode;
+  if (OS_iecMode.6_26 > 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 13> :
+  _27 = OS_kernelData.inFunction;
+  if (_27 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _28 = OS_kernelData.taskCurrent;
+  _29 = _28->dynamic;
+  _30 = BIT_FIELD_REF <MEM[(void *)_29], 16, 160>;
+  _31 = _30;
+  if (_31 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  _32 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _33 = _32;
+  if (_33 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.7_34 = OS_configMode;
+  _35 = OS_configMode.7_34 & 1024;
+  if (_35 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 55, &p);
+  goto <bb 29>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  idValid = 0;
+  # DEBUG BEGIN_STMT
+  if (typ == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  OS_nApps.8_36 = OS_nApps;
+  _37 = (unsigned int) OS_nApps.8_36;
+  if (id < _37)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  a = (os_applicationid_t) id;
+  # DEBUG BEGIN_STMT
+  idValid = 1;
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  idValid = OS_GetOwningAppForObject (typ, id, &app, &p);
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (idValid != 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  app.9_38 = app;
+  if (app.9_38 != 0B)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  app.10_39 = app;
+  _40 = app.10_39->flags;
+  _41 = (unsigned int) _40;
+  _42 = _41 & 2;
+  if (_42 != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  a = 255;
+  goto <bb 29>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  app.11_43 = app;
+  a = app.11_43->appId;
+  goto <bb 29>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  OS_configMode.12_44 = OS_configMode;
+  _45 = OS_configMode.12_44 & 1024;
+  if (_45 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 45, &p);
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7475 = a;
+  app = {CLOBBER};
+  p = {CLOBBER};
+  return D.7475;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_GetOwningAppForObject (os_objecttype_t typ, os_objectid_t id, const struct os_appcontext_t * * app, os_paramtype_t * p)
+{
+  os_boolean_t ret;
+  os_boolean_t D.7494;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) typ;
+  switch (_1) <default: <L21> [INV], case 2: <L0> [INV], case 3: <L3> [INV], case 4: <L6> [INV], case 5: <L9> [INV], case 6: <L12> [INV], case 7: <L15> [INV], case 8: <L18> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  OS_nTasks.13_2 = OS_nTasks;
+  _3 = (unsigned int) OS_nTasks.13_2;
+  if (id < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.14_4 = OS_taskTableBase;
+  _5 = id * 76;
+  _6 = OS_taskTableBase.14_4 + _5;
+  _7 = _6->app;
+  *app = _7;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.15_8 = OS_nInterrupts;
+  _9 = (unsigned int) OS_nInterrupts.15_8;
+  if (id < _9)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.16_10 = OS_isrTableBase;
+  _11 = id * 68;
+  _12 = OS_isrTableBase.16_10 + _11;
+  _13 = _12->app;
+  *app = _13;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  OS_nResources.17_14 = OS_nResources;
+  _15 = (unsigned int) OS_nResources.17_14;
+  if (id < _15)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.18_16 = OS_resourceTableBase;
+  _17 = id * 16;
+  _18 = OS_resourceTableBase.18_16 + _17;
+  _19 = _18->app;
+  *app = _19;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 9> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  OS_nCounters.19_20 = OS_nCounters;
+  _21 = (unsigned int) OS_nCounters.19_20;
+  if (id < _21)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.20_22 = OS_counterTableBase;
+  _23 = id * 32;
+  _24 = OS_counterTableBase.20_22 + _23;
+  _25 = _24->app;
+  *app = _25;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.21_26 = OS_nAlarms;
+  _27 = (unsigned int) OS_nAlarms.21_26;
+  if (id < _27)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.22_28 = OS_alarmTableBase;
+  _29 = id * 28;
+  _30 = OS_alarmTableBase.22_28 + _29;
+  _31 = _30->app;
+  *app = _31;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 13> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.23_32 = OS_nSchedules;
+  _33 = (unsigned int) OS_nSchedules.23_32;
+  if (id < _33)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.24_34 = OS_scheduleTableBase;
+  _35 = id * 36;
+  _36 = OS_scheduleTableBase.24_34 + _35;
+  _37 = _36->app;
+  *app = _37;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 15> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  OS_nFunctions.25_38 = OS_nFunctions;
+  _39 = (unsigned int) OS_nFunctions.25_38;
+  if (id < _39)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_functionTableBase.26_40 = OS_functionTableBase;
+  _41 = id * 16;
+  _42 = OS_functionTableBase.26_40 + _41;
+  _43 = _42->app;
+  *app = _43;
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 19>; [INV]
+
+  <bb 17> :
+<L21>:
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  OS_configMode.27_44 = OS_configMode;
+  _45 = OS_configMode.27_44 & 1024;
+  if (_45 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_CheckObjectOwnership, 44, p);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  D.7494 = ret;
+  return D.7494;
+
+}
+
+

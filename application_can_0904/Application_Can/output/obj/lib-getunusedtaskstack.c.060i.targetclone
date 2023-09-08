@@ -1,0 +1,37 @@
+__attribute__((target ("general-regs-only")))
+OS_GetUnusedTaskStack (os_taskid_t t)
+{
+  struct os_stackinfo_t info;
+  os_size_t answer;
+  short unsigned int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG answer => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  info.stackPointer = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) t_6(D);
+  _2 = OS_UserGetStackInfo (_1, &info);
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  answer_8 = info.stackClean;
+  # DEBUG answer => answer_8
+
+  <bb 4> [local count: 1073741824]:
+  # answer_3 = PHI <0(2), answer_8(3)>
+  # DEBUG answer => answer_3
+  # DEBUG BEGIN_STMT
+  info ={v} {CLOBBER};
+  return answer_3;
+
+}
+
+

@@ -1,0 +1,119 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+
+ Propagating constants:
+
+
+overall_size: 0, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_taskTable/29 (OS_taskTable) @06af3900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)OS_taskPtrs/12 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_hwtLastValue_core0/28 (OS_hwtLastValue_core0) @06af3828
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.hwtLastValue
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_scheduleDynamic_core0/26 (OS_scheduleDynamic_core0) @06af3708
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.scheduleDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_alarmDynamic_core0/24 (OS_alarmDynamic_core0) @06af35e8
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.alarmDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_counterDynamic_core0/22 (OS_counterDynamic_core0) @06af34c8
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.counterDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_kernelData/20 (OS_kernelData) @06af3288
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.data.core0.kernelData
+  References: OS_kernStack0/7 (addr)OS_kernStack0/7 (addr)
+  Referring: 
+  Availability: available
+  Varpool flags: initialized
+OS_isrDynamic_core0/18 (OS_isrDynamic_core0) @06af3168
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.isrDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_resourceDynamic_core0/16 (OS_resourceDynamic_core0) @06af3048
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.resourceDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_taskActivations/14 (OS_taskActivations) @06cbcd80
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.taskActivations
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_taskPtrs/12 (OS_taskPtrs) @06cbcee8
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)OS_taskTable/29 (addr)
+  Referring: 
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+OS_taskDynamic_core0/11 (OS_taskDynamic_core0) @06cbcdc8
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.taskDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_appDynamic_core0/9 (OS_appDynamic_core0) @06cbcca8
+  Type: variable definition analyzed
+  Visibility: externally_visible public section:.bss.core0.appDynamic
+  References: 
+  Referring: 
+  Availability: available
+  Varpool flags:
+OS_kernStack0/7 (OS_kernStack0) @06cbc3f0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public section:.bss.core0.os_kernstack0
+  References: 
+  Referring: OS_kernelData/20 (addr)OS_kernelData/20 (addr)
+  Availability: not_available
+  Varpool flags:

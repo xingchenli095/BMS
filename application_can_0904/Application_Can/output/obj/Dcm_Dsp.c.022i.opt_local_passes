@@ -1,0 +1,5360 @@
+Dcm_Dsp_Protocol_P2TimerTimeout (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_2(D), 3);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorReset (Dcm_ProtocolIndexType ProtocolIdx)
+{
+  struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_4 = Dcm_Dsp_GetServiceProcessingContext (ProtocolIdx_2(D));
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorContextInit (ServiceProcessingContextPtr_4);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorInit ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorContextInit (&Dcm_ServiceProcessingContext_OBD);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorContextInit (&Dcm_ServiceProcessingContext_UDS);
+  return;
+
+}
+
+
+Dcm_DspInternal_DetermineNextByteInDestBuffer (Dcm_MsgLenType CurrentByteInDestBuffer, Dcm_DataCopyMethodType CopyMethod, Dcm_ByteAdvanceDirectionType ByteAdvanceDirection)
+{
+  Dcm_MsgLenType ByteInDest;
+  int _1;
+  Dcm_MsgLenType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ByteInDest_3 = 0;
+  # DEBUG ByteInDest => ByteInDest_3
+  # DEBUG BEGIN_STMT
+  _1 = (int) CopyMethod_4(D);
+  switch (_1) <default: <L12> [INV], case 1: <L6> [INV], case 2 ... 3: <L7> [INV], case 4 ... 5: <L0> [INV], case 6: <L5> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  if (ByteAdvanceDirection_7(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ByteInDest_9 = CurrentByteInDestBuffer_5(D) + 1;
+  # DEBUG ByteInDest => ByteInDest_9
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ByteInDest_8 = CurrentByteInDestBuffer_5(D) + 4294967295;
+  # DEBUG ByteInDest => ByteInDest_8
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  ByteInDest_6 = CurrentByteInDestBuffer_5(D) + 1;
+  # DEBUG ByteInDest => ByteInDest_6
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ByteInDest_11 = CurrentByteInDestBuffer_5(D) + 4294967295;
+  # DEBUG ByteInDest => ByteInDest_11
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  ByteInDest_10 = CurrentByteInDestBuffer_5(D) + 1;
+  # DEBUG ByteInDest => ByteInDest_10
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # ByteInDest_2 = PHI <ByteInDest_8(5), ByteInDest_6(6), ByteInDest_11(7), ByteInDest_10(8), ByteInDest_3(2), ByteInDest_9(4)>
+<L12>:
+  # DEBUG ByteInDest => ByteInDest_2
+  # DEBUG BEGIN_STMT
+  _12 = ByteInDest_2;
+  return _12;
+
+}
+
+
+Dcm_DspInternal_DetermineNextByteInSourceBuffer (Dcm_MsgLenType CurrentByteInSourceBuffer, Dcm_DataCopyMethodType CopyMethod, Dcm_ByteAdvanceDirectionType ByteAdvanceDirection)
+{
+  Dcm_MsgLenType ByteInSource;
+  int _1;
+  Dcm_MsgLenType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ByteInSource_3 = 0;
+  # DEBUG ByteInSource => ByteInSource_3
+  # DEBUG BEGIN_STMT
+  _1 = (int) CopyMethod_4(D);
+  switch (_1) <default: <L12> [INV], case 1 ... 2: <L4> [INV], case 3: <L3> [INV], case 4: <L0> [INV], case 5 ... 6: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ByteInSource_7 = CurrentByteInSourceBuffer_5(D) + 4294967295;
+  # DEBUG ByteInSource => ByteInSource_7
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ByteInSource_6 = CurrentByteInSourceBuffer_5(D) + 1;
+  # DEBUG ByteInSource => ByteInSource_6
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ByteInSource_8 = CurrentByteInSourceBuffer_5(D) + 1;
+  # DEBUG ByteInSource => ByteInSource_8
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  if (ByteAdvanceDirection_9(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ByteInSource_11 = CurrentByteInSourceBuffer_5(D) + 1;
+  # DEBUG ByteInSource => ByteInSource_11
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ByteInSource_10 = CurrentByteInSourceBuffer_5(D) + 4294967295;
+  # DEBUG ByteInSource => ByteInSource_10
+
+  <bb 9> :
+  # ByteInSource_2 = PHI <ByteInSource_7(3), ByteInSource_6(4), ByteInSource_8(5), ByteInSource_10(8), ByteInSource_3(2), ByteInSource_11(7)>
+<L12>:
+  # DEBUG ByteInSource => ByteInSource_2
+  # DEBUG BEGIN_STMT
+  _12 = ByteInSource_2;
+  return _12;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorContextInit (struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->ServiceFunction = 0B;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->curMsgContext = 0B;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->OpStatus = 255;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->RetVal = 1;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->ServiceHandlerType = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->DcmInstanceIndex = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_2(D)->ServiceProcessingInProgress = 0;
+  return;
+
+}
+
+
+Dcm_Dsp_GetCurrentHsmInfo ()
+{
+  const Dcm_ProtocolIndexType ProtocolIdx;
+  struct Dcm_HsmInfoType * CurrentHsmInfoPtr;
+  short unsigned int _1;
+  unsigned char _2;
+  int _3;
+  struct Dcm_HsmInfoType * _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _2 = (unsigned char) _1;
+  ProtocolIdx_7 = _2 + 244;
+  # DEBUG ProtocolIdx => ProtocolIdx_7
+  # DEBUG BEGIN_STMT
+  if (ProtocolIdx_7 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CurrentHsmInfoPtr_9 = &Dcm_HsmInfo[0];
+  # DEBUG CurrentHsmInfoPtr => CurrentHsmInfoPtr_9
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProtocolIdx_7;
+  CurrentHsmInfoPtr_8 = &Dcm_HsmInfo[_3];
+  # DEBUG CurrentHsmInfoPtr => CurrentHsmInfoPtr_8
+
+  <bb 5> :
+  # CurrentHsmInfoPtr_4 = PHI <CurrentHsmInfoPtr_9(3), CurrentHsmInfoPtr_8(4)>
+  # DEBUG CurrentHsmInfoPtr => CurrentHsmInfoPtr_4
+  # DEBUG BEGIN_STMT
+  _10 = CurrentHsmInfoPtr_4;
+  return _10;
+
+}
+
+
+Dcm_Dsp_CancellationDone (Dcm_CancellationConfirmationType CancellationConfirmation, Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean CancellationFinished;
+  int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  int _15;
+  short unsigned int _16;
+  int _17;
+  short unsigned int _18;
+  int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CancellationFinished_26 = 0;
+  # DEBUG CancellationFinished => CancellationFinished_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (CancellationConfirmation_27(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_28(D);
+  Dcm_HsmInfo[_1].CancellationConditions.ServiceProcessingDone = 1;
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex_28(D);
+  _3 = Dcm_HsmInfo[_2].CancellationConditions.CancellationType;
+  _4 = _3 + 253;
+  if (_4 <= 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (ProtocolIndex_28(D));
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIndex_28(D);
+  Dcm_HsmInfo[_5].CancellationConditions.FinalTransmissionDone = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) ProtocolIndex_28(D);
+  _7 = Dcm_HsmInfo[_6].CancellationConditions.CancellationType;
+  _8 = (int) _7;
+  switch (_8) <default: <L18> [INV], case 1: <L5> [INV], case 2: <L8> [INV], case 3 ... 4: <L6> [INV], case 5: <L8> [INV]>
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CancellationFinished_35 = 1;
+  # DEBUG CancellationFinished => CancellationFinished_35
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CancellationFinished_33 = 1;
+  # DEBUG CancellationFinished => CancellationFinished_33
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _9 = (int) ProtocolIndex_28(D);
+  _10 = Dcm_HsmInfo[_9].CancellationConditions.ServiceProcessingDone;
+  if (_10 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _11 = (int) ProtocolIndex_28(D);
+  _12 = Dcm_HsmInfo[_11].CancellationConditions.FinalTransmissionDone;
+  if (_12 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  CancellationFinished_34 = 1;
+  # DEBUG CancellationFinished => CancellationFinished_34
+
+  <bb 12> :
+  # CancellationFinished_23 = PHI <CancellationFinished_35(7), CancellationFinished_33(8), CancellationFinished_26(10), CancellationFinished_26(6), CancellationFinished_26(9), CancellationFinished_34(11)>
+<L18>:
+  # DEBUG CancellationFinished => CancellationFinished_23
+  # DEBUG BEGIN_STMT
+  if (CancellationFinished_23 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _13 = (short unsigned int) ProtocolIndex_28(D);
+  _14 = _13 + 12;
+  _15 = (int) ProtocolIndex_28(D);
+  _16 = Dcm_HsmInfo[_15].RxBuffer.BufferId;
+  _17 = (int) ProtocolIndex_28(D);
+  _18 = Dcm_HsmInfo[_17].TxBuffer.BufferId;
+  _19 = (int) ProtocolIndex_28(D);
+  _20 = Dcm_HsmInfo[_19].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFreeRxTxNRC (_14, _16, _18, _20);
+  # DEBUG BEGIN_STMT
+  _21 = (short unsigned int) ProtocolIndex_28(D);
+  _22 = _21 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_22);
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_28(D), 7);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolSetUpCancellation (Dcm_CancellationType CancellationType, Dcm_ProtocolIndexType ProtocolIndex)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_2(D);
+  Dcm_HsmInfo[_1].CancellationConditions.CancellationType = CancellationType_4(D);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolCancel (Dcm_BufferUserType ProtocolId)
+{
+  const Dcm_ProtocolIndexType ProtocolIndex;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_2(D);
+  ProtocolIndex_3 = _1 + 244;
+  # DEBUG ProtocolIndex => ProtocolIndex_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_3, 8);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolStart (Dcm_BufferUserType ProtocolId, Dcm_BufferUserType RxConnectionId, Dcm_BufferUserType TxConnectionId, struct Dcm_BufferType RequestBuffer, Dcm_RequestTypeType RequestType, Dcm_ProtocolRCRRPTransmissionType ProtocolRCRRPTransmission, uint16 rpCntr, uint16 rpCntrConfirmed)
+{
+  Dcm_HsmEventType EventToDispatchToProtocolHSM;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  Dcm_MsgItemType * _12;
+  int _13;
+  unsigned char _14;
+  unsigned char _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_19(D);
+  _2 = _1 + 244;
+  _3 = (int) _2;
+  curHsmInfo_20 = &Dcm_HsmInfo[_3];
+  # DEBUG curHsmInfo => curHsmInfo_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_21 = 255;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobRxConnectionId = RxConnectionId_23(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId_23(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _4 = RxPduIdInfo.ComMChannelId;
+  curHsmInfo_20->NextJob.JobComMChannelId = _4;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobTxConnectionId = TxConnectionId_27(D);
+  # DEBUG BEGIN_STMT
+  _5 = (int) RxConnectionId_23(D);
+  _6 = Dcm_RxPduIdConfig[_5].MainConnectionIndex;
+  _7 = (int) _6;
+  _8 = Dcm_MainConnectionConfig[_7].TesterSourceAddress;
+  curHsmInfo_20->NextJob.JobTesterSourceAddress = _8;
+  # DEBUG BEGIN_STMT
+  _9 = RequestBuffer.BufferId;
+  curHsmInfo_20->NextJob.JobRxBuffer.BufferId = _9;
+  # DEBUG BEGIN_STMT
+  _10 = RequestBuffer.FilledLength;
+  curHsmInfo_20->NextJob.JobRxBuffer.FilledLength = _10;
+  # DEBUG BEGIN_STMT
+  _11 = RequestBuffer.Size;
+  curHsmInfo_20->NextJob.JobRxBuffer.Size = _11;
+  # DEBUG BEGIN_STMT
+  _12 = RequestBuffer.BufferPtr;
+  curHsmInfo_20->NextJob.JobRxBuffer.BufferPtr = _12;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobRequestType = RequestType_34(D);
+  # DEBUG BEGIN_STMT
+  _13 = (int) RequestType_34(D);
+  switch (_13) <default: <L20> [INV], case 1 ... 2: <L0> [INV], case 8 ... 9: <L13> [INV], case 10 ... 13: <L7> [INV], case 14: <L11> [INV], case 15: <L12> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  if (ProtocolRCRRPTransmission_40(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_43 = 13;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_43
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_41 = 14;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_41
+  # DEBUG BEGIN_STMT
+  if (ProtocolRCRRPTransmission_40(D) == 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionGive (14, ProtocolId_19(D), TxConnectionId_27(D));
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_38 = 15;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_38
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_37 = 11;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_37
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_36 = 12;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_36
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  EventToDispatchToProtocolHSM_39 = 16;
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_39
+  # DEBUG BEGIN_STMT
+
+  <bb 11> :
+  # EventToDispatchToProtocolHSM_16 = PHI <EventToDispatchToProtocolHSM_41(5), EventToDispatchToProtocolHSM_38(7), EventToDispatchToProtocolHSM_37(8), EventToDispatchToProtocolHSM_36(9), EventToDispatchToProtocolHSM_39(10), EventToDispatchToProtocolHSM_21(2), EventToDispatchToProtocolHSM_43(4), EventToDispatchToProtocolHSM_41(6)>
+<L20>:
+  # DEBUG EventToDispatchToProtocolHSM => EventToDispatchToProtocolHSM_16
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobRpCntr = rpCntr_44(D);
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobRpCntrConfirmed = rpCntrConfirmed_46(D);
+  # DEBUG BEGIN_STMT
+  if (EventToDispatchToProtocolHSM_16 == 14)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobResponsePendingTxStatus = 1;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_20->NextJob.JobResponsePendingTxStatus = 0;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned char) ProtocolId_19(D);
+  _15 = _14 + 244;
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, _15, EventToDispatchToProtocolHSM_16);
+  # DEBUG BEGIN_STMT
+  RxPduIdInfo ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolTransmissionFinished (Dcm_BufferUserType ProtocolId, Dcm_TxResultType TransmissionResult, Dcm_BufferUserType TxConnectionId)
+{
+  const Dcm_ProtocolIndexType ProtocolIndex;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_5(D);
+  ProtocolIndex_6 = _1 + 244;
+  # DEBUG ProtocolIndex => ProtocolIndex_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex_6;
+  _3 = Dcm_HsmInfo[_2].NextJob.JobRequestType;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolTransmissionFinishedBeforeHSMStarted (ProtocolId_5(D), TransmissionResult_9(D), TxConnectionId_10(D));
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolTransmissionFinishedAfterHSMStarted (ProtocolId_5(D), TransmissionResult_9(D), TxConnectionId_10(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolProvideNextTxBuffer (Dcm_BufferUserType ProtocolId, Dcm_BufferUserType TxConnectionId)
+{
+  const Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_BufferStateType NewBufferState;
+  unsigned char _1;
+  int _2;
+  short unsigned int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NewBufferState_4 = 0;
+  # DEBUG NewBufferState => NewBufferState_4
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_5(D);
+  ProtocolIndex_6 = _1 + 244;
+  # DEBUG ProtocolIndex => ProtocolIndex_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NewBufferState_7 = 15;
+  # DEBUG NewBufferState => NewBufferState_7
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex_6;
+  _3 = Dcm_HsmInfo[_2].TxBuffer.BufferId;
+  Dcm_Dsl_BufferChangeState (ProtocolId_5(D), NewBufferState_7, _3);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_6, 9);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolTransmissionTimedOutWaitingForData (Dcm_BufferUserType ProtocolId, Dcm_BufferUserType TxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_CancelPagedBufferProcessing ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_RequestPermanentDTC_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  Std_ReturnType _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_12 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_14(D)->dcmRxPduId;
+  _2 = pMsgContext_14(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_16 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_16
+  # DEBUG BEGIN_STMT
+  DemClientId_18 = Dcm_Dsl_GetDemClientId (ProtocolIndex_16);
+  # DEBUG DemClientId => DemClientId_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_19(D);
+  switch (_4) <default: <L13> [INV], case 0: <L0> [INV], case 1: <L4> [INV], case 2: <L5> [INV], case 5 ... 6: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_14(D)->reqDataLen;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_44 = 170;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25 = Dcm_Dsp_DemFacade_GetClient (DemClientId_18);
+  # DEBUG ClientContextPtr => ClientContextPtr_25
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_14(D)->resMaxDataLen;
+  _7 = _6 + 1;
+  ClientContextPtr_25->SizeOfOnePage = _7;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AmountOfDataWrittenOnCurrentPage = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->ServiceID = 10;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->SubServiceID = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DTCFormat = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOrigin = 3;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusBits = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AvailabilityMaskState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsCountState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsState = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_21 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_20 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_20
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # serviceProcessStatus_8 = PHI <serviceProcessStatus_43(5), serviceProcessStatus_23(6), serviceProcessStatus_21(7), serviceProcessStatus_20(8), serviceProcessStatus_12(2), serviceProcessStatus_44(4)>
+<L13>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_8 == 170)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_14(D)->msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+
+  <bb 11> :
+  # serviceProcessStatus_9 = PHI <serviceProcessStatus_8(9), serviceProcessStatus_46(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _47 = serviceProcessStatus_9;
+  return _47;
+
+}
+
+
+Dcm_DspInternal_RequestPendingDTC_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  Std_ReturnType _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_12 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_14(D)->dcmRxPduId;
+  _2 = pMsgContext_14(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_16 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_16
+  # DEBUG BEGIN_STMT
+  DemClientId_18 = Dcm_Dsl_GetDemClientId (ProtocolIndex_16);
+  # DEBUG DemClientId => DemClientId_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_19(D);
+  switch (_4) <default: <L13> [INV], case 0: <L0> [INV], case 1: <L4> [INV], case 2: <L5> [INV], case 5 ... 6: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_14(D)->reqDataLen;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_44 = 170;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25 = Dcm_Dsp_DemFacade_GetClient (DemClientId_18);
+  # DEBUG ClientContextPtr => ClientContextPtr_25
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_14(D)->resMaxDataLen;
+  _7 = _6 + 1;
+  ClientContextPtr_25->SizeOfOnePage = _7;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AmountOfDataWrittenOnCurrentPage = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->ServiceID = 7;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->SubServiceID = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DTCFormat = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOrigin = 4;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusMask = 4;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusBits = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AvailabilityMaskState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsCountState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsState = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_21 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_20 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_20
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # serviceProcessStatus_8 = PHI <serviceProcessStatus_43(5), serviceProcessStatus_23(6), serviceProcessStatus_21(7), serviceProcessStatus_20(8), serviceProcessStatus_12(2), serviceProcessStatus_44(4)>
+<L13>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_8 == 170)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_14(D)->msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+
+  <bb 11> :
+  # serviceProcessStatus_9 = PHI <serviceProcessStatus_8(9), serviceProcessStatus_46(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _47 = serviceProcessStatus_9;
+  return _47;
+
+}
+
+
+Dcm_DspInternal_ClearEmissionDiagInfo_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_NegativeResponseCodeType Nrc;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  unsigned char Nrc.13_6;
+  unsigned char Nrc.14_7;
+  unsigned char Nrc.15_8;
+  unsigned char Nrc.16_9;
+  Std_ReturnType _34;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_13 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_13
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_16(D)->dcmRxPduId;
+  _2 = pMsgContext_16(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_18 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_18
+  # DEBUG BEGIN_STMT
+  DemClientId_20 = Dcm_Dsl_GetDemClientId (ProtocolIndex_18);
+  # DEBUG DemClientId => DemClientId_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_21(D);
+  switch (_4) <default: <L8> [INV], case 0: <L0> [INV], case 1: <L6> [INV], case 2: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_16(D)->reqDataLen;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_16(D)->msgAddInfo.suppressPosResponse = 1;
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_27 = Dcm_Dsp_DemFacade_ClearDTCInfo_Setup (DemClientId_20, 16777215, 0, 4, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_27
+  # DEBUG BEGIN_STMT
+  Nrc.13_6 = Nrc;
+  if (Nrc.13_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_29 = Dcm_Dsp_DemFacade_ClearDTCInfo_Process (DemClientId_20, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_29
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_25 = Dcm_Dsp_DemFacade_ClearDTCInfo_Process (DemClientId_20, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_25
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = Dcm_Dsp_DemFacade_ClearDTCInfo_Cancel (DemClientId_20);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_31 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_31
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # serviceProcessStatus_10 = PHI <serviceProcessStatus_27(5), serviceProcessStatus_25(7), serviceProcessStatus_23(8), serviceProcessStatus_31(9), serviceProcessStatus_13(4), serviceProcessStatus_29(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  Nrc.14_7 = Nrc;
+  if (Nrc.14_7 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  if (serviceProcessStatus_10 == 26)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Nrc.15_8 = Nrc;
+  if (Nrc.15_8 == 34)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Nrc.16_9 = Nrc;
+  Dcm_ExternalSetNegResponse (pMsgContext_16(D), Nrc.16_9);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_16(D)->msgAddInfo.suppressPosResponse = 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _34 = serviceProcessStatus_10;
+  Nrc ={v} {CLOBBER};
+  return _34;
+
+}
+
+
+Dcm_DspInternal_RequestConfirmedDTC_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  Std_ReturnType _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_12 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_14(D)->dcmRxPduId;
+  _2 = pMsgContext_14(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_16 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_16
+  # DEBUG BEGIN_STMT
+  DemClientId_18 = Dcm_Dsl_GetDemClientId (ProtocolIndex_16);
+  # DEBUG DemClientId => DemClientId_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_19(D);
+  switch (_4) <default: <L13> [INV], case 0: <L0> [INV], case 1: <L4> [INV], case 2: <L5> [INV], case 5 ... 6: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_14(D)->reqDataLen;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_44 = 170;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25 = Dcm_Dsp_DemFacade_GetClient (DemClientId_18);
+  # DEBUG ClientContextPtr => ClientContextPtr_25
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_14(D)->resMaxDataLen;
+  _7 = _6 + 1;
+  ClientContextPtr_25->SizeOfOnePage = _7;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AmountOfDataWrittenOnCurrentPage = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->ServiceID = 3;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->SubServiceID = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DTCFormat = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOrigin = 4;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusMask = 8;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->RequestedStatusBits = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AvailabilityMaskState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsCountState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsState = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_18, OpStatus_19(D), pMsgContext_14(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_21 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_20 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_20
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # serviceProcessStatus_8 = PHI <serviceProcessStatus_43(5), serviceProcessStatus_23(6), serviceProcessStatus_21(7), serviceProcessStatus_20(8), serviceProcessStatus_12(2), serviceProcessStatus_44(4)>
+<L13>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_8 == 170)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_14(D)->msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+
+  <bb 11> :
+  # serviceProcessStatus_9 = PHI <serviceProcessStatus_8(9), serviceProcessStatus_46(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _47 = serviceProcessStatus_9;
+  return _47;
+
+}
+
+
+Dcm_OBDSupport_CheckRequestCombinedIds (uint8 * reqData, Dcm_MsgLenType reqDataLen)
+{
+  uint16_least idIdx;
+  boolean nonAvailabilityReq;
+  boolean availabilityReq;
+  Std_ReturnType retVal;
+  uint8 * _1;
+  unsigned char _2;
+  unsigned char _3;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_10 = 1;
+  # DEBUG retVal => retVal_10
+  # DEBUG BEGIN_STMT
+  availabilityReq_11 = 0;
+  # DEBUG availabilityReq => availabilityReq_11
+  # DEBUG BEGIN_STMT
+  nonAvailabilityReq_12 = 0;
+  # DEBUG nonAvailabilityReq => nonAvailabilityReq_12
+  # DEBUG BEGIN_STMT
+  idIdx_13 = 0;
+  # DEBUG idIdx => idIdx_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (reqDataLen_14(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  idIdx_15 = 0;
+  # DEBUG idIdx => idIdx_15
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = reqData_17(D) + idIdx_9;
+  _2 = *_1;
+  _3 = _2 & 31;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  availabilityReq_20 = 1;
+  # DEBUG availabilityReq => availabilityReq_20
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  nonAvailabilityReq_19 = 1;
+  # DEBUG nonAvailabilityReq => nonAvailabilityReq_19
+
+  <bb 7> :
+  # availabilityReq_5 = PHI <availabilityReq_20(5), availabilityReq_6(6)>
+  # nonAvailabilityReq_7 = PHI <nonAvailabilityReq_8(5), nonAvailabilityReq_19(6)>
+  # DEBUG nonAvailabilityReq => nonAvailabilityReq_7
+  # DEBUG availabilityReq => availabilityReq_5
+  # DEBUG BEGIN_STMT
+  idIdx_21 = idIdx_9 + 1;
+  # DEBUG idIdx => idIdx_21
+
+  <bb 8> :
+  # availabilityReq_6 = PHI <availabilityReq_11(3), availabilityReq_5(7)>
+  # nonAvailabilityReq_8 = PHI <nonAvailabilityReq_12(3), nonAvailabilityReq_7(7)>
+  # idIdx_9 = PHI <idIdx_15(3), idIdx_21(7)>
+  # DEBUG idIdx => idIdx_9
+  # DEBUG nonAvailabilityReq => nonAvailabilityReq_8
+  # DEBUG availabilityReq => availabilityReq_6
+  # DEBUG BEGIN_STMT
+  if (idIdx_9 < reqDataLen_14(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (availabilityReq_6 != 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (nonAvailabilityReq_8 != 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  retVal_16 = 0;
+  # DEBUG retVal => retVal_16
+
+  <bb 12> :
+  # retVal_4 = PHI <retVal_10(2), retVal_10(10), retVal_16(11)>
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = retVal_4;
+  return _22;
+
+}
+
+
+Dcm_OBDSupport_UpdateAvailableInfoWithID (Dcm_GenericUint8IdType id, Dcm_GenericUint8IdType availabilityId, uint8 * availabilityData)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  uint8 * _6;
+  unsigned char _7;
+  uint8 * _8;
+  unsigned char _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  uint8 * _13;
+  unsigned char _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned char _19;
+  uint8 * _20;
+  unsigned char _21;
+  unsigned int _30;
+  Std_ReturnType _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_25 = 1;
+  # DEBUG retVal => retVal_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = id_26(D) & 31;
+  if (_1 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = availabilityId_27(D) & 31;
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (availabilityData_28(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_34 = 6;
+  # DEBUG retVal => retVal_34
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (id_26(D) > availabilityId_27(D))
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) id_26(D);
+  _4 = (unsigned int) availabilityId_27(D);
+  _5 = _4 + 32;
+  if (_3 > _5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = availabilityData_28(D) + 3;
+  _7 = *_6;
+  _8 = availabilityData_28(D) + 3;
+  _9 = _7 | 1;
+  *_8 = _9;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _10 = (unsigned int) id_26(D);
+  _11 = _10 + 4294967295;
+  _12 = _11 & 31;
+  _30 = _12 / 8;
+  _13 = availabilityData_28(D) + _30;
+  _14 = *_13;
+  _15 = (unsigned int) id_26(D);
+  _16 = _15 + 4294967295;
+  _17 = _16 & 7;
+  _18 = 128 >> _17;
+  _19 = (unsigned char) _18;
+  _20 = availabilityData_28(D) + _30;
+  _21 = _14 | _19;
+  *_20 = _21;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  retVal_33 = 0;
+  # DEBUG retVal => retVal_33
+
+  <bb 11> :
+  # retVal_22 = PHI <retVal_34(5), retVal_25(6), retVal_33(10)>
+  # DEBUG retVal => retVal_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _35 = retVal_22;
+  return _35;
+
+}
+
+
+Dcm_DspInternal_CopySignalData (const uint8 * SourceBuffer, uint8 * DestBuffer, Dcm_MsgLenType SourceStartPosition, Dcm_MsgLenType DestStartPosition, Dcm_MsgLenType SizeToCopy, Dcm_DataCopyMethodType CopyMethod, Dcm_ByteAdvanceDirectionType ByteAdvanceDirection)
+{
+  Dcm_MsgLenType ByteInsource;
+  Dcm_MsgLenType DestBytePos;
+  uint8 DestBitPos;
+  Dcm_MsgLenType SourceBytePos;
+  uint8 SourceBitPos;
+  uint8 SourceMaskBitsReq;
+  Dcm_MsgLenType Size;
+  uint8 DestByteSpace;
+  uint8 SourceDataMask;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  const uint8 * _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  const uint8 * _13;
+  unsigned char _14;
+  int _15;
+  unsigned int _16;
+  unsigned int _17;
+  int _18;
+  unsigned char _19;
+  uint8 * _20;
+  uint8 * _21;
+  unsigned char _22;
+  unsigned int _23;
+  unsigned char _24;
+  uint8 * _25;
+  unsigned char _26;
+  uint8 * _27;
+  unsigned char _28;
+  long unsigned int _29;
+  unsigned int _30;
+  unsigned char _31;
+  unsigned char _32;
+  uint8 * _33;
+  unsigned char _34;
+  long unsigned int _35;
+  uint8 * _36;
+  unsigned char _37;
+  long unsigned int _38;
+  unsigned int _39;
+  unsigned char _40;
+  int _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  int _44;
+  unsigned char _45;
+  unsigned char _46;
+  uint8 * _47;
+  unsigned char _48;
+  uint8 * _49;
+  unsigned char _50;
+  int _51;
+  int _52;
+  int _53;
+  unsigned char _54;
+  long unsigned int _55;
+  long unsigned int _56;
+  unsigned int _57;
+  unsigned char _58;
+  unsigned char _59;
+  uint8 * _60;
+  unsigned char _61;
+  uint8 * _62;
+  unsigned char _63;
+  int _64;
+  unsigned int _65;
+  unsigned char _66;
+  unsigned char _67;
+  uint8 * _68;
+  unsigned char _69;
+  uint8 * _70;
+  unsigned char _71;
+  int _72;
+  int _73;
+  int _74;
+  unsigned char _75;
+  uint8 * _76;
+  unsigned char _77;
+  unsigned int _78;
+  unsigned int _79;
+  unsigned int _80;
+  unsigned char _81;
+  unsigned int _82;
+  unsigned int _83;
+  unsigned int _84;
+  long unsigned int _85;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SourceDataMask_99 = 0;
+  # DEBUG SourceDataMask => SourceDataMask_99
+  # DEBUG BEGIN_STMT
+  DestByteSpace_100 = 0;
+  # DEBUG DestByteSpace => DestByteSpace_100
+  # DEBUG BEGIN_STMT
+  Size_102 = SizeToCopy_101(D);
+  # DEBUG Size => Size_102
+  # DEBUG BEGIN_STMT
+  SourceMaskBitsReq_103 = 0;
+  # DEBUG SourceMaskBitsReq => SourceMaskBitsReq_103
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) SourceStartPosition_104(D);
+  SourceBitPos_105 = _1 & 7;
+  # DEBUG SourceBitPos => SourceBitPos_105
+  # DEBUG BEGIN_STMT
+  SourceBytePos_106 = SourceStartPosition_104(D) >> 3;
+  # DEBUG SourceBytePos => SourceBytePos_106
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned char) DestStartPosition_107(D);
+  DestBitPos_108 = _2 & 7;
+  # DEBUG DestBitPos => DestBitPos_108
+  # DEBUG BEGIN_STMT
+  DestBytePos_109 = DestStartPosition_107(D) >> 3;
+  # DEBUG DestBytePos => DestBytePos_109
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (long unsigned int) DestBitPos_93;
+  _4 = 8 - _3;
+  if (Size_87 < _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SourceMaskBitsReq_112 = (uint8) Size_87;
+  # DEBUG SourceMaskBitsReq => SourceMaskBitsReq_112
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SourceMaskBitsReq_111 = 8 - DestBitPos_93;
+  # DEBUG SourceMaskBitsReq => SourceMaskBitsReq_111
+
+  <bb 6> :
+  # SourceMaskBitsReq_88 = PHI <SourceMaskBitsReq_112(4), SourceMaskBitsReq_111(5)>
+  # DEBUG SourceMaskBitsReq => SourceMaskBitsReq_88
+  # DEBUG BEGIN_STMT
+  _5 = SourceBuffer_113(D) + SourceBytePos_92;
+  _6 = *_5;
+  _7 = (int) _6;
+  _8 = (int) SourceBitPos_90;
+  _9 = _7 >> _8;
+  SourceDataMask_114 = (uint8) _9;
+  # DEBUG SourceDataMask => SourceDataMask_114
+  # DEBUG BEGIN_STMT
+  _10 = (unsigned int) SourceMaskBitsReq_88;
+  _11 = (unsigned int) SourceBitPos_90;
+  _12 = 8 - _11;
+  if (_10 > _12)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ByteInsource_118 = Dcm_DspInternal_DetermineNextByteInSourceBuffer (SourceBytePos_92, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG ByteInsource => ByteInsource_118
+  # DEBUG BEGIN_STMT
+  _13 = SourceBuffer_113(D) + ByteInsource_118;
+  _14 = *_13;
+  _15 = (int) _14;
+  _16 = (unsigned int) SourceBitPos_90;
+  _17 = 8 - _16;
+  _18 = _15 << _17;
+  _19 = (unsigned char) _18;
+  SourceDataMask_119 = SourceDataMask_114 | _19;
+  # DEBUG SourceDataMask => SourceDataMask_119
+
+  <bb 8> :
+  # SourceDataMask_86 = PHI <SourceDataMask_114(6), SourceDataMask_119(7)>
+  # DEBUG SourceDataMask => SourceDataMask_86
+  # DEBUG BEGIN_STMT
+  if (DestBitPos_93 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (Size_87 > 7)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _20 = DestBuffer_121(D) + DestBytePos_94;
+  *_20 = SourceDataMask_86;
+  # DEBUG BEGIN_STMT
+  SourceBytePos_141 = Dcm_DspInternal_DetermineNextByteInSourceBuffer (SourceBytePos_92, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG SourceBytePos => SourceBytePos_141
+  # DEBUG BEGIN_STMT
+  DestBytePos_143 = Dcm_DspInternal_DetermineNextByteInDestBuffer (DestBytePos_94, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG DestBytePos => DestBytePos_143
+  # DEBUG BEGIN_STMT
+  Size_144 = Size_87 + 4294967288;
+  # DEBUG Size => Size_144
+  goto <bb 20>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _21 = DestBuffer_121(D) + DestBytePos_94;
+  _22 = *_21;
+  _23 = 255 << Size_87;
+  _24 = (unsigned char) _23;
+  _25 = DestBuffer_121(D) + DestBytePos_94;
+  _26 = _22 & _24;
+  *_25 = _26;
+  # DEBUG BEGIN_STMT
+  _27 = DestBuffer_121(D) + DestBytePos_94;
+  _28 = *_27;
+  _29 = 8 - Size_87;
+  _30 = 255 >> _29;
+  _31 = (unsigned char) _30;
+  _32 = SourceDataMask_86 & _31;
+  _33 = DestBuffer_121(D) + DestBytePos_94;
+  _34 = _28 | _32;
+  *_33 = _34;
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  DestByteSpace_120 = 8 - DestBitPos_93;
+  # DEBUG DestByteSpace => DestByteSpace_120
+  # DEBUG BEGIN_STMT
+  _35 = (long unsigned int) DestByteSpace_120;
+  if (Size_87 <= _35)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _36 = DestBuffer_121(D) + DestBytePos_94;
+  _37 = *_36;
+  _38 = 8 - Size_87;
+  _39 = 255 << _38;
+  _40 = (unsigned char) _39;
+  _41 = (int) _40;
+  _42 = (long unsigned int) DestByteSpace_120;
+  _43 = _42 - Size_87;
+  _44 = _41 >> _43;
+  _45 = (unsigned char) _44;
+  _46 = ~_45;
+  _47 = DestBuffer_121(D) + DestBytePos_94;
+  _48 = _37 & _46;
+  *_47 = _48;
+  # DEBUG BEGIN_STMT
+  _49 = DestBuffer_121(D) + DestBytePos_94;
+  _50 = *_49;
+  _51 = (int) SourceDataMask_86;
+  _52 = (int) DestBitPos_93;
+  _53 = _51 << _52;
+  _54 = (unsigned char) _53;
+  _55 = (long unsigned int) DestByteSpace_120;
+  _56 = _55 - Size_87;
+  _57 = 255 >> _56;
+  _58 = (unsigned char) _57;
+  _59 = _54 & _58;
+  _60 = DestBuffer_121(D) + DestBytePos_94;
+  _61 = _50 | _59;
+  *_60 = _61;
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _62 = DestBuffer_121(D) + DestBytePos_94;
+  _63 = *_62;
+  _64 = (int) DestBitPos_93;
+  _65 = 255 << _64;
+  _66 = (unsigned char) _65;
+  _67 = ~_66;
+  _68 = DestBuffer_121(D) + DestBytePos_94;
+  _69 = _63 & _67;
+  *_68 = _69;
+  # DEBUG BEGIN_STMT
+  _70 = DestBuffer_121(D) + DestBytePos_94;
+  _71 = *_70;
+  _72 = (int) SourceDataMask_86;
+  _73 = (int) DestBitPos_93;
+  _74 = _72 << _73;
+  _75 = (unsigned char) _74;
+  _76 = DestBuffer_121(D) + DestBytePos_94;
+  _77 = _71 | _75;
+  *_76 = _77;
+  # DEBUG BEGIN_STMT
+  _78 = (unsigned int) DestByteSpace_120;
+  _79 = (unsigned int) SourceBitPos_90;
+  _80 = 8 - _79;
+  if (_78 > _80)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  SourceBytePos_129 = Dcm_DspInternal_DetermineNextByteInSourceBuffer (SourceBytePos_92, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG SourceBytePos => SourceBytePos_129
+  # DEBUG BEGIN_STMT
+  _81 = SourceBitPos_90 - DestBitPos_93;
+  SourceBitPos_130 = _81 + 255;
+  # DEBUG SourceBitPos => SourceBitPos_130
+  goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _82 = (unsigned int) DestByteSpace_120;
+  _83 = (unsigned int) SourceBitPos_90;
+  _84 = 8 - _83;
+  if (_82 < _84)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  SourceBitPos_127 = SourceBitPos_90 + DestByteSpace_120;
+  # DEBUG SourceBitPos => SourceBitPos_127
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  SourceBytePos_125 = Dcm_DspInternal_DetermineNextByteInSourceBuffer (SourceBytePos_92, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG SourceBytePos => SourceBytePos_125
+  # DEBUG BEGIN_STMT
+  SourceBitPos_126 = 0;
+  # DEBUG SourceBitPos => SourceBitPos_126
+
+  <bb 19> :
+  # SourceBitPos_89 = PHI <SourceBitPos_130(15), SourceBitPos_127(17), SourceBitPos_126(18)>
+  # SourceBytePos_91 = PHI <SourceBytePos_129(15), SourceBytePos_92(17), SourceBytePos_125(18)>
+  # DEBUG SourceBytePos => SourceBytePos_91
+  # DEBUG SourceBitPos => SourceBitPos_89
+  # DEBUG BEGIN_STMT
+  DestBytePos_132 = Dcm_DspInternal_DetermineNextByteInDestBuffer (DestBytePos_94, CopyMethod_115(D), ByteAdvanceDirection_116(D));
+  # DEBUG DestBytePos => DestBytePos_132
+  # DEBUG BEGIN_STMT
+  DestBitPos_133 = 0;
+  # DEBUG DestBitPos => DestBitPos_133
+  # DEBUG BEGIN_STMT
+  _85 = (long unsigned int) DestByteSpace_120;
+  Size_134 = Size_87 - _85;
+  # DEBUG Size => Size_134
+
+  <bb 20> :
+  # Size_87 = PHI <Size_102(2), Size_144(10), Size_134(19)>
+  # SourceBitPos_90 = PHI <SourceBitPos_105(2), SourceBitPos_90(10), SourceBitPos_89(19)>
+  # SourceBytePos_92 = PHI <SourceBytePos_106(2), SourceBytePos_141(10), SourceBytePos_91(19)>
+  # DestBitPos_93 = PHI <DestBitPos_108(2), DestBitPos_93(10), DestBitPos_133(19)>
+  # DestBytePos_94 = PHI <DestBytePos_109(2), DestBytePos_143(10), DestBytePos_132(19)>
+  # DEBUG DestBytePos => DestBytePos_94
+  # DEBUG DestBitPos => DestBitPos_93
+  # DEBUG SourceBytePos => SourceBytePos_92
+  # DEBUG SourceBitPos => SourceBitPos_90
+  # DEBUG Size => Size_87
+  # DEBUG BEGIN_STMT
+  if (Size_87 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_ShiftBitsInBuffer (Dcm_MsgItemType * buffer, Dcm_MsgLenType fromPosition, Dcm_MsgLenType toPosition, Dcm_MsgLenType noOfBits, boolean clearJunkBits)
+{
+  Dcm_MsgLenType sourceBytePos;
+  Dcm_MsgLenType destBytePos;
+  uint8_least sourceBitPos;
+  uint8_least destBitPos;
+  Dcm_MsgLenType InClearByte;
+  uint32 shiftCount;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  unsigned char _11;
+  long unsigned int _12;
+  Dcm_MsgItemType * _13;
+  unsigned char _14;
+  unsigned char _15;
+  int _16;
+  unsigned int _17;
+  unsigned char _18;
+  unsigned char _19;
+  Dcm_MsgItemType * _20;
+  unsigned char _21;
+  unsigned char _22;
+  int _23;
+  unsigned int _24;
+  unsigned char _25;
+  Dcm_MsgItemType * _26;
+  unsigned char _27;
+  Dcm_MsgItemType * _28;
+  unsigned char _29;
+  unsigned char _30;
+  int _31;
+  unsigned int _32;
+  unsigned char _33;
+  unsigned char _34;
+  Dcm_MsgItemType * _35;
+  unsigned char _36;
+  unsigned char _37;
+  long unsigned int _38;
+  unsigned char _39;
+  long unsigned int _40;
+  Dcm_MsgItemType * _41;
+  unsigned char _42;
+  unsigned char _43;
+  int _44;
+  unsigned int _45;
+  unsigned char _46;
+  unsigned char _47;
+  Dcm_MsgItemType * _48;
+  unsigned char _49;
+  unsigned char _50;
+  int _51;
+  unsigned int _52;
+  unsigned char _53;
+  Dcm_MsgItemType * _54;
+  unsigned char _55;
+  Dcm_MsgItemType * _56;
+  unsigned char _57;
+  unsigned char _58;
+  int _59;
+  unsigned int _60;
+  unsigned char _61;
+  unsigned char _62;
+  Dcm_MsgItemType * _63;
+  unsigned char _64;
+  Dcm_MsgItemType * _65;
+  unsigned char _66;
+  long unsigned int _67;
+  unsigned int _68;
+  unsigned char _69;
+  unsigned char _70;
+  Dcm_MsgItemType * _71;
+  unsigned char _72;
+  Dcm_MsgItemType * _73;
+  unsigned char _74;
+  unsigned char _75;
+  unsigned int _76;
+  unsigned int _77;
+  unsigned int _78;
+  unsigned char _79;
+  Dcm_MsgItemType * _80;
+  unsigned char _81;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (fromPosition_108(D) < toPosition_109(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = fromPosition_108(D) + noOfBits_116(D);
+  _2 = _1 + 4294967295;
+  sourceBytePos_127 = _2 / 8;
+  # DEBUG sourceBytePos => sourceBytePos_127
+  # DEBUG BEGIN_STMT
+  _3 = fromPosition_108(D) + noOfBits_116(D);
+  _4 = _3 + 4294967295;
+  _5 = (unsigned char) _4;
+  _6 = (long unsigned int) _5;
+  sourceBitPos_128 = _6 & 7;
+  # DEBUG sourceBitPos => sourceBitPos_128
+  # DEBUG BEGIN_STMT
+  _7 = toPosition_109(D) + noOfBits_116(D);
+  _8 = _7 + 4294967295;
+  destBytePos_129 = _8 / 8;
+  # DEBUG destBytePos => destBytePos_129
+  # DEBUG BEGIN_STMT
+  _9 = toPosition_109(D) + noOfBits_116(D);
+  _10 = _9 + 4294967295;
+  _11 = (unsigned char) _10;
+  _12 = (long unsigned int) _11;
+  destBitPos_130 = _12 & 7;
+  # DEBUG destBitPos => destBitPos_130
+  # DEBUG BEGIN_STMT
+  shiftCount_131 = 0;
+  # DEBUG shiftCount => shiftCount_131
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _13 = buffer_117(D) + sourceBytePos_99;
+  _14 = *_13;
+  _15 = (unsigned char) sourceBitPos_90;
+  _16 = (int) _15;
+  _17 = 1 << _16;
+  _18 = (unsigned char) _17;
+  _19 = _14 & _18;
+  if (_19 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _20 = buffer_117(D) + destBytePos_94;
+  _21 = *_20;
+  _22 = (unsigned char) destBitPos_85;
+  _23 = (int) _22;
+  _24 = 1 << _23;
+  _25 = (unsigned char) _24;
+  _26 = buffer_117(D) + destBytePos_94;
+  _27 = _21 | _25;
+  *_26 = _27;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _28 = buffer_117(D) + destBytePos_94;
+  _29 = *_28;
+  _30 = (unsigned char) destBitPos_85;
+  _31 = (int) _30;
+  _32 = 1 << _31;
+  _33 = (unsigned char) _32;
+  _34 = ~_33;
+  _35 = buffer_117(D) + destBytePos_94;
+  _36 = _29 & _34;
+  *_35 = _36;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (sourceBitPos_90 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sourceBytePos_135 = sourceBytePos_99 + 4294967295;
+  # DEBUG sourceBytePos => sourceBytePos_135
+  # DEBUG BEGIN_STMT
+  sourceBitPos_136 = 7;
+  # DEBUG sourceBitPos => sourceBitPos_136
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  sourceBitPos_134 = sourceBitPos_90 + 4294967295;
+  # DEBUG sourceBitPos => sourceBitPos_134
+
+  <bb 10> :
+  # sourceBitPos_89 = PHI <sourceBitPos_136(8), sourceBitPos_134(9)>
+  # sourceBytePos_98 = PHI <sourceBytePos_135(8), sourceBytePos_99(9)>
+  # DEBUG sourceBytePos => sourceBytePos_98
+  # DEBUG sourceBitPos => sourceBitPos_89
+  # DEBUG BEGIN_STMT
+  if (destBitPos_85 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  destBytePos_138 = destBytePos_94 + 4294967295;
+  # DEBUG destBytePos => destBytePos_138
+  # DEBUG BEGIN_STMT
+  destBitPos_139 = 7;
+  # DEBUG destBitPos => destBitPos_139
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  destBitPos_137 = destBitPos_85 + 4294967295;
+  # DEBUG destBitPos => destBitPos_137
+
+  <bb 13> :
+  # destBitPos_84 = PHI <destBitPos_139(11), destBitPos_137(12)>
+  # destBytePos_93 = PHI <destBytePos_138(11), destBytePos_94(12)>
+  # DEBUG destBytePos => destBytePos_93
+  # DEBUG destBitPos => destBitPos_84
+  # DEBUG BEGIN_STMT
+  shiftCount_140 = shiftCount_82 + 1;
+  # DEBUG shiftCount => shiftCount_140
+
+  <bb 14> :
+  # shiftCount_82 = PHI <shiftCount_131(3), shiftCount_140(13)>
+  # destBitPos_85 = PHI <destBitPos_130(3), destBitPos_84(13)>
+  # sourceBitPos_90 = PHI <sourceBitPos_128(3), sourceBitPos_89(13)>
+  # destBytePos_94 = PHI <destBytePos_129(3), destBytePos_93(13)>
+  # sourceBytePos_99 = PHI <sourceBytePos_127(3), sourceBytePos_98(13)>
+  # DEBUG sourceBytePos => sourceBytePos_99
+  # DEBUG destBytePos => destBytePos_94
+  # DEBUG sourceBitPos => sourceBitPos_90
+  # DEBUG destBitPos => destBitPos_85
+  # DEBUG shiftCount => shiftCount_82
+  # DEBUG BEGIN_STMT
+  if (shiftCount_82 < noOfBits_116(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _37 = (unsigned char) toPosition_109(D);
+  _38 = (long unsigned int) _37;
+  destBitPos_110 = _38 & 7;
+  # DEBUG destBitPos => destBitPos_110
+  # DEBUG BEGIN_STMT
+  destBytePos_111 = toPosition_109(D) / 8;
+  # DEBUG destBytePos => destBytePos_111
+  # DEBUG BEGIN_STMT
+  _39 = (unsigned char) fromPosition_108(D);
+  _40 = (long unsigned int) _39;
+  sourceBitPos_112 = _40 & 7;
+  # DEBUG sourceBitPos => sourceBitPos_112
+  # DEBUG BEGIN_STMT
+  sourceBytePos_113 = fromPosition_108(D) / 8;
+  # DEBUG sourceBytePos => sourceBytePos_113
+  # DEBUG BEGIN_STMT
+  shiftCount_114 = 0;
+  # DEBUG shiftCount => shiftCount_114
+  goto <bb 26>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _41 = buffer_117(D) + sourceBytePos_101;
+  _42 = *_41;
+  _43 = (unsigned char) sourceBitPos_92;
+  _44 = (int) _43;
+  _45 = 1 << _44;
+  _46 = (unsigned char) _45;
+  _47 = _42 & _46;
+  if (_47 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _48 = buffer_117(D) + destBytePos_96;
+  _49 = *_48;
+  _50 = (unsigned char) destBitPos_87;
+  _51 = (int) _50;
+  _52 = 1 << _51;
+  _53 = (unsigned char) _52;
+  _54 = buffer_117(D) + destBytePos_96;
+  _55 = _49 | _53;
+  *_54 = _55;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _56 = buffer_117(D) + destBytePos_96;
+  _57 = *_56;
+  _58 = (unsigned char) destBitPos_87;
+  _59 = (int) _58;
+  _60 = 1 << _59;
+  _61 = (unsigned char) _60;
+  _62 = ~_61;
+  _63 = buffer_117(D) + destBytePos_96;
+  _64 = _57 & _62;
+  *_63 = _64;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (sourceBitPos_92 == 7)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  sourceBytePos_121 = sourceBytePos_101 + 1;
+  # DEBUG sourceBytePos => sourceBytePos_121
+  # DEBUG BEGIN_STMT
+  sourceBitPos_122 = 0;
+  # DEBUG sourceBitPos => sourceBitPos_122
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  sourceBitPos_120 = sourceBitPos_92 + 1;
+  # DEBUG sourceBitPos => sourceBitPos_120
+
+  <bb 22> :
+  # sourceBitPos_91 = PHI <sourceBitPos_122(20), sourceBitPos_120(21)>
+  # sourceBytePos_100 = PHI <sourceBytePos_121(20), sourceBytePos_101(21)>
+  # DEBUG sourceBytePos => sourceBytePos_100
+  # DEBUG sourceBitPos => sourceBitPos_91
+  # DEBUG BEGIN_STMT
+  if (destBitPos_87 == 7)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  destBytePos_124 = destBytePos_96 + 1;
+  # DEBUG destBytePos => destBytePos_124
+  # DEBUG BEGIN_STMT
+  destBitPos_125 = 0;
+  # DEBUG destBitPos => destBitPos_125
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  destBitPos_123 = destBitPos_87 + 1;
+  # DEBUG destBitPos => destBitPos_123
+
+  <bb 25> :
+  # destBitPos_86 = PHI <destBitPos_125(23), destBitPos_123(24)>
+  # destBytePos_95 = PHI <destBytePos_124(23), destBytePos_96(24)>
+  # DEBUG destBytePos => destBytePos_95
+  # DEBUG destBitPos => destBitPos_86
+  # DEBUG BEGIN_STMT
+  shiftCount_126 = shiftCount_83 + 1;
+  # DEBUG shiftCount => shiftCount_126
+
+  <bb 26> :
+  # shiftCount_83 = PHI <shiftCount_114(15), shiftCount_126(25)>
+  # destBitPos_87 = PHI <destBitPos_110(15), destBitPos_86(25)>
+  # sourceBitPos_92 = PHI <sourceBitPos_112(15), sourceBitPos_91(25)>
+  # destBytePos_96 = PHI <destBytePos_111(15), destBytePos_95(25)>
+  # sourceBytePos_101 = PHI <sourceBytePos_113(15), sourceBytePos_100(25)>
+  # DEBUG sourceBytePos => sourceBytePos_101
+  # DEBUG destBytePos => destBytePos_96
+  # DEBUG sourceBitPos => sourceBitPos_92
+  # DEBUG destBitPos => destBitPos_87
+  # DEBUG shiftCount => shiftCount_83
+  # DEBUG BEGIN_STMT
+  if (shiftCount_83 < noOfBits_116(D))
+    goto <bb 16>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 27> :
+  # destBitPos_88 = PHI <destBitPos_85(14), destBitPos_87(26)>
+  # destBytePos_97 = PHI <destBytePos_94(14), destBytePos_96(26)>
+  # DEBUG destBytePos => destBytePos_97
+  # DEBUG destBitPos => destBitPos_88
+  # DEBUG BEGIN_STMT
+  if (clearJunkBits_141(D) == 1)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  if (fromPosition_108(D) < toPosition_109(D))
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  InClearByte_143 = fromPosition_108(D) / 8;
+  # DEBUG InClearByte => InClearByte_143
+  # DEBUG BEGIN_STMT
+  _65 = buffer_117(D) + InClearByte_143;
+  _66 = *_65;
+  _67 = fromPosition_108(D) & 7;
+  _68 = 255 << _67;
+  _69 = (unsigned char) _68;
+  _70 = ~_69;
+  _71 = buffer_117(D) + InClearByte_143;
+  _72 = _66 & _70;
+  *_71 = _72;
+  goto <bb 32>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  if (destBitPos_88 != 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _73 = buffer_117(D) + destBytePos_97;
+  _74 = *_73;
+  _75 = (unsigned char) destBitPos_88;
+  _76 = (unsigned int) _75;
+  _77 = 8 - _76;
+  _78 = 255 >> _77;
+  _79 = (unsigned char) _78;
+  _80 = buffer_117(D) + destBytePos_97;
+  _81 = _74 & _79;
+  *_80 = _81;
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_DcmConfirmation (Dcm_ProtocolIndexType ProtocolIndex, Dcm_ConfirmationStatusType Status)
+{
+  Dcm_OpStatusType OpStatus;
+  boolean RxPduIdFound;
+  uint16_least RxPduIdIndex;
+  struct Dcm_HsmInfoType * curHsmInfo;
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  Dcm_SesCtrlType newSesCtrl;
+  uint16 SourceAddress;
+  Dcm_MainConnectionIndexType MainConnIdx;
+  uint8 ReqType;
+  uint8 Sid;
+  uint8_least sessionIdx;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  int _6;
+  Std_ReturnType (*<T770>) (uint8, uint8, uint16, Dcm_ConfirmationStatusType) _7;
+  Std_ReturnType (*<T770>) (uint8, uint8, uint16, Dcm_ConfirmationStatusType) _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  int _12;
+  const struct Dcm_SesTabEntryConfigType * _13;
+  long unsigned int _14;
+  const struct Dcm_SesTabEntryConfigType * _15;
+  unsigned char _16;
+  unsigned char _17;
+  int _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  unsigned char _21;
+  unsigned char _22;
+  long unsigned int _23;
+  int _24;
+  unsigned char _25;
+  int _26;
+  unsigned char _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  newSesCtrl_40 = 0;
+  # DEBUG newSesCtrl => newSesCtrl_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_41(D);
+  curHsmInfo_42 = &Dcm_HsmInfo[_1];
+  # DEBUG curHsmInfo => curHsmInfo_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Sid_44 = curHsmInfo_42->serviceId;
+  # DEBUG Sid => Sid_44
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo_42->RxConnectionId;
+  _3 = (int) _2;
+  ReqType_45 = Dcm_RxPduIdConfig[_3].AddressingType;
+  # DEBUG ReqType => ReqType_45
+  # DEBUG BEGIN_STMT
+  _4 = curHsmInfo_42->RxConnectionId;
+  _5 = (int) _4;
+  MainConnIdx_46 = Dcm_RxPduIdConfig[_5].MainConnectionIndex;
+  # DEBUG MainConnIdx => MainConnIdx_46
+  # DEBUG BEGIN_STMT
+  _6 = (int) MainConnIdx_46;
+  SourceAddress_47 = Dcm_MainConnectionConfig[_6].TesterSourceAddress;
+  # DEBUG SourceAddress => SourceAddress_47
+  # DEBUG BEGIN_STMT
+  sessionIdx_48 = 0;
+  # DEBUG sessionIdx => sessionIdx_48
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_RteManufacturerNotificationTable[sessionIdx_28].Confirmation;
+  _7 (Sid_44, ReqType_45, SourceAddress_47, Status_50(D));
+  # DEBUG BEGIN_STMT
+  sessionIdx_69 = sessionIdx_28 + 1;
+  # DEBUG sessionIdx => sessionIdx_69
+
+  <bb 4> :
+  # sessionIdx_28 = PHI <sessionIdx_48(2), sessionIdx_69(3)>
+  # DEBUG sessionIdx => sessionIdx_28
+  # DEBUG BEGIN_STMT
+  if (sessionIdx_28 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  sessionIdx_49 = 0;
+  # DEBUG sessionIdx => sessionIdx_49
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_RteSupplierNotificationTable[sessionIdx_29].Confirmation;
+  _8 (Sid_44, ReqType_45, SourceAddress_47, Status_50(D));
+  # DEBUG BEGIN_STMT
+  sessionIdx_67 = sessionIdx_29 + 1;
+  # DEBUG sessionIdx => sessionIdx_67
+
+  <bb 7> :
+  # sessionIdx_29 = PHI <sessionIdx_49(5), sessionIdx_67(6)>
+  # DEBUG sessionIdx => sessionIdx_29
+  # DEBUG BEGIN_STMT
+  if (sessionIdx_29 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = curHsmInfo_42->RequestType;
+  _10 = _9 + 248;
+  if (_10 <= 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _11 = Dcm_ProgConditions.Sid;
+  if (_11 == 16)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  newSesCtrl_55 = Dcm_ProgConditions.SubFncId;
+  # DEBUG newSesCtrl => newSesCtrl_55
+  # DEBUG BEGIN_STMT
+  _12 = (int) ProtocolIndex_41(D);
+  sesTabConfig_56 = &Dcm_SesTabConfig[_12];
+  # DEBUG sesTabConfig => sesTabConfig_56
+  # DEBUG BEGIN_STMT
+  sessionIdx_57 = 0;
+  # DEBUG sessionIdx => sessionIdx_57
+  goto <bb 19>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _13 = sesTabConfig_56->SessionEntries;
+  _14 = sessionIdx_30 * 12;
+  _15 = _13 + _14;
+  _16 = _15->SesCtrl;
+  if (newSesCtrl_55 == _16)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RxPduIdIndex_58 = 0;
+  # DEBUG RxPduIdIndex => RxPduIdIndex_58
+  # DEBUG BEGIN_STMT
+  RxPduIdFound_59 = 0;
+  # DEBUG RxPduIdFound => RxPduIdFound_59
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _17 = Dcm_RxPduIdConfig[RxPduIdIndex_31].MainConnectionIndex;
+  _18 = (int) _17;
+  _19 = Dcm_MainConnectionConfig[_18].TesterSourceAddress;
+  _20 = Dcm_ProgConditions.TesterSourceAddr;
+  if (_19 == _20)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RxPduIdFound_62 = 1;
+  # DEBUG RxPduIdFound => RxPduIdFound_62
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  RxPduIdIndex_61 = RxPduIdIndex_31 + 1;
+  # DEBUG RxPduIdIndex => RxPduIdIndex_61
+
+  <bb 16> :
+  # RxPduIdIndex_31 = PHI <RxPduIdIndex_58(12), RxPduIdIndex_31(14), RxPduIdIndex_61(15)>
+  # RxPduIdFound_32 = PHI <RxPduIdFound_59(12), RxPduIdFound_62(14), RxPduIdFound_32(15)>
+  # DEBUG RxPduIdFound => RxPduIdFound_32
+  # DEBUG RxPduIdIndex => RxPduIdIndex_31
+  # DEBUG BEGIN_STMT
+  if (RxPduIdFound_32 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _21 = Dcm_RxPduIdConfig[RxPduIdIndex_31].MainConnectionIndex;
+  Dcm_Dsl_DiagnosticSessionHandler_SetSession (_21, newSesCtrl_55);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  sessionIdx_63 = sessionIdx_30 + 1;
+  # DEBUG sessionIdx => sessionIdx_63
+
+  <bb 19> :
+  # sessionIdx_30 = PHI <sessionIdx_57(10), sessionIdx_63(18)>
+  # DEBUG sessionIdx => sessionIdx_30
+  # DEBUG BEGIN_STMT
+  _22 = sesTabConfig_56->NumEntries;
+  _23 = (long unsigned int) _22;
+  if (sessionIdx_30 < _23)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_41(D), 6);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_PostBootOperationsHandler_ActionsCompleted ();
+  goto <bb 29>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _24 = (int) ProtocolIndex_41(D);
+  _25 = Dcm_HsmInfo[_24].dspService;
+  if (_25 != 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Status_50(D) == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  if (Status_50(D) == 2)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  OpStatus_52 = 5;
+  # DEBUG OpStatus => OpStatus_52
+  goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  OpStatus_51 = 6;
+  # DEBUG OpStatus => OpStatus_51
+
+  <bb 26> :
+  # OpStatus_33 = PHI <OpStatus_52(24), OpStatus_51(25)>
+  # DEBUG OpStatus => OpStatus_33
+  # DEBUG BEGIN_STMT
+  _26 = (int) ProtocolIndex_41(D);
+  _27 = Dcm_HsmInfo[_26].requestValidationStatus;
+  if (_27 == 1)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (ProtocolIndex_41(D), OpStatus_33);
+  goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_41(D), 6);
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolCancelProcessing (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  int _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_6(D);
+  _2 = Dcm_HsmInfo[_1].CancellationConditions.ServiceProcessingDone;
+  if (_2 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (ProtocolIndex_6(D), 2);
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CancellationDone (1, ProtocolIndex_6(D));
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProtocolIndex_6(D);
+  _4 = Dcm_HsmInfo[_3].CancellationConditions.CancellationType;
+  if (_4 != 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (ProtocolIndex_6(D));
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_CancelPagedBufferProcessing ()
+{
+  const uint8 ProtocolIdx;
+  short unsigned int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _2 = (unsigned char) _1;
+  ProtocolIdx_7 = _2 + 244;
+  # DEBUG ProtocolIdx => ProtocolIdx_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) ProtocolIdx_7;
+  _4 = _3 + 12;
+  Dcm_Dsp_ProtocolCancel (_4);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_UpdatePage (Dcm_MsgItemType * PagedBufPtr, Dcm_MsgLenType PageLen)
+{
+  const uint8 ProtocolIdx;
+  unsigned char Dcm_Initialized.12_1;
+  short unsigned int _2;
+  unsigned char _3;
+  int _4;
+  int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.12_1 = Dcm_Initialized;
+  if (Dcm_Initialized.12_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 106, 5);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _3 = (unsigned char) _2;
+  ProtocolIdx_9 = _3 + 244;
+  # DEBUG ProtocolIdx => ProtocolIdx_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) ProtocolIdx_9;
+  Dcm_HsmInfo[_4].msgContext.resData = PagedBufPtr_10(D);
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIdx_9;
+  Dcm_HsmInfo[_5].msgContext.resMaxDataLen = PageLen_12(D);
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (ProtocolIdx_9, 4);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_ClearDiagnosticInformation_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_NegativeResponseCodeType Nrc;
+  Std_ReturnType serviceProcessStatus;
+  uint32 reqDTC;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  Dcm_MsgItemType * _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  Dcm_MsgItemType * _16;
+  Dcm_MsgItemType * _17;
+  unsigned char _18;
+  long unsigned int _19;
+  unsigned char Nrc.9_20;
+  unsigned char Nrc.10_21;
+  unsigned char Nrc.11_22;
+  Std_ReturnType _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_26 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_26
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_29(D)->dcmRxPduId;
+  _2 = pMsgContext_29(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_31 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_31
+  # DEBUG BEGIN_STMT
+  DemClientId_33 = Dcm_Dsl_GetDemClientId (ProtocolIndex_31);
+  # DEBUG DemClientId => DemClientId_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_34(D);
+  switch (_4) <default: <L8> [INV], case 0: <L0> [INV], case 1: <L6> [INV], case 2: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_29(D)->reqDataLen;
+  if (_5 != 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Nrc = 19;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_45 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_45
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_29(D)->reqData;
+  _7 = *_6;
+  _8 = (long unsigned int) _7;
+  _9 = _8 << 16;
+  _10 = pMsgContext_29(D)->reqData;
+  _11 = _10 + 1;
+  _12 = *_11;
+  _13 = (long unsigned int) _12;
+  _14 = _13 << 8;
+  _15 = _9 | _14;
+  _16 = pMsgContext_29(D)->reqData;
+  _17 = _16 + 2;
+  _18 = *_17;
+  _19 = (long unsigned int) _18;
+  reqDTC_39 = _15 | _19;
+  # DEBUG reqDTC => reqDTC_39
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_41 = Dcm_Dsp_DemFacade_ClearDTCInfo_Setup (DemClientId_33, reqDTC_39, 1, 1, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_41
+  # DEBUG BEGIN_STMT
+  Nrc.9_20 = Nrc;
+  if (Nrc.9_20 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = Dcm_Dsp_DemFacade_ClearDTCInfo_Process (DemClientId_33, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_38 = Dcm_Dsp_DemFacade_ClearDTCInfo_Process (DemClientId_33, &Nrc);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_36 = Dcm_Dsp_DemFacade_ClearDTCInfo_Cancel (DemClientId_33);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_36
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # serviceProcessStatus_23 = PHI <serviceProcessStatus_41(5), serviceProcessStatus_38(7), serviceProcessStatus_36(8), serviceProcessStatus_46(9), serviceProcessStatus_45(4), serviceProcessStatus_43(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  Nrc.10_21 = Nrc;
+  if (Nrc.10_21 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  if (serviceProcessStatus_23 == 26)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Nrc.11_22 = Nrc;
+  Dcm_ExternalSetNegResponse (pMsgContext_29(D), Nrc.11_22);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _48 = serviceProcessStatus_23;
+  Nrc ={v} {CLOBBER};
+  return _48;
+
+}
+
+
+Dcm_DspInternal_HardReset_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType EcuResetResult;
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_3 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  EcuResetResult_4 = 30;
+  # DEBUG EcuResetResult => EcuResetResult_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuResetResult_7 = SchM_Switch_Dcm_DcmEcuReset (1);
+  # DEBUG EcuResetResult => EcuResetResult_7
+  # DEBUG BEGIN_STMT
+  if (EcuResetResult_7 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_8(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_10 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_10
+
+  <bb 4> :
+  # serviceProcessStatus_1 = PHI <serviceProcessStatus_3(2), serviceProcessStatus_10(3)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = serviceProcessStatus_1;
+  return _11;
+
+}
+
+
+Dcm_DspInternal_ECUReset_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 subSrvIdx;
+  const struct Dcm_SubSidTabEntryConfigType * const curSsConfig;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 curProtocolId;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  const struct Dcm_SidTabEntryConfigType * _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct Dcm_SidTabEntryConfigType * _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct Dcm_SubSidTabEntryConfigType * _13;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _14;
+  unsigned char _15;
+  Dcm_MsgItemType * _16;
+  Dcm_MsgItemType * _17;
+  Dcm_MsgItemType * _18;
+  unsigned char _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct Dcm_SubSidTabEntryConfigType * _22;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _23;
+  Std_ReturnType _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_27 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_27
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_29(D)->dcmRxPduId;
+  curProtocolId_31 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG curProtocolId => curProtocolId_31
+  # DEBUG BEGIN_STMT
+  _2 = (int) curProtocolId_31;
+  curHsmInfo_32 = &Dcm_HsmInfo[_2];
+  # DEBUG curHsmInfo => curHsmInfo_32
+  # DEBUG BEGIN_STMT
+  _3 = (int) curProtocolId_31;
+  _4 = Dcm_ProtocolConfig[_3].ServiceTableIndex;
+  _5 = (int) _4;
+  curSidTabConfig_33 = &Dcm_SidTabConfig[_5];
+  # DEBUG curSidTabConfig => curSidTabConfig_33
+  # DEBUG BEGIN_STMT
+  _6 = curSidTabConfig_33->Entries;
+  _7 = curHsmInfo_32->sidTabEntryInd;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 32;
+  _10 = _6 + _9;
+  curSsConfig_34 = _10->SubServices;
+  # DEBUG curSsConfig => curSsConfig_34
+  # DEBUG BEGIN_STMT
+  subSrvIdx_35 = curHsmInfo_32->subServiceIdIdx;
+  # DEBUG subSrvIdx => subSrvIdx_35
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) subSrvIdx_35;
+  _12 = _11 * 24;
+  _13 = curSsConfig_34 + _12;
+  _14 = _13->IntSrvHandler;
+  if (_14 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_36(D) != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo_32->subServiceId;
+  if (_15 == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_29(D)->resDataLen = 2;
+  # DEBUG BEGIN_STMT
+  _16 = pMsgContext_29(D)->resData;
+  _17 = _16 + 1;
+  *_17 = 255;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_29(D)->resDataLen = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = pMsgContext_29(D)->resData;
+  _19 = curHsmInfo_32->subServiceId;
+  *_18 = _19;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_45 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_45
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_40 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_40
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _20 = (unsigned int) subSrvIdx_35;
+  _21 = _20 * 24;
+  _22 = curSsConfig_34 + _21;
+  _23 = _22->ExtSrvHandler;
+  serviceProcessStatus_38 = _23 (OpStatus_36(D), pMsgContext_29(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_38 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_39 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_39
+
+  <bb 11> :
+  # serviceProcessStatus_24 = PHI <serviceProcessStatus_40(8), serviceProcessStatus_38(9), serviceProcessStatus_39(10), serviceProcessStatus_45(7)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_24
+  # DEBUG BEGIN_STMT
+  _46 = serviceProcessStatus_24;
+  return _46;
+
+}
+
+
+Dcm_DspInternal_ECUReset_SvcStart (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 subSrvIdx;
+  const struct Dcm_SubSidTabEntryConfigType * const curSsConfig;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 curProtocolId;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  const struct Dcm_SidTabEntryConfigType * _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct Dcm_SidTabEntryConfigType * _10;
+  long unsigned int _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  const struct Dcm_SubSidTabEntryConfigType * _18;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct Dcm_SubSidTabEntryConfigType * _22;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _23;
+  unsigned int _24;
+  unsigned int _25;
+  const struct Dcm_SubSidTabEntryConfigType * _26;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _27;
+  Std_ReturnType _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_30 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_30
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_32(D)->dcmRxPduId;
+  curProtocolId_34 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG curProtocolId => curProtocolId_34
+  # DEBUG BEGIN_STMT
+  _2 = (int) curProtocolId_34;
+  curHsmInfo_35 = &Dcm_HsmInfo[_2];
+  # DEBUG curHsmInfo => curHsmInfo_35
+  # DEBUG BEGIN_STMT
+  _3 = (int) curProtocolId_34;
+  _4 = Dcm_ProtocolConfig[_3].ServiceTableIndex;
+  _5 = (int) _4;
+  curSidTabConfig_36 = &Dcm_SidTabConfig[_5];
+  # DEBUG curSidTabConfig => curSidTabConfig_36
+  # DEBUG BEGIN_STMT
+  _6 = curSidTabConfig_36->Entries;
+  _7 = curHsmInfo_35->sidTabEntryInd;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 32;
+  _10 = _6 + _9;
+  curSsConfig_37 = _10->SubServices;
+  # DEBUG curSsConfig => curSsConfig_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = pMsgContext_32(D)->reqDataLen;
+  if (_11 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  subSrvIdx_40 = curHsmInfo_35->subServiceIdIdx;
+  # DEBUG subSrvIdx => subSrvIdx_40
+  # DEBUG BEGIN_STMT
+  _12 = pMsgContext_32(D)->reqData;
+  _13 = _12 + 1;
+  pMsgContext_32(D)->reqData = _13;
+  # DEBUG BEGIN_STMT
+  _14 = pMsgContext_32(D)->reqDataLen;
+  _15 = _14 + 4294967295;
+  pMsgContext_32(D)->reqDataLen = _15;
+  # DEBUG BEGIN_STMT
+  _16 = (unsigned int) subSrvIdx_40;
+  _17 = _16 * 24;
+  _18 = curSsConfig_37 + _17;
+  _19 = _18->IntSrvHandler;
+  if (_19 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _20 = (unsigned int) subSrvIdx_40;
+  _21 = _20 * 24;
+  _22 = curSsConfig_37 + _21;
+  _23 = _22->IntSrvHandler;
+  serviceProcessStatus_47 = _23 (0, pMsgContext_32(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_47
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _24 = (unsigned int) subSrvIdx_40;
+  _25 = _24 * 24;
+  _26 = curSsConfig_37 + _25;
+  _27 = _26->ExtSrvHandler;
+  serviceProcessStatus_44 = _27 (0, pMsgContext_32(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_44 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_45 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_45
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_32(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_39 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_39
+
+  <bb 8> :
+  # serviceProcessStatus_28 = PHI <serviceProcessStatus_44(5), serviceProcessStatus_39(7), serviceProcessStatus_47(4), serviceProcessStatus_45(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_28
+  # DEBUG BEGIN_STMT
+  _48 = serviceProcessStatus_28;
+  return _48;
+
+}
+
+
+Dcm_DspInternal_ECUReset_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 curProtocolId;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  Std_ReturnType _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_9 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_11(D)->dcmRxPduId;
+  curProtocolId_13 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG curProtocolId => curProtocolId_13
+  # DEBUG BEGIN_STMT
+  _2 = (int) curProtocolId_13;
+  curHsmInfo_14 = &Dcm_HsmInfo[_2];
+  # DEBUG curHsmInfo => curHsmInfo_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (int) OpStatus_15(D);
+  switch (_3) <default: <L8> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV], case 5: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_25 = Dcm_DspInternal_ECUReset_SvcStart (0, pMsgContext_11(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_25
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = Dcm_DspInternal_ECUReset_SvcCont (1, pMsgContext_11(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_21 = Dcm_DspInternal_ECUReset_SvcCont (2, pMsgContext_11(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _4 = curHsmInfo_14->negativeResponseCode;
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmEcuReset (0);
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_Dsp_ControlDTCSetting_GetState ();
+  if (_5 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_ReEnable ();
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_19 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_26 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_26
+  # DEBUG BEGIN_STMT
+
+  <bb 11> :
+  # serviceProcessStatus_6 = PHI <serviceProcessStatus_25(3), serviceProcessStatus_23(4), serviceProcessStatus_21(5), serviceProcessStatus_19(9), serviceProcessStatus_26(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _27 = serviceProcessStatus_6;
+  return _27;
+
+}
+
+
+Dcm_DspInternal_ProcessSetProgConditions (struct Dcm_MsgContextType * pMsgContext)
+{
+  uint16 testerSourceAddr;
+  struct Dcm_MsgContextType * const curMsgContext;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const uint8 instIdx;
+  boolean ResetToDefaultSessionOccured;
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType SetProgConditionsReturn;
+  short unsigned int _1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  unsigned char _15;
+  int _16;
+  short unsigned int _17;
+  int _18;
+  short unsigned int _19;
+  unsigned char _20;
+  unsigned char _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  Std_ReturnType _68;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SetProgConditionsReturn_32 = 0;
+  # DEBUG SetProgConditionsReturn => SetProgConditionsReturn_32
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_33 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_35(D)->dcmRxPduId;
+  instIdx_37 = Dcm_Dsl_Supervisor_GetProtocolIndexFromRxPduIdAndRequestType (_1, 4);
+  # DEBUG instIdx => instIdx_37
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_37;
+  curHsmInfo_38 = &Dcm_HsmInfo[_2];
+  # DEBUG curHsmInfo => curHsmInfo_38
+  # DEBUG BEGIN_STMT
+  curMsgContext_39 = &curHsmInfo_38->msgContext;
+  # DEBUG curMsgContext => curMsgContext_39
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_35(D)->dcmRxPduId;
+  _4 = (int) _3;
+  _5 = Dcm_RxPduIdConfig[_4].MainConnectionIndex;
+  _6 = (int) _5;
+  testerSourceAddr_40 = Dcm_MainConnectionConfig[_6].TesterSourceAddress;
+  # DEBUG testerSourceAddr => testerSourceAddr_40
+  # DEBUG BEGIN_STMT
+  _7 = (int) instIdx_37;
+  _8 = Dcm_ProtocolConfig[_7].Type;
+  Dcm_ProgConditions.ProtocolId = _8;
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.Sid = 16;
+  # DEBUG BEGIN_STMT
+  _9 = curHsmInfo_38->subServiceId;
+  Dcm_ProgConditions.SubFncId = _9;
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.TesterSourceAddr = testerSourceAddr_40;
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.ReprogramingRequest = 1;
+  # DEBUG BEGIN_STMT
+  _10 = BIT_FIELD_REF <curMsgContext_39->msgAddInfo, 8, 0>;
+  _11 = _10 & 2;
+  if (_11 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.ResponseRequired = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.ResponseRequired = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) instIdx_37;
+  _13 = Dcm_HsmInfo[_12].SetProgConditionsFinished;
+  if (_13 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SetProgConditionsReturn_49 = Dcm_SetProgConditions (&Dcm_ProgConditions);
+  # DEBUG SetProgConditionsReturn => SetProgConditionsReturn_49
+
+  <bb 7> :
+  # SetProgConditionsReturn_24 = PHI <SetProgConditionsReturn_32(5), SetProgConditionsReturn_49(6)>
+  # DEBUG SetProgConditionsReturn => SetProgConditionsReturn_24
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn_24 == 10)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_38->jumpToBLExecution = 2;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_67 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_67
+  goto <bb 22>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn_24 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) instIdx_37;
+  Dcm_HsmInfo[_14].SetProgConditionsFinished = 1;
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo_38->serviceId;
+  ResetToDefaultSessionOccured_56 = Dcm_Dsl_DiagnosticSessionHandler_GetResetToDefaultSessionOccured (_15);
+  # DEBUG ResetToDefaultSessionOccured => ResetToDefaultSessionOccured_56
+  # DEBUG BEGIN_STMT
+  _16 = (int) instIdx_37;
+  _17 = Dcm_HsmInfo[_16].rpCntrConfirmed;
+  _18 = (int) instIdx_37;
+  _19 = Dcm_HsmInfo[_18].rpCntr;
+  if (_17 == _19)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = curHsmInfo_38->subServiceId;
+  _21 = Dcm_Dsl_Supervisor_IsSessionClearedToSwitch (_20);
+  if (_21 == 3)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  if (ResetToDefaultSessionOccured_56 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmEcuReset (0);
+  # DEBUG BEGIN_STMT
+  _22 = (short unsigned int) instIdx_37;
+  _23 = _22 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (_23, instIdx_37, 2);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_61 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_61
+  goto <bb 20>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_35(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_63 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_63
+  goto <bb 20>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_57 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_57
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn_24 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 74, 9);
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 74, 2);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_35(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_53 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_53
+
+  <bb 20> :
+  # serviceProcessStatus_25 = PHI <serviceProcessStatus_57(15), serviceProcessStatus_53(19), serviceProcessStatus_63(14), serviceProcessStatus_61(13)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_25
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_25 != 10)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_38->jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_38->jumpToBLExecution = 0;
+
+  <bb 22> :
+  # serviceProcessStatus_26 = PHI <serviceProcessStatus_67(8), serviceProcessStatus_25(20), serviceProcessStatus_25(21)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_26
+  # DEBUG BEGIN_STMT
+  _68 = serviceProcessStatus_26;
+  return _68;
+
+}
+
+
+Dcm_DspInternal_JumpToBL (struct Dcm_MsgContextType * pMsgContext, Dcm_OpStatusType OpStatus)
+{
+  const struct Dcm_ProtocolConfigType * const curProtocolConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  uint8 instIdx;
+  Std_ReturnType EcuResetResult;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  const struct Dcm_SesTabEntryConfigType * _6;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.7_7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct Dcm_SesTabEntryConfigType * _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  unsigned char _16;
+  Std_ReturnType _49;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_21 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  EcuResetResult_22 = 30;
+  # DEBUG EcuResetResult => EcuResetResult_22
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_24(D)->dcmRxPduId;
+  instIdx_26 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG instIdx => instIdx_26
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_26;
+  sesTabConfig_27 = &Dcm_SesTabConfig[_2];
+  # DEBUG sesTabConfig => sesTabConfig_27
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_26;
+  curHsmInfo_28 = &Dcm_HsmInfo[_3];
+  # DEBUG curHsmInfo => curHsmInfo_28
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_26;
+  curProtocolConfig_29 = &Dcm_ProtocolConfig[_4];
+  # DEBUG curProtocolConfig => curProtocolConfig_29
+  # DEBUG BEGIN_STMT
+  _5 = (int) OpStatus_30(D);
+  switch (_5) <default: <L24> [INV], case 0: <L0> [INV], case 1: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _6 = sesTabConfig_27->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.7_7 = Dcm_NewDiagnosticSessionTableIndex;
+  _8 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.7_7;
+  _9 = _8 * 12;
+  _10 = _6 + _9;
+  _11 = _10->SessionForBoot;
+  if (_11 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuResetResult_44 = SchM_Switch_Dcm_DcmEcuReset (2);
+  # DEBUG EcuResetResult => EcuResetResult_44
+
+  <bb 5> :
+  # EcuResetResult_18 = PHI <EcuResetResult_22(3), EcuResetResult_44(4)>
+  # DEBUG EcuResetResult => EcuResetResult_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EcuResetResult_18 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_24(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_48 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_48
+  goto <bb 17>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_28->jumpToBLExecution = 0;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _12 = curHsmInfo_28->jumpToBLExecution;
+  if (_12 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _13 = curProtocolConfig_29->SendRespPendOnTransToBoot;
+  if (_13 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_28->responsePendingTxStatus = 1;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_28->jumpToBLExecution = 1;
+  # DEBUG BEGIN_STMT
+  _14 = (short unsigned int) instIdx_26;
+  _15 = _14 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (_15, instIdx_26, 0);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_42 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_42
+  goto <bb 17>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_28->jumpToBLExecution = 2;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_37 = Dcm_DspInternal_ProcessSetProgConditions (pMsgContext_24(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_37
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_37 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_38 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _16 = curHsmInfo_28->jumpToBLExecution;
+  if (_16 == 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_33 = Dcm_DspInternal_ProcessSetProgConditions (pMsgContext_24(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_33 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_34 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_34
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_31 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_31
+
+  <bb 17> :
+  # serviceProcessStatus_17 = PHI <serviceProcessStatus_46(7), serviceProcessStatus_34(15), serviceProcessStatus_21(2), serviceProcessStatus_48(6), serviceProcessStatus_37(11), serviceProcessStatus_33(14), serviceProcessStatus_38(12), serviceProcessStatus_42(10), serviceProcessStatus_31(16)>
+<L24>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  _49 = serviceProcessStatus_17;
+  return _49;
+
+}
+
+
+Dcm_DspInternal_DiagnosticSessionControl_SvcCont (struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  uint16 P2StarTime;
+  uint8 instIdx;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  const struct Dcm_SesTabEntryConfigType * _4;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.3_5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct Dcm_SesTabEntryConfigType * _8;
+  unsigned char _9;
+  unsigned char _10;
+  Dcm_MsgItemType * _11;
+  unsigned char _12;
+  const struct Dcm_SesTabEntryConfigType * _13;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.4_14;
+  unsigned int _15;
+  unsigned int _16;
+  const struct Dcm_SesTabEntryConfigType * _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  const struct Dcm_SesTabEntryConfigType * _21;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.5_22;
+  unsigned int _23;
+  unsigned int _24;
+  const struct Dcm_SesTabEntryConfigType * _25;
+  short unsigned int _26;
+  unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  Dcm_MsgItemType * _30;
+  Dcm_MsgItemType * _31;
+  unsigned char _32;
+  const struct Dcm_SesTabEntryConfigType * _33;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.6_34;
+  unsigned int _35;
+  unsigned int _36;
+  const struct Dcm_SesTabEntryConfigType * _37;
+  short unsigned int _38;
+  unsigned char _39;
+  Dcm_MsgItemType * _40;
+  Dcm_MsgItemType * _41;
+  unsigned char _42;
+  short unsigned int _43;
+  Dcm_MsgItemType * _44;
+  Dcm_MsgItemType * _45;
+  unsigned char _46;
+  Dcm_MsgItemType * _47;
+  Dcm_MsgItemType * _48;
+  unsigned char _49;
+  Std_ReturnType _70;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_52 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_52
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_54(D)->dcmRxPduId;
+  instIdx_56 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG instIdx => instIdx_56
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_56;
+  sesTabConfig_57 = &Dcm_SesTabConfig[_2];
+  # DEBUG sesTabConfig => sesTabConfig_57
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_56;
+  curHsmInfo_58 = &Dcm_HsmInfo[_3];
+  # DEBUG curHsmInfo => curHsmInfo_58
+  # DEBUG BEGIN_STMT
+  _4 = sesTabConfig_57->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.3_5 = Dcm_NewDiagnosticSessionTableIndex;
+  _6 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.3_5;
+  _7 = _6 * 12;
+  _8 = _4 + _7;
+  _9 = _8->SessionForBoot;
+  _10 = _9 + 255;
+  if (_10 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_58->jumpToBLSupport = 1;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_69 = Dcm_DspInternal_JumpToBL (pMsgContext_54(D), 0);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_69
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = pMsgContext_54(D)->resData;
+  _12 = curHsmInfo_58->subServiceId;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  _13 = sesTabConfig_57->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.4_14 = Dcm_NewDiagnosticSessionTableIndex;
+  _15 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.4_14;
+  _16 = _15 * 12;
+  _17 = _13 + _16;
+  _18 = _17->P2StarMaxTime;
+  _19 = _18 * 5;
+  _20 = _19 / 10;
+  P2StarTime_60 = (uint16) _20;
+  # DEBUG P2StarTime => P2StarTime_60
+  # DEBUG BEGIN_STMT
+  _21 = sesTabConfig_57->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.5_22 = Dcm_NewDiagnosticSessionTableIndex;
+  _23 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.5_22;
+  _24 = _23 * 12;
+  _25 = _21 + _24;
+  _26 = _25->P2MaxTime;
+  _27 = (unsigned int) _26;
+  _28 = _27 * 5;
+  _29 = _28 >> 8;
+  _30 = pMsgContext_54(D)->resData;
+  _31 = _30 + 1;
+  _32 = (unsigned char) _29;
+  *_31 = _32;
+  # DEBUG BEGIN_STMT
+  _33 = sesTabConfig_57->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.6_34 = Dcm_NewDiagnosticSessionTableIndex;
+  _35 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.6_34;
+  _36 = _35 * 12;
+  _37 = _33 + _36;
+  _38 = _37->P2MaxTime;
+  _39 = (unsigned char) _38;
+  _40 = pMsgContext_54(D)->resData;
+  _41 = _40 + 2;
+  _42 = _39 * 5;
+  *_41 = _42;
+  # DEBUG BEGIN_STMT
+  _43 = P2StarTime_60 >> 8;
+  _44 = pMsgContext_54(D)->resData;
+  _45 = _44 + 3;
+  _46 = (unsigned char) _43;
+  *_45 = _46;
+  # DEBUG BEGIN_STMT
+  _47 = pMsgContext_54(D)->resData;
+  _48 = _47 + 4;
+  _49 = (unsigned char) P2StarTime_60;
+  *_48 = _49;
+  # DEBUG BEGIN_STMT
+  pMsgContext_54(D)->resDataLen = 5;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_66 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_66
+
+  <bb 5> :
+  # serviceProcessStatus_50 = PHI <serviceProcessStatus_69(3), serviceProcessStatus_66(4)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_50
+  # DEBUG BEGIN_STMT
+  _70 = serviceProcessStatus_50;
+  return _70;
+
+}
+
+
+Dcm_DspInternal_DiagnosticSessionControlCommon_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  uint8 instIdx;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.8_4;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_7 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_9(D)->dcmRxPduId;
+  instIdx_11 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG instIdx => instIdx_11
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_11;
+  sesTabConfig_12 = &Dcm_SesTabConfig[_2];
+  # DEBUG sesTabConfig => sesTabConfig_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = sesTabConfig_12->NumEntries;
+  Dcm_NewDiagnosticSessionTableIndex.8_4 = Dcm_NewDiagnosticSessionTableIndex;
+  if (_3 > Dcm_NewDiagnosticSessionTableIndex.8_4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_9(D)->idContext = 16;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_16 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_16
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_9(D), 18);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_14 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_14
+
+  <bb 5> :
+  # serviceProcessStatus_5 = PHI <serviceProcessStatus_16(3), serviceProcessStatus_14(4)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = serviceProcessStatus_5;
+  return _17;
+
+}
+
+
+Dcm_DspInternal_DiagnosticSessionControl_SvcStart (struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_8 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_10(D)->reqDataLen;
+  if (_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_10(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_16 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_16
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_10(D)->reqData;
+  _3 = _2 + 1;
+  pMsgContext_10(D)->reqData = _3;
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_10(D)->reqDataLen;
+  _5 = _4 + 4294967295;
+  pMsgContext_10(D)->reqDataLen = _5;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_14 = Dcm_DspInternal_DiagnosticSessionControlCommon_SSvcH (0, pMsgContext_10(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_14
+
+  <bb 5> :
+  # serviceProcessStatus_6 = PHI <serviceProcessStatus_16(3), serviceProcessStatus_14(4)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  _17 = serviceProcessStatus_6;
+  return _17;
+
+}
+
+
+Dcm_DspInternal_DiagnosticSessionControl_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  uint8 instIdx;
+  boolean isBootSession;
+  uint8 SessionIdx;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  int _2;
+  int _3;
+  int _4;
+  const struct Dcm_SesTabEntryConfigType * _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct Dcm_SesTabEntryConfigType * _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char SessionIdx.0_11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.1_14;
+  const struct Dcm_SesTabEntryConfigType * _15;
+  unsigned char Dcm_NewDiagnosticSessionTableIndex.2_16;
+  unsigned int _17;
+  unsigned int _18;
+  const struct Dcm_SesTabEntryConfigType * _19;
+  unsigned char _20;
+  unsigned char _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+  unsigned char _28;
+  unsigned char _29;
+  unsigned char _30;
+  Std_ReturnType _78;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_36 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isBootSession_37 = 0;
+  # DEBUG isBootSession => isBootSession_37
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_39(D)->dcmRxPduId;
+  instIdx_41 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG instIdx => instIdx_41
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx_41;
+  curHsmInfo_42 = &Dcm_HsmInfo[_2];
+  # DEBUG curHsmInfo => curHsmInfo_42
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_41;
+  sesTabConfig_43 = &Dcm_SesTabConfig[_3];
+  # DEBUG sesTabConfig => sesTabConfig_43
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) OpStatus_44(D);
+  switch (_4) <default: <L29> [INV], case 0: <L0> [INV], case 1: <L13> [INV], case 5: <L26> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  SessionIdx_61 = 0;
+  # DEBUG SessionIdx => SessionIdx_61
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = sesTabConfig_43->SessionEntries;
+  _6 = (unsigned int) SessionIdx_32;
+  _7 = _6 * 12;
+  _8 = _5 + _7;
+  _9 = _8->SesCtrl;
+  _10 = curHsmInfo_42->subServiceId;
+  if (_9 == _10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SessionIdx.0_11 = SessionIdx_32;
+  SessionIdx_62 = SessionIdx.0_11 + 1;
+  # DEBUG SessionIdx => SessionIdx_62
+
+  <bb 6> :
+  # SessionIdx_32 = PHI <SessionIdx_61(3), SessionIdx_62(5)>
+  # DEBUG SessionIdx => SessionIdx_32
+  # DEBUG BEGIN_STMT
+  _12 = sesTabConfig_43->NumEntries;
+  if (SessionIdx_32 < _12)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_NewDiagnosticSessionTableIndex = SessionIdx_32;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLInhibited = 0;
+  # DEBUG BEGIN_STMT
+  _13 = sesTabConfig_43->NumEntries;
+  Dcm_NewDiagnosticSessionTableIndex.1_14 = Dcm_NewDiagnosticSessionTableIndex;
+  if (_13 > Dcm_NewDiagnosticSessionTableIndex.1_14)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _15 = sesTabConfig_43->SessionEntries;
+  Dcm_NewDiagnosticSessionTableIndex.2_16 = Dcm_NewDiagnosticSessionTableIndex;
+  _17 = (unsigned int) Dcm_NewDiagnosticSessionTableIndex.2_16;
+  _18 = _17 * 12;
+  _19 = _15 + _18;
+  _20 = _19->SessionForBoot;
+  _21 = _20 + 255;
+  if (_21 <= 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  isBootSession_65 = 1;
+  # DEBUG isBootSession => isBootSession_65
+
+  <bb 10> :
+  # isBootSession_33 = PHI <isBootSession_37(7), isBootSession_37(8), isBootSession_65(9)>
+  # DEBUG isBootSession => isBootSession_33
+  # DEBUG BEGIN_STMT
+  _22 = Dcm_Dsl_PostBootOperationsHandler_JumpInhibited ();
+  if (_22 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  if (isBootSession_33 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_67 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_67
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLInhibited = 1;
+  goto <bb 27>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLExecution = 0;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_72 = Dcm_DspInternal_DiagnosticSessionControl_SvcStart (pMsgContext_39(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_72
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLInhibited = 0;
+  goto <bb 27>; [INV]
+
+  <bb 14> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  _23 = curHsmInfo_42->jumpToBLInhibited;
+  if (_23 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _24 = Dcm_Dsl_PostBootOperationsHandler_JumpInhibited ();
+  if (_24 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_60 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_60
+  goto <bb 27>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLExecution = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLInhibited = 0;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_59 = Dcm_DspInternal_DiagnosticSessionControl_SvcStart (pMsgContext_39(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_59
+  goto <bb 27>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _25 = curHsmInfo_42->jumpToBLSupport;
+  if (_25 != 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _26 = curHsmInfo_42->subServiceId;
+  _27 = Dcm_Dsl_Supervisor_IsSessionClearedToSwitch (_26);
+  if (_27 == 3)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_53 = Dcm_DspInternal_DiagnosticSessionControl_SvcCont (pMsgContext_39(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_53
+  goto <bb 27>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_51 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_51
+  goto <bb 27>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_49 = Dcm_DspInternal_JumpToBL (pMsgContext_39(D), OpStatus_44(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_49
+  goto <bb 27>; [INV]
+
+  <bb 23> :
+<L26>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = curHsmInfo_42->negativeResponseCode;
+  if (_28 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _29 = curHsmInfo_42->subServiceId;
+  Dcm_Dsl_DiagnosticSessionHandler_SwitchCurrentSession (_29);
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _30 = curHsmInfo_42->serviceId;
+  Dcm_Dsl_DiagnosticSessionHandler_ClearResetToDefaultSessionOccured (_30);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_47 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_47
+  # DEBUG BEGIN_STMT
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+<L29>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_74 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_74
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLInhibited = 0;
+  # DEBUG BEGIN_STMT
+  curHsmInfo_42->jumpToBLExecution = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 27> :
+  # serviceProcessStatus_31 = PHI <serviceProcessStatus_72(13), serviceProcessStatus_51(21), serviceProcessStatus_47(25), serviceProcessStatus_74(26), serviceProcessStatus_67(12), serviceProcessStatus_59(17), serviceProcessStatus_53(20), serviceProcessStatus_60(16), serviceProcessStatus_49(22)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_31
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _78 = serviceProcessStatus_31;
+  return _78;
+
+}
+
+
+Dcm_DspInternal_GetSidConfig (uint8 instIdx, uint8 serviceId, const struct Dcm_SidTabEntryConfigType * * pServiceIdCfg)
+{
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  const struct Dcm_ProtocolConfigType * const curProtocolConfig;
+  boolean result;
+  uint8_least sidIdxExt;
+  int _1;
+  unsigned char _2;
+  int _3;
+  const struct Dcm_SidTabEntryConfigType * _4;
+  long unsigned int _5;
+  const struct Dcm_SidTabEntryConfigType * _6;
+  unsigned char _7;
+  const struct Dcm_SidTabEntryConfigType * _8;
+  long unsigned int _9;
+  const struct Dcm_SidTabEntryConfigType * _10;
+  unsigned char _11;
+  long unsigned int _12;
+  boolean _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_18 = 0;
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_19(D);
+  curProtocolConfig_20 = &Dcm_ProtocolConfig[_1];
+  # DEBUG curProtocolConfig => curProtocolConfig_20
+  # DEBUG BEGIN_STMT
+  _2 = curProtocolConfig_20->ServiceTableIndex;
+  _3 = (int) _2;
+  curSidTabConfig_22 = &Dcm_SidTabConfig[_3];
+  # DEBUG curSidTabConfig => curSidTabConfig_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sidIdxExt_23 = 0;
+  # DEBUG sidIdxExt => sidIdxExt_23
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = curSidTabConfig_22->Entries;
+  _5 = sidIdxExt_13 * 32;
+  _6 = _4 + _5;
+  _7 = _6->ServiceId;
+  if (serviceId_24(D) == _7)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = curSidTabConfig_22->Entries;
+  _9 = sidIdxExt_13 * 32;
+  _10 = _8 + _9;
+  *pServiceIdCfg_25(D) = _10;
+  # DEBUG BEGIN_STMT
+  result_27 = 1;
+  # DEBUG result => result_27
+
+  <bb 5> :
+  # result_14 = PHI <result_15(3), result_27(4)>
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  sidIdxExt_28 = sidIdxExt_13 + 1;
+  # DEBUG sidIdxExt => sidIdxExt_28
+
+  <bb 6> :
+  # sidIdxExt_13 = PHI <sidIdxExt_23(2), sidIdxExt_28(5)>
+  # result_15 = PHI <result_18(2), result_14(5)>
+  # DEBUG result => result_15
+  # DEBUG sidIdxExt => sidIdxExt_13
+  # DEBUG BEGIN_STMT
+  _11 = curSidTabConfig_22->NumEntries;
+  _12 = (long unsigned int) _11;
+  if (sidIdxExt_13 < _12)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (result_15 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _29 = result_15;
+  return _29;
+
+}
+
+
+Dcm_Dsp_ExtractSubServiceHandler (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 subSrvIdx;
+  const struct Dcm_SubSidTabEntryConfigType * const curSsConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  const uint8_least ProtocolIndex;
+  Std_ReturnType (*Dcm_GenericServiceHandlerType) (Dcm_OpStatusType, struct Dcm_MsgContextType *) handler;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+  const struct Dcm_SidTabEntryConfigType * _7;
+  unsigned char _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct Dcm_SidTabEntryConfigType * _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  const struct Dcm_SubSidTabEntryConfigType * _18;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct Dcm_SubSidTabEntryConfigType * _22;
+  unsigned int _23;
+  unsigned int _24;
+  const struct Dcm_SubSidTabEntryConfigType * _25;
+  Std_ReturnType (*Dcm_GenericServiceHandlerType) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  handler_28 = 0B;
+  # DEBUG handler => handler_28
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_30(D)->dcmRxPduId;
+  _2 = pMsgContext_30(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  _4 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  ProtocolIndex_32 = (const uint8_least) _4;
+  # DEBUG ProtocolIndex => ProtocolIndex_32
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolConfig[ProtocolIndex_32].ServiceTableIndex;
+  _6 = (int) _5;
+  curSidTabConfig_33 = &Dcm_SidTabConfig[_6];
+  # DEBUG curSidTabConfig => curSidTabConfig_33
+  # DEBUG BEGIN_STMT
+  curHsmInfo_34 = &Dcm_HsmInfo[ProtocolIndex_32];
+  # DEBUG curHsmInfo => curHsmInfo_34
+  # DEBUG BEGIN_STMT
+  _7 = curSidTabConfig_33->Entries;
+  _8 = curHsmInfo_34->sidTabEntryInd;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 32;
+  _11 = _7 + _10;
+  curSsConfig_35 = _11->SubServices;
+  # DEBUG curSsConfig => curSsConfig_35
+  # DEBUG BEGIN_STMT
+  subSrvIdx_36 = curHsmInfo_34->subServiceIdIdx;
+  # DEBUG subSrvIdx => subSrvIdx_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_37(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _12 = pMsgContext_30(D)->reqData;
+  _13 = _12 + 1;
+  pMsgContext_30(D)->reqData = _13;
+  # DEBUG BEGIN_STMT
+  _14 = pMsgContext_30(D)->reqDataLen;
+  _15 = _14 + 4294967295;
+  pMsgContext_30(D)->reqDataLen = _15;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _16 = (unsigned int) subSrvIdx_36;
+  _17 = _16 * 24;
+  _18 = curSsConfig_35 + _17;
+  _19 = _18->IntSrvHandler;
+  if (_19 != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _20 = (unsigned int) subSrvIdx_36;
+  _21 = _20 * 24;
+  _22 = curSsConfig_35 + _21;
+  handler_41 = _22->IntSrvHandler;
+  # DEBUG handler => handler_41
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _23 = (unsigned int) subSrvIdx_36;
+  _24 = _23 * 24;
+  _25 = curSsConfig_35 + _24;
+  handler_40 = _25->ExtSrvHandler;
+  # DEBUG handler => handler_40
+
+  <bb 7> :
+  # handler_26 = PHI <handler_41(5), handler_40(6)>
+  # DEBUG handler => handler_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _42 = handler_26;
+  return _42;
+
+}
+
+
+Dcm_Dsp_DefaultReturnValueProcessing (uint8 instIdx, struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr)
+{
+  unsigned char _1;
+  unsigned char _2;
+  struct Dcm_MsgContextType * _3;
+  long unsigned int _4;
+  int _5;
+  long unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = ServiceProcessingContextPtr_9(D)->OpStatus;
+  _2 = _1 + 251;
+  if (_2 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = ServiceProcessingContextPtr_9(D)->curMsgContext;
+  _4 = _3->resDataLen;
+  _5 = (int) instIdx_10(D);
+  _6 = _4 + 1;
+  Dcm_HsmInfo[_5].TxBuffer.FilledLength = _6;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_10(D), 6);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (instIdx_10(D));
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_10(D), 6);
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorReturnValueProcessing (uint8 instIdx, Dcm_OpStatusType LocalOpStatus, struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  unsigned char _11;
+  struct Dcm_MsgContextType * _12;
+  long unsigned int _13;
+  int _14;
+  long unsigned int _15;
+  int _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ServiceProcessingContextPtr_19(D)->OpStatus;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  _2 = ServiceProcessingContextPtr_19(D)->RetVal;
+  if (_2 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = ServiceProcessingContextPtr_19(D)->RetVal;
+  if (_3 == 26)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CancellationDone (1, instIdx_20(D));
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_20(D);
+  _5 = Dcm_HsmInfo[_4].CancellationConditions.CancellationType;
+  if (_5 != 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (instIdx_20(D));
+  goto <bb 16>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = ServiceProcessingContextPtr_19(D)->RetVal;
+  _7 = (int) _6;
+  switch (_7) <default: <L15> [INV], case 0: <L10> [INV], case 1: <L11> [INV], case 10: <L7> [INV], case 12: <L6> [INV], case 29: <L19> [INV], case 30: <L9> [INV]>
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_20(D), 4);
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx_20(D);
+  Dcm_HsmInfo[_8].retryTimer = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 10> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_20(D), 5);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (instIdx_20(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 11> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_20(D), 6);
+  # DEBUG BEGIN_STMT
+  _9 = (int) instIdx_20(D);
+  Dcm_HsmInfo[_9].CancellationConditions.ServiceProcessingDone = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (instIdx_20(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 12> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  _10 = (int) instIdx_20(D);
+  Dcm_HsmInfo[_10].CancellationConditions.ServiceProcessingDone = 1;
+  # DEBUG BEGIN_STMT
+  _11 = ServiceProcessingContextPtr_19(D)->ServiceHandlerType;
+  if (_11 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_20(D), 6);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReset (instIdx_20(D));
+  goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _12 = ServiceProcessingContextPtr_19(D)->curMsgContext;
+  _13 = _12->resDataLen;
+  _14 = (int) instIdx_20(D);
+  _15 = _13 + 1;
+  Dcm_HsmInfo[_14].TxBuffer.FilledLength = _15;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_20(D), 6);
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  _16 = (int) instIdx_20(D);
+  Dcm_HsmInfo[_16].CancellationConditions.ServiceProcessingDone = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DefaultReturnValueProcessing (instIdx_20(D), ServiceProcessingContextPtr_19(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 16> :
+<L19>:
+  return;
+
+}
+
+
+Dcm_DspInternal_SvcFunc (uint8 instIdx, Dcm_OpStatusType OpStatus)
+{
+  Dcm_OpStatusType LocalOpStatus;
+  struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_10 = Dcm_Dsp_GetServiceProcessingContext (instIdx_8(D));
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_10
+  # DEBUG BEGIN_STMT
+  LocalOpStatus_12 = OpStatus_11(D);
+  # DEBUG LocalOpStatus => LocalOpStatus_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ServiceProcessingContextPtr_10->ServiceProcessingInProgress;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorSetup (ServiceProcessingContextPtr_10, instIdx_8(D));
+  # DEBUG BEGIN_STMT
+  LocalOpStatus_14 = 0;
+  # DEBUG LocalOpStatus => LocalOpStatus_14
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_10->ServiceProcessingInProgress = 1;
+
+  <bb 4> :
+  # LocalOpStatus_4 = PHI <LocalOpStatus_12(2), LocalOpStatus_14(3)>
+  # DEBUG LocalOpStatus => LocalOpStatus_4
+  # DEBUG BEGIN_STMT
+  _2 = ServiceProcessingContextPtr_10->DcmInstanceIndex;
+  if (instIdx_8(D) == _2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_10->OpStatus = LocalOpStatus_4;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorExecute (ServiceProcessingContextPtr_10);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorReturnValueProcessing (instIdx_8(D), LocalOpStatus_4, ServiceProcessingContextPtr_10);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_8(D);
+  Dcm_HsmInfo[_3].retryTimer = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_GetServiceProcessingContext (Dcm_ProtocolIndexType ProtocolIdx)
+{
+  struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr;
+  unsigned char _1;
+  struct Dcm_ServiceProcessingContext_Type * _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_3 = 0B;
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetProtocolGroupTypeForProtocol (ProtocolIdx_5(D));
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_8 = &Dcm_ServiceProcessingContext_UDS;
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_7 = &Dcm_ServiceProcessingContext_OBD;
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_7
+
+  <bb 5> :
+  # ServiceProcessingContextPtr_2 = PHI <ServiceProcessingContextPtr_8(3), ServiceProcessingContextPtr_7(4)>
+  # DEBUG ServiceProcessingContextPtr => ServiceProcessingContextPtr_2
+  # DEBUG BEGIN_STMT
+  _9 = ServiceProcessingContextPtr_2;
+  return _9;
+
+}
+
+
+Dcm_Dsp_EmitHSMEventOnTxConfirmation (Dcm_ProtocolIndexType ProtocolIndex, Dcm_TxResultType TransmissionResult, Dcm_BufferUserType TxConnectionId)
+{
+  Dcm_HsmEventType ResultEvent;
+  int _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_5(D);
+  _2 = Dcm_HsmInfo[_1].CancellationConditions.CancellationType;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (TransmissionResult_7(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ResultEvent_9 = 18;
+  # DEBUG ResultEvent => ResultEvent_9
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ResultEvent_8 = 17;
+  # DEBUG ResultEvent => ResultEvent_8
+
+  <bb 6> :
+  # ResultEvent_3 = PHI <ResultEvent_9(4), ResultEvent_8(5)>
+  # DEBUG ResultEvent => ResultEvent_3
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, ProtocolIndex_5(D), ResultEvent_3);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolTransmissionFinishedAfterHSMStarted (Dcm_BufferUserType ProtocolId, Dcm_TxResultType TransmissionResult, Dcm_BufferUserType TxConnectionId)
+{
+  const Dcm_ProtocolIndexType ProtocolIndex;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  unsigned char _12;
+  int _13;
+  unsigned char _14;
+  int _15;
+  short unsigned int _16;
+  int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  int _20;
+  short unsigned int _21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  short unsigned int _25;
+  int _26;
+  short unsigned int _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  int _30;
+  unsigned char _31;
+  int _32;
+  unsigned char _33;
+  int _34;
+  int _35;
+  unsigned char _36;
+  int _37;
+  int _38;
+  unsigned char _39;
+  int _40;
+  unsigned char _41;
+  short unsigned int _42;
+  short unsigned int _43;
+  int _44;
+  short unsigned int _45;
+  int _46;
+  short unsigned int _47;
+  int _48;
+  short unsigned int _49;
+  short unsigned int _50;
+  short unsigned int _51;
+  int _52;
+  int _53;
+  unsigned char _54;
+  int _55;
+  int _56;
+  int _57;
+  int _58;
+  unsigned char _59;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_66(D);
+  ProtocolIndex_67 = _1 + 244;
+  # DEBUG ProtocolIndex => ProtocolIndex_67
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex_67;
+  _3 = Dcm_HsmInfo[_2].serviceId;
+  if (_3 == 17)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  _4 = (int) ProtocolIndex_67;
+  _5 = Dcm_HsmInfo[_4].subServiceId;
+  if (_5 != 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  _6 = (int) ProtocolIndex_67;
+  _7 = Dcm_HsmInfo[_6].subServiceId;
+  if (_7 != 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  _8 = (int) ProtocolIndex_67;
+  _9 = Dcm_HsmInfo[_8].negativeResponseCode;
+  if (_9 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  _10 = (int) ProtocolIndex_67;
+  _11 = Dcm_HsmInfo[_10].RequestType;
+  _12 = _11 + 255;
+  if (_12 <= 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  _13 = (int) ProtocolIndex_67;
+  _14 = Dcm_HsmInfo[_13].responsePendingTxStatus;
+  if (_14 != 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (TransmissionResult_69(D) == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_InhibitRequestProcessing ();
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) ProtocolIndex_67;
+  _16 = Dcm_HsmInfo[_15].rpCntrConfirmed;
+  _17 = (int) ProtocolIndex_67;
+  _18 = Dcm_HsmInfo[_17].rpCntr;
+  if (_16 != _18)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _19 = Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (ProtocolIndex_67);
+  if (_19 == 255)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _20 = (int) ProtocolIndex_67;
+  _21 = Dcm_HsmInfo[_20].rpCntr;
+  if (_21 == 255)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _22 = (int) ProtocolIndex_67;
+  _23 = Dcm_HsmInfo[_22].rpCntr;
+  _24 = _23;
+  _25 = _24 + 65535;
+  Dcm_HsmInfo[_22].rpCntr = _25;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _26 = (int) ProtocolIndex_67;
+  _27 = Dcm_HsmInfo[_26].rpCntrConfirmed;
+  _28 = _27;
+  _29 = _28 + 1;
+  Dcm_HsmInfo[_26].rpCntrConfirmed = _29;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _30 = (int) ProtocolIndex_67;
+  _31 = Dcm_HsmInfo[_30].responsePendingTxStatus;
+  if (_31 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 16> :
+  if (TransmissionResult_69(D) == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  _32 = (int) ProtocolIndex_67;
+  _33 = Dcm_HsmInfo[_32].CancellationConditions.CancellationType;
+  if (_33 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _34 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_34].responsePendingTxStatus = 2;
+  # DEBUG BEGIN_STMT
+  _35 = (int) ProtocolIndex_67;
+  _36 = Dcm_HsmInfo[_35].jumpToBLExecution;
+  if (_36 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _37 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_37].jumpToBLExecution = 2;
+  goto <bb 27>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _38 = (int) ProtocolIndex_67;
+  _39 = Dcm_HsmInfo[_38].CancellationConditions.CancellationType;
+  if (_39 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CancellationDone (2, ProtocolIndex_67);
+  goto <bb 24>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _40 = (int) ProtocolIndex_67;
+  _41 = Dcm_HsmInfo[_40].responsePendingTxStatus;
+  if (_41 != 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _42 = (short unsigned int) ProtocolIndex_67;
+  _43 = _42 + 12;
+  _44 = (int) ProtocolIndex_67;
+  _45 = Dcm_HsmInfo[_44].RxBuffer.BufferId;
+  _46 = (int) ProtocolIndex_67;
+  _47 = Dcm_HsmInfo[_46].TxBuffer.BufferId;
+  _48 = (int) ProtocolIndex_67;
+  _49 = Dcm_HsmInfo[_48].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFreeRxTxNRC (_43, _45, _47, _49);
+  # DEBUG BEGIN_STMT
+  _50 = (short unsigned int) ProtocolIndex_67;
+  _51 = _50 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_51);
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _52 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_52].retryTimer = 0;
+  # DEBUG BEGIN_STMT
+  _53 = (int) ProtocolIndex_67;
+  _54 = Dcm_HsmInfo[_53].responsePendingTxStatus;
+  if (_54 == 1)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _55 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_55].responsePendingTxStatus = 2;
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _56 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_56].jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  _57 = (int) ProtocolIndex_67;
+  Dcm_HsmInfo[_57].jumpToBLExecution = 0;
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_EmitHSMEventOnTxConfirmation (ProtocolIndex_67, TransmissionResult_69(D), TxConnectionId_83(D));
+  # DEBUG BEGIN_STMT
+  _58 = (int) ProtocolIndex_67;
+  _59 = Dcm_HsmInfo[_58].RequestType;
+  if (_59 == 8)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DisinhibitRequestProcessing ();
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ProtocolTransmissionFinishedBeforeHSMStarted (Dcm_BufferUserType ProtocolId, Dcm_TxResultType TransmissionResult, Dcm_BufferUserType TxConnectionId)
+{
+  Dcm_HsmEventType ResultEvent;
+  const Dcm_ProtocolIndexType ProtocolIndex;
+  unsigned char _1;
+  short unsigned int _2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolId_16(D);
+  ProtocolIndex_17 = _1 + 244;
+  # DEBUG ProtocolIndex => ProtocolIndex_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (ProtocolIndex_17);
+  if (_2 == 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = (int) ProtocolIndex_17;
+  _4 = Dcm_HsmInfo[_3].NextJob.JobRpCntr;
+  if (_4 == 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIndex_17;
+  _6 = Dcm_HsmInfo[_5].NextJob.JobRpCntr;
+  _7 = _6;
+  _8 = _7 + 65535;
+  Dcm_HsmInfo[_5].NextJob.JobRpCntr = _8;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) ProtocolIndex_17;
+  _10 = Dcm_HsmInfo[_9].NextJob.JobRpCntrConfirmed;
+  _11 = _10;
+  _12 = _11 + 1;
+  Dcm_HsmInfo[_9].NextJob.JobRpCntrConfirmed = _12;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) ProtocolIndex_17;
+  Dcm_HsmInfo[_13].NextJob.JobResponsePendingTxStatus = 2;
+  # DEBUG BEGIN_STMT
+  if (TransmissionResult_23(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ResultEvent_25 = 18;
+  # DEBUG ResultEvent => ResultEvent_25
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResultEvent_24 = 17;
+  # DEBUG ResultEvent => ResultEvent_24
+
+  <bb 9> :
+  # ResultEvent_14 = PHI <ResultEvent_25(7), ResultEvent_24(8)>
+  # DEBUG ResultEvent => ResultEvent_14
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex_17, ResultEvent_14);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorSetup (struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr, uint8 instIdx)
+{
+  struct Dcm_HsmInfoType * curHsmInfo;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  struct Dcm_MsgContextType * _5;
+  const struct Dcm_SidTabEntryConfigType * _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct Dcm_SidTabEntryConfigType * _10;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _11;
+  const struct Dcm_SidTabEntryConfigType * _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct Dcm_SidTabEntryConfigType * _16;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _17;
+  const struct Dcm_SidTabEntryConfigType * _18;
+  unsigned char _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct Dcm_SidTabEntryConfigType * _22;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_25(D);
+  _2 = Dcm_ProtocolConfig[_1].ServiceTableIndex;
+  _3 = (int) _2;
+  curSidTabConfig_27 = &Dcm_SidTabConfig[_3];
+  # DEBUG curSidTabConfig => curSidTabConfig_27
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_25(D);
+  curHsmInfo_28 = &Dcm_HsmInfo[_4];
+  # DEBUG curHsmInfo => curHsmInfo_28
+  # DEBUG BEGIN_STMT
+  curHsmInfo_28->CancellationConditions.ServiceProcessingDone = 0;
+  # DEBUG BEGIN_STMT
+  _5 = &curHsmInfo_28->msgContext;
+  ServiceProcessingContextPtr_30(D)->curMsgContext = _5;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->OpStatus = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->RetVal = 1;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->ServiceProcessingInProgress = 1;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->DcmInstanceIndex = instIdx_25(D);
+  # DEBUG BEGIN_STMT
+  _6 = curSidTabConfig_27->Entries;
+  _7 = curHsmInfo_28->sidTabEntryInd;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 32;
+  _10 = _6 + _9;
+  _11 = _10->ExtSrvHandler;
+  if (_11 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _12 = curSidTabConfig_27->Entries;
+  _13 = curHsmInfo_28->sidTabEntryInd;
+  _14 = (unsigned int) _13;
+  _15 = _14 * 32;
+  _16 = _12 + _15;
+  _17 = _16->ExtSrvHandler;
+  ServiceProcessingContextPtr_30(D)->ServiceFunction = _17;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->ServiceHandlerType = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _18 = curSidTabConfig_27->Entries;
+  _19 = curHsmInfo_28->sidTabEntryInd;
+  _20 = (unsigned int) _19;
+  _21 = _20 * 32;
+  _22 = _18 + _21;
+  _23 = _22->IntSrvHandler;
+  ServiceProcessingContextPtr_30(D)->ServiceFunction = _23;
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_30(D)->ServiceHandlerType = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_ServiceProcessorExecute (struct Dcm_ServiceProcessingContext_Type * ServiceProcessingContextPtr)
+{
+  unsigned int _1;
+  unsigned int _2;
+  Std_ReturnType (*<T724>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _3;
+  unsigned char _4;
+  struct Dcm_MsgContextType * _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BIT_FIELD_REF <MEM[(void *)ServiceProcessingContextPtr_12(D)], 32, 64>;
+  _2 = _1 & 16711935;
+  if (_2 == 65539)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_12(D)->OpStatus = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ServiceProcessingContextPtr_12(D)->ServiceFunction;
+  _4 = ServiceProcessingContextPtr_12(D)->OpStatus;
+  _5 = ServiceProcessingContextPtr_12(D)->curMsgContext;
+  _6 = _3 (_4, _5);
+  ServiceProcessingContextPtr_12(D)->RetVal = _6;
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessingContextPtr_12(D)->OpStatus;
+  if (_7 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = ServiceProcessingContextPtr_12(D)->ServiceHandlerType;
+  if (_8 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_12(D)->RetVal = 26;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessingContextPtr_12(D)->RetVal = 0;
+
+  <bb 8> :
+  return;
+
+}
+
+

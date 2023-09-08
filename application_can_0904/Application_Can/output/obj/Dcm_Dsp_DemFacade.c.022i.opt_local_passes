@@ -1,0 +1,4291 @@
+Dcm_DemFacade_ProcessServiceIDBufferfull (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, struct Dcm_DiagnosticDataContextType * DiagnosticDataContext, struct Dcm_DemClientContextType * ReadEventDataSubServiceContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  short unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  Std_ReturnType _41;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_22 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_22
+  # DEBUG BEGIN_STMT
+  _1 = ReadEventDataSubServiceContext_24(D)->ServiceID;
+  if (_1 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = ReadEventDataSubServiceContext_24(D)->ServiceID;
+  if (_2 == 7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = ReadEventDataSubServiceContext_24(D)->ServiceID;
+  if (_3 == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_40 = 170;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_40
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_25(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _4 = ReadEventDataSubServiceContext_24(D)->PageBufferingFlag;
+  if (_4 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_26(D)->resDataLen;
+  _6 = DiagnosticDataContext_27(D)->AmountOfDataToWriteOnResponse;
+  _7 = (short unsigned int) _6;
+  _8 = (long unsigned int) _7;
+  _9 = _5 + _8;
+  pMsgContext_26(D)->resDataLen = _9;
+  # DEBUG BEGIN_STMT
+  _10 = ReadEventDataSubServiceContext_24(D)->SubServiceID;
+  Dcm_DspInternal_SetupPageBuffering (pMsgContext_26(D), _10);
+  # DEBUG BEGIN_STMT
+  _11 = pMsgContext_26(D)->dcmRxPduId;
+  _12 = ReadEventDataSubServiceContext_24(D)->AmountOfDataWrittenOnCurrentPage;
+  Dcm_DspInternal_UpdateAmountOfFilledDataOnResponseBuffer (_11, _12);
+  # DEBUG BEGIN_STMT
+  Dcm_DsdInternal_StartPagedProcessing (pMsgContext_26(D));
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_24(D)->PageBufferingFlag = 1;
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_24(D)->FirstPageSent = 0;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_25(D) == 4)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (OpStatus_25(D) == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _13 = ReadEventDataSubServiceContext_24(D)->AmountOfDataWrittenOnCurrentPage;
+  _14 = DiagnosticDataContext_27(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _15 = _13 + _14;
+  ReadEventDataSubServiceContext_24(D)->AmountOfDataWrittenOnCurrentPage = _15;
+  # DEBUG BEGIN_STMT
+  _16 = ReadEventDataSubServiceContext_24(D)->AmountOfDataWrittenOnCurrentPage;
+  if (_16 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _17 = DiagnosticDataContext_27(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  Dcm_DsdInternal_ProcessPage (_17);
+  # DEBUG BEGIN_STMT
+  if (OpStatus_25(D) != 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_24(D)->AmountOfDataWrittenOnCurrentPage = 0;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_38 = 29;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_24(D)->FirstPageSent = 1;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_35 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_35
+
+  <bb 16> :
+  # ServiceProcessStatus_18 = PHI <ServiceProcessStatus_40(5), ServiceProcessStatus_22(10), ServiceProcessStatus_38(14), ServiceProcessStatus_35(15)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  _41 = ServiceProcessStatus_18;
+  return _41;
+
+}
+
+
+Dcm_DspInternal_SetupPageBuffering (const struct Dcm_MsgContextType * pMsgContext, uint8 SubServiceID)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) SubServiceID_3(D);
+  switch (_1) <default: <L15> [INV], case 2: <L5> [INV], case 4: <L0> [INV], case 6: <L0> [INV], case 7 ... 8: <L5> [INV], case 9: <L0> [INV], case 10: <L5> [INV], case 19 ... 21: <L5> [INV], case 23: <L5> [INV], case 24 ... 25: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_EnableProcessPage (pMsgContext_5(D), 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_EnableProcessPage (pMsgContext_5(D), 0);
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L15>:
+  return;
+
+}
+
+
+Dcm_DspInternal_ProcessEventDataResult (Dcm_OpStatusType OpStatus, Std_ReturnType FacadeReturnCodeGetEventData, struct Dcm_MsgContextType * pMsgContext, struct Dcm_DiagnosticDataContextType * DiagnosticDataContext, struct Dcm_DemClientContextType * ReadEventDataSubServiceContext)
+{
+  Dcm_NegativeResponseCodeType SetErrorCode;
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  short unsigned int _16;
+  long unsigned int _17;
+  unsigned char _18;
+  unsigned char _19;
+  int _20;
+  Std_ReturnType _62;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_28 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) FacadeReturnCodeGetEventData_29(D);
+  switch (_1) <default: <L25> [INV], case 0: <L0> [INV], case 1: <L5> [INV], case 2: <L6> [INV], case 3 ... 4: <L8> [INV], case 6: <L7> [INV], case 8: <L20> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage;
+  _3 = DiagnosticDataContext_41(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _4 = _2 + _3;
+  ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage = _4;
+  # DEBUG BEGIN_STMT
+  if (OpStatus_47(D) <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_32(D)->resDataLen;
+  _6 = DiagnosticDataContext_41(D)->AmountOfDataToWriteOnResponse;
+  _7 = (short unsigned int) _6;
+  _8 = (long unsigned int) _7;
+  _9 = _5 + _8;
+  pMsgContext_32(D)->resDataLen = _9;
+  # DEBUG BEGIN_STMT
+  _10 = pMsgContext_32(D)->dcmRxPduId;
+  _11 = ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage;
+  Dcm_DspInternal_UpdateAmountOfFilledDataOnResponseBuffer (_10, _11);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_56 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_56
+
+  <bb 5> :
+  # ServiceProcessStatus_21 = PHI <ServiceProcessStatus_28(3), ServiceProcessStatus_56(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  if (OpStatus_47(D) == 4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = DiagnosticDataContext_41(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  Dcm_DsdInternal_ProcessPage (_12);
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_40(D)->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_59 = 29;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_59
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_40(D)->FirstPageSent = 0;
+
+  <bb 7> :
+  # ServiceProcessStatus_22 = PHI <ServiceProcessStatus_21(5), ServiceProcessStatus_59(6)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_22
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _13 = ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage;
+  _14 = DiagnosticDataContext_41(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _15 = _13 + _14;
+  ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage = _15;
+  # DEBUG BEGIN_STMT
+  _16 = pMsgContext_32(D)->dcmRxPduId;
+  _17 = ReadEventDataSubServiceContext_40(D)->AmountOfDataWrittenOnCurrentPage;
+  Dcm_DspInternal_UpdateAmountOfFilledDataOnResponseBuffer (_16, _17);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_52 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_52
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_49 = Dcm_DemFacade_ProcessServiceIDBufferfull (OpStatus_47(D), pMsgContext_32(D), DiagnosticDataContext_41(D), ReadEventDataSubServiceContext_40(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_49
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_32(D), 34);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_37 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_37
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  if (FacadeReturnCodeGetEventData_29(D) == 4)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SetErrorCode_39 = 16;
+  # DEBUG SetErrorCode => SetErrorCode_39
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SetErrorCode_38 = 49;
+  # DEBUG SetErrorCode => SetErrorCode_38
+
+  <bb 14> :
+  # SetErrorCode_24 = PHI <SetErrorCode_39(12), SetErrorCode_38(13)>
+  # DEBUG SetErrorCode => SetErrorCode_24
+  # DEBUG BEGIN_STMT
+  _18 = ReadEventDataSubServiceContext_40(D)->FirstPageSent;
+  if (_18 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_45 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_45
+  # DEBUG BEGIN_STMT
+  ReadEventDataSubServiceContext_40(D)->FirstPageSent = 0;
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _19 = DiagnosticDataContext_41(D)->DTCFormat;
+  _20 = (int) _19;
+  switch (_20) <default: <L25> [INV], case 0: <L16> [INV], case 1: <L15> [INV]>
+
+  <bb 17> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_32(D), SetErrorCode_24);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_43 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_43
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_44 = 170;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_44
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+<L20>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SetErrorCode_31 = 16;
+  # DEBUG SetErrorCode => SetErrorCode_31
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_32(D), SetErrorCode_31);
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 255, 2);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_35 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_35
+  # DEBUG BEGIN_STMT
+
+  <bb 20> :
+  # ServiceProcessStatus_23 = PHI <ServiceProcessStatus_22(7), ServiceProcessStatus_52(8), ServiceProcessStatus_49(9), ServiceProcessStatus_37(10), ServiceProcessStatus_43(17), ServiceProcessStatus_35(19), ServiceProcessStatus_28(2), ServiceProcessStatus_45(15), ServiceProcessStatus_28(16), ServiceProcessStatus_44(18)>
+<L25>:
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  _62 = ServiceProcessStatus_23;
+  return _62;
+
+}
+
+
+Dcm_DemFacade_GetSeverityFilteredDTC_Execute (const Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * GetDataOfFilteredDTCContext)
+{
+  uint8 RequestedDtcSize;
+  Dcm_MsgLenType CurrentWritePosition;
+  uint8 DTCFunctionalUnit;
+  uint8 DTCSeverity;
+  uint32 RequestedDtc;
+  uint8 DtcStatusMask;
+  uint16 ExpectedAmountOfFilteredDTCs;
+  Std_ReturnType ResultDemInterface;
+  Std_ReturnType ResultCodeFromExecute;
+  short unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  uint8 * _4;
+  uint8 * _5;
+  unsigned char DTCSeverity.20_6;
+  uint8 * _7;
+  uint8 * _8;
+  unsigned char DTCFunctionalUnit.21_9;
+  long unsigned int RequestedDtc.22_10;
+  long unsigned int _11;
+  uint8 * _12;
+  uint8 * _13;
+  unsigned char _14;
+  long unsigned int RequestedDtc.23_15;
+  long unsigned int _16;
+  uint8 * _17;
+  uint8 * _18;
+  unsigned char _19;
+  long unsigned int RequestedDtc.24_20;
+  uint8 * _21;
+  uint8 * _22;
+  unsigned char _23;
+  uint8 * _24;
+  uint8 * _25;
+  unsigned char DtcStatusMask.25_26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  short unsigned int ExpectedAmountOfFilteredDTCs.26_33;
+  short unsigned int _34;
+  short unsigned int _35;
+  short unsigned int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  int _41;
+  Std_ReturnType _96;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_50 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_50
+  # DEBUG BEGIN_STMT
+  ResultDemInterface_51 = 0;
+  # DEBUG ResultDemInterface => ResultDemInterface_51
+  # DEBUG BEGIN_STMT
+  ExpectedAmountOfFilteredDTCs_54 = GetDataOfFilteredDTCContext_53(D)->NumberOfFilteredDTCs;
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_54
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RequestedDtc = 0;
+  # DEBUG BEGIN_STMT
+  DTCSeverity = 0;
+  # DEBUG BEGIN_STMT
+  DTCFunctionalUnit = 0;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_58 = GetDataOfFilteredDTCContext_53(D)->NextPossitionToFillOnResponseBuffer;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_58
+  # DEBUG BEGIN_STMT
+  RequestedDtcSize_59 = 6;
+  # DEBUG RequestedDtcSize => RequestedDtcSize_59
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ResultDemInterface_62 = Dem_GetNextFilteredDTCAndSeverity (ClientId_60(D), &RequestedDtc, &DtcStatusMask, &DTCSeverity, &DTCFunctionalUnit);
+  # DEBUG ResultDemInterface => ResultDemInterface_62
+  # DEBUG BEGIN_STMT
+  if (ResultDemInterface_62 == 48)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RequestedDtc = 0;
+  # DEBUG BEGIN_STMT
+  DtcStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  DTCSeverity = 0;
+  # DEBUG BEGIN_STMT
+  DTCFunctionalUnit = 0;
+  # DEBUG BEGIN_STMT
+  _1 = GetDataOfFilteredDTCContext_53(D)->StoredDTCs;
+  _2 = (long unsigned int) _1;
+  _3 = _2 * 6;
+  GetDataOfFilteredDTCContext_53(D)->AmountOfDataToWriteOnResponse = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ResultDemInterface_62 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _5 = _4 + CurrentWritePosition_46;
+  DTCSeverity.20_6 = DTCSeverity;
+  *_5 = DTCSeverity.20_6;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_64 = CurrentWritePosition_46 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_64
+  # DEBUG BEGIN_STMT
+  _7 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _8 = _7 + CurrentWritePosition_64;
+  DTCFunctionalUnit.21_9 = DTCFunctionalUnit;
+  *_8 = DTCFunctionalUnit.21_9;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_66 = CurrentWritePosition_64 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_66
+  # DEBUG BEGIN_STMT
+  RequestedDtc.22_10 = RequestedDtc;
+  _11 = RequestedDtc.22_10 >> 16;
+  _12 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _13 = _12 + CurrentWritePosition_66;
+  _14 = (unsigned char) _11;
+  *_13 = _14;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_68 = CurrentWritePosition_66 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_68
+  # DEBUG BEGIN_STMT
+  RequestedDtc.23_15 = RequestedDtc;
+  _16 = RequestedDtc.23_15 >> 8;
+  _17 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _18 = _17 + CurrentWritePosition_68;
+  _19 = (unsigned char) _16;
+  *_18 = _19;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_70 = CurrentWritePosition_68 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_70
+  # DEBUG BEGIN_STMT
+  RequestedDtc.24_20 = RequestedDtc;
+  _21 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _22 = _21 + CurrentWritePosition_70;
+  _23 = (unsigned char) RequestedDtc.24_20;
+  *_22 = _23;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_72 = CurrentWritePosition_70 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_72
+  # DEBUG BEGIN_STMT
+  _24 = GetDataOfFilteredDTCContext_53(D)->ResponseBuffer;
+  _25 = _24 + CurrentWritePosition_72;
+  DtcStatusMask.25_26 = DtcStatusMask;
+  *_25 = DtcStatusMask.25_26;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_74 = CurrentWritePosition_72 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_74
+  # DEBUG BEGIN_STMT
+  _27 = GetDataOfFilteredDTCContext_53(D)->BufferSize;
+  _28 = (long unsigned int) RequestedDtcSize_59;
+  _29 = _27 - _28;
+  GetDataOfFilteredDTCContext_53(D)->BufferSize = _29;
+  # DEBUG BEGIN_STMT
+  _30 = GetDataOfFilteredDTCContext_53(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _31 = (long unsigned int) RequestedDtcSize_59;
+  _32 = _30 + _31;
+  GetDataOfFilteredDTCContext_53(D)->AmountOfDataStoredOnResponseOnCurrentRun = _32;
+  # DEBUG BEGIN_STMT
+  ExpectedAmountOfFilteredDTCs.26_33 = ExpectedAmountOfFilteredDTCs_45;
+  ExpectedAmountOfFilteredDTCs_77 = ExpectedAmountOfFilteredDTCs.26_33 + 65535;
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_77
+  # DEBUG BEGIN_STMT
+  _34 = GetDataOfFilteredDTCContext_53(D)->StoredDTCs;
+  _35 = _34;
+  _36 = _35 + 1;
+  GetDataOfFilteredDTCContext_53(D)->StoredDTCs = _36;
+
+  <bb 7> :
+  # ResultDemInterface_43 = PHI <ResultDemInterface_51(2), ResultDemInterface_62(5), ResultDemInterface_62(6)>
+  # ExpectedAmountOfFilteredDTCs_45 = PHI <ExpectedAmountOfFilteredDTCs_54(2), ExpectedAmountOfFilteredDTCs_45(5), ExpectedAmountOfFilteredDTCs_77(6)>
+  # CurrentWritePosition_46 = PHI <CurrentWritePosition_58(2), CurrentWritePosition_46(5), CurrentWritePosition_74(6)>
+  # DEBUG CurrentWritePosition => CurrentWritePosition_46
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_45
+  # DEBUG ResultDemInterface => ResultDemInterface_43
+  # DEBUG BEGIN_STMT
+  if (ExpectedAmountOfFilteredDTCs_45 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  if (ResultDemInterface_43 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (ResultDemInterface_43 == 48)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  _37 = GetDataOfFilteredDTCContext_53(D)->BufferSize;
+  _38 = (long unsigned int) RequestedDtcSize_59;
+  if (_37 >= _38)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # ResultDemInterface_44 = PHI <ResultDemInterface_62(4), ResultDemInterface_43(7), ResultDemInterface_43(9), ResultDemInterface_43(10)>
+  # DEBUG ResultDemInterface => ResultDemInterface_44
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NumberOfFilteredDTCs = ExpectedAmountOfFilteredDTCs_45;
+  # DEBUG BEGIN_STMT
+  _39 = GetDataOfFilteredDTCContext_53(D)->BufferSize;
+  _40 = (long unsigned int) RequestedDtcSize_59;
+  if (_39 < _40)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  if (ExpectedAmountOfFilteredDTCs_45 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_86 = 2;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_86
+  goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _41 = (int) ResultDemInterface_44;
+  switch (_41) <default: <L16> [INV], case 0: <L13> [INV], case 4: <L14> [INV], case 48: <L15> [INV]>
+
+  <bb 15> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_93 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_93
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 16> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NextPossitionToFillOnResponseBuffer = CurrentWritePosition_46;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_91 = 1;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_91
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 17> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_53(D)->NumberOfFilteredDTCs = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_89 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_89
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_94 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_94
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 152, 2);
+  # DEBUG BEGIN_STMT
+
+  <bb 19> :
+  # ResultCodeFromExecute_42 = PHI <ResultCodeFromExecute_86(13), ResultCodeFromExecute_93(15), ResultCodeFromExecute_91(16), ResultCodeFromExecute_89(17), ResultCodeFromExecute_94(18)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_42
+  # DEBUG BEGIN_STMT
+  _96 = ResultCodeFromExecute_42;
+  DtcStatusMask ={v} {CLOBBER};
+  RequestedDtc ={v} {CLOBBER};
+  DTCSeverity ={v} {CLOBBER};
+  DTCFunctionalUnit ={v} {CLOBBER};
+  return _96;
+
+}
+
+
+Dcm_DemFacade_GetFilteredDTC_Execute (const Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * GetDataOfFilteredDTCContext)
+{
+  uint8 RequestedDtcSize;
+  const struct Dcm_DemClientContextType * SubServiceContext;
+  Dcm_MsgLenType CurrentWritePosition;
+  uint32 RequestedDtc;
+  uint8 DtcReportedData;
+  sint8 DtcFaultDetectionCounter;
+  uint8 DtcStatusMask;
+  uint16 ExpectedAmountOfFilteredDTCs;
+  Std_ReturnType ResultDemInterface;
+  Std_ReturnType ResultCodeFromExecute;
+  unsigned char _1;
+  unsigned char _2;
+  signed char DtcFaultDetectionCounter.27_3;
+  long unsigned int RequestedDtc.28_4;
+  long unsigned int _5;
+  uint8 * _6;
+  uint8 * _7;
+  unsigned char _8;
+  long unsigned int RequestedDtc.29_9;
+  long unsigned int _10;
+  uint8 * _11;
+  uint8 * _12;
+  unsigned char _13;
+  unsigned char _14;
+  long unsigned int RequestedDtc.30_15;
+  uint8 * _16;
+  uint8 * _17;
+  unsigned char _18;
+  uint8 * _19;
+  uint8 * _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  short unsigned int ExpectedAmountOfFilteredDTCs.31_27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  int _32;
+  Std_ReturnType _91;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_47 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_47
+  # DEBUG BEGIN_STMT
+  ResultDemInterface_48 = 0;
+  # DEBUG ResultDemInterface => ResultDemInterface_48
+  # DEBUG BEGIN_STMT
+  ExpectedAmountOfFilteredDTCs_51 = GetDataOfFilteredDTCContext_50(D)->NumberOfFilteredDTCs;
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_51
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DtcReportedData_52 = 0;
+  # DEBUG DtcReportedData => DtcReportedData_52
+  # DEBUG BEGIN_STMT
+  RequestedDtc = 0;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_54 = GetDataOfFilteredDTCContext_50(D)->NextPossitionToFillOnResponseBuffer;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_54
+  # DEBUG BEGIN_STMT
+  SubServiceContext_57 = Dcm_Dsp_DemFacade_GetClient (ClientId_55(D));
+  # DEBUG SubServiceContext => SubServiceContext_57
+  # DEBUG BEGIN_STMT
+  RequestedDtcSize_58 = 4;
+  # DEBUG RequestedDtcSize => RequestedDtcSize_58
+  # DEBUG BEGIN_STMT
+  _1 = GetDataOfFilteredDTCContext_50(D)->DTCFormat;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RequestedDtcSize_59 = 2;
+  # DEBUG RequestedDtcSize => RequestedDtcSize_59
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = SubServiceContext_57->FilterForFaultDetectionCounter;
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ResultDemInterface_64 = Dem_GetNextFilteredDTC (ClientId_55(D), &RequestedDtc, &DtcStatusMask);
+  # DEBUG ResultDemInterface => ResultDemInterface_64
+  # DEBUG BEGIN_STMT
+  DtcReportedData_65 = DtcStatusMask;
+  # DEBUG DtcReportedData => DtcReportedData_65
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ResultDemInterface_61 = Dem_GetNextFilteredDTCAndFDC (ClientId_55(D), &RequestedDtc, &DtcFaultDetectionCounter);
+  # DEBUG ResultDemInterface => ResultDemInterface_61
+  # DEBUG BEGIN_STMT
+  DtcFaultDetectionCounter.27_3 = DtcFaultDetectionCounter;
+  DtcReportedData_62 = (uint8) DtcFaultDetectionCounter.27_3;
+  # DEBUG DtcReportedData => DtcReportedData_62
+
+  <bb 7> :
+  # ResultDemInterface_34 = PHI <ResultDemInterface_64(5), ResultDemInterface_61(6)>
+  # DtcReportedData_37 = PHI <DtcReportedData_65(5), DtcReportedData_62(6)>
+  # DEBUG DtcReportedData => DtcReportedData_37
+  # DEBUG ResultDemInterface => ResultDemInterface_34
+  # DEBUG BEGIN_STMT
+  if (ResultDemInterface_34 == 48)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RequestedDtc = 0;
+  # DEBUG BEGIN_STMT
+  DtcReportedData_67 = 0;
+  # DEBUG DtcReportedData => DtcReportedData_67
+
+  <bb 9> :
+  # DtcReportedData_38 = PHI <DtcReportedData_37(7), DtcReportedData_67(8)>
+  # DEBUG DtcReportedData => DtcReportedData_38
+  # DEBUG BEGIN_STMT
+  if (ResultDemInterface_34 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (ResultDemInterface_34 == 48)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RequestedDtc.28_4 = RequestedDtc;
+  _5 = RequestedDtc.28_4 >> 16;
+  _6 = GetDataOfFilteredDTCContext_50(D)->ResponseBuffer;
+  _7 = _6 + CurrentWritePosition_40;
+  _8 = (unsigned char) _5;
+  *_7 = _8;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_69 = CurrentWritePosition_40 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_69
+  # DEBUG BEGIN_STMT
+  RequestedDtc.29_9 = RequestedDtc;
+  _10 = RequestedDtc.29_9 >> 8;
+  _11 = GetDataOfFilteredDTCContext_50(D)->ResponseBuffer;
+  _12 = _11 + CurrentWritePosition_69;
+  _13 = (unsigned char) _10;
+  *_12 = _13;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_71 = CurrentWritePosition_69 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_71
+  # DEBUG BEGIN_STMT
+  _14 = GetDataOfFilteredDTCContext_50(D)->DTCFormat;
+  if (_14 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RequestedDtc.30_15 = RequestedDtc;
+  _16 = GetDataOfFilteredDTCContext_50(D)->ResponseBuffer;
+  _17 = _16 + CurrentWritePosition_71;
+  _18 = (unsigned char) RequestedDtc.30_15;
+  *_17 = _18;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_73 = CurrentWritePosition_71 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_73
+  # DEBUG BEGIN_STMT
+  _19 = GetDataOfFilteredDTCContext_50(D)->ResponseBuffer;
+  _20 = _19 + CurrentWritePosition_73;
+  *_20 = DtcReportedData_38;
+  # DEBUG BEGIN_STMT
+  CurrentWritePosition_75 = CurrentWritePosition_73 + 1;
+  # DEBUG CurrentWritePosition => CurrentWritePosition_75
+
+  <bb 13> :
+  # CurrentWritePosition_39 = PHI <CurrentWritePosition_71(11), CurrentWritePosition_75(12)>
+  # DEBUG CurrentWritePosition => CurrentWritePosition_39
+  # DEBUG BEGIN_STMT
+  _21 = GetDataOfFilteredDTCContext_50(D)->BufferSize;
+  _22 = (long unsigned int) RequestedDtcSize_41;
+  _23 = _21 - _22;
+  GetDataOfFilteredDTCContext_50(D)->BufferSize = _23;
+  # DEBUG BEGIN_STMT
+  _24 = GetDataOfFilteredDTCContext_50(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _25 = (long unsigned int) RequestedDtcSize_41;
+  _26 = _24 + _25;
+  GetDataOfFilteredDTCContext_50(D)->AmountOfDataStoredOnResponseOnCurrentRun = _26;
+  # DEBUG BEGIN_STMT
+  ExpectedAmountOfFilteredDTCs.31_27 = ExpectedAmountOfFilteredDTCs_36;
+  ExpectedAmountOfFilteredDTCs_78 = ExpectedAmountOfFilteredDTCs.31_27 + 65535;
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_78
+
+  <bb 14> :
+  # ResultDemInterface_35 = PHI <ResultDemInterface_48(3), ResultDemInterface_34(10), ResultDemInterface_34(13), ResultDemInterface_48(2)>
+  # ExpectedAmountOfFilteredDTCs_36 = PHI <ExpectedAmountOfFilteredDTCs_51(3), ExpectedAmountOfFilteredDTCs_36(10), ExpectedAmountOfFilteredDTCs_78(13), ExpectedAmountOfFilteredDTCs_51(2)>
+  # CurrentWritePosition_40 = PHI <CurrentWritePosition_54(3), CurrentWritePosition_40(10), CurrentWritePosition_39(13), CurrentWritePosition_54(2)>
+  # RequestedDtcSize_41 = PHI <RequestedDtcSize_59(3), RequestedDtcSize_41(10), RequestedDtcSize_41(13), RequestedDtcSize_58(2)>
+  # DEBUG RequestedDtcSize => RequestedDtcSize_41
+  # DEBUG CurrentWritePosition => CurrentWritePosition_40
+  # DEBUG ExpectedAmountOfFilteredDTCs => ExpectedAmountOfFilteredDTCs_36
+  # DEBUG ResultDemInterface => ResultDemInterface_35
+  # DEBUG BEGIN_STMT
+  if (ExpectedAmountOfFilteredDTCs_36 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  if (ResultDemInterface_35 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  if (ResultDemInterface_35 == 48)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  _28 = GetDataOfFilteredDTCContext_50(D)->BufferSize;
+  _29 = (long unsigned int) RequestedDtcSize_41;
+  if (_28 >= _29)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NumberOfFilteredDTCs = ExpectedAmountOfFilteredDTCs_36;
+  # DEBUG BEGIN_STMT
+  _30 = GetDataOfFilteredDTCContext_50(D)->BufferSize;
+  _31 = (long unsigned int) RequestedDtcSize_41;
+  if (_30 < _31)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  if (ExpectedAmountOfFilteredDTCs_36 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_81 = 2;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_81
+  goto <bb 26>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _32 = (int) ResultDemInterface_35;
+  switch (_32) <default: <L24> [INV], case 0: <L21> [INV], case 4: <L22> [INV], case 48: <L23> [INV]>
+
+  <bb 22> :
+<L21>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_88 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_88
+  # DEBUG BEGIN_STMT
+  goto <bb 26>; [INV]
+
+  <bb 23> :
+<L22>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NextPossitionToFillOnResponseBuffer = CurrentWritePosition_40;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_86 = 1;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_86
+  # DEBUG BEGIN_STMT
+  goto <bb 26>; [INV]
+
+  <bb 24> :
+<L23>:
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_50(D)->NumberOfFilteredDTCs = 0;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_84 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_84
+  # DEBUG BEGIN_STMT
+  goto <bb 26>; [INV]
+
+  <bb 25> :
+<L24>:
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_89 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_89
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 152, 2);
+  # DEBUG BEGIN_STMT
+
+  <bb 26> :
+  # ResultCodeFromExecute_33 = PHI <ResultCodeFromExecute_81(20), ResultCodeFromExecute_88(22), ResultCodeFromExecute_86(23), ResultCodeFromExecute_84(24), ResultCodeFromExecute_89(25)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_33
+  # DEBUG BEGIN_STMT
+  _91 = ResultCodeFromExecute_33;
+  DtcStatusMask ={v} {CLOBBER};
+  DtcFaultDetectionCounter ={v} {CLOBBER};
+  RequestedDtc ={v} {CLOBBER};
+  return _91;
+
+}
+
+
+Dcm_DemFacade_ExpectedAmountOfData (uint16 NumberOfFilteredDTCs, uint8 FilteredState, uint8 DTCFormat, uint8 SubServiceId)
+{
+  Dcm_MsgLenType AmountOfDataToWrite;
+  uint8 DtcSize;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Dcm_MsgLenType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DtcSize_6 = 0;
+  # DEBUG DtcSize => DtcSize_6
+  # DEBUG BEGIN_STMT
+  AmountOfDataToWrite_7 = 0;
+  # DEBUG AmountOfDataToWrite => AmountOfDataToWrite_7
+  # DEBUG BEGIN_STMT
+  if (FilteredState_8(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DTCFormat_9(D);
+  switch (_1) <default: <L10> [INV], case 0: <L5> [INV], case 1: <L1> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  if (SubServiceId_10(D) == 8)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DtcSize_12 = 6;
+  # DEBUG DtcSize => DtcSize_12
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DtcSize_11 = 4;
+  # DEBUG DtcSize => DtcSize_11
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  DtcSize_13 = 2;
+  # DEBUG DtcSize => DtcSize_13
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # DtcSize_4 = PHI <DtcSize_11(6), DtcSize_13(7), DtcSize_6(3), DtcSize_12(5)>
+<L10>:
+  # DEBUG DtcSize => DtcSize_4
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) NumberOfFilteredDTCs_14(D);
+  _3 = (long unsigned int) DtcSize_4;
+  AmountOfDataToWrite_15 = _2 * _3;
+  # DEBUG AmountOfDataToWrite => AmountOfDataToWrite_15
+
+  <bb 9> :
+  # AmountOfDataToWrite_5 = PHI <AmountOfDataToWrite_7(2), AmountOfDataToWrite_15(8)>
+  # DEBUG AmountOfDataToWrite => AmountOfDataToWrite_5
+  # DEBUG BEGIN_STMT
+  _16 = AmountOfDataToWrite_5;
+  return _16;
+
+}
+
+
+Dcm_DemFacade_SetFilterObtainNumberOfFilteredDTC_Execute (const Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * GetDataOfFilteredDTCContext)
+{
+  Dcm_MsgLenType CurrentWritePositionOnResponse;
+  uint16 NumberOfFilteredDTCs;
+  Dem_DTCTranslationFormatType DemTranslationFormatType;
+  Std_ReturnType ResultCodeFromExecute;
+  Std_ReturnType ResultCodeFromDEM;
+  struct Dcm_DemClientContextType * SubServiceContext;
+  unsigned char _1;
+  uint8 * _2;
+  uint8 * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  short unsigned int _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  short unsigned int NumberOfFilteredDTCs.16_20;
+  short unsigned int NumberOfFilteredDTCs.17_21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+  long unsigned int _25;
+  unsigned char _26;
+  unsigned char _27;
+  unsigned char _28;
+  unsigned char _29;
+  short unsigned int NumberOfFilteredDTCs.18_30;
+  short unsigned int _31;
+  uint8 * _32;
+  uint8 * _33;
+  unsigned char _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  short unsigned int NumberOfFilteredDTCs.19_39;
+  uint8 * _40;
+  uint8 * _41;
+  unsigned char _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  long unsigned int _45;
+  long unsigned int _46;
+  Std_ReturnType _105;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SubServiceContext_63 = Dcm_Dsp_DemFacade_GetClient (ClientId_61(D));
+  # DEBUG SubServiceContext => SubServiceContext_63
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_64 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_64
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_65 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_65
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NumberOfFilteredDTCs = 0;
+  # DEBUG BEGIN_STMT
+  CurrentWritePositionOnResponse_68 = GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  # DEBUG CurrentWritePositionOnResponse => CurrentWritePositionOnResponse_68
+  # DEBUG BEGIN_STMT
+  _1 = SubServiceContext_63->DtcFormatIdState;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DemTranslationFormatType_70 = Dem_GetTranslationType (ClientId_61(D));
+  # DEBUG DemTranslationFormatType => DemTranslationFormatType_70
+  # DEBUG BEGIN_STMT
+  if (DemTranslationFormatType_70 > 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_76 = 8;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_76
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = GetDataOfFilteredDTCContext_67(D)->ResponseBuffer;
+  _3 = _2 + CurrentWritePositionOnResponse_68;
+  *_3 = DemTranslationFormatType_70;
+  # DEBUG BEGIN_STMT
+  CurrentWritePositionOnResponse_72 = CurrentWritePositionOnResponse_68 + 1;
+  # DEBUG CurrentWritePositionOnResponse => CurrentWritePositionOnResponse_72
+  # DEBUG BEGIN_STMT
+  _4 = GetDataOfFilteredDTCContext_67(D)->BufferSize;
+  _5 = _4 + 4294967295;
+  GetDataOfFilteredDTCContext_67(D)->BufferSize = _5;
+  # DEBUG BEGIN_STMT
+  _6 = GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _7 = _6 + 1;
+  GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun = _7;
+  # DEBUG BEGIN_STMT
+  SubServiceContext_63->DtcFormatIdState = 3;
+
+  <bb 6> :
+  # ResultCodeFromExecute_48 = PHI <ResultCodeFromExecute_65(2), ResultCodeFromExecute_76(4), ResultCodeFromExecute_65(5)>
+  # CurrentWritePositionOnResponse_51 = PHI <CurrentWritePositionOnResponse_68(2), CurrentWritePositionOnResponse_68(4), CurrentWritePositionOnResponse_72(5)>
+  # DEBUG CurrentWritePositionOnResponse => CurrentWritePositionOnResponse_51
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_48
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromExecute_48 != 8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _8 = SubServiceContext_63->RequestedStatusBits;
+  if (_8 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 8> :
+  _9 = SubServiceContext_63->FilteredDtcsCountState;
+  if (_9 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _10 = SubServiceContext_63->FilteredDtcsState;
+  if (_10 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _11 = GetDataOfFilteredDTCContext_67(D)->ReportOnSetDTCFilter;
+  if (_11 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _12 = SubServiceContext_63->RequestedStatusMask;
+  _13 = SubServiceContext_63->DTCFormat;
+  _14 = SubServiceContext_63->MemoryOrigin;
+  _15 = GetDataOfFilteredDTCContext_67(D)->FilterWithSeverity;
+  _16 = GetDataOfFilteredDTCContext_67(D)->DTCSeverityMask;
+  _17 = SubServiceContext_63->FilterForFaultDetectionCounter;
+  ResultCodeFromDEM_78 = Dem_SetDTCFilter (ClientId_61(D), _12, _13, _14, _15, _16, _17);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_78
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_78 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_67(D)->ReportOnSetDTCFilter = 1;
+
+  <bb 13> :
+  # ResultCodeFromDEM_47 = PHI <ResultCodeFromDEM_64(10), ResultCodeFromDEM_78(11), ResultCodeFromDEM_78(12)>
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_47
+  # DEBUG BEGIN_STMT
+  _18 = GetDataOfFilteredDTCContext_67(D)->ReportOnSetDTCFilter;
+  if (_18 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _19 = GetDataOfFilteredDTCContext_67(D)->ReportOnGetNumberOfFilters;
+  if (_19 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_84 = Dem_GetNumberOfFilteredDTC (ClientId_61(D), &NumberOfFilteredDTCs);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_84
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_84 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  NumberOfFilteredDTCs.16_20 = NumberOfFilteredDTCs;
+  GetDataOfFilteredDTCContext_67(D)->NumberOfFilteredDTCs = NumberOfFilteredDTCs.16_20;
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_67(D)->ReportOnGetNumberOfFilters = 1;
+  # DEBUG BEGIN_STMT
+  NumberOfFilteredDTCs.17_21 = NumberOfFilteredDTCs;
+  _22 = SubServiceContext_63->FilteredDtcsState;
+  _23 = SubServiceContext_63->DTCFormat;
+  _24 = GetDataOfFilteredDTCContext_67(D)->SubServiceId;
+  _25 = Dcm_DemFacade_ExpectedAmountOfData (NumberOfFilteredDTCs.17_21, _22, _23, _24);
+  GetDataOfFilteredDTCContext_67(D)->AmountOfDataToWriteOnResponse = _25;
+  # DEBUG BEGIN_STMT
+  _26 = SubServiceContext_63->FilteredDtcsCountState;
+  if (_26 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  SubServiceContext_63->FilteredDtcsCountState = 2;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_93 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_93
+  goto <bb 28>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_84 == 4)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_87 = 1;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_87
+  goto <bb 28>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_85 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_85
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 152, 2);
+  goto <bb 28>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_47 == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_82 = 3;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_82
+  goto <bb 28>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_80 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_80
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 152, 2);
+  goto <bb 28>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _27 = SubServiceContext_63->FilteredDtcsCountState;
+  if (_27 == 1)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  SubServiceContext_63->FilteredDtcsCountState = 2;
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_95 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_95
+
+  <bb 28> :
+  # ResultCodeFromExecute_49 = PHI <ResultCodeFromExecute_82(23), ResultCodeFromExecute_95(27), ResultCodeFromExecute_93(18), ResultCodeFromExecute_87(20), ResultCodeFromExecute_85(21), ResultCodeFromExecute_48(14), ResultCodeFromExecute_80(24)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_49
+  # DEBUG BEGIN_STMT
+  _28 = SubServiceContext_63->FilteredDtcsCountState;
+  if (_28 == 2)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _29 = SubServiceContext_63->DTCFormat;
+  if (_29 == 1)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  NumberOfFilteredDTCs.18_30 = NumberOfFilteredDTCs;
+  _31 = NumberOfFilteredDTCs.18_30 >> 8;
+  _32 = GetDataOfFilteredDTCContext_67(D)->ResponseBuffer;
+  _33 = _32 + CurrentWritePositionOnResponse_51;
+  _34 = (unsigned char) _31;
+  *_33 = _34;
+  # DEBUG BEGIN_STMT
+  CurrentWritePositionOnResponse_97 = CurrentWritePositionOnResponse_51 + 1;
+  # DEBUG CurrentWritePositionOnResponse => CurrentWritePositionOnResponse_97
+  # DEBUG BEGIN_STMT
+  _35 = GetDataOfFilteredDTCContext_67(D)->BufferSize;
+  _36 = _35 + 4294967295;
+  GetDataOfFilteredDTCContext_67(D)->BufferSize = _36;
+  # DEBUG BEGIN_STMT
+  _37 = GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _38 = _37 + 1;
+  GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun = _38;
+
+  <bb 31> :
+  # CurrentWritePositionOnResponse_52 = PHI <CurrentWritePositionOnResponse_51(29), CurrentWritePositionOnResponse_97(30)>
+  # DEBUG CurrentWritePositionOnResponse => CurrentWritePositionOnResponse_52
+  # DEBUG BEGIN_STMT
+  NumberOfFilteredDTCs.19_39 = NumberOfFilteredDTCs;
+  _40 = GetDataOfFilteredDTCContext_67(D)->ResponseBuffer;
+  _41 = _40 + CurrentWritePositionOnResponse_52;
+  _42 = (unsigned char) NumberOfFilteredDTCs.19_39;
+  *_41 = _42;
+  # DEBUG BEGIN_STMT
+  _43 = GetDataOfFilteredDTCContext_67(D)->BufferSize;
+  _44 = _43 + 4294967295;
+  GetDataOfFilteredDTCContext_67(D)->BufferSize = _44;
+  # DEBUG BEGIN_STMT
+  _45 = GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  _46 = _45 + 1;
+  GetDataOfFilteredDTCContext_67(D)->AmountOfDataStoredOnResponseOnCurrentRun = _46;
+  # DEBUG BEGIN_STMT
+  GetDataOfFilteredDTCContext_67(D)->ReportOnReadOfNumberOfFilteredDtc = 1;
+  # DEBUG BEGIN_STMT
+  SubServiceContext_63->FilteredDtcsCountState = 3;
+
+  <bb 32> :
+  # ResultCodeFromExecute_50 = PHI <ResultCodeFromExecute_48(6), ResultCodeFromExecute_49(28), ResultCodeFromExecute_49(31)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_50
+  # DEBUG BEGIN_STMT
+  _105 = ResultCodeFromExecute_50;
+  NumberOfFilteredDTCs ={v} {CLOBBER};
+  return _105;
+
+}
+
+
+Dcm_DemFacade_NumberOfFilteredDTC_Setup (struct Dcm_DemClientContextType * ClientContextPtr, uint8 * NumberOfFilteredDTCResponseBuffer, Dcm_MsgLenType AvailableBufferSize)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.ResponseBuffer = NumberOfFilteredDTCResponseBuffer_10(D);
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.BufferSize = AvailableBufferSize_12(D);
+  # DEBUG BEGIN_STMT
+  _1 = ClientContextPtr_9(D)->SubServiceID;
+  ClientContextPtr_9(D)->DiagnosticDataContext.SubServiceId = _1;
+  # DEBUG BEGIN_STMT
+  _2 = ClientContextPtr_9(D)->RequestedStatusMask;
+  ClientContextPtr_9(D)->DiagnosticDataContext.RequestedStatusMask = _2;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.DTCStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  _3 = ClientContextPtr_9(D)->DataKind;
+  ClientContextPtr_9(D)->DiagnosticDataContext.DTCKind = _3;
+  # DEBUG BEGIN_STMT
+  _4 = ClientContextPtr_9(D)->DTCFormat;
+  ClientContextPtr_9(D)->DiagnosticDataContext.DTCFormat = _4;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.StoredDTCs = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterWithSeverity = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.DTCSeverityMask = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.AmountOfDataStoredOnCompleteResponse = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.AmountOfDataToWriteOnResponse = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.ReportOnReadOfNumberOfFilteredDtc = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.RequestOfReadOfTranslationType = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.ReportOnGetNumberOfFilters = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.ReportOnSetDTCFilter = 0;
+  # DEBUG BEGIN_STMT
+  _5 = ClientContextPtr_9(D)->SubServiceID;
+  _6 = (int) _5;
+  switch (_6) <default: <L14> [INV], case 1: <L0> [INV], case 2: <L3> [INV], case 7 ... 8: <L1> [INV], case 10: <L3> [INV], case 19: <L3> [INV], case 20: <L8> [INV], case 21: <L3> [INV], case 23: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterWithSeverity = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9(D)->DiagnosticDataContext.FilterForFaultDetectionCounter = 1;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DemFacade_DTCStatusAvailabilityMask (const Dcm_DemClientIdType ClientId, Dcm_DataSupplierOperationType Operation, uint8 * DataBuffer, Dcm_MsgLenType * Size)
+{
+  struct Dcm_DemClientContextType * ServiceContext;
+  Std_ReturnType ResultCodeFromDem;
+  Std_ReturnType ResultCodeFromExecute;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  Std_ReturnType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_7 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_7
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDem_8 = 4;
+  # DEBUG ResultCodeFromDem => ResultCodeFromDem_8
+  # DEBUG BEGIN_STMT
+  ServiceContext_12 = Dcm_Dsp_DemFacade_GetClient (ClientId_10(D));
+  # DEBUG ServiceContext => ServiceContext_12
+  # DEBUG BEGIN_STMT
+  _1 = (int) Operation_13(D);
+  switch (_1) <default: <L12> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_25 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_25
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  *Size_21(D) = 1;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_24 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_24
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDem_16 = Dem_GetDTCStatusAvailabilityMask (ClientId_10(D), DataBuffer_14(D));
+  # DEBUG ResultCodeFromDem => ResultCodeFromDem_16
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDem_16 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = ServiceContext_12->RequestedStatusBits;
+  _3 = *DataBuffer_14(D);
+  _4 = _2 & _3;
+  ServiceContext_12->RequestedStatusBits = _4;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_20 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_20
+  # DEBUG BEGIN_STMT
+  *Size_21(D) = 1;
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDem_16 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_18 = 3;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_18
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_17 = 8;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_17
+
+  <bb 10> :
+  # ResultCodeFromExecute_5 = PHI <ResultCodeFromExecute_25(3), ResultCodeFromExecute_24(4), ResultCodeFromExecute_18(8), ResultCodeFromExecute_7(2), ResultCodeFromExecute_20(6), ResultCodeFromExecute_17(9)>
+<L12>:
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_5
+  # DEBUG BEGIN_STMT
+  _26 = ResultCodeFromExecute_5;
+  return _26;
+
+}
+
+
+Dcm_DemFacade_ProcessDEMResponseFromGetSize (uint8 DataKind, uint8 ResultCodeFromDEM)
+{
+  Std_ReturnType ResultFromOperation;
+  int _1;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_4 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_4
+  # DEBUG BEGIN_STMT
+  _1 = (int) ResultCodeFromDEM_5(D);
+  switch (_1) <default: <L3> [INV], case 8 ... 9: <L0> [INV], case 48: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_6 = 3;
+  # DEBUG ResultFromOperation => ResultFromOperation_6
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_8 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_8
+  # DEBUG BEGIN_STMT
+  if (DataKind_9(D) == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 113, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 112, 2);
+
+  <bb 7> :
+  # ResultFromOperation_2 = PHI <ResultFromOperation_6(3), ResultFromOperation_8(6), ResultFromOperation_8(5)>
+  # DEBUG ResultFromOperation => ResultFromOperation_2
+  # DEBUG BEGIN_STMT
+  _12 = ResultFromOperation_2;
+  return _12;
+
+}
+
+
+Dcm_DemFacade_ProcessDEMResponseFromGetData (struct Dcm_DiagnosticDataContextType * DiagnosticDataContext, uint8 ResultCodeFromDEM)
+{
+  Std_ReturnType ResultFromOperation;
+  int _1;
+  long unsigned int _2;
+  unsigned char _3;
+  Std_ReturnType _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_6 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_6
+  # DEBUG BEGIN_STMT
+  _1 = (int) ResultCodeFromDEM_7(D);
+  switch (_1) <default: <L5> [INV], case 4: <L1> [INV], case 8 ... 9: <L2> [INV], case 21: <L0> [INV], case 48: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_13 = 2;
+  # DEBUG ResultFromOperation => ResultFromOperation_13
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_16 = 1;
+  # DEBUG ResultFromOperation => ResultFromOperation_16
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_9(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_15 = 3;
+  # DEBUG ResultFromOperation => ResultFromOperation_15
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_9(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  _2 = DiagnosticDataContext_9(D)->AmountOfDataStoredOnCompleteResponse;
+  DiagnosticDataContext_9(D)->AmountOfDataToWriteOnResponse = _2;
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_12 = 0;
+  # DEBUG ResultFromOperation => ResultFromOperation_12
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_9(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_18 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_18
+  # DEBUG BEGIN_STMT
+  _3 = DiagnosticDataContext_9(D)->DataKind;
+  if (_3 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 113, 2);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 112, 2);
+
+  <bb 10> :
+  # ResultFromOperation_4 = PHI <ResultFromOperation_13(3), ResultFromOperation_16(4), ResultFromOperation_15(5), ResultFromOperation_12(6), ResultFromOperation_18(9), ResultFromOperation_18(8)>
+  # DEBUG ResultFromOperation => ResultFromOperation_4
+  # DEBUG BEGIN_STMT
+  _21 = ResultFromOperation_4;
+  return _21;
+
+}
+
+
+Dcm_DemFacade_ProcessDEMResponseFromSelectData (struct Dcm_DiagnosticDataContextType * DiagnosticDataContext, uint8 ResultCodeFromDEM)
+{
+  Std_ReturnType ResultFromOperation;
+  int _1;
+  unsigned char _2;
+  unsigned int _7;
+  unsigned int _8;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_5 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_5
+  # DEBUG BEGIN_STMT
+  _1 = (int) ResultCodeFromDEM_6(D);
+  _7 = (unsigned int) _1;
+  _8 = _7 + 4294967288;
+  if (_8 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_9 = 3;
+  # DEBUG ResultFromOperation => ResultFromOperation_9
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ResultFromOperation_11 = 4;
+  # DEBUG ResultFromOperation => ResultFromOperation_11
+  # DEBUG BEGIN_STMT
+  _2 = DiagnosticDataContext_12(D)->DataKind;
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 113, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 112, 2);
+
+  <bb 7> :
+  # ResultFromOperation_3 = PHI <ResultFromOperation_9(3), ResultFromOperation_11(6), ResultFromOperation_11(5)>
+  # DEBUG ResultFromOperation => ResultFromOperation_3
+  # DEBUG BEGIN_STMT
+  _15 = ResultFromOperation_3;
+  return _15;
+
+}
+
+
+Dcm_DemFacade_EnableDTCRecordUpdate (const Dcm_DemClientIdType ClientId, boolean * ControlRecordUpdate)
+{
+  Std_ReturnType ResultCodeFromDEM;
+  Std_ReturnType ResultFromEnableRecordUpdate;
+  unsigned char _1;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromEnableRecordUpdate_4 = 4;
+  # DEBUG ResultFromEnableRecordUpdate => ResultFromEnableRecordUpdate_4
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_5 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_5
+  # DEBUG BEGIN_STMT
+  _1 = *ControlRecordUpdate_7(D);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_10 = Dem_EnableDTCRecordUpdate (ClientId_8(D));
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_10
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_10 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *ControlRecordUpdate_7(D) = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromEnableRecordUpdate_14 = 0;
+  # DEBUG ResultFromEnableRecordUpdate => ResultFromEnableRecordUpdate_14
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ResultFromEnableRecordUpdate_11 = 4;
+  # DEBUG ResultFromEnableRecordUpdate => ResultFromEnableRecordUpdate_11
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 114, 2);
+
+  <bb 6> :
+  # ResultFromEnableRecordUpdate_2 = PHI <ResultFromEnableRecordUpdate_4(2), ResultFromEnableRecordUpdate_14(4), ResultFromEnableRecordUpdate_11(5)>
+  # DEBUG ResultFromEnableRecordUpdate => ResultFromEnableRecordUpdate_2
+  # DEBUG BEGIN_STMT
+  _15 = ResultFromEnableRecordUpdate_2;
+  return _15;
+
+}
+
+
+Dcm_DemFacade_GetEventData (Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * DiagnosticDataContext)
+{
+  uint16 WriteAFHeaderOffset;
+  uint16 WriteOffset;
+  uint16 AvailableBufferSize;
+  Dcm_MsgLenType CurrentWritePositionOnReponseBuffer;
+  uint8 ResultCodeFromDEM;
+  Std_ReturnType ResultFromGetExtendedDataRecord;
+  long unsigned int _1;
+  short unsigned int _2;
+  short unsigned int AvailableBufferSize.5_3;
+  short unsigned int AvailableBufferSize.6_4;
+  short unsigned int _5;
+  uint8 (*<T78d>) (Dcm_DemClientIdType, uint8 *, uint16 *) _6;
+  uint8 * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  uint8 * _10;
+  short unsigned int AvailableBufferSize.7_11;
+  short unsigned int AvailableBufferSize.8_12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  short unsigned int AvailableBufferSize.9_17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  short unsigned int AvailableBufferSize.10_21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  short unsigned int AvailableBufferSize.11_27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  Std_ReturnType _53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetExtendedDataRecord_41 = 4;
+  # DEBUG ResultFromGetExtendedDataRecord => ResultFromGetExtendedDataRecord_41
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_42 = 0;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WriteOffset_43 = 0;
+  # DEBUG WriteOffset => WriteOffset_43
+  # DEBUG BEGIN_STMT
+  WriteAFHeaderOffset_44 = 0;
+  # DEBUG WriteAFHeaderOffset => WriteAFHeaderOffset_44
+  # DEBUG BEGIN_STMT
+  CurrentWritePositionOnReponseBuffer_47 = DiagnosticDataContext_46(D)->NextPossitionToFillOnResponseBuffer;
+  # DEBUG CurrentWritePositionOnReponseBuffer => CurrentWritePositionOnReponseBuffer_47
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WriteAFHeaderOffset_55 = 0;
+  # DEBUG WriteAFHeaderOffset => WriteAFHeaderOffset_55
+  # DEBUG BEGIN_STMT
+  WriteOffset_56 = WriteAFHeaderOffset_55;
+  # DEBUG WriteOffset => WriteOffset_56
+  # DEBUG BEGIN_STMT
+  _1 = DiagnosticDataContext_46(D)->BufferSize;
+  _2 = (short unsigned int) _1;
+  AvailableBufferSize = _2;
+  # DEBUG BEGIN_STMT
+  AvailableBufferSize.5_3 = AvailableBufferSize;
+  if (WriteOffset_56 < AvailableBufferSize.5_3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  AvailableBufferSize.6_4 = AvailableBufferSize;
+  _5 = AvailableBufferSize.6_4 - WriteOffset_56;
+  AvailableBufferSize = _5;
+  # DEBUG BEGIN_STMT
+  _6 = DiagnosticDataContext_46(D)->GetDataDemFunction;
+  _7 = DiagnosticDataContext_46(D)->ResponseBuffer;
+  _8 = (long unsigned int) WriteOffset_56;
+  _9 = CurrentWritePositionOnReponseBuffer_37 + _8;
+  _10 = _7 + _9;
+  ResultCodeFromDEM_62 = _6 (ClientId_60(D), _10, &AvailableBufferSize);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_62
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_58 = 21;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_58
+
+  <bb 6> :
+  # ResultCodeFromDEM_35 = PHI <ResultCodeFromDEM_62(4), ResultCodeFromDEM_58(5)>
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_35
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_35 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  AvailableBufferSize.7_11 = AvailableBufferSize;
+  if (AvailableBufferSize.7_11 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  AvailableBufferSize.8_12 = AvailableBufferSize;
+  _13 = (long unsigned int) AvailableBufferSize.8_12;
+  _14 = (long unsigned int) WriteOffset_56;
+  _15 = _13 + _14;
+  CurrentWritePositionOnReponseBuffer_63 = CurrentWritePositionOnReponseBuffer_37 + _15;
+  # DEBUG CurrentWritePositionOnReponseBuffer => CurrentWritePositionOnReponseBuffer_63
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_46(D)->NextPossitionToFillOnResponseBuffer = CurrentWritePositionOnReponseBuffer_63;
+  # DEBUG BEGIN_STMT
+  _16 = DiagnosticDataContext_46(D)->AmountOfDataStoredOnCompleteResponse;
+  AvailableBufferSize.9_17 = AvailableBufferSize;
+  _18 = (long unsigned int) AvailableBufferSize.9_17;
+  _19 = _16 + _18;
+  DiagnosticDataContext_46(D)->AmountOfDataStoredOnCompleteResponse = _19;
+  # DEBUG BEGIN_STMT
+  _20 = DiagnosticDataContext_46(D)->AmountOfDataStoredOnResponseOnCurrentRun;
+  AvailableBufferSize.10_21 = AvailableBufferSize;
+  _22 = (long unsigned int) AvailableBufferSize.10_21;
+  _23 = (long unsigned int) WriteOffset_56;
+  _24 = _22 + _23;
+  _25 = _20 + _24;
+  DiagnosticDataContext_46(D)->AmountOfDataStoredOnResponseOnCurrentRun = _25;
+  # DEBUG BEGIN_STMT
+  _26 = DiagnosticDataContext_46(D)->BufferSize;
+  AvailableBufferSize.11_27 = AvailableBufferSize;
+  _28 = (long unsigned int) AvailableBufferSize.11_27;
+  _29 = (long unsigned int) WriteOffset_56;
+  _30 = _28 + _29;
+  _31 = _26 - _30;
+  DiagnosticDataContext_46(D)->BufferSize = _31;
+
+  <bb 9> :
+  # ResultCodeFromDEM_36 = PHI <ResultCodeFromDEM_42(2), ResultCodeFromDEM_35(6), ResultCodeFromDEM_35(7), ResultCodeFromDEM_35(8)>
+  # CurrentWritePositionOnReponseBuffer_37 = PHI <CurrentWritePositionOnReponseBuffer_47(2), CurrentWritePositionOnReponseBuffer_37(6), CurrentWritePositionOnReponseBuffer_37(7), CurrentWritePositionOnReponseBuffer_63(8)>
+  # DEBUG CurrentWritePositionOnReponseBuffer => CurrentWritePositionOnReponseBuffer_37
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_36
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_36 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _32 = DiagnosticDataContext_46(D)->AmountOfDataStoredOnCompleteResponse;
+  _33 = DiagnosticDataContext_46(D)->AmountOfDataToWriteOnResponse;
+  if (_32 == _33)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_46(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_46(D)->ReportOnReadOfExtendedDataRecord = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromGetExtendedDataRecord_52 = 0;
+  # DEBUG ResultFromGetExtendedDataRecord => ResultFromGetExtendedDataRecord_52
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetExtendedDataRecord_49 = Dcm_DemFacade_ProcessDEMResponseFromGetData (DiagnosticDataContext_46(D), ResultCodeFromDEM_36);
+  # DEBUG ResultFromGetExtendedDataRecord => ResultFromGetExtendedDataRecord_49
+
+  <bb 13> :
+  # ResultFromGetExtendedDataRecord_34 = PHI <ResultFromGetExtendedDataRecord_52(11), ResultFromGetExtendedDataRecord_49(12)>
+  # DEBUG ResultFromGetExtendedDataRecord => ResultFromGetExtendedDataRecord_34
+  # DEBUG BEGIN_STMT
+  _53 = ResultFromGetExtendedDataRecord_34;
+  AvailableBufferSize ={v} {CLOBBER};
+  return _53;
+
+}
+
+
+Dcm_DemFacade_GetSizeOfEventData (Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * DiagnosticDataContext)
+{
+  uint16 SizeOfEventData;
+  uint8 RequestedDataRecord;
+  uint8 ResultCodeFromDEM;
+  Std_ReturnType ResultFromGetSizeOfExtendedDataRecord;
+  uint8 (*<T788>) (Dcm_DemClientIdType, uint16 *) _1;
+  short unsigned int SizeOfEventData.0_2;
+  short unsigned int SizeOfEventData.1_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  short unsigned int SizeOfEventData.2_6;
+  long unsigned int _7;
+  short unsigned int SizeOfEventData.3_8;
+  long unsigned int _9;
+  short unsigned int SizeOfEventData.4_10;
+  long unsigned int _11;
+  long unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  Std_ReturnType _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_20 = 4;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_20
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_21 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_21
+  # DEBUG BEGIN_STMT
+  RequestedDataRecord_24 = DiagnosticDataContext_23(D)->RequestedDataRecordNumber;
+  # DEBUG RequestedDataRecord => RequestedDataRecord_24
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = DiagnosticDataContext_23(D)->GetSizeOfDataDemFunction;
+  ResultCodeFromDEM_27 = _1 (ClientId_25(D), &SizeOfEventData);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_27
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_27 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SizeOfEventData.0_2 = SizeOfEventData;
+  if (SizeOfEventData.0_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  SizeOfEventData.1_3 = SizeOfEventData;
+  _4 = (long unsigned int) SizeOfEventData.1_3;
+  _5 = DiagnosticDataContext_23(D)->SizeOfOnePage;
+  if (_4 <= _5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  if (RequestedDataRecord_24 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SizeOfEventData.2_6 = SizeOfEventData;
+  _7 = (long unsigned int) SizeOfEventData.2_6;
+  DiagnosticDataContext_23(D)->AmountOfDataToWriteOnResponse = _7;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_23(D)->ReportOnSizeOfDataToRead = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_38 = 0;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_38
+  goto <bb 20>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (RequestedDataRecord_24 == 255)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SizeOfEventData.3_8 = SizeOfEventData;
+  _9 = (long unsigned int) SizeOfEventData.3_8;
+  DiagnosticDataContext_23(D)->AmountOfDataToWriteOnResponse = _9;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_23(D)->ReportOnSizeOfDataToRead = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_44 = 0;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_44
+  goto <bb 20>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SizeOfEventData.4_10 = SizeOfEventData;
+  _11 = (long unsigned int) SizeOfEventData.4_10;
+  _12 = DiagnosticDataContext_23(D)->SizeOfOnePage;
+  if (_11 >= _12)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  if (RequestedDataRecord_24 != 255)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_39 = 4;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_39
+  goto <bb 20>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_23(D)->ReportOnSizeOfDataToRead = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_41 = 0;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_41
+  goto <bb 20>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_27 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_23(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_33 = 4;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_33
+  # DEBUG BEGIN_STMT
+  _13 = DiagnosticDataContext_23(D)->DataKind;
+  if (_13 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 113, 2);
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 112, 2);
+  goto <bb 20>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_27 == 4)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_31 = 1;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_31
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_23(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  _14 = DiagnosticDataContext_23(D)->DataKind;
+  ResultFromGetSizeOfExtendedDataRecord_30 = Dcm_DemFacade_ProcessDEMResponseFromGetSize (_14, ResultCodeFromDEM_27);
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_30
+
+  <bb 20> :
+  # ResultFromGetSizeOfExtendedDataRecord_17 = PHI <ResultFromGetSizeOfExtendedDataRecord_44(8), ResultFromGetSizeOfExtendedDataRecord_33(16), ResultFromGetSizeOfExtendedDataRecord_31(18), ResultFromGetSizeOfExtendedDataRecord_30(19), ResultFromGetSizeOfExtendedDataRecord_38(6), ResultFromGetSizeOfExtendedDataRecord_41(12), ResultFromGetSizeOfExtendedDataRecord_39(11), ResultFromGetSizeOfExtendedDataRecord_33(15)>
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_17
+  # DEBUG BEGIN_STMT
+  _15 = DiagnosticDataContext_23(D)->AmountOfDataToWriteOnResponse;
+  _16 = DiagnosticDataContext_23(D)->BufferSize;
+  if (_15 > _16)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  ResultFromGetSizeOfExtendedDataRecord_45 = 2;
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_45
+
+  <bb 22> :
+  # ResultFromGetSizeOfExtendedDataRecord_18 = PHI <ResultFromGetSizeOfExtendedDataRecord_17(20), ResultFromGetSizeOfExtendedDataRecord_45(21)>
+  # DEBUG ResultFromGetSizeOfExtendedDataRecord => ResultFromGetSizeOfExtendedDataRecord_18
+  # DEBUG BEGIN_STMT
+  _46 = ResultFromGetSizeOfExtendedDataRecord_18;
+  SizeOfEventData ={v} {CLOBBER};
+  return _46;
+
+}
+
+
+Dcm_DemFacade_SelectEventData (Dcm_DemClientIdType ClientId, struct Dcm_DiagnosticDataContextType * DiagnosticDataContext)
+{
+  uint8 RequestedDataRecord;
+  uint8 ResultCodeFromDEM;
+  Std_ReturnType ResultFromSelectData;
+  uint8 (*<T783>) (Dcm_DemClientIdType, uint8) _1;
+  unsigned char _2;
+  Std_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromSelectData_5 = 4;
+  # DEBUG ResultFromSelectData => ResultFromSelectData_5
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_6 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_6
+  # DEBUG BEGIN_STMT
+  RequestedDataRecord_9 = DiagnosticDataContext_8(D)->RequestedDataRecordNumber;
+  # DEBUG RequestedDataRecord => RequestedDataRecord_9
+  # DEBUG BEGIN_STMT
+  _1 = DiagnosticDataContext_8(D)->SelectDataDemFunction;
+  ResultCodeFromDEM_12 = _1 (ClientId_10(D), RequestedDataRecord_9);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_12
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_12 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_8(D)->ReportOnSelectData = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromSelectData_22 = 0;
+  # DEBUG ResultFromSelectData => ResultFromSelectData_22
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_12 == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ResultFromSelectData_20 = 1;
+  # DEBUG ResultFromSelectData => ResultFromSelectData_20
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_12 == 22)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_8(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromSelectData_17 = 4;
+  # DEBUG ResultFromSelectData => ResultFromSelectData_17
+  # DEBUG BEGIN_STMT
+  _2 = DiagnosticDataContext_8(D)->DataKind;
+  if (_2 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 113, 2);
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 112, 2);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_8(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  ResultFromSelectData_15 = Dcm_DemFacade_ProcessDEMResponseFromSelectData (DiagnosticDataContext_8(D), ResultCodeFromDEM_12);
+  # DEBUG ResultFromSelectData => ResultFromSelectData_15
+
+  <bb 11> :
+  # ResultFromSelectData_3 = PHI <ResultFromSelectData_22(3), ResultFromSelectData_20(5), ResultFromSelectData_17(9), ResultFromSelectData_15(10), ResultFromSelectData_17(8)>
+  # DEBUG ResultFromSelectData => ResultFromSelectData_3
+  # DEBUG BEGIN_STMT
+  _23 = ResultFromSelectData_3;
+  return _23;
+
+}
+
+
+Dcm_DemFacade_DisableDTCRecordUpdate (const Dcm_DemClientIdType ClientId, boolean * ControlRecordUpdate)
+{
+  Std_ReturnType ResultCodeFromDEM;
+  Std_ReturnType ResultFromDisableRecordUpdate;
+  unsigned char _1;
+  int _2;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_5 = 4;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_5
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_6 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_6
+  # DEBUG BEGIN_STMT
+  _1 = *ControlRecordUpdate_8(D);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_12 = Dem_DisableDTCRecordUpdate (ClientId_10(D));
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_12
+  # DEBUG BEGIN_STMT
+  _2 = (int) ResultCodeFromDEM_12;
+  switch (_2) <default: <L5> [INV], case 0: <L1> [INV], case 4: <L2> [INV], case 8 ... 9: <L3> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  *ControlRecordUpdate_8(D) = 1;
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_16 = 0;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_16
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_14 = 1;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_14
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_13 = 3;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_13
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_17 = 4;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_17
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 115, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResultFromDisableRecordUpdate_9 = 0;
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_9
+
+  <bb 9> :
+  # ResultFromDisableRecordUpdate_3 = PHI <ResultFromDisableRecordUpdate_14(5), ResultFromDisableRecordUpdate_9(8), ResultFromDisableRecordUpdate_16(4), ResultFromDisableRecordUpdate_17(7), ResultFromDisableRecordUpdate_13(6)>
+  # DEBUG ResultFromDisableRecordUpdate => ResultFromDisableRecordUpdate_3
+  # DEBUG BEGIN_STMT
+  _19 = ResultFromDisableRecordUpdate_3;
+  return _19;
+
+}
+
+
+Dcm_DemFacade_ReadEventDataRecord_Execute (const Dcm_DemClientIdType ClientId)
+{
+  struct Dcm_DiagnosticDataContextType * DiagnosticDataContext;
+  boolean ReportErrorFromDEM;
+  Std_ReturnType ResultCodeFromGetEventData;
+  Std_ReturnType ResultCodeFromGetSizeOfEventData;
+  Std_ReturnType SelectEventDataResult;
+  Std_ReturnType ResultCodeFromRecordUpdate;
+  Std_ReturnType ResultCodeFromExecute;
+  struct Dcm_DemClientContextType * _1;
+  uint8 * _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  long unsigned int _8;
+  uint8 * _9;
+  Std_ReturnType _53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_23 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_23
+  # DEBUG BEGIN_STMT
+  ResultCodeFromRecordUpdate_24 = 4;
+  # DEBUG ResultCodeFromRecordUpdate => ResultCodeFromRecordUpdate_24
+  # DEBUG BEGIN_STMT
+  SelectEventDataResult_25 = 4;
+  # DEBUG SelectEventDataResult => SelectEventDataResult_25
+  # DEBUG BEGIN_STMT
+  ResultCodeFromGetSizeOfEventData_26 = 4;
+  # DEBUG ResultCodeFromGetSizeOfEventData => ResultCodeFromGetSizeOfEventData_26
+  # DEBUG BEGIN_STMT
+  ResultCodeFromGetEventData_27 = 4;
+  # DEBUG ResultCodeFromGetEventData => ResultCodeFromGetEventData_27
+  # DEBUG BEGIN_STMT
+  ReportErrorFromDEM_28 = 0;
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_28
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsp_DemFacade_GetClient (ClientId_30(D));
+  DiagnosticDataContext_32 = &_1->DiagnosticDataContext;
+  # DEBUG DiagnosticDataContext => DiagnosticDataContext_32
+  # DEBUG BEGIN_STMT
+  _2 = &DiagnosticDataContext_32->ControlRecordUpdate;
+  ResultCodeFromRecordUpdate_34 = Dcm_DemFacade_DisableDTCRecordUpdate (ClientId_30(D), _2);
+  # DEBUG ResultCodeFromRecordUpdate => ResultCodeFromRecordUpdate_34
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromRecordUpdate_34 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_35 = ResultCodeFromRecordUpdate_34;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_35
+  # DEBUG BEGIN_STMT
+  ReportErrorFromDEM_36 = 1;
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_36
+
+  <bb 4> :
+  # ResultCodeFromExecute_10 = PHI <ResultCodeFromExecute_23(2), ResultCodeFromExecute_35(3)>
+  # ReportErrorFromDEM_15 = PHI <ReportErrorFromDEM_28(2), ReportErrorFromDEM_36(3)>
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_15
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_10
+  # DEBUG BEGIN_STMT
+  _3 = DiagnosticDataContext_32->ControlRecordUpdate;
+  if (_3 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = DiagnosticDataContext_32->ReportOnSelectData;
+  if (_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  if (ReportErrorFromDEM_15 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SelectEventDataResult_38 = Dcm_DemFacade_SelectEventData (ClientId_30(D), DiagnosticDataContext_32);
+  # DEBUG SelectEventDataResult => SelectEventDataResult_38
+  # DEBUG BEGIN_STMT
+  if (SelectEventDataResult_38 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_39 = SelectEventDataResult_38;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_39
+  # DEBUG BEGIN_STMT
+  ReportErrorFromDEM_40 = 1;
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_40
+
+  <bb 9> :
+  # ResultCodeFromExecute_11 = PHI <ResultCodeFromExecute_10(5), ResultCodeFromExecute_10(6), ResultCodeFromExecute_10(7), ResultCodeFromExecute_39(8)>
+  # ReportErrorFromDEM_16 = PHI <ReportErrorFromDEM_15(5), ReportErrorFromDEM_15(6), ReportErrorFromDEM_15(7), ReportErrorFromDEM_40(8)>
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_16
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_11
+  # DEBUG BEGIN_STMT
+  _5 = DiagnosticDataContext_32->ReportOnSizeOfDataToRead;
+  if (_5 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  _6 = DiagnosticDataContext_32->ReportOnSelectData;
+  if (_6 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  if (ReportErrorFromDEM_16 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromGetSizeOfEventData_42 = Dcm_DemFacade_GetSizeOfEventData (ClientId_30(D), DiagnosticDataContext_32);
+  # DEBUG ResultCodeFromGetSizeOfEventData => ResultCodeFromGetSizeOfEventData_42
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromGetSizeOfEventData_42 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_43 = ResultCodeFromGetSizeOfEventData_42;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_43
+  # DEBUG BEGIN_STMT
+  ReportErrorFromDEM_44 = 1;
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_44
+
+  <bb 14> :
+  # ResultCodeFromExecute_12 = PHI <ResultCodeFromExecute_11(9), ResultCodeFromExecute_11(10), ResultCodeFromExecute_11(11), ResultCodeFromExecute_11(12), ResultCodeFromExecute_43(13)>
+  # ReportErrorFromDEM_17 = PHI <ReportErrorFromDEM_16(9), ReportErrorFromDEM_16(10), ReportErrorFromDEM_16(11), ReportErrorFromDEM_16(12), ReportErrorFromDEM_44(13)>
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_17
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_12
+  # DEBUG BEGIN_STMT
+  _7 = DiagnosticDataContext_32->ReportOnSizeOfDataToRead;
+  if (_7 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 15> :
+  if (ReportErrorFromDEM_17 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _8 = DiagnosticDataContext_32->AmountOfDataToWriteOnResponse;
+  if (_8 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromGetEventData_47 = Dcm_DemFacade_GetEventData (ClientId_30(D), DiagnosticDataContext_32);
+  # DEBUG ResultCodeFromGetEventData => ResultCodeFromGetEventData_47
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromGetEventData_47 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_48 = ResultCodeFromGetEventData_47;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_48
+  # DEBUG BEGIN_STMT
+  ReportErrorFromDEM_49 = 1;
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_49
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_32->ControlRecordUpdate = 0;
+
+  <bb 20> :
+  # ResultCodeFromExecute_13 = PHI <ResultCodeFromExecute_12(14), ResultCodeFromExecute_12(15), ResultCodeFromExecute_48(18), ResultCodeFromExecute_12(19), ResultCodeFromExecute_12(17)>
+  # ReportErrorFromDEM_18 = PHI <ReportErrorFromDEM_17(14), ReportErrorFromDEM_17(15), ReportErrorFromDEM_49(18), ReportErrorFromDEM_17(19), ReportErrorFromDEM_17(17)>
+  # DEBUG ReportErrorFromDEM => ReportErrorFromDEM_18
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_13
+  # DEBUG BEGIN_STMT
+  _9 = &DiagnosticDataContext_32->ControlRecordUpdate;
+  ResultCodeFromRecordUpdate_51 = Dcm_DemFacade_EnableDTCRecordUpdate (ClientId_30(D), _9);
+  # DEBUG ResultCodeFromRecordUpdate => ResultCodeFromRecordUpdate_51
+  # DEBUG BEGIN_STMT
+  if (ReportErrorFromDEM_18 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_52 = ResultCodeFromRecordUpdate_51;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_52
+
+  <bb 22> :
+  # ResultCodeFromExecute_14 = PHI <ResultCodeFromExecute_10(4), ResultCodeFromExecute_13(20), ResultCodeFromExecute_52(21)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_14
+  # DEBUG BEGIN_STMT
+  _53 = ResultCodeFromExecute_14;
+  return _53;
+
+}
+
+
+Dcm_DemFacade_ReadEventDataRecord_Setup (struct Dcm_DiagnosticDataContextType * DiagnosticDataContext, uint8 * ReadExtDataRecContextResponseBuffer, Dcm_MsgLenType AvailableBufferSize, uint32 DTCMaskSetup, uint8 DataRecordNumber, Dcm_MsgLenType SizeOfOnePage, uint8 DataKind, uint8 DTCFormat)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->DTCMask = DTCMaskSetup_4(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->RequestedDataRecordNumber = DataRecordNumber_6(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->ResponseBuffer = ReadExtDataRecContextResponseBuffer_8(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->BufferSize = AvailableBufferSize_10(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->AmountOfDataToWriteOnResponse = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->AmountOfDataStoredOnCompleteResponse = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->AmountOfDataStoredOnResponseOnCurrentRun = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->DataKind = DataKind_15(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->DTCFormat = DTCFormat_17(D);
+  # DEBUG BEGIN_STMT
+  if (DataKind_15(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->SelectDataDemFunction = Dem_SelectExtendedDataRecord;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->GetSizeOfDataDemFunction = Dem_GetSizeOfExtendedDataRecordSelection;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->GetDataDemFunction = Dem_GetNextExtendedDataRecord;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->SelectDataDemFunction = Dem_SelectFreezeFrameData;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->GetSizeOfDataDemFunction = Dem_GetSizeOfFreezeFrameSelection;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->GetDataDemFunction = Dem_GetNextFreezeFrameData;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->SizeOfOnePage = SizeOfOnePage_26(D);
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->ReportOnSelectData = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->ReportOnSizeOfDataToRead = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->ReportOnReadOfExtendedDataRecord = 0;
+  # DEBUG BEGIN_STMT
+  DiagnosticDataContext_3(D)->ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DemFacade_GetDTCStatus_Execute (const Dcm_DemClientIdType ClientId, struct Dcm_GetDTCStatusContextType * GetDTCStatusContext, uint8 RequestedSubService)
+{
+  Std_ReturnType ResultCodeFromDEM;
+  Std_ReturnType ResultCodeFromExecute;
+  unsigned char _1;
+  uint8 * _2;
+  unsigned char _3;
+  Std_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_6 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_6
+  # DEBUG BEGIN_STMT
+  ResultCodeFromDEM_7 = 1;
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_7
+  # DEBUG BEGIN_STMT
+  _1 = GetDTCStatusContext_9(D)->StatusOfDTC;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = GetDTCStatusContext_9(D)->ResponseBuffer;
+  ResultCodeFromDEM_13 = Dem_GetStatusOfDTC (ClientId_11(D), _2);
+  # DEBUG ResultCodeFromDEM => ResultCodeFromDEM_13
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_13 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  GetDTCStatusContext_9(D)->StatusOfDTC = 1;
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_22 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_22
+  goto <bb 15>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_13 == 4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_20 = 1;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_20
+  goto <bb 15>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _3 = ResultCodeFromDEM_13 + 248;
+  if (_3 <= 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_19 = 3;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_19
+  goto <bb 15>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ResultCodeFromDEM_13 == 48)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (RequestedSubService_16(D) == 9)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_18 = 7;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_18
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_17 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_17
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_14 = 4;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_14
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 161, 2);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ResultCodeFromExecute_10 = 0;
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_10
+
+  <bb 15> :
+  # ResultCodeFromExecute_4 = PHI <ResultCodeFromExecute_20(6), ResultCodeFromExecute_10(14), ResultCodeFromExecute_22(4), ResultCodeFromExecute_18(11), ResultCodeFromExecute_14(13), ResultCodeFromExecute_17(12), ResultCodeFromExecute_19(8)>
+  # DEBUG ResultCodeFromExecute => ResultCodeFromExecute_4
+  # DEBUG BEGIN_STMT
+  _23 = ResultCodeFromExecute_4;
+  return _23;
+
+}
+
+
+Dcm_DemFacade_GetDTCStatus_Setup (struct Dcm_GetDTCStatusContextType * GetDTCStatusContext, uint8 * GetDTCStatusContextResponseBuffer, Dcm_MsgLenType AvailableBufferSize)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GetDTCStatusContext_2(D)->ResponseBuffer = GetDTCStatusContextResponseBuffer_3(D);
+  # DEBUG BEGIN_STMT
+  GetDTCStatusContext_2(D)->BufferSize = AvailableBufferSize_5(D);
+  # DEBUG BEGIN_STMT
+  GetDTCStatusContext_2(D)->StatusOfDTC = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DemFacade_ClearDTCInfo_Cancel (Dcm_DemClientIdType DemClientId)
+{
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SelectDTC (DemClientId_2(D), 16777215, 1, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = 26;
+  return _4;
+
+}
+
+
+Dcm_Dsp_DemFacade_ClearDTCInfo_Process (Dcm_DemClientIdType DemClientId, Dcm_NegativeResponseCodeType * NrcPtr)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Std_ReturnType serviceProcessStatus;
+  Dcm_NegativeResponseCodeType LocalNrc;
+  Std_ReturnType resultDTC;
+  unsigned char _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Std_ReturnType _54;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  resultDTC_17 = 1;
+  # DEBUG resultDTC => resultDTC_17
+  # DEBUG BEGIN_STMT
+  LocalNrc_18 = 1;
+  # DEBUG LocalNrc => LocalNrc_18
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_19 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_23 = Dcm_Dsp_DemFacade_GetClient (DemClientId_21(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_23
+  # DEBUG BEGIN_STMT
+  _1 = ClientContextPtr_23->ClearDTCInfoState;
+  _2 = (int) _1;
+  switch (_2) <default: <L26> [INV], case 0: <L0> [INV], case 1: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  resultDTC_25 = Dem_GetDTCSelectionResultForClearDTC (DemClientId_21(D));
+  # DEBUG resultDTC => resultDTC_25
+  # DEBUG BEGIN_STMT
+  if (resultDTC_25 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_23->ClearDTCInfoState = 1;
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  resultDTC_28 = Dem_ClearDTC (DemClientId_21(D));
+  # DEBUG resultDTC => resultDTC_28
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  # resultDTC_7 = PHI <resultDTC_25(3), resultDTC_28(5), resultDTC_17(2)>
+<L26>:
+  # DEBUG resultDTC => resultDTC_7
+  # DEBUG BEGIN_STMT
+  _3 = (int) resultDTC_7;
+  switch (_3) <default: <L23> [INV], case 0: <L5> [INV], case 1: <L6> [INV], case 4: <L7> [INV], case 5: <L11> [INV], case 6: <L16> [INV], case 7: <L11> [INV], case 8 ... 9: <L9> [INV], case 22: <L8> [INV]>
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_47 = 0;
+  # DEBUG LocalNrc => LocalNrc_47
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_48 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_48
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_44 = 16;
+  # DEBUG LocalNrc => LocalNrc_44
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_45 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_45
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 178, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = 10;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_29 = 16;
+  # DEBUG LocalNrc => LocalNrc_29
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_30 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_30
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 178, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 11> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_32 = 49;
+  # DEBUG LocalNrc => LocalNrc_32
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_33 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 12> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  _4 = ClientContextPtr_23->ClearDTCInfoState;
+  if (_4 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_41 = 34;
+  # DEBUG LocalNrc => LocalNrc_41
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_39 = 16;
+  # DEBUG LocalNrc => LocalNrc_39
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 178, 2);
+
+  <bb 15> :
+  # LocalNrc_8 = PHI <LocalNrc_41(13), LocalNrc_39(14)>
+  # DEBUG LocalNrc => LocalNrc_8
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_42 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_42
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 16> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  _5 = ClientContextPtr_23->ClearDTCInfoState;
+  if (_5 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _6 = ClientContextPtr_23->DTCFormat;
+  if (_6 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_37 = 114;
+  # DEBUG LocalNrc => LocalNrc_37
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_36 = 34;
+  # DEBUG LocalNrc => LocalNrc_36
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_34 = 16;
+  # DEBUG LocalNrc => LocalNrc_34
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 178, 2);
+
+  <bb 21> :
+  # LocalNrc_9 = PHI <LocalNrc_36(19), LocalNrc_34(20), LocalNrc_37(18)>
+  # DEBUG LocalNrc => LocalNrc_9
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_38 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+<L23>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_49 = 16;
+  # DEBUG LocalNrc => LocalNrc_49
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_50 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_50
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 178, 2);
+  # DEBUG BEGIN_STMT
+
+  <bb 23> :
+  # LocalNrc_10 = PHI <LocalNrc_47(7), LocalNrc_44(8), LocalNrc_18(9), LocalNrc_29(10), LocalNrc_32(11), LocalNrc_8(15), LocalNrc_9(21), LocalNrc_49(22)>
+  # serviceProcessStatus_11 = PHI <serviceProcessStatus_48(7), serviceProcessStatus_45(8), serviceProcessStatus_43(9), serviceProcessStatus_30(10), serviceProcessStatus_33(11), serviceProcessStatus_42(15), serviceProcessStatus_38(21), serviceProcessStatus_50(22)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_11
+  # DEBUG LocalNrc => LocalNrc_10
+  # DEBUG BEGIN_STMT
+  *NrcPtr_52(D) = LocalNrc_10;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _54 = serviceProcessStatus_11;
+  return _54;
+
+}
+
+
+Dcm_Dsp_DemFacade_ClearDTCInfo_Setup (Dcm_DemClientIdType DemClientId, uint32 DTC, uint8 DTCFormat, uint16 DTCOrigin, Dcm_NegativeResponseCodeType * NrcPtr)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_NegativeResponseCodeType LocalNrc;
+  Std_ReturnType resultSelect;
+  int _1;
+  Std_ReturnType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  resultSelect_5 = 1;
+  # DEBUG resultSelect => resultSelect_5
+  # DEBUG BEGIN_STMT
+  LocalNrc_6 = 1;
+  # DEBUG LocalNrc => LocalNrc_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_10 = Dcm_Dsp_DemFacade_GetClient (DemClientId_8(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_10
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_10->DTCFormat = DTCFormat_11(D);
+  # DEBUG BEGIN_STMT
+  resultSelect_16 = Dem_SelectDTC (DemClientId_8(D), DTC_13(D), DTCFormat_11(D), DTCOrigin_14(D));
+  # DEBUG resultSelect => resultSelect_16
+  # DEBUG BEGIN_STMT
+  _1 = (int) resultSelect_16;
+  switch (_1) <default: <L5> [INV], case 0: <L0> [INV], case 22: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  if (DTCFormat_11(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_10->ClearDTCInfoState = 0;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_10->ClearDTCInfoState = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  LocalNrc_20 = 0;
+  # DEBUG LocalNrc => LocalNrc_20
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_17 = 16;
+  # DEBUG LocalNrc => LocalNrc_17
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  LocalNrc_21 = 16;
+  # DEBUG LocalNrc => LocalNrc_21
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 177, 2);
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # LocalNrc_2 = PHI <LocalNrc_20(6), LocalNrc_17(7), LocalNrc_21(8)>
+  # DEBUG LocalNrc => LocalNrc_2
+  # DEBUG BEGIN_STMT
+  *NrcPtr_23(D) = LocalNrc_2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _25 = 26;
+  return _25;
+
+}
+
+
+Dcm_Dsp_DemFacade_ControlDTCSetting_Disable (const Dcm_DemClientIdType DemClientId)
+{
+  Dcm_ReturnControlDTCSettingType DcmDTCSettingStatus;
+  Std_ReturnType DemDTCSettingStatus;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DemDTCSettingStatus_3 = 1;
+  # DEBUG DemDTCSettingStatus => DemDTCSettingStatus_3
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_4 = 2;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DemDTCSettingStatus_8 = Dem_DisableDTCSetting (DemClientId_6(D));
+  # DEBUG DemDTCSettingStatus => DemDTCSettingStatus_8
+  # DEBUG BEGIN_STMT
+  if (DemDTCSettingStatus_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_11 = 0;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_11
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DemDTCSettingStatus_8 == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_10 = 1;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_10
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 77, 2);
+
+  <bb 7> :
+  # DcmDTCSettingStatus_1 = PHI <DcmDTCSettingStatus_11(3), DcmDTCSettingStatus_10(5), DcmDTCSettingStatus_4(6)>
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = DcmDTCSettingStatus_1;
+  return _12;
+
+}
+
+
+Dcm_Dsp_DemFacade_ControlDTCSetting_Enable (const Dcm_DemClientIdType DemClientId)
+{
+  Dcm_ReturnControlDTCSettingType DcmDTCSettingStatus;
+  Std_ReturnType DemDTCSettingStatus;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DemDTCSettingStatus_3 = 1;
+  # DEBUG DemDTCSettingStatus => DemDTCSettingStatus_3
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_4 = 2;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DemDTCSettingStatus_8 = Dem_EnableDTCSetting (DemClientId_6(D));
+  # DEBUG DemDTCSettingStatus => DemDTCSettingStatus_8
+  # DEBUG BEGIN_STMT
+  if (DemDTCSettingStatus_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_11 = 0;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_11
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DemDTCSettingStatus_8 == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DcmDTCSettingStatus_10 = 1;
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_10
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 77, 2);
+
+  <bb 7> :
+  # DcmDTCSettingStatus_1 = PHI <DcmDTCSettingStatus_11(3), DcmDTCSettingStatus_10(5), DcmDTCSettingStatus_4(6)>
+  # DEBUG DcmDTCSettingStatus => DcmDTCSettingStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = DcmDTCSettingStatus_1;
+  return _12;
+
+}
+
+
+Dcm_Dsp_DemFacade_GetDTCOfOBDFreezeFrame (uint32 * DTC)
+{
+  Std_ReturnType GetFFResult;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GetFFResult_1 = 1;
+  # DEBUG GetFFResult => GetFFResult_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  GetFFResult_5 = Dem_DcmGetDTCOfOBDFreezeFrame (0, DTC_3(D), 0);
+  # DEBUG GetFFResult => GetFFResult_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = GetFFResult_5;
+  return _6;
+
+}
+
+
+Dcm_Dsp_DemFacade_ReadDataOfOBDFreezeFrame (uint8 PID, uint8 DataElementIndexOfPID, uint8 * DestBuffer, uint16 * BufSize)
+{
+  Std_ReturnType ReadDataResult;
+  Std_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadDataResult_1 = 1;
+  # DEBUG ReadDataResult => ReadDataResult_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReadDataResult_8 = Dem_DcmReadDataOfOBDFreezeFrame (PID_3(D), DataElementIndexOfPID_4(D), DestBuffer_5(D), BufSize_6(D));
+  # DEBUG ReadDataResult => ReadDataResult_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = ReadDataResult_8;
+  return _9;
+
+}
+
+
+Dcm_Dsp_DemFacade_GetClient (Dcm_DemClientIdType ClientId)
+{
+  uint16_least ClientIndex;
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  unsigned char _1;
+  struct Dcm_DemClientContextType * _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_4 = &Dcm_DemClientContext;
+  # DEBUG ClientContextPtr => ClientContextPtr_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientIndex_5 = 0;
+  # DEBUG ClientIndex => ClientIndex_5
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_DemClientIds[ClientIndex_3];
+  if (ClientId_7(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_9 = &Dcm_DemClientContext[ClientIndex_3];
+  # DEBUG ClientContextPtr => ClientContextPtr_9
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientIndex_8 = ClientIndex_3 + 1;
+  # DEBUG ClientIndex => ClientIndex_8
+
+  <bb 6> :
+  # ClientIndex_3 = PHI <ClientIndex_5(2), ClientIndex_8(5)>
+  # DEBUG ClientIndex => ClientIndex_3
+  # DEBUG BEGIN_STMT
+  if (ClientIndex_3 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # ClientContextPtr_2 = PHI <ClientContextPtr_9(4), ClientContextPtr_4(6)>
+  # DEBUG ClientContextPtr => ClientContextPtr_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = ClientContextPtr_2;
+  return _10;
+
+}
+
+
+Dcm_Dsp_DemFacade_UnlockClient (Dcm_DemClientIdType ClientId)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_MutexType * _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_5 = Dcm_Dsp_DemFacade_GetClient (ClientId_3(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_5
+  # DEBUG BEGIN_STMT
+  _1 = &ClientContextPtr_5->Mutex;
+  Dcm_Internal_ReleaseLock (_1);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DemFacade_LockClient (Dcm_DemClientIdType ClientId)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Std_ReturnType LockStatus;
+  Dcm_MutexType * _1;
+  Std_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  LockStatus_2 = 31;
+  # DEBUG LockStatus => LockStatus_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_6 = Dcm_Dsp_DemFacade_GetClient (ClientId_4(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_6
+  # DEBUG BEGIN_STMT
+  _1 = &ClientContextPtr_6->Mutex;
+  LockStatus_8 = Dcm_Internal_GetLock (_1);
+  # DEBUG LockStatus => LockStatus_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = LockStatus_8;
+  return _9;
+
+}
+
+
+Dcm_DspInternal_EnableProcessPage (const struct Dcm_MsgContextType * pMsgContext, uint8 ProcessPageFuncId)
+{
+  short unsigned int _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_8(D)->dcmRxPduId;
+  _2 = (int) _1;
+  _3 = Dcm_RxPduIdConfig[_2].MainConnectionIndex;
+  _4 = (int) _3;
+  _5 = Dcm_MainConnectionConfig[_4].ProtocolIndex;
+  _6 = (int) _5;
+  Dcm_HsmInfo[_6].processPageFuncId = ProcessPageFuncId_9(D);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DspInternal_UpdateAmountOfFilledDataOnResponseBuffer (PduIdType DcmRxPduId, Dcm_MsgLenType AmountOfFilledData)
+{
+  uint8 instIdx;
+  int _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  long unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DcmRxPduId_7(D);
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  _3 = (int) _2;
+  instIdx_9 = Dcm_MainConnectionConfig[_3].ProtocolIndex;
+  # DEBUG instIdx => instIdx_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) AmountOfFilledData_10(D);
+  _5 = (int) instIdx_9;
+  _6 = (long unsigned int) _4;
+  Dcm_HsmInfo[_5].TxBuffer.FilledLength = _6;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (Dcm_DemClientIdType ClientId, Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_MsgLenType DataSize;
+  Dcm_MsgLenType DataSize;
+  Dcm_MsgLenType AvailableBufferSize;
+  Dcm_MsgLenType PossitionOnResponse;
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Std_ReturnType FacadeReturnCode;
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  long unsigned int DataSize.12_7;
+  long unsigned int DataSize.13_8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  short unsigned int _12;
+  Dcm_MsgItemType * _13;
+  long unsigned int _14;
+  Dcm_MsgItemType * _15;
+  unsigned char _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  unsigned char _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  Dcm_MsgItemType * _25;
+  long unsigned int _26;
+  Dcm_MsgItemType * _27;
+  long unsigned int _28;
+  long unsigned int DataSize.14_29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int DataSize.15_32;
+  long unsigned int _33;
+  unsigned char _34;
+  unsigned char _35;
+  unsigned char _36;
+  unsigned char _37;
+  struct Dcm_DiagnosticDataContextType * _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  unsigned char _45;
+  unsigned char _46;
+  unsigned char _47;
+  struct Dcm_DiagnosticDataContextType * _48;
+  struct Dcm_DiagnosticDataContextType * _49;
+  long unsigned int _50;
+  long unsigned int _51;
+  long unsigned int _52;
+  long unsigned int _53;
+  long unsigned int _54;
+  long unsigned int _55;
+  Dcm_MsgItemType * _56;
+  unsigned char _57;
+  struct Dcm_DiagnosticDataContextType * _58;
+  struct Dcm_DiagnosticDataContextType * _59;
+  struct Dcm_DiagnosticDataContextType * _60;
+  Std_ReturnType _135;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_82 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_82
+  # DEBUG BEGIN_STMT
+  FacadeReturnCode_83 = 4;
+  # DEBUG FacadeReturnCode => FacadeReturnCode_83
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87 = Dcm_Dsp_DemFacade_GetClient (ClientId_85(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_87
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_88(D);
+  switch (_1) <default: <L40> [INV], case 0: <L0> [INV], case 1: <L7> [INV], case 2: <L34> [INV], case 4: <L30> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  PossitionOnResponse_98 = 0;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_98
+  # DEBUG BEGIN_STMT
+  _2 = ClientContextPtr_87->SizeOfOnePage;
+  _3 = ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage;
+  AvailableBufferSize_99 = _2 - _3;
+  # DEBUG AvailableBufferSize => AvailableBufferSize_99
+  # DEBUG BEGIN_STMT
+  _4 = ClientContextPtr_87->SubServiceID;
+  if (_4 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PossitionOnResponse_100 = PossitionOnResponse_98 + 1;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_100
+
+  <bb 5> :
+  # PossitionOnResponse_68 = PHI <PossitionOnResponse_98(3), PossitionOnResponse_100(4)>
+  # DEBUG PossitionOnResponse => PossitionOnResponse_68
+  # DEBUG BEGIN_STMT
+  _5 = ClientContextPtr_87->MemoryOriginState;
+  if (_5 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  PossitionOnResponse_101 = PossitionOnResponse_68 + 1;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_101
+  # DEBUG BEGIN_STMT
+  AvailableBufferSize_102 = AvailableBufferSize_99 + 4294967295;
+  # DEBUG AvailableBufferSize => AvailableBufferSize_102
+
+  <bb 7> :
+  # PossitionOnResponse_69 = PHI <PossitionOnResponse_68(5), PossitionOnResponse_101(6)>
+  # AvailableBufferSize_71 = PHI <AvailableBufferSize_99(5), AvailableBufferSize_102(6)>
+  # DEBUG AvailableBufferSize => AvailableBufferSize_71
+  # DEBUG PossitionOnResponse => PossitionOnResponse_69
+  # DEBUG BEGIN_STMT
+  _6 = ClientContextPtr_87->AvailabilityMaskState;
+  if (_6 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DataSize = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DemFacade_DTCStatusAvailabilityMask (ClientId_85(D), 0, 0B, 0B);
+  # DEBUG BEGIN_STMT
+  Dcm_DemFacade_DTCStatusAvailabilityMask (ClientId_85(D), 1, 0B, &DataSize);
+  # DEBUG BEGIN_STMT
+  DataSize.12_7 = DataSize;
+  PossitionOnResponse_106 = PossitionOnResponse_69 + DataSize.12_7;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_106
+  # DEBUG BEGIN_STMT
+  DataSize.13_8 = DataSize;
+  AvailableBufferSize_107 = AvailableBufferSize_71 - DataSize.13_8;
+  # DEBUG AvailableBufferSize => AvailableBufferSize_107
+  DataSize ={v} {CLOBBER};
+
+  <bb 9> :
+  # PossitionOnResponse_70 = PHI <PossitionOnResponse_69(7), PossitionOnResponse_106(8)>
+  # AvailableBufferSize_72 = PHI <AvailableBufferSize_71(7), AvailableBufferSize_107(8)>
+  # DEBUG AvailableBufferSize => AvailableBufferSize_72
+  # DEBUG PossitionOnResponse => PossitionOnResponse_70
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_89(D)->resData;
+  _10 = _9 + PossitionOnResponse_70;
+  Dcm_DemFacade_NumberOfFilteredDTC_Setup (ClientContextPtr_87, _10, AvailableBufferSize_72);
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _11 = ClientContextPtr_87->MemoryOriginState;
+  if (_11 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _12 = ClientContextPtr_87->MemoryOrigin;
+  _13 = pMsgContext_89(D)->resData;
+  _14 = pMsgContext_89(D)->resDataLen;
+  _15 = _13 + _14;
+  _16 = (unsigned char) _12;
+  *_15 = _16;
+  # DEBUG BEGIN_STMT
+  _17 = pMsgContext_89(D)->resDataLen;
+  _18 = _17 + 1;
+  pMsgContext_89(D)->resDataLen = _18;
+  # DEBUG BEGIN_STMT
+  _19 = ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage;
+  _20 = _19 + 1;
+  ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage = _20;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87->MemoryOriginState = 3;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _21 = ClientContextPtr_87->AvailabilityMaskState;
+  if (_21 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _22 = ClientContextPtr_87->SizeOfOnePage;
+  _23 = ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage;
+  _24 = _22 - _23;
+  DataSize = _24;
+  # DEBUG BEGIN_STMT
+  _25 = pMsgContext_89(D)->resData;
+  _26 = pMsgContext_89(D)->resDataLen;
+  _27 = _25 + _26;
+  FacadeReturnCode_116 = Dcm_DemFacade_DTCStatusAvailabilityMask (ClientId_85(D), 2, _27, &DataSize);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_116
+  # DEBUG BEGIN_STMT
+  if (FacadeReturnCode_116 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87->AvailabilityMaskState = 3;
+  # DEBUG BEGIN_STMT
+  _28 = pMsgContext_89(D)->resDataLen;
+  DataSize.14_29 = DataSize;
+  _30 = _28 + DataSize.14_29;
+  pMsgContext_89(D)->resDataLen = _30;
+  # DEBUG BEGIN_STMT
+  _31 = ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage;
+  DataSize.15_32 = DataSize;
+  _33 = _31 + DataSize.15_32;
+  ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage = _33;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87->AvailabilityMaskState = 4;
+
+  <bb 16> :
+  DataSize ={v} {CLOBBER};
+
+  <bb 17> :
+  # FacadeReturnCode_64 = PHI <FacadeReturnCode_83(12), FacadeReturnCode_116(16)>
+  # DEBUG FacadeReturnCode => FacadeReturnCode_64
+  # DEBUG BEGIN_STMT
+  _34 = ClientContextPtr_87->AvailabilityMaskState;
+  if (_34 != 4)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 18> :
+  _35 = ClientContextPtr_87->FilteredDtcsState;
+  if (_35 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  _36 = ClientContextPtr_87->FilteredDtcsCountState;
+  if (_36 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  _37 = ClientContextPtr_87->DtcFormatIdState;
+  if (_37 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _38 = &ClientContextPtr_87->DiagnosticDataContext;
+  FacadeReturnCode_123 = Dcm_DemFacade_SetFilterObtainNumberOfFilteredDTC_Execute (ClientId_85(D), _38);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_123
+  # DEBUG BEGIN_STMT
+  if (FacadeReturnCode_123 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _39 = pMsgContext_89(D)->resDataLen;
+  _40 = ClientContextPtr_87->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun;
+  _41 = _39 + _40;
+  pMsgContext_89(D)->resDataLen = _41;
+  # DEBUG BEGIN_STMT
+  _42 = ClientContextPtr_87->DiagnosticDataContext.NextPossitionToFillOnResponseBuffer;
+  _43 = ClientContextPtr_87->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun;
+  _44 = _42 + _43;
+  ClientContextPtr_87->DiagnosticDataContext.NextPossitionToFillOnResponseBuffer = _44;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_126 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_126
+
+  <bb 23> :
+  # ServiceProcessStatus_61 = PHI <ServiceProcessStatus_82(17), ServiceProcessStatus_82(20), ServiceProcessStatus_82(21), ServiceProcessStatus_126(22)>
+  # FacadeReturnCode_65 = PHI <FacadeReturnCode_64(17), FacadeReturnCode_64(20), FacadeReturnCode_123(21), FacadeReturnCode_123(22)>
+  # DEBUG FacadeReturnCode => FacadeReturnCode_65
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_61
+  # DEBUG BEGIN_STMT
+  _45 = ClientContextPtr_87->DiagnosticDataContext.ReportOnGetNumberOfFilters;
+  if (_45 == 1)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 24> :
+  _46 = ClientContextPtr_87->FilteredDtcsState;
+  if (_46 == 1)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _47 = ClientContextPtr_87->DiagnosticDataContext.FilterWithSeverity;
+  if (_47 == 1)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _48 = &ClientContextPtr_87->DiagnosticDataContext;
+  FacadeReturnCode_130 = Dcm_DemFacade_GetSeverityFilteredDTC_Execute (ClientId_85(D), _48);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_130
+  goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _49 = &ClientContextPtr_87->DiagnosticDataContext;
+  FacadeReturnCode_128 = Dcm_DemFacade_GetFilteredDTC_Execute (ClientId_85(D), _49);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_128
+
+  <bb 28> :
+  # FacadeReturnCode_66 = PHI <FacadeReturnCode_130(26), FacadeReturnCode_128(27)>
+  # DEBUG FacadeReturnCode => FacadeReturnCode_66
+  # DEBUG BEGIN_STMT
+  _50 = ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage;
+  _51 = ClientContextPtr_87->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun;
+  _52 = _50 + _51;
+  ClientContextPtr_87->AmountOfDataWrittenOnCurrentPage = _52;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun = 0;
+  goto <bb 33>; [INV]
+
+  <bb 29> :
+<L30>:
+  # DEBUG BEGIN_STMT
+  _53 = pMsgContext_89(D)->resMaxDataLen;
+  _54 = ClientContextPtr_87->DiagnosticDataContext.NextPossitionToFillOnResponseBuffer;
+  _55 = _53 - _54;
+  ClientContextPtr_87->DiagnosticDataContext.BufferSize = _55;
+  # DEBUG BEGIN_STMT
+  _56 = pMsgContext_89(D)->resData;
+  ClientContextPtr_87->DiagnosticDataContext.ResponseBuffer = _56;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_87->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun = 0;
+  # DEBUG BEGIN_STMT
+  _57 = ClientContextPtr_87->DiagnosticDataContext.FilterWithSeverity;
+  if (_57 == 1)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _58 = &ClientContextPtr_87->DiagnosticDataContext;
+  FacadeReturnCode_96 = Dcm_DemFacade_GetSeverityFilteredDTC_Execute (ClientId_85(D), _58);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_96
+  goto <bb 33>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _59 = &ClientContextPtr_87->DiagnosticDataContext;
+  FacadeReturnCode_94 = Dcm_DemFacade_GetFilteredDTC_Execute (ClientId_85(D), _59);
+  # DEBUG FacadeReturnCode => FacadeReturnCode_94
+  goto <bb 33>; [INV]
+
+  <bb 32> :
+<L34>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_97 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_97
+  # DEBUG BEGIN_STMT
+
+  <bb 33> :
+  # ServiceProcessStatus_62 = PHI <ServiceProcessStatus_61(24), ServiceProcessStatus_82(31), ServiceProcessStatus_97(32), ServiceProcessStatus_82(2), ServiceProcessStatus_61(23), ServiceProcessStatus_61(28), ServiceProcessStatus_82(30)>
+  # FacadeReturnCode_67 = PHI <FacadeReturnCode_65(24), FacadeReturnCode_94(31), FacadeReturnCode_83(32), FacadeReturnCode_83(2), FacadeReturnCode_65(23), FacadeReturnCode_66(28), FacadeReturnCode_96(30)>
+<L40>:
+  # DEBUG FacadeReturnCode => FacadeReturnCode_67
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_62
+  # DEBUG BEGIN_STMT
+  if (OpStatus_88(D) != 2)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _60 = &ClientContextPtr_87->DiagnosticDataContext;
+  ServiceProcessStatus_134 = Dcm_DspInternal_ProcessEventDataResult (OpStatus_88(D), FacadeReturnCode_67, pMsgContext_89(D), _60, ClientContextPtr_87);
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_134
+
+  <bb 35> :
+  # ServiceProcessStatus_63 = PHI <ServiceProcessStatus_62(33), ServiceProcessStatus_134(34)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_63
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _135 = ServiceProcessStatus_63;
+  return _135;
+
+}
+
+
+Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (Dcm_DemClientIdType ClientId, Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_MsgLenType AmountOfDataAvailableOnResponseBuffer;
+  Dcm_MsgLenType PossitionOnResponse;
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Std_ReturnType FacadeReturnCodeGetEventData;
+  Std_ReturnType ReturnCodeFromSelect;
+  Std_ReturnType FacadeReturnCodeGetDTC;
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  short unsigned int _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  struct Dcm_DiagnosticDataContextType * _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  long unsigned int _14;
+  unsigned char _15;
+  long unsigned int _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  long unsigned int _20;
+  Dcm_MsgItemType * _21;
+  unsigned char _22;
+  uint8 * _23;
+  unsigned char _24;
+  struct Dcm_DiagnosticDataContextType * _25;
+  unsigned char _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  struct Dcm_DiagnosticDataContextType * _31;
+  Std_ReturnType _84;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_42 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_42
+  # DEBUG BEGIN_STMT
+  FacadeReturnCodeGetDTC_43 = 0;
+  # DEBUG FacadeReturnCodeGetDTC => FacadeReturnCodeGetDTC_43
+  # DEBUG BEGIN_STMT
+  ReturnCodeFromSelect_44 = 1;
+  # DEBUG ReturnCodeFromSelect => ReturnCodeFromSelect_44
+  # DEBUG BEGIN_STMT
+  FacadeReturnCodeGetEventData_45 = 4;
+  # DEBUG FacadeReturnCodeGetEventData => FacadeReturnCodeGetEventData_45
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_49 = Dcm_Dsp_DemFacade_GetClient (ClientId_47(D));
+  # DEBUG ClientContextPtr => ClientContextPtr_49
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_50(D);
+  switch (_1) <default: <L27> [INV], case 0: <L0> [INV], case 1: <L8> [INV], case 2: <L12> [INV], case 4: <L11> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  PossitionOnResponse_61 = pMsgContext_51(D)->resDataLen;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_61
+  # DEBUG BEGIN_STMT
+  AmountOfDataAvailableOnResponseBuffer_62 = 0;
+  # DEBUG AmountOfDataAvailableOnResponseBuffer => AmountOfDataAvailableOnResponseBuffer_62
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_51(D)->resMaxDataLen;
+  _3 = pMsgContext_51(D)->resDataLen;
+  if (_2 > _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_51(D)->resMaxDataLen;
+  _5 = pMsgContext_51(D)->resDataLen;
+  AmountOfDataAvailableOnResponseBuffer_63 = _4 - _5;
+  # DEBUG AmountOfDataAvailableOnResponseBuffer => AmountOfDataAvailableOnResponseBuffer_63
+
+  <bb 5> :
+  # AmountOfDataAvailableOnResponseBuffer_36 = PHI <AmountOfDataAvailableOnResponseBuffer_62(3), AmountOfDataAvailableOnResponseBuffer_63(4)>
+  # DEBUG AmountOfDataAvailableOnResponseBuffer => AmountOfDataAvailableOnResponseBuffer_36
+  # DEBUG BEGIN_STMT
+  _6 = ClientContextPtr_49->DTCMask;
+  _7 = ClientContextPtr_49->DTCFormat;
+  _8 = ClientContextPtr_49->MemoryOrigin;
+  ReturnCodeFromSelect_65 = Dem_SelectDTC (ClientId_47(D), _6, _7, _8);
+  # DEBUG ReturnCodeFromSelect => ReturnCodeFromSelect_65
+  # DEBUG BEGIN_STMT
+  if (ReturnCodeFromSelect_65 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_51(D)->resData;
+  _10 = _9 + PossitionOnResponse_61;
+  Dcm_DemFacade_GetDTCStatus_Setup (&Dcm_GetDTCStatusContext, _10, AmountOfDataAvailableOnResponseBuffer_36);
+  # DEBUG BEGIN_STMT
+  PossitionOnResponse_70 = PossitionOnResponse_61 + 1;
+  # DEBUG PossitionOnResponse => PossitionOnResponse_70
+  # DEBUG BEGIN_STMT
+  AmountOfDataAvailableOnResponseBuffer_71 = AmountOfDataAvailableOnResponseBuffer_36 + 4294967295;
+  # DEBUG AmountOfDataAvailableOnResponseBuffer => AmountOfDataAvailableOnResponseBuffer_71
+  # DEBUG BEGIN_STMT
+  _11 = &ClientContextPtr_49->DiagnosticDataContext;
+  _12 = pMsgContext_51(D)->resData;
+  _13 = _12 + PossitionOnResponse_70;
+  _14 = ClientContextPtr_49->DTCMask;
+  _15 = ClientContextPtr_49->DataRecordNumber;
+  _16 = ClientContextPtr_49->SizeOfOnePage;
+  _17 = ClientContextPtr_49->DataKind;
+  _18 = ClientContextPtr_49->DTCFormat;
+  Dcm_DemFacade_ReadEventDataRecord_Setup (_11, _13, AmountOfDataAvailableOnResponseBuffer_71, _14, _15, _16, _17, _18);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCodeFromSelect_65 == 22)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_51(D), 16);
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_51(D), 16);
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 161, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _19 = ClientContextPtr_49->SubServiceID;
+  FacadeReturnCodeGetDTC_74 = Dcm_DemFacade_GetDTCStatus_Execute (ClientId_47(D), &Dcm_GetDTCStatusContext, _19);
+  # DEBUG FacadeReturnCodeGetDTC => FacadeReturnCodeGetDTC_74
+  # DEBUG BEGIN_STMT
+  if (FacadeReturnCodeGetDTC_74 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  FacadeReturnCodeGetEventData_76 = Dcm_DemFacade_ReadEventDataRecord_Execute (ClientId_47(D));
+  # DEBUG FacadeReturnCodeGetEventData => FacadeReturnCodeGetEventData_76
+  goto <bb 16>; [INV]
+
+  <bb 12> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  _20 = pMsgContext_51(D)->resMaxDataLen;
+  ClientContextPtr_49->DiagnosticDataContext.BufferSize = _20;
+  # DEBUG BEGIN_STMT
+  _21 = pMsgContext_51(D)->resData;
+  ClientContextPtr_49->DiagnosticDataContext.ResponseBuffer = _21;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_49->DiagnosticDataContext.NextPossitionToFillOnResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_49->DiagnosticDataContext.AmountOfDataStoredOnResponseOnCurrentRun = 0;
+  # DEBUG BEGIN_STMT
+  FacadeReturnCodeGetEventData_57 = Dcm_DemFacade_ReadEventDataRecord_Execute (ClientId_47(D));
+  # DEBUG FacadeReturnCodeGetEventData => FacadeReturnCodeGetEventData_57
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  _22 = ClientContextPtr_49->DiagnosticDataContext.ControlRecordUpdate;
+  if (_22 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_49->DiagnosticDataContext.ControlRecordUpdate = 0;
+  # DEBUG BEGIN_STMT
+  _23 = &ClientContextPtr_49->DiagnosticDataContext.ControlRecordUpdate;
+  Dcm_DemFacade_EnableDTCRecordUpdate (ClientId_47(D), _23);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_60 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_60
+  # DEBUG BEGIN_STMT
+
+  <bb 16> :
+  # ServiceProcessStatus_32 = PHI <ServiceProcessStatus_42(8), ServiceProcessStatus_42(9), ServiceProcessStatus_42(11), ServiceProcessStatus_42(12), ServiceProcessStatus_60(15), ServiceProcessStatus_42(2), ServiceProcessStatus_42(10)>
+  # FacadeReturnCodeGetDTC_34 = PHI <FacadeReturnCodeGetDTC_43(8), FacadeReturnCodeGetDTC_43(9), FacadeReturnCodeGetDTC_74(11), FacadeReturnCodeGetDTC_43(12), FacadeReturnCodeGetDTC_43(15), FacadeReturnCodeGetDTC_43(2), FacadeReturnCodeGetDTC_74(10)>
+  # FacadeReturnCodeGetEventData_35 = PHI <FacadeReturnCodeGetEventData_45(8), FacadeReturnCodeGetEventData_45(9), FacadeReturnCodeGetEventData_76(11), FacadeReturnCodeGetEventData_57(12), FacadeReturnCodeGetEventData_45(15), FacadeReturnCodeGetEventData_45(2), FacadeReturnCodeGetEventData_45(10)>
+<L27>:
+  # DEBUG FacadeReturnCodeGetEventData => FacadeReturnCodeGetEventData_35
+  # DEBUG FacadeReturnCodeGetDTC => FacadeReturnCodeGetDTC_34
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_32
+  # DEBUG BEGIN_STMT
+  if (OpStatus_50(D) != 2)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _24 = Dcm_GetDTCStatusContext.StatusOfDTC;
+  if (_24 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _25 = &ClientContextPtr_49->DiagnosticDataContext;
+  ServiceProcessStatus_83 = Dcm_DspInternal_ProcessEventDataResult (OpStatus_50(D), FacadeReturnCodeGetDTC_34, pMsgContext_51(D), _25, ClientContextPtr_49);
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_83
+  goto <bb 23>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _26 = ClientContextPtr_49->DTCStatusWrittenInResponseBuffer;
+  if (_26 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  if (FacadeReturnCodeGetEventData_35 != 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _27 = pMsgContext_51(D)->resDataLen;
+  _28 = _27 + 1;
+  pMsgContext_51(D)->resDataLen = _28;
+  # DEBUG BEGIN_STMT
+  _29 = ClientContextPtr_49->AmountOfDataWrittenOnCurrentPage;
+  _30 = _29 + 1;
+  ClientContextPtr_49->AmountOfDataWrittenOnCurrentPage = _30;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_49->DTCStatusWrittenInResponseBuffer = 1;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _31 = &ClientContextPtr_49->DiagnosticDataContext;
+  ServiceProcessStatus_81 = Dcm_DspInternal_ProcessEventDataResult (OpStatus_50(D), FacadeReturnCodeGetEventData_35, pMsgContext_51(D), _31, ClientContextPtr_49);
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_81
+
+  <bb 23> :
+  # ServiceProcessStatus_33 = PHI <ServiceProcessStatus_32(16), ServiceProcessStatus_83(18), ServiceProcessStatus_81(22)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _84 = ServiceProcessStatus_33;
+  return _84;
+
+}
+
+
+Dcm_Dsp_DemFacade_Init ()
+{
+  uint16_least ClientIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientIndex_3 = 0;
+  # DEBUG ClientIndex => ClientIndex_3
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_DemClientContext[ClientIndex_1].Mutex = 0;
+  # DEBUG BEGIN_STMT
+  ClientIndex_6 = ClientIndex_1 + 1;
+  # DEBUG ClientIndex => ClientIndex_6
+
+  <bb 4> :
+  # ClientIndex_1 = PHI <ClientIndex_3(2), ClientIndex_6(3)>
+  # DEBUG ClientIndex => ClientIndex_1
+  # DEBUG BEGIN_STMT
+  if (ClientIndex_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

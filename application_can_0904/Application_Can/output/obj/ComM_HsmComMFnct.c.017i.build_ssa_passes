@@ -1,0 +1,1241 @@
+ComM_RteNotificationDoAction (uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_SwitchCurrentRteMode (instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_IsNotRequested (uint8 Channel)
+{
+  boolean ret;
+  boolean D.7080;
+  boolean iftmp.18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) Channel;
+  _2 = ComM_RequestedComMode[_1];
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  _3 = (int) Channel;
+  _4 = ComM_ChannelPassiveWakeup[_3];
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _5 = (int) Channel;
+  _6 = ComM_DcmActiveStatus[_5];
+  if (_6 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.18 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.18 = 0;
+
+  <bb 7> :
+  ret = iftmp.18;
+  # DEBUG BEGIN_STMT
+  D.7080 = ret;
+  return D.7080;
+
+}
+
+
+ComM_IsWakeupInhibition (uint8 Channel)
+{
+  boolean ret;
+  boolean D.7088;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  D.7088 = ret;
+  return D.7088;
+
+}
+
+
+ComM_IsLimitToNoCom (uint8 Channel)
+{
+  boolean ret;
+  boolean D.7066;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  D.7066 = ret;
+  return D.7066;
+
+}
+
+
+ComM_IsWakeupAllowed (uint8 Channel)
+{
+  boolean ret;
+  boolean D.7056;
+  boolean iftmp.15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) Channel;
+  _2 = ComM_RequestedComMode[_1];
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _3 = (int) Channel;
+  _4 = ComM_DcmActiveStatus[_3];
+  if (_4 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.15 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.15 = 0;
+
+  <bb 6> :
+  ret = iftmp.15;
+  # DEBUG BEGIN_STMT
+  D.7056 = ret;
+  return D.7056;
+
+}
+
+
+ComM_IsFullComAllowed (uint8 Channel)
+{
+  boolean ret;
+  boolean D.6985;
+  boolean iftmp.2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) Channel;
+  _2 = ComM_RequestedComMode[_1];
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _3 = (int) Channel;
+  _4 = ComM_DcmActiveStatus[_3];
+  if (_4 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.2 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.2 = 0;
+
+  <bb 6> :
+  ret = iftmp.2;
+  # DEBUG BEGIN_STMT
+  D.6985 = ret;
+  return D.6985;
+
+}
+
+
+ComM_SwitchCurrentRteMode (uint8 Channel)
+{
+  ComM_ASR40_ModeType CurComMMode;
+  const uint8 User;
+  uint8_least i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.30_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.31_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.31_2->pUsersOfAllChannel;
+  ComM_ConfigPtr.32_4 = ComM_ConfigPtr;
+  _5 = (int) Channel;
+  _6 = ComM_ConfigPtr.32_4->NumUsersOfAllChannel[_5];
+  _7 = (long unsigned int) _6;
+  _8 = i + _7;
+  _9 = _3 + _8;
+  _10 = ComM_ConfigPtr.30_1 + _9;
+  User = *_10;
+  # DEBUG BEGIN_STMT
+  _11 = (int) User;
+  _12 = ComM_RteNotificationSuccessful[_11];
+  if (_12 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = ComM_ASR40_GetCurrentComMode (User, &CurComMMode);
+  if (_13 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CurComMMode.33_14 = CurComMMode;
+  ComM_RteNotify (User, CurComMMode.33_14);
+
+  <bb 6> :
+  CurComMMode = {CLOBBER};
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.34_15 = ComM_ConfigPtr;
+  _16 = (unsigned int) Channel;
+  _17 = _16 + 1;
+  _18 = ComM_ConfigPtr.34_15->NumUsersOfAllChannel[_17];
+  _19 = (unsigned char) _18;
+  ComM_ConfigPtr.35_20 = ComM_ConfigPtr;
+  _21 = (int) Channel;
+  _22 = ComM_ConfigPtr.35_20->NumUsersOfAllChannel[_21];
+  _23 = (unsigned char) _22;
+  _24 = _19 - _23;
+  _25 = (long unsigned int) _24;
+  if (i < _25)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  return;
+
+}
+
+
+ComM_Notify2Arg (uint8 Channel, ComM_ModeType ComMMode)
+{
+  const uint8 User;
+  uint8_least i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.25_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.26_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.26_2->pUsersOfAllChannel;
+  ComM_ConfigPtr.27_4 = ComM_ConfigPtr;
+  _5 = (int) Channel;
+  _6 = ComM_ConfigPtr.27_4->NumUsersOfAllChannel[_5];
+  _7 = (long unsigned int) _6;
+  _8 = i + _7;
+  _9 = _3 + _8;
+  _10 = ComM_ConfigPtr.25_1 + _9;
+  User = *_10;
+  # DEBUG BEGIN_STMT
+  _11 = (int) User;
+  ComM_RteNotificationSuccessful[_11] = 0;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.28_12 = ComM_ConfigPtr;
+  _13 = (unsigned int) Channel;
+  _14 = _13 + 1;
+  _15 = ComM_ConfigPtr.28_12->NumUsersOfAllChannel[_14];
+  _16 = (unsigned char) _15;
+  ComM_ConfigPtr.29_17 = ComM_ConfigPtr;
+  _18 = (int) Channel;
+  _19 = ComM_ConfigPtr.29_17->NumUsersOfAllChannel[_18];
+  _20 = (unsigned char) _19;
+  _21 = _16 - _20;
+  _22 = (long unsigned int) _21;
+  if (i < _22)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ComM_SwitchCurrentRteMode (Channel);
+  # DEBUG BEGIN_STMT
+  BswM_ComM_CurrentMode (Channel, ComMMode);
+  # DEBUG BEGIN_STMT
+  _23 = (int) Channel;
+  _24 = ComM_ChannelMode[_23];
+  if (_24 == 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ComM_FullComModeEntered (Channel);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _25 = (int) Channel;
+  _26 = ComM_ChannelMode[_25];
+  if (_26 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_ComM_SilentComModeEntered (Channel);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ComM_NoComModeEntered (Channel);
+
+  <bb 10> :
+  return;
+
+}
+
+
+ComM_ProcessTimers (uint8 Channel)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Channel;
+  _2 = ComM_Timer[_1];
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) Channel;
+  _4 = ComM_Timer[_3];
+  _5 = _4 + 65535;
+  ComM_Timer[_3] = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) Channel;
+  _7 = ComM_Timer[_6];
+  if (_7 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = (short unsigned int) Channel;
+  _9 = (int) Channel;
+  _10 = ComM_TimeoutEvent[_9];
+  ComM_HsmEmitInst (&ComM_HsmScComM, _8, _10);
+
+  <bb 5> :
+  return;
+
+}
+
+
+ComM_HsmComMSfSILENT_COMMUNICATIONGuard3 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7108;
+  boolean iftmp.24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsWakeupAllowed (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.24 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.24 = 0;
+
+  <bb 5> :
+  ret = iftmp.24;
+  # DEBUG BEGIN_STMT
+  D.7108 = ret;
+  return D.7108;
+
+}
+
+
+ComM_HsmComMSfSILENT_COMMUNICATIONGuard2 (const uint16 instIdx)
+{
+  Nm_ModeType nmMode;
+  Nm_StateType nmState;
+  boolean ret;
+  boolean D.7101;
+  boolean iftmp.22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_GetState (0, &nmState, &nmMode);
+  # DEBUG BEGIN_STMT
+  nmMode.23_1 = nmMode;
+  if (nmMode.23_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.22 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.22 = 0;
+
+  <bb 5> :
+  ret = iftmp.22;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7101 = ret;
+  nmState = {CLOBBER};
+  nmMode = {CLOBBER};
+  return D.7101;
+
+}
+
+
+ComM_HsmComMSfSILENT_COMMUNICATIONGuard1 (const uint16 instIdx)
+{
+  Nm_ModeType nmMode;
+  Nm_StateType nmState;
+  boolean ret;
+  boolean D.7094;
+  boolean iftmp.20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_GetState (0, &nmState, &nmMode);
+  # DEBUG BEGIN_STMT
+  nmMode.21_1 = nmMode;
+  if (nmMode.21_1 == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.20 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.20 = 0;
+
+  <bb 5> :
+  ret = iftmp.20;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7094 = ret;
+  nmState = {CLOBBER};
+  nmMode = {CLOBBER};
+  return D.7094;
+
+}
+
+
+ComM_HsmComMSfSILENT_COMMUNICATIONEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChanState[_1] = 4;
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  ComM_PassiveStartupStatus[_2] = 0;
+  # DEBUG BEGIN_STMT
+  _3 = CanSM_RequestComMode;
+  _4 = (unsigned char) instIdx;
+  _3 (_4, 1);
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGGuard5 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7086;
+  boolean iftmp.19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsWakeupInhibition (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.19 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.19 = 0;
+
+  <bb 5> :
+  ret = iftmp.19;
+  # DEBUG BEGIN_STMT
+  D.7086 = ret;
+  return D.7086;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGGuard4 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7072;
+  boolean iftmp.17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsNotRequested (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.17 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.17 = 0;
+
+  <bb 5> :
+  ret = iftmp.17;
+  # DEBUG BEGIN_STMT
+  D.7072 = ret;
+  return D.7072;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGAction3 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChannelPassiveWakeup[_1] = 1;
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGAction2 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGGuard2 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7064;
+  boolean iftmp.16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsLimitToNoCom (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.16 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.16 = 0;
+
+  <bb 5> :
+  ret = iftmp.16;
+  # DEBUG BEGIN_STMT
+  D.7064 = ret;
+  return D.7064;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGGuard1 (const uint16 instIdx)
+{
+  boolean D.7058;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  D.7058 = ComM_Communication_Allowed[_1];
+  return D.7058;
+
+}
+
+
+ComM_HsmComMSfNO_COM_REQUEST_PENDINGEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChanState[_1] = 1;
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitToSelfInst (&ComM_HsmScComM, instIdx, 4);
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COM_NO_PENDING_REQUESTGuard2 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7049;
+  boolean iftmp.14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsWakeupAllowed (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.14 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.14 = 0;
+
+  <bb 5> :
+  ret = iftmp.14;
+  # DEBUG BEGIN_STMT
+  D.7049 = ret;
+  return D.7049;
+
+}
+
+
+ComM_HsmComMSfNO_COM_NO_PENDING_REQUESTAction1 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChannelPassiveWakeup[_1] = 1;
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COM_NO_PENDING_REQUESTEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChanState[_1] = 0;
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  ComM_ChannelPassiveWakeup[_2] = 0;
+  return;
+
+}
+
+
+ComM_HsmComMSfNO_COMMUNICATIONEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_PassiveStartupStatus[_1] = 0;
+  # DEBUG BEGIN_STMT
+  Nm_NetworkRelease (0);
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComM, instIdx, 9);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = CanSM_RequestComMode;
+  _3 = (unsigned char) instIdx;
+  _2 (_3, 0);
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_READY_SLEEPAction3 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_READY_SLEEPGuard2 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7041;
+  boolean iftmp.13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.13 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.13 = 0;
+
+  <bb 5> :
+  ret = iftmp.13;
+  # DEBUG BEGIN_STMT
+  D.7041 = ret;
+  return D.7041;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_READY_SLEEPGuard1 (const uint16 instIdx)
+{
+  Nm_ModeType nmMode;
+  Nm_StateType nmState;
+  boolean ret;
+  boolean D.7034;
+  boolean iftmp.11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_GetState (0, &nmState, &nmMode);
+  # DEBUG BEGIN_STMT
+  nmMode.12_1 = nmMode;
+  if (nmMode.12_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.11 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.11 = 0;
+
+  <bb 5> :
+  ret = iftmp.11;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7034 = ret;
+  nmState = {CLOBBER};
+  nmMode = {CLOBBER};
+  return D.7034;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_READY_SLEEPExit (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_READY_SLEEPEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  ComM_ChanState[_1] = 3;
+  # DEBUG BEGIN_STMT
+  Nm_NetworkRelease (0);
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComM, instIdx, 9);
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_PENDINGGuard1 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7028;
+  boolean iftmp.10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.10 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.10 = 0;
+
+  <bb 5> :
+  ret = iftmp.10;
+  # DEBUG BEGIN_STMT
+  D.7028 = ret;
+  return D.7028;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYGuard4 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7022;
+  boolean iftmp.9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.9 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.9 = 0;
+
+  <bb 5> :
+  ret = iftmp.9;
+  # DEBUG BEGIN_STMT
+  D.7022 = ret;
+  return D.7022;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYGuard3 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7016;
+  boolean iftmp.8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.8 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.8 = 0;
+
+  <bb 5> :
+  ret = iftmp.8;
+  # DEBUG BEGIN_STMT
+  D.7016 = ret;
+  return D.7016;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYGuard2 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7010;
+  boolean iftmp.7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.7 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.7 = 0;
+
+  <bb 5> :
+  ret = iftmp.7;
+  # DEBUG BEGIN_STMT
+  D.7010 = ret;
+  return D.7010;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYGuard1 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.7004;
+  boolean iftmp.6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.6 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.6 = 0;
+
+  <bb 5> :
+  ret = iftmp.6;
+  # DEBUG BEGIN_STMT
+  D.7004 = ret;
+  return D.7004;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYExit (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTED_ENTRYEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComM, instIdx, 9);
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTEDGuard3 (const uint16 instIdx)
+{
+  Nm_ModeType nmMode;
+  Nm_StateType nmState;
+  boolean ret;
+  boolean D.6997;
+  boolean iftmp.4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_GetState (0, &nmState, &nmMode);
+  # DEBUG BEGIN_STMT
+  nmMode.5_1 = nmMode;
+  if (nmMode.5_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.4 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.4 = 0;
+
+  <bb 5> :
+  ret = iftmp.4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6997 = ret;
+  nmState = {CLOBBER};
+  nmMode = {CLOBBER};
+  return D.6997;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTEDGuard2 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean D.6991;
+  boolean iftmp.3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = ComM_IsFullComAllowed (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.3 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.3 = 0;
+
+  <bb 5> :
+  ret = iftmp.3;
+  # DEBUG BEGIN_STMT
+  D.6991 = ret;
+  return D.6991;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTEDAction1 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_NetworkRequest (0);
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COM_NETWORK_REQUESTEDEntry (const uint16 instIdx)
+{
+  boolean IsFullComAllowed;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  IsFullComAllowed = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  IsFullComAllowed = ComM_IsFullComAllowed (_1);
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  ComM_ChanState[_2] = 2;
+  # DEBUG BEGIN_STMT
+  if (IsFullComAllowed == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Nm_PassiveStartUp (0);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (IsFullComAllowed == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  _4 = ComM_PassiveStartupStatus[_3];
+  if (_4 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Nm_PassiveStartUp (0);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Nm_NetworkRequest (0);
+
+  <bb 8> :
+  return;
+
+}
+
+
+ComM_HsmComMSfFULL_COMMUNICATIONGuard2 (const uint16 instIdx)
+{
+  Nm_ModeType nmMode;
+  Nm_StateType nmState;
+  boolean ret;
+  boolean D.6971;
+  boolean iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nm_GetState (0, &nmState, &nmMode);
+  # DEBUG BEGIN_STMT
+  nmMode.1_1 = nmMode;
+  if (nmMode.1_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.0 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0 = 0;
+
+  <bb 5> :
+  ret = iftmp.0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6971 = ret;
+  nmState = {CLOBBER};
+  nmMode = {CLOBBER};
+  return D.6971;
+
+}
+
+
+ComM_HsmComMSfFULL_COMMUNICATIONEntry (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CanSM_RequestComMode;
+  _2 = (unsigned char) instIdx;
+  _1 (_2, 2);
+  return;
+
+}
+
+
+ComM_HsmComMSfTOPAction1 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx;
+  _2 = (int) instIdx;
+  _3 = ComM_ChannelMode[_2];
+  ComM_Notify2Arg (_1, _3);
+  return;
+
+}
+
+

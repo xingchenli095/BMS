@@ -1,0 +1,754 @@
+
+Marking local functions: OS_DoSyncWaitingScheduleTable OS_DoSyncRunningScheduleTable
+
+
+Marking externally visible functions: OS_LocalSyncScheduleTable
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueAlarm/10 (OS_EnqueueAlarm) @06ceb7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoSyncWaitingScheduleTable/1 
+  Calls: 
+OS_counterTableBase/9 (OS_counterTableBase) @06d07d80
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoSyncRunningScheduleTable/0 (read)OS_DoSyncWaitingScheduleTable/1 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Panic/8 (OS_Panic) @06ceb620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoSyncRunningScheduleTable/0 
+  Calls: 
+OS_GetAlarmDelta/7 (OS_GetAlarmDelta) @06ceb540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoSyncRunningScheduleTable/0 
+  Calls: 
+OS_alarmTableBase/6 (OS_alarmTableBase) @06d07c18
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoSyncRunningScheduleTable/0 (read)OS_DoSyncRunningScheduleTable/0 (read)OS_DoSyncRunningScheduleTable/0 (read)OS_DoSyncWaitingScheduleTable/1 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/5 (OS_AppIsAccessible) @06ceb1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSyncScheduleTable/2 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/4 (OS_CORTEXM_IntSetDisablingLevel) @06ceb0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_DoSyncWaitingScheduleTable/1 OS_DoSyncWaitingScheduleTable/1 OS_DoSyncWaitingScheduleTable/1 OS_DoSyncRunningScheduleTable/0 OS_DoSyncRunningScheduleTable/0 OS_DoSyncRunningScheduleTable/0 OS_LocalSyncScheduleTable/2 OS_LocalSyncScheduleTable/2 OS_LocalSyncScheduleTable/2 
+  Calls: 
+OS_kernDisableLevel/3 (OS_kernDisableLevel) @06c12bd0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSyncScheduleTable/2 (read)OS_DoSyncWaitingScheduleTable/1 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalSyncScheduleTable/2 (OS_LocalSyncScheduleTable) @06c32000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/4 OS_DoSyncWaitingScheduleTable/1 OS_DoSyncRunningScheduleTable/0 OS_CORTEXM_IntSetDisablingLevel/4 OS_AppIsAccessible/5 OS_CORTEXM_IntSetDisablingLevel/4 
+OS_DoSyncWaitingScheduleTable/1 (OS_DoSyncWaitingScheduleTable) @06c32e00
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: OS_alarmTableBase/6 (read)OS_counterTableBase/9 (read)OS_kernDisableLevel/3 (read)
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: OS_LocalSyncScheduleTable/2 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/4 OS_EnqueueAlarm/10 OS_CORTEXM_IntSetDisablingLevel/4 OS_CORTEXM_IntSetDisablingLevel/4 
+   Indirect call
+   Indirect call
+OS_DoSyncRunningScheduleTable/0 (OS_DoSyncRunningScheduleTable) @06c32a80
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: OS_alarmTableBase/6 (read)OS_alarmTableBase/6 (read)OS_alarmTableBase/6 (read)OS_counterTableBase/9 (read)
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: OS_LocalSyncScheduleTable/2 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/4 OS_CORTEXM_IntSetDisablingLevel/4 OS_CORTEXM_IntSetDisablingLevel/4 OS_Panic/8 OS_GetAlarmDelta/7 
+__attribute__((target ("general-regs-only")))
+OS_LocalSyncScheduleTable (const struct os_schedule_t * ss, os_tick_t globalTime)
+{
+  os_schedulestatus_t state;
+  os_intstatus_t is;
+  os_errorresult_t e;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t D.7462;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = sd->status;
+  state = _2 & 7;
+  # DEBUG BEGIN_STMT
+  _3 = ss->app;
+  _4 = OS_AppIsAccessible (_3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  e = 154;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (state == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  e = OS_DoSyncRunningScheduleTable (ss, sd, globalTime, is);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (state == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  e = OS_DoSyncWaitingScheduleTable (ss, sd, globalTime, is);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  e = 41;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.7462 = e;
+  return D.7462;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DoSyncWaitingScheduleTable (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, os_tick_t globalTime, os_intstatus_t is)
+{
+  os_errorresult_t e;
+  os_tick_t maxallowedvalue;
+  os_tick_t offset;
+  struct os_counterdynamic_t * cd;
+  const struct os_counter_t * cs;
+  struct os_alarmdynamic_t * ad;
+  const struct os_alarm_t * as;
+  os_errorresult_t D.7537;
+  os_tick_t iftmp.13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.10_1 = OS_alarmTableBase;
+  _2 = ss->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  as = OS_alarmTableBase.10_1 + _4;
+  # DEBUG BEGIN_STMT
+  ad = as->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.11_5 = OS_counterTableBase;
+  _6 = as->counter;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 32;
+  cs = OS_counterTableBase.11_5 + _8;
+  # DEBUG BEGIN_STMT
+  cd = cs->dynamic;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e = 0;
+  # DEBUG BEGIN_STMT
+  _9 = ss->table;
+  _10 = _9->offset;
+  if (globalTime < _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _11 = ss->table;
+  _12 = _11->offset;
+  offset = _12 - globalTime;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _13 = ss->table;
+  _14 = _13->offset;
+  _15 = _14 - globalTime;
+  _16 = ss->period;
+  offset = _15 + _16;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  maxallowedvalue = cs->maxallowedvalue;
+  # DEBUG BEGIN_STMT
+  if (offset > maxallowedvalue)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _17 = offset - maxallowedvalue;
+  sd->adjRemaining = _17;
+  # DEBUG BEGIN_STMT
+  offset = maxallowedvalue;
+  # DEBUG BEGIN_STMT
+  sd->status = 9;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = 11;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ad->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad->period = 0;
+  # DEBUG BEGIN_STMT
+  _18 = cs->hwt;
+  if (_18 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _19 = cd->lock;
+  if (_19 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  _20 = cs->updFunc;
+  _20 (cs);
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.12_21 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.12_21);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ad->delta = offset;
+  # DEBUG BEGIN_STMT
+  _22 = cs->maxallowedvalue;
+  _23 = cd->current;
+  _24 = _22 - _23;
+  if (offset > _24)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  _25 = cd->current;
+  _26 = offset + _25;
+  _27 = cs->maxallowedvalue;
+  _28 = _26 - _27;
+  iftmp.13 = _28 + 4294967295;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  _29 = cd->current;
+  iftmp.13 = offset + _29;
+
+  <bb 14> :
+  sd->ctrAbs = iftmp.13;
+  # DEBUG BEGIN_STMT
+  _30 = ss->alarm;
+  OS_EnqueueAlarm (cs, cd, _30, ad);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  _31 = cs->hwt;
+  if (_31 != 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _32 = cd->lock;
+  if (_32 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _33 = cd->head;
+  _34 = ss->alarm;
+  if (_33 == _34)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _35 = cs->updFunc;
+  _35 (cs);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.7537 = e;
+  return D.7537;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DoSyncRunningScheduleTable (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, os_tick_t globalTime, os_intstatus_t is)
+{
+  os_tick_t err;
+  os_counterid_t counter;
+  const struct os_scheduleentry_t * currp;
+  os_errorresult_t e;
+  os_int_t gadRes;
+  os_tick_t delta;
+  os_tick_t local;
+  os_tick_t lengthen;
+  os_tick_t shorten;
+  os_errorresult_t D.7514;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ss->alarm;
+  OS_alarmTableBase.1_2 = OS_alarmTableBase;
+  _3 = ss->alarm;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 28;
+  _6 = OS_alarmTableBase.1_2 + _5;
+  OS_alarmTableBase.2_7 = OS_alarmTableBase;
+  _8 = ss->alarm;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 28;
+  _11 = OS_alarmTableBase.2_7 + _10;
+  _12 = _11->dynamic;
+  gadRes = OS_GetAlarmDelta (_1, _6, _12, &delta);
+  # DEBUG BEGIN_STMT
+  if (gadRes < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  e = OS_Panic (10);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (gadRes > 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _13 = sd->status;
+  _14 = (unsigned int) _13;
+  _15 = _14 & 7;
+  if (_15 == 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  gadRes = 0;
+  # DEBUG BEGIN_STMT
+  delta = 0;
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  e = 41;
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _16 = ss->period;
+  delta.3_17 = delta;
+  if (_16 <= delta.3_17)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  delta.4_18 = delta;
+  _19 = ss->period;
+  _20 = delta.4_18 % _19;
+  delta = _20;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (gadRes == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 41>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _21 = sd->status;
+  _22 = _21 & 199;
+  sd->status = _22;
+  # DEBUG BEGIN_STMT
+  _23 = ss->table;
+  _24 = sd->next;
+  _25 = (unsigned int) _24;
+  _26 = _25 * 20;
+  currp = _23 + _26;
+  # DEBUG BEGIN_STMT
+  _27 = currp->offset;
+  delta.5_28 = delta;
+  if (_27 < delta.5_28)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _29 = currp->offset;
+  delta.6_30 = delta;
+  _31 = _29 - delta.6_30;
+  _32 = ss->period;
+  local = _31 + _32;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _33 = currp->offset;
+  delta.7_34 = delta;
+  local = _33 - delta.7_34;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.8_35 = OS_alarmTableBase;
+  _36 = ss->alarm;
+  _37 = (unsigned int) _36;
+  _38 = _37 * 28;
+  _39 = OS_alarmTableBase.8_35 + _38;
+  counter = _39->counter;
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.9_40 = OS_counterTableBase;
+  _41 = (unsigned int) counter;
+  _42 = _41 * 32;
+  _43 = OS_counterTableBase.9_40 + _42;
+  _44 = _43->dynamic;
+  err = _44->error;
+  # DEBUG BEGIN_STMT
+  if (local >= err)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  local = local - err;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _45 = ss->period;
+  _46 = local + _45;
+  local = _46 - err;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (globalTime == local)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  _47 = sd->status;
+  _48 = _47 | 8;
+  sd->status = _48;
+  goto <bb 40>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (globalTime > local)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  shorten = globalTime - local;
+  # DEBUG BEGIN_STMT
+  _49 = ss->period;
+  shorten = shorten % _49;
+  # DEBUG BEGIN_STMT
+  _50 = ss->period;
+  lengthen = _50 - shorten;
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  lengthen = local - globalTime;
+  # DEBUG BEGIN_STMT
+  _51 = ss->period;
+  lengthen = lengthen % _51;
+  # DEBUG BEGIN_STMT
+  _52 = ss->period;
+  shorten = _52 - lengthen;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _53 = ss->tolerance;
+  if (lengthen <= _53)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _54 = sd->status;
+  _55 = _54 | 8;
+  sd->status = _55;
+  # DEBUG BEGIN_STMT
+  _56 = ss->flags;
+  _57 = (unsigned int) _56;
+  _58 = _57 & 64;
+  if (_58 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _59 = ss->flags;
+  _60 = (signed char) _59;
+  if (_60 < 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  _61 = ss->tolerance;
+  if (shorten <= _61)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _62 = sd->status;
+  _63 = _62 | 16;
+  sd->status = _63;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = shorten;
+  goto <bb 40>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = lengthen;
+  goto <bb 40>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _64 = ss->flags;
+  _65 = (signed char) _64;
+  if (_65 < 0)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 29> :
+  _66 = ss->tolerance;
+  if (shorten <= _66)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _67 = ss->dirCutoff;
+  if (shorten < _67)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _68 = sd->status;
+  _69 = _68 | 16;
+  sd->status = _69;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = shorten;
+  goto <bb 40>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _70 = sd->status;
+  _71 = _70 | 32;
+  sd->status = _71;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = lengthen;
+  goto <bb 40>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _72 = sd->status;
+  _73 = _72 | 32;
+  sd->status = _73;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = lengthen;
+  goto <bb 40>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _74 = ss->tolerance;
+  if (shorten <= _74)
+    goto <bb 35>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _75 = sd->status;
+  _76 = _75 | 8;
+  sd->status = _76;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = shorten;
+  # DEBUG BEGIN_STMT
+  _77 = ss->flags;
+  _78 = (signed char) _77;
+  if (_78 < 0)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  _79 = sd->status;
+  _80 = _79 | 16;
+  sd->status = _80;
+  goto <bb 40>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  _81 = ss->dirCutoff;
+  if (shorten < _81)
+    goto <bb 38>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  _82 = sd->status;
+  _83 = _82 | 16;
+  sd->status = _83;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = shorten;
+  goto <bb 40>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  _84 = sd->status;
+  _85 = _84 | 32;
+  sd->status = _85;
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = lengthen;
+
+  <bb 40> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  D.7514 = e;
+  delta = {CLOBBER};
+  return D.7514;
+
+}
+
+

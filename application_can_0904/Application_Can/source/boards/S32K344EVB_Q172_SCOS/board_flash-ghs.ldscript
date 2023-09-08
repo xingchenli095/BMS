@@ -1,0 +1,36 @@
+/* board_flash-ghs.ldscript
+ *
+ * Linker script for GNU binutils with the memory definitions for the S32K34X
+ * s32k344evb_q172.
+ *
+ * Copyright Elektrobit Automotive GmbH
+ * All rights exclusively reserved for Elektrobit Automotive GmbH,
+ * unless expressly agreed to otherwise.
+ *
+ * $Id: board_flash-ghs.ldscript 38213 2022-10-18 07:31:55Z syns274107 $
+*/
+
+MEMORY
+{
+    /******************************************************************/
+    /********************** ROM ***************************************/
+    /******************************************************************/
+	exctable_C0	(RX)	: ORIGIN = 0x00500000, LENGTH = 0x1000
+	rom			(RX)	: ORIGIN = 0x00501000, LENGTH = 0x2D4FFF	/* 3MB PFLASH */
+	
+    /******************************************************************/
+    /********************** RAM ***************************************/
+    /******************************************************************/ 
+    ram         (RWX) : ORIGIN = 0x20400000, LENGTH = 0x10000       /* 64 KB SRAM */
+}
+
+SECTIONS
+{
+	/* Symbols for Memory Protection: Global RAM region */
+	__GLBL_RAM_START	= 0x20400000;
+	__GLBL_RAM_END		= 0x2040FFFF;
+
+	/* Symbols for Memory Protection: Global ROM region */
+	__GLBL_ROM_START	= 0x00500000;
+	__GLBL_ROM_END		= 0x007D5FFF;
+}

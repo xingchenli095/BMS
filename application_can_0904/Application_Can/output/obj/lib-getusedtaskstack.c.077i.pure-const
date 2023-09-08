@@ -1,0 +1,131 @@
+
+
+ local analysis of OS_GetUsedTaskStack
+   scanning: info.stackPointer = 0;
+  scanning: _1 = (short unsigned int) t_8(D);
+  scanning: _2 = OS_UserGetStackInfo (_1, &info);
+  scanning: if (_2 == 0)
+  scanning: _3 = info.stackLen;
+  scanning: _4 = info.stackClean;
+  scanning: answer_10 = _3 - _4;
+  scanning: return answer_5;
+Function is locally const.
+callgraph:
+
+OS_UserGetStackInfo/1 (OS_UserGetStackInfo) @06b20d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetUsedTaskStack/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_GetUsedTaskStack/0 (OS_GetUsedTaskStack) @06b20b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817000
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_GetUsedTaskStack/0 (OS_GetUsedTaskStack) @06b20b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817000
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_GetUsedTaskStack: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_GetUsedTaskStack: malloc_bottom
+callgraph:
+
+OS_UserGetStackInfo/1 (OS_UserGetStackInfo) @06b20d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_GetUsedTaskStack/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_GetUsedTaskStack/0 (OS_GetUsedTaskStack) @06b20b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817180
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+OS_GetUsedTaskStack/0 (OS_GetUsedTaskStack) @06b20b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817180
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_UserGetStackInfo/1 (1073741824 (estimated locally),1.00 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_GetUsedTaskStack (os_taskid_t t)
+{
+  struct os_stackinfo_t info;
+  os_size_t answer;
+  short unsigned int _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG answer => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  info.stackPointer = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) t_8(D);
+  _2 = OS_UserGetStackInfo (_1, &info);
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _3 = info.stackLen;
+  _4 = info.stackClean;
+  answer_10 = _3 - _4;
+  # DEBUG answer => answer_10
+
+  <bb 4> [local count: 1073741824]:
+  # answer_5 = PHI <0(2), answer_10(3)>
+  # DEBUG answer => answer_5
+  # DEBUG BEGIN_STMT
+  info ={v} {CLOBBER};
+  return answer_5;
+
+}
+
+

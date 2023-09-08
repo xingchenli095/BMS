@@ -1,0 +1,567 @@
+Dcm_Dsp_ResponseOnEvent_ReportActivatedEvents_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Dcm_MsgLenType resLength;
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  Dcm_MsgItemType * _4;
+  long unsigned int resLength.1_5;
+  long unsigned int _6;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_9 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_11(D)->reqDataLen;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_11(D)->resData;
+  _3 = _2 + 1;
+  Dcm_Dsl_RoeServices_ReportActivatedEvents (_3, &resLength);
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_11(D)->resData;
+  *_4 = 4;
+  # DEBUG BEGIN_STMT
+  resLength.1_5 = resLength;
+  _6 = resLength.1_5 + 1;
+  pMsgContext_11(D)->resDataLen = _6;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_17 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_17
+  resLength ={v} {CLOBBER};
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_11(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_13 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_13
+
+  <bb 5> :
+  # serviceProcessStatus_7 = PHI <serviceProcessStatus_17(3), serviceProcessStatus_13(4)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = serviceProcessStatus_7;
+  return _19;
+
+}
+
+
+Dcm_Dsp_ResponseOnEvent_StopResponseOnEventPersistent_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_1 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_6 = Dcm_Dsp_ResponseOnEvent_StopResponseOnEventCommon (OpStatus_3(D), pMsgContext_4(D), 1);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = serviceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_ResponseOnEvent_StopResponseOnEventCommon (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, boolean Persistence)
+{
+  uint8 reqEventWindowTime;
+  Std_ReturnType StopRetVal;
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  Dcm_MsgItemType * _4;
+  unsigned char _5;
+  Dcm_MsgItemType * _6;
+  unsigned char _7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_14 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_15(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_17(D)->reqDataLen;
+  if (_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  StopRetVal_21 = Dcm_Dsl_RoeServices_StopResponseOnEvent (Persistence_19(D));
+  # DEBUG StopRetVal => StopRetVal_21
+  # DEBUG BEGIN_STMT
+  if (StopRetVal_21 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_17(D), StopRetVal_21);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_17(D)->reqData;
+  reqEventWindowTime_22 = *_2;
+  # DEBUG reqEventWindowTime => reqEventWindowTime_22
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_17(D)->resData;
+  *_3 = 0;
+  # DEBUG BEGIN_STMT
+  if (Persistence_19(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_17(D)->resData;
+  _5 = *_4;
+  _6 = pMsgContext_17(D)->resData;
+  _7 = _5 | 64;
+  *_6 = _7;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = pMsgContext_17(D)->resData;
+  _9 = _8 + 1;
+  *_9 = 0;
+  # DEBUG BEGIN_STMT
+  _10 = pMsgContext_17(D)->resData;
+  _11 = _10 + 2;
+  *_11 = reqEventWindowTime_22;
+  # DEBUG BEGIN_STMT
+  pMsgContext_17(D)->resDataLen = 3;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_17(D), 19);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_29 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_29
+  # DEBUG BEGIN_STMT
+  _30 = serviceProcessStatus_29;
+  return _30;
+
+}
+
+
+Dcm_Dsp_ResponseOnEvent_StartResponseOnEventPersistent_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_1 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_6 = Dcm_Dsp_ResponseOnEvent_StartResponseOnEventCommon (OpStatus_3(D), pMsgContext_4(D), 1);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = serviceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_ResponseOnEvent_StartResponseOnEventCommon (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, boolean Persistence)
+{
+  uint8 reqEventWindowTime;
+  Std_ReturnType StartRetVal;
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+  short unsigned int _2;
+  Dcm_MsgItemType * _3;
+  Dcm_MsgItemType * _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  Dcm_MsgItemType * _12;
+  Std_ReturnType _34;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_17 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_18(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_21(D)->reqDataLen;
+  if (_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_21(D)->dcmRxPduId;
+  StartRetVal_25 = Dcm_Dsl_RoeServices_StartResponseOnEvent (Persistence_23(D), _2);
+  # DEBUG StartRetVal => StartRetVal_25
+  # DEBUG BEGIN_STMT
+  if (StartRetVal_25 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), StartRetVal_25);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_21(D)->reqData;
+  reqEventWindowTime_26 = *_3;
+  # DEBUG reqEventWindowTime => reqEventWindowTime_26
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_21(D)->resData;
+  *_4 = 5;
+  # DEBUG BEGIN_STMT
+  if (Persistence_23(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_21(D)->resData;
+  _6 = *_5;
+  _7 = pMsgContext_21(D)->resData;
+  _8 = _6 | 64;
+  *_7 = _8;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_21(D)->resData;
+  _10 = _9 + 1;
+  *_10 = 0;
+  # DEBUG BEGIN_STMT
+  _11 = pMsgContext_21(D)->resData;
+  _12 = _11 + 2;
+  *_12 = reqEventWindowTime_26;
+  # DEBUG BEGIN_STMT
+  pMsgContext_21(D)->resDataLen = 3;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_21(D), 19);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_33 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_19 = 0;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_19
+
+  <bb 12> :
+  # serviceProcessStatus_13 = PHI <serviceProcessStatus_33(10), serviceProcessStatus_19(11)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_13
+  # DEBUG BEGIN_STMT
+  _34 = serviceProcessStatus_13;
+  return _34;
+
+}
+
+
+Dcm_Dsp_ResponseOnEvent_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const struct Dcm_SubSidTabEntryConfigType * const curSsConfig;
+  const struct Dcm_SidTabConfigType * const curSidTabConfig;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const uint8 instIdx;
+  struct Dcm_RxPduIdInfoType StoredRxPduIdInfo;
+  Std_ReturnType GetRxPduIdResult;
+  PduIdType RxPduId;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  boolean RoeInitialized;
+  boolean ProtocolCheckSucessful;
+  uint8 SubServiceID;
+  Std_ReturnType (*Dcm_GenericServiceHandlerType) (Dcm_OpStatusType, struct Dcm_MsgContextType *) subServiceHandler;
+  Std_ReturnType serviceProcessStatus;
+  Dcm_MsgItemType * _1;
+  short unsigned int _2;
+  short unsigned int RxPduId.0_3;
+  unsigned char _4;
+  unsigned char _5;
+  short unsigned int _6;
+  int _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  const struct Dcm_SidTabEntryConfigType * _11;
+  unsigned char _12;
+  unsigned int _13;
+  unsigned int _14;
+  const struct Dcm_SidTabEntryConfigType * _15;
+  unsigned char _16;
+  unsigned int _17;
+  unsigned int _18;
+  const struct Dcm_SubSidTabEntryConfigType * _19;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _20;
+  Std_ReturnType _63;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_28 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ProtocolCheckSucessful_29 = 0;
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_29
+  # DEBUG BEGIN_STMT
+  RoeInitialized_32 = Dcm_Dsl_RoeServices_IsInitialized ();
+  # DEBUG RoeInitialized => RoeInitialized_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (RoeInitialized_32 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_33(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_62 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_62
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_33(D)->reqData;
+  SubServiceID_34 = *_1;
+  # DEBUG SubServiceID => SubServiceID_34
+  # DEBUG BEGIN_STMT
+  SubServiceID_35 = SubServiceID_34 & 191;
+  # DEBUG SubServiceID => SubServiceID_35
+  # DEBUG BEGIN_STMT
+  if (SubServiceID_35 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (SubServiceID_35 == 5)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (SubServiceID_35 == 4)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 7> :
+  if (OpStatus_36(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxPduId = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_33(D)->dcmRxPduId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_2, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  GetRxPduIdResult_40 = Dcm_Dsl_RoeServices_GetRxPduId (&RxPduId);
+  # DEBUG GetRxPduIdResult => GetRxPduIdResult_40
+  # DEBUG BEGIN_STMT
+  if (GetRxPduIdResult_40 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxPduId.0_3 = RxPduId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxPduId.0_3, &StoredRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _4 = StoredRxPduIdInfo.ProtocolIndex;
+  _5 = RxPduIdInfo.ProtocolIndex;
+  if (_4 == _5)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ProtocolCheckSucessful_44 = 1;
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_44
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ProtocolCheckSucessful_43 = 0;
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_43
+
+  <bb 12> :
+  # ProtocolCheckSucessful_22 = PHI <ProtocolCheckSucessful_44(10), ProtocolCheckSucessful_43(11)>
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_22
+  StoredRxPduIdInfo ={v} {CLOBBER};
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ProtocolCheckSucessful_41 = 1;
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_41
+
+  <bb 14> :
+  # ProtocolCheckSucessful_23 = PHI <ProtocolCheckSucessful_22(12), ProtocolCheckSucessful_41(13)>
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_23
+  RxPduIdInfo ={v} {CLOBBER};
+  RxPduId ={v} {CLOBBER};
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ProtocolCheckSucessful_48 = 1;
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_48
+
+  <bb 16> :
+  # ProtocolCheckSucessful_24 = PHI <ProtocolCheckSucessful_23(14), ProtocolCheckSucessful_48(15)>
+  # DEBUG ProtocolCheckSucessful => ProtocolCheckSucessful_24
+  # DEBUG BEGIN_STMT
+  if (ProtocolCheckSucessful_24 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_33(D)->dcmRxPduId;
+  instIdx_52 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_6, 1);
+  # DEBUG instIdx => instIdx_52
+  # DEBUG BEGIN_STMT
+  _7 = (int) instIdx_52;
+  curHsmInfo_53 = &Dcm_HsmInfo[_7];
+  # DEBUG curHsmInfo => curHsmInfo_53
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx_52;
+  _9 = Dcm_ProtocolConfig[_8].ServiceTableIndex;
+  _10 = (int) _9;
+  curSidTabConfig_54 = &Dcm_SidTabConfig[_10];
+  # DEBUG curSidTabConfig => curSidTabConfig_54
+  # DEBUG BEGIN_STMT
+  _11 = curSidTabConfig_54->Entries;
+  _12 = curHsmInfo_53->sidTabEntryInd;
+  _13 = (unsigned int) _12;
+  _14 = _13 * 32;
+  _15 = _11 + _14;
+  curSsConfig_55 = _15->SubServices;
+  # DEBUG curSsConfig => curSsConfig_55
+  # DEBUG BEGIN_STMT
+  subServiceHandler_57 = Dcm_Dsp_ExtractSubServiceHandler (OpStatus_36(D), pMsgContext_33(D));
+  # DEBUG subServiceHandler => subServiceHandler_57
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_59 = subServiceHandler_57 (OpStatus_36(D), pMsgContext_33(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_59
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_59 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  if (serviceProcessStatus_59 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  _16 = curHsmInfo_53->subServiceIdIdx;
+  _17 = (unsigned int) _16;
+  _18 = _17 * 24;
+  _19 = curSsConfig_55 + _18;
+  _20 = _19->IntSrvHandler;
+  if (_20 == 0B)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_60 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_60
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_33(D), 34);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_50 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_50
+
+  <bb 22> :
+  # serviceProcessStatus_21 = PHI <serviceProcessStatus_62(3), serviceProcessStatus_59(19), serviceProcessStatus_50(21), serviceProcessStatus_59(18), serviceProcessStatus_60(20)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _63 = serviceProcessStatus_21;
+  return _63;
+
+}
+
+

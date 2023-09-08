@@ -1,0 +1,5553 @@
+Dem_GetMappedDTCOrigin (Dem_DTCOriginType DTCOrigin, Dem_DTCOriginMappingType MappingVariant)
+{
+  Dem_DTCOriginType Result;
+  Dem_DTCOriginType D.8282;
+  Dem_DTCOriginType iftmp.35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) DTCOrigin;
+  switch (_1) <default: <L8> [INV], case 1 ... 3: <L5> [INV], case 4: <L0> [INV], case 257: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  if (MappingVariant == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.35 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.35 = 4;
+
+  <bb 6> :
+  Result = iftmp.35;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Result = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Result = DTCOrigin;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8282 = Result;
+  return D.8282;
+
+}
+
+
+Dem_InternalCheckAndSetDTCSuppression (uint32 DTC, uint32 (*Dem_GetDTCFctPtrType) (Dem_EventIdType) GetDTCFct, uint8 * DtcSuppressionArray, boolean SuppressionStatus)
+{
+  boolean CurrentSuppressionStatus;
+  Dem_EventIdType EventId;
+  Std_ReturnType Result;
+  Std_ReturnType D.8161;
+  short unsigned int D.8160;
+  short unsigned int D.8158;
+  int iftmp.32;
+  boolean iftmp.31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventId = 1;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = GetDTCFct (EventId);
+  if (DTC == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EventId = EventId + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (EventId <= 14)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = EventId / 8;
+  _3 = (sizetype) _2;
+  _4 = DtcSuppressionArray + _3;
+  _5 = *_4;
+  _6 = (unsigned int) EventId;
+  _7 = _6 & 7;
+  _8 = 1 << _7;
+  _9 = (unsigned char) _8;
+  _10 = _5 & _9;
+  if (_10 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.31 = 1;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.31 = 0;
+
+  <bb 11> :
+  CurrentSuppressionStatus = iftmp.31;
+  # DEBUG BEGIN_STMT
+  if (CurrentSuppressionStatus != SuppressionStatus)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (SuppressionStatus == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _11 = Dem_SearchForEntry (EventId, 0B, 0B);
+  if (_11 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (SuppressionStatus == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  D.8158 = EventId / 8;
+  _12 = (sizetype) D.8158;
+  _13 = DtcSuppressionArray + _12;
+  _14 = *_13;
+  _15 = (unsigned int) EventId;
+  _16 = _15 & 7;
+  _17 = 1 << _16;
+  _18 = (unsigned char) _17;
+  _19 = (sizetype) D.8158;
+  _20 = DtcSuppressionArray + _19;
+  _21 = _14 | _18;
+  *_20 = _21;
+  _22 = *_20;
+  iftmp.32 = (int) _22;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  D.8160 = EventId / 8;
+  _23 = (sizetype) D.8160;
+  _24 = DtcSuppressionArray + _23;
+  _25 = *_24;
+  _26 = (unsigned int) EventId;
+  _27 = _26 & 7;
+  _28 = 1 << _27;
+  _29 = (unsigned char) _28;
+  _30 = ~_29;
+  _31 = (sizetype) D.8160;
+  _32 = DtcSuppressionArray + _31;
+  _33 = _25 & _30;
+  *_32 = _33;
+  _34 = *_32;
+  iftmp.32 = (int) _34;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8161 = Result;
+  return D.8161;
+
+}
+
+
+Dem_InternalGetObdDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7766;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_OBDConfig[_1].Dem_ObdDTC;
+  _3 = (long unsigned int) _2;
+  DTC = _3 << 8;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7766 = DTC;
+  return D.7766;
+
+}
+
+
+Dem_InternalGetUdsDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7752;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  DTC = _2 & 16777215;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7752 = DTC;
+  return D.7752;
+
+}
+
+
+Dem_IsEventsMILIndicatorActive (Dem_EventIdType EventId)
+{
+  const Dem_CounterDataIdxType CounterDataIdx;
+  Dem_IndicatorIdxType LinkIdx;
+  const struct Dem_IndicatorLinkType * const IndicatorLink;
+  const Dem_IndicatorIdxType LinkNumber;
+  Std_ReturnType Result;
+  boolean D.8276;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LinkNumber = Dem_IndicatorDesc[0].Number;
+  # DEBUG BEGIN_STMT
+  _1 = Dem_IndicatorDesc[0].StartIdx;
+  _2 = (int) _1;
+  IndicatorLink = &Dem_IndicatorLink[_2];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LinkIdx = 0;
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) LinkIdx;
+  _4 = _3 * 6;
+  _5 = IndicatorLink + _4;
+  _6 = _5->EventId;
+  if (EventId == _6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = Dem_IndicatorDesc[0].StartIdx;
+  CounterDataIdx = LinkIdx + _7;
+  # DEBUG BEGIN_STMT
+  _8 = (int) EventId;
+  _9 = Dem_NvData.DTCStatusMask[_8];
+  _10 = (signed char) _9;
+  if (_10 < 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _11 = CounterDataIdx / 8;
+  _12 = (unsigned int) _11;
+  _13 = Dem_NvData.IndicatorCycleCounterWIRStatus[0][_12];
+  _14 = (unsigned int) CounterDataIdx;
+  _15 = _14 & 7;
+  _16 = 1 << _15;
+  _17 = (unsigned char) _16;
+  _18 = _13 & _17;
+  if (_18 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  LinkIdx = LinkIdx + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (LinkIdx < LinkNumber)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8276 = Result;
+  return D.8276;
+
+}
+
+
+Dem_UpdateFailureCounterFirstFail (Dem_EventIdType EventId, Dem_EventStatusType EventStatus)
+{
+  boolean FailedEntryInErrorQueue;
+  boolean OpCyclePermission;
+  const Dem_OperationCycleIdType EventFailureCycleIdx;
+  const uint16 EventFailureClassIdx;
+  boolean Result;
+  boolean D.7929;
+  boolean iftmp.15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EventStatus == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  _1 = (int) EventId;
+  _2 = Dem_NvData.DTCStatusMask[_1];
+  _3 = (unsigned int) _2;
+  _4 = _3 & 2;
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EventFailureClassIdx = Dem_GbiEventFailureClassIdx (EventId);
+  # DEBUG BEGIN_STMT
+  if (EventFailureClassIdx != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EventFailureCycleIdx = Dem_GbiEventFailureCycleIdx (EventId, EventFailureClassIdx);
+  # DEBUG BEGIN_STMT
+  _5 = (int) EventFailureCycleIdx;
+  _6 = Dem_OpCycleState[_5];
+  if (_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.15 = 1;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.15 = 0;
+
+  <bb 8> :
+  OpCyclePermission = iftmp.15;
+  # DEBUG BEGIN_STMT
+  if (OpCyclePermission == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  _7 = (int) EventId;
+  _8 = Dem_NvData.DTCStatusMask[_7];
+  _9 = (unsigned int) _8;
+  _10 = _9 & 8;
+  if (_10 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  FailedEntryInErrorQueue = 0;
+  # DEBUG BEGIN_STMT
+  FailedEntryInErrorQueue = Dem_CheckErrorQueueEntryForStatus (EventId, 1);
+  # DEBUG BEGIN_STMT
+  if (FailedEntryInErrorQueue == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = Dem_IncrementFailureCounter (EventId, 0);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7929 = Result;
+  return D.7929;
+
+}
+
+
+Dem_GetFDCCounterBased (Dem_EventIdType EventId, sint8 * FDC)
+{
+  sint16 IFdc;
+  const struct Dem_DebounceCounterClassType * const DebounceCfg;
+  const Dem_DebounceCounterClassIdxType DebounceClassIdx;
+  const Dem_EventIdType DebounceStatusIdx;
+  Std_ReturnType Result;
+  Std_ReturnType D.7684;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  DebounceStatusIdx = Dem_GbiDebounceStatusIdx (EventId);
+  # DEBUG BEGIN_STMT
+  DebounceClassIdx = Dem_GbiDebounceCounterClassIdx (DebounceStatusIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) DebounceClassIdx;
+  DebounceCfg = &Dem_DebounceCounterClass[_1];
+  # DEBUG BEGIN_STMT
+  IFdc = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) DebounceStatusIdx;
+  IFdc = Dem_DebounceCounterStatus[_2];
+  # DEBUG BEGIN_STMT
+  if (IFdc < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (long int) IFdc;
+  _4 = _3 * -128;
+  _5 = DebounceCfg->CounterPassedThreshold;
+  _6 = (long int) _5;
+  _7 = _4 / _6;
+  _8 = (signed char) _7;
+  *FDC = _8;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = (long int) IFdc;
+  _10 = _9 * 127;
+  _11 = DebounceCfg->CounterFailedThreshold;
+  _12 = (long int) _11;
+  _13 = _10 / _12;
+  _14 = (signed char) _13;
+  *FDC = _14;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7684 = Result;
+  return D.7684;
+
+}
+
+
+Dem_DebounceEventCounterBased (Dem_EventIdType EventId, Dem_EventStatusType * EventStatus)
+{
+  Dem_DebounceCounterStatusType * const DebounceCounter;
+  const struct Dem_DebounceCounterClassType * const DebounceCfg;
+  const Dem_DebounceCounterClassIdxType DebounceClassIdx;
+  const Dem_EventIdType DebounceStatusIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DebounceStatusIdx = Dem_GbiDebounceStatusIdx (EventId);
+  # DEBUG BEGIN_STMT
+  DebounceClassIdx = Dem_GbiDebounceCounterClassIdx (DebounceStatusIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) DebounceClassIdx;
+  DebounceCfg = &Dem_DebounceCounterClass[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) DebounceStatusIdx;
+  DebounceCounter = &Dem_DebounceCounterStatus[_2];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = *EventStatus;
+  _4 = (int) _3;
+  switch (_4) <default: <L17> [INV], case 0: <L16> [INV], case 2: <L0> [INV], case 3: <L8> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _5 = DebounceCfg->JumpDown;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _6 = *DebounceCounter;
+  _7 = DebounceCfg->JumpDownValue;
+  if (_6 > _7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = DebounceCfg->JumpDownValue;
+  *DebounceCounter = _8;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = *DebounceCounter;
+  _10 = (int) _9;
+  _11 = DebounceCfg->CounterPassedThreshold;
+  _12 = (int) _11;
+  _13 = DebounceCfg->CountDecStepSize;
+  _14 = (short int) _13;
+  _15 = (int) _14;
+  _16 = _12 + _15;
+  if (_10 > _16)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _17 = *DebounceCounter;
+  _18 = (unsigned short) _17;
+  _19 = DebounceCfg->CountDecStepSize;
+  _20 = _18 - _19;
+  _21 = (short int) _20;
+  *DebounceCounter = _21;
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = DebounceCfg->CounterPassedThreshold;
+  *DebounceCounter = _22;
+  # DEBUG BEGIN_STMT
+  *EventStatus = 0;
+  goto <bb 17>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _23 = DebounceCfg->JumpUp;
+  if (_23 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _24 = *DebounceCounter;
+  _25 = DebounceCfg->JumpUpValue;
+  if (_24 < _25)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _26 = DebounceCfg->JumpUpValue;
+  *DebounceCounter = _26;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _27 = *DebounceCounter;
+  _28 = (int) _27;
+  _29 = DebounceCfg->CounterFailedThreshold;
+  _30 = (int) _29;
+  _31 = DebounceCfg->CountIncStepSize;
+  _32 = (short int) _31;
+  _33 = (int) _32;
+  _34 = _30 - _33;
+  if (_28 < _34)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _35 = *DebounceCounter;
+  _36 = (unsigned short) _35;
+  _37 = DebounceCfg->CountIncStepSize;
+  _38 = _36 + _37;
+  _39 = (short int) _38;
+  *DebounceCounter = _39;
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _40 = DebounceCfg->CounterFailedThreshold;
+  *DebounceCounter = _40;
+  # DEBUG BEGIN_STMT
+  *EventStatus = 1;
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  _41 = DebounceCfg->CounterPassedThreshold;
+  *DebounceCounter = _41;
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+<L17>:
+  # DEBUG BEGIN_STMT
+  _42 = DebounceCfg->CounterFailedThreshold;
+  *DebounceCounter = _42;
+  # DEBUG BEGIN_STMT
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_ResetDebounceMonitor (Dem_EventIdType EventId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_FreezeDebounceCounterBased (Dem_EventIdType EventId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_ResetDebounceCounterBased (Dem_EventIdType EventId)
+{
+  const Dem_EventIdType DebounceStatusIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DebounceStatusIdx = Dem_GbiDebounceStatusIdx (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) DebounceStatusIdx;
+  Dem_DebounceCounterStatus[_1] = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_ClearAgedEventEntry (Dem_EventIdType EventId, struct Dem_EventMemoryEntryType * EvMemEntry)
+{
+  uint8 EventStatusClearMask;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EventStatusClearMask = 8;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_ClearEventEntry (EvMemEntry);
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_NvData.DTCStatusMask[_1];
+  _3 = ~EventStatusClearMask;
+  _4 = (int) EventId;
+  _5 = _2 & _3;
+  Dem_NvData.DTCStatusMask[_4] = _5;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_StoreImmediately (uint8 OriginIdx, Dem_SizeEvMemEntryType EntryIdx)
+{
+  const struct Dem_FFClassType * const FFClass;
+  Dem_FFIdxType NumFF;
+  Dem_FFIdxType MaxNumFF;
+  Dem_SizeEntryDataType SizeUsedEntryData;
+  const Dem_EventIdType EvId;
+  struct Dem_GateEntryOBDFFPrimaryFragmentType * const GateOBDFFEntry;
+  struct Dem_EventMemoryEntryType * const EvMemEntry;
+  struct Dem_GateEntryBaseType * const GateEntryBase;
+  const Dem_SizeEntryDataType SizeGateEntryData[4];
+  int D.8262;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SizeGateEntryData = *.LC0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) OriginIdx;
+  GateEntryBase = Dem_NvGateEntryData[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) OriginIdx;
+  _3 = Dem_EventMem[_2];
+  _4 = (unsigned int) EntryIdx;
+  _5 = _4 * 16;
+  EvMemEntry = _3 + _5;
+  # DEBUG BEGIN_STMT
+  GateOBDFFEntry = &Dem_NvGateEntryPrimaryData.OBDFFEntry;
+  # DEBUG BEGIN_STMT
+  EvId = EvMemEntry->EventId;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  GateEntryBase->EntryBase.EventId = EvId;
+  # DEBUG BEGIN_STMT
+  if (EvId != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  MaxNumFF = Dem_GbiMaxNumFFRecs (EvId);
+  # DEBUG BEGIN_STMT
+  _6 = EvMemEntry->OccCtr;
+  NumFF = MIN_EXPR <MaxNumFF, _6>;
+  # DEBUG BEGIN_STMT
+  _7 = Dem_GbiFFClassIdx (EvId);
+  _8 = (int) _7;
+  FFClass = &Dem_FFClass[_8];
+  # DEBUG BEGIN_STMT
+  _9 = EvMemEntry->OccCtr;
+  GateEntryBase->EntryBase.OccCtr = _9;
+  # DEBUG BEGIN_STMT
+  _10 = EvMemEntry->OccOrder;
+  GateEntryBase->EntryBase.OccOrder = _10;
+  # DEBUG BEGIN_STMT
+  _11 = EvMemEntry->EventFailureCycleCounter;
+  GateEntryBase->EntryBase.EventFailureCycleCounter = _11;
+  # DEBUG BEGIN_STMT
+  _12 = (int) EvId;
+  _13 = Dem_NvData.DTCStatusMask[_12];
+  _14 = (unsigned int) _13;
+  _15 = _14 >> 3;
+  _16 = (unsigned char) _15;
+  _17 = _16 & 1;
+  GateEntryBase->EntryBase.CDTCFlag = _17;
+  # DEBUG BEGIN_STMT
+  SizeUsedEntryData = Dem_EvMemEntrySize (EvId, 0);
+  # DEBUG BEGIN_STMT
+  if (OriginIdx == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _18 = Dem_GbiDTCKind (EvId);
+  if (_18 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) EntryIdx;
+  _20 = Dem_EntryOBDFF[_19].OBDOccOrder;
+  Dem_NvGateEntryPrimaryData.OBDFFEntry.OBDFF.OBDOccOrder = _20;
+  # DEBUG BEGIN_STMT
+  _21 = &Dem_NvGateEntryPrimaryData.OBDFFEntry + 2;
+  _22 = (int) EntryIdx;
+  _23 = &Dem_EntryOBDFF[_22].OBDFFData;
+  TS_MemCpy32 (_21, _23, 35);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _24 = (int) MaxNumFF;
+  _25 = (int) NumFF;
+  _26 = _24 - _25;
+  _27 = Dem_SizeOfFF (2, FFClass);
+  _28 = (int) _27;
+  D.8262 = _26 * _28;
+  _29 = (short unsigned int) D.8262;
+  SizeUsedEntryData = SizeUsedEntryData - _29;
+  # DEBUG BEGIN_STMT
+  _30 = (int) OriginIdx;
+  _31 = Dem_GateEntryData[_30];
+  if (_31 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (SizeUsedEntryData != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _32 = (int) OriginIdx;
+  _33 = Dem_GateEntryData[_32];
+  _34 = (int) OriginIdx;
+  _35 = Dem_EntryData[_34];
+  _36 = EvMemEntry->EntryDataPos;
+  _37 = (sizetype) _36;
+  _38 = _35 + _37;
+  _39 = (long unsigned int) SizeUsedEntryData;
+  TS_MemCpy32 (_33, _38, _39);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  GateEntryBase->EntryBase.OccCtr = 0;
+  # DEBUG BEGIN_STMT
+  GateEntryBase->EntryBase.OccOrder = 0;
+  # DEBUG BEGIN_STMT
+  GateEntryBase->EntryBase.EventFailureCycleCounter = 0;
+  # DEBUG BEGIN_STMT
+  SizeUsedEntryData = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _40 = (int) OriginIdx;
+  _41 = Dem_GateEntryData[_40];
+  if (_41 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _42 = (int) OriginIdx;
+  _43 = Dem_GateEntryData[_42];
+  _44 = (sizetype) SizeUsedEntryData;
+  _45 = _43 + _44;
+  *_45 = 0;
+  # DEBUG BEGIN_STMT
+  SizeUsedEntryData = SizeUsedEntryData + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _46 = (int) OriginIdx;
+  _47 = SizeGateEntryData[_46];
+  if (SizeUsedEntryData < _47)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _48 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_48].PendingEntryIdx = EntryIdx;
+  # DEBUG BEGIN_STMT
+  EvMemEntry->EntryStatus = 0;
+  # DEBUG BEGIN_STMT
+  SizeGateEntryData = {CLOBBER};
+  return;
+
+}
+
+
+Dem_StoreImmediatelyNext (uint8 OriginIdx)
+{
+  Dem_OccOrderType MinOccOrder;
+  boolean ClearedEntriesFound;
+  Dem_SizeEvMemEntryType FoundEntryIdx;
+  Dem_SizeEvMemEntryType EntryIdx;
+  struct Dem_EventMemoryEntryType * const EvMemEntry;
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  boolean PerformStoreImmediately;
+  boolean D.8108;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PerformStoreImmediately = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.25_1 = Dem_InitializationState;
+  _2 = Dem_InitializationState.25_1 + 4294967294;
+  if (_2 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 129, 32);
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.26_3 = Dem_InitializationState;
+  if (Dem_InitializationState.26_3 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) OriginIdx;
+  SizeEventMem = Dem_SizeEventMem[_4];
+  # DEBUG BEGIN_STMT
+  _5 = (int) OriginIdx;
+  EvMemEntry = Dem_EventMem[_5];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FoundEntryIdx = SizeEventMem;
+  # DEBUG BEGIN_STMT
+  ClearedEntriesFound = 0;
+  # DEBUG BEGIN_STMT
+  MinOccOrder = 65535;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _6 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_6].Status = 0;
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) EntryIdx;
+  _8 = _7 * 16;
+  _9 = EvMemEntry + _8;
+  _10 = _9->EntryStatus;
+  if (_10 == 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  FoundEntryIdx = EntryIdx;
+  # DEBUG BEGIN_STMT
+  ClearedEntriesFound = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) EntryIdx;
+  _12 = _11 * 16;
+  _13 = EvMemEntry + _12;
+  _14 = _13->EntryStatus;
+  if (_14 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _15 = (unsigned int) EntryIdx;
+  _16 = _15 * 16;
+  _17 = EvMemEntry + _16;
+  _18 = _17->OccOrder;
+  if (MinOccOrder > _18)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _19 = (unsigned int) EntryIdx;
+  _20 = _19 * 16;
+  _21 = EvMemEntry + _20;
+  MinOccOrder = _21->OccOrder;
+  # DEBUG BEGIN_STMT
+  FoundEntryIdx = EntryIdx;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EntryIdx = EntryIdx + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx < SizeEventMem)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (FoundEntryIdx < SizeEventMem)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  PerformStoreImmediately = 1;
+  # DEBUG BEGIN_STMT
+  Dem_StoreImmediately (OriginIdx, FoundEntryIdx);
+  # DEBUG BEGIN_STMT
+  _22 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_22].Status = 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _23 = Dem_ClearDtcAsyncStatus.OriginIdx;
+  if (OriginIdx == _23)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 16> :
+  if (ClearedEntriesFound == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventMemWrite = 0;
+  # DEBUG BEGIN_STMT
+  _24 = Dem_ClearDtcAsyncStatus.EventStatusWrite;
+  if (_24 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _25 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_25 == 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.OperationResult = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.RunState = 4;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _26 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_26].Status = 0;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8108 = PerformStoreImmediately;
+  return D.8108;
+
+}
+
+
+Dem_CheckForTriggerNvmWriteGateEntry ()
+{
+  const Dem_SizeEvMemEntryType EntryIdx;
+  const Dem_SizeEvMemEntryType EntryIdx;
+  Std_ReturnType ResultFromNvM;
+  const NvM_BlockIdType NvDataBlockId;
+  Std_ReturnType WriteBlockResult[4];
+  boolean GateIsWaiting[4];
+  boolean NvMErrorHandlingNeeded;
+  uint8 OriginIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMErrorHandlingNeeded = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  OriginIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) OriginIdx;
+  _2 = Dem_NvMGateEntryInfo[_1].Status;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_3].Status = 2;
+  # DEBUG BEGIN_STMT
+  _4 = (int) OriginIdx;
+  GateIsWaiting[_4] = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) OriginIdx;
+  GateIsWaiting[_5] = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OriginIdx = OriginIdx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (OriginIdx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  OriginIdx = 0;
+  goto <bb 17>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) OriginIdx;
+  NvDataBlockId = Dem_NvDataBlockId[_6];
+  # DEBUG BEGIN_STMT
+  _7 = (int) OriginIdx;
+  _8 = GateIsWaiting[_7];
+  if (_8 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = (int) OriginIdx;
+  EntryIdx = Dem_NvMGateEntryInfo[_9].PendingEntryIdx;
+  # DEBUG BEGIN_STMT
+  ResultFromNvM = NvM_ASR40_SetDataIndex (NvDataBlockId, EntryIdx);
+  # DEBUG BEGIN_STMT
+  if (ResultFromNvM == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ResultFromNvM = NvM_ASR40_WriteBlock (NvDataBlockId, 0B);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (ResultFromNvM != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  NvMErrorHandlingNeeded = 1;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) OriginIdx;
+  WriteBlockResult[_10] = ResultFromNvM;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) OriginIdx;
+  WriteBlockResult[_11] = 1;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OriginIdx = OriginIdx + 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (OriginIdx <= 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (NvMErrorHandlingNeeded == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  OriginIdx = 0;
+  goto <bb 27>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) OriginIdx;
+  _13 = GateIsWaiting[_12];
+  if (_13 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 21> :
+  _14 = (int) OriginIdx;
+  _15 = WriteBlockResult[_14];
+  if (_15 != 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) OriginIdx;
+  EntryIdx = Dem_NvMGateEntryInfo[_16].PendingEntryIdx;
+  # DEBUG BEGIN_STMT
+  _17 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_17 == 2)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 23> :
+  _18 = Dem_ClearDtcAsyncStatus.OriginIdx;
+  if (OriginIdx == _18)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.OperationResult = 6;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventMemWrite = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.RunState = 3;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) OriginIdx;
+  _20 = Dem_EventMem[_19];
+  _21 = (unsigned int) EntryIdx;
+  _22 = _21 * 16;
+  _23 = _20 + _22;
+  _23->EntryStatus = 1;
+  # DEBUG BEGIN_STMT
+  _24 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_24].Status = 0;
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  OriginIdx = OriginIdx + 1;
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  if (OriginIdx <= 3)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  GateIsWaiting = {CLOBBER};
+  WriteBlockResult = {CLOBBER};
+  return;
+
+}
+
+
+Dem_TriggerNvmWriteEventStatus ()
+{
+  Std_ReturnType WriteBlockResult;
+  Std_ReturnType NvMResult;
+  NvM_RequestResultType NvMErrorStatus;
+  Std_ReturnType D.8232;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvMErrorStatus = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WriteBlockResult = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMResult = NvM_ASR40_GetErrorStatus (4, &NvMErrorStatus);
+  # DEBUG BEGIN_STMT
+  if (NvMResult != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  NvMErrorStatus.34_1 = NvMErrorStatus;
+  if (NvMErrorStatus.34_1 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_2 != 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _3 = Dem_ClearDtcAsyncStatus.EventStatusWrite;
+  if (_3 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventStatusWrite = 1;
+  # DEBUG BEGIN_STMT
+  WriteBlockResult = NvM_ASR40_WriteBlock (4, 0B);
+  # DEBUG BEGIN_STMT
+  if (WriteBlockResult != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventStatusWrite = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.OperationResult = 6;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.RunState = 3;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8232 = WriteBlockResult;
+  NvMErrorStatus = {CLOBBER};
+  return D.8232;
+
+}
+
+
+Dem_CheckForImmediateEntryStorage (Dem_EventIdType OriginalEventId, struct Dem_EventMemoryEntryType * EvMemEntryPtr, Dem_SizeEvMemEntryType EvMemEntryIdx, boolean ForceWrite)
+{
+  boolean ImmStorageOriginalEvent;
+  boolean ImmStorageCurrentEvent;
+  const Dem_EventIdType CurrentEventId;
+  const uint8 OriginIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OriginIdx = Dem_GbiDTCOriginIdx (OriginalEventId);
+  # DEBUG BEGIN_STMT
+  CurrentEventId = EvMemEntryPtr->EventId;
+  # DEBUG BEGIN_STMT
+  ImmStorageCurrentEvent = 0;
+  # DEBUG BEGIN_STMT
+  ImmStorageOriginalEvent = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EvMemEntryPtr->EntryStatus;
+  if (_1 != 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ForceWrite == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ImmStorageCurrentEvent = Dem_GbiImmediateStorage (CurrentEventId);
+  # DEBUG BEGIN_STMT
+  ImmStorageOriginalEvent = Dem_GbiImmediateStorage (OriginalEventId);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ForceWrite == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  if (ImmStorageCurrentEvent == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (ImmStorageOriginalEvent == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EvMemEntryPtr->EntryStatus = 1;
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) OriginIdx;
+  _3 = Dem_NvMGateEntryInfo[_2].Status;
+  if (_3 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _4 = EvMemEntryPtr->EventId;
+  if (_4 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EvMemEntryPtr->EntryStatus = 2;
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EvMemEntryPtr->EntryStatus = 3;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Dem_StoreImmediately (OriginIdx, EvMemEntryIdx);
+  # DEBUG BEGIN_STMT
+  _5 = (int) OriginIdx;
+  Dem_NvMGateEntryInfo[_5].Status = 1;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_ShiftData (Dem_EntryDataType * EntryData, Dem_SizeEntryDataType Offset, Dem_SizeEntryDataType Width)
+{
+  Dem_SizeEntryDataType i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i;
+  _2 = (int) Offset;
+  _3 = _1 + _2;
+  _4 = (sizetype) _3;
+  _5 = EntryData + _4;
+  _6 = (sizetype) i;
+  _7 = EntryData + _6;
+  _8 = *_5;
+  *_7 = _8;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (i < Width)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_SizeOfIntValArea (Dem_EventIdType EventId)
+{
+  uint8 SizeOfIntVal;
+  uint8 D.8205;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SizeOfIntVal = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dem_GbiNumAgingCycles (EventId);
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SizeOfIntVal = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8205 = SizeOfIntVal;
+  return D.8205;
+
+}
+
+
+Dem_AssembleExtendedDataSeg (Dem_EventIdType EventId, const struct Dem_EDSegmentType * EDSegment, Dem_EDStartByteType EDStartByte, uint8 * DestBuffer, const struct Dem_EventMemoryEntryType * EvMemEntry)
+{
+  const Dem_EntryDataType * const EDEntryData;
+  const Dem_SizeEntryDataType DataElementSize;
+  const Dem_DataElementOffsetType EDDataElemOffset;
+  const Dem_DataElementIdxType DataElementIdx;
+  Dem_SizeEntryDataType EDSegSize;
+  Dem_NumDataElementsType DataElementIndex;
+  Dem_SizeEntryDataType D.8201;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EDSegSize = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DataElementIndex = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = EDSegment->DataElementIdx;
+  _2 = (unsigned int) DataElementIndex;
+  _3 = _2 * 2;
+  _4 = _1 + _3;
+  DataElementIdx = *_4;
+  # DEBUG BEGIN_STMT
+  _5 = EDSegment->DataElementOffset;
+  _6 = (unsigned int) DataElementIndex;
+  _7 = _6 * 2;
+  _8 = _5 + _7;
+  EDDataElemOffset = *_8;
+  # DEBUG BEGIN_STMT
+  if (DataElementIdx <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) DataElementIdx;
+  _10 = Dem_DataElement[_9].Size;
+  DataElementSize = (const Dem_SizeEntryDataType) _10;
+  # DEBUG BEGIN_STMT
+  _11 = Dem_EDEntryData (EvMemEntry);
+  _12 = (sizetype) EDStartByte;
+  EDEntryData = _11 + _12;
+  # DEBUG BEGIN_STMT
+  _13 = (sizetype) EDSegSize;
+  _14 = DestBuffer + _13;
+  _15 = (sizetype) EDDataElemOffset;
+  _16 = EDEntryData + _15;
+  _17 = (long unsigned int) DataElementSize;
+  TS_MemCpy32 (_14, _16, _17);
+  # DEBUG BEGIN_STMT
+  EDSegSize = EDSegSize + DataElementSize;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DataElementIndex = DataElementIndex + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _18 = EDSegment->NumEDDataElements;
+  if (DataElementIndex < _18)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8201 = EDSegSize;
+  return D.8201;
+
+}
+
+
+Dem_SizeOfEDSegment (const struct Dem_EDSegmentType * EDSegment)
+{
+  Dem_SizeEDType Result;
+  const Dem_NumDataElementsType LastDataElemIdx;
+  Dem_SizeEDType D.8196;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = EDSegment->NumEDDataElements;
+  LastDataElemIdx = _1 + 255;
+  # DEBUG BEGIN_STMT
+  _2 = EDSegment->DataElementOffset;
+  _3 = (unsigned int) LastDataElemIdx;
+  _4 = _3 * 2;
+  _5 = _2 + _4;
+  Result = *_5;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = EDSegment->DataElementIdx;
+  _7 = (unsigned int) LastDataElemIdx;
+  _8 = _7 * 2;
+  _9 = _6 + _8;
+  _10 = *_9;
+  _11 = (int) _10;
+  _12 = Dem_DataElement[_11].Size;
+  _13 = (short unsigned int) _12;
+  Result = Result + _13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8196 = Result;
+  return D.8196;
+
+}
+
+
+Dem_SizeOfED (const struct Dem_EDClassType * EDClass)
+{
+  const Dem_EDSegIdxType LastSegIdx;
+  Dem_SizeEDType Result;
+  Dem_SizeEDType D.8194;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EDClass->NumEDSegs;
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = EDClass->NumEDSegs;
+  LastSegIdx = _2 + 255;
+  # DEBUG BEGIN_STMT
+  _3 = EDClass->StartByte;
+  _4 = (unsigned int) LastSegIdx;
+  _5 = _4 * 2;
+  _6 = _3 + _5;
+  _7 = *_6;
+  _8 = EDClass->EDSegIdx;
+  _9 = (sizetype) LastSegIdx;
+  _10 = _8 + _9;
+  _11 = *_10;
+  _12 = (int) _11;
+  _13 = &Dem_EDSegment[_12];
+  _14 = Dem_SizeOfEDSegment (_13);
+  Result = _7 + _14;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8194 = Result;
+  return D.8194;
+
+}
+
+
+Dem_GetNumFFSegs (Dem_FFKindType FFKind, const struct Dem_FFClassType * IndividPartFFClass)
+{
+  const struct Dem_FFClassType * FFPartClass[1];
+  uint8_least FFPartIdx;
+  Dem_NumFFSegsType NumFFSegs;
+  Dem_NumFFSegsType D.8189;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NumFFSegs = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartClass[0] = IndividPartFFClass;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartIdx = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = FFPartClass[FFPartIdx];
+  _2 = _1->NumFFSegs;
+  NumFFSegs = NumFFSegs + _2;
+  # DEBUG BEGIN_STMT
+  FFPartIdx = FFPartIdx + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (FFPartIdx == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8189 = NumFFSegs;
+  FFPartClass = {CLOBBER};
+  return D.8189;
+
+}
+
+
+Dem_SizeOfFFSegment (const struct Dem_FFSegmentType * FFSegment)
+{
+  const Dem_SizeFFType Result;
+  const Dem_NumDataElementsType LastDataElemIdx;
+  Dem_SizeFFType D.8187;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = FFSegment->NumFFDataElements;
+  LastDataElemIdx = _1 + 255;
+  # DEBUG BEGIN_STMT
+  _2 = FFSegment->DataElementOffset;
+  _3 = (unsigned int) LastDataElemIdx;
+  _4 = _3 * 2;
+  _5 = _2 + _4;
+  _6 = *_5;
+  _7 = FFSegment->DataElementIdx;
+  _8 = (unsigned int) LastDataElemIdx;
+  _9 = _8 * 2;
+  _10 = _7 + _9;
+  _11 = *_10;
+  _12 = (int) _11;
+  _13 = Dem_DataElement[_12].Size;
+  _14 = (short unsigned int) _13;
+  Result = _6 + _14;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8187 = Result;
+  return D.8187;
+
+}
+
+
+Dem_SizeOfFF (Dem_FFKindType FFKind, const struct Dem_FFClassType * IndividPartFFClass)
+{
+  const Dem_FFSegIdxType FFSegIdx;
+  Dem_NumFFSegsType SegIdx;
+  const struct Dem_FFClassType * FFPartClass[1];
+  uint8_least FFPartIdx;
+  Dem_SizeFFType Result;
+  Dem_SizeFFType D.8184;
+  short unsigned int D.8183;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartClass[0] = IndividPartFFClass;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartIdx = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SegIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = FFPartClass[FFPartIdx];
+  _2 = _1->FFSegIdx;
+  _3 = (unsigned int) SegIdx;
+  _4 = _3 * 2;
+  _5 = _2 + _4;
+  FFSegIdx = *_5;
+  # DEBUG BEGIN_STMT
+  if (FFSegIdx != 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) FFSegIdx;
+  _7 = &Dem_FFSegment[_6];
+  D.8183 = Dem_SizeOfFFSegment (_7);
+  Result = D.8183 + Result;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SegIdx.33_8 = SegIdx;
+  SegIdx = SegIdx.33_8 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _9 = FFPartClass[FFPartIdx];
+  _10 = _9->NumFFSegs;
+  if (SegIdx < _10)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  FFPartIdx = FFPartIdx + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (FFPartIdx == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8184 = Result;
+  FFPartClass = {CLOBBER};
+  return D.8184;
+
+}
+
+
+Dem_InternalGetIndicatorStatus (Dem_IndicatorIdType IndicatorId, boolean NeedOnlyOnOffStatus)
+{
+  Dem_IndicatorStatusType Behaviour;
+  const Dem_CounterDataIdxType CounterDataIdx;
+  Dem_IndicatorIdxType LinkIdx;
+  const struct Dem_IndicatorLinkType * IndicatorLink;
+  Dem_IndicatorStatusType MinStatus;
+  Dem_IndicatorStatusType Status;
+  Dem_IndicatorStatusType D.8179;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Status = 0;
+  # DEBUG BEGIN_STMT
+  MinStatus = 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NeedOnlyOnOffStatus == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  MinStatus = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) IndicatorId;
+  _2 = Dem_IndicatorDesc[_1].StartIdx;
+  _3 = (int) _2;
+  IndicatorLink = &Dem_IndicatorLink[_3];
+  # DEBUG BEGIN_STMT
+  LinkIdx = 0;
+  goto <bb 16>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) IndicatorId;
+  _5 = Dem_IndicatorDesc[_4].StartIdx;
+  CounterDataIdx = LinkIdx + _5;
+  # DEBUG BEGIN_STMT
+  _6 = CounterDataIdx / 8;
+  _7 = (unsigned int) _6;
+  _8 = Dem_NvData.IndicatorCycleCounterWIRStatus[0][_7];
+  _9 = (unsigned int) CounterDataIdx;
+  _10 = _9 & 7;
+  _11 = 1 << _10;
+  _12 = (unsigned char) _11;
+  _13 = _8 & _12;
+  if (_13 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) LinkIdx;
+  _15 = _14 * 6;
+  _16 = IndicatorLink + _15;
+  Behaviour = _16->Behaviour;
+  # DEBUG BEGIN_STMT
+  if (Status == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Status = Behaviour;
+  goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (Status != Behaviour)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (Status <= 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  if (Behaviour <= 3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Status = 3;
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (Behaviour > Status)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Status = Behaviour;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (Status >= MinStatus)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  LinkIdx = LinkIdx + 1;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _17 = (int) IndicatorId;
+  _18 = Dem_IndicatorDesc[_17].Number;
+  if (LinkIdx < _18)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8179 = Status;
+  return D.8179;
+
+}
+
+
+Dem_InternalSetDTCSuppression (uint32 DTC, Dem_DTCFormatType DTCFormat, boolean SuppressionStatus)
+{
+  Std_ReturnType Result;
+  Std_ReturnType D.8137;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DTCFormat == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result = Dem_InternalCheckAndSetDTCSuppression (DTC, Dem_InternalGetObdDTC, &Dem_OBDDTCSuppression, SuppressionStatus);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Result = Dem_InternalCheckAndSetDTCSuppression (DTC, Dem_InternalGetUdsDTC, &Dem_UDSDTCSuppression, SuppressionStatus);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8137 = Result;
+  return D.8137;
+
+}
+
+
+Dem_NvMGateEntryBlockCallback (uint8 ServiceId, uint8 OriginIdx)
+{
+  boolean PerformStoreImmediately;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ServiceId == 7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PerformStoreImmediately = Dem_StoreImmediatelyNext (OriginIdx);
+  # DEBUG BEGIN_STMT
+  if (PerformStoreImmediately == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dem_CheckForTriggerNvmWriteGateEntry ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_NvMWriteCopyPermanentMemory (void * NvMBuffer)
+{
+  const Dem_PermanentMemoryEntryType Entry;
+  uint8 EntryIdx;
+  uint16 BufferIndex;
+  uint8 * const BufferPtr;
+  Std_ReturnType Result;
+  Std_ReturnType D.8132;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NvMBuffer == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 17);
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BufferPtr = NvMBuffer;
+  # DEBUG BEGIN_STMT
+  BufferIndex = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  Entry = Dem_EventMemoryPermanent[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (sizetype) BufferIndex;
+  _3 = BufferPtr + _2;
+  _4 = (unsigned char) Entry;
+  *_3 = _4;
+  # DEBUG BEGIN_STMT
+  _5 = Entry >> 8;
+  _6 = (sizetype) BufferIndex;
+  _7 = _6 + 1;
+  _8 = BufferPtr + _7;
+  _9 = (unsigned char) _5;
+  *_8 = _9;
+  # DEBUG BEGIN_STMT
+  BufferIndex = BufferIndex + 2;
+  # DEBUG BEGIN_STMT
+  _10 = (unsigned int) Entry;
+  _11 = _10 & 8191;
+  if (_11 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) EntryIdx;
+  Dem_EventMemoryPermanentNonVolatileStored[_12] = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.30_13 = EntryIdx;
+  EntryIdx = EntryIdx.30_13 + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8132 = Result;
+  return D.8132;
+
+}
+
+
+Dem_NvMReadCopyPermanentMemory (const void * NvMBuffer)
+{
+  Dem_PermanentMemoryEntryType Entry;
+  uint8 EntryIdx;
+  uint16 BufferIndex;
+  const uint8 * const BufferPtr;
+  Std_ReturnType Result;
+  Std_ReturnType D.8125;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  BufferPtr = NvMBuffer;
+  # DEBUG BEGIN_STMT
+  BufferIndex = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.28_1 = Dem_InitializationState;
+  if (Dem_InitializationState.28_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (NvMBuffer == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 17);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (sizetype) BufferIndex;
+  _3 = _2 + 1;
+  _4 = BufferPtr + _3;
+  _5 = *_4;
+  _6 = (short unsigned int) _5;
+  Entry = _6 << 8;
+  # DEBUG BEGIN_STMT
+  _7 = (sizetype) BufferIndex;
+  _8 = BufferPtr + _7;
+  _9 = *_8;
+  _10 = (short unsigned int) _9;
+  Entry = Entry + _10;
+  # DEBUG BEGIN_STMT
+  BufferIndex = BufferIndex + 2;
+  # DEBUG BEGIN_STMT
+  _11 = (int) EntryIdx;
+  Dem_EventMemoryPermanent[_11] = Entry;
+  # DEBUG BEGIN_STMT
+  EntryIdx.29_12 = EntryIdx;
+  EntryIdx = EntryIdx.29_12 + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8125 = Result;
+  return D.8125;
+
+}
+
+
+Dem_NvMWriteFinishedPermanentMemory (uint8 ServiceId, NvM_RequestResultType JobResult)
+{
+  Std_ReturnType Result;
+  Dem_SizeEvMemEntryType EntryIdx;
+  Std_ReturnType D.8117;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (JobResult == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  _2 = Dem_EventMemoryPermanentNonVolatileStored[_1];
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EntryIdx;
+  Dem_EventMemoryPermanentNonVolatileStored[_3] = 2;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.27_4 = EntryIdx;
+  EntryIdx = EntryIdx.27_4 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8117 = Result;
+  return D.8117;
+
+}
+
+
+Dem_NvMGateEntrySecondaryBlockCallback (uint8 ServiceId, NvM_RequestResultType JobResult)
+{
+  Std_ReturnType D.8110;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_NvMGateEntryBlockCallback (ServiceId, 3);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8110 = 0;
+  return D.8110;
+
+}
+
+
+Dem_NvMGateEntryPrimaryBlockCallback (uint8 ServiceId, NvM_RequestResultType JobResult)
+{
+  Std_ReturnType D.8079;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_NvMGateEntryBlockCallback (ServiceId, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8079 = 0;
+  return D.8079;
+
+}
+
+
+Dem_NvMEventStatusBlockCallback (uint8 ServiceId, NvM_RequestResultType JobResult)
+{
+  Std_ReturnType Result;
+  Std_ReturnType D.8077;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ServiceId == 7)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (ServiceId == 13)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.24_1 = Dem_InitializationState;
+  if (Dem_InitializationState.24_1 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_ClearDtcAsyncStatus.EventStatusWrite;
+  if (_2 != 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _3 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_3 == 4)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventStatusWrite = 0;
+  # DEBUG BEGIN_STMT
+  _4 = Dem_ClearDtcAsyncStatus.EventMemWrite;
+  if (_4 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _5 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_5 == 2)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.OperationResult = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.RunState = 4;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8077 = Result;
+  return D.8077;
+
+}
+
+
+Dem_NvMWriteCopyEventStatusBlock (void * NvMBuffer)
+{
+  Std_ReturnType Result;
+  Std_ReturnType D.8060;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.23_1 = Dem_InitializationState;
+  if (Dem_InitializationState.23_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_ClearDtcAsyncStatus.EventStatusWrite;
+  if (_2 != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Dem_ClearDtcAsyncStatus.RunState;
+  if (_3 != 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (NvMBuffer == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 17);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NvMBuffer != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_ClearDtcAsyncStatus.EventStatusWrite = 2;
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (NvMBuffer, &Dem_NvData, 36);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8060 = Result;
+  return D.8060;
+
+}
+
+
+Dem_NvMReadCopyEventStatusBlock (const void * NvMBuffer)
+{
+  Std_ReturnType Result;
+  Std_ReturnType D.8045;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.22_1 = Dem_InitializationState;
+  if (Dem_InitializationState.22_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 64);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (NvMBuffer == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 255, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Dem_NvData, NvMBuffer, 36);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8045 = Result;
+  return D.8045;
+
+}
+
+
+Dem_EvMemEntrySize (Dem_EventIdType EventId, boolean MaximalSize)
+{
+  Dem_SizeEntryDataType SizeOfFF;
+  const struct Dem_FFClassType * const FFClass;
+  const struct Dem_EDClassType * const EDClass;
+  Dem_SizeEntryDataType SizeOfEntryData;
+  Dem_SizeEntryDataType D.8037;
+  int D.8036;
+  short unsigned int D.8035;
+  unsigned char D.8034;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SizeOfEntryData = 0;
+  # DEBUG BEGIN_STMT
+  _1 = Dem_GbiEDClassIdx (EventId);
+  _2 = (int) _1;
+  EDClass = &Dem_EDClass[_2];
+  # DEBUG BEGIN_STMT
+  _3 = Dem_GbiFFClassIdx (EventId);
+  _4 = (int) _3;
+  FFClass = &Dem_FFClass[_4];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8034 = Dem_SizeOfIntValArea (EventId);
+  _5 = (short unsigned int) D.8034;
+  SizeOfEntryData = SizeOfEntryData + _5;
+  # DEBUG BEGIN_STMT
+  D.8035 = Dem_SizeOfED (EDClass);
+  SizeOfEntryData = D.8035 + SizeOfEntryData;
+  # DEBUG BEGIN_STMT
+  SizeOfFF = Dem_SizeOfFF (2, FFClass);
+  # DEBUG BEGIN_STMT
+  _6 = (int) SizeOfFF;
+  _7 = Dem_GbiMaxNumFFRecs (EventId);
+  _8 = (int) _7;
+  D.8036 = _6 * _8;
+  _9 = (short unsigned int) D.8036;
+  SizeOfEntryData = SizeOfEntryData + _9;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8037 = SizeOfEntryData;
+  return D.8037;
+
+}
+
+
+Dem_ClearEventEntry (struct Dem_EventMemoryEntryType * EvMemEntry)
+{
+  const Dem_SizeEntryDataType Width;
+  const uint8 OriginIdx;
+  Dem_SizeEvMemEntryType Entry;
+  const Dem_SizeEntryDataType EntryDataSize;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EvMemEntry->EventId;
+  EntryDataSize = Dem_EvMemEntrySize (_1, 1);
+  # DEBUG BEGIN_STMT
+  if (EntryDataSize != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = EvMemEntry->EventId;
+  OriginIdx = Dem_GbiDTCOriginIdx (_2);
+  # DEBUG BEGIN_STMT
+  _3 = (int) OriginIdx;
+  _4 = Dem_EntryDataFreePos[_3];
+  _5 = *_4;
+  _6 = EvMemEntry->EntryDataPos;
+  _7 = _5 - _6;
+  Width = _7 - EntryDataSize;
+  # DEBUG BEGIN_STMT
+  _8 = Dem_IntValEntryData (EvMemEntry);
+  Dem_ShiftData (_8, EntryDataSize, Width);
+  # DEBUG BEGIN_STMT
+  Entry = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) OriginIdx;
+  _10 = Dem_EventMem[_9];
+  _11 = (unsigned int) Entry;
+  _12 = _11 * 16;
+  _13 = _10 + _12;
+  _14 = _13->EntryDataPos;
+  _15 = EvMemEntry->EntryDataPos;
+  if (_14 > _15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) OriginIdx;
+  _17 = Dem_EventMem[_16];
+  _18 = (unsigned int) Entry;
+  _19 = _18 * 16;
+  _20 = _17 + _19;
+  _21 = _20->EntryDataPos;
+  _22 = (int) OriginIdx;
+  _23 = Dem_EventMem[_22];
+  _24 = (unsigned int) Entry;
+  _25 = _24 * 16;
+  _26 = _23 + _25;
+  _27 = _21 - EntryDataSize;
+  _26->EntryDataPos = _27;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Entry = Entry + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _28 = (int) OriginIdx;
+  _29 = Dem_SizeEventMem[_28];
+  if (Entry < _29)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _30 = (int) OriginIdx;
+  _31 = Dem_EntryDataFreePos[_30];
+  _32 = *_31;
+  _33 = (int) OriginIdx;
+  _34 = Dem_EntryDataFreePos[_33];
+  _35 = _32 - EntryDataSize;
+  *_34 = _35;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _36 = EvMemEntry->EventId;
+  Dem_SetEvEntryExists (_36, 0);
+  # DEBUG BEGIN_STMT
+  EvMemEntry->EventId = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_UpdateEventStatusOnQualification (Dem_EventIdType EventId, Dem_EventStatusType EventStatus, boolean EventWIRUpdate, struct Dem_EventNotificationDataType * Notification)
+{
+  uint8 EventStatusClearMask;
+  uint8 EventStatusSetMask;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EventStatus == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_NvData.DTCStatusMask[_1];
+  _3 = (int) EventId;
+  _4 = _2 & 174;
+  Dem_NvData.DTCStatusMask[_3] = _4;
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EventStatusSetMask = 35;
+  # DEBUG BEGIN_STMT
+  EventStatusClearMask = 80;
+  # DEBUG BEGIN_STMT
+  if (EventStatus == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _5 = (int) EventId;
+  _6 = Dem_NvData.DTCStatusMask[_5];
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1;
+  if (_8 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dem_UpdateEventIdOccurKinds (EventId, 1, 2);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EventStatusSetMask = EventStatusSetMask | 4;
+  # DEBUG BEGIN_STMT
+  if (EventWIRUpdate == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EventStatusSetMask = EventStatusSetMask | 128;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = (int) EventId;
+  _10 = Dem_NvData.DTCStatusMask[_9];
+  _11 = (int) EventId;
+  _12 = EventStatusSetMask | _10;
+  Dem_NvData.DTCStatusMask[_11] = _12;
+  # DEBUG BEGIN_STMT
+  _13 = (int) EventId;
+  _14 = Dem_NvData.DTCStatusMask[_13];
+  _15 = ~EventStatusClearMask;
+  _16 = (int) EventId;
+  _17 = _14 & _15;
+  Dem_NvData.DTCStatusMask[_16] = _17;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_InternalSetBswEventStatus (struct Dem_EventInfoType EventInfo, Dem_EventStatusType EventStatus, Std_ReturnType * SetBswEventStatusResult)
+{
+  const Dem_EventStatusType OldEventStatus;
+  Dem_DTCStatusMaskType OldDTCStatusMask;
+  const Dem_EventIdType EventId;
+  boolean EntryPresent;
+  Dem_EventStatusType PreviousEntryStatus;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventId = EventInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  OldDTCStatusMask = Dem_NvData.DTCStatusMask[_1];
+  # DEBUG BEGIN_STMT
+  OldEventStatus = OldDTCStatusMask & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryPresent = Dem_CheckErrorQueueEntry (EventId, &PreviousEntryStatus);
+  # DEBUG BEGIN_STMT
+  if (EntryPresent == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  PreviousEntryStatus.21_2 = PreviousEntryStatus;
+  if (EventStatus != PreviousEntryStatus.21_2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (EntryPresent == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  _3 = (unsigned int) OldDTCStatusMask;
+  _4 = _3 & 64;
+  if (_4 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (EventStatus != OldEventStatus)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dem_CheckErrorReQueueEntry (EventInfo, EventStatus, OldDTCStatusMask, SetBswEventStatusResult);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  PreviousEntryStatus = {CLOBBER};
+  return;
+
+}
+
+
+Dem_InternalSetSwcEventStatus (struct Dem_EventInfoType EventInfo, Dem_EventStatusType EventStatus, Std_ReturnType * SetSwcEventStatusResult)
+{
+  boolean EntryIsWritten;
+  Dem_ProcessEventJobMaskType ProcessEventJobs;
+  Dem_ProcessEventJobMaskType ProcessEventJobs;
+  const boolean IndicatorUsed;
+  struct Dem_EventNotificationDataType Notification;
+  boolean FirstFailed;
+  boolean ErrorReenterPrecondition;
+  const Dem_EventStatusType OldEventStatus;
+  const Dem_DTCStatusMaskType OldDTCStatusMask;
+  const Dem_EventIdType EventId;
+  boolean iftmp.20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EventId = EventInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  OldDTCStatusMask = Dem_NvData.DTCStatusMask[_1];
+  # DEBUG BEGIN_STMT
+  OldEventStatus = OldDTCStatusMask & 1;
+  # DEBUG BEGIN_STMT
+  ErrorReenterPrecondition = 0;
+  # DEBUG BEGIN_STMT
+  FirstFailed = 0;
+  # DEBUG BEGIN_STMT
+  Notification.ReplacedEventMsg.EventId = 0;
+  Notification.ReplacedEventMsg.OldStatusMask = 0;
+  Notification.ReplacedEventMsg.NewStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EventStatus == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (EventStatus == 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _2 = (unsigned int) OldDTCStatusMask;
+  _3 = _2 & 2;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  FirstFailed = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned int) OldDTCStatusMask;
+  _5 = _4 & 1;
+  if (_5 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.20 = 1;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.20 = 0;
+
+  <bb 9> :
+  ErrorReenterPrecondition = iftmp.20;
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned int) OldDTCStatusMask;
+  _7 = _6 & 64;
+  if (_7 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  if (EventStatus == OldEventStatus)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  IndicatorUsed = Dem_GbiIndicatorUsed (EventId);
+  # DEBUG BEGIN_STMT
+  if (IndicatorUsed == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  if (EventStatus == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  if (EventStatus == 5)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ProcessEventJobs = 2;
+  # DEBUG BEGIN_STMT
+  Dem_ProcessEvent (4, EventInfo, EventStatus, FirstFailed, ProcessEventJobs, &Notification);
+  # DEBUG BEGIN_STMT
+  *SetSwcEventStatusResult = 0;
+  goto <bb 22>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  *SetSwcEventStatusResult = 0;
+  goto <bb 22>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ProcessEventJobs = 1;
+  # DEBUG BEGIN_STMT
+  if (EventStatus == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  if (EventStatus == 5)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 18> :
+  if (ErrorReenterPrecondition != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  EntryIsWritten = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryIsWritten = Dem_WriteErrorQueueEntry (EventInfo, EventStatus, FirstFailed);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EntryIsWritten == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  *SetSwcEventStatusResult = 3;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Dem_ProcessEvent (4, EventInfo, EventStatus, FirstFailed, ProcessEventJobs, &Notification);
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Notification = {CLOBBER};
+  return;
+
+}
+
+
+Dem_DebounceEvent (Dem_EventIdType EventId, Dem_EventStatusType * EventStatus, Std_ReturnType * DebounceResult)
+{
+  const Dem_DebounceType DebounceAlgo;
+  boolean Result;
+  boolean D.7989;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  DebounceAlgo = Dem_GbiDebounceAlgo (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DebounceAlgo != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dem_DebounceFctPtrTable[DebounceAlgo].DebounceEventFct;
+  _1 (EventId, EventStatus);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = *EventStatus;
+  _3 = _2 + 254;
+  if (_3 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (DebounceAlgo == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *DebounceResult = 3;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *DebounceResult = 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *DebounceResult = 0;
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7989 = Result;
+  return D.7989;
+
+}
+
+
+Dem_PermanentMemoryStatusUpdate ()
+{
+  Std_ReturnType AddEntryResult;
+  const Dem_EventIdType EventId;
+  Dem_IndicatorIdxType LinkIdx;
+  const uint32 indMILEnd;
+  const uint32 indMILStart;
+  boolean MinRatio;
+  Dem_DTCStatusMaskType DTCStatus;
+  const Dem_EventIdType EventId;
+  Dem_PermanentMemoryEntryType Entry;
+  Dem_SizeEvMemEntryType EntryIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 20>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  Entry = Dem_EventMemoryPermanent[_1];
+  # DEBUG BEGIN_STMT
+  EventId = Entry & 8191;
+  # DEBUG BEGIN_STMT
+  if (EventId != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_IsEventsMILIndicatorActive (EventId);
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventId;
+  DTCStatus = Dem_NvData.DTCStatusMask[_3];
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned int) DTCStatus;
+  _5 = _4 >> 1;
+  _6 = (_Bool) _5;
+  if (_6 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  goto <bb 17>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = Dem_GbiMinRatioEvent (EventId);
+  if (_7 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  MinRatio = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  MinRatio = Dem_NvData.PfcStatus;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (MinRatio != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Entry = Entry | 8192;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) DTCStatus;
+  _9 = _8 & 64;
+  if (_9 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Entry = Entry | 16384;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _10 = (unsigned int) Entry;
+  _11 = _10 >> 13;
+  _12 = (_Bool) _11;
+  if (_12 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  _13 = (unsigned int) Entry;
+  _14 = _13 >> 14;
+  _15 = (_Bool) _14;
+  if (_15 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57344;
+  # DEBUG BEGIN_STMT
+  Entry = Entry;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  # DEBUG BEGIN_STMT
+  _16 = (int) EntryIdx;
+  Dem_EventMemoryPermanentNonVolatileStored[_16] = 0;
+  # DEBUG BEGIN_STMT
+  _17 = Dem_NvData.EvMemOvfIndFlags;
+  _18 = _17 & 253;
+  Dem_NvData.EvMemOvfIndFlags = _18;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) EntryIdx;
+  _20 = Dem_EventMemoryPermanent[_19];
+  if (Entry != _20)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _21 = (int) EntryIdx;
+  Dem_EventMemoryPermanent[_21] = Entry;
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.19_22 = EntryIdx;
+  EntryIdx = EntryIdx.19_22 + 1;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _23 = Dem_IndicatorDesc[0].StartIdx;
+  indMILStart = (const uint32) _23;
+  # DEBUG BEGIN_STMT
+  _24 = Dem_IndicatorDesc[0].Number;
+  _25 = (long unsigned int) _24;
+  indMILEnd = indMILStart + _25;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LinkIdx = (Dem_IndicatorIdxType) indMILStart;
+  goto <bb 25>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _26 = (int) LinkIdx;
+  EventId = Dem_IndicatorLink[_26].EventId;
+  # DEBUG BEGIN_STMT
+  _27 = Dem_IsEventsMILIndicatorActive (EventId);
+  if (_27 == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  AddEntryResult = Dem_PermanentMemoryAddEntry (EventId);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (AddEntryResult != 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  LinkIdx = LinkIdx + 1;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _28 = (unsigned char) indMILEnd;
+  if (LinkIdx < _28)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Dem_NvData.PfcStatus = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_PermanentMemoryRemoveEntry (Dem_EventIdType EventId)
+{
+  Dem_PermanentMemoryEntryType Entry;
+  Dem_SizeEvMemEntryType EntryIdx;
+  Dem_EventIdType EntryEventId;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EntryEventId = EventId;
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  Entry = Dem_EventMemoryPermanent[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) Entry;
+  _3 = _2 & 8191;
+  _4 = (int) EntryEventId;
+  if (_3 == _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57344;
+  # DEBUG BEGIN_STMT
+  Entry = Entry;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  # DEBUG BEGIN_STMT
+  _5 = (int) EntryIdx;
+  Dem_EventMemoryPermanent[_5] = Entry;
+  # DEBUG BEGIN_STMT
+  _6 = (int) EntryIdx;
+  Dem_EventMemoryPermanentNonVolatileStored[_6] = 0;
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+  # DEBUG BEGIN_STMT
+  _7 = Dem_NvData.EvMemOvfIndFlags;
+  _8 = _7 & 253;
+  Dem_NvData.EvMemOvfIndFlags = _8;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.18_9 = EntryIdx;
+  EntryIdx = EntryIdx.18_9 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_PermanentMemoryAddEntry (Dem_EventIdType EventId)
+{
+  Dem_PermanentMemoryEntryType Entry;
+  Dem_PermanentMemoryEntryType Entry;
+  Std_ReturnType Result;
+  boolean EventFound;
+  boolean EmptySlotFound;
+  Dem_SizeEvMemEntryType FreeSlot;
+  Dem_SizeEvMemEntryType EntryIdx;
+  Dem_EventIdType EntryEventId;
+  Std_ReturnType D.7953;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FreeSlot = 0;
+  # DEBUG BEGIN_STMT
+  EmptySlotFound = 0;
+  # DEBUG BEGIN_STMT
+  EventFound = 0;
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EntryEventId = EventId;
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  Entry = Dem_EventMemoryPermanent[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) Entry;
+  _3 = _2 & 8191;
+  _4 = (int) EntryEventId;
+  if (_3 == _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EventFound = 1;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  # DEBUG BEGIN_STMT
+  _5 = (int) EntryIdx;
+  _6 = Dem_EventMemoryPermanent[_5];
+  if (Entry != _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) EntryIdx;
+  Dem_EventMemoryPermanent[_7] = Entry;
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) Entry;
+  _9 = _8 & 8191;
+  if (_9 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (EmptySlotFound == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  FreeSlot = EntryIdx;
+  # DEBUG BEGIN_STMT
+  EmptySlotFound = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.17_10 = EntryIdx;
+  EntryIdx = EntryIdx.17_10 + 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (EventFound == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (EmptySlotFound == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Entry = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57344;
+  # DEBUG BEGIN_STMT
+  Entry = Entry | EntryEventId;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  # DEBUG BEGIN_STMT
+  _11 = (int) FreeSlot;
+  Dem_EventMemoryPermanent[_11] = Entry;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _12 = Dem_NvData.EvMemOvfIndFlags;
+  _13 = _12 | 2;
+  Dem_NvData.EvMemOvfIndFlags = _13;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7953 = Result;
+  return D.7953;
+
+}
+
+
+Dem_PermanentMemoryNotifyClear (Dem_EventIdType EventId)
+{
+  Dem_PermanentMemoryEntryType Entry;
+  Dem_SizeEvMemEntryType EntryIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EntryIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EntryIdx;
+  Entry = Dem_EventMemoryPermanent[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) Entry;
+  _3 = _2 & 8191;
+  _4 = (int) EventId;
+  if (_3 == _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 57343;
+  # DEBUG BEGIN_STMT
+  Entry = Entry & 49151;
+  # DEBUG BEGIN_STMT
+  _5 = (int) EntryIdx;
+  _6 = Dem_EventMemoryPermanent[_5];
+  if (Entry != _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) EntryIdx;
+  Dem_EventMemoryPermanent[_7] = Entry;
+  # DEBUG BEGIN_STMT
+  Dem_EventMemoryPermanentUpdated = 1;
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EntryIdx.16_8 = EntryIdx;
+  EntryIdx = EntryIdx.16_8 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (EntryIdx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_InternalProcessEventReport (Dem_EventIdType EventId, Dem_EventStatusType EventStatus, uint8 FunctionId)
+{
+  struct Dem_EventInfoType EventInfo;
+  Std_ReturnType Result;
+  Std_ReturnType D.7931;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventInfo.EventId = EventId;
+  # DEBUG BEGIN_STMT
+  _1 = (int) FunctionId;
+  switch (_1) <default: <L6> [INV], case 1: <L0> [INV], case 2: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Result = Dem_InternalSetEventStatus (EventInfo, EventStatus);
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dem_ReportErrorStatusPreInit (EventInfo, EventStatus);
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7931 = Result;
+  EventInfo = {CLOBBER};
+  return D.7931;
+
+}
+
+
+Dem_InternalSetEventStatus (struct Dem_EventInfoType EventInfo, Dem_EventStatusType EventStatus)
+{
+  const Dem_EventIdType EventId;
+  Std_ReturnType Result;
+  Std_ReturnType D.7893;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  EventId = EventInfo.EventId;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dem_CheckProcessingConditions (EventId);
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_DebounceEvent (EventId, &EventStatus, &Result);
+  if (_2 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EventStatus.10_3 = EventStatus;
+  _4 = Dem_UpdateFailureCounterFirstFail (EventId, EventStatus.10_3);
+  if (_4 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dem_DoProcessFaultConfirmation = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiEventKind (EventId);
+  if (_5 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EventStatus.11_6 = EventStatus;
+  Dem_InternalSetSwcEventStatus (EventInfo, EventStatus.11_6, &Result);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EventStatus.12_7 = EventStatus;
+  Dem_InternalSetBswEventStatus (EventInfo, EventStatus.12_7, &Result);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dem_CheckForTriggerNvmWriteGateEntry ();
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7893 = Result;
+  Result = {CLOBBER};
+  return D.7893;
+
+}
+
+
+Dem_CheckProcessingConditions (Dem_EventIdType EventId)
+{
+  Dem_OperationCycleIdType OperationCycleId;
+  Dem_OperationCycleStateType OperationCycleState;
+  Std_ReturnType Result;
+  Std_ReturnType D.7910;
+  int iftmp.13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OperationCycleId = Dem_GbiOpCycleIdx (EventId);
+  # DEBUG BEGIN_STMT
+  _1 = (int) OperationCycleId;
+  OperationCycleState = Dem_OpCycleState[_1];
+  # DEBUG BEGIN_STMT
+  if (OperationCycleState == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dem_GbiEnCondGrpIdx (EventId);
+  _3 = (int) _2;
+  _4 = Dem_EnCondGrpStatusCounter[_3];
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dem_DTCSettingAllowed.14_5 = Dem_DTCSettingAllowed;
+  if (Dem_DTCSettingAllowed.14_5 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _6 = Dem_GbiUdsDTC (EventId);
+  if (_6 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.13 = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.13 = 0;
+
+  <bb 10> :
+  if (iftmp.13 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7910 = Result;
+  return D.7910;
+
+}
+
+
+Dem_FindEDNumIndex (const struct Dem_EDClassType * EDClass, uint8 Number)
+{
+  Dem_EDSegIdxType SegIndex;
+  Dem_EDSegIdxType D.7880;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SegIndex = 0;
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = EDClass->EDSegIdx;
+  _2 = (sizetype) SegIndex;
+  _3 = _1 + _2;
+  _4 = *_3;
+  _5 = (int) _4;
+  _6 = Dem_EDSegment[_5].RecNum;
+  if (Number == _6)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SegIndex = SegIndex + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = EDClass->NumEDSegs;
+  if (SegIndex < _7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7880 = SegIndex;
+  return D.7880;
+
+}
+
+
+Dem_IntValEntryData (const struct Dem_EventMemoryEntryType * EvMemEntry)
+{
+  const uint8 OriginIdx;
+  const Dem_SizeEntryDataType StartPos;
+  Dem_EntryDataType * Result;
+  Dem_EntryDataType * D.7877;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  StartPos = EvMemEntry->EntryDataPos;
+  # DEBUG BEGIN_STMT
+  _1 = EvMemEntry->EventId;
+  OriginIdx = Dem_GbiDTCOriginIdx (_1);
+  # DEBUG BEGIN_STMT
+  _2 = (int) OriginIdx;
+  _3 = Dem_EntryData[_2];
+  _4 = (sizetype) StartPos;
+  Result = _3 + _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7877 = Result;
+  return D.7877;
+
+}
+
+
+Dem_EDEntryData (const struct Dem_EventMemoryEntryType * EvMemEntry)
+{
+  Dem_EntryDataType * EDEntryData;
+  Dem_EntryDataType * D.7875;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EDEntryData = Dem_IntValEntryData (EvMemEntry);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EvMemEntry->EventId;
+  _2 = Dem_SizeOfIntValArea (_1);
+  _3 = (sizetype) _2;
+  EDEntryData = EDEntryData + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7875 = EDEntryData;
+  return D.7875;
+
+}
+
+
+Dem_CheckFFRecNumStored (const struct Dem_EventMemoryEntryType * EvMemEntry, uint8 RecordNumber)
+{
+  const Dem_FFIdxType * const FFRecNumClass;
+  const Dem_FFIdxType NumFF;
+  const Dem_FFRecNumClassIdxType FFRecNumClassIdx;
+  uint8 FFRecNumIdx;
+  uint8 D.7873;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx = 0;
+  # DEBUG BEGIN_STMT
+  _1 = EvMemEntry->EventId;
+  FFRecNumClassIdx = Dem_GbiFFRecNumClassIdx (_1);
+  # DEBUG BEGIN_STMT
+  _2 = EvMemEntry->OccCtr;
+  _3 = (int) FFRecNumClassIdx;
+  _4 = Dem_FFRecNumerationClass[_3].NumFFRecs;
+  NumFF = MIN_EXPR <_2, _4>;
+  # DEBUG BEGIN_STMT
+  _5 = (int) FFRecNumClassIdx;
+  FFRecNumClass = Dem_FFRecNumerationClass[_5].Dem_FFRecNumClassIdx;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx.9_6 = FFRecNumIdx;
+  FFRecNumIdx = FFRecNumIdx.9_6 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (FFRecNumIdx < NumFF)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  _7 = (sizetype) FFRecNumIdx;
+  _8 = FFRecNumClass + _7;
+  _9 = *_8;
+  if (RecordNumber != _9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7873 = FFRecNumIdx;
+  return D.7873;
+
+}
+
+
+Dem_CheckFFRecNumValid (Dem_EventIdType EventId, uint8 RecordNumber)
+{
+  const Dem_FFIdxType * const FFRecNumClass;
+  const Dem_FFIdxType NumFF;
+  const Dem_FFRecNumClassIdxType FFRecNumClassIdx;
+  uint8 FFRecNumIdx;
+  boolean Result;
+  boolean D.7870;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFRecNumClassIdx = Dem_GbiFFRecNumClassIdx (EventId);
+  # DEBUG BEGIN_STMT
+  _1 = (int) FFRecNumClassIdx;
+  NumFF = Dem_FFRecNumerationClass[_1].NumFFRecs;
+  # DEBUG BEGIN_STMT
+  _2 = (int) FFRecNumClassIdx;
+  FFRecNumClass = Dem_FFRecNumerationClass[_2].Dem_FFRecNumClassIdx;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (sizetype) FFRecNumIdx;
+  _4 = FFRecNumClass + _3;
+  _5 = *_4;
+  if (RecordNumber == _5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx.8_6 = FFRecNumIdx;
+  FFRecNumIdx = FFRecNumIdx.8_6 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (FFRecNumIdx < NumFF)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7870 = Result;
+  return D.7870;
+
+}
+
+
+Dem_FFEntryData (const struct Dem_EventMemoryEntryType * EvMemEntry, const struct Dem_FFClassType * FFClass, Dem_FFIdxType FFIndex)
+{
+  Dem_EntryDataType * const Result;
+  const uint8 OriginIdx;
+  const Dem_SizeEntryDataType StartPos;
+  const struct Dem_EDClassType * const EDClass;
+  const Dem_EventIdType EventId;
+  Dem_EntryDataType * D.7866;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EventId = EvMemEntry->EventId;
+  # DEBUG BEGIN_STMT
+  _1 = Dem_GbiEDClassIdx (EventId);
+  _2 = (int) _1;
+  EDClass = &Dem_EDClass[_2];
+  # DEBUG BEGIN_STMT
+  _3 = EvMemEntry->EntryDataPos;
+  _4 = Dem_SizeOfIntValArea (EventId);
+  _5 = (short unsigned int) _4;
+  _6 = _3 + _5;
+  _7 = Dem_SizeOfED (EDClass);
+  _8 = _6 + _7;
+  _9 = Dem_SizeOfFF (2, FFClass);
+  _10 = (short unsigned int) FFIndex;
+  _11 = _9 * _10;
+  StartPos = _8 + _11;
+  # DEBUG BEGIN_STMT
+  OriginIdx = Dem_GbiDTCOriginIdx (EventId);
+  # DEBUG BEGIN_STMT
+  _12 = (int) OriginIdx;
+  _13 = Dem_EntryData[_12];
+  _14 = (sizetype) StartPos;
+  Result = _13 + _14;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7866 = Result;
+  return D.7866;
+
+}
+
+
+Dem_InitEvEntryExists ()
+{
+  uint8 EvEntryExitsIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EvEntryExitsIdx = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EvEntryExitsIdx;
+  Dem_EvMemEntryExists[_1] = 0;
+  # DEBUG BEGIN_STMT
+  EvEntryExitsIdx.7_2 = EvEntryExitsIdx;
+  EvEntryExitsIdx = EvEntryExitsIdx.7_2 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (EvEntryExitsIdx <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_SetEvEntryExists (Dem_EventIdType EventId, boolean EvEntryExitsStatus)
+{
+  short unsigned int D.7865;
+  short unsigned int D.7863;
+  int iftmp.6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EvEntryExitsStatus == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  D.7863 = EventId / 8;
+  _1 = (unsigned int) D.7863;
+  _2 = Dem_EvMemEntryExists[_1];
+  _3 = (unsigned int) EventId;
+  _4 = _3 & 7;
+  _5 = 1 << _4;
+  _6 = (unsigned char) _5;
+  _7 = (unsigned int) D.7863;
+  _8 = _2 | _6;
+  Dem_EvMemEntryExists[_7] = _8;
+  _9 = Dem_EvMemEntryExists[_7];
+  iftmp.6 = (int) _9;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  D.7865 = EventId / 8;
+  _10 = (unsigned int) D.7865;
+  _11 = Dem_EvMemEntryExists[_10];
+  _12 = (unsigned int) EventId;
+  _13 = _12 & 7;
+  _14 = 1 << _13;
+  _15 = (unsigned char) _14;
+  _16 = ~_15;
+  _17 = (unsigned int) D.7865;
+  _18 = _11 & _16;
+  Dem_EvMemEntryExists[_17] = _18;
+  _19 = Dem_EvMemEntryExists[_17];
+  iftmp.6 = (int) _19;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_SearchForEntry (Dem_EventIdType EventId, struct Dem_EventMemoryEntryType * * FoundEntry, Dem_SizeEvMemEntryType * FoundEntryIdx)
+{
+  const Dem_EventIdType CurrentEventId;
+  Dem_SizeEvMemEntryType Index;
+  struct Dem_EventMemoryEntryType * const Entry;
+  const Dem_EventIdType MasterEventId;
+  const Dem_SizeEvMemEntryType SizeEventMem;
+  const uint8 OriginIdx;
+  boolean Result;
+  boolean D.7858;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EventId / 8;
+  _2 = (unsigned int) _1;
+  _3 = Dem_EvMemEntryExists[_2];
+  _4 = (unsigned int) EventId;
+  _5 = _4 & 7;
+  _6 = 1 << _5;
+  _7 = (unsigned char) _6;
+  _8 = _3 & _7;
+  if (_8 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OriginIdx = Dem_GbiDTCOriginIdx (EventId);
+  # DEBUG BEGIN_STMT
+  _9 = (int) OriginIdx;
+  SizeEventMem = Dem_SizeEventMem[_9];
+  # DEBUG BEGIN_STMT
+  MasterEventId = EventId;
+  # DEBUG BEGIN_STMT
+  _10 = (int) OriginIdx;
+  Entry = Dem_EventMem[_10];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Index = 0;
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) Index;
+  _12 = _11 * 16;
+  _13 = Entry + _12;
+  CurrentEventId = _13->EventId;
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) Index;
+  _15 = _14 * 16;
+  _16 = Entry + _15;
+  _17 = _16->EventId;
+  if (_17 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  if (MasterEventId == CurrentEventId)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (FoundEntry != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) Index;
+  _19 = _18 * 16;
+  _20 = Entry + _19;
+  *FoundEntry = _20;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (FoundEntryIdx != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  *FoundEntryIdx = Index;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Index.5_21 = Index;
+  Index = Index.5_21 + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (Index < SizeEventMem)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7858 = Result;
+  return D.7858;
+
+}
+
+
+Dem_GbiOBDReadinessGroup (Dem_EventIdType EventId)
+{
+  const Dem_EventOBDReadinessGroupType ReadinessGroup;
+  Dem_EventOBDReadinessGroupType D.7846;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_OBDConfig[_1].Dem_OBDEvConf1;
+  _3 = _2 >> 1;
+  _4 = (unsigned char) _3;
+  ReadinessGroup = _4 & 15;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7846 = ReadinessGroup;
+  return D.7846;
+
+}
+
+
+Dem_GbiMinRatioEvent (Dem_EventIdType EventId)
+{
+  const boolean Result;
+  boolean D.7844;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_OBDConfig[_1].Dem_OBDEvConf1;
+  _3 = (unsigned char) _2;
+  Result = _3 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7844 = Result;
+  return D.7844;
+
+}
+
+
+Dem_GbiEventKind (Dem_EventIdType EventId)
+{
+  const Dem_EventKindType Result;
+  Dem_EventKindType D.7842;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 28;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7842 = Result;
+  return D.7842;
+
+}
+
+
+Dem_GbiDebounceStatusIdx (Dem_EventIdType EventId)
+{
+  const Dem_EventIdType Result;
+  Dem_EventIdType D.7840;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = _2 >> 5;
+  _4 = (short unsigned int) _3;
+  Result = _4 & 7;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7840 = Result;
+  return D.7840;
+
+}
+
+
+Dem_GbiDebounceCounterClassIdx (Dem_EventIdType Index)
+{
+  const Dem_DebounceCounterClassIdxType Result;
+  Dem_DebounceCounterClassIdxType D.7838;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Index;
+  _2 = Dem_DebounceCounterClassIdx[_1];
+  Result = _2 & 127;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7838 = Result;
+  return D.7838;
+
+}
+
+
+Dem_GbiDebounceAlgo (Dem_EventIdType EventId)
+{
+  const Dem_DebounceType Result;
+  Dem_DebounceType D.7836;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = _2 >> 3;
+  Result = _3 & 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7836 = Result;
+  return D.7836;
+
+}
+
+
+Dem_GbiPriority (Dem_EventIdType EventId)
+{
+  const Dem_PriorityType Result;
+  Dem_PriorityType D.7834;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = _2 >> 2;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7834 = Result;
+  return D.7834;
+
+}
+
+
+Dem_GbiIndicatorUsed (Dem_EventIdType EventId)
+{
+  const boolean Result;
+  boolean D.7832;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 29;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7832 = Result;
+  return D.7832;
+
+}
+
+
+Dem_GbiEnCondGrpIdx (Dem_EventIdType EventId)
+{
+  const Dem_EnCondGrpIdxType Result;
+  Dem_EnCondGrpIdxType D.7830;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = (unsigned char) _2;
+  Result = _3 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7830 = Result;
+  return D.7830;
+
+}
+
+
+Dem_GbiEventFailureCycleIdx (Dem_EventIdType EventId, uint16 EventFailureClassIdx)
+{
+  const Dem_OperationCycleIdType Result;
+  Dem_OperationCycleIdType D.7828;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventFailureClassIdx;
+  Result = Dem_EventFailureCycleCfg[_1].EventFailureCycleIdx;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7828 = Result;
+  return D.7828;
+
+}
+
+
+Dem_GbiEventFailureClassIdx (Dem_EventIdType EventId)
+{
+  const uint16 Result;
+  uint16 D.7826;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = _2 >> 1;
+  _4 = (short unsigned int) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7826 = Result;
+  return D.7826;
+
+}
+
+
+Dem_GbiNumAgingCycles (Dem_EventIdType EventId)
+{
+  const Dem_AgingCyclesType Result;
+  Dem_AgingCyclesType D.7824;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 6;
+  _4 = (unsigned char) _3;
+  Result = _4 & 127;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7824 = Result;
+  return D.7824;
+
+}
+
+
+Dem_GbiIndicatorFailureCycleIdx (Dem_EventIdType EventId, Dem_IndicatorIdxType IndicatorIdx)
+{
+  const Dem_OperationCycleIdType Result;
+  const Dem_FailureCycleCounterInfoIdxType FailureCycleCounterInfoIdx;
+  Dem_OperationCycleIdType D.7822;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) IndicatorIdx;
+  FailureCycleCounterInfoIdx = Dem_IndicatorLink[_1].FailureCycleCounterInfoIdx;
+  # DEBUG BEGIN_STMT
+  _2 = (int) FailureCycleCounterInfoIdx;
+  Result = Dem_FailureCycleCounterInfo[_2].OperationCycleRef;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7822 = Result;
+  return D.7822;
+
+}
+
+
+Dem_GbiIndicatorHealingCycleIdx (Dem_EventIdType EventId, Dem_IndicatorIdxType IndicatorIdx)
+{
+  const Dem_OperationCycleIdType Result;
+  const Dem_HealingCycleCounterInfoIdxType HealingCycleCounterInfoIdx;
+  Dem_OperationCycleIdType D.7820;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) IndicatorIdx;
+  HealingCycleCounterInfoIdx = Dem_IndicatorLink[_1].HealingCycleCounterInfoIdx;
+  # DEBUG BEGIN_STMT
+  _2 = (int) HealingCycleCounterInfoIdx;
+  Result = Dem_HealingCycleCounterInfo[_2].OperationCycleRef;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7820 = Result;
+  return D.7820;
+
+}
+
+
+Dem_GbiOpCycleIdx (Dem_EventIdType EventId)
+{
+  const Dem_OperationCycleIdType Result;
+  Dem_OperationCycleIdType D.7818;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 4;
+  _4 = (unsigned char) _3;
+  Result = _4 & 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7818 = Result;
+  return D.7818;
+
+}
+
+
+Dem_GbiEDClassIdx (Dem_EventIdType EventId)
+{
+  const Dem_EDClassIdxType Result;
+  Dem_EDClassIdxType D.7816;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7816 = Result;
+  return D.7816;
+
+}
+
+
+Dem_GbiFFRecNumClassIdx (Dem_EventIdType EventId)
+{
+  const Dem_FFRecNumClassIdxType Result;
+  Dem_FFRecNumClassIdxType D.7814;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 2;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7814 = Result;
+  return D.7814;
+
+}
+
+
+Dem_GbiMaxNumFFRecs (Dem_EventIdType EventId)
+{
+  Dem_FFIdxType Result;
+  Dem_FFIdxType D.7812;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dem_GbiFFRecNumClassIdx (EventId);
+  _2 = (int) _1;
+  Result = Dem_FFRecNumerationClass[_2].NumFFRecs;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7812 = Result;
+  return D.7812;
+
+}
+
+
+Dem_GbiEvSignificance (Dem_EventIdType EventId)
+{
+  const Dem_EvSignificanceType Result;
+  Dem_EvSignificanceType D.7810;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = (unsigned char) _2;
+  Result = _3 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7810 = Result;
+  return D.7810;
+
+}
+
+
+Dem_GbiFFClassIdx (Dem_EventIdType EventId)
+{
+  const Dem_FFClassIdxType Result;
+  Dem_FFClassIdxType D.7808;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 1;
+  _4 = (short unsigned int) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7808 = Result;
+  return D.7808;
+
+}
+
+
+Dem_GbiEnablePrestorage (Dem_EventIdType EventId)
+{
+  const boolean Result;
+  boolean D.7806;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7806 = 0;
+  return D.7806;
+
+}
+
+
+Dem_GbiDTCFunctionalUnit (Dem_EventIdType EventId)
+{
+  const uint8 Result;
+  uint8 D.7804;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf3;
+  _3 = _2 >> 8;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7804 = Result;
+  return D.7804;
+
+}
+
+
+Dem_GbiDTCSeverity (Dem_EventIdType EventId)
+{
+  const Dem_DTCSeverityType Result;
+  const uint8 sevNo;
+  Dem_DTCSeverityType D.7802;
+  unsigned char iftmp.4;
+  unsigned char iftmp.3;
+  unsigned char iftmp.2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 26;
+  _4 = (unsigned char) _3;
+  sevNo = _4 & 3;
+  # DEBUG BEGIN_STMT
+  if (sevNo != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  if (sevNo != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  if (sevNo == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.4 = 64;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.4 = 128;
+
+  <bb 7> :
+  iftmp.3 = iftmp.4;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.3 = 32;
+
+  <bb 9> :
+  iftmp.2 = iftmp.3;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.2 = 0;
+
+  <bb 11> :
+  Result = iftmp.2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7802 = Result;
+  return D.7802;
+
+}
+
+
+Dem_GbiImmediateStorage (Dem_EventIdType EventId)
+{
+  const boolean Result;
+  boolean D.7788;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 30;
+  _4 = (unsigned char) _3;
+  Result = _4 & 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7788 = Result;
+  return D.7788;
+
+}
+
+
+Dem_GbiDTCGroupIdx (Dem_EventIdType EventId)
+{
+  const uint8 Result;
+  uint8 D.7786;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf2;
+  _3 = _2 >> 13;
+  _4 = (unsigned char) _3;
+  Result = _4 & 31;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7786 = Result;
+  return D.7786;
+
+}
+
+
+Dem_GbiDTCOriginIdx (Dem_EventIdType EventId)
+{
+  const uint8 Result;
+  uint8 D.7784;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 24;
+  _4 = (unsigned char) _3;
+  Result = _4 & 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7784 = Result;
+  return D.7784;
+
+}
+
+
+Dem_GbiDTCOrigin (Dem_EventIdType EventId)
+{
+  const Dem_DTCOriginType Result;
+  Dem_DTCOriginType D.7782;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  _3 = _2 >> 24;
+  _4 = (short unsigned int) _3;
+  _5 = _4 & 3;
+  Result = _5 + 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7782 = Result;
+  return D.7782;
+
+}
+
+
+Dem_GetVisibleDTC (Dem_DTCFormatType DTCFormat, Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7780;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DTC = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DTCFormat == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTC = Dem_GetVisibleObdDTC (EventId);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  DTC = Dem_GetVisibleUdsDTC (EventId);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7780 = DTC;
+  return D.7780;
+
+}
+
+
+Dem_GbiDTCKind (Dem_EventIdType EventId)
+{
+  Dem_DTCKindType DTCKind;
+  Dem_DTCKindType D.7775;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DTCKind = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_OBDConfig[_1].Dem_ObdDTC;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTCKind = 2;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7775 = DTCKind;
+  return D.7775;
+
+}
+
+
+Dem_GetVisibleObdDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7771;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EventId / 8;
+  _2 = (unsigned int) _1;
+  _3 = Dem_OBDDTCSuppression[_2];
+  _4 = (unsigned int) EventId;
+  _5 = _4 & 7;
+  _6 = 1 << _5;
+  _7 = (unsigned char) _6;
+  _8 = _3 & _7;
+  if (_8 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTC = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  DTC = Dem_InternalGetObdDTC (EventId);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7771 = DTC;
+  return D.7771;
+
+}
+
+
+Dem_GetObdDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7764;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DTC = Dem_InternalGetObdDTC (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7764 = DTC;
+  return D.7764;
+
+}
+
+
+Dem_GetVisibleCmbDTC (Dem_DTCFormatType DTCFormat, Dem_EventIdType EventId)
+{
+  uint32 (*Dem_GetDTCFctPtrType) (Dem_EventIdType) Dem_GetVisibleDTCFctPtr;
+  uint32 DTC;
+  uint32 D.7762;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DTC = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DTCFormat == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dem_GetVisibleDTCFctPtr = Dem_GetVisibleObdDTC;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dem_GetVisibleDTCFctPtr = Dem_GetVisibleUdsDTC;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DTC = Dem_GetVisibleDTCFctPtr (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7762 = DTC;
+  return D.7762;
+
+}
+
+
+Dem_GetVisibleUdsDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7757;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EventId / 8;
+  _2 = (unsigned int) _1;
+  _3 = Dem_UDSDTCSuppression[_2];
+  _4 = (unsigned int) EventId;
+  _5 = _4 & 7;
+  _6 = 1 << _5;
+  _7 = (unsigned char) _6;
+  _8 = _3 & _7;
+  if (_8 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DTC = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  DTC = Dem_InternalGetUdsDTC (EventId);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7757 = DTC;
+  return D.7757;
+
+}
+
+
+Dem_GetUdsDTC (Dem_EventIdType EventId)
+{
+  uint32 DTC;
+  uint32 D.7750;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DTC = Dem_InternalGetUdsDTC (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7750 = DTC;
+  return D.7750;
+
+}
+
+
+Dem_GbiUdsDTC (Dem_EventIdType EventId)
+{
+  const uint32 DTC;
+  uint32 D.7748;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventId;
+  _2 = Dem_EventDesc[_1].EvConf1;
+  DTC = _2 & 16777215;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7748 = DTC;
+  return D.7748;
+
+}
+
+
+Dem_ProcessIndicatorFailureCycleCounter (Dem_IndicatorIdxType IndicatorIdx, Dem_EventIdType EventId, boolean FirstFailed)
+{
+  uint32 Dem_ObdDTCOfEvent;
+  const Dem_IndicatorCycleCounterType FailureCounter;
+  const Dem_IndicatorCycleCounterType FailureThreshold;
+  const Dem_FailureCycleCounterInfoIdxType FailureCycleCounterInfoIdx;
+  const Dem_IndicatorCounterDataRoleType IndicatorCounterDataRole;
+  const uint32 IndMILEnd;
+  const uint32 IndMILStart;
+  boolean IsMIL;
+  boolean CheckThreshold;
+  const Dem_OperationCycleIdType EventOperationCycle;
+  const Dem_OperationCycleIdType FailureCycleId;
+  const Dem_IndicatorIdType IndicatorId;
+  const Dem_CounterDataIdxType CounterDataIdx;
+  boolean Result;
+  boolean D.7746;
+  const Dem_IndicatorCounterDataRoleType iftmp.1;
+  boolean iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  CounterDataIdx = IndicatorIdx;
+  # DEBUG BEGIN_STMT
+  IndicatorId = 0;
+  # DEBUG BEGIN_STMT
+  FailureCycleId = Dem_GbiIndicatorFailureCycleIdx (EventId, IndicatorIdx);
+  # DEBUG BEGIN_STMT
+  EventOperationCycle = Dem_GbiOpCycleIdx (EventId);
+  # DEBUG BEGIN_STMT
+  CheckThreshold = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dem_IndicatorDesc[0].StartIdx;
+  IndMILStart = (const uint32) _1;
+  # DEBUG BEGIN_STMT
+  _2 = Dem_IndicatorDesc[0].Number;
+  _3 = (long unsigned int) _2;
+  IndMILEnd = IndMILStart + _3;
+  # DEBUG BEGIN_STMT
+  _4 = (long unsigned int) IndicatorIdx;
+  if (IndMILStart <= _4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _5 = (long unsigned int) IndicatorIdx;
+  if (IndMILEnd > _5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0 = 0;
+
+  <bb 6> :
+  IsMIL = iftmp.0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (FailureCycleId == EventOperationCycle)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (FirstFailed == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dem_ProcessIndicatorOnCriteria (IndicatorIdx, EventId);
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = CounterDataIdx / 8;
+  _7 = (unsigned int) _6;
+  _8 = Dem_NvData.IndicatorCycleCounterRole[0][_7];
+  _9 = (unsigned int) CounterDataIdx;
+  _10 = _9 & 7;
+  _11 = 1 << _10;
+  _12 = (unsigned char) _11;
+  _13 = _8 & _12;
+  if (_13 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.1 = 1;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.1 = 0;
+
+  <bb 12> :
+  IndicatorCounterDataRole = iftmp.1;
+  # DEBUG BEGIN_STMT
+  if (IndicatorCounterDataRole == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  CheckThreshold = 0;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (CheckThreshold == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (IsMIL != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  _14 = Dem_GbiOpCycleIdx (EventId);
+  if (_14 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  _15 = Dem_NvData.Dem_OpCycleDCYIsQualified;
+  if (_15 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  CheckThreshold = 0;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (CheckThreshold == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) IndicatorIdx;
+  FailureCycleCounterInfoIdx = Dem_IndicatorLink[_16].FailureCycleCounterInfoIdx;
+  # DEBUG BEGIN_STMT
+  _17 = (int) FailureCycleCounterInfoIdx;
+  FailureThreshold = Dem_FailureCycleCounterInfo[_17].Threshold;
+  # DEBUG BEGIN_STMT
+  _18 = (int) CounterDataIdx;
+  FailureCounter = Dem_NvData.IndicatorCycleCounter[0][_18];
+  # DEBUG BEGIN_STMT
+  if (FailureCounter >= FailureThreshold)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Dem_ObdDTCOfEvent = Dem_GetVisibleObdDTC (EventId);
+  # DEBUG BEGIN_STMT
+  if (IsMIL == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  if (Dem_ObdDTCOfEvent != 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _19 = CounterDataIdx / 8;
+  _20 = (unsigned int) _19;
+  _21 = Dem_NvData.IndicatorCycleCounterWIRStatus[0][_20];
+  _22 = (unsigned int) CounterDataIdx;
+  _23 = _22 & 7;
+  _24 = 1 << _23;
+  _25 = (unsigned char) _24;
+  _26 = CounterDataIdx / 8;
+  _27 = (unsigned int) _26;
+  _28 = _21 | _25;
+  Dem_NvData.IndicatorCycleCounterWIRStatus[0][_27] = _28;
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (IsMIL != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  if (Result == 1)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Dem_PermanentMemoryAddEntry (EventId);
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7746 = Result;
+  return D.7746;
+
+}
+
+
+Dem_CheckForEventWIRUpdate (Dem_EventIdType EventId, Dem_EventStatusType EventStatus, boolean FirstFailed)
+{
+  Dem_IndicatorIdxType LinkIdx;
+  const boolean IndicatorUsed;
+  boolean Result;
+  boolean D.7709;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  IndicatorUsed = Dem_GbiIndicatorUsed (EventId);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (IndicatorUsed != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  if (EventStatus == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (EventStatus == 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LinkIdx = 0;
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) LinkIdx;
+  _2 = Dem_IndicatorLink[_1].EventId;
+  if (EventId == _2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _3 = Dem_ProcessIndicatorFailureCycleCounter (LinkIdx, EventId, FirstFailed);
+  if (_3 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  LinkIdx = LinkIdx + 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (LinkIdx == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7709 = Result;
+  return D.7709;
+
+}
+
+

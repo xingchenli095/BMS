@@ -1,0 +1,1180 @@
+Dcm_Dsl_DiagnosticSessionHandler_UponSessionChangeNotify (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_SessionChange (OldSession, NewSession);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_SessionChange (OldSession, NewSession);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_SessionChange (OldSession, NewSession);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_SessionChange (OldSession, NewSession);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_SessionChange (OldSession, NewSession);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_DoSwitch (Dcm_SesCtrlType NewSession)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  NetworkHandleType NetworkId;
+  uint8 RteSesMode;
+  boolean NewSessionIsValid;
+  Dcm_SesCtrlType OldSession;
+  uint8 FlagIdx;
+  uint8 SessionIdx;
+  Dcm_ProtocolIndexType ProtocolIdx;
+  const struct Dcm_SesTabConfigType * SesTabConfig;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ProtocolIdx = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NewSessionIsValid = 0;
+  # DEBUG BEGIN_STMT
+  RteSesMode = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OldSession = Dcm_DiagnosticSessionLevel;
+  # DEBUG BEGIN_STMT
+  if (NewSession != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _2 = (unsigned char) _1;
+  ProtocolIdx = _2 + 244;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProtocolIdx;
+  SesTabConfig = &Dcm_SesTabConfig[_3];
+  # DEBUG BEGIN_STMT
+  SessionIdx = 0;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = SesTabConfig->SessionEntries;
+  _5 = (unsigned int) SessionIdx;
+  _6 = _5 * 12;
+  _7 = _4 + _6;
+  _8 = _7->SesCtrl;
+  if (NewSession == _8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SessionIdx.7_9 = SessionIdx;
+  SessionIdx = SessionIdx.7_9 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = SesTabConfig->NumEntries;
+  if (SessionIdx < _10)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = SesTabConfig->NumEntries;
+  if (SessionIdx < _11)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex = ProtocolIdx;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionTableIndex = SessionIdx;
+  # DEBUG BEGIN_STMT
+  _12 = (int) ProtocolIdx;
+  _13 = Dcm_HsmInfo[_12].RxConnectionId;
+  _14 = (int) _13;
+  _15 = Dcm_RxPduIdConfig[_14].MainConnectionIndex;
+  Dcm_DiagnosticSessionMainConnectionIndex = _15;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionLevel = NewSession;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _16 = SesTabConfig->SessionEntries;
+  _17 = (unsigned int) SessionIdx;
+  _18 = _17 * 12;
+  _19 = _16 + _18;
+  RteSesMode = _19->RteSesMode;
+  # DEBUG BEGIN_STMT
+  NewSessionIsValid = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SesTabConfig = &Dcm_SesTabConfig[0];
+  # DEBUG BEGIN_STMT
+  _20 = SesTabConfig->SessionEntries;
+  _21 = SesTabConfig->DefSessionIndex;
+  _22 = (unsigned int) _21;
+  _23 = _22 * 12;
+  _24 = _20 + _23;
+  RteSesMode = _24->RteSesMode;
+  # DEBUG BEGIN_STMT
+  NewSessionIsValid = 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (NewSessionIsValid == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (OldSession != 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  if (NewSession == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionTableIndex = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionMainConnectionIndex = 3;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionLevel = NewSession;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmDiagnosticSessionControl (RteSesMode);
+  # DEBUG BEGIN_STMT
+  if (NewSession == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DefaultSessionEntered ();
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _25 = (int) ProtocolIdx;
+  _26 = Dcm_HsmInfo[_25].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_26, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  NetworkId = RxPduIdInfo.ComMChannelId;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_RequestActiveDiagnostic (NetworkId);
+  RxPduIdInfo = {CLOBBER};
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_UponSessionChangeNotify (OldSession, NewSession);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (NewSession == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag = 0;
+  # DEBUG BEGIN_STMT
+  FlagIdx = 0;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _27 = (int) FlagIdx;
+  Dcm_ResetToDefaultSessionOccured[_27] = 1;
+  # DEBUG BEGIN_STMT
+  FlagIdx.8_28 = FlagIdx;
+  FlagIdx = FlagIdx.8_28 + 1;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  if (FlagIdx <= 2)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured ()
+{
+  boolean GetValue;
+  boolean D.7914;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GetValue = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionRequester.16_1 = Dcm_ResetToDefaultSessionRequester;
+  if (Dcm_ResetToDefaultSessionRequester.16_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  GetValue = 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7914 = GetValue;
+  return D.7914;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetResetToDefaultSessionOccured (uint8 ServiceID)
+{
+  boolean GetValue;
+  boolean D.7909;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GetValue = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ServiceID;
+  switch (_1) <default: <L6> [INV], case 16: <L0> [INV], case 39: <L2> [INV], case 40: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  GetValue = Dcm_ResetToDefaultSessionOccured[0];
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  GetValue = Dcm_ResetToDefaultSessionOccured[1];
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  GetValue = Dcm_ResetToDefaultSessionOccured[2];
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7909 = GetValue;
+  return D.7909;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_ClearResetToDefaultSessionOccured (uint8 ServiceID)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ServiceID;
+  switch (_1) <default: <L5> [INV], case 16: <L0> [INV], case 39: <L2> [INV], case 40: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionOccured[0] = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionOccured[1] = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionOccured[2] = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetP2MaxTime (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_TimerValueType P2MaxTime;
+  const struct Dcm_SesTabEntryConfigType * SessionEntry;
+  const struct Dcm_SesTabConfigType * SesTabConfig;
+  Dcm_TimerValueType D.7906;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  SesTabConfig = &Dcm_SesTabConfig[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex.14_2 = Dcm_DiagnosticSessionProtocolIndex;
+  if (ProtocolIndex == Dcm_DiagnosticSessionProtocolIndex.14_2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = SesTabConfig->SessionEntries;
+  Dcm_DiagnosticSessionTableIndex.15_4 = Dcm_DiagnosticSessionTableIndex;
+  _5 = (unsigned int) Dcm_DiagnosticSessionTableIndex.15_4;
+  _6 = _5 * 12;
+  SessionEntry = _3 + _6;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = SesTabConfig->SessionEntries;
+  _8 = SesTabConfig->DefSessionIndex;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 12;
+  SessionEntry = _7 + _10;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _11 = SessionEntry->P2MaxTime;
+  P2MaxTime = (Dcm_TimerValueType) _11;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7906 = P2MaxTime;
+  return D.7906;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetP2StarMaxTime (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_TimerValueType P2StarMaxTime;
+  const struct Dcm_SesTabEntryConfigType * SessionEntry;
+  const struct Dcm_SesTabConfigType * SesTabConfig;
+  Dcm_TimerValueType D.7901;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  SesTabConfig = &Dcm_SesTabConfig[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex.12_2 = Dcm_DiagnosticSessionProtocolIndex;
+  if (ProtocolIndex == Dcm_DiagnosticSessionProtocolIndex.12_2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = SesTabConfig->SessionEntries;
+  Dcm_DiagnosticSessionTableIndex.13_4 = Dcm_DiagnosticSessionTableIndex;
+  _5 = (unsigned int) Dcm_DiagnosticSessionTableIndex.13_4;
+  _6 = _5 * 12;
+  SessionEntry = _3 + _6;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = SesTabConfig->SessionEntries;
+  _8 = SesTabConfig->DefSessionIndex;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 12;
+  SessionEntry = _7 + _10;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  P2StarMaxTime = SessionEntry->P2StarMaxTime;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7901 = P2StarMaxTime;
+  return D.7901;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetTimerValue (Dcm_ProtocolIndexType ProtocolIndex, Dcm_TimerIdType TimerId)
+{
+  Dcm_TimerValueType TimerValue;
+  Dcm_TimerValueType D.7896;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  TimerValue = Dcm_P2TimerValue[_1];
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7896 = TimerValue;
+  return D.7896;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GiveP2Timer (Dcm_BufferUserType ProviderId, Dcm_BufferUserType ReceiverId, Dcm_ProtocolIndexType ProtocolIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  Dcm_P2TimerOwner[_1] = ReceiverId;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (Dcm_BufferUserType ReleaserId, Dcm_ProtocolIndexType ProtocolIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  Dcm_P2TimerOwner[_1] = 16;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_AllocateP2Timer (Dcm_BufferUserType RequesterId, Dcm_ProtocolIndexType ProtocolIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  Dcm_P2TimerOwner[_1] = RequesterId;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_StopTimer (Dcm_BufferUserType UserId, Dcm_ProtocolIndexType ProtocolIndex, Dcm_TimerIdType TimerId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) TimerId;
+  switch (_1) <default: <L4> [INV], case 2: <L0> [INV], case 3: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex;
+  Dcm_P2TimerValue[_2] = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_StartS3Timer (Dcm_TimerValueType Timeout)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) Timeout;
+  Dcm_S3TimerValue = _1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (Dcm_BufferUserType UserId, Dcm_ProtocolIndexType ProtocolIndex, Dcm_TimerValueType Timeout)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  Dcm_P2TimerOwner[_1] = UserId;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex;
+  Dcm_P2TimerValue[_2] = Timeout;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProtocolIndex;
+  _4 = Dcm_P2TimerValue[_3];
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIndex;
+  _6 = Dcm_P2TimerOwner[_5];
+  if (_6 != 14)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) ProtocolIndex;
+  curHsmInfo = &Dcm_HsmInfo[_7];
+  # DEBUG BEGIN_STMT
+  _8 = curHsmInfo->serviceId;
+  if (_8 == 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _9 = curHsmInfo->serviceId;
+  if (_9 == 7)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _10 = curHsmInfo->serviceId;
+  if (_10 == 10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIndex, 8);
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_Protocol_P2TimerTimeout (ProtocolIndex);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_P2TimerTimeout (ProtocolIndex);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_SwitchCurrentSession (Dcm_SesCtrlType NewSession)
+{
+  boolean ResetToDefaultSessionOccured;
+  boolean IsSessionClearedToSwitch;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IsSessionClearedToSwitch = Dcm_Dsl_Supervisor_IsSessionClearedToSwitch (NewSession);
+  # DEBUG BEGIN_STMT
+  ResetToDefaultSessionOccured = Dcm_Dsl_DiagnosticSessionHandler_GetResetToDefaultSessionOccured (16);
+  # DEBUG BEGIN_STMT
+  if (IsSessionClearedToSwitch == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (ResetToDefaultSessionOccured == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_DoSwitch (NewSession);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_SetSession (Dcm_MainConnectionIndexType MainConnectionIndex, Dcm_SesCtrlType NewSession)
+{
+  uint8 RteSesMode;
+  uint8 SessionIdx;
+  const struct Dcm_SesTabConfigType * SesTabConfig;
+  Dcm_ProtocolIndexType ProtocolIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  ProtocolIndex = Dcm_MainConnectionConfig[_1].ProtocolIndex;
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIndex;
+  SesTabConfig = &Dcm_SesTabConfig[_2];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RteSesMode = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SessionIdx = 0;
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = SesTabConfig->SessionEntries;
+  _4 = (unsigned int) SessionIdx;
+  _5 = _4 * 12;
+  _6 = _3 + _5;
+  _7 = _6->SesCtrl;
+  if (NewSession == _7)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SessionIdx.11_8 = SessionIdx;
+  SessionIdx = SessionIdx.11_8 + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = SesTabConfig->NumEntries;
+  if (SessionIdx < _9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = SesTabConfig->NumEntries;
+  if (SessionIdx < _10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex = ProtocolIndex;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionTableIndex = SessionIdx;
+  # DEBUG BEGIN_STMT
+  if (NewSession == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionMainConnectionIndex = 3;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionMainConnectionIndex = MainConnectionIndex;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionLevel = NewSession;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _11 = SesTabConfig->SessionEntries;
+  _12 = (unsigned int) SessionIdx;
+  _13 = _12 * 12;
+  _14 = _11 + _13;
+  RteSesMode = _14->RteSesMode;
+  # DEBUG BEGIN_STMT
+  SchM_Switch_Dcm_DcmDiagnosticSessionControl (RteSesMode);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession (Dcm_RequesterIdType RequesterId)
+{
+  Dcm_ProtocolIndexType ProtocolIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (RequesterId == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionRequester = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag = 1;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag.10_1 = Dcm_DiagnosticSessionResetFlag;
+  if (Dcm_DiagnosticSessionResetFlag.10_1 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocol ();
+  _3 = (unsigned char) _2;
+  ProtocolIdx = _3 + 244;
+  # DEBUG BEGIN_STMT
+  if (ProtocolIdx == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionMainConnection ()
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  Dcm_MainConnectionIndexType D.7863;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = Dcm_DiagnosticSessionMainConnectionIndex;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7863 = MainConnectionIndex;
+  return D.7863;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionProtocolIndex ()
+{
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Dcm_ProtocolIndexType D.7861;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ProtocolIndex = Dcm_DiagnosticSessionProtocolIndex;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7861 = ProtocolIndex;
+  return D.7861;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ()
+{
+  Dcm_SesCtrlType SessionLevel;
+  Dcm_SesCtrlType D.7859;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SessionLevel = Dcm_DiagnosticSessionLevel;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7859 = SessionLevel;
+  return D.7859;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  uint16 ReturnMaxRcrrp;
+  uint16 D.7857;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnMaxRcrrp = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7857 = ReturnMaxRcrrp;
+  return D.7857;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction ()
+{
+  uint8 serviceId;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  Dcm_ProtocolIndexType ProtocolIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ProtocolIdx = 0;
+  goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIdx;
+  _2 = Dcm_P2TimerValue[_1];
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProtocolIdx;
+  _4 = Dcm_P2TimerValue[_3];
+  _5 = _4 + 4294967295;
+  Dcm_P2TimerValue[_3] = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) ProtocolIdx;
+  _7 = Dcm_P2TimerValue[_6];
+  if (_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) ProtocolIdx;
+  _9 = Dcm_P2TimerOwner[_8];
+  if (_9 != 14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) ProtocolIdx;
+  curHsmInfo = &Dcm_HsmInfo[_10];
+  # DEBUG BEGIN_STMT
+  serviceId = curHsmInfo->serviceId;
+  # DEBUG BEGIN_STMT
+  _11 = serviceId + 255;
+  if (_11 <= 2)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (serviceId == 6)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  if (serviceId == 7)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (serviceId == 8)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (serviceId == 10)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, ProtocolIdx, 8);
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_Protocol_P2TimerTimeout (ProtocolIdx);
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_P2TimerTimeout (ProtocolIdx);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ProtocolIdx.9_12 = ProtocolIdx;
+  ProtocolIdx = ProtocolIdx.9_12 + 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (ProtocolIdx <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue.2_1 = Dcm_S3TimerValue;
+  if (Dcm_S3TimerValue.2_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue.3_2 = Dcm_S3TimerValue;
+  if (Dcm_S3TimerValue.3_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag.4_3 = Dcm_DiagnosticSessionResetFlag;
+  if (Dcm_DiagnosticSessionResetFlag.4_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue.5_4 = Dcm_S3TimerValue;
+  _5 = Dcm_S3TimerValue.5_4 + 65535;
+  Dcm_S3TimerValue = _5;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag.6_6 = Dcm_DiagnosticSessionResetFlag;
+  if (Dcm_DiagnosticSessionResetFlag.6_6 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_DoSwitch (1);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionRequester = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_DiagnosticSessionHandler_Init ()
+{
+  uint8 FlagIdx;
+  Dcm_ProtocolIndexType ProtocolIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionResetFlag = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionProtocolIndex = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionTableIndex = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionMainConnectionIndex = 3;
+  # DEBUG BEGIN_STMT
+  Dcm_DiagnosticSessionLevel = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_S3TimerValue = 0;
+  # DEBUG BEGIN_STMT
+  ProtocolIdx = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIdx;
+  Dcm_P2TimerValue[_1] = 0;
+  # DEBUG BEGIN_STMT
+  _2 = (int) ProtocolIdx;
+  Dcm_P2TimerOwner[_2] = 16;
+  # DEBUG BEGIN_STMT
+  ProtocolIdx.0_3 = ProtocolIdx;
+  ProtocolIdx = ProtocolIdx.0_3 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ProtocolIdx <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Dcm_ResetToDefaultSessionRequester = 0;
+  # DEBUG BEGIN_STMT
+  FlagIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) FlagIdx;
+  Dcm_ResetToDefaultSessionOccured[_4] = 0;
+  # DEBUG BEGIN_STMT
+  FlagIdx.1_5 = FlagIdx;
+  FlagIdx = FlagIdx.1_5 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (FlagIdx <= 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

@@ -1,0 +1,133 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksCounter ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_counter_t * const ctr;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  const struct os_counter_t * OS_counterTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_hwt_t * _5;
+  unsigned int _6;
+  const struct os_hwt_t * _7;
+  unsigned int _8;
+  unsigned char OS_nCounters.1_9;
+  unsigned int _10;
+  os_result_t _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_20 = 0;
+  # DEBUG myCoreId => myCoreId_20
+  # DEBUG BEGIN_STMT
+  result_21 = 0;
+  # DEBUG result => result_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_22 = 0;
+  # DEBUG i => i_22
+  goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.0_1 = OS_counterTableBase;
+  _2 = i_15 * 32;
+  ctr_25 = OS_counterTableBase.0_1 + _2;
+  # DEBUG ctr => ctr_25
+  # DEBUG BEGIN_STMT
+  app_26 = ctr_25->app;
+  # DEBUG app => app_26
+  # DEBUG BEGIN_STMT
+  if (app_26 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_28 = OS_Panic (51);
+  # DEBUG result => result_28
+
+  <bb 5> :
+  # result_11 = PHI <result_28(4), result_14(3)>
+  # DEBUG result => result_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms_29 = ctr_25->permissions;
+  # DEBUG perms => perms_29
+  # DEBUG BEGIN_STMT
+  if (app_26 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _3 = app_26->permissionBit;
+  _4 = perms_29 & _3;
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_31 = OS_Panic (50);
+  # DEBUG result => result_31
+
+  <bb 8> :
+  # result_12 = PHI <result_11(5), result_11(6), result_31(7)>
+  # DEBUG result => result_12
+  # DEBUG BEGIN_STMT
+  _5 = ctr_25->hwt;
+  if (_5 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = ctr_25->maxallowedvalue;
+  _7 = ctr_25->hwt;
+  _8 = _7->wrapMask;
+  if (_6 < _8)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result_33 = OS_Panic (23);
+  # DEBUG result => result_33
+
+  <bb 11> :
+  # result_13 = PHI <result_33(10), result_12(8), result_12(9)>
+  # DEBUG result => result_13
+  # DEBUG BEGIN_STMT
+  i_34 = i_15 + 1;
+  # DEBUG i => i_34
+
+  <bb 12> :
+  # result_14 = PHI <result_21(2), result_13(11)>
+  # i_15 = PHI <i_22(2), i_34(11)>
+  # DEBUG i => i_15
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  OS_nCounters.1_9 = OS_nCounters;
+  _10 = (unsigned int) OS_nCounters.1_9;
+  if (i_15 < _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _24 = result_14;
+  return _24;
+
+}
+
+

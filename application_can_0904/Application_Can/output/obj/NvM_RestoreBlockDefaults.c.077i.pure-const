@@ -1,0 +1,1472 @@
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt3.part.0
+   scanning: DataAddress_1 = NvM_GetUserRamBlockAddress ();
+  scanning: NvM_CurrentBlockDescriptorPtr.23_2 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _3 = NvM_CurrentBlockDescriptorPtr.23_2->nvBlockLength;
+    Indirect ref read is not const
+  scanning: _4 = (sizetype) _3;
+  scanning: DataAddress_5 = DataAddress_1 + _4;
+  scanning: _6 = NvM_CurrentBlockDescriptorPtr.23_2->blockDesc;
+    Indirect ref read is not const
+  scanning: NvM_CopyCrc (DataAddress_5, &NvM_CalcCrc_CalcBuffer, _6);
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of NvM_CopyBlockRom2Ram
+   scanning: NvM_CurrentBlockDescriptorPtr.11_1 = NvM_CurrentBlockDescriptorPtr;
+  scanning: CurrentRomAddress_18 = NvM_CurrentBlockDescriptorPtr.11_1->romBlockDataAddress;
+    Indirect ref read is not const
+  scanning: _2 = NvM_CurrentBlockDescriptorPtr.11_1->blockDesc;
+    Indirect ref read is not const
+  scanning: _3 = _2 >> 7;
+  scanning: _4 = _3 & 3;
+  scanning: if (_4 == 2)
+  scanning: NvM_GlobalBlockNumber.13_5 = NvM_GlobalBlockNumber;
+  scanning: _6 = (int) NvM_GlobalBlockNumber.13_5;
+  scanning: NvMDatasetBlockIndex_20 = NvM_AdminBlockTable[_6].NvMDatasetBlockIndex;
+  scanning: NvMDatasetBlockIndex_19 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockNum;
+    Indirect ref read is not const
+  scanning: _7 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockLength;
+    Indirect ref read is not const
+  scanning: _8 = (int) _7;
+  scanning: _9 = (int) NvMDatasetBlockIndex_16;
+  scanning: _10 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockNum;
+    Indirect ref read is not const
+  scanning: _11 = (int) _10;
+  scanning: _12 = _9 - _11;
+  scanning: _13 = _8 * _12;
+  scanning: _14 = (sizetype) _13;
+  scanning: CurrentRomAddress_21 = CurrentRomAddress_18 + _14;
+  scanning: _15 = (long unsigned int) _7;
+  scanning: TS_MemCpy32 (CurrentRamAddress_22(D), CurrentRomAddress_21, _15);
+  scanning: NvM_GlobalErrorStatus = 0;
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt4
+   scanning: NvM_GlobalWorkingStatus.25_1 = NvM_GlobalWorkingStatus;
+  scanning: _7 = NvM_GlobalWorkingStatus.25_1 & 4096;
+  scanning: if (_7 != 0)
+  scanning: NvM_SetPermanentRamBlockInvalid ();
+  scanning: NvM_SetPermanentRamBlockUnchanged ();
+  scanning: NvM_CurrentBlockDescriptorPtr.26_2 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _3 = NvM_CurrentBlockDescriptorPtr.26_2->readRamFromNvCallback;
+    Indirect ref read is not const
+  scanning: ReturnVal_12 = NvM_MirrorCopy (_3, 0B, &NvM_InternalBuffer);
+  scanning: if (ReturnVal_12 == 0)
+  scanning: NvM_GlobalWorkingStatus.27_4 = NvM_GlobalWorkingStatus;
+  scanning: _5 = NvM_GlobalWorkingStatus.27_4 | 16;
+  scanning: NvM_GlobalWorkingStatus = _5;
+  scanning: NvM_SetPermanentRamBlockValid ();
+  scanning: NvM_SetPermanentRamBlockChanged ();
+  scanning: NvM_GlobalErrorStatus = 8;
+  scanning: NvM_StateMachine_TerminateCurrentLevel ();
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt3
+   scanning: NvM_GlobalCallLevel.19_1 = NvM_GlobalCallLevel;
+  scanning: _2 = (int) NvM_GlobalCallLevel.19_1;
+  scanning: NvM_CurrentFunctionPtr[_2] = NvM_RestoreBlockDefaults_AscSt4;
+  scanning: _3 = NvM_GetStoredRamCRCAddress ();
+  scanning: NvM_CurrentBlockDescriptorPtr.20_4 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _5 = NvM_CurrentBlockDescriptorPtr.20_4->blockDesc;
+    Indirect ref read is not const
+  scanning: NvM_CopyCrc (_3, &NvM_CalcCrc_CalcBuffer, _5);
+  scanning: NvM_CurrentBlockDescriptorPtr.21_6 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _7 = NvM_CurrentBlockDescriptorPtr.21_6->blockDesc;
+    Indirect ref read is not const
+  scanning: _8 = _7 & 1048576;
+  scanning: if (_8 != 0)
+  scanning: NvM_GlobalWorkingStatus.22_9 = NvM_GlobalWorkingStatus;
+  scanning: _16 = NvM_GlobalWorkingStatus.22_9 & 512;
+  scanning: if (_16 != 0)
+  scanning: NvM_RestoreBlockDefaults_AscSt3.part.0 ();
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt2
+   scanning: NvM_GlobalCallLevel.18_1 = NvM_GlobalCallLevel;
+  scanning: _2 = (int) NvM_GlobalCallLevel.18_1;
+  scanning: NvM_CurrentFunctionPtr[_2] = NvM_RestoreBlockDefaults_AscSt3;
+  scanning: _3 = NvM_GetUserRamBlockAddress ();
+  scanning: NvM_CalculateCrc (_3);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt1
+   scanning: CurrentRamAddress_13 = NvM_GetUserRamBlockAddress ();
+  scanning: if (CurrentRamAddress_13 != 0B)
+  scanning: NvM_GlobalErrorStatus = 1;
+  scanning: NvM_CurrentBlockDescriptorPtr.7_1 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _2 = NvM_CurrentBlockDescriptorPtr.7_1->romBlockDataAddress;
+    Indirect ref read is not const
+  scanning: if (_2 != 0B)
+  scanning: NvM_CopyBlockRom2Ram (CurrentRamAddress_13);
+  scanning: NvM_CurrentBlockDescriptorPtr.8_3 = NvM_CurrentBlockDescriptorPtr;
+  scanning: _4 = NvM_CurrentBlockDescriptorPtr.8_3->blockDesc;
+    Indirect ref read is not const
+  scanning: _5 = _4 & 8;
+  scanning: if (_5 != 0)
+  scanning: NvM_GlobalErrorStatus = 3;
+  scanning: NvM_StateMachine_TerminateCurrentLevel ();
+  scanning: NvM_GlobalCallLevel.9_6 = NvM_GlobalCallLevel;
+  scanning: _7 = (int) NvM_GlobalCallLevel.9_6;
+  scanning: NvM_CurrentFunctionPtr[_7] = NvM_RestoreBlockDefaults_AscSt2;
+  scanning: NvM_GlobalCallLevel.10_8 = NvM_GlobalCallLevel;
+  scanning: _9 = (int) NvM_GlobalCallLevel.10_8;
+  scanning: NvM_CurrentFunctionPtr[_9] = NvM_RestoreBlockDefaults_AscSt4;
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of NvM_RestoreBlockDefaults_AscSt0
+   scanning: NvM_MirrorRetryCount = 0;
+  scanning: NvM_GlobalWorkingStatus.6_1 = NvM_GlobalWorkingStatus;
+  scanning: _2 = NvM_GlobalWorkingStatus.6_1 & 65519;
+  scanning: NvM_GlobalWorkingStatus = _2;
+  scanning: NvM_RestoreBlockDefaults_AscSt1 ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of NvM_RestorePRAMBlockDefaults_Asc
+   scanning: NvM_CurrentServiceId = 24;
+  scanning: NvM_GlobalWorkingStatus.3_1 = NvM_GlobalWorkingStatus;
+  scanning: _15 = NvM_GlobalWorkingStatus.3_1 & 4096;
+  scanning: if (_15 == 0)
+  scanning: NvM_SetPermanentRamBlockInvalid ();
+  scanning: NvM_SetPermanentRamBlockUnchanged ();
+  scanning: NvM_GlobalCallLevel.4_2 = NvM_GlobalCallLevel;
+  scanning: _3 = (int) NvM_GlobalCallLevel.4_2;
+  scanning: NvM_CurrentFunctionPtr[_3] = NvM_RestoreBlockDefaults_AscSt0;
+  scanning: NvM_GlobalBlockNumber.5_4 = NvM_GlobalBlockNumber;
+  scanning: _5 = (int) NvM_GlobalBlockNumber.5_4;
+  scanning: _6 = NvM_AdminBlockTable[_5].NvMExtendedStatus;
+  scanning: _16 = _6 & 2;
+  scanning: if (_16 != 0)
+  scanning: NvM_CalcCrc_RemoveElement ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of NvM_RestoreBlockDefaults_Asc
+   scanning: NvM_CurrentServiceId = 8;
+  scanning: NvM_GlobalWorkingStatus.0_1 = NvM_GlobalWorkingStatus;
+  scanning: _15 = NvM_GlobalWorkingStatus.0_1 & 4096;
+  scanning: if (_15 == 0)
+  scanning: NvM_SetPermanentRamBlockInvalid ();
+  scanning: NvM_SetPermanentRamBlockUnchanged ();
+  scanning: NvM_GlobalCallLevel.1_2 = NvM_GlobalCallLevel;
+  scanning: _3 = (int) NvM_GlobalCallLevel.1_2;
+  scanning: NvM_CurrentFunctionPtr[_3] = NvM_RestoreBlockDefaults_AscSt0;
+  scanning: NvM_GlobalBlockNumber.2_4 = NvM_GlobalBlockNumber;
+  scanning: _5 = (int) NvM_GlobalBlockNumber.2_4;
+  scanning: _6 = NvM_AdminBlockTable[_5].NvMExtendedStatus;
+  scanning: _16 = _6 & 2;
+  scanning: if (_16 != 0)
+  scanning: NvM_CalcCrc_RemoveElement ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of NvM_ASR42_RestorePRAMBlockDefaults
+   scanning: BlockIndex_6 = NvM_CheckCondRestorePRAMBlockDefaults (BlockId_4(D));
+  scanning: if (BlockIndex_6 != 9)
+  scanning: Result_8 = NvM_InsertRestoreBlockJob (1, BlockId_4(D), BlockIndex_6, 0B);
+  scanning: return Result_1;
+Function is locally const.
+
+
+ local analysis of NvM_ASR40_RestoreBlockDefaults
+   scanning: BlockIndex_7 = NvM_CheckCondRestoreBlockDefaults (BlockId_4(D), NvM_DestPtr_5(D));
+  scanning: if (BlockIndex_7 != 9)
+  scanning: Result_9 = NvM_InsertRestoreBlockJob (0, BlockId_4(D), BlockIndex_7, NvM_DestPtr_5(D));
+  scanning: return Result_1;
+Function is locally const.
+callgraph:
+
+NvM_RestoreBlockDefaults_AscSt3.part.0/36 (NvM_RestoreBlockDefaults_AscSt3.part.0) @06f78540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06b53df8
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)
+  Referring: 
+  Function NvM_RestoreBlockDefaults_AscSt3.part.0/36 is inline copy in NvM_RestoreBlockDefaults_AscSt3/7
+  Availability: local
+  Function flags: count:177167400 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (inlined) (177167400 (estimated locally),0.16 per call) 
+  Calls: NvM_GetUserRamBlockAddress/23 (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (177167400 (estimated locally),0.16 per call) 
+NvM_SetPermanentRamBlockChanged/35 (NvM_SetPermanentRamBlockChanged) @06f68700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockValid/34 (NvM_SetPermanentRamBlockValid) @06f68620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_MirrorCopy/32 (NvM_MirrorCopy) @06f68540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_CopyCrc/30 (NvM_CopyCrc) @06f682a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (1073741824 (estimated locally),1.00 per call) NvM_RestoreBlockDefaults_AscSt3.part.0/36 (177167400 (estimated locally),0.16 per call) 
+  Calls: 
+NvM_GetStoredRamCRCAddress/29 (NvM_GetStoredRamCRCAddress) @06f681c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CalculateCrc/28 (NvM_CalculateCrc) @06f68000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt2/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+TS_MemCpy32/27 (TS_MemCpy32) @06eafee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_CopyBlockRom2Ram/9 (526133494 (estimated locally),0.49 per call) 
+  Calls: 
+NvM_StateMachine_TerminateCurrentLevel/26 (NvM_StateMachine_TerminateCurrentLevel) @06eafc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (225485783 (estimated locally),0.21 per call) NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_GetUserRamBlockAddress/23 (NvM_GetUserRamBlockAddress) @06eafa80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) NvM_RestoreBlockDefaults_AscSt3.part.0/36 (177167400 (estimated locally),0.16 per call) NvM_RestoreBlockDefaults_AscSt2/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CalcCrc_RemoveElement/21 (NvM_CalcCrc_RemoveElement) @06eaf620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockUnchanged/16 (NvM_SetPermanentRamBlockUnchanged) @06eaf460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockInvalid/15 (NvM_SetPermanentRamBlockInvalid) @06eaf380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_CheckCondRestorePRAMBlockDefaults/12 (NvM_CheckCondRestorePRAMBlockDefaults) @06eaf1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR42_RestorePRAMBlockDefaults/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_InsertRestoreBlockJob/11 (NvM_InsertRestoreBlockJob) @06eaf000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR42_RestorePRAMBlockDefaults/1 (524845004 (estimated locally),0.49 per call) NvM_ASR40_RestoreBlockDefaults/0 (524845004 (estimated locally),0.49 per call) 
+  Calls: 
+NvM_CheckCondRestoreBlockDefaults/10 (NvM_CheckCondRestoreBlockDefaults) @06ea9ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR40_RestoreBlockDefaults/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CopyBlockRom2Ram/9 (NvM_CopyBlockRom2Ram) @06ea9d20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06b53c58
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)NvM_GlobalErrorStatus/24 (write)
+  Referring: 
+  Function NvM_CopyBlockRom2Ram/9 is inline copy in NvM_RestoreBlockDefaults_AscSt1/5
+  Availability: local
+  Function flags: count:526133494 (estimated locally) body local optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (inlined) (526133494 (estimated locally),0.49 per call) 
+  Calls: TS_MemCpy32/27 (526133494 (estimated locally),0.49 per call) 
+NvM_RestoreBlockDefaults_AscSt4/8 (NvM_RestoreBlockDefaults_AscSt4) @06ea99a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53d58
+  References: NvM_GlobalWorkingStatus/14 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_InternalBuffer/33 (addr)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)NvM_GlobalErrorStatus/24 (write)
+  Referring: NvM_RestoreBlockDefaults_AscSt3/7 (addr)NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockChanged/35 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockValid/34 (805306369 (estimated locally),0.75 per call) NvM_MirrorCopy/32 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockUnchanged/16 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockInvalid/15 (536870913 (estimated locally),0.50 per call) 
+NvM_RestoreBlockDefaults_AscSt3/7 (NvM_RestoreBlockDefaults_AscSt3) @06ea9700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53c78
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalWorkingStatus/14 (read)
+  Referring: NvM_RestoreBlockDefaults_AscSt2/6 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt3.part.0/36 (inlined) (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (1073741824 (estimated locally),1.00 per call) NvM_GetStoredRamCRCAddress/29 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt2/6 (NvM_RestoreBlockDefaults_AscSt2) @06ea9460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53c98
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt3/7 (addr)
+  Referring: NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalculateCrc/28 (1073741824 (estimated locally),1.00 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt1/5 (NvM_RestoreBlockDefaults_AscSt1) @06ea92a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53e98
+  References: NvM_GlobalErrorStatus/24 (write)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalErrorStatus/24 (write)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt2/6 (addr)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt0/4 (1073741824 (estimated locally),1.00 per call) 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (225485783 (estimated locally),0.21 per call) NvM_CopyBlockRom2Ram/9 (inlined) (526133494 (estimated locally),0.49 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt0/4 (NvM_RestoreBlockDefaults_AscSt0) @06ea90e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53cb8
+  References: NvM_MirrorRetryCount/22 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)
+  Referring: NvM_RestoreBlockDefaults_Asc/2 (addr)NvM_RestorePRAMBlockDefaults_Asc/3 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestorePRAMBlockDefaults_Asc/3 (NvM_RestorePRAMBlockDefaults_Asc) @06eb89a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53d98
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_RestoreBlockDefaults_Asc/2 (NvM_RestoreBlockDefaults_Asc) @06eb81c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53e58
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_ASR42_RestorePRAMBlockDefaults/1 (NvM_ASR42_RestorePRAMBlockDefaults) @06eb8e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53ef8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestorePRAMBlockDefaults/12 (1073741824 (estimated locally),1.00 per call) 
+NvM_ASR40_RestoreBlockDefaults/0 (NvM_ASR40_RestoreBlockDefaults) @06eb8c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b54378
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestoreBlockDefaults/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+NvM_RestoreBlockDefaults_AscSt3.part.0/36 (NvM_RestoreBlockDefaults_AscSt3.part.0) @06f78540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06b53df8
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)
+  Referring: 
+  Function NvM_RestoreBlockDefaults_AscSt3.part.0/36 is inline copy in NvM_RestoreBlockDefaults_AscSt3/7
+  Availability: local
+  Function flags: count:177167400 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (inlined) (177167400 (estimated locally),0.16 per call) 
+  Calls: NvM_GetUserRamBlockAddress/23 (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (177167400 (estimated locally),0.16 per call) 
+NvM_CopyBlockRom2Ram/9 (NvM_CopyBlockRom2Ram) @06ea9d20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06b53c58
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)NvM_GlobalErrorStatus/24 (write)
+  Referring: 
+  Function NvM_CopyBlockRom2Ram/9 is inline copy in NvM_RestoreBlockDefaults_AscSt1/5
+  Availability: local
+  Function flags: count:526133494 (estimated locally) body local optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (inlined) (526133494 (estimated locally),0.49 per call) 
+  Calls: TS_MemCpy32/27 (526133494 (estimated locally),0.49 per call) 
+NvM_RestoreBlockDefaults_AscSt4/8 (NvM_RestoreBlockDefaults_AscSt4) @06ea99a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53d58
+  References: NvM_GlobalWorkingStatus/14 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_InternalBuffer/33 (addr)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)NvM_GlobalErrorStatus/24 (write)
+  Referring: NvM_RestoreBlockDefaults_AscSt3/7 (addr)NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockChanged/35 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockValid/34 (805306369 (estimated locally),0.75 per call) NvM_MirrorCopy/32 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockUnchanged/16 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockInvalid/15 (536870913 (estimated locally),0.50 per call) 
+NvM_RestoreBlockDefaults_AscSt3/7 (NvM_RestoreBlockDefaults_AscSt3) @06ea9700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53c78
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalWorkingStatus/14 (read)
+  Referring: NvM_RestoreBlockDefaults_AscSt2/6 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt3.part.0/36 (inlined) (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (1073741824 (estimated locally),1.00 per call) NvM_GetStoredRamCRCAddress/29 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt2/6 (NvM_RestoreBlockDefaults_AscSt2) @06ea9460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53c98
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt3/7 (addr)
+  Referring: NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalculateCrc/28 (1073741824 (estimated locally),1.00 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt1/5 (NvM_RestoreBlockDefaults_AscSt1) @06ea92a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53e98
+  References: NvM_GlobalErrorStatus/24 (write)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalErrorStatus/24 (write)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt2/6 (addr)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt0/4 (1073741824 (estimated locally),1.00 per call) 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (225485783 (estimated locally),0.21 per call) NvM_CopyBlockRom2Ram/9 (inlined) (526133494 (estimated locally),0.49 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt0/4 (NvM_RestoreBlockDefaults_AscSt0) @06ea90e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53cb8
+  References: NvM_MirrorRetryCount/22 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)
+  Referring: NvM_RestoreBlockDefaults_Asc/2 (addr)NvM_RestorePRAMBlockDefaults_Asc/3 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestorePRAMBlockDefaults_Asc/3 (NvM_RestorePRAMBlockDefaults_Asc) @06eb89a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53d98
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_RestoreBlockDefaults_Asc/2 (NvM_RestoreBlockDefaults_Asc) @06eb81c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53e58
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_ASR42_RestorePRAMBlockDefaults/1 (NvM_ASR42_RestorePRAMBlockDefaults) @06eb8e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53ef8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestorePRAMBlockDefaults/12 (1073741824 (estimated locally),1.00 per call) 
+NvM_ASR40_RestoreBlockDefaults/0 (NvM_ASR40_RestoreBlockDefaults) @06eb8c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b54378
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestoreBlockDefaults/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+NvM_RestoreBlockDefaults_AscSt3.part.0: malloc_bottom
+NvM_CopyBlockRom2Ram: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt4: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt3: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt2: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt1: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt0: malloc_bottom
+NvM_RestorePRAMBlockDefaults_Asc: malloc_bottom
+NvM_RestoreBlockDefaults_Asc: malloc_bottom
+NvM_ASR42_RestorePRAMBlockDefaults: malloc_bottom
+NvM_ASR40_RestoreBlockDefaults: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+NvM_RestoreBlockDefaults_AscSt3.part.0: malloc_bottom
+NvM_CopyBlockRom2Ram: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt4: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt3: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt2: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt1: malloc_bottom
+NvM_RestoreBlockDefaults_AscSt0: malloc_bottom
+NvM_RestorePRAMBlockDefaults_Asc: malloc_bottom
+NvM_RestoreBlockDefaults_Asc: malloc_bottom
+NvM_ASR42_RestorePRAMBlockDefaults: malloc_bottom
+NvM_ASR40_RestoreBlockDefaults: malloc_bottom
+callgraph:
+
+NvM_RestoreBlockDefaults_AscSt3.part.0/36 (NvM_RestoreBlockDefaults_AscSt3.part.0) @06f78540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06b54378
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)
+  Referring: 
+  Function NvM_RestoreBlockDefaults_AscSt3.part.0/36 is inline copy in NvM_RestoreBlockDefaults_AscSt3/7
+  Availability: local
+  Function flags: count:177167400 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (inlined) (177167400 (estimated locally),0.16 per call) 
+  Calls: NvM_GetUserRamBlockAddress/23 (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (177167400 (estimated locally),0.16 per call) 
+NvM_SetPermanentRamBlockChanged/35 (NvM_SetPermanentRamBlockChanged) @06f68700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockValid/34 (NvM_SetPermanentRamBlockValid) @06f68620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_MirrorCopy/32 (NvM_MirrorCopy) @06f68540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_CopyCrc/30 (NvM_CopyCrc) @06f682a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (1073741824 (estimated locally),1.00 per call) NvM_RestoreBlockDefaults_AscSt3.part.0/36 (177167400 (estimated locally),0.16 per call) 
+  Calls: 
+NvM_GetStoredRamCRCAddress/29 (NvM_GetStoredRamCRCAddress) @06f681c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CalculateCrc/28 (NvM_CalculateCrc) @06f68000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt2/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+TS_MemCpy32/27 (TS_MemCpy32) @06eafee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_CopyBlockRom2Ram/9 (526133494 (estimated locally),0.49 per call) 
+  Calls: 
+NvM_StateMachine_TerminateCurrentLevel/26 (NvM_StateMachine_TerminateCurrentLevel) @06eafc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (225485783 (estimated locally),0.21 per call) NvM_RestoreBlockDefaults_AscSt4/8 (805306369 (estimated locally),0.75 per call) 
+  Calls: 
+NvM_GetUserRamBlockAddress/23 (NvM_GetUserRamBlockAddress) @06eafa80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) NvM_RestoreBlockDefaults_AscSt3.part.0/36 (177167400 (estimated locally),0.16 per call) NvM_RestoreBlockDefaults_AscSt2/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CalcCrc_RemoveElement/21 (NvM_CalcCrc_RemoveElement) @06eaf620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockUnchanged/16 (NvM_SetPermanentRamBlockUnchanged) @06eaf460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_SetPermanentRamBlockInvalid/15 (NvM_SetPermanentRamBlockInvalid) @06eaf380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_RestorePRAMBlockDefaults_Asc/3 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_Asc/2 (354334802 (estimated locally),0.33 per call) NvM_RestoreBlockDefaults_AscSt4/8 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+NvM_CheckCondRestorePRAMBlockDefaults/12 (NvM_CheckCondRestorePRAMBlockDefaults) @06eaf1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR42_RestorePRAMBlockDefaults/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_InsertRestoreBlockJob/11 (NvM_InsertRestoreBlockJob) @06eaf000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR42_RestorePRAMBlockDefaults/1 (524845004 (estimated locally),0.49 per call) NvM_ASR40_RestoreBlockDefaults/0 (524845004 (estimated locally),0.49 per call) 
+  Calls: 
+NvM_CheckCondRestoreBlockDefaults/10 (NvM_CheckCondRestoreBlockDefaults) @06ea9ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: NvM_ASR40_RestoreBlockDefaults/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+NvM_CopyBlockRom2Ram/9 (NvM_CopyBlockRom2Ram) @06ea9d20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06b54158
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)NvM_GlobalErrorStatus/24 (write)
+  Referring: 
+  Function NvM_CopyBlockRom2Ram/9 is inline copy in NvM_RestoreBlockDefaults_AscSt1/5
+  Availability: local
+  Function flags: count:526133494 (estimated locally) body local optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (inlined) (526133494 (estimated locally),0.49 per call) 
+  Calls: TS_MemCpy32/27 (526133494 (estimated locally),0.49 per call) 
+NvM_RestoreBlockDefaults_AscSt4/8 (NvM_RestoreBlockDefaults_AscSt4) @06ea99a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b543f8
+  References: NvM_GlobalWorkingStatus/14 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_InternalBuffer/33 (addr)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)NvM_GlobalErrorStatus/24 (write)
+  Referring: NvM_RestoreBlockDefaults_AscSt3/7 (addr)NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockChanged/35 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockValid/34 (805306369 (estimated locally),0.75 per call) NvM_MirrorCopy/32 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockUnchanged/16 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockInvalid/15 (536870913 (estimated locally),0.50 per call) 
+NvM_RestoreBlockDefaults_AscSt3/7 (NvM_RestoreBlockDefaults_AscSt3) @06ea9700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b541d8
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalWorkingStatus/14 (read)
+  Referring: NvM_RestoreBlockDefaults_AscSt2/6 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt3.part.0/36 (inlined) (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (1073741824 (estimated locally),1.00 per call) NvM_GetStoredRamCRCAddress/29 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt2/6 (NvM_RestoreBlockDefaults_AscSt2) @06ea9460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b54058
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt3/7 (addr)
+  Referring: NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalculateCrc/28 (1073741824 (estimated locally),1.00 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt1/5 (NvM_RestoreBlockDefaults_AscSt1) @06ea92a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b540f8
+  References: NvM_GlobalErrorStatus/24 (write)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalErrorStatus/24 (write)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt2/6 (addr)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt0/4 (1073741824 (estimated locally),1.00 per call) 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (225485783 (estimated locally),0.21 per call) NvM_CopyBlockRom2Ram/9 (inlined) (526133494 (estimated locally),0.49 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt0/4 (NvM_RestoreBlockDefaults_AscSt0) @06ea90e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53ef8
+  References: NvM_MirrorRetryCount/22 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)
+  Referring: NvM_RestoreBlockDefaults_Asc/2 (addr)NvM_RestorePRAMBlockDefaults_Asc/3 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestorePRAMBlockDefaults_Asc/3 (NvM_RestorePRAMBlockDefaults_Asc) @06eb89a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c58
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_RestoreBlockDefaults_Asc/2 (NvM_RestoreBlockDefaults_Asc) @06eb81c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c78
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_ASR42_RestorePRAMBlockDefaults/1 (NvM_ASR42_RestorePRAMBlockDefaults) @06eb8e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestorePRAMBlockDefaults/12 (1073741824 (estimated locally),1.00 per call) 
+NvM_ASR40_RestoreBlockDefaults/0 (NvM_ASR40_RestoreBlockDefaults) @06eb8c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53cb8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestoreBlockDefaults/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+NvM_RestoreBlockDefaults_AscSt4/8 (NvM_RestoreBlockDefaults_AscSt4) @06ea99a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b543f8
+  References: NvM_GlobalWorkingStatus/14 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_InternalBuffer/33 (addr)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)NvM_GlobalErrorStatus/24 (write)
+  Referring: NvM_RestoreBlockDefaults_AscSt3/7 (addr)NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockChanged/35 (805306369 (estimated locally),0.75 per call) NvM_SetPermanentRamBlockValid/34 (805306369 (estimated locally),0.75 per call) NvM_MirrorCopy/32 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockUnchanged/16 (536870913 (estimated locally),0.50 per call) NvM_SetPermanentRamBlockInvalid/15 (536870913 (estimated locally),0.50 per call) 
+NvM_RestoreBlockDefaults_AscSt3/7 (NvM_RestoreBlockDefaults_AscSt3) @06ea9700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b541d8
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalWorkingStatus/14 (read)
+  Referring: NvM_RestoreBlockDefaults_AscSt2/6 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt3.part.0/36 (inlined) (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (1073741824 (estimated locally),1.00 per call) NvM_GetStoredRamCRCAddress/29 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt3.part.0/36 (NvM_RestoreBlockDefaults_AscSt3.part.0) @06f78540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06b54378
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CalcCrc_CalcBuffer/31 (addr)
+  Referring: 
+  Function NvM_RestoreBlockDefaults_AscSt3.part.0/36 is inline copy in NvM_RestoreBlockDefaults_AscSt3/7
+  Availability: local
+  Function flags: count:177167400 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt3/7 (inlined) (177167400 (estimated locally),0.16 per call) 
+  Calls: NvM_GetUserRamBlockAddress/23 (177167400 (estimated locally),0.16 per call) NvM_CopyCrc/30 (177167400 (estimated locally),0.16 per call) 
+NvM_RestoreBlockDefaults_AscSt2/6 (NvM_RestoreBlockDefaults_AscSt2) @06ea9460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b54058
+  References: NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt3/7 (addr)
+  Referring: NvM_RestoreBlockDefaults_AscSt1/5 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalculateCrc/28 (1073741824 (estimated locally),1.00 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt0/4 (NvM_RestoreBlockDefaults_AscSt0) @06ea90e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Address is taken.
+  Aux: @06b53ef8
+  References: NvM_MirrorRetryCount/22 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalWorkingStatus/14 (write)
+  Referring: NvM_RestoreBlockDefaults_Asc/2 (addr)NvM_RestorePRAMBlockDefaults_Asc/3 (addr)
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_RestoreBlockDefaults_AscSt1/5 (1073741824 (estimated locally),1.00 per call) 
+NvM_RestoreBlockDefaults_AscSt1/5 (NvM_RestoreBlockDefaults_AscSt1) @06ea92a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b540f8
+  References: NvM_GlobalErrorStatus/24 (write)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalErrorStatus/24 (write)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt2/6 (addr)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt4/8 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt0/4 (1073741824 (estimated locally),1.00 per call) 
+  Calls: NvM_StateMachine_TerminateCurrentLevel/26 (225485783 (estimated locally),0.21 per call) NvM_CopyBlockRom2Ram/9 (inlined) (526133494 (estimated locally),0.49 per call) NvM_GetUserRamBlockAddress/23 (1073741824 (estimated locally),1.00 per call) 
+NvM_CopyBlockRom2Ram/9 (NvM_CopyBlockRom2Ram) @06ea9d20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06b54158
+  References: NvM_CurrentBlockDescriptorPtr/25 (read)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)NvM_GlobalErrorStatus/24 (write)
+  Referring: 
+  Function NvM_CopyBlockRom2Ram/9 is inline copy in NvM_RestoreBlockDefaults_AscSt1/5
+  Availability: local
+  Function flags: count:526133494 (estimated locally) body local optimize_size
+  Called by: NvM_RestoreBlockDefaults_AscSt1/5 (inlined) (526133494 (estimated locally),0.49 per call) 
+  Calls: TS_MemCpy32/27 (526133494 (estimated locally),0.49 per call) 
+NvM_RestorePRAMBlockDefaults_Asc/3 (NvM_RestorePRAMBlockDefaults_Asc) @06eb89a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c58
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_RestoreBlockDefaults_Asc/2 (NvM_RestoreBlockDefaults_Asc) @06eb81c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c78
+  References: NvM_CurrentServiceId/13 (write)NvM_GlobalWorkingStatus/14 (read)NvM_GlobalCallLevel/17 (read)NvM_CurrentFunctionPtr/18 (write)NvM_RestoreBlockDefaults_AscSt0/4 (addr)NvM_GlobalBlockNumber/19 (read)NvM_AdminBlockTable/20 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_CalcCrc_RemoveElement/21 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockUnchanged/16 (354334802 (estimated locally),0.33 per call) NvM_SetPermanentRamBlockInvalid/15 (354334802 (estimated locally),0.33 per call) 
+NvM_ASR42_RestorePRAMBlockDefaults/1 (NvM_ASR42_RestorePRAMBlockDefaults) @06eb8e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53c98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestorePRAMBlockDefaults/12 (1073741824 (estimated locally),1.00 per call) 
+NvM_ASR40_RestoreBlockDefaults/0 (NvM_ASR40_RestoreBlockDefaults) @06eb8c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b53cb8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: NvM_InsertRestoreBlockJob/11 (524845004 (estimated locally),0.49 per call) NvM_CheckCondRestoreBlockDefaults/10 (1073741824 (estimated locally),1.00 per call) 
+
+NvM_RestoreBlockDefaults_AscSt3.part.0 ()
+{
+  uint8 * DataAddress;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.23_2;
+  short unsigned int _3;
+  sizetype _4;
+  long unsigned int _6;
+
+  <bb 4> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  DataAddress_1 = NvM_GetUserRamBlockAddress ();
+  # DEBUG DataAddress => DataAddress_1
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.23_2 = NvM_CurrentBlockDescriptorPtr;
+  _3 = NvM_CurrentBlockDescriptorPtr.23_2->nvBlockLength;
+  _4 = (sizetype) _3;
+  DataAddress_5 = DataAddress_1 + _4;
+  # DEBUG DataAddress => DataAddress_5
+  # DEBUG BEGIN_STMT
+  _6 = NvM_CurrentBlockDescriptorPtr.23_2->blockDesc;
+  NvM_CopyCrc (DataAddress_5, &NvM_CalcCrc_CalcBuffer, _6);
+
+  <bb 3> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_CopyBlockRom2Ram (uint8 * CurrentRamAddress)
+{
+  const uint8 * CurrentRomAddress;
+  uint8 NvMDatasetBlockIndex;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.11_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  unsigned int _4;
+  short unsigned int NvM_GlobalBlockNumber.13_5;
+  int _6;
+  short unsigned int _7;
+  int _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  int _13;
+  sizetype _14;
+  long unsigned int _15;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NvMDatasetBlockIndex => 0
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.11_1 = NvM_CurrentBlockDescriptorPtr;
+  CurrentRomAddress_18 = NvM_CurrentBlockDescriptorPtr.11_1->romBlockDataAddress;
+  # DEBUG CurrentRomAddress => CurrentRomAddress_18
+  # DEBUG BEGIN_STMT
+  _2 = NvM_CurrentBlockDescriptorPtr.11_1->blockDesc;
+  _3 = _2 >> 7;
+  _4 = _3 & 3;
+  if (_4 == 2)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.13_5 = NvM_GlobalBlockNumber;
+  _6 = (int) NvM_GlobalBlockNumber.13_5;
+  NvMDatasetBlockIndex_20 = NvM_AdminBlockTable[_6].NvMDatasetBlockIndex;
+  # DEBUG NvMDatasetBlockIndex => NvMDatasetBlockIndex_20
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  NvMDatasetBlockIndex_19 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockNum;
+  # DEBUG NvMDatasetBlockIndex => NvMDatasetBlockIndex_19
+
+  <bb 5> [local count: 1073741824]:
+  # NvMDatasetBlockIndex_16 = PHI <NvMDatasetBlockIndex_20(3), NvMDatasetBlockIndex_19(4)>
+  # DEBUG NvMDatasetBlockIndex => NvMDatasetBlockIndex_16
+  # DEBUG BEGIN_STMT
+  _7 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockLength;
+  _8 = (int) _7;
+  _9 = (int) NvMDatasetBlockIndex_16;
+  _10 = NvM_CurrentBlockDescriptorPtr.11_1->nvBlockNum;
+  _11 = (int) _10;
+  _12 = _9 - _11;
+  _13 = _8 * _12;
+  _14 = (sizetype) _13;
+  CurrentRomAddress_21 = CurrentRomAddress_18 + _14;
+  # DEBUG CurrentRomAddress => CurrentRomAddress_21
+  # DEBUG BEGIN_STMT
+  _15 = (long unsigned int) _7;
+  TS_MemCpy32 (CurrentRamAddress_22(D), CurrentRomAddress_21, _15);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 0;
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_AscSt4 ()
+{
+  Std_ReturnType ReturnVal;
+  short unsigned int NvM_GlobalWorkingStatus.25_1;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.26_2;
+  Std_ReturnType (*<T55f>) (const void *) _3;
+  short unsigned int NvM_GlobalWorkingStatus.27_4;
+  short unsigned int _5;
+  short unsigned int _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnVal => 0
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.25_1 = NvM_GlobalWorkingStatus;
+  _7 = NvM_GlobalWorkingStatus.25_1 & 4096;
+  if (_7 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockInvalid ();
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockUnchanged ();
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.26_2 = NvM_CurrentBlockDescriptorPtr;
+  _3 = NvM_CurrentBlockDescriptorPtr.26_2->readRamFromNvCallback;
+  ReturnVal_12 = NvM_MirrorCopy (_3, 0B, &NvM_InternalBuffer);
+  # DEBUG ReturnVal => ReturnVal_12
+  # DEBUG BEGIN_STMT
+  if (ReturnVal_12 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 805306369]:
+  # DEBUG ReturnVal => NULL
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.27_4 = NvM_GlobalWorkingStatus;
+  _5 = NvM_GlobalWorkingStatus.27_4 | 16;
+  NvM_GlobalWorkingStatus = _5;
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockValid ();
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockChanged ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 8;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_AscSt3 ()
+{
+  unsigned char NvM_GlobalCallLevel.19_1;
+  int _2;
+  uint8 * _3;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.20_4;
+  long unsigned int _5;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.21_6;
+  long unsigned int _7;
+  long unsigned int _8;
+  short unsigned int NvM_GlobalWorkingStatus.22_9;
+  short unsigned int _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.19_1 = NvM_GlobalCallLevel;
+  _2 = (int) NvM_GlobalCallLevel.19_1;
+  NvM_CurrentFunctionPtr[_2] = NvM_RestoreBlockDefaults_AscSt4;
+  # DEBUG BEGIN_STMT
+  _3 = NvM_GetStoredRamCRCAddress ();
+  NvM_CurrentBlockDescriptorPtr.20_4 = NvM_CurrentBlockDescriptorPtr;
+  _5 = NvM_CurrentBlockDescriptorPtr.20_4->blockDesc;
+  NvM_CopyCrc (_3, &NvM_CalcCrc_CalcBuffer, _5);
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.21_6 = NvM_CurrentBlockDescriptorPtr;
+  _7 = NvM_CurrentBlockDescriptorPtr.21_6->blockDesc;
+  _8 = _7 & 1048576;
+  if (_8 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  NvM_GlobalWorkingStatus.22_9 = NvM_GlobalWorkingStatus;
+  _16 = NvM_GlobalWorkingStatus.22_9 & 512;
+  if (_16 != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 177167400]:
+  NvM_RestoreBlockDefaults_AscSt3.part.0 ();
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_AscSt2 ()
+{
+  unsigned char NvM_GlobalCallLevel.18_1;
+  int _2;
+  uint8 * _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.18_1 = NvM_GlobalCallLevel;
+  _2 = (int) NvM_GlobalCallLevel.18_1;
+  NvM_CurrentFunctionPtr[_2] = NvM_RestoreBlockDefaults_AscSt3;
+  # DEBUG BEGIN_STMT
+  _3 = NvM_GetUserRamBlockAddress ();
+  NvM_CalculateCrc (_3);
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_AscSt1 ()
+{
+  uint8 * CurrentRamAddress;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.7_1;
+  const void * _2;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.8_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  unsigned char NvM_GlobalCallLevel.9_6;
+  int _7;
+  unsigned char NvM_GlobalCallLevel.10_8;
+  int _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG DefaultsConfigured => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentRamAddress_13 = NvM_GetUserRamBlockAddress ();
+  # DEBUG CurrentRamAddress => CurrentRamAddress_13
+  # DEBUG BEGIN_STMT
+  if (CurrentRamAddress_13 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 8>; [30.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.7_1 = NvM_CurrentBlockDescriptorPtr;
+  _2 = NvM_CurrentBlockDescriptorPtr.7_1->romBlockDataAddress;
+  if (_2 != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 4> [local count: 526133494]:
+  # DEBUG BEGIN_STMT
+  NvM_CopyBlockRom2Ram (CurrentRamAddress_13);
+  # DEBUG DefaultsConfigured => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.8_3 = NvM_CurrentBlockDescriptorPtr;
+  _4 = NvM_CurrentBlockDescriptorPtr.8_3->blockDesc;
+  _5 = _4 & 8;
+  if (_5 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 5> [local count: 225485783]:
+  # DEBUG DefaultsConfigured => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 3;
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+  goto <bb 8>; [100.00%]
+
+  <bb 6> [local count: 263066747]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.9_6 = NvM_GlobalCallLevel;
+  _7 = (int) NvM_GlobalCallLevel.9_6;
+  NvM_CurrentFunctionPtr[_7] = NvM_RestoreBlockDefaults_AscSt2;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 263066747]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.10_8 = NvM_GlobalCallLevel;
+  _9 = (int) NvM_GlobalCallLevel.10_8;
+  NvM_CurrentFunctionPtr[_9] = NvM_RestoreBlockDefaults_AscSt4;
+
+  <bb 8> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_AscSt0 ()
+{
+  short unsigned int NvM_GlobalWorkingStatus.6_1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount = 0;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.6_1 = NvM_GlobalWorkingStatus;
+  _2 = NvM_GlobalWorkingStatus.6_1 & 65519;
+  NvM_GlobalWorkingStatus = _2;
+  # DEBUG BEGIN_STMT
+  NvM_RestoreBlockDefaults_AscSt1 ();
+  return;
+
+}
+
+
+NvM_RestorePRAMBlockDefaults_Asc ()
+{
+  short unsigned int NvM_GlobalWorkingStatus.3_1;
+  unsigned char NvM_GlobalCallLevel.4_2;
+  int _3;
+  short unsigned int NvM_GlobalBlockNumber.5_4;
+  int _5;
+  unsigned char _6;
+  short unsigned int _15;
+  unsigned char _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 24;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.3_1 = NvM_GlobalWorkingStatus;
+  _15 = NvM_GlobalWorkingStatus.3_1 & 4096;
+  if (_15 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockInvalid ();
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockUnchanged ();
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.4_2 = NvM_GlobalCallLevel;
+  _3 = (int) NvM_GlobalCallLevel.4_2;
+  NvM_CurrentFunctionPtr[_3] = NvM_RestoreBlockDefaults_AscSt0;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.5_4 = NvM_GlobalBlockNumber;
+  _5 = (int) NvM_GlobalBlockNumber.5_4;
+  _6 = NvM_AdminBlockTable[_5].NvMExtendedStatus;
+  _16 = _6 & 2;
+  if (_16 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_RemoveElement ();
+
+  <bb 6> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_RestoreBlockDefaults_Asc ()
+{
+  short unsigned int NvM_GlobalWorkingStatus.0_1;
+  unsigned char NvM_GlobalCallLevel.1_2;
+  int _3;
+  short unsigned int NvM_GlobalBlockNumber.2_4;
+  int _5;
+  unsigned char _6;
+  short unsigned int _15;
+  unsigned char _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = 8;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalWorkingStatus.0_1 = NvM_GlobalWorkingStatus;
+  _15 = NvM_GlobalWorkingStatus.0_1 & 4096;
+  if (_15 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockInvalid ();
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockUnchanged ();
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.1_2 = NvM_GlobalCallLevel;
+  _3 = (int) NvM_GlobalCallLevel.1_2;
+  NvM_CurrentFunctionPtr[_3] = NvM_RestoreBlockDefaults_AscSt0;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.2_4 = NvM_GlobalBlockNumber;
+  _5 = (int) NvM_GlobalBlockNumber.2_4;
+  _6 = NvM_AdminBlockTable[_5].NvMExtendedStatus;
+  _16 = _6 & 2;
+  if (_16 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  NvM_CalcCrc_RemoveElement ();
+
+  <bb 6> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_ASR42_RestorePRAMBlockDefaults (NvM_ASR42_BlockIdType BlockId)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_6 = NvM_CheckCondRestorePRAMBlockDefaults (BlockId_4(D));
+  # DEBUG BlockIndex => BlockIndex_6
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_6 != 9)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Result_8 = NvM_InsertRestoreBlockJob (1, BlockId_4(D), BlockIndex_6, 0B);
+  # DEBUG Result => Result_8
+
+  <bb 4> [local count: 1073741824]:
+  # Result_1 = PHI <1(2), Result_8(3)>
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_1;
+
+}
+
+
+NvM_ASR40_RestoreBlockDefaults (NvM_ASR40_BlockIdType BlockId, void * NvM_DestPtr)
+{
+  Std_ReturnType Result;
+  uint16 BlockIndex;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_7 = NvM_CheckCondRestoreBlockDefaults (BlockId_4(D), NvM_DestPtr_5(D));
+  # DEBUG BlockIndex => BlockIndex_7
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_7 != 9)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Result_9 = NvM_InsertRestoreBlockJob (0, BlockId_4(D), BlockIndex_7, NvM_DestPtr_5(D));
+  # DEBUG Result => Result_9
+
+  <bb 4> [local count: 1073741824]:
+  # Result_1 = PHI <1(2), Result_9(3)>
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Result_1;
+
+}
+
+

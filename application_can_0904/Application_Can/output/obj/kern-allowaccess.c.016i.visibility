@@ -1,0 +1,243 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_KernAllowAccess
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_CORTEXM_IntSetDisablingLevel/8 (OS_CORTEXM_IntSetDisablingLevel) @06c9f000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernAllowAccess/0 OS_KernAllowAccess/0 
+  Calls: 
+OS_kernDisableLevel/7 (OS_kernDisableLevel) @06d490d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_isrTableBase/6 (OS_isrTableBase) @06d49048
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nInterrupts/5 (OS_nInterrupts) @06d49000
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_svc_AllowAccess/4 (OS_svc_AllowAccess) @06c7bf78
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (addr)OS_KernAllowAccess/0 (addr)OS_KernAllowAccess/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/3 (OS_Error) @06c9fe00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernAllowAccess/0 OS_KernAllowAccess/0 OS_KernAllowAccess/0 
+  Calls: 
+OS_iecMode/2 (OS_iecMode) @06c7bee8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06c7bea0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernAllowAccess/0 (addr)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)OS_KernAllowAccess/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_KernAllowAccess/0 (OS_KernAllowAccess) @06c9fb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (addr)OS_iecMode/2 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_AllowAccess/4 (addr)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_nInterrupts/5 (read)OS_isrTableBase/6 (read)OS_kernelData/1 (read)OS_svc_AllowAccess/4 (addr)OS_kernDisableLevel/7 (read)OS_svc_AllowAccess/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/8 OS_Error/3 OS_CORTEXM_IntSetDisablingLevel/8 OS_Error/3 OS_Error/3 
+__attribute__((target ("general-regs-only")))
+OS_KernAllowAccess ()
+{
+  os_intstatus_t is;
+  struct os_appdynamic_t * appd;
+  const struct os_appcontext_t * app;
+  os_result_t r;
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t D.7439;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  app = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_1 = OS_iecMode;
+  if (OS_iecMode.0_1 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  _3 = OS_kernelData.taskCurrent;
+  _4 = _3->dynamic;
+  _5 = BIT_FIELD_REF <MEM[(void *)_4], 16, 160>;
+  _6 = _5;
+  if (_6 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _7 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _8 = _7;
+  if (_8 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_AllowAccess, 55, 0B);
+  goto <bb 19>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _9 = OS_kernelData.inFunction;
+  if (_9 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.taskCurrent;
+  if (_10 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _11 = OS_kernelData.taskCurrent;
+  app = _11->app;
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _12 = OS_kernelData.inFunction;
+  if (_12 == 3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.isrCurrent;
+  OS_nInterrupts.1_14 = OS_nInterrupts;
+  if (_13 < OS_nInterrupts.1_14)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.2_15 = OS_isrTableBase;
+  _16 = OS_kernelData.isrCurrent;
+  _17 = (unsigned int) _16;
+  _18 = _17 * 68;
+  _19 = OS_isrTableBase.2_15 + _18;
+  app = _19->app;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_AllowAccess, 12, 0B);
+  goto <bb 19>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  appd = app->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.3_20 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.3_20);
+  # DEBUG BEGIN_STMT
+  _21 = appd->appstate;
+  if (_21 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  appd->appstate = 2;
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_AllowAccess, 155, 0B);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7439 = r;
+  return D.7439;
+
+}
+
+

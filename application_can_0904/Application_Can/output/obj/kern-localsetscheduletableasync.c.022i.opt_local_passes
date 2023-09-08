@@ -1,0 +1,93 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalSetScheduleTableAsync (os_scheduleid_t s)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  struct os_scheduledynamic_t * sd;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_schedule_t * _4;
+  short unsigned int OS_kernDisableLevel.1_5;
+  const struct os_schedule_t * OS_scheduleTableBase.2_6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct os_schedule_t * _9;
+  const struct os_appcontext_t * _10;
+  int _11;
+  unsigned char _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned char _15;
+  unsigned char _16;
+  os_errorresult_t _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_19 = 0;
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s_21(D);
+  _3 = _2 * 36;
+  _4 = OS_scheduleTableBase.0_1 + _3;
+  sd_22 = _4->dynamic;
+  # DEBUG sd => sd_22
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_5 = OS_kernDisableLevel;
+  is_24 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_5);
+  # DEBUG is => is_24
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.2_6 = OS_scheduleTableBase;
+  _7 = (unsigned int) s_21(D);
+  _8 = _7 * 36;
+  _9 = OS_scheduleTableBase.2_6 + _8;
+  _10 = _9->app;
+  _11 = OS_AppIsAccessible (_10);
+  if (_11 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_28 = 154;
+  # DEBUG result => result_28
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = sd_22->status;
+  _13 = (unsigned int) _12;
+  _14 = _13 & 7;
+  if (_14 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _15 = sd_22->status;
+  _16 = _15 & 199;
+  sd_22->status = _16;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result_26 = 41;
+  # DEBUG result => result_26
+
+  <bb 7> :
+  # result_17 = PHI <result_28(3), result_19(5), result_26(6)>
+  # DEBUG result => result_17
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_24);
+  # DEBUG BEGIN_STMT
+  _30 = result_17;
+  return _30;
+
+}
+
+

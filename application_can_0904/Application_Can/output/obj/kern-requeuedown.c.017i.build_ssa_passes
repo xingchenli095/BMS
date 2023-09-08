@@ -1,0 +1,151 @@
+__attribute__((target ("general-regs-only")))
+OS_RequeueDown (os_tasklink_t tAct, os_prio_t prio)
+{
+  os_tasklink_t qNew;
+  os_tasklink_t qSkip;
+  os_tasklink_t qOld;
+  os_tasklink_t qAct;
+  os_tasklink_t * const taskActivations;
+  int iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations = &OS_taskActivations;
+  # DEBUG BEGIN_STMT
+  qAct = OS_taskActivations[0];
+  # DEBUG BEGIN_STMT
+  qOld = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  qOld = qAct;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) qAct;
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  qAct = *_3;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (qAct != tAct)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (qAct != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (qAct == tAct)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned int) tAct;
+  _5 = _4 * 2;
+  _6 = &OS_taskActivations + _5;
+  qSkip = *_6;
+  # DEBUG BEGIN_STMT
+  qNew = qOld;
+  # DEBUG BEGIN_STMT
+  qAct = qSkip;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  qNew = qAct;
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) qAct;
+  _8 = _7 * 2;
+  _9 = &OS_taskActivations + _8;
+  qAct = *_9;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (qAct != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  _10 = (int) qAct;
+  _11 = (int) qAct;
+  _12 = OS_taskPtrs[_11];
+  _13 = _12->linkBase;
+  _14 = (int) _13;
+  _15 = (int) qAct;
+  _16 = OS_taskPtrs[_15];
+  _17 = _16->dynamic;
+  _18 = _17->cAct;
+  _19 = (int) _18;
+  _20 = _14 + _19;
+  if (_10 == _20)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  _21 = (int) qAct;
+  _22 = OS_taskPtrs[_21];
+  _23 = _22->dynamic;
+  _24 = _23->prio;
+  iftmp.0 = (int) _24;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  _25 = (int) qAct;
+  _26 = OS_taskPtrs[_25];
+  _27 = _26->queuePrio;
+  iftmp.0 = (int) _27;
+
+  <bb 13> :
+  _28 = (int) prio;
+  if (iftmp.0 > _28)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (qOld == qNew)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _29 = (unsigned int) qOld;
+  _30 = _29 * 2;
+  _31 = &OS_taskActivations + _30;
+  *_31 = qSkip;
+  # DEBUG BEGIN_STMT
+  _32 = OS_taskActivations[0];
+  _33 = (int) _32;
+  _34 = OS_taskPtrs[_33];
+  OS_kernelData.taskQueueHead = _34;
+  # DEBUG BEGIN_STMT
+  _35 = (unsigned int) qNew;
+  _36 = _35 * 2;
+  _37 = &OS_taskActivations + _36;
+  *_37 = tAct;
+  # DEBUG BEGIN_STMT
+  _38 = (unsigned int) tAct;
+  _39 = _38 * 2;
+  _40 = &OS_taskActivations + _39;
+  *_40 = qAct;
+
+  <bb 16> :
+  return;
+
+}
+
+

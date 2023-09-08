@@ -1,0 +1,390 @@
+__attribute__((target ("general-regs-only")))
+OS_CanWrite (const void * base, os_size_t len)
+{
+  const struct os_isr_t * const isr;
+  const struct os_appcontext_t * app;
+  os_boolean_t result;
+  os_address_t last;
+  os_address_t first;
+  struct os_kerneldata_t * const kernel_data;
+  unsigned int base.1_1;
+  unsigned int _2;
+  unsigned int base.3_3;
+  unsigned int _4;
+  unsigned char _5;
+  const struct os_task_t * _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct os_task_t * _10;
+  os_stackelement_t * _11;
+  unsigned int _12;
+  const struct os_task_t * _13;
+  os_stackelement_t * _14;
+  unsigned int _15;
+  const struct os_task_t * _16;
+  unsigned int _17;
+  unsigned int _18;
+  os_uint8_t * _19;
+  unsigned int _20;
+  os_uint8_t * _21;
+  unsigned int _22;
+  const struct os_task_t * _23;
+  os_uint8_t * _24;
+  unsigned int _25;
+  const struct os_task_t * _26;
+  os_uint8_t * _27;
+  unsigned int _28;
+  unsigned char _29;
+  const struct os_isr_t * OS_isrTableBase.4_30;
+  short unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  unsigned char _34;
+  unsigned int _35;
+  unsigned int _36;
+  os_uint8_t * _37;
+  unsigned int _38;
+  os_uint8_t * _39;
+  unsigned int _40;
+  os_uint8_t * _41;
+  unsigned int _42;
+  os_uint8_t * _43;
+  unsigned int _44;
+  struct os_isrdynamic_t * _45;
+  os_stackelement_t * _46;
+  struct os_isrdynamic_t * _47;
+  os_stackelement_t * _48;
+  unsigned int _49;
+  unsigned int _50;
+  unsigned int _51;
+  struct os_isrdynamic_t * _52;
+  os_stackelement_t * _53;
+  unsigned int _54;
+  _Bool iftmp.0_56;
+  int iftmp.2_57;
+  int iftmp.2_64;
+  int iftmp.2_65;
+  _Bool iftmp.0_66;
+  _Bool iftmp.0_67;
+  os_boolean_t _81;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_58 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_58
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_59 = 0;
+  # DEBUG result => result_59
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  first_61 = (os_address_t) base_60(D);
+  # DEBUG first => first_61
+  # DEBUG BEGIN_STMT
+  last_63 = first_61 + len_62(D);
+  # DEBUG last => last_63
+  # DEBUG BEGIN_STMT
+  if (first_61 == 0)
+    goto <bb 40>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (last_63 <= first_61)
+    goto <bb 40>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (len_62(D) > 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  base.1_1 = (unsigned int) base_60(D);
+  _2 = base.1_1 & 3;
+  iftmp.0_67 = _2 != 0;
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  if (len_62(D) == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  base.3_3 = (unsigned int) base_60(D);
+  _4 = base.3_3 & 1;
+  if (_4 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.2_64 = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.2_65 = 0;
+
+  <bb 10> :
+  # iftmp.2_57 = PHI <iftmp.2_64(8), iftmp.2_65(9)>
+  iftmp.0_66 = iftmp.2_57 != 0;
+
+  <bb 11> :
+  # iftmp.0_56 = PHI <iftmp.0_67(5), iftmp.0_66(10)>
+  if (iftmp.0_56 != 0)
+    goto <bb 40>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.inFunction;
+  if (_5 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _6 = OS_kernelData.taskCurrent;
+  app_76 = _6->app;
+  # DEBUG app => app_76
+  # DEBUG BEGIN_STMT
+  if (app_76 == 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  _7 = app_76->flags;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 1;
+  if (_9 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  result_80 = 1;
+  # DEBUG result => result_80
+  goto <bb 40>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.taskCurrent;
+  _11 = _10->stackBase;
+  _12 = (unsigned int) _11;
+  if (first_61 >= _12)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  _13 = OS_kernelData.taskCurrent;
+  _14 = _13->stackBase;
+  _15 = (unsigned int) _14;
+  _16 = OS_kernelData.taskCurrent;
+  _17 = _16->stackLen;
+  _18 = _15 + _17;
+  if (last_63 <= _18)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  result_77 = 1;
+  # DEBUG result => result_77
+  goto <bb 40>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _19 = app_76->dataStart;
+  _20 = (unsigned int) _19;
+  if (first_61 >= _20)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  _21 = app_76->dataEnd;
+  _22 = (unsigned int) _21;
+  if (last_63 <= _22)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  result_78 = 1;
+  # DEBUG result => result_78
+  goto <bb 40>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _23 = OS_kernelData.taskCurrent;
+  _24 = _23->dataStart;
+  _25 = (unsigned int) _24;
+  if (first_61 >= _25)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 23> :
+  _26 = OS_kernelData.taskCurrent;
+  _27 = _26->dataEnd;
+  _28 = (unsigned int) _27;
+  if (last_63 <= _28)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  result_79 = 1;
+  # DEBUG result => result_79
+  goto <bb 40>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _29 = OS_kernelData.inFunction;
+  if (_29 == 3)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.4_30 = OS_isrTableBase;
+  _31 = OS_kernelData.isrCurrent;
+  _32 = (unsigned int) _31;
+  _33 = _32 * 68;
+  isr_70 = OS_isrTableBase.4_30 + _33;
+  # DEBUG isr => isr_70
+  # DEBUG BEGIN_STMT
+  app_71 = isr_70->app;
+  # DEBUG app => app_71
+  # DEBUG BEGIN_STMT
+  if (app_71 == 0B)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 27> :
+  _34 = app_71->flags;
+  _35 = (unsigned int) _34;
+  _36 = _35 & 1;
+  if (_36 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  result_75 = 1;
+  # DEBUG result => result_75
+  goto <bb 40>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _37 = app_71->dataStart;
+  _38 = (unsigned int) _37;
+  if (first_61 >= _38)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 30> :
+  _39 = app_71->dataEnd;
+  _40 = (unsigned int) _39;
+  if (last_63 <= _40)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  result_72 = 1;
+  # DEBUG result => result_72
+  goto <bb 40>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _41 = isr_70->dataStart;
+  _42 = (unsigned int) _41;
+  if (first_61 >= _42)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 33> :
+  _43 = isr_70->dataEnd;
+  _44 = (unsigned int) _43;
+  if (last_63 <= _44)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  result_73 = 1;
+  # DEBUG result => result_73
+  goto <bb 40>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _45 = isr_70->dynamic;
+  _46 = _45->c.stackLimit;
+  if (_46 != 0B)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 36> :
+  _47 = isr_70->dynamic;
+  _48 = _47->c.stackLimit;
+  _49 = (unsigned int) _48;
+  _50 = isr_70->stackLen;
+  _51 = _49 - _50;
+  if (first_61 >= _51)
+    goto <bb 37>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 37> :
+  _52 = isr_70->dynamic;
+  _53 = _52->c.stackLimit;
+  _54 = (unsigned int) _53;
+  if (last_63 <= _54)
+    goto <bb 38>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  result_74 = 1;
+  # DEBUG result => result_74
+  goto <bb 40>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  result_69 = 1;
+  # DEBUG result => result_69
+
+  <bb 40> :
+  # result_55 = PHI <result_59(2), result_59(3), result_59(11), result_77(18), result_72(31), result_69(39), result_80(15), result_79(24), result_59(23), result_59(22), result_78(21), result_75(28), result_74(38), result_59(37), result_59(36), result_59(35), result_73(34)>
+  # DEBUG result => result_55
+  # DEBUG BEGIN_STMT
+  _81 = result_55;
+  return _81;
+
+}
+
+

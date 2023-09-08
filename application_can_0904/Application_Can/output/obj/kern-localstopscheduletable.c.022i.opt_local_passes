@@ -1,0 +1,185 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalStopScheduleTable (os_scheduleid_t s, const struct os_schedule_t * ss)
+{
+  os_scheduleid_t i;
+  os_intstatus_t is;
+  os_errorresult_t result;
+  os_schedulestatus_t oldstatus;
+  os_scheduleid_t chain;
+  struct os_scheduledynamic_t * sd;
+  short unsigned int OS_kernDisableLevel.0_1;
+  unsigned char _2;
+  const struct os_appcontext_t * _3;
+  int _4;
+  short unsigned int _5;
+  const struct os_schedule_t * OS_scheduleTableBase.1_6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct os_schedule_t * _9;
+  unsigned char _10;
+  unsigned char i.2_11;
+  unsigned char OS_nSchedules.3_12;
+  const struct os_schedule_t * OS_scheduleTableBase.4_13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct os_schedule_t * _16;
+  os_errorresult_t _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_22 = 0;
+  # DEBUG result => result_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd_25 = ss_24(D)->dynamic;
+  # DEBUG sd => sd_25
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is_27 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG is => is_27
+  # DEBUG BEGIN_STMT
+  _2 = sd_25->status;
+  oldstatus_28 = _2 & 3;
+  # DEBUG oldstatus => oldstatus_28
+  # DEBUG BEGIN_STMT
+  _3 = ss_24(D)->app;
+  _4 = OS_AppIsAccessible (_3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_46 = 154;
+  # DEBUG result => result_46
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (oldstatus_28 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result_45 = 41;
+  # DEBUG result => result_45
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  chain_30 = sd_25->chain;
+  # DEBUG chain => chain_30
+  # DEBUG BEGIN_STMT
+  sd_25->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd_25->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd_25->next = 0;
+  # DEBUG BEGIN_STMT
+  sd_25->status = 0;
+  # DEBUG BEGIN_STMT
+  if (oldstatus_28 == 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = ss_24(D)->alarm;
+  OS_KillAlarm (_5, 0);
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (oldstatus_28 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_35 = 0;
+  # DEBUG i => i_35
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.1_6 = OS_scheduleTableBase;
+  _7 = (unsigned int) i_19;
+  _8 = _7 * 36;
+  _9 = OS_scheduleTableBase.1_6 + _8;
+  sd_36 = _9->dynamic;
+  # DEBUG sd => sd_36
+  # DEBUG BEGIN_STMT
+  _10 = sd_36->chain;
+  if (s_37(D) == _10)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  sd_36->chain = 255;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  i.2_11 = i_19;
+  i_38 = i.2_11 + 1;
+  # DEBUG i => i_38
+
+  <bb 13> :
+  # i_19 = PHI <i_35(9), i_38(12)>
+  # DEBUG i => i_19
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.3_12 = OS_nSchedules;
+  if (i_19 < OS_nSchedules.3_12)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.4_13 = OS_scheduleTableBase;
+  _14 = (unsigned int) chain_17;
+  _15 = _14 * 36;
+  _16 = OS_scheduleTableBase.4_13 + _15;
+  sd_41 = _16->dynamic;
+  # DEBUG sd => sd_41
+  # DEBUG BEGIN_STMT
+  sd_41->status = 0;
+  # DEBUG BEGIN_STMT
+  chain_43 = sd_41->chain;
+  # DEBUG chain => chain_43
+  # DEBUG BEGIN_STMT
+  sd_41->chain = 255;
+
+  <bb 15> :
+  # chain_17 = PHI <chain_30(8), chain_43(14), chain_30(7), chain_30(11), chain_30(13)>
+  # DEBUG chain => chain_17
+  # DEBUG BEGIN_STMT
+  if (chain_17 != 255)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # result_18 = PHI <result_46(3), result_45(5), result_22(15)>
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_27);
+  # DEBUG BEGIN_STMT
+  _48 = result_18;
+  return _48;
+
+}
+
+

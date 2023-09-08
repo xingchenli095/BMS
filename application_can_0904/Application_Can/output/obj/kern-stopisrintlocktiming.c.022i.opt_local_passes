@@ -1,0 +1,221 @@
+__attribute__((target ("general-regs-only")))
+OS_StopIsrIntLockTiming (os_isrid_t i, os_intlocktype_t locktype)
+{
+  os_tick_t OS_hwtStartDelta;
+  os_tick_t used;
+  os_tick_t locktime;
+  const struct os_isr_t * const isr;
+  struct os_kerneldata_t * const kernel_data;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_hwt_t * _4;
+  const struct os_hwtdrv_t * _5;
+  void (*<T521>) (const struct os_hwt_t *) _6;
+  const struct os_hwt_t * _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned int _21;
+  unsigned int _22;
+  struct os_israccounting_t * _23;
+  unsigned int _24;
+  unsigned int _25;
+  struct os_israccounting_t * _26;
+  unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  unsigned int _30;
+  unsigned int _31;
+  unsigned int _32;
+  const struct os_hwt_t * _33;
+  unsigned int _34;
+  const struct os_hwt_t * _35;
+  const struct os_hwt_t * _36;
+  const struct os_hwtdrv_t * _37;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _38;
+  const struct os_hwt_t * _39;
+  unsigned int _40;
+  const os_tick_t iftmp.1_42;
+  const os_tick_t iftmp.1_51;
+  const os_tick_t iftmp.1_52;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_46 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_46
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) i_48(D);
+  _3 = _2 * 68;
+  isr_49 = OS_isrTableBase.0_1 + _3;
+  # DEBUG isr => isr_49
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (locktype_50(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.1_52 = isr_49->osLockTime;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.1_51 = isr_49->allLockTime;
+
+  <bb 5> :
+  # iftmp.1_42 = PHI <iftmp.1_52(3), iftmp.1_51(4)>
+  locktime_53 = iftmp.1_42;
+  # DEBUG locktime => locktime_53
+  # DEBUG BEGIN_STMT
+  if (locktime_53 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = OS_executionTimer[0];
+  _5 = _4->driver;
+  _6 = _5->hwtStop;
+  _7 = OS_executionTimer[0];
+  _6 (_7);
+  # DEBUG BEGIN_STMT
+  used_56 = OS_GetTimeUsed ();
+  # DEBUG used => used_56
+  # DEBUG BEGIN_STMT
+  if (locktype_50(D) == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.accounting.etUsed;
+  _9 = OS_kernelData.accounting.osSaveUsed;
+  _10 = used_56 + _9;
+  _11 = _8 + _10;
+  OS_kernelData.accounting.etUsed = _11;
+  # DEBUG BEGIN_STMT
+  _12 = OS_kernelData.accounting.osSaveLimit;
+  OS_kernelData.accounting.etLimit = _12;
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.accounting.osSaveType;
+  OS_kernelData.accounting.etType = _13;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _14 = OS_kernelData.accounting.etUsed;
+  _15 = OS_kernelData.accounting.allSaveUsed;
+  _16 = used_56 + _15;
+  _17 = _14 + _16;
+  OS_kernelData.accounting.etUsed = _17;
+  # DEBUG BEGIN_STMT
+  _18 = OS_kernelData.accounting.allSaveLimit;
+  OS_kernelData.accounting.etLimit = _18;
+  # DEBUG BEGIN_STMT
+  _19 = OS_kernelData.accounting.allSaveType;
+  OS_kernelData.accounting.etType = _19;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _20 = isr_49->flags;
+  _21 = (unsigned int) _20;
+  _22 = _21 & 64;
+  if (_22 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _23 = isr_49->accounting;
+  _24 = _23->etMax;
+  _25 = OS_kernelData.accounting.etUsed;
+  if (_24 < _25)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _26 = isr_49->accounting;
+  _27 = OS_kernelData.accounting.etUsed;
+  _26->etMax = _27;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = OS_kernelData.accounting.etLimit;
+  if (_28 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _29 = OS_kernelData.accounting.etUsed;
+  _30 = OS_kernelData.accounting.etLimit;
+  if (_29 >= _30)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+  goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = OS_kernelData.accounting.etLimit;
+  _32 = OS_kernelData.accounting.etUsed;
+  OS_hwtStartDelta_64 = _31 - _32;
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_64
+  # DEBUG BEGIN_STMT
+  _33 = OS_executionTimer[0];
+  _34 = _33->maxDelta;
+  if (OS_hwtStartDelta_64 > _34)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _35 = OS_executionTimer[0];
+  OS_hwtStartDelta_65 = _35->defDelta;
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_65
+
+  <bb 17> :
+  # OS_hwtStartDelta_41 = PHI <OS_hwtStartDelta_64(15), OS_hwtStartDelta_65(16)>
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_41
+  # DEBUG BEGIN_STMT
+  _36 = OS_executionTimer[0];
+  _37 = _36->driver;
+  _38 = _37->hwtStart;
+  _39 = OS_executionTimer[0];
+  _40 = OS_kernelData.accounting.frc;
+  _38 (_39, _40, OS_hwtStartDelta_41);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

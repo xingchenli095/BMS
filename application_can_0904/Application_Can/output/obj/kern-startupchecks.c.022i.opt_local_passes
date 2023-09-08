@@ -1,0 +1,70 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecks ()
+{
+  os_result_t (*os_schkfunc_t) (void) * fct;
+  os_result_t result;
+  os_result_t (*<T5ab>) (void) _1;
+  unsigned char _2;
+  os_result_t (*<T5ab>) (void) _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_9 = 0;
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  fct_10 = &OS_startupCheckFunc[0];
+  # DEBUG fct => fct_10
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = *fct_6;
+  _2 = _1 ();
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_14 = 22;
+  # DEBUG result => result_14
+
+  <bb 5> :
+  # result_4 = PHI <result_5(3), result_14(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  fct_15 = fct_6 + 4;
+  # DEBUG fct => fct_15
+
+  <bb 6> :
+  # result_5 = PHI <result_9(2), result_4(5)>
+  # fct_6 = PHI <fct_10(2), fct_15(5)>
+  # DEBUG fct => fct_6
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  _3 = *fct_6;
+  if (_3 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (result_5 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 9> :
+  return;
+
+}
+
+

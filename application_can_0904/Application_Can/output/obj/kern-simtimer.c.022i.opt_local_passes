@@ -1,0 +1,434 @@
+__attribute__((target ("general-regs-only")))
+OS_KernSimTimerAdvance (os_unsigned_t tmr, os_tick_t incr)
+{
+  os_unsigned_t c;
+  os_timervalue_t old;
+  struct os_simtimer_t * tmrp;
+  os_result_t result;
+  unsigned int _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  short unsigned int _16;
+  const struct os_isr_t * OS_isrTableBase.2_17;
+  short unsigned int _18;
+  unsigned int _19;
+  unsigned int _20;
+  sizetype _21;
+  const struct os_isr_t * _22;
+  void (*<T467>) (void) _23;
+  unsigned char _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+  os_result_t _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_34 = 0;
+  # DEBUG result => result_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (tmr_35(D) > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_47 = 3;
+  # DEBUG result => result_47
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  tmrp_36 = &OS_simTimer[tmr_35(D)];
+  # DEBUG tmrp => tmrp_36
+  # DEBUG BEGIN_STMT
+  _1 = tmrp_36->mask;
+  if (incr_38(D) > _1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result_46 = 8;
+  # DEBUG result => result_46
+  goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  old_39 = tmrp_36->count;
+  # DEBUG old => old_39
+  # DEBUG BEGIN_STMT
+  _2 = tmrp_36->count;
+  _3 = incr_38(D) + _2;
+  _4 = tmrp_36->mask;
+  _5 = _3 & _4;
+  tmrp_36->count = _5;
+  # DEBUG BEGIN_STMT
+  c_41 = 0;
+  # DEBUG c => c_41
+  goto <bb 15>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = tmrp_36->channel[c_29].control;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 2;
+  if (_8 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _9 = tmrp_36->channel[c_29].compare;
+  _10 = _9 - old_39;
+  _11 = tmrp_36->mask;
+  _12 = _10 & _11;
+  if (incr_38(D) >= _12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _13 = tmrp_36->channel[c_29].control;
+  _14 = (unsigned int) _13;
+  _15 = _14 & 1;
+  if (_15 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _16 = tmrp_36->channel[c_29].isr;
+  if (_16 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.2_17 = OS_isrTableBase;
+  _18 = tmrp_36->channel[c_29].isr;
+  _19 = (unsigned int) _18;
+  _20 = _19 * 68;
+  _21 = _20 + 4294967228;
+  _22 = OS_isrTableBase.2_17 + _21;
+  _23 = _22->func;
+  _23 ();
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _24 = tmrp_36->channel[c_29].control;
+  _25 = _24 & 253;
+  tmrp_36->channel[c_29].control = _25;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _26 = tmrp_36->channel[c_29].control;
+  _27 = _26 | 2;
+  tmrp_36->channel[c_29].control = _27;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  c_45 = c_29 + 1;
+  # DEBUG c => c_45
+
+  <bb 15> :
+  # c_29 = PHI <c_41(6), c_45(14)>
+  # DEBUG c => c_29
+  # DEBUG BEGIN_STMT
+  if (c_29 <= 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # result_28 = PHI <result_47(3), result_46(5), result_34(15)>
+  # DEBUG result => result_28
+  # DEBUG BEGIN_STMT
+  _48 = result_28;
+  return _48;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerSetup (os_unsigned_t tmr, os_unsigned_t chan, os_isrid_t isrId)
+{
+  os_result_t result;
+  short unsigned int OS_nInterrupts.0_1;
+  const struct os_isr_t * OS_isrTableBase.1_2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_isr_t * _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int _9;
+  os_result_t _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_12 = 0;
+  # DEBUG result => result_12
+  # DEBUG BEGIN_STMT
+  if (tmr_13(D) > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_22 = 3;
+  # DEBUG result => result_22
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (chan_14(D) > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result_21 = 3;
+  # DEBUG result => result_21
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.0_1 = OS_nInterrupts;
+  if (isrId_16(D) >= OS_nInterrupts.0_1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  OS_isrTableBase.1_2 = OS_isrTableBase;
+  _3 = (unsigned int) isrId_16(D);
+  _4 = _3 * 68;
+  _5 = OS_isrTableBase.1_2 + _4;
+  _6 = _5->flags;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 3;
+  if (_8 != 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  result_20 = 8;
+  # DEBUG result => result_20
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _9 = isrId_16(D) + 1;
+  OS_simTimer[tmr_13(D)].channel[chan_14(D)].isr = _9;
+  # DEBUG BEGIN_STMT
+  OS_simTimer[tmr_13(D)].channel[chan_14(D)].compare = 0;
+  # DEBUG BEGIN_STMT
+  OS_simTimer[tmr_13(D)].channel[chan_14(D)].control = 0;
+
+  <bb 10> :
+  # result_10 = PHI <result_22(3), result_21(5), result_20(8), result_12(9)>
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = result_10;
+  return _23;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerStop (const struct os_hwt_t * td)
+{
+  struct os_simtimer_t * tmr;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td_6(D)->major;
+  _2 = (int) _1;
+  tmr_7 = &OS_simTimer[_2];
+  # DEBUG tmr => tmr_7
+  # DEBUG BEGIN_STMT
+  _3 = td_6(D)->minor;
+  _4 = (int) _3;
+  tmr_7->channel[_4].control = 0;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerStart (const struct os_hwt_t * td, os_timervalue_t old, os_tick_t delta)
+{
+  struct os_simtimer_t * tmr;
+  unsigned char _1;
+  int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  int _6;
+  unsigned int _7;
+  unsigned char _8;
+  int _9;
+  unsigned char _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+  os_boolean_t _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td_15(D)->major;
+  _2 = (int) _1;
+  tmr_16 = &OS_simTimer[_2];
+  # DEBUG tmr => tmr_16
+  # DEBUG BEGIN_STMT
+  _3 = old_17(D) + delta_18(D);
+  _4 = tmr_16->mask;
+  _5 = td_15(D)->minor;
+  _6 = (int) _5;
+  _7 = _3 & _4;
+  tmr_16->channel[_6].compare = _7;
+  # DEBUG BEGIN_STMT
+  _8 = td_15(D)->minor;
+  _9 = (int) _8;
+  _10 = tmr_16->channel[_9].control;
+  _11 = td_15(D)->minor;
+  _12 = (int) _11;
+  _13 = _10 | 1;
+  tmr_16->channel[_12].control = _13;
+  # DEBUG BEGIN_STMT
+  _21 = 0;
+  return _21;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerRead (const struct os_hwt_t * td)
+{
+  struct os_simtimer_t * tmr;
+  unsigned char _1;
+  int _2;
+  os_timervalue_t _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td_4(D)->major;
+  _2 = (int) _1;
+  tmr_5 = &OS_simTimer[_2];
+  # DEBUG tmr => tmr_5
+  # DEBUG BEGIN_STMT
+  _6 = tmr_5->count;
+  return _6;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_SimTimerInit (const struct os_hwt_t * td)
+{
+  os_timervalue_t mask;
+  struct os_simtimer_t * tmr;
+  unsigned char _1;
+  int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td_14(D)->major;
+  _2 = (int) _1;
+  tmr_15 = &OS_simTimer[_2];
+  # DEBUG tmr => tmr_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = tmr_15->mask;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  mask_17 = td_14(D)->wrapMask;
+  # DEBUG mask => mask_17
+  # DEBUG BEGIN_STMT
+  tmr_15->mask = mask_17;
+  # DEBUG BEGIN_STMT
+  _4 = mask_17 + 1;
+  _5 = mask_17 & _4;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = tmr_15->mask;
+  _7 = td_14(D)->wrapMask;
+  if (_6 != _7)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = td_14(D)->minor;
+  _9 = (int) _8;
+  tmr_15->channel[_9].compare = 0;
+  # DEBUG BEGIN_STMT
+  _10 = td_14(D)->minor;
+  _11 = (int) _10;
+  tmr_15->channel[_11].control = 0;
+  return;
+
+}
+
+

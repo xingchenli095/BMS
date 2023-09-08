@@ -1,0 +1,162 @@
+__attribute__((target ("general-regs-only")))
+OS_KernGetActiveApplicationMode ()
+{
+  os_appmodeid_t m;
+  unsigned char _1;
+  const os_callermask_t * OS_permittedContext.2_2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  const os_callermask_t * OS_permittedContext.4_9;
+  short unsigned int _10;
+  int _11;
+  int _12;
+  int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  unsigned int OS_configMode.5_16;
+  unsigned int _17;
+  unsigned char OS_iecMode.6_18;
+  const struct os_task_t * _19;
+  struct os_taskdynamic_t * _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  unsigned int OS_configMode.7_23;
+  unsigned int _24;
+  _Bool iftmp.0_26;
+  int iftmp.1_27;
+  short unsigned int _29;
+  _Bool iftmp.0_31;
+  _Bool iftmp.0_32;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG m => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 10)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  OS_permittedContext.2_2 = OS_permittedContext;
+  _3 = MEM[(const os_callermask_t *)OS_permittedContext.2_2 + 82B];
+  _29 = _3 & 1024;
+  if (_29 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  _4 = OS_kernelData.errorStatus.calledFrom;
+  _5 = (int) _4;
+  _6 = 1 << _5;
+  _7 = (short unsigned int) _6;
+  _8 = _3 & _7;
+  if (_8 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 273804165]:
+
+  <bb 6> [local count: 365072220]:
+  # iftmp.1_27 = PHI <1(4), 0(5)>
+  _11 = iftmp.1_27 ^ 1;
+  iftmp.0_32 = (_Bool) _11;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 708669604]:
+  OS_permittedContext.4_9 = OS_permittedContext;
+  _10 = MEM[(const os_callermask_t *)OS_permittedContext.4_9 + 82B];
+  _12 = (int) _1;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  iftmp.0_31 = _15 == 0;
+
+  <bb 8> [local count: 1073741823]:
+  # iftmp.0_26 = PHI <iftmp.0_32(6), iftmp.0_31(7)>
+  if (iftmp.0_26 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 9> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_16 = OS_configMode;
+  _17 = OS_configMode.5_16 & 1024;
+  if (_17 != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 18>; [67.00%]
+
+  <bb 10> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_GetActiveApplicationMode, 12, 0B);
+  goto <bb 18>; [100.00%]
+
+  <bb 11> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_18 = OS_iecMode;
+  if (OS_iecMode.6_18 > 1)
+    goto <bb 12>; [59.00%]
+  else
+    goto <bb 17>; [41.00%]
+
+  <bb 12> [local count: 316753838]:
+  if (_1 == 1)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 13> [local count: 107696305]:
+  _19 = OS_kernelData.taskCurrent;
+  _20 = _19->dynamic;
+  _21 = BIT_FIELD_REF <MEM[(void *)_20], 16, 160>;
+  if (_21 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 14> [local count: 209057533]:
+  _22 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  if (_22 != 0)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 15> [local count: 158376919]:
+  # DEBUG BEGIN_STMT
+  OS_configMode.7_23 = OS_configMode;
+  _24 = OS_configMode.7_23 & 1024;
+  if (_24 != 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 18>; [67.00%]
+
+  <bb 16> [local count: 52264383]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_GetActiveApplicationMode, 55, 0B);
+  goto <bb 18>; [100.00%]
+
+  <bb 17> [local count: 378493993]:
+  # DEBUG BEGIN_STMT
+  m_34 = OS_appMode;
+  # DEBUG m => m_34
+
+  <bb 18> [local count: 1073741824]:
+  # m_25 = PHI <255(10), 255(16), m_34(17), 255(9), 255(15)>
+  # DEBUG m => m_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return m_25;
+
+}
+
+

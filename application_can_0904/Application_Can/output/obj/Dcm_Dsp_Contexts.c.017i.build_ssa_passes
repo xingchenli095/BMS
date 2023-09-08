@@ -1,0 +1,87 @@
+Dcm_Dsp_Context_Cancel (struct Dcm_Dsp_ContextBaseType * BaseContext)
+{
+  Std_ReturnType result;
+  Std_ReturnType D.5742;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = BaseContext->result;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (result == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BaseContext->opstatus = 2;
+  # DEBUG BEGIN_STMT
+  result = Dcm_Dsp_Context_Execute (BaseContext);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5742 = result;
+  return D.5742;
+
+}
+
+
+Dcm_Dsp_Context_Execute (struct Dcm_Dsp_ContextBaseType * BaseContext)
+{
+  Std_ReturnType D.5738;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = BaseContext->next_state;
+  BaseContext->current_state = _1;
+  # DEBUG BEGIN_STMT
+  _2 = BaseContext->FunctionConfig;
+  _3 = BaseContext->current_state;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 4;
+  _6 = _2 + _5;
+  _7 = *_6;
+  _7 (BaseContext);
+  # DEBUG BEGIN_STMT
+  _8 = BaseContext->current_state;
+  _9 = BaseContext->next_state;
+  if (_8 != _9)
+    goto <bb 2>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.5738 = BaseContext->result;
+  return D.5738;
+
+}
+
+
+Dcm_Dsp_Context_Init (struct Dcm_Dsp_ContextBaseType * BaseContext, void * SpecialPtr, void (*Dcm_Dsp_ContextFunctionType) (struct Dcm_Dsp_ContextBase *) * FunctionConfig)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BaseContext->current_state = 0;
+  # DEBUG BEGIN_STMT
+  BaseContext->next_state = 0;
+  # DEBUG BEGIN_STMT
+  BaseContext->FunctionConfig = FunctionConfig;
+  # DEBUG BEGIN_STMT
+  BaseContext->SpecialPtr = SpecialPtr;
+  # DEBUG BEGIN_STMT
+  BaseContext->opstatus = 0;
+  # DEBUG BEGIN_STMT
+  BaseContext->result = 30;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

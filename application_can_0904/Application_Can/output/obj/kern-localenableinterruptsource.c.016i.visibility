@@ -1,0 +1,146 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalEnableInterruptSource
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_CORTEXM_IntEnableIsr/5 (OS_CORTEXM_IntEnableIsr) @06c2bee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalEnableInterruptSource/0 
+  Calls: 
+OS_CORTEXM_IntClearIsr/4 (OS_CORTEXM_IntClearIsr) @06c2be00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalEnableInterruptSource/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c2bd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalEnableInterruptSource/0 OS_LocalEnableInterruptSource/0 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06c0bab0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalEnableInterruptSource/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06c2bc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalEnableInterruptSource/0 
+  Calls: 
+OS_LocalEnableInterruptSource/0 (OS_LocalEnableInterruptSource) @06c2ba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_CORTEXM_IntEnableIsr/5 OS_CORTEXM_IntClearIsr/4 OS_CORTEXM_IntSetDisablingLevel/3 OS_AppIsAccessible/1 
+__attribute__((target ("general-regs-only")))
+OS_LocalEnableInterruptSource (const struct os_isr_t * isr, os_boolean_t clearPending)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  os_errorresult_t D.7421;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_3 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_3);
+  # DEBUG BEGIN_STMT
+  _4 = isr->dynamic;
+  _5 = _4->statusflags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 32;
+  if (_7 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = isr->dynamic;
+  _9 = _8->statusflags;
+  _10 = isr->dynamic;
+  _11 = _9 & 223;
+  _10->statusflags = _11;
+  # DEBUG BEGIN_STMT
+  if (clearPending != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = &isr->arch;
+  OS_CORTEXM_IntClearIsr (_12);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = &isr->arch;
+  OS_CORTEXM_IntEnableIsr (_13);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  result = 174;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.7421 = result;
+  return D.7421;
+
+}
+
+

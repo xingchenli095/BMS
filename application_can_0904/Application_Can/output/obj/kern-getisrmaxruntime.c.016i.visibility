@@ -1,0 +1,92 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_GetIsrMaxRuntime
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_isrTableBase/2 (OS_isrTableBase) @06c38750
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetIsrMaxRuntime/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nInterrupts/1 (OS_nInterrupts) @06c38708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetIsrMaxRuntime/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_GetIsrMaxRuntime/0 (OS_GetIsrMaxRuntime) @06c58a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_nInterrupts/1 (read)OS_isrTableBase/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_GetIsrMaxRuntime (os_isrid_t i, os_tick_t * out)
+{
+  struct os_israccounting_t * ia;
+  const struct os_isr_t * isr;
+  os_result_t r;
+  os_result_t D.7424;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r = 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.0_1 = OS_nInterrupts;
+  if (i < OS_nInterrupts.0_1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.1_2 = OS_isrTableBase;
+  _3 = (unsigned int) i;
+  _4 = _3 * 68;
+  isr = OS_isrTableBase.1_2 + _4;
+  # DEBUG BEGIN_STMT
+  ia = isr->accounting;
+  # DEBUG BEGIN_STMT
+  _5 = isr->flags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 64;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = ia->etMax;
+  *out = _8;
+  # DEBUG BEGIN_STMT
+  r = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.7424 = r;
+  return D.7424;
+
+}
+
+

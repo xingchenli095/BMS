@@ -1,0 +1,123 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: SWC_E2EProtSafe_Data_Cyclic SWC_E2EProtSafe_Data_Received
+
+
+Marking externally visible variables: E2E_Data_Safety
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data) @06b4dc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Cyclic/2 
+  Calls: 
+Rte_Inst_SWC_E2ESafety/4 (Rte_Inst_SWC_E2ESafety) @06b23ea0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: SWC_E2EProtSafe_Data_Received/1 (read)
+  Availability: not_available
+  Varpool flags: read-only
+Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data) @06b4da80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Received/1 
+  Calls: 
+SWC_E2EProtSafe_Data_Cyclic/2 (SWC_E2EProtSafe_Data_Cyclic) @06b4d8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)E2E_Data_Safety/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 
+SWC_E2EProtSafe_Data_Received/1 (SWC_E2EProtSafe_Data_Received) @06b4d700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)Rte_Inst_SWC_E2ESafety/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 
+E2E_Data_Safety/0 (E2E_Data_Safety) @06b23bd0
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: SWC_E2EProtSafe_Data_Received/1 (read)SWC_E2EProtSafe_Data_Received/1 (write)SWC_E2EProtSafe_Data_Cyclic/2 (read)SWC_E2EProtSafe_Data_Cyclic/2 (write)SWC_E2EProtSafe_Data_Cyclic/2 (read)
+  Availability: available
+  Varpool flags: initialized
+SWC_E2EProtSafe_Data_Cyclic ()
+{
+  struct E2EProt_Data arg_Send_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.2_1 = E2E_Data_Safety;
+  _2 = E2E_Data_Safety.2_1 + 1;
+  E2E_Data_Safety = _2;
+  E2E_Data_Safety.3_3 = E2E_Data_Safety;
+  arg_Send_data.SafetyE2E_Data = E2E_Data_Safety.3_3;
+  arg_Send_data.SafetyE2E_Data_CRC = 0;
+  arg_Send_data.SafetyE2E_Data_SQC_Counter = 0;
+  # DEBUG BEGIN_STMT
+  Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data (&arg_Send_data);
+  arg_Send_data = {CLOBBER};
+  return;
+
+}
+
+
+SWC_E2EProtSafe_Data_Received ()
+{
+  struct E2EProt_Data arg_IWrite_data;
+  struct E2EProt_Data arg_Receive_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.0_1 = E2E_Data_Safety;
+  arg_IWrite_data.SafetyE2E_Data = E2E_Data_Safety.0_1;
+  arg_IWrite_data.SafetyE2E_Data_CRC = 0;
+  arg_IWrite_data.SafetyE2E_Data_SQC_Counter = 0;
+  # DEBUG BEGIN_STMT
+  _2 = Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data (&arg_Receive_data);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = arg_Receive_data.SafetyE2E_Data;
+  E2E_Data_Safety = _3;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Rte_Inst_SWC_E2ESafety.1_4 = Rte_Inst_SWC_E2ESafety;
+  _5 = Rte_Inst_SWC_E2ESafety.1_4->UpdateE2EProtSafeData_P_E2E_SafeData_E2EProt_Data;
+  _5->value = arg_IWrite_data;
+  arg_Receive_data = {CLOBBER};
+  arg_IWrite_data = {CLOBBER};
+  return;
+
+}
+
+

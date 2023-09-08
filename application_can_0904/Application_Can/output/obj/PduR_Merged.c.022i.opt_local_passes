@@ -1,0 +1,1532 @@
+PduR_GetConfigurationId ()
+{
+  PduR_PBConfigIdType RetVal;
+  unsigned char PduR_State.27_1;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.28_2;
+  PduR_PBConfigIdType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.27_1 = PduR_State;
+  if (PduR_State.27_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 16, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 65535;
+  # DEBUG RetVal => RetVal_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.28_2 = PduR_GConfigPtr;
+  RetVal_6 = PduR_GConfigPtr.28_2->PduR_ConfigurationId;
+  # DEBUG RetVal => RetVal_6
+
+  <bb 5> :
+  # RetVal_3 = PHI <RetVal_8(3), RetVal_6(4)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = RetVal_3;
+  return _9;
+
+}
+
+
+PduR_GenericTpTransmit (PduIdType TxPduId, const struct PduInfoType * PduInfoPtr, uint8 RTabUpTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  Std_ReturnType (*PduR_TransmitFpType) (PduIdType, const struct PduInfoType *) TransmitFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabUpTpType * const pRTabUpTpTx;
+  const struct PduR_RTabUpTpConfigType * const pRTabUpTpConfig;
+  Std_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.25_1;
+  int _2;
+  unsigned char PduR_State.26_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabUpTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabUpTpType * _11;
+  Std_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.25_1 = PduR_GConfigPtr;
+  _2 = (int) RTabUpTpConfigIdx_16(D);
+  pRTabUpTpConfig_17 = &PduR_GConfigPtr.25_1->PduR_RTabUpTpConfig[_2];
+  # DEBUG pRTabUpTpConfig => pRTabUpTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.26_3 = PduR_State;
+  if (PduR_State.26_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabUpTpConfig_17->RTabTxCount;
+  if (TxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_19(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pRTabUpTpTx_20 = pRTabUpTpConfig_17->RTabTxRef;
+  # DEBUG pRTabUpTpTx => pRTabUpTpTx_20
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pRTabUpTpTx_20 + _6;
+  TargetAPIRef_21 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_21
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_21;
+  TransmitFp_22 = PduR_TpModuleAPI[_8].TpTransmit;
+  # DEBUG TransmitFp => TransmitFp_22
+  # DEBUG BEGIN_STMT
+  if (TransmitFp_22 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) TxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pRTabUpTpTx_20 + _10;
+  TargetPduId_23 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_23
+  # DEBUG BEGIN_STMT
+  RetVal_25 = TransmitFp_22 (TargetPduId_23, PduInfoPtr_19(D));
+  # DEBUG RetVal => RetVal_25
+  # DEBUG BEGIN_STMT
+  if (RetVal_25 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 3);
+
+  <bb 12> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(7), RetVal_14(9), RetVal_25(10), RetVal_25(11)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_12;
+  return _31;
+
+}
+
+
+PduR_GenericTpTxConfirmation (PduIdType TxPduId, NotifResultType Result, uint8 RTabLoTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  void (*PduR_TpTxConfFpType) (PduIdType, NotifResultType) TxConfirmationFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoTpType * const pTpRTabTx;
+  const struct PduR_RTabLoTpConfigType * const pRTabLoTpConfig;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.23_1;
+  int _2;
+  unsigned char PduR_State.24_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoTpType * _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.23_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoTpConfigIdx_14(D);
+  pRTabLoTpConfig_15 = &PduR_GConfigPtr.23_1->PduR_RTabLoTpConfig[_2];
+  # DEBUG pRTabLoTpConfig => pRTabLoTpConfig_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.24_3 = PduR_State;
+  if (PduR_State.24_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 55, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoTpConfig_15->RTabTxCount;
+  if (TxPduId_16(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 55, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pTpRTabTx_17 = pRTabLoTpConfig_15->RTabTxRef;
+  # DEBUG pTpRTabTx => pTpRTabTx_17
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_16(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabTx_17 + _6;
+  TargetAPIRef_18 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_18
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_18;
+  TxConfirmationFp_19 = PduR_TpModuleAPI[_8].TpTxConfirmation;
+  # DEBUG TxConfirmationFp => TxConfirmationFp_19
+  # DEBUG BEGIN_STMT
+  if (TxConfirmationFp_19 == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 55, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) TxPduId_16(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabTx_17 + _10;
+  TargetPduId_20 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_20
+  # DEBUG BEGIN_STMT
+  TxConfirmationFp_19 (TargetPduId_20, Result_21(D));
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+PduR_GenericTpCopyTxData (PduIdType TxPduId, struct PduInfoType * PduInfoPtr, struct RetryInfoType * RetryInfoPtr, PduLengthType * AvailableDataPtr, uint8 RTabLoTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  BufReq_ReturnType (*PduR_CopyTxDataFpType) (PduIdType, struct PduInfoType *, struct RetryInfoType *, PduLengthType *) CopyTxDataFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoTpType * const pTpRTabTx;
+  const struct PduR_RTabLoTpConfigType * const pRTabLoTpConfig;
+  BufReq_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.21_1;
+  int _2;
+  unsigned char PduR_State.22_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoTpType * _11;
+  BufReq_ReturnType _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.21_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoTpConfigIdx_16(D);
+  pRTabLoTpConfig_17 = &PduR_GConfigPtr.21_1->PduR_RTabLoTpConfig[_2];
+  # DEBUG pRTabLoTpConfig => pRTabLoTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.22_3 = PduR_State;
+  if (PduR_State.22_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 54, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoTpConfig_17->RTabTxCount;
+  if (TxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 54, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_19(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (AvailableDataPtr_20(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 54, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  pTpRTabTx_21 = pRTabLoTpConfig_17->RTabTxRef;
+  # DEBUG pTpRTabTx => pTpRTabTx_21
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabTx_21 + _6;
+  TargetAPIRef_22 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_22
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_22;
+  CopyTxDataFp_23 = PduR_TpModuleAPI[_8].TpCopyTxData;
+  # DEBUG CopyTxDataFp => CopyTxDataFp_23
+  # DEBUG BEGIN_STMT
+  if (CopyTxDataFp_23 == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 54, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) TxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabTx_21 + _10;
+  TargetPduId_24 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_24
+  # DEBUG BEGIN_STMT
+  RetVal_27 = CopyTxDataFp_23 (TargetPduId_24, PduInfoPtr_19(D), RetryInfoPtr_25(D), AvailableDataPtr_20(D));
+  # DEBUG RetVal => RetVal_27
+
+  <bb 12> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(8), RetVal_14(10), RetVal_27(11)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _32 = RetVal_12;
+  return _32;
+
+}
+
+
+PduR_GenericTpRxIndication (PduIdType RxPduId, NotifResultType Result, uint8 RTabLoTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  void (*PduR_TpRxIndFpType) (PduIdType, NotifResultType) RxIndFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoTpType * const pTpRTabRx;
+  const struct PduR_RTabLoTpConfigType * const pRTabLoTpConfig;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.19_1;
+  int _2;
+  unsigned char PduR_State.20_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoTpType * _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.19_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoTpConfigIdx_14(D);
+  pRTabLoTpConfig_15 = &PduR_GConfigPtr.19_1->PduR_RTabLoTpConfig[_2];
+  # DEBUG pRTabLoTpConfig => pRTabLoTpConfig_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.20_3 = PduR_State;
+  if (PduR_State.20_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 51, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoTpConfig_15->RTabRxCount;
+  if (RxPduId_16(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 51, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pTpRTabRx_17 = pRTabLoTpConfig_15->RTabRxRef;
+  # DEBUG pTpRTabRx => pTpRTabRx_17
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) RxPduId_16(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabRx_17 + _6;
+  TargetAPIRef_18 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_18
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_18;
+  RxIndFp_19 = PduR_TpModuleAPI[_8].TpRxIndication;
+  # DEBUG RxIndFp => RxIndFp_19
+  # DEBUG BEGIN_STMT
+  if (RxIndFp_19 == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 51, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) RxPduId_16(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabRx_17 + _10;
+  TargetPduId_20 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_20
+  # DEBUG BEGIN_STMT
+  RxIndFp_19 (TargetPduId_20, Result_21(D));
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+PduR_GenericTpCopyRxData (PduIdType RxPduId, const struct PduInfoType * PduInfoPtr, PduLengthType * BufferSizePtr, uint8 RTabLoTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  BufReq_ReturnType (*PduR_CopyRxDataFpType) (PduIdType, const struct PduInfoType *, PduLengthType *) CopyRxDataFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoTpType * const pTpRTabRx;
+  const struct PduR_RTabLoTpConfigType * const pRTabLoTpConfig;
+  BufReq_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.17_1;
+  int _2;
+  unsigned char PduR_State.18_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoTpType * _11;
+  BufReq_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.17_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoTpConfigIdx_16(D);
+  pRTabLoTpConfig_17 = &PduR_GConfigPtr.17_1->PduR_RTabLoTpConfig[_2];
+  # DEBUG pRTabLoTpConfig => pRTabLoTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.18_3 = PduR_State;
+  if (PduR_State.18_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 50, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoTpConfig_17->RTabRxCount;
+  if (RxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 50, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_19(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (BufferSizePtr_20(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 50, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  pTpRTabRx_21 = pRTabLoTpConfig_17->RTabRxRef;
+  # DEBUG pTpRTabRx => pTpRTabRx_21
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) RxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabRx_21 + _6;
+  TargetAPIRef_22 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_22
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_22;
+  CopyRxDataFp_23 = PduR_TpModuleAPI[_8].TpCopyRxData;
+  # DEBUG CopyRxDataFp => CopyRxDataFp_23
+  # DEBUG BEGIN_STMT
+  if (CopyRxDataFp_23 == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 50, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) RxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabRx_21 + _10;
+  TargetPduId_24 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_24
+  # DEBUG BEGIN_STMT
+  RetVal_26 = CopyRxDataFp_23 (TargetPduId_24, PduInfoPtr_19(D), BufferSizePtr_20(D));
+  # DEBUG RetVal => RetVal_26
+
+  <bb 12> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(8), RetVal_14(10), RetVal_26(11)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_12;
+  return _31;
+
+}
+
+
+PduR_GenericTpStartOfReception (PduIdType RxPduId, PduLengthType TpSduLength, PduLengthType * BufferSizePtr, uint8 RTabLoTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  BufReq_ReturnType (*PduR_StrtOfRcptnFpType) (PduIdType, PduLengthType, PduLengthType *) StrtOfRcptnFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoTpType * const pTpRTabRx;
+  const struct PduR_RTabLoTpConfigType * const pRTabLoTpConfig;
+  BufReq_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.15_1;
+  int _2;
+  unsigned char PduR_State.16_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoTpType * _11;
+  BufReq_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.15_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoTpConfigIdx_16(D);
+  pRTabLoTpConfig_17 = &PduR_GConfigPtr.15_1->PduR_RTabLoTpConfig[_2];
+  # DEBUG pRTabLoTpConfig => pRTabLoTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.16_3 = PduR_State;
+  if (PduR_State.16_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 52, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoTpConfig_17->RTabRxCount;
+  if (RxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 52, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BufferSizePtr_19(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 52, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pTpRTabRx_20 = pRTabLoTpConfig_17->RTabRxRef;
+  # DEBUG pTpRTabRx => pTpRTabRx_20
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) RxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabRx_20 + _6;
+  TargetAPIRef_21 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_21
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_21;
+  StrtOfRcptnFp_22 = PduR_TpModuleAPI[_8].TpStartOfReception;
+  # DEBUG StrtOfRcptnFp => StrtOfRcptnFp_22
+  # DEBUG BEGIN_STMT
+  if (StrtOfRcptnFp_22 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 52, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) RxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabRx_20 + _10;
+  TargetPduId_23 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_23
+  # DEBUG BEGIN_STMT
+  RetVal_26 = StrtOfRcptnFp_22 (TargetPduId_23, TpSduLength_24(D), BufferSizePtr_19(D));
+  # DEBUG RetVal => RetVal_26
+
+  <bb 11> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(7), RetVal_14(9), RetVal_26(10)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_12;
+  return _31;
+
+}
+
+
+PduR_GenericTpCancelReceive (PduIdType RxPduId, uint8 RTabUpTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  Std_ReturnType (*PduR_CancelReceiveFpType) (PduIdType) CancelReceiveFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabUpTpType * const pTpRTabUpRx;
+  const struct PduR_RTabUpTpConfigType * const pRTabUpTpConfig;
+  Std_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.13_1;
+  int _2;
+  unsigned char PduR_State.14_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabUpTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabUpTpType * _11;
+  Std_ReturnType _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.13_1 = PduR_GConfigPtr;
+  _2 = (int) RTabUpTpConfigIdx_16(D);
+  pRTabUpTpConfig_17 = &PduR_GConfigPtr.13_1->PduR_RTabUpTpConfig[_2];
+  # DEBUG pRTabUpTpConfig => pRTabUpTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.14_3 = PduR_State;
+  if (PduR_State.14_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 33, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabUpTpConfig_17->RTabRxCount;
+  if (RxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 33, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pTpRTabUpRx_19 = pRTabUpTpConfig_17->RTabRxRef;
+  # DEBUG pTpRTabUpRx => pTpRTabUpRx_19
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) RxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pTpRTabUpRx_19 + _6;
+  TargetAPIRef_20 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_20
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_20;
+  CancelReceiveFp_21 = PduR_TpModuleAPI[_8].TpCancelReceive;
+  # DEBUG CancelReceiveFp => CancelReceiveFp_21
+  # DEBUG BEGIN_STMT
+  if (CancelReceiveFp_21 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) RxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pTpRTabUpRx_19 + _10;
+  TargetPduId_22 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_22
+  # DEBUG BEGIN_STMT
+  RetVal_24 = CancelReceiveFp_21 (TargetPduId_22);
+  # DEBUG RetVal => RetVal_24
+
+  <bb 8> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(6), RetVal_24(7)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _27 = RetVal_12;
+  return _27;
+
+}
+
+
+PduR_GenericTpCancelTransmit (PduIdType TxPduId, uint8 RTabUpTpConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  Std_ReturnType (*PduR_CancelTransmitFpType) (PduIdType) CancelTransmitFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabUpTpType * const pRTabUpTpTx;
+  const struct PduR_RTabUpTpConfigType * const pRTabUpTpConfig;
+  Std_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.11_1;
+  int _2;
+  unsigned char PduR_State.12_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabUpTpType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabUpTpType * _11;
+  Std_ReturnType _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.11_1 = PduR_GConfigPtr;
+  _2 = (int) RTabUpTpConfigIdx_16(D);
+  pRTabUpTpConfig_17 = &PduR_GConfigPtr.11_1->PduR_RTabUpTpConfig[_2];
+  # DEBUG pRTabUpTpConfig => pRTabUpTpConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.12_3 = PduR_State;
+  if (PduR_State.12_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 28, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabUpTpConfig_17->RTabTxCount;
+  if (TxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 28, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pRTabUpTpTx_19 = pRTabUpTpConfig_17->RTabTxRef;
+  # DEBUG pRTabUpTpTx => pRTabUpTpTx_19
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pRTabUpTpTx_19 + _6;
+  TargetAPIRef_20 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_20
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_20;
+  CancelTransmitFp_21 = PduR_TpModuleAPI[_8].TpCancelTransmit;
+  # DEBUG CancelTransmitFp => CancelTransmitFp_21
+  # DEBUG BEGIN_STMT
+  if (CancelTransmitFp_21 == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 28, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) TxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pRTabUpTpTx_19 + _10;
+  TargetPduId_22 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_22
+  # DEBUG BEGIN_STMT
+  RetVal_24 = CancelTransmitFp_21 (TargetPduId_22);
+  # DEBUG RetVal => RetVal_24
+
+  <bb 9> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(7), RetVal_24(8)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = RetVal_12;
+  return _28;
+
+}
+
+
+PduR_GenericIfTxConfirmation (PduIdType TxPduId, uint8 RTabLoIfConfigIdx)
+{
+  void (*PduR_IfTxConfFpType) (PduIdType) TxConfirmationFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const PduR_PduIdType TargetPduId;
+  const struct PduR_RTabLoIfType * const pIfRTabTx;
+  const struct PduR_RTabLoIfConfigType * const pRTabLoIfConfig;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.9_1;
+  int _2;
+  unsigned char PduR_State.10_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoIfType * _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct PduR_RTabLoIfType * _10;
+  int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.9_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoIfConfigIdx_14(D);
+  pRTabLoIfConfig_15 = &PduR_GConfigPtr.9_1->PduR_RTabLoIfConfig[_2];
+  # DEBUG pRTabLoIfConfig => pRTabLoIfConfig_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.10_3 = PduR_State;
+  if (PduR_State.10_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 64, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoIfConfig_15->RTabTxCount;
+  if (TxPduId_16(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 64, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  pIfRTabTx_17 = pRTabLoIfConfig_15->RTabTxRef;
+  # DEBUG pIfRTabTx => pIfRTabTx_17
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_16(D);
+  _6 = _5 * 4;
+  _7 = pIfRTabTx_17 + _6;
+  TargetPduId_18 = _7->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_18
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) TxPduId_16(D);
+  _9 = _8 * 4;
+  _10 = pIfRTabTx_17 + _9;
+  TargetAPIRef_19 = _10->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_19
+  # DEBUG BEGIN_STMT
+  _11 = (int) TargetAPIRef_19;
+  TxConfirmationFp_20 = PduR_IfModuleAPI[_11].IfTxConfirmation;
+  # DEBUG TxConfirmationFp => TxConfirmationFp_20
+  # DEBUG BEGIN_STMT
+  if (TxConfirmationFp_20 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  TxConfirmationFp_20 (TargetPduId_18);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+PduR_GenericIfTriggerTransmit (PduIdType TxPduId, struct PduInfoType * PduInfoPtr, uint8 RTabLoIfConfigIdx)
+{
+  Std_ReturnType (*PduR_IfTrTxFpType) (PduIdType, struct PduInfoType *) TriggerTransmitFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const PduR_PduIdType TargetPduId;
+  const struct PduR_RTabLoIfType * const pIfRTabTx;
+  const struct PduR_RTabLoIfConfigType * const pRTabLoIfConfig;
+  Std_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.7_1;
+  int _2;
+  unsigned char PduR_State.8_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoIfType * _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct PduR_RTabLoIfType * _10;
+  int _11;
+  Std_ReturnType _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.7_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoIfConfigIdx_16(D);
+  pRTabLoIfConfig_17 = &PduR_GConfigPtr.7_1->PduR_RTabLoIfConfig[_2];
+  # DEBUG pRTabLoIfConfig => pRTabLoIfConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.8_3 = PduR_State;
+  if (PduR_State.8_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 65, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoIfConfig_17->RTabTxCount;
+  if (TxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 65, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_19(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 65, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pIfRTabTx_20 = pRTabLoIfConfig_17->RTabTxRef;
+  # DEBUG pIfRTabTx => pIfRTabTx_20
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pIfRTabTx_20 + _6;
+  TargetPduId_21 = _7->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_21
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) TxPduId_18(D);
+  _9 = _8 * 4;
+  _10 = pIfRTabTx_20 + _9;
+  TargetAPIRef_22 = _10->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_22
+  # DEBUG BEGIN_STMT
+  _11 = (int) TargetAPIRef_22;
+  TriggerTransmitFp_23 = PduR_IfModuleAPI[_11].IfTriggerTransmit;
+  # DEBUG TriggerTransmitFp => TriggerTransmitFp_23
+  # DEBUG BEGIN_STMT
+  RetVal_25 = TriggerTransmitFp_23 (TargetPduId_21, PduInfoPtr_19(D));
+  # DEBUG RetVal => RetVal_25
+
+  <bb 9> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(7), RetVal_25(8)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _29 = RetVal_12;
+  return _29;
+
+}
+
+
+PduR_GenericIfTransmit (PduIdType TxPduId, const struct PduInfoType * PduInfoPtr, uint8 RTabUpIfConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  Std_ReturnType (*PduR_TransmitFpType) (PduIdType, const struct PduInfoType *) TransmitFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabUpIfTxType * const pIfRTabUpTx;
+  const struct PduR_RTabUpIfTxConfigType * const pRTabUpIfTxConfig;
+  Std_ReturnType RetVal;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.5_1;
+  int _2;
+  unsigned char PduR_State.6_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabUpIfTxType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabUpIfTxType * _11;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.5_1 = PduR_GConfigPtr;
+  _2 = (int) RTabUpIfConfigIdx_16(D);
+  pRTabUpIfTxConfig_17 = &PduR_GConfigPtr.5_1->PduR_RTabUpIfTxConfig[_2];
+  # DEBUG pRTabUpIfTxConfig => pRTabUpIfTxConfig_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.6_3 = PduR_State;
+  if (PduR_State.6_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabUpIfTxConfig_17->RTabTxCount;
+  if (TxPduId_18(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_19(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pIfRTabUpTx_20 = pRTabUpIfTxConfig_17->RTabTxRef;
+  # DEBUG pIfRTabUpTx => pIfRTabUpTx_20
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) TxPduId_18(D);
+  _6 = _5 * 4;
+  _7 = pIfRTabUpTx_20 + _6;
+  TargetAPIRef_21 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_21
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_21;
+  TransmitFp_22 = PduR_IfModuleAPI[_8].IfTransmit;
+  # DEBUG TransmitFp => TransmitFp_22
+  # DEBUG BEGIN_STMT
+  if (TransmitFp_22 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 20, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) TxPduId_18(D);
+  _10 = _9 * 4;
+  _11 = pIfRTabUpTx_20 + _10;
+  TargetPduId_23 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_23
+  # DEBUG BEGIN_STMT
+  RetVal_25 = TransmitFp_22 (TargetPduId_23, PduInfoPtr_19(D));
+  # DEBUG RetVal => RetVal_25
+
+  <bb 11> :
+  # RetVal_12 = PHI <RetVal_14(3), RetVal_14(5), RetVal_14(7), RetVal_14(9), RetVal_25(10)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = RetVal_12;
+  return _30;
+
+}
+
+
+PduR_GenericIfRxIndication (PduIdType RxPduId, struct PduInfoType * PduInfoPtr, uint8 RTabLoIfConfigIdx)
+{
+  const PduR_PduIdType TargetPduId;
+  void (*PduR_IfRxIndFpType) (PduIdType, struct PduInfoType *) RxIndFp;
+  const PduR_RefToModuleAPI TargetAPIRef;
+  const struct PduR_RTabLoIfType * const pIfRTabRx;
+  const struct PduR_RTabLoIfConfigType * const pRTabLoIfConfig;
+  const struct PduR_PBConfigType * PduR_GConfigPtr.3_1;
+  int _2;
+  unsigned char PduR_State.4_3;
+  short unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct PduR_RTabLoIfType * _7;
+  int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct PduR_RTabLoIfType * _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.3_1 = PduR_GConfigPtr;
+  _2 = (int) RTabLoIfConfigIdx_14(D);
+  pRTabLoIfConfig_15 = &PduR_GConfigPtr.3_1->PduR_RTabLoIfConfig[_2];
+  # DEBUG pRTabLoIfConfig => pRTabLoIfConfig_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_State.4_3 = PduR_State;
+  if (PduR_State.4_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 66, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pRTabLoIfConfig_15->RTabRxCount;
+  if (RxPduId_16(D) >= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 66, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_17(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 66, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pIfRTabRx_18 = pRTabLoIfConfig_15->RTabRxRef;
+  # DEBUG pIfRTabRx => pIfRTabRx_18
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) RxPduId_16(D);
+  _6 = _5 * 4;
+  _7 = pIfRTabRx_18 + _6;
+  TargetAPIRef_19 = _7->TargetModuleAPIRef;
+  # DEBUG TargetAPIRef => TargetAPIRef_19
+  # DEBUG BEGIN_STMT
+  _8 = (int) TargetAPIRef_19;
+  RxIndFp_20 = PduR_IfModuleAPI[_8].IfRxIndication;
+  # DEBUG RxIndFp => RxIndFp_20
+  # DEBUG BEGIN_STMT
+  if (RxIndFp_20 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 66, 9);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) RxPduId_16(D);
+  _10 = _9 * 4;
+  _11 = pIfRTabRx_18 + _10;
+  TargetPduId_21 = _11->TargetPduId;
+  # DEBUG TargetPduId => TargetPduId_21
+  # DEBUG BEGIN_STMT
+  RxIndFp_20 (TargetPduId_21, PduInfoPtr_17(D));
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+PduR_IsValidConfig (const void * ConfigPtr)
+{
+  const struct PduR_PBConfigType * const PBConfigPtr;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int PduR_LcfgSignature.2_5;
+  long unsigned int _6;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 1;
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_10(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  PBConfigPtr_12 = ConfigPtr_10(D);
+  # DEBUG PBConfigPtr => PBConfigPtr_12
+  # DEBUG BEGIN_STMT
+  _1 = PBConfigPtr_12->PduR_PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = PBConfigPtr_12->PduR_CfgSignature;
+  if (_3 == 4174011813)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = PBConfigPtr_12->PduR_LcfgSignature;
+  PduR_LcfgSignature.2_5 = PduR_LcfgSignature;
+  if (_4 == PduR_LcfgSignature.2_5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = PBConfigPtr_12->PduR_PublicInfoSignature;
+  if (_6 == 3287920854)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 0;
+  # DEBUG RetVal => RetVal_14
+
+  <bb 8> :
+  # RetVal_7 = PHI <RetVal_9(2), RetVal_9(3), RetVal_9(4), RetVal_9(5), RetVal_9(6), RetVal_14(7)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = RetVal_7;
+  return _15;
+
+}
+
+
+PduR_Init (const struct PduR_PBConfigType * ConfigPtr)
+{
+  const struct PduR_PBConfigType * PduR_GConfigPtr.0_1;
+  unsigned char _2;
+  unsigned char PduR_State.1_3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr = ConfigPtr_6(D);
+  # DEBUG BEGIN_STMT
+  PduR_GConfigPtr.0_1 = PduR_GConfigPtr;
+  _2 = PduR_IsValidConfig (PduR_GConfigPtr.0_1);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 1, 0);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PduR_State.1_3 = PduR_State;
+  if (PduR_State.1_3 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (51, 0, 1, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  PduR_State = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

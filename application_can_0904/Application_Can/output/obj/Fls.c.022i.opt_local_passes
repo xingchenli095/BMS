@@ -1,0 +1,2261 @@
+Fls_LLDClrJobResult ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fls_eLLDJobResult ={v} 0;
+  # DEBUG BEGIN_STMT
+  Fls_eLLDJob = 0;
+  return;
+
+}
+
+
+Fls_LLDGetJobResult ()
+{
+  MemIf_JobResultType _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _2 ={v} Fls_eLLDJobResult;
+  return _2;
+
+}
+
+
+Fls_MainFunction ()
+{
+  MemIf_JobResultType WorkResult;
+  const struct Fls_ConfigType * Fls_pConfigPtr.42_1;
+  unsigned char Fls_eJobResult.43_2;
+  unsigned char Fls_u8JobStart.44_3;
+  <unnamed type> Fls_eLLDJob.45_4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.42_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.42_1 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.43_2 = Fls_eJobResult;
+  if (Fls_eJobResult.43_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  WorkResult_11 = 0;
+  # DEBUG WorkResult => WorkResult_11
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart.44_3 = Fls_u8JobStart;
+  if (Fls_u8JobStart.44_3 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart = 0;
+  # DEBUG BEGIN_STMT
+  Fls_LLDClrJobResult ();
+  # DEBUG BEGIN_STMT
+  Fls_IPW_AbortSuspended ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fls_eLLDJob.45_4 = Fls_eLLDJob;
+  if (Fls_eLLDJob.45_4 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fls_IPW_LLDMainFunction ();
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  WorkResult_17 = Fls_LLDGetJobResult ();
+  # DEBUG WorkResult => WorkResult_17
+  # DEBUG BEGIN_STMT
+  if (WorkResult_17 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  WorkResult_19 = Fls_ProcessRequestedJobs ();
+  # DEBUG WorkResult => WorkResult_19
+
+  <bb 10> :
+  # WorkResult_5 = PHI <WorkResult_17(8), WorkResult_19(9)>
+  # DEBUG WorkResult => WorkResult_5
+  # DEBUG BEGIN_STMT
+  Fls_MainFunction_CheckJobResult (WorkResult_5);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Fls_MainFunction_CheckJobResult (MemIf_JobResultType WorkResult)
+{
+  const struct Fls_ConfigType * Fls_pConfigPtr.98_1;
+  void (*<T4c8>) (void) _2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.99_3;
+  void (*<T4c8>) (void) _4;
+  const struct Fls_ConfigType * Fls_pConfigPtr.100_5;
+  void (*<T4c8>) (void) _6;
+  const struct Fls_ConfigType * Fls_pConfigPtr.101_7;
+  void (*<T4c8>) (void) _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = WorkResult_11(D);
+  # DEBUG BEGIN_STMT
+  if (WorkResult_11(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.98_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.98_1->jobEndNotificationPtr;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.99_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.99_3->jobEndNotificationPtr;
+  _4 ();
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (WorkResult_11(D) == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (WorkResult_11(D) == 3)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (WorkResult_11(D) == 4)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.100_5 = Fls_pConfigPtr;
+  _6 = Fls_pConfigPtr.100_5->jobErrorNotificationPtr;
+  if (_6 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.101_7 = Fls_pConfigPtr;
+  _8 = Fls_pConfigPtr.101_7->jobErrorNotificationPtr;
+  _8 ();
+
+  <bb 10> :
+  return;
+
+}
+
+
+Fls_GetVersionInfo (struct Std_VersionInfoType * VersionInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (VersionInfoPtr_2(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 16, 10);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->moduleID = 92;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->vendorID = 43;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_major_version = 2;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_minor_version = 0;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_patch_version = 1;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Fls_SetMode (MemIf_ModeType Mode)
+{
+  const struct Fls_ConfigType * Fls_pConfigPtr.36_1;
+  unsigned char Fls_eJobResult.37_2;
+  int _3;
+  const struct Fls_ConfigType * Fls_pConfigPtr.38_4;
+  long unsigned int _5;
+  const struct Fls_ConfigType * Fls_pConfigPtr.39_6;
+  long unsigned int _7;
+  const struct Fls_ConfigType * Fls_pConfigPtr.40_8;
+  long unsigned int _9;
+  const struct Fls_ConfigType * Fls_pConfigPtr.41_10;
+  long unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.36_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.36_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 9, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.37_2 = Fls_eJobResult;
+  if (Fls_eJobResult.37_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 9, 6);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) Mode_14(D);
+  switch (_3) <default: <L10> [INV], case 0: <L5> [INV], case 1: <L4> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.38_4 = Fls_pConfigPtr;
+  _5 = Fls_pConfigPtr.38_4->u32MaxReadFastMode;
+  Fls_u32MaxRead = _5;
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.39_6 = Fls_pConfigPtr;
+  _7 = Fls_pConfigPtr.39_6->u32MaxWriteFastMode;
+  Fls_u32MaxWrite = _7;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.40_8 = Fls_pConfigPtr;
+  _9 = Fls_pConfigPtr.40_8->u32MaxReadNormalMode;
+  Fls_u32MaxRead = _9;
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.41_10 = Fls_pConfigPtr;
+  _11 = Fls_pConfigPtr.41_10->u32MaxWriteNormalMode;
+  Fls_u32MaxWrite = _11;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+<L10>:
+  return;
+
+}
+
+
+Fls_Compare (Fls_AddressType SourceAddress, const uint8 * TargetAddressPtr, Fls_LengthType Length)
+{
+  Fls_AddressType TmpJobAddrEnd;
+  Fls_SectorIndexType TmpJobSectorIt;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  unsigned char Fls_eJobResult.35_2;
+  long unsigned int _3;
+  Std_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 0;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_14 = Fls_CheckInputParamReadCompareJob (SourceAddress_10(D), TargetAddressPtr_11(D), Length_12(D), 8);
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  if (RetVal_14 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  TmpJobSectorIt_16 = Fls_GetSectorIndexByAddr (SourceAddress_10(D));
+  # DEBUG TmpJobSectorIt => TmpJobSectorIt_16
+  # DEBUG BEGIN_STMT
+  _1 = SourceAddress_10(D) + Length_12(D);
+  TmpJobAddrEnd_17 = _1 + 4294967295;
+  # DEBUG TmpJobAddrEnd => TmpJobAddrEnd_17
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fls_FLS_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.35_2 = Fls_eJobResult;
+  if (Fls_eJobResult.35_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 8, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_29 = 1;
+  # DEBUG RetVal => RetVal_29
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt ={v} TmpJobSectorIt_16;
+  # DEBUG BEGIN_STMT
+  _3 = Fls_GetSectorIndexByAddr (TmpJobAddrEnd_17);
+  Fls_u32JobSectorEnd = _3;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt = SourceAddress_10(D);
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrEnd = TmpJobAddrEnd_17;
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr = TargetAddressPtr_11(D);
+  # DEBUG BEGIN_STMT
+  Fls_eJob = 3;
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart = 1;
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 2;
+
+  <bb 6> :
+  # RetVal_4 = PHI <RetVal_29(4), RetVal_14(5)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_13 ();
+
+  <bb 7> :
+  # RetVal_5 = PHI <RetVal_14(2), RetVal_4(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_5;
+  return _31;
+
+}
+
+
+Fls_Read (Fls_AddressType SourceAddress, uint8 * TargetAddressPtr, Fls_LengthType Length)
+{
+  Fls_AddressType TmpJobAddrEnd;
+  Fls_SectorIndexType TmpJobSectorIt;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  unsigned char Fls_eJobResult.29_2;
+  long unsigned int _3;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 0;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  TmpJobSectorIt_9 = 0;
+  # DEBUG TmpJobSectorIt => TmpJobSectorIt_9
+  # DEBUG BEGIN_STMT
+  TmpJobAddrEnd_10 = 0;
+  # DEBUG TmpJobAddrEnd => TmpJobAddrEnd_10
+  # DEBUG BEGIN_STMT
+  RetVal_16 = Fls_CheckInputParamReadCompareJob (SourceAddress_12(D), TargetAddressPtr_13(D), Length_14(D), 7);
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  if (RetVal_16 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  TmpJobSectorIt_18 = Fls_GetSectorIndexByAddr (SourceAddress_12(D));
+  # DEBUG TmpJobSectorIt => TmpJobSectorIt_18
+  # DEBUG BEGIN_STMT
+  _1 = SourceAddress_12(D) + Length_14(D);
+  TmpJobAddrEnd_19 = _1 + 4294967295;
+  # DEBUG TmpJobAddrEnd => TmpJobAddrEnd_19
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fls_FLS_EXCLUSIVE_AREA_12 ();
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.29_2 = Fls_eJobResult;
+  if (Fls_eJobResult.29_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 7, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_31 = 1;
+  # DEBUG RetVal => RetVal_31
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt ={v} TmpJobSectorIt_18;
+  # DEBUG BEGIN_STMT
+  _3 = Fls_GetSectorIndexByAddr (TmpJobAddrEnd_19);
+  Fls_u32JobSectorEnd = _3;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt = SourceAddress_12(D);
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrEnd = TmpJobAddrEnd_19;
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataDestPtr = TargetAddressPtr_13(D);
+  # DEBUG BEGIN_STMT
+  Fls_eJob = 2;
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart = 1;
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 2;
+
+  <bb 6> :
+  # RetVal_4 = PHI <RetVal_31(4), RetVal_16(5)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_12 ();
+
+  <bb 7> :
+  # RetVal_5 = PHI <RetVal_16(2), RetVal_4(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_5;
+  return _33;
+
+}
+
+
+Fls_GetJobResult ()
+{
+  MemIf_JobResultType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.28_1;
+  MemIf_JobResultType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.28_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.28_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 5, 5);
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = Fls_eJobResult;
+  # DEBUG RetVal => RetVal_5
+
+  <bb 5> :
+  # RetVal_2 = PHI <RetVal_7(3), RetVal_5(4)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_2;
+  return _8;
+
+}
+
+
+Fls_GetStatus ()
+{
+  MemIf_StatusType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.26_1;
+  unsigned char Fls_eJobResult.27_2;
+  MemIf_StatusType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.26_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.26_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 0;
+  # DEBUG RetVal => RetVal_7
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.27_2 = Fls_eJobResult;
+  if (Fls_eJobResult.27_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_6 = 2;
+  # DEBUG RetVal => RetVal_6
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 1;
+  # DEBUG RetVal => RetVal_5
+
+  <bb 7> :
+  # RetVal_3 = PHI <RetVal_7(3), RetVal_6(5), RetVal_5(6)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_3;
+  return _8;
+
+}
+
+
+Fls_Write (Fls_AddressType TargetAddress, const uint8 * SourceAddressPtr, Fls_LengthType Length)
+{
+  Fls_AddressType TmpJobAddrEnd;
+  Fls_SectorIndexType TmpJobSectorIt;
+  Std_ReturnType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.18_1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  unsigned char Fls_eJobResult.19_6;
+  long unsigned int _7;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 0;
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.18_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.18_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 2, 5);
+  # DEBUG BEGIN_STMT
+  RetVal_42 = 1;
+  # DEBUG RetVal => RetVal_42
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Fls_IsAddrPageStartAligned (TargetAddress_13(D));
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 2, 2);
+  # DEBUG BEGIN_STMT
+  RetVal_40 = 1;
+  # DEBUG RetVal => RetVal_40
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Length_15(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _3 = TargetAddress_13(D) + Length_15(D);
+  _4 = Fls_IsAddrPageEndAligned (_3);
+  if (_4 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 2, 3);
+  # DEBUG BEGIN_STMT
+  RetVal_38 = 1;
+  # DEBUG RetVal => RetVal_38
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (SourceAddressPtr_17(D) == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 2, 4);
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 1;
+  # DEBUG RetVal => RetVal_36
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  TmpJobSectorIt_19 = Fls_GetSectorIndexByAddr (TargetAddress_13(D));
+  # DEBUG TmpJobSectorIt => TmpJobSectorIt_19
+  # DEBUG BEGIN_STMT
+  _5 = TargetAddress_13(D) + Length_15(D);
+  TmpJobAddrEnd_20 = _5 + 4294967295;
+  # DEBUG TmpJobAddrEnd => TmpJobAddrEnd_20
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fls_FLS_EXCLUSIVE_AREA_11 ();
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.19_6 = Fls_eJobResult;
+  if (Fls_eJobResult.19_6 == 2)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 2, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 1;
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_11 ();
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt ={v} TmpJobSectorIt_19;
+  # DEBUG BEGIN_STMT
+  _7 = Fls_GetSectorIndexByAddr (TmpJobAddrEnd_20);
+  Fls_u32JobSectorEnd = _7;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrEnd = TmpJobAddrEnd_20;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt = TargetAddress_13(D);
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr = SourceAddressPtr_17(D);
+  # DEBUG BEGIN_STMT
+  Fls_eJob = 1;
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart = 1;
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 2;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_11 ();
+
+  <bb 14> :
+  # RetVal_8 = PHI <RetVal_42(3), RetVal_40(5), RetVal_38(8), RetVal_36(10), RetVal_33(12), RetVal_11(13)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _43 = RetVal_8;
+  return _43;
+
+}
+
+
+Fls_Erase (Fls_AddressType TargetAddress, Fls_LengthType Length)
+{
+  Fls_SectorIndexType TmpJobSectorEnd;
+  Fls_SectorIndexType TmpJobSectorIt;
+  Std_ReturnType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.6_1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char Fls_eJobResult.7_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  Std_ReturnType _42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 0;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.6_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.6_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 1, 5);
+  # DEBUG BEGIN_STMT
+  RetVal_41 = 1;
+  # DEBUG RetVal => RetVal_41
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Fls_IsAddrSectorStartAligned (TargetAddress_16(D));
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 1, 2);
+  # DEBUG BEGIN_STMT
+  RetVal_39 = 1;
+  # DEBUG RetVal => RetVal_39
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Length_18(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _3 = TargetAddress_16(D) + Length_18(D);
+  _4 = _3 + 4294967295;
+  _5 = Fls_IsAddrSectorEndAligned (_4);
+  if (_5 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 1, 3);
+  # DEBUG BEGIN_STMT
+  RetVal_37 = 1;
+  # DEBUG RetVal => RetVal_37
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  TmpJobSectorIt_21 = Fls_GetSectorIndexByAddr (TargetAddress_16(D));
+  # DEBUG TmpJobSectorIt => TmpJobSectorIt_21
+  # DEBUG BEGIN_STMT
+  _6 = TargetAddress_16(D) + Length_18(D);
+  _7 = _6 + 4294967295;
+  TmpJobSectorEnd_23 = Fls_GetSectorIndexByAddr (_7);
+  # DEBUG TmpJobSectorEnd => TmpJobSectorEnd_23
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fls_FLS_EXCLUSIVE_AREA_10 ();
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.7_8 = Fls_eJobResult;
+  if (Fls_eJobResult.7_8 == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 1, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_10 ();
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt ={v} TmpJobSectorIt_21;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorEnd = TmpJobSectorEnd_23;
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt = TargetAddress_16(D);
+  # DEBUG BEGIN_STMT
+  _9 = TargetAddress_16(D) + Length_18(D);
+  _10 = _9 + 4294967295;
+  Fls_u32JobAddrEnd = _10;
+  # DEBUG BEGIN_STMT
+  Fls_eJob = 0;
+  # DEBUG BEGIN_STMT
+  Fls_u8JobStart = 1;
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 2;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fls_FLS_EXCLUSIVE_AREA_10 ();
+
+  <bb 12> :
+  # RetVal_11 = PHI <RetVal_41(3), RetVal_39(5), RetVal_37(8), RetVal_34(10), RetVal_14(11)>
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  _42 = RetVal_11;
+  return _42;
+
+}
+
+
+Fls_Init (const struct Fls_ConfigType * ConfigPtr)
+{
+  unsigned char Fls_eJobResult.0_1;
+  unsigned char _2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.1_3;
+  unsigned char _4;
+  const struct Fls_ConfigType * Fls_pConfigPtr.2_5;
+  long unsigned int _6;
+  const struct Fls_ConfigType * Fls_pConfigPtr.3_7;
+  long unsigned int _8;
+  const struct Fls_ConfigType * Fls_pConfigPtr.4_9;
+  long unsigned int _10;
+  const struct Fls_ConfigType * Fls_pConfigPtr.5_11;
+  long unsigned int _12;
+  unsigned char _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_16(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 0, 1);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult.0_1 = Fls_eJobResult;
+  if (Fls_eJobResult.0_1 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, 0, 6);
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr = ConfigPtr_16(D);
+  # DEBUG BEGIN_STMT
+  _2 = Fls_CheckCfgCRC ();
+  if (_2 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.1_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.1_3->eDefaultMode;
+  if (_4 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.2_5 = Fls_pConfigPtr;
+  _6 = Fls_pConfigPtr.2_5->u32MaxReadNormalMode;
+  Fls_u32MaxRead = _6;
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.3_7 = Fls_pConfigPtr;
+  _8 = Fls_pConfigPtr.3_7->u32MaxWriteNormalMode;
+  Fls_u32MaxWrite = _8;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.4_9 = Fls_pConfigPtr;
+  _10 = Fls_pConfigPtr.4_9->u32MaxReadFastMode;
+  Fls_u32MaxRead = _10;
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.5_11 = Fls_pConfigPtr;
+  _12 = Fls_pConfigPtr.5_11->u32MaxWriteFastMode;
+  Fls_u32MaxWrite = _12;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Fls_IPW_Init ();
+  # DEBUG BEGIN_STMT
+  _13 = Fls_LLDGetJobResult ();
+  if (_13 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 1;
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr = 0B;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Fls_eJobResult = 0;
+
+  <bb 13> :
+  return;
+
+}
+
+
+Fls_ProcessRequestedJobs ()
+{
+  MemIf_JobResultType WorkResult;
+  <unnamed type> Fls_eJob.46_1;
+  <unnamed type> Fls_eJob.47_2;
+  long unsigned int Fls_u32MaxWrite.48_3;
+  long unsigned int Fls_u32MaxRead.49_4;
+  MemIf_JobResultType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_eJob.46_1 = Fls_eJob;
+  if (Fls_eJob.46_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WorkResult_13 = Fls_DoJobErase ();
+  # DEBUG WorkResult => WorkResult_13
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_eJob.47_2 = Fls_eJob;
+  if (Fls_eJob.47_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fls_u32MaxWrite.48_3 = Fls_u32MaxWrite;
+  WorkResult_11 = Fls_DoJobDataTransfer (Fls_u32MaxWrite.48_3);
+  # DEBUG WorkResult => WorkResult_11
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fls_u32MaxRead.49_4 = Fls_u32MaxRead;
+  WorkResult_9 = Fls_DoJobDataTransfer (Fls_u32MaxRead.49_4);
+  # DEBUG WorkResult => WorkResult_9
+
+  <bb 7> :
+  # WorkResult_5 = PHI <WorkResult_13(3), WorkResult_11(5), WorkResult_9(6)>
+  # DEBUG WorkResult => WorkResult_5
+  # DEBUG BEGIN_STMT
+  _14 = WorkResult_5;
+  return _14;
+
+}
+
+
+Fls_CheckCfgCRC ()
+{
+  boolean RetVal;
+  boolean _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_1 = 1;
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  _2 = RetVal_1;
+  return _2;
+
+}
+
+
+Fls_DoJobDataTransfer (const Fls_LengthType MaxTransfer)
+{
+  Fls_AddressType u32SectorTransferLength;
+  Fls_AddressType SectorTransferOffset;
+  Fls_LLDReturnType TransferRetVal;
+  Fls_AddressType u32MaxTransferAddrEnd;
+  MemIf_JobResultType RetVal;
+  long unsigned int Fls_u32JobAddrIt.67_1;
+  long unsigned int Fls_u32JobAddrEnd.68_2;
+  long unsigned int Fls_u32JobAddrIt.69_3;
+  long unsigned int _4;
+  const struct Fls_ConfigType * Fls_pConfigPtr.70_5;
+  const Fls_AddressType[<unknown>] * _6;
+  long unsigned int Fls_u32JobSectorIt.71_7;
+  long unsigned int _8;
+  long unsigned int Fls_u32JobAddrIt.72_9;
+  long unsigned int Fls_u32JobSectorIt.73_10;
+  long unsigned int _11;
+  long unsigned int Fls_u32JobAddrIt.74_12;
+  long unsigned int Fls_u32JobAddrIt.75_13;
+  long unsigned int Fls_u32JobAddrEnd.76_14;
+  MemIf_JobResultType _36;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 2;
+  # DEBUG RetVal => RetVal_19
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.67_1 = Fls_u32JobAddrIt;
+  Fls_u32JobAddrEnd.68_2 = Fls_u32JobAddrEnd;
+  if (Fls_u32JobAddrIt.67_1 > Fls_u32JobAddrEnd.68_2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_35 = 0;
+  # DEBUG RetVal => RetVal_35
+  goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  u32MaxTransferAddrEnd_23 = Fls_CalcMaxTransferAddrEnd (MaxTransfer_21(D));
+  # DEBUG u32MaxTransferAddrEnd => u32MaxTransferAddrEnd_23
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SectorTransferOffset_25 = Fls_CalcSectorTransferOffset ();
+  # DEBUG SectorTransferOffset => SectorTransferOffset_25
+  # DEBUG BEGIN_STMT
+  u32SectorTransferLength_27 = Fls_CalcSectorTransferLength (u32MaxTransferAddrEnd_23);
+  # DEBUG u32SectorTransferLength => u32SectorTransferLength_27
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.69_3 = Fls_u32JobAddrIt;
+  _4 = u32SectorTransferLength_27 + Fls_u32JobAddrIt.69_3;
+  Fls_u32JobAddrIt = _4;
+  # DEBUG BEGIN_STMT
+  TransferRetVal_30 = Fls_ProcessJobDataTransfer (SectorTransferOffset_25, u32SectorTransferLength_27);
+  # DEBUG TransferRetVal => TransferRetVal_30
+  # DEBUG BEGIN_STMT
+  if (TransferRetVal_30 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.70_5 = Fls_pConfigPtr;
+  _6 = Fls_pConfigPtr.70_5->paSectorEndAddr;
+  Fls_u32JobSectorIt.71_7 ={v} Fls_u32JobSectorIt;
+  _8 = *_6[Fls_u32JobSectorIt.71_7];
+  Fls_u32JobAddrIt.72_9 = Fls_u32JobAddrIt;
+  if (_8 < Fls_u32JobAddrIt.72_9)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt.73_10 ={v} Fls_u32JobSectorIt;
+  _11 = Fls_u32JobSectorIt.73_10 + 1;
+  Fls_u32JobSectorIt ={v} _11;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.74_12 = Fls_u32JobAddrIt;
+  if (u32MaxTransferAddrEnd_23 >= Fls_u32JobAddrIt.74_12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (TransferRetVal_30 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (TransferRetVal_30 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (TransferRetVal_30 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 4;
+  # DEBUG RetVal => RetVal_33
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.75_13 = Fls_u32JobAddrIt;
+  Fls_u32JobAddrEnd.76_14 = Fls_u32JobAddrEnd;
+  if (Fls_u32JobAddrIt.75_13 > Fls_u32JobAddrEnd.76_14)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  if (TransferRetVal_30 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  RetVal_32 = 0;
+  # DEBUG RetVal => RetVal_32
+
+  <bb 17> :
+  # RetVal_15 = PHI <RetVal_35(3), RetVal_34(11), RetVal_33(13), RetVal_19(14), RetVal_19(15), RetVal_32(16)>
+  # DEBUG RetVal => RetVal_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _36 = RetVal_15;
+  return _36;
+
+}
+
+
+Fls_ProcessJobDataTransfer (const Fls_AddressType SectorOffset, const Fls_AddressType Length)
+{
+  Fls_LLDReturnType TransferRetVal;
+  <unnamed type> Fls_eJob.89_1;
+  const uint8 * Fls_pJobDataSrcPtr.90_2;
+  const uint8 * _3;
+  uint8 * Fls_pJobDataDestPtr.91_4;
+  uint8 * Fls_pJobDataDestPtr.92_5;
+  uint8 * _6;
+  const uint8 * Fls_pJobDataSrcPtr.93_7;
+  unsigned int _8;
+  const uint8 * Fls_pJobDataSrcPtr.94_9;
+  const uint8 * _10;
+  Fls_LLDReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TransferRetVal_15 = 1;
+  # DEBUG TransferRetVal => TransferRetVal_15
+  # DEBUG BEGIN_STMT
+  Fls_eJob.89_1 = Fls_eJob;
+  switch (Fls_eJob.89_1) <default: <L10> [INV], case 1: <L0> [INV], case 2: <L1> [INV], case 3: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  TransferRetVal_28 = Fls_DoJobWrite (SectorOffset_17(D), Length_18(D));
+  # DEBUG TransferRetVal => TransferRetVal_28
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr.90_2 = Fls_pJobDataSrcPtr;
+  _3 = Fls_pJobDataSrcPtr.90_2 + Length_18(D);
+  Fls_pJobDataSrcPtr = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataDestPtr.91_4 = Fls_pJobDataDestPtr;
+  TransferRetVal_24 = Fls_IPW_SectorRead (SectorOffset_17(D), Length_18(D), Fls_pJobDataDestPtr.91_4, 0B);
+  # DEBUG TransferRetVal => TransferRetVal_24
+  # DEBUG BEGIN_STMT
+  if (TransferRetVal_24 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportTransientFault (92, 0, 6, 3);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataDestPtr.92_5 = Fls_pJobDataDestPtr;
+  _6 = Fls_pJobDataDestPtr.92_5 + Length_18(D);
+  Fls_pJobDataDestPtr = _6;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr.93_7 = Fls_pJobDataSrcPtr;
+  TransferRetVal_20 = Fls_IPW_SectorRead (SectorOffset_17(D), Length_18(D), 0B, Fls_pJobDataSrcPtr.93_7);
+  # DEBUG TransferRetVal => TransferRetVal_20
+  # DEBUG BEGIN_STMT
+  _8 = TransferRetVal_20 + 4294967295;
+  if (_8 <= 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportTransientFault (92, 0, 6, 4);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr.94_9 = Fls_pJobDataSrcPtr;
+  _10 = Fls_pJobDataSrcPtr.94_9 + Length_18(D);
+  Fls_pJobDataSrcPtr = _10;
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # TransferRetVal_11 = PHI <TransferRetVal_28(3), TransferRetVal_24(6), TransferRetVal_20(9), TransferRetVal_15(2)>
+<L10>:
+  # DEBUG TransferRetVal => TransferRetVal_11
+  # DEBUG BEGIN_STMT
+  _30 = TransferRetVal_11;
+  return _30;
+
+}
+
+
+Fls_DoJobWrite (const Fls_AddressType SectorOffset, const Fls_AddressType Length)
+{
+  boolean Asynch;
+  Fls_LLDReturnType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.95_1;
+  const uint8[<unknown>] * _2;
+  long unsigned int Fls_u32JobSectorIt.96_3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  const uint8 * Fls_pJobDataSrcPtr.97_7;
+  Fls_LLDReturnType _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.95_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.95_1->paSectorFlags;
+  Fls_u32JobSectorIt.96_3 ={v} Fls_u32JobSectorIt;
+  _4 = *_2[Fls_u32JobSectorIt.96_3];
+  _5 = (unsigned int) _4;
+  _6 = _5 & 2;
+  if (_6 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Asynch_13 = 1;
+  # DEBUG Asynch => Asynch_13
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Asynch_12 = 0;
+  # DEBUG Asynch => Asynch_12
+
+  <bb 5> :
+  # Asynch_9 = PHI <Asynch_13(3), Asynch_12(4)>
+  # DEBUG Asynch => Asynch_9
+  # DEBUG BEGIN_STMT
+  Fls_pJobDataSrcPtr.97_7 = Fls_pJobDataSrcPtr;
+  RetVal_17 = Fls_IPW_SectorWrite (SectorOffset_14(D), Length_15(D), Fls_pJobDataSrcPtr.97_7, Asynch_9);
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  if (RetVal_17 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportTransientFault (92, 0, 6, 2);
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (RetVal_17 == 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 1;
+  # DEBUG RetVal => RetVal_18
+
+  <bb 9> :
+  # RetVal_8 = PHI <RetVal_17(6), RetVal_17(7), RetVal_18(8)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = RetVal_8;
+  return _20;
+
+}
+
+
+Fls_CalcSectorTransferLength (const Fls_AddressType MaxTransferEndAddr)
+{
+  uint32 InterfaceSize;
+  uint32 TransferSize;
+  Fls_AddressType MaxTransferAddr;
+  Fls_AddressType SectorEndAddr;
+  const struct Fls_ConfigType * Fls_pConfigPtr.79_1;
+  const Fls_AddressType[<unknown>] * _2;
+  long unsigned int Fls_u32JobSectorIt.80_3;
+  const struct Fls_ConfigType * Fls_pConfigPtr.81_4;
+  const Fls_HwChType[<unknown>] * _5;
+  long unsigned int Fls_u32JobSectorIt.82_6;
+  <unnamed type> _7;
+  <unnamed type> Fls_eJob.83_8;
+  long unsigned int Fls_u32JobAddrIt.84_9;
+  long unsigned int _10;
+  long unsigned int Fls_u32JobAddrIt.85_11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int Fls_u32JobAddrIt.86_14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int Fls_u32JobAddrIt.87_17;
+  long unsigned int _18;
+  long unsigned int Fls_u32JobAddrIt.88_19;
+  long unsigned int _20;
+  Fls_AddressType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxTransferAddr_24 = MaxTransferEndAddr_23(D);
+  # DEBUG MaxTransferAddr => MaxTransferAddr_24
+  # DEBUG BEGIN_STMT
+  TransferSize_25 = 0;
+  # DEBUG TransferSize => TransferSize_25
+  # DEBUG BEGIN_STMT
+  InterfaceSize_26 = 0;
+  # DEBUG InterfaceSize => InterfaceSize_26
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.79_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.79_1->paSectorEndAddr;
+  Fls_u32JobSectorIt.80_3 ={v} Fls_u32JobSectorIt;
+  SectorEndAddr_28 = *_2[Fls_u32JobSectorIt.80_3];
+  # DEBUG SectorEndAddr => SectorEndAddr_28
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.81_4 = Fls_pConfigPtr;
+  _5 = Fls_pConfigPtr.81_4->paHwCh;
+  Fls_u32JobSectorIt.82_6 ={v} Fls_u32JobSectorIt;
+  _7 = *_5[Fls_u32JobSectorIt.82_6];
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  Fls_eJob.83_8 = Fls_eJob;
+  if (Fls_eJob.83_8 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  InterfaceSize_29 = 128;
+  # DEBUG InterfaceSize => InterfaceSize_29
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.84_9 = Fls_u32JobAddrIt;
+  _10 = MaxTransferAddr_24 - Fls_u32JobAddrIt.84_9;
+  TransferSize_30 = _10 + 1;
+  # DEBUG TransferSize => TransferSize_30
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.85_11 = Fls_u32JobAddrIt;
+  _12 = Fls_u32JobAddrIt.85_11 % InterfaceSize_29;
+  _13 = InterfaceSize_29 - _12;
+  if (TransferSize_30 > _13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.86_14 = Fls_u32JobAddrIt;
+  _15 = Fls_u32JobAddrIt.86_14 % InterfaceSize_29;
+  _16 = InterfaceSize_29 - _15;
+  Fls_u32JobAddrIt.87_17 = Fls_u32JobAddrIt;
+  _18 = _16 + Fls_u32JobAddrIt.87_17;
+  MaxTransferAddr_31 = _18 + 4294967295;
+  # DEBUG MaxTransferAddr => MaxTransferAddr_31
+
+  <bb 6> :
+  # MaxTransferAddr_22 = PHI <MaxTransferAddr_24(2), MaxTransferAddr_24(3), MaxTransferAddr_24(4), MaxTransferAddr_31(5)>
+  # DEBUG MaxTransferAddr => MaxTransferAddr_22
+  # DEBUG BEGIN_STMT
+  if (SectorEndAddr_28 > MaxTransferAddr_22)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SectorEndAddr_32 = MaxTransferAddr_22;
+  # DEBUG SectorEndAddr => SectorEndAddr_32
+
+  <bb 8> :
+  # SectorEndAddr_21 = PHI <SectorEndAddr_28(6), SectorEndAddr_32(7)>
+  # DEBUG SectorEndAddr => SectorEndAddr_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.88_19 = Fls_u32JobAddrIt;
+  _20 = SectorEndAddr_21 - Fls_u32JobAddrIt.88_19;
+  _33 = _20 + 1;
+  return _33;
+
+}
+
+
+Fls_CalcSectorTransferOffset ()
+{
+  Fls_AddressType SectorAddrStart;
+  long unsigned int Fls_u32JobSectorIt.65_1;
+  long unsigned int Fls_u32JobAddrIt.66_2;
+  Fls_AddressType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt.65_1 ={v} Fls_u32JobSectorIt;
+  SectorAddrStart_5 = Fls_GetSectorStartAddr (Fls_u32JobSectorIt.65_1);
+  # DEBUG SectorAddrStart => SectorAddrStart_5
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.66_2 = Fls_u32JobAddrIt;
+  _6 = Fls_u32JobAddrIt.66_2 - SectorAddrStart_5;
+  return _6;
+
+}
+
+
+Fls_CalcMaxTransferAddrEnd (const Fls_LengthType MaxTransfer)
+{
+  Fls_AddressType MaxTransferEndAddr;
+  long unsigned int Fls_u32JobAddrIt.77_1;
+  long unsigned int _2;
+  long unsigned int Fls_u32JobAddrIt.78_3;
+  long unsigned int _4;
+  Fls_AddressType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  MaxTransferEndAddr_7 = Fls_u32JobAddrEnd;
+  # DEBUG MaxTransferEndAddr => MaxTransferEndAddr_7
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.77_1 = Fls_u32JobAddrIt;
+  _2 = MaxTransfer_8(D) + Fls_u32JobAddrIt.77_1;
+  if (MaxTransferEndAddr_7 >= _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.78_3 = Fls_u32JobAddrIt;
+  _4 = MaxTransfer_8(D) + Fls_u32JobAddrIt.78_3;
+  MaxTransferEndAddr_9 = _4 + 4294967295;
+  # DEBUG MaxTransferEndAddr => MaxTransferEndAddr_9
+
+  <bb 4> :
+  # MaxTransferEndAddr_5 = PHI <MaxTransferEndAddr_7(2), MaxTransferEndAddr_9(3)>
+  # DEBUG MaxTransferEndAddr => MaxTransferEndAddr_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = MaxTransferEndAddr_5;
+  return _10;
+
+}
+
+
+Fls_DoJobErase ()
+{
+  Fls_LLDReturnType LldRetVal;
+  boolean Asynch;
+  Fls_AddressType SectorTransferOffset;
+  Fls_LengthType PhysicalSectorSize;
+  uint32 DataStore;
+  MemIf_JobResultType RetVal;
+  long unsigned int Fls_u32JobAddrIt.50_1;
+  long unsigned int Fls_u32JobAddrEnd.51_2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.52_3;
+  const uint8[<unknown>] * _4;
+  long unsigned int Fls_u32JobSectorIt.53_5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Fls_ConfigType * Fls_pConfigPtr.54_9;
+  const Fls_LengthType[<unknown>] * _10;
+  long unsigned int Fls_u32JobSectorIt.55_11;
+  long unsigned int Fls_u32JobAddrIt.56_12;
+  long unsigned int _13;
+  long unsigned int Fls_u32JobAddrIt.57_14;
+  long unsigned int Fls_u32JobAddrEnd.58_15;
+  const struct Fls_ConfigType * Fls_pConfigPtr.59_16;
+  const uint8[<unknown>] * _17;
+  long unsigned int Fls_u32JobSectorIt.60_18;
+  unsigned char _19;
+  long unsigned int _20;
+  const struct Fls_ConfigType * Fls_pConfigPtr.61_21;
+  const Fls_AddressType[<unknown>] * _22;
+  long unsigned int Fls_u32JobSectorIt.62_23;
+  long unsigned int _24;
+  long unsigned int Fls_u32JobAddrIt.63_25;
+  long unsigned int Fls_u32JobSectorIt.64_26;
+  long unsigned int _27;
+  MemIf_JobResultType _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_31 = 2;
+  # DEBUG RetVal => RetVal_31
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.50_1 = Fls_u32JobAddrIt;
+  Fls_u32JobAddrEnd.51_2 = Fls_u32JobAddrEnd;
+  if (Fls_u32JobAddrIt.50_1 > Fls_u32JobAddrEnd.51_2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_46 = 0;
+  # DEBUG RetVal => RetVal_46
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SectorTransferOffset_34 = Fls_CalcSectorTransferOffset ();
+  # DEBUG SectorTransferOffset => SectorTransferOffset_34
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.52_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.52_3->paSectorFlags;
+  Fls_u32JobSectorIt.53_5 ={v} Fls_u32JobSectorIt;
+  _6 = *_4[Fls_u32JobSectorIt.53_5];
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1;
+  if (_8 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Asynch_36 = 1;
+  # DEBUG Asynch => Asynch_36
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Asynch_35 = 0;
+  # DEBUG Asynch => Asynch_35
+
+  <bb 7> :
+  # Asynch_29 = PHI <Asynch_36(5), Asynch_35(6)>
+  # DEBUG Asynch => Asynch_29
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.54_9 = Fls_pConfigPtr;
+  _10 = Fls_pConfigPtr.54_9->paSectorSize;
+  Fls_u32JobSectorIt.55_11 ={v} Fls_u32JobSectorIt;
+  PhysicalSectorSize_37 = *_10[Fls_u32JobSectorIt.55_11];
+  # DEBUG PhysicalSectorSize => PhysicalSectorSize_37
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.56_12 = Fls_u32JobAddrIt;
+  _13 = PhysicalSectorSize_37 + Fls_u32JobAddrIt.56_12;
+  Fls_u32JobAddrIt = _13;
+  # DEBUG BEGIN_STMT
+  LldRetVal_40 = Fls_IPW_SectorErase (SectorTransferOffset_34, PhysicalSectorSize_37, Asynch_29);
+  # DEBUG LldRetVal => LldRetVal_40
+  # DEBUG BEGIN_STMT
+  Fls_u32JobAddrIt.57_14 = Fls_u32JobAddrIt;
+  Fls_u32JobAddrEnd.58_15 = Fls_u32JobAddrEnd;
+  if (Fls_u32JobAddrIt.57_14 > Fls_u32JobAddrEnd.58_15)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (LldRetVal_40 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_41 = 0;
+  # DEBUG RetVal => RetVal_41
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (LldRetVal_40 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportTransientFault (92, 0, 6, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_45 = 1;
+  # DEBUG RetVal => RetVal_45
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.59_16 = Fls_pConfigPtr;
+  _17 = Fls_pConfigPtr.59_16->paSectorFlags;
+  Fls_u32JobSectorIt.60_18 ={v} Fls_u32JobSectorIt;
+  _19 = *_17[Fls_u32JobSectorIt.60_18];
+  DataStore_42 = (uint32) _19;
+  # DEBUG DataStore => DataStore_42
+  # DEBUG BEGIN_STMT
+  _20 = DataStore_42 & 1;
+  if (_20 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.61_21 = Fls_pConfigPtr;
+  _22 = Fls_pConfigPtr.61_21->paSectorEndAddr;
+  Fls_u32JobSectorIt.62_23 ={v} Fls_u32JobSectorIt;
+  _24 = *_22[Fls_u32JobSectorIt.62_23];
+  Fls_u32JobAddrIt.63_25 = Fls_u32JobAddrIt;
+  if (_24 < Fls_u32JobAddrIt.63_25)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Fls_u32JobSectorIt.64_26 ={v} Fls_u32JobSectorIt;
+  _27 = Fls_u32JobSectorIt.64_26 + 1;
+  Fls_u32JobSectorIt ={v} _27;
+
+  <bb 15> :
+  # RetVal_28 = PHI <RetVal_46(3), RetVal_41(9), RetVal_45(11), RetVal_31(12), RetVal_31(13), RetVal_31(14)>
+  # DEBUG RetVal => RetVal_28
+  # DEBUG BEGIN_STMT
+  _47 = RetVal_28;
+  return _47;
+
+}
+
+
+Fls_CheckInputParamReadCompareJob (Fls_AddressType SourceAddress, const uint8 * TargetAddressPtr, Fls_LengthType Length, uint8 ApiId)
+{
+  boolean CheckInputTemp;
+  Std_ReturnType RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.30_1;
+  const struct Fls_ConfigType * Fls_pConfigPtr.31_2;
+  const Fls_AddressType[<unknown>] * _3;
+  const struct Fls_ConfigType * Fls_pConfigPtr.32_4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  const struct Fls_ConfigType * Fls_pConfigPtr.33_10;
+  const Fls_AddressType[<unknown>] * _11;
+  const struct Fls_ConfigType * Fls_pConfigPtr.34_12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  Std_ReturnType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 0;
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  CheckInputTemp_23 = 0;
+  # DEBUG CheckInputTemp => CheckInputTemp_23
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.30_1 = Fls_pConfigPtr;
+  if (Fls_pConfigPtr.30_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, ApiId_28(D), 5);
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.31_2 = Fls_pConfigPtr;
+  _3 = Fls_pConfigPtr.31_2->paSectorEndAddr;
+  Fls_pConfigPtr.32_4 = Fls_pConfigPtr;
+  _5 = Fls_pConfigPtr.32_4->u32SectorCount;
+  _6 = _5 + 4294967295;
+  _7 = *_3[_6];
+  _8 = _7 + 1;
+  if (SourceAddress_25(D) >= _8)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, ApiId_28(D), 2);
+  # DEBUG BEGIN_STMT
+  RetVal_32 = 1;
+  # DEBUG RetVal => RetVal_32
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Length_26(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _9 = SourceAddress_25(D) + Length_26(D);
+  Fls_pConfigPtr.33_10 = Fls_pConfigPtr;
+  _11 = Fls_pConfigPtr.33_10->paSectorEndAddr;
+  Fls_pConfigPtr.34_12 = Fls_pConfigPtr;
+  _13 = Fls_pConfigPtr.34_12->u32SectorCount;
+  _14 = _13 + 4294967295;
+  _15 = *_11[_14];
+  _16 = _15 + 1;
+  if (_9 > _16)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, ApiId_28(D), 3);
+  # DEBUG BEGIN_STMT
+  RetVal_30 = 1;
+  # DEBUG RetVal => RetVal_30
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  CheckInputTemp_27 = 1;
+  # DEBUG CheckInputTemp => CheckInputTemp_27
+
+  <bb 10> :
+  # RetVal_17 = PHI <RetVal_34(3), RetVal_32(5), RetVal_30(8), RetVal_22(9)>
+  # CheckInputTemp_19 = PHI <CheckInputTemp_23(3), CheckInputTemp_23(5), CheckInputTemp_23(8), CheckInputTemp_27(9)>
+  # DEBUG CheckInputTemp => CheckInputTemp_19
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  if (CheckInputTemp_19 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (TargetAddressPtr_35(D) == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (92, 0, ApiId_28(D), 4);
+  # DEBUG BEGIN_STMT
+  RetVal_37 = 1;
+  # DEBUG RetVal => RetVal_37
+
+  <bb 13> :
+  # RetVal_18 = PHI <RetVal_17(10), RetVal_17(11), RetVal_37(12)>
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  _38 = RetVal_18;
+  return _38;
+
+}
+
+
+Fls_IsAddrSectorEndAligned (const Fls_AddressType TargetAddress)
+{
+  Fls_AddressType EndAddress;
+  Fls_LengthType SectorSize;
+  Fls_SectorIndexType SectorIndex;
+  boolean RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.12_1;
+  const Fls_AddressType[<unknown>] * _2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.13_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  const struct Fls_ConfigType * Fls_pConfigPtr.14_8;
+  const Fls_LengthType[<unknown>] * _9;
+  const struct Fls_ConfigType * Fls_pConfigPtr.15_10;
+  const Fls_AddressType[<unknown>] * _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  boolean _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 0;
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.12_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.12_1->paSectorEndAddr;
+  Fls_pConfigPtr.13_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.13_3->u32SectorCount;
+  _5 = _4 + 4294967295;
+  _6 = *_2[_5];
+  _7 = _6 + 1;
+  if (TargetAddress_18(D) < _7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_20 = Fls_GetSectorIndexByAddr (TargetAddress_18(D));
+  # DEBUG SectorIndex => SectorIndex_20
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.14_8 = Fls_pConfigPtr;
+  _9 = Fls_pConfigPtr.14_8->paSectorSize;
+  SectorSize_21 = *_9[SectorIndex_20];
+  # DEBUG SectorSize => SectorSize_21
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.15_10 = Fls_pConfigPtr;
+  _11 = Fls_pConfigPtr.15_10->paSectorEndAddr;
+  EndAddress_22 = *_11[SectorIndex_20];
+  # DEBUG EndAddress => EndAddress_22
+  # DEBUG BEGIN_STMT
+  _12 = EndAddress_22 - TargetAddress_18(D);
+  _13 = _12 % SectorSize_21;
+  if (_13 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+
+  <bb 5> :
+  # RetVal_14 = PHI <RetVal_16(2), RetVal_16(3), RetVal_23(4)>
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _24 = RetVal_14;
+  return _24;
+
+}
+
+
+Fls_IsAddrSectorStartAligned (const Fls_AddressType TargetAddress)
+{
+  Fls_LengthType SectorSize;
+  Fls_SectorIndexType SectorIndex;
+  boolean RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.8_1;
+  const Fls_AddressType[<unknown>] * _2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.9_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  const struct Fls_ConfigType * Fls_pConfigPtr.10_8;
+  const Fls_LengthType[<unknown>] * _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  boolean _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 0;
+  # DEBUG RetVal => RetVal_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.8_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.8_1->paSectorEndAddr;
+  Fls_pConfigPtr.9_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.9_3->u32SectorCount;
+  _5 = _4 + 4294967295;
+  _6 = *_2[_5];
+  _7 = _6 + 1;
+  if (TargetAddress_17(D) < _7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SectorIndex_19 = Fls_GetSectorIndexByAddr (TargetAddress_17(D));
+  # DEBUG SectorIndex => SectorIndex_19
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.10_8 = Fls_pConfigPtr;
+  _9 = Fls_pConfigPtr.10_8->paSectorSize;
+  SectorSize_20 = *_9[SectorIndex_19];
+  # DEBUG SectorSize => SectorSize_20
+  # DEBUG BEGIN_STMT
+  _10 = Fls_GetSectorStartAddr (SectorIndex_19);
+  _11 = TargetAddress_17(D) - _10;
+  _12 = _11 % SectorSize_20;
+  if (_12 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+
+  <bb 5> :
+  # RetVal_13 = PHI <RetVal_15(2), RetVal_15(3), RetVal_22(4)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = RetVal_13;
+  return _23;
+
+}
+
+
+Fls_IsAddrPageEndAligned (const Fls_AddressType TargetAddress)
+{
+  Fls_LengthType SectorOffset;
+  boolean RetVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  const struct Fls_ConfigType * Fls_pConfigPtr.23_4;
+  const Fls_AddressType[<unknown>] * _5;
+  const struct Fls_ConfigType * Fls_pConfigPtr.24_6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  const struct Fls_ConfigType * Fls_pConfigPtr.25_11;
+  const Fls_LengthType[<unknown>] * _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  boolean _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 0;
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Fls_GetSectorIndexByAddr (TargetAddress_20(D));
+  _2 = Fls_GetSectorStartAddr (_1);
+  SectorOffset_23 = TargetAddress_20(D) - _2;
+  # DEBUG SectorOffset => SectorOffset_23
+  # DEBUG BEGIN_STMT
+  _3 = TargetAddress_20(D) + 4294967295;
+  Fls_pConfigPtr.23_4 = Fls_pConfigPtr;
+  _5 = Fls_pConfigPtr.23_4->paSectorEndAddr;
+  Fls_pConfigPtr.24_6 = Fls_pConfigPtr;
+  _7 = Fls_pConfigPtr.24_6->u32SectorCount;
+  _8 = _7 + 4294967295;
+  _9 = *_5[_8];
+  _10 = _9 + 1;
+  if (_3 < _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  Fls_pConfigPtr.25_11 = Fls_pConfigPtr;
+  _12 = Fls_pConfigPtr.25_11->paSectorPageSize;
+  _13 = Fls_GetSectorIndexByAddr (TargetAddress_20(D));
+  _14 = *_12[_13];
+  _15 = SectorOffset_23 % _14;
+  if (_15 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_25 = 1;
+  # DEBUG RetVal => RetVal_25
+
+  <bb 5> :
+  # RetVal_16 = PHI <RetVal_18(2), RetVal_18(3), RetVal_25(4)>
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _26 = RetVal_16;
+  return _26;
+
+}
+
+
+Fls_IsAddrPageStartAligned (const Fls_AddressType TargetAddress)
+{
+  boolean RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.20_1;
+  const Fls_AddressType[<unknown>] * _2;
+  const struct Fls_ConfigType * Fls_pConfigPtr.21_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  boolean _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.20_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.20_1->paSectorEndAddr;
+  Fls_pConfigPtr.21_3 = Fls_pConfigPtr;
+  _4 = Fls_pConfigPtr.21_3->u32SectorCount;
+  _5 = _4 + 4294967295;
+  _6 = *_2[_5];
+  _7 = _6 + 1;
+  if (TargetAddress_13(D) < _7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _8 = Fls_IsAddrPageAligned (TargetAddress_13(D));
+  if (_8 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 1;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 0;
+  # DEBUG RetVal => RetVal_16
+
+  <bb 6> :
+  # RetVal_9 = PHI <RetVal_15(4), RetVal_16(5)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _17 = RetVal_9;
+  return _17;
+
+}
+
+
+Fls_IsAddrPageAligned (const Fls_AddressType TargetAddress)
+{
+  boolean RetVal;
+  const struct Fls_ConfigType * Fls_pConfigPtr.22_1;
+  const Fls_LengthType[<unknown>] * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  boolean _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.22_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.22_1->paSectorPageSize;
+  _3 = Fls_GetSectorIndexByAddr (TargetAddress_8(D));
+  _4 = *_2[_3];
+  _5 = TargetAddress_8(D) % _4;
+  if (_5 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 1;
+  # DEBUG RetVal => RetVal_11
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 0;
+  # DEBUG RetVal => RetVal_10
+
+  <bb 5> :
+  # RetVal_6 = PHI <RetVal_11(3), RetVal_10(4)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  _12 = RetVal_6;
+  return _12;
+
+}
+
+
+Fls_GetSectorStartAddr (const Fls_SectorIndexType SectorIndex)
+{
+  Fls_AddressType TargetAddress;
+  const struct Fls_ConfigType * Fls_pConfigPtr.11_1;
+  const Fls_AddressType[<unknown>] * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  Fls_AddressType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SectorIndex_6(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.11_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.11_1->paSectorEndAddr;
+  _3 = SectorIndex_6(D) + 4294967295;
+  _4 = *_2[_3];
+  TargetAddress_9 = _4 + 1;
+  # DEBUG TargetAddress => TargetAddress_9
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  TargetAddress_7 = 0;
+  # DEBUG TargetAddress => TargetAddress_7
+
+  <bb 5> :
+  # TargetAddress_5 = PHI <TargetAddress_9(3), TargetAddress_7(4)>
+  # DEBUG TargetAddress => TargetAddress_5
+  # DEBUG BEGIN_STMT
+  _10 = TargetAddress_5;
+  return _10;
+
+}
+
+
+Fls_GetSectorIndexByAddr (const Fls_AddressType TargetAddress)
+{
+  Fls_SectorIndexType SectorIndex;
+  const struct Fls_ConfigType * Fls_pConfigPtr.16_1;
+  const Fls_AddressType[<unknown>] * _2;
+  long unsigned int _3;
+  const struct Fls_ConfigType * Fls_pConfigPtr.17_4;
+  long unsigned int _5;
+  Fls_SectorIndexType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SectorIndex_7 = 0;
+  # DEBUG SectorIndex => SectorIndex_7
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.16_1 = Fls_pConfigPtr;
+  _2 = Fls_pConfigPtr.16_1->paSectorEndAddr;
+  _3 = *_2[SectorIndex_6];
+  if (TargetAddress_9(D) <= _3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SectorIndex_10 = SectorIndex_6 + 1;
+  # DEBUG SectorIndex => SectorIndex_10
+
+  <bb 5> :
+  # SectorIndex_6 = PHI <SectorIndex_7(2), SectorIndex_10(4)>
+  # DEBUG SectorIndex => SectorIndex_6
+  # DEBUG BEGIN_STMT
+  Fls_pConfigPtr.17_4 = Fls_pConfigPtr;
+  _5 = Fls_pConfigPtr.17_4->u32SectorCount;
+  if (SectorIndex_6 < _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 = SectorIndex_6;
+  return _11;
+
+}
+
+

@@ -1,0 +1,544 @@
+
+IPA constant propagation start:
+Determining dynamic type for call: OS_preemptTaskExecTimingFp.4_11 (_12);
+  Starting walk at: OS_preemptTaskExecTimingFp.4_11 (_12);
+  instance pointer: _12  Outer instance pointer: _12 offset: 0 (bits) vtbl reference: 
+  Function call may change dynamic type:OS_ptrPostTaskHook.3_10 ();
+  Function call may change dynamic type:_8 = OS_TaskSpOutOfBounds (_7, _1);
+  Function call may change dynamic type:OS_Error (&OS_svc_Dispatch, 74, 0B);
+Determining dynamic type for call: OS_startTaskExecTimingFp.6_19 (_20);
+  Starting walk at: OS_startTaskExecTimingFp.6_19 (_20);
+  instance pointer: _20  Outer instance pointer: _20 offset: 0 (bits) vtbl reference: 
+  Function call may change dynamic type:OS_SetProtection (_18);
+  Function call may change dynamic type:OS_ptrPreTaskHook.5_17 ();
+  Function call may change dynamic type:_8 = OS_TaskSpOutOfBounds (_7, _1);
+  Function call may change dynamic type:OS_Error (&OS_svc_Dispatch, 74, 0B);
+  Function call may change dynamic type:OS_preemptTaskExecTimingFp.4_11 (_12);
+  Function call may change dynamic type:OS_ptrPostTaskHook.3_10 ();
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_ShutdownNoHooks/17:
+  Jump functions of caller  OS_Panic/16:
+  Jump functions of caller  OS_CORTEXM_ContextLoad/15:
+  Jump functions of caller  OS_CORTEXM_FPContextLoad/14:
+  Jump functions of caller  OS_MissingTerminateTask/13:
+  Jump functions of caller  OS_CORTEXM_StartTask/12:
+  Jump functions of caller  OS_SetProtection/10:
+  Jump functions of caller  OS_CORTEXM_Idle/8:
+  Jump functions of caller  OS_Error/4:
+  Jump functions of caller  OS_TaskSpOutOfBounds/3:
+  Jump functions of caller  OS_Dispatch/0:
+    indirect simple callsite, calling param -1, offset 0, for stmt OS_startTaskExecTimingFp.6_19 (_20);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+    indirect simple callsite, calling param -1, offset 0, for stmt OS_ptrPreTaskHook.5_17 ();
+    indirect simple callsite, calling param -1, offset 0, for stmt OS_preemptTaskExecTimingFp.4_11 (_12);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+    indirect simple callsite, calling param -1, offset 0, for stmt OS_ptrPostTaskHook.3_10 ();
+
+ Propagating constants:
+
+Not considering OS_Dispatch for cloning; -fipa-cp-clone disabled.
+
+overall_size: 123, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_Dispatch/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_ShutdownNoHooks/17 (OS_ShutdownNoHooks) @06d19540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (886588624 (estimated locally),0.83 per call) 
+  Calls: 
+OS_Panic/16 (OS_Panic) @06d19460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (886588624 (estimated locally),0.83 per call) 
+  Calls: 
+OS_CORTEXM_ContextLoad/15 (OS_CORTEXM_ContextLoad) @06d19380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (77471320 (estimated locally),0.07 per call) OS_Dispatch/0 (117380787 (estimated locally),0.11 per call) 
+  Calls: 
+OS_CORTEXM_FPContextLoad/14 (OS_CORTEXM_FPContextLoad) @06d192a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (53836002 (estimated locally),0.05 per call) OS_Dispatch/0 (81569700 (estimated locally),0.08 per call) 
+  Calls: 
+OS_MissingTerminateTask/13 (OS_MissingTerminateTask) @06d191c0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: OS_Dispatch/0 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+OS_CORTEXM_StartTask/12 (OS_CORTEXM_StartTask) @06d190e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (301440132 (estimated locally),0.28 per call) 
+  Calls: 
+OS_startTaskExecTimingFp/11 (OS_startTaskExecTimingFp) @06d157e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_SetProtection/10 (OS_SetProtection) @06d19000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (886588623 (estimated locally),0.83 per call) 
+  Calls: 
+OS_ptrPreTaskHook/9 (OS_ptrPreTaskHook) @06d156c0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CORTEXM_Idle/8 (OS_CORTEXM_Idle) @06b74ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (187153200 (estimated locally),0.17 per call) 
+  Calls: 
+OS_preemptTaskExecTimingFp/7 (OS_preemptTaskExecTimingFp) @06d155a0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_ptrPostTaskHook/6 (OS_ptrPostTaskHook) @06d154c8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_svc_Dispatch/5 (OS_svc_Dispatch) @06d15480
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/4 (OS_Error) @06b74c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (311922000 (estimated locally),0.29 per call) 
+  Calls: 
+OS_TaskSpOutOfBounds/3 (OS_TaskSpOutOfBounds) @06b74000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_Dispatch/0 (127775277 (estimated locally),0.12 per call) 
+  Calls: 
+OS_configMode/2 (OS_configMode) @06d153a8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06d15360
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Dispatch/0 (read)OS_Dispatch/0 (read)OS_Dispatch/0 (write)OS_Dispatch/0 (write)OS_Dispatch/0 (read)OS_Dispatch/0 (read)OS_Dispatch/0 (write)OS_Dispatch/0 (write)OS_Dispatch/0 (write)OS_Dispatch/0 (write)OS_Dispatch/0 (write)OS_Dispatch/0 (read)OS_Dispatch/0 (read)OS_Dispatch/0 (read)OS_Dispatch/0 (read)OS_Dispatch/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_Dispatch/0 (OS_Dispatch) @06b74b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_configMode/2 (read)OS_svc_Dispatch/5 (addr)OS_kernelData/1 (read)OS_kernelData/1 (write)OS_ptrPostTaskHook/6 (read)OS_kernelData/1 (write)OS_preemptTaskExecTimingFp/7 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_ptrPreTaskHook/9 (read)OS_kernelData/1 (write)OS_kernelData/1 (write)OS_kernelData/1 (read)OS_startTaskExecTimingFp/11 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_MissingTerminateTask/13 (addr)OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_ShutdownNoHooks/17 (886588624 (estimated locally),0.83 per call) OS_Panic/16 (886588624 (estimated locally),0.83 per call) OS_CORTEXM_ContextLoad/15 (77471320 (estimated locally),0.07 per call) OS_CORTEXM_FPContextLoad/14 (53836002 (estimated locally),0.05 per call) OS_CORTEXM_ContextLoad/15 (117380787 (estimated locally),0.11 per call) OS_CORTEXM_FPContextLoad/14 (81569700 (estimated locally),0.08 per call) OS_CORTEXM_StartTask/12 (301440132 (estimated locally),0.28 per call) OS_SetProtection/10 (886588623 (estimated locally),0.83 per call) OS_CORTEXM_Idle/8 (187153200 (estimated locally),0.17 per call) OS_Error/4 (311922000 (estimated locally),0.29 per call) OS_TaskSpOutOfBounds/3 (127775277 (estimated locally),0.12 per call) 
+   Indirect call(886588623 (estimated locally),0.83 per call) 
+   Indirect call(886588623 (estimated locally),0.83 per call) 
+   Indirect call(255550554 (estimated locally),0.24 per call) 
+   Indirect call(255550554 (estimated locally),0.24 per call) 
+
+;; Function OS_Dispatch (OS_Dispatch, funcdef_no=0, decl_uid=6885, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_Dispatch/0
+__attribute__((target ("general-regs-only")))
+OS_Dispatch (os_taskstate_t newstate)
+{
+  os_uint8_t Os_CallHookTmp;
+  struct os_taskdynamic_t * td;
+  os_taskstate_t qstate;
+  const struct os_task_t * _1;
+  unsigned int OS_configMode.1_2;
+  unsigned int _3;
+  os_stackelement_t * _4;
+  unsigned int _5;
+  os_stackelement_t * _6;
+  unsigned int _7;
+  int _8;
+  unsigned char _9;
+  void (*<T467>) (void) OS_ptrPostTaskHook.3_10;
+  void (*<T62f>) (const struct os_task_t *) OS_preemptTaskExecTimingFp.4_11;
+  const struct os_task_t * _12;
+  const struct os_task_t * _13;
+  short unsigned int _14;
+  unsigned char _15;
+  short unsigned int _16;
+  void (*<T467>) (void) OS_ptrPreTaskHook.5_17;
+  const struct os_task_t * _18;
+  void (*<T62f>) (const struct os_task_t *) OS_startTaskExecTimingFp.6_19;
+  const struct os_task_t * _20;
+  const struct os_task_t * _21;
+  void (*<T467>) (void) _22;
+  os_stackelement_t * _23;
+  unsigned int _24;
+  unsigned int _25;
+  unsigned int _26;
+  os_stackelement_t * _27;
+  const struct os_appcontext_t * _28;
+  unsigned char _29;
+  short unsigned int _30;
+  unsigned char _31;
+  short unsigned int _32;
+  short unsigned int _33;
+  const struct os_task_t * _34;
+  unsigned char _35;
+  signed char _36;
+  struct os_taskdynamic_t * _37;
+  os_stackelement_t * _38;
+  struct os_taskdynamic_t * _39;
+  os_stackelement_t * _40;
+  const struct os_task_t * _41;
+  unsigned char _42;
+  signed char _43;
+  struct os_taskdynamic_t * _44;
+  os_stackelement_t * _45;
+  struct os_taskdynamic_t * _46;
+  os_stackelement_t * _47;
+  os_uint16_t iftmp.7_48;
+  os_uint16_t iftmp.7_81;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.taskCurrent;
+  if (_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 9>; [30.00%]
+
+  <bb 3> [local count: 751619277]:
+  # DEBUG BEGIN_STMT
+  td_56 = _1->dynamic;
+  # DEBUG td => td_56
+  # DEBUG BEGIN_STMT
+  OS_configMode.1_2 = OS_configMode;
+  _3 = OS_configMode.1_2 & 64;
+  if (_3 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 4> [local count: 375809638]:
+  _4 = _1->stackBase;
+  _5 = *_4;
+  if (_5 != 3958107115)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 5> [local count: 127775277]:
+  _6 = td_56->context.sp;
+  _7 = (unsigned int) _6;
+  _8 = OS_TaskSpOutOfBounds (_7, _1);
+  if (_8 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 311922000]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_Dispatch, 74, 0B);
+
+  <bb 7> [local count: 751619277]:
+  # DEBUG BEGIN_STMT
+  _9 = td_56->state;
+  if (_9 == 5)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 8> [local count: 255550554]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG OS_kd => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_59 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_59
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPostTaskHook.3_10 = OS_ptrPostTaskHook;
+  OS_ptrPostTaskHook.3_10 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_59;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_56->state = newstate_63(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_preemptTaskExecTimingFp.4_11 = OS_preemptTaskExecTimingFp;
+  _12 = OS_kernelData.taskCurrent;
+  OS_preemptTaskExecTimingFp.4_11 (_12);
+
+  <bb 9> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.taskQueueHead;
+  if (_13 == 0B)
+    goto <bb 10>; [17.43%]
+  else
+    goto <bb 11>; [82.57%]
+
+  <bb 10> [local count: 187153200]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.taskCurrent = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_Idle ();
+  # DEBUG BEGIN_STMT
+  goto <bb 26>; [100.00%]
+
+  <bb 11> [local count: 886588623]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.taskCurrent = _13;
+  # DEBUG BEGIN_STMT
+  td_67 = _13->dynamic;
+  # DEBUG td => td_67
+  # DEBUG BEGIN_STMT
+  qstate_68 = td_67->state;
+  # DEBUG qstate => qstate_68
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_67->state = 5;
+  # DEBUG BEGIN_STMT
+  _14 = td_67->prio;
+  _15 = _13->runPrio;
+  _16 = (short unsigned int) _15;
+  if (_14 < _16)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 443294311]:
+  # DEBUG BEGIN_STMT
+  td_67->prio = _16;
+
+  <bb 13> [local count: 886588623]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG OS_kd => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => OS_kernelData.inFunction
+  # DEBUG Os_CallHookTmp => D#1
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 11;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPreTaskHook.5_17 = OS_ptrPreTaskHook;
+  OS_ptrPreTaskHook.5_17 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inKernel = 0;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 1;
+  # DEBUG BEGIN_STMT
+  _18 = OS_kernelData.taskCurrent;
+  OS_SetProtection (_18);
+  # DEBUG BEGIN_STMT
+  OS_startTaskExecTimingFp.6_19 = OS_startTaskExecTimingFp;
+  _20 = OS_kernelData.taskCurrent;
+  OS_startTaskExecTimingFp.6_19 (_20);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (qstate_68 == 2)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 14> [local count: 301440132]:
+  # DEBUG BEGIN_STMT
+  _21 = OS_kernelData.taskCurrent;
+  _22 = _21->entry;
+  _23 = _21->stackBase;
+  _24 = (unsigned int) _23;
+  _25 = _21->stackLen;
+  _26 = _24 + _25;
+  _27 = (os_stackelement_t *) _26;
+  _28 = _21->app;
+  if (_28 != 0B)
+    goto <bb 15>; [70.00%]
+  else
+    goto <bb 16>; [30.00%]
+
+  <bb 15> [local count: 211008092]:
+  _29 = _28->flags;
+  _30 = (short unsigned int) _29;
+  iftmp.7_81 = _30 << 8;
+
+  <bb 16> [local count: 301440132]:
+  # iftmp.7_48 = PHI <iftmp.7_81(15), 256(14)>
+  _31 = _21->flags;
+  _32 = (short unsigned int) _31;
+  _33 = _32 | iftmp.7_48;
+  OS_CORTEXM_StartTask (_22, _27, _33, OS_MissingTerminateTask);
+  goto <bb 25>; [100.00%]
+
+  <bb 17> [local count: 585148492]:
+  # DEBUG BEGIN_STMT
+  if (qstate_68 == 4)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 18> [local count: 198950487]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _34 = OS_kernelData.taskCurrent;
+  _35 = _34->flags;
+  _36 = (signed char) _35;
+  if (_36 < 0)
+    goto <bb 19>; [41.00%]
+  else
+    goto <bb 20>; [59.00%]
+
+  <bb 19> [local count: 81569700]:
+  _37 = _34->dynamic;
+  _38 = _37->context.sp;
+  OS_CORTEXM_FPContextLoad (_38);
+  goto <bb 25>; [100.00%]
+
+  <bb 20> [local count: 117380787]:
+  _39 = _34->dynamic;
+  _40 = _39->context.sp;
+  OS_CORTEXM_ContextLoad (_40);
+  goto <bb 25>; [100.00%]
+
+  <bb 21> [local count: 386198004]:
+  # DEBUG BEGIN_STMT
+  if (qstate_68 == 3)
+    goto <bb 22>; [34.00%]
+  else
+    goto <bb 25>; [66.00%]
+
+  <bb 22> [local count: 131307321]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _41 = OS_kernelData.taskCurrent;
+  _42 = _41->flags;
+  _43 = (signed char) _42;
+  if (_43 < 0)
+    goto <bb 23>; [41.00%]
+  else
+    goto <bb 24>; [59.00%]
+
+  <bb 23> [local count: 53836002]:
+  _44 = _41->dynamic;
+  _45 = _44->context.sp;
+  OS_CORTEXM_FPContextLoad (_45);
+  goto <bb 25>; [100.00%]
+
+  <bb 24> [local count: 77471320]:
+  _46 = _41->dynamic;
+  _47 = _46->context.sp;
+  OS_CORTEXM_ContextLoad (_47);
+
+  <bb 25> [local count: 886588624]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_Panic (9);
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 26> [local count: 1073741824]:
+  return;
+
+}
+
+

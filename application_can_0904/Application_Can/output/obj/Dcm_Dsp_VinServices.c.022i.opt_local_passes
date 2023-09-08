@@ -1,0 +1,343 @@
+Dcm_Dsp_VinServices_UnlockService ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Internal_ReleaseLock (&Dcm_Dsp_VinServices_ServiceBusy);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_VinServices_LockService ()
+{
+  Std_ReturnType RetVal;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_1 = 31;
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_4 = Dcm_Internal_GetLock (&Dcm_Dsp_VinServices_ServiceBusy);
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = RetVal_4;
+  return _5;
+
+}
+
+
+Dcm_Dsp_VinServices_HelperCancel (struct Dcm_DspReqVehInfoContextType * svcContext)
+{
+  uint8 * const pBuffer;
+  const struct Dcm_DspVehInfoDataType * const pVehInfoData;
+  const uint8 currDataIdx;
+  const struct Dcm_DspVehInfoType * const pVehInfo;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+  int _7;
+  int _8;
+  struct Dcm_DspMsgBufferCfgType * _9;
+  Std_ReturnType (*<T73e>) (Dcm_OpStatusType, uint8 *) _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = svcContext_13(D)->currentVehInfoIdx;
+  if (_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = svcContext_13(D)->currentVehInfoIdx;
+  _3 = (int) _2;
+  pVehInfo_14 = &Dcm_DspVehInfo[_3];
+  # DEBUG pVehInfo => pVehInfo_14
+  # DEBUG BEGIN_STMT
+  currDataIdx_15 = svcContext_13(D)->currentVehInfoDataIdx;
+  # DEBUG currDataIdx => currDataIdx_15
+  # DEBUG BEGIN_STMT
+  _4 = pVehInfo_14->NumOfVehInfoData;
+  if (currDataIdx_15 < _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = pVehInfo_14->StartIndexOfVehInfoData;
+  _6 = (int) _5;
+  _7 = (int) currDataIdx_15;
+  _8 = _6 + _7;
+  pVehInfoData_16 = &Dcm_DspVehInfoData[_8];
+  # DEBUG pVehInfoData => pVehInfoData_16
+  # DEBUG BEGIN_STMT
+  _9 = svcContext_13(D)->BufferCfgPtr;
+  pBuffer_17 = _9->BufferPtr;
+  # DEBUG pBuffer => pBuffer_17
+  # DEBUG BEGIN_STMT
+  _10 = pVehInfoData_16->GetInfotypeValueDataFunctionPointer;
+  _10 (2, pBuffer_17);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  svcContext_13(D)->currentVehInfoIdx = 2;
+  # DEBUG BEGIN_STMT
+  svcContext_13(D)->currentVehInfoDataIdx = 0;
+  # DEBUG BEGIN_STMT
+  svcContext_13(D)->BufferCfgPtr = 0B;
+  # DEBUG BEGIN_STMT
+  svcContext_13(D)->nrc = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_VinServices_HelperExecute (Dcm_OpStatusType OpStatus, Dcm_DspVehInfoInfoTypeType VehInfoInfoType, struct Dcm_DspReqVehInfoContextType * svcContext)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+  struct Dcm_DspMsgBufferCfgType * _2;
+  unsigned char _3;
+  Std_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_6 = 1;
+  # DEBUG retVal => retVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = VehInfoInfoType_7(D) & 31;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = svcContext_10(D)->BufferCfgPtr;
+  retVal_14 = Dcm_RequestVehicleInformation_HelperExecuteAvailableInfoType (VehInfoInfoType_7(D), _2);
+  # DEBUG retVal => retVal_14
+  # DEBUG BEGIN_STMT
+  if (retVal_14 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_DspReqVehInfoContext.nrc;
+  svcContext_10(D)->nrc = _3;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_12 = Dcm_RequestVehicleInformation_HelperExecuteNonAvailableInfoType (OpStatus_9(D), svcContext_10(D));
+  # DEBUG retVal => retVal_12
+
+  <bb 6> :
+  # retVal_4 = PHI <retVal_14(4), retVal_12(5), retVal_14(3)>
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = retVal_4;
+  return _16;
+
+}
+
+
+Dcm_Dsp_VinServices_HelperInit (Dcm_DspVehInfoInfoTypeType VehInfoInfoType, struct Dcm_DspReqVehInfoContextType * svcContext, struct Dcm_DspMsgBufferCfgType * ResBuffer)
+{
+  uint16_least VehInfoDataIndex;
+  const uint16 EndIndexOfVehInfoData;
+  const uint16 StartIndexOfVehInfoData;
+  uint16_least VehInfoDataSize;
+  uint8_least vehInfoIndex;
+  Std_ReturnType retVal;
+  unsigned char _1;
+  long unsigned int _2;
+  unsigned char _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  short unsigned int _12;
+  unsigned char _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  unsigned char _17;
+  Std_ReturnType _45;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_24 = 1;
+  # DEBUG retVal => retVal_24
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = VehInfoInfoType_25(D) & 31;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = ResBuffer_33(D)->Size;
+  if (_2 > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  svcContext_34(D)->BufferCfgPtr = ResBuffer_33(D);
+  # DEBUG BEGIN_STMT
+  retVal_43 = 0;
+  # DEBUG retVal => retVal_43
+  goto <bb 15>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_26 = 0;
+  # DEBUG vehInfoIndex => vehInfoIndex_26
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_DspVehInfo[vehInfoIndex_19].VehInfoInfoType;
+  if (VehInfoInfoType_25(D) == _3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = vehInfoIndex_19 / 8;
+  _5 = Dcm_DspVehInfoUsed[_4];
+  _6 = vehInfoIndex_19 & 7;
+  _7 = 1 << _6;
+  _8 = (unsigned char) _7;
+  _9 = _5 & _8;
+  if (_9 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  VehInfoDataSize_28 = 0;
+  # DEBUG VehInfoDataSize => VehInfoDataSize_28
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_DspVehInfo[vehInfoIndex_19].StartIndexOfVehInfoData;
+  StartIndexOfVehInfoData_29 = (const uint16) _10;
+  # DEBUG StartIndexOfVehInfoData => StartIndexOfVehInfoData_29
+  # DEBUG BEGIN_STMT
+  _11 = Dcm_DspVehInfo[vehInfoIndex_19].NumOfVehInfoData;
+  _12 = (short unsigned int) _11;
+  EndIndexOfVehInfoData_30 = StartIndexOfVehInfoData_29 + _12;
+  # DEBUG EndIndexOfVehInfoData => EndIndexOfVehInfoData_30
+  # DEBUG BEGIN_STMT
+  VehInfoDataIndex_31 = 2;
+  # DEBUG VehInfoDataIndex => VehInfoDataIndex_31
+  # DEBUG BEGIN_STMT
+  VehInfoDataIndex_32 = (uint16_least) StartIndexOfVehInfoData_29;
+  # DEBUG VehInfoDataIndex => VehInfoDataIndex_32
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_DspVehInfoData[VehInfoDataIndex_21].VehInfoDataSize;
+  _14 = (long unsigned int) _13;
+  VehInfoDataSize_39 = VehInfoDataSize_20 + _14;
+  # DEBUG VehInfoDataSize => VehInfoDataSize_39
+  # DEBUG BEGIN_STMT
+  VehInfoDataIndex_40 = VehInfoDataIndex_21 + 1;
+  # DEBUG VehInfoDataIndex => VehInfoDataIndex_40
+
+  <bb 10> :
+  # VehInfoDataSize_20 = PHI <VehInfoDataSize_28(8), VehInfoDataSize_39(9)>
+  # VehInfoDataIndex_21 = PHI <VehInfoDataIndex_32(8), VehInfoDataIndex_40(9)>
+  # DEBUG VehInfoDataIndex => VehInfoDataIndex_21
+  # DEBUG VehInfoDataSize => VehInfoDataSize_20
+  # DEBUG BEGIN_STMT
+  _15 = (long unsigned int) EndIndexOfVehInfoData_30;
+  if (VehInfoDataIndex_21 < _15)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _16 = ResBuffer_33(D)->Size;
+  if (VehInfoDataSize_20 <= _16)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _17 = (unsigned char) vehInfoIndex_19;
+  svcContext_34(D)->currentVehInfoIdx = _17;
+  # DEBUG BEGIN_STMT
+  svcContext_34(D)->currentVehInfoDataIdx = 0;
+  # DEBUG BEGIN_STMT
+  svcContext_34(D)->BufferCfgPtr = ResBuffer_33(D);
+  # DEBUG BEGIN_STMT
+  retVal_38 = 0;
+  # DEBUG retVal => retVal_38
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_41 = vehInfoIndex_19 + 1;
+  # DEBUG vehInfoIndex => vehInfoIndex_41
+
+  <bb 14> :
+  # vehInfoIndex_19 = PHI <vehInfoIndex_26(5), vehInfoIndex_41(13)>
+  # DEBUG vehInfoIndex => vehInfoIndex_19
+  # DEBUG BEGIN_STMT
+  if (vehInfoIndex_19 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # retVal_18 = PHI <retVal_43(4), retVal_38(12), retVal_24(14), retVal_24(3)>
+  # DEBUG retVal => retVal_18
+  # DEBUG BEGIN_STMT
+  if (retVal_18 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  svcContext_34(D)->nrc = 49;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _45 = retVal_18;
+  return _45;
+
+}
+
+

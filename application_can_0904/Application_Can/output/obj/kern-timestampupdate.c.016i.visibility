@@ -1,0 +1,98 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_TimestampUpdate
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_AdvanceTimeStampGeneric/4 (OS_AdvanceTimeStampGeneric) @06d09ee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_TimestampUpdate/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06d09e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_TimestampUpdate/0 OS_TimestampUpdate/0 
+  Calls: 
+OS_intDisableLevelMax/2 (OS_intDisableLevelMax) @06ce5708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_TimestampUpdate/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_timeStampTimer/1 (OS_timeStampTimer) @06ce56c0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_TimestampUpdate/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_TimestampUpdate/0 (OS_TimestampUpdate) @06d09c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_timeStampTimer/1 (read)OS_intDisableLevelMax/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_AdvanceTimeStampGeneric/4 OS_CORTEXM_IntSetDisablingLevel/3 
+   Indirect call
+   Indirect call
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_TimestampUpdate ()
+{
+  os_timervalue_t current;
+  os_intstatus_t is;
+  const struct os_hwt_t * const ptimeStampTimer;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ptimeStampTimer = OS_timeStampTimer;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_intDisableLevelMax.0_1 = OS_intDisableLevelMax;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_intDisableLevelMax.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = ptimeStampTimer->driver;
+  _3 = _2->hwtStop;
+  _3 (ptimeStampTimer);
+  # DEBUG BEGIN_STMT
+  _4 = ptimeStampTimer->driver;
+  _5 = _4->hwtRead;
+  current = _5 (ptimeStampTimer);
+  # DEBUG BEGIN_STMT
+  OS_AdvanceTimeStampGeneric (current);
+  # DEBUG BEGIN_STMT
+  _6 = ptimeStampTimer->driver;
+  _7 = _6->hwtStart;
+  _8 = ptimeStampTimer->maxDelta;
+  _7 (ptimeStampTimer, current, _8);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  return;
+
+}
+
+

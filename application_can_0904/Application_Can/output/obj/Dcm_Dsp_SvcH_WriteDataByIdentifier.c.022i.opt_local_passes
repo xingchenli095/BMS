@@ -1,0 +1,246 @@
+Dcm_Dsp_WriteDataByIdentifier_ServiceExecution (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  int _1;
+  Std_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_4 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_4
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_5(D);
+  switch (_1) <default: <L5> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV], case 5 ... 6: <L3> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_14 = Dcm_Dsp_WriteDataByIdentifier_SvcStart (pMsgContext_10(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_14
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_12 = Dcm_Dsp_WriteDataByIdentifier_SvcContinue (OpStatus_5(D), pMsgContext_10(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_9 = Dcm_Dsp_DidServices_WriteDid_Cancel (&Dcm_WriteDidContext);
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_15 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_15
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # ServiceProcessStatus_2 = PHI <ServiceProcessStatus_14(3), ServiceProcessStatus_12(4), ServiceProcessStatus_9(5), ServiceProcessStatus_6(6), ServiceProcessStatus_15(7)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  _16 = ServiceProcessStatus_2;
+  return _16;
+
+}
+
+
+Dcm_Dsp_WriteDataByIdentifier_SvcContinue (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Dcm_MsgItemType * _1;
+  Dcm_MsgItemType * _2;
+  unsigned char _3;
+  Dcm_MsgItemType * _4;
+  Dcm_MsgItemType * _5;
+  Dcm_MsgItemType * _6;
+  unsigned char _7;
+  unsigned char _8;
+  Std_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_11 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_WriteDidContext.BaseContext.opstatus = OpStatus_13(D);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_16 = Dcm_Dsp_DidServices_WriteDid_Execute (&Dcm_WriteDidContext);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_16
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_16 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_17(D)->reqData;
+  _2 = pMsgContext_17(D)->resData;
+  _3 = *_1;
+  *_2 = _3;
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_17(D)->reqData;
+  _5 = pMsgContext_17(D)->resData;
+  _6 = _5 + 1;
+  _7 = MEM[(Dcm_MsgItemType *)_4 + 1B];
+  *_6 = _7;
+  # DEBUG BEGIN_STMT
+  pMsgContext_17(D)->resDataLen = 2;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_22 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_22
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_16 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_WriteDidContext.BaseContext.nrc;
+  Dcm_ExternalSetNegResponse (pMsgContext_17(D), _8);
+
+  <bb 6> :
+  # serviceProcessStatus_9 = PHI <serviceProcessStatus_22(3), serviceProcessStatus_16(4), serviceProcessStatus_16(5)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = serviceProcessStatus_9;
+  return _23;
+
+}
+
+
+Dcm_Dsp_WriteDataByIdentifier_SvcStart (struct Dcm_MsgContextType * pMsgContext)
+{
+  uint16 Did;
+  uint8 LowByte;
+  uint8 HighByte;
+  Std_ReturnType serviceProcessStatus;
+  uint8 instIdx;
+  short unsigned int _1;
+  long unsigned int _2;
+  Dcm_MsgItemType * _3;
+  Dcm_MsgItemType * _4;
+  Dcm_MsgItemType * _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  Std_ReturnType _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_16(D)->dcmRxPduId;
+  instIdx_18 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, 1);
+  # DEBUG instIdx => instIdx_18
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_19 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_16(D)->reqDataLen;
+  if (_2 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_16(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_27 = 1;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_27
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_16(D)->reqData;
+  HighByte_20 = *_3;
+  # DEBUG HighByte => HighByte_20
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_16(D)->reqData;
+  _5 = _4 + 1;
+  LowByte_21 = *_5;
+  # DEBUG LowByte => LowByte_21
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) HighByte_20;
+  _7 = _6 << 8;
+  _8 = (short unsigned int) LowByte_21;
+  Did_22 = _7 | _8;
+  # DEBUG Did => Did_22
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_16(D)->reqData;
+  _10 = _9 + 2;
+  _11 = pMsgContext_16(D)->reqDataLen;
+  _12 = _11 + 4294967294;
+  Dcm_Dsp_DidServices_WriteDid_Init (&Dcm_WriteDidContext, Did_22, _10, _12, instIdx_18);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_25 = Dcm_Dsp_WriteDataByIdentifier_SvcContinue (0, pMsgContext_16(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_25
+
+  <bb 5> :
+  # serviceProcessStatus_13 = PHI <serviceProcessStatus_27(3), serviceProcessStatus_25(4)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_13
+  # DEBUG BEGIN_STMT
+  _28 = serviceProcessStatus_13;
+  return _28;
+
+}
+
+
+Dcm_Dsp_WriteDataByIdentifier_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_1 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = Dcm_Dsp_WriteDataByIdentifier_ServiceExecution (OpStatus_3(D), pMsgContext_4(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = ServiceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_WriteDataByIdentifier_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

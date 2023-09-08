@@ -1,0 +1,114 @@
+E2E_MemCpy32 (void * dst, const void * src, uint32_least len)
+{
+  uint32_least len2;
+  uint8 * dst2;
+  const uint8 * src2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  src2 = src;
+  # DEBUG BEGIN_STMT
+  dst2 = dst;
+  # DEBUG BEGIN_STMT
+  len2 = len;
+  # DEBUG BEGIN_STMT
+  if (len2 > 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  src2.0_1 = (long unsigned int) src2;
+  _2 = src2.0_1 & 3;
+  if (_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  dst2.1_3 = (long unsigned int) dst2;
+  _4 = dst2.1_3 & 3;
+  if (_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const uint32 *)src2];
+  MEM[(uint32 *)dst2] = _5;
+  # DEBUG BEGIN_STMT
+  src2 = src2 + 4;
+  # DEBUG BEGIN_STMT
+  dst2 = dst2 + 4;
+  # DEBUG BEGIN_STMT
+  len2 = len2 + 4294967292;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (len2 > 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  src2.2_6 = (long unsigned int) src2;
+  _7 = src2.2_6 & 1;
+  if (_7 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  dst2.3_8 = (long unsigned int) dst2;
+  _9 = dst2.3_8 & 1;
+  if (_9 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _10 = MEM[(const uint16 *)src2];
+  MEM[(uint16 *)dst2] = _10;
+  # DEBUG BEGIN_STMT
+  src2 = src2 + 2;
+  # DEBUG BEGIN_STMT
+  dst2 = dst2 + 2;
+  # DEBUG BEGIN_STMT
+  len2 = len2 + 4294967294;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (len2 > 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _11 = *src2;
+  *dst2 = _11;
+  # DEBUG BEGIN_STMT
+  src2 = src2 + 1;
+  # DEBUG BEGIN_STMT
+  dst2 = dst2 + 1;
+  # DEBUG BEGIN_STMT
+  len2 = len2 + 4294967295;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (len2 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

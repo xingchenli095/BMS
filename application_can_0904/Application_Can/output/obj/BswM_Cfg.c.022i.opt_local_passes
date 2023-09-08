@@ -1,0 +1,539 @@
+BswM_ExecuteModeArbitration (struct BswM_PartitionContextType * inst, void * port, uint32 mode, uint8 type)
+{
+  struct BswMUInt8RteModeRequestPortType * ref;
+  struct BswMComMPncRequestPortType * ref;
+  struct BswMJ1939NmStateChangeNotificationPortType * ref;
+  struct BswMGenericRequestPortType * ref;
+  struct BswMModeRequestPortType * ref;
+  boolean activatedActionLists[17];
+  boolean hasActivatedActionLists;
+  struct BswMBasicPortType * base;
+  void (*<T5bb>) (void) _1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  void (*<T5bb>) (void) _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  base_14 = 0B;
+  # DEBUG base => base_14
+  # DEBUG BEGIN_STMT
+  hasActivatedActionLists_15 = 0;
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&activatedActionLists, 0, 17);
+  # DEBUG BEGIN_STMT
+  _1 = inst_18(D)->SchMEnter;
+  _1 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) type_20(D);
+  switch (_2) <default: <L11> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV], case 3: <L3> [INV], case 128: <L4> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ref_35 = port_21(D);
+  # DEBUG ref => ref_35
+  # DEBUG BEGIN_STMT
+  base_36 = &ref_35->base;
+  # DEBUG base => base_36
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned char) mode_24(D);
+  ref_35->mode = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ref_32 = port_21(D);
+  # DEBUG ref => ref_32
+  # DEBUG BEGIN_STMT
+  base_33 = &ref_32->base;
+  # DEBUG base => base_33
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) mode_24(D);
+  ref_32->mode = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ref_29 = port_21(D);
+  # DEBUG ref => ref_29
+  # DEBUG BEGIN_STMT
+  base_30 = &ref_29->base;
+  # DEBUG base => base_30
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned char) mode_24(D);
+  ref_29->mode = _5;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ref_26 = port_21(D);
+  # DEBUG ref => ref_26
+  # DEBUG BEGIN_STMT
+  base_27 = &ref_26->base;
+  # DEBUG base => base_27
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned char) mode_24(D);
+  ref_26->mode = _6;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  ref_22 = port_21(D);
+  # DEBUG ref => ref_22
+  # DEBUG BEGIN_STMT
+  base_23 = &ref_22->base;
+  # DEBUG base => base_23
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned char) mode_24(D);
+  ref_22->mode = _7;
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # base_10 = PHI <base_36(3), base_33(4), base_30(5), base_27(6), base_23(7), base_14(2)>
+<L11>:
+  # DEBUG base => base_10
+  # DEBUG BEGIN_STMT
+  _8 = BswM_PortUpdated (base_10, &activatedActionLists, inst_18(D));
+  if (_8 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  hasActivatedActionLists_39 = 1;
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_39
+
+  <bb 10> :
+  # hasActivatedActionLists_11 = PHI <hasActivatedActionLists_15(8), hasActivatedActionLists_39(9)>
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_11
+  # DEBUG BEGIN_STMT
+  _9 = inst_18(D)->SchMExit;
+  _9 ();
+  # DEBUG BEGIN_STMT
+  if (hasActivatedActionLists_11 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  BswM_ExecuteModeControl (&activatedActionLists, inst_18(D));
+
+  <bb 12> :
+  activatedActionLists ={v} {CLOBBER};
+  return;
+
+}
+
+
+BswM_RT_Init (struct BswM_PartitionContextType * inst)
+{
+  BswMIndexType i;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.2_1;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.3_2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  const struct BswM_ConfigType * _6;
+  long unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  sizetype _10;
+  const struct BswMRuleType * _11;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.4_12;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.5_13;
+  unsigned char _14;
+  unsigned int _15;
+  unsigned int _16;
+  const struct BswM_ConfigType * _17;
+  long unsigned int _18;
+  unsigned int _19;
+  unsigned int _20;
+  sizetype _21;
+  const struct BswMRuleType * _22;
+  short unsigned int _23;
+  int _24;
+  unsigned char _25;
+  short unsigned int i.6_26;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.7_27;
+  unsigned char _28;
+  unsigned int _29;
+  unsigned int _30;
+  const struct BswM_ConfigType * _31;
+  short unsigned int _32;
+  struct BswM_LinkTimeContextType * _33;
+  BswMResultType (*<Tc4e>) (uint16) _34;
+  int _35;
+  unsigned char _36;
+  short unsigned int i.8_37;
+  struct BswM_LinkTimeContextType * _38;
+  short unsigned int _39;
+  int _40;
+  int _41;
+  short unsigned int i.9_42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_49 = 0;
+  # DEBUG i => i_49
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.2_1 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.3_2 = BswM_PostBuildConfig;
+  _3 = inst_51(D)->ID;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 60;
+  _6 = BswM_PostBuildConfig.3_2 + _5;
+  _7 = _6->RuleTable;
+  _8 = (unsigned int) i_43;
+  _9 = _8 * 10;
+  _10 = _7 + _9;
+  _11 = BswM_PostBuildConfig.2_1 + _10;
+  BswM_PostBuildConfig.4_12 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.5_13 = BswM_PostBuildConfig;
+  _14 = inst_51(D)->ID;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 60;
+  _17 = BswM_PostBuildConfig.5_13 + _16;
+  _18 = _17->RuleTable;
+  _19 = (unsigned int) i_43;
+  _20 = _19 * 10;
+  _21 = _18 + _20;
+  _22 = BswM_PostBuildConfig.4_12 + _21;
+  _23 = _22->ID;
+  _24 = (int) _23;
+  _25 = _11->RuleInitState;
+  inst_51(D)->RunTimeContext.RuleResultTable[_24] = _25;
+  # DEBUG BEGIN_STMT
+  i.6_26 = i_43;
+  i_63 = i.6_26 + 1;
+  # DEBUG i => i_63
+
+  <bb 4> :
+  # i_43 = PHI <i_49(2), i_63(3)>
+  # DEBUG i => i_43
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.7_27 = BswM_PostBuildConfig;
+  _28 = inst_51(D)->ID;
+  _29 = (unsigned int) _28;
+  _30 = _29 * 60;
+  _31 = BswM_PostBuildConfig.7_27 + _30;
+  _32 = _31->NumRules;
+  if (i_43 < _32)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_52 = 0;
+  # DEBUG i => i_52
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _33 = inst_51(D)->LinkTimeContext;
+  _34 = _33->logicalExprGetStateFuncPtr;
+  _35 = (int) i_44;
+  _36 = _34 (i_44);
+  inst_51(D)->RunTimeContext.LogicalExprInitStatus[_35] = _36;
+  # DEBUG BEGIN_STMT
+  i.8_37 = i_44;
+  i_61 = i.8_37 + 1;
+  # DEBUG i => i_61
+
+  <bb 7> :
+  # i_44 = PHI <i_52(5), i_61(6)>
+  # DEBUG i => i_44
+  # DEBUG BEGIN_STMT
+  _38 = inst_51(D)->LinkTimeContext;
+  _39 = _38->numBswMExpressions;
+  if (i_44 < _39)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  inst_51(D)->RunTimeContext.PduGroupSwitchTriggered = 0;
+  # DEBUG BEGIN_STMT
+  inst_51(D)->RunTimeContext.PduGroupSwitchReInitTriggered = 0;
+  # DEBUG BEGIN_STMT
+  i_55 = 0;
+  # DEBUG i => i_55
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _40 = (int) i_45;
+  inst_51(D)->RunTimeContext.IPduGroupReInitVector[_40] = 0;
+  # DEBUG BEGIN_STMT
+  _41 = (int) i_45;
+  inst_51(D)->RunTimeContext.IPduGroupVector[_41] = 0;
+  # DEBUG BEGIN_STMT
+  i.9_42 = i_45;
+  i_58 = i.9_42 + 1;
+  # DEBUG i => i_58
+
+  <bb 10> :
+  # i_45 = PHI <i_55(8), i_58(9)>
+  # DEBUG i => i_45
+  # DEBUG BEGIN_STMT
+  if (i_45 <= 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_Partition_Init (struct BswM_PartitionContextType * inst)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inst_2(D)->RunTimeContext.IsInitialized = 0;
+  # DEBUG BEGIN_STMT
+  BswM_LT_Init ();
+  # DEBUG BEGIN_STMT
+  BswM_RT_Init (inst_2(D));
+  # DEBUG BEGIN_STMT
+  inst_2(D)->RunTimeContext.IsInitialized = 1;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_GetInstance ()
+{
+  struct BswM_PartitionContextType * _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = &BswM_Context;
+  return _1;
+
+}
+
+
+BswM_Core_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_Partition_Init (&BswM_Context);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_Init (const struct BswM_ConfigType * ConfigPtr)
+{
+  struct BswM_PartitionContextType * inst;
+  const struct BswM_ConfigType * _1;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.0_2;
+  unsigned char _3;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.1_4;
+  unsigned char _5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_11 = BswM_GetInstance ();
+  # DEBUG inst => inst_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_12(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_GetConfigFromPbcfgM ();
+  BswM_PostBuildConfig = _1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig = ConfigPtr_12(D);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.0_2 = BswM_PostBuildConfig;
+  if (BswM_PostBuildConfig.0_2 == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_11->ID;
+  Det_ASR40_ReportError (42, _3, 0, 2);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.1_4 = BswM_PostBuildConfig;
+  _5 = BswM_IsValidConfig (BswM_PostBuildConfig.1_4);
+  if (_5 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = inst_11->ID;
+  Det_ASR40_ReportError (42, _6, 0, 6);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  BswM_Core_Init ();
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_GetConfigFromPbcfgM ()
+{
+  const struct BswM_ConfigType * bswmConfigPtr;
+  const void * ModuleConfig;
+  unsigned char _1;
+  const struct BswM_ConfigType * _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ModuleConfig = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = PbcfgM_GetConfig (42, 0, &ModuleConfig);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  bswmConfigPtr_7 = ModuleConfig;
+  # DEBUG bswmConfigPtr => bswmConfigPtr_7
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  bswmConfigPtr_6 = 0B;
+  # DEBUG bswmConfigPtr => bswmConfigPtr_6
+
+  <bb 5> :
+  # bswmConfigPtr_2 = PHI <bswmConfigPtr_7(3), bswmConfigPtr_6(4)>
+  # DEBUG bswmConfigPtr => bswmConfigPtr_2
+  # DEBUG BEGIN_STMT
+  _8 = bswmConfigPtr_2;
+  ModuleConfig ={v} {CLOBBER};
+  return _8;
+
+}
+
+
+BswM_IsValidConfig (const void * voidPtr)
+{
+  const struct BswM_ConfigType * ConfigPtr;
+  Std_ReturnType result;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  Std_ReturnType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_8 = 1;
+  # DEBUG result => result_8
+  # DEBUG BEGIN_STMT
+  ConfigPtr_10 = voidPtr_9(D);
+  # DEBUG ConfigPtr => ConfigPtr_10
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_10 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_10->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr_10->CfgSignature;
+  if (_3 == 1717689180)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr_10->LcfgSignature;
+  if (_4 == 740432317)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = ConfigPtr_10->PublicInfoSignature;
+  if (_5 == 3613472969)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_13 = 0;
+  # DEBUG result => result_13
+
+  <bb 8> :
+  # result_6 = PHI <result_8(2), result_8(3), result_8(4), result_8(5), result_8(6), result_13(7)>
+  # DEBUG result => result_6
+  # DEBUG BEGIN_STMT
+  _14 = result_6;
+  return _14;
+
+}
+
+

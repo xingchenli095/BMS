@@ -1,0 +1,842 @@
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1
+
+Symbols to be put in SSA form
+{ D.8576 }
+Incremental SSA update started at block: 0
+Number of blocks in CFG: 4
+Number of blocks to update: 3 ( 75%)
+
+
+Power_Ip_MC_ME_TriggerPartitionUpdate.constprop (uint8 PartitionIndex)
+{
+  uint32 TempValue;
+  uint32 TriggerMask;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.19_1;
+  int _3;
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG TriggerMask => 1
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempValue => 0
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.19_1 = 1076740096B;
+  _3 = (int) PartitionIndex_2(D);
+  TempValue_4 ={v} Power_Ip_pxMC_ME.19_1->McMePrtnArray[_3].PRTN_PUPD;
+  # DEBUG TempValue => TempValue_4
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => ~1
+  # DEBUG TempValue => D#1 & TempValue_4
+  # DEBUG BEGIN_STMT
+  TempValue_5 = TempValue_4 | 1;
+  # DEBUG TempValue => TempValue_5
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.19_1->McMePrtnArray[_3].PRTN_PUPD ={v} TempValue_5;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_WriteControlKeys ();
+  return;
+
+}
+
+
+Power_Ip_MC_ME_ConfigurePartitionClock.part.0 ()
+{
+  uint32 TempValue;
+  uint32 PartitionConfig;
+  uint32 PartitionTriggerMask;
+  uint32 PartitionStatus;
+  uint32 StartTime;
+  uint32 ElapsedTime;
+  uint32 TimeoutTicks;
+  boolean TimeoutOccurred;
+  uint8 PartitionIndex;
+  const struct Power_Ip_MC_ME_PartitionConfigType * PartitionConfigPtr;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#3 s=> PartitionConfigPtr
+  # DEBUG PartitionConfigPtr => D#3
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 3> [local count: 1073741824]:
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+
+Power_Ip_MC_ME_SocTriggerResetEvent (Power_Ip_PowerModeType PowerMode)
+{
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.21_1;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.22_2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  if (PowerMode_4(D) == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.21_1 = Power_Ip_pxMC_ME;
+  Power_Ip_pxMC_ME.21_1->MODE_CONF ={v} 1;
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  if (PowerMode_4(D) == 1)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.22_2 = Power_Ip_pxMC_ME;
+  Power_Ip_pxMC_ME.22_2->MODE_CONF ={v} 2;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_TriggerModeUpdate ();
+  return;
+
+}
+
+
+Power_Ip_MC_ME_DisablePartitionClock (const struct Power_Ip_MC_ME_ModeConfigType * ModeConfigPtr)
+{
+  uint8 PartitionIndex;
+  const struct Power_Ip_MC_ME_PartitionConfigType * TempPartitionConfig;
+  const struct Power_Ip_MC_ME_PartitionConfigType[3] * _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+
+  <bb 2> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPartitionConfig => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG PartitionIndex => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 3> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  _1 = ModeConfigPtr_11(D)->ArrayPartitionConfigPtr;
+  _2 = (int) PartitionIndex_7;
+  TempPartitionConfig_12 = &*_1[_2];
+  # DEBUG TempPartitionConfig => TempPartitionConfig_12
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionUnderMcuControl;
+  if (_3 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 273804165]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionPowerUnderMcuControl;
+  if (_4 == 1)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 5> [local count: 93093416]:
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionPconfRegValue;
+  _6 = _5 & 1;
+  if (_6 == 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 30720827]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_ConfigurePartitionClock (TempPartitionConfig_12);
+
+  <bb 7> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  PartitionIndex_14 = PartitionIndex_7 + 1;
+  # DEBUG PartitionIndex => PartitionIndex_14
+
+  <bb 8> [local count: 1073741824]:
+  # PartitionIndex_7 = PHI <0(2), PartitionIndex_14(7)>
+  # DEBUG PartitionIndex => PartitionIndex_7
+  # DEBUG BEGIN_STMT
+  if (PartitionIndex_7 != 3)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 9>; [25.00%]
+
+  <bb 9> [local count: 268435456]:
+  return;
+
+}
+
+
+Power_Ip_MC_ME_EnablePartitionClock (const struct Power_Ip_MC_ME_ModeConfigType * ModeConfigPtr)
+{
+  uint8 PartitionIndex;
+  const struct Power_Ip_MC_ME_PartitionConfigType * TempPartitionConfig;
+  const struct Power_Ip_MC_ME_PartitionConfigType[3] * _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+
+  <bb 2> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPartitionConfig => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG PartitionIndex => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 3> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  _1 = ModeConfigPtr_11(D)->ArrayPartitionConfigPtr;
+  _2 = (int) PartitionIndex_7;
+  TempPartitionConfig_12 = &*_1[_2];
+  # DEBUG TempPartitionConfig => TempPartitionConfig_12
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionUnderMcuControl;
+  if (_3 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 273804165]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionPowerUnderMcuControl;
+  if (_4 == 1)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 5> [local count: 93093416]:
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionPconfRegValue;
+  _6 = _5 & 1;
+  if (_6 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 30720827]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_ConfigurePartitionClock (TempPartitionConfig_12);
+
+  <bb 7> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  PartitionIndex_14 = PartitionIndex_7 + 1;
+  # DEBUG PartitionIndex => PartitionIndex_14
+
+  <bb 8> [local count: 1073741824]:
+  # PartitionIndex_7 = PHI <0(2), PartitionIndex_14(7)>
+  # DEBUG PartitionIndex => PartitionIndex_7
+  # DEBUG BEGIN_STMT
+  if (PartitionIndex_7 != 3)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 9>; [25.00%]
+
+  <bb 9> [local count: 268435456]:
+  return;
+
+}
+
+
+Power_Ip_MC_ME_ConfigCoreCOFBClock (const struct Power_Ip_MC_ME_ModeConfigType * ModeConfigPtr)
+{
+  uint8 CoreIndex;
+  uint8 CofbIndex;
+  uint8 PartitionIndex;
+  const struct Power_Ip_MC_ME_PartitionConfigType[3] * _1;
+  int _2;
+  unsigned char _3;
+  const struct Power_Ip_MC_ME_CofbConfigType[<unknown>] * _4;
+  int _5;
+  unsigned char _6;
+  const struct Power_Ip_MC_ME_CofbConfigType * _7;
+  unsigned char _8;
+  unsigned char _9;
+  const struct Power_Ip_MC_ME_CoreConfigType[<unknown>] * _10;
+  int _11;
+  unsigned char _12;
+  const struct Power_Ip_MC_ME_CoreConfigType * _13;
+  unsigned char _14;
+  unsigned char _15;
+
+  <bb 2> [local count: 246065830]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPartitionConfig => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG PartitionIndex => 0
+  goto <bb 13>; [100.00%]
+
+  <bb 3> [local count: 738197497]:
+  # DEBUG BEGIN_STMT
+  _1 = ModeConfigPtr_26(D)->ArrayPartitionConfigPtr;
+  _2 = (int) PartitionIndex_16;
+  # DEBUG D#4 => &*_1[_2]
+  # DEBUG TempPartitionConfig => D#4
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionUnderMcuControl;
+  if (_3 == 1)
+    goto <bb 16>; [16.00%]
+  else
+    goto <bb 12>; [84.00%]
+
+  <bb 16> [local count: 118111599]:
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 955630219]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].ArrayPartitionCofbConfigPtr;
+  _5 = (int) CofbIndex_17;
+  _6 = *_4[_5].CofbUnderMcuControl;
+  if (_6 == 1)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 193419556]:
+  # DEBUG BEGIN_STMT
+  _7 = &*_4[_5];
+  _8 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionIndex;
+  Power_Ip_MC_ME_ConfigureCOFB (_7, _8);
+
+  <bb 6> [local count: 955630219]:
+  # DEBUG BEGIN_STMT
+  CofbIndex_30 = CofbIndex_17 + 1;
+  # DEBUG CofbIndex => CofbIndex_30
+
+  <bb 7> [local count: 1073741819]:
+  # CofbIndex_17 = PHI <CofbIndex_30(6), 0(16)>
+  # DEBUG CofbIndex => CofbIndex_17
+  # DEBUG BEGIN_STMT
+  _9 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].NumberOfCofbs;
+  if (_9 > CofbIndex_17)
+    goto <bb 4>; [89.00%]
+  else
+    goto <bb 15>; [11.00%]
+
+  <bb 15> [local count: 118111600]:
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  _10 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].ArrayPartitionCoreConfigPtr;
+  _11 = (int) CoreIndex_18;
+  _12 = *_10[_11].CoreUnderMcuControl;
+  if (_12 == 1)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 10>; [79.76%]
+
+  <bb 9> [local count: 193419557]:
+  # DEBUG BEGIN_STMT
+  _13 = &*_10[_11];
+  _14 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].PartitionIndex;
+  Power_Ip_MC_ME_ConfigureCore (_13, _14);
+
+  <bb 10> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  CoreIndex_28 = CoreIndex_18 + 1;
+  # DEBUG CoreIndex => CoreIndex_28
+
+  <bb 11> [local count: 1073741824]:
+  # CoreIndex_18 = PHI <CoreIndex_28(10), 0(15)>
+  # DEBUG CoreIndex => CoreIndex_18
+  # DEBUG BEGIN_STMT
+  _15 = MEM[(const struct Power_Ip_MC_ME_PartitionConfigType *)_1][_2].NumberOfCores;
+  if (_15 > CoreIndex_18)
+    goto <bb 8>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+
+  <bb 12> [local count: 738197498]:
+  # DEBUG BEGIN_STMT
+  PartitionIndex_31 = PartitionIndex_16 + 1;
+  # DEBUG PartitionIndex => PartitionIndex_31
+
+  <bb 13> [local count: 984263329]:
+  # PartitionIndex_16 = PHI <0(2), PartitionIndex_31(12)>
+  # DEBUG PartitionIndex => PartitionIndex_16
+  # DEBUG BEGIN_STMT
+  if (PartitionIndex_16 != 3)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 14>; [25.00%]
+
+  <bb 14> [local count: 246065832]:
+  return;
+
+}
+
+
+Power_Ip_MC_ME_ConfigureCore (const struct Power_Ip_MC_ME_CoreConfigType * CoreConfigPtr, uint8 PartitionIndex)
+{
+  uint8 CoreIndex;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  uint32 CoreStatus;
+  uint32 CoreConfig;
+  long unsigned int _2;
+  long unsigned int TimeoutTicks.7_3;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.8_4;
+  int _5;
+  int _6;
+  signed int CoreStatus.9_7;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.10_8;
+  int _9;
+  int _10;
+  long unsigned int TimeoutTicks.11_11;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.12_12;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 2> [local count: 153151376]:
+  # DEBUG BEGIN_STMT
+  CoreConfig_21 = CoreConfigPtr_20(D)->CorePconfRegValue;
+  # DEBUG CoreConfig => CoreConfig_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG TimeoutOccurred => 0
+  # DEBUG BEGIN_STMT
+  CoreIndex_23 = CoreConfigPtr_20(D)->CoreIndex;
+  # DEBUG CoreIndex => CoreIndex_23
+  # DEBUG BEGIN_STMT
+  _2 = CoreConfig_21 & 1;
+  if (_2 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 4> [local count: 76575688]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 5> [local count: 715827885]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.7_3 = TimeoutTicks;
+  TimeoutOccurred_26 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.7_3);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_26
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.8_4 = Power_Ip_pxMC_ME;
+  _5 = (int) PartitionIndex_27(D);
+  _6 = (int) CoreIndex_23;
+  CoreStatus_28 ={v} Power_Ip_pxMC_ME.8_4->McMePrtnArray[_5].McMePrtnCoreArray[_6].PRTN_CORE_STAT;
+  # DEBUG CoreStatus => CoreStatus_28
+  # DEBUG BEGIN_STMT
+  CoreStatus.9_7 = (signed int) CoreStatus_28;
+  if (CoreStatus.9_7 >= 0)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+
+  <bb 6> [local count: 676457351]:
+  if (TimeoutOccurred_26 == 0)
+    goto <bb 17>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+
+  <bb 17> [local count: 639252197]:
+  goto <bb 5>; [100.00%]
+
+  <bb 7> [local count: 76575688]:
+  # TimeoutOccurred_1 = PHI <TimeoutOccurred_26(5), TimeoutOccurred_26(6)>
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_1 != 0)
+    goto <bb 8>; [33.00%]
+  else
+    goto <bb 9>; [67.00%]
+
+  <bb 8> [local count: 25269977]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 9> [local count: 76575688]:
+  # DEBUG TimeoutOccurred => TimeoutOccurred_1
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_1 == 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 10> [local count: 114863532]:
+  # DEBUG TimeoutOccurred => NULL
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.10_8 = Power_Ip_pxMC_ME;
+  _9 = (int) PartitionIndex_27(D);
+  _10 = (int) CoreIndex_23;
+  Power_Ip_pxMC_ME.10_8->McMePrtnArray[_9].McMePrtnCoreArray[_10].PRTN_CORE_PCONF ={v} CoreConfig_21;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_TriggerCoreUpdate (PartitionIndex_27(D), CoreIndex_23);
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 11> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.11_11 = TimeoutTicks;
+  TimeoutOccurred_34 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.11_11);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_34
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.12_12 = Power_Ip_pxMC_ME;
+  CoreStatus_35 ={v} Power_Ip_pxMC_ME.12_12->McMePrtnArray[_9].McMePrtnCoreArray[_10].PRTN_CORE_STAT;
+  # DEBUG CoreStatus => CoreStatus_35
+  # DEBUG BEGIN_STMT
+  _13 = CoreConfig_21 ^ CoreStatus_35;
+  _14 = _13 & 1;
+  if (_14 != 0)
+    goto <bb 12>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+
+  <bb 12> [local count: 1014686023]:
+  if (TimeoutOccurred_34 == 0)
+    goto <bb 16>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+
+  <bb 16> [local count: 958878292]:
+  goto <bb 11>; [100.00%]
+
+  <bb 13> [local count: 114863532]:
+  # TimeoutOccurred_22 = PHI <TimeoutOccurred_34(11), TimeoutOccurred_34(12)>
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_22 != 0)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 14> [local count: 37904965]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 15> [local count: 153151376]:
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+
+Power_Ip_MC_ME_ConfigureCOFB (const struct Power_Ip_MC_ME_CofbConfigType * CofbConfigPtr, uint8 PartitionIndex)
+{
+  uint8 CofbIndex;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  uint32 PeripheralsStatus;
+  uint32 PeripheralsToUpdate;
+  uint32 PeripheralsConfig;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.0_1;
+  int _2;
+  int _3;
+  long unsigned int TimeoutTicks.1_4;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.2_5;
+  long unsigned int _7;
+
+  <bb 2> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  PeripheralsConfig_12 = CofbConfigPtr_11(D)->CofbClkenRegValue;
+  # DEBUG PeripheralsConfig => PeripheralsConfig_12
+  # DEBUG BEGIN_STMT
+  PeripheralsToUpdate_13 = CofbConfigPtr_11(D)->CofbBlocksToUpdateMask;
+  # DEBUG PeripheralsToUpdate => PeripheralsToUpdate_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG TimeoutOccurred => 0
+  # DEBUG BEGIN_STMT
+  CofbIndex_14 = CofbConfigPtr_11(D)->CofbIndex;
+  # DEBUG CofbIndex => CofbIndex_14
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.0_1 = Power_Ip_pxMC_ME;
+  _2 = (int) PartitionIndex_15(D);
+  _3 = (int) CofbIndex_14;
+  Power_Ip_pxMC_ME.0_1->McMePrtnArray[_2].PRTN_COFB_CLKEN[_3] ={v} PeripheralsConfig_12;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_TriggerCofbUpdate (PartitionIndex_15(D));
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 3> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.1_4 = TimeoutTicks;
+  TimeoutOccurred_20 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.1_4);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_20
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.2_5 = Power_Ip_pxMC_ME;
+  PeripheralsStatus_21 ={v} Power_Ip_pxMC_ME.2_5->McMePrtnArray[_2].PRTN_COFB_STAT[_3];
+  # DEBUG PeripheralsStatus => PeripheralsStatus_21
+  # DEBUG BEGIN_STMT
+  _7 = PeripheralsToUpdate_13 & PeripheralsStatus_21;
+  if (_7 != PeripheralsConfig_12)
+    goto <bb 4>; [94.50%]
+  else
+    goto <bb 5>; [5.50%]
+
+  <bb 4> [local count: 1014686025]:
+  if (TimeoutOccurred_20 == 0)
+    goto <bb 8>; [94.50%]
+  else
+    goto <bb 5>; [5.50%]
+
+  <bb 8> [local count: 958878293]:
+  goto <bb 3>; [100.00%]
+
+  <bb 5> [local count: 114863532]:
+  # TimeoutOccurred_6 = PHI <TimeoutOccurred_20(3), TimeoutOccurred_20(4)>
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_6 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 37904965]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 7> [local count: 114863532]:
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+
+Power_Ip_MC_ME_ConfigurePartitionClock (const struct Power_Ip_MC_ME_PartitionConfigType * PartitionConfigPtr)
+{
+  uint8 PartitionIndex;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  uint32 PartitionStatus;
+  uint32 PartitionTriggerMask;
+  uint32 PartitionConfig;
+  uint32 TempValue;
+  long unsigned int _1;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.15_2;
+  int _3;
+  long unsigned int _4;
+  long unsigned int TimeoutTicks.17_7;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.18_8;
+  long unsigned int _10;
+  long unsigned int _11;
+
+  <bb 2> [local count: 348071309]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempValue => 0
+  # DEBUG BEGIN_STMT
+  PartitionConfig_15 = PartitionConfigPtr_14(D)->PartitionPconfRegValue;
+  # DEBUG PartitionConfig => PartitionConfig_15
+  # DEBUG BEGIN_STMT
+  PartitionTriggerMask_16 = PartitionConfigPtr_14(D)->PartitionTriggerMask;
+  # DEBUG PartitionTriggerMask => PartitionTriggerMask_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG TimeoutOccurred => 0
+  # DEBUG BEGIN_STMT
+  PartitionIndex_17 = PartitionConfigPtr_14(D)->PartitionIndex;
+  # DEBUG PartitionIndex => PartitionIndex_17
+  # DEBUG BEGIN_STMT
+  _1 = PartitionTriggerMask_16 & 1;
+  if (_1 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 3> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.15_2 = Power_Ip_pxMC_ME;
+  _3 = (int) PartitionIndex_17;
+  TempValue_18 ={v} Power_Ip_pxMC_ME.15_2->McMePrtnArray[_3].PRTN_PCONF;
+  # DEBUG TempValue => TempValue_18
+  # DEBUG BEGIN_STMT
+  TempValue_19 = TempValue_18 & 4294967294;
+  # DEBUG TempValue => TempValue_19
+  # DEBUG BEGIN_STMT
+  _4 = PartitionConfig_15 & 1;
+  TempValue_20 = _4 | TempValue_19;
+  # DEBUG TempValue => TempValue_20
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.15_2->McMePrtnArray[_3].PRTN_PCONF ={v} TempValue_20;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_TriggerPartitionUpdate (1, PartitionIndex_17);
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.17_7 = TimeoutTicks;
+  TimeoutOccurred_25 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.17_7);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_25
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.18_8 = Power_Ip_pxMC_ME;
+  PartitionStatus_26 ={v} Power_Ip_pxMC_ME.18_8->McMePrtnArray[_3].PRTN_STAT;
+  # DEBUG PartitionStatus => PartitionStatus_26
+  # DEBUG BEGIN_STMT
+  _10 = PartitionConfig_15 ^ PartitionStatus_26;
+  _11 = _10 & 1;
+  if (_11 != 0)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 6>; [5.50%]
+
+  <bb 5> [local count: 1014686025]:
+  if (TimeoutOccurred_25 == 0)
+    goto <bb 9>; [94.50%]
+  else
+    goto <bb 6>; [5.50%]
+
+  <bb 9> [local count: 958878294]:
+  goto <bb 4>; [100.00%]
+
+  <bb 6> [local count: 114863532]:
+  # TimeoutOccurred_5 = PHI <TimeoutOccurred_25(4), TimeoutOccurred_25(5)>
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_5 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 37904965]:
+  # DEBUG D#2 => PartitionConfigPtr_14(D)
+  Power_Ip_MC_ME_ConfigurePartitionClock.part.0 ();
+
+  <bb 8> [local count: 348071309]:
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+
+Power_Ip_MC_ME_TriggerCoreUpdate (uint8 PartitionIndex, uint8 CoreIndex)
+{
+  uint32 TempValue;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.13_1;
+  int _2;
+  int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempValue => 0
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.13_1 = Power_Ip_pxMC_ME;
+  _2 = (int) PartitionIndex_5(D);
+  _3 = (int) CoreIndex_6(D);
+  TempValue_7 ={v} Power_Ip_pxMC_ME.13_1->McMePrtnArray[_2].McMePrtnCoreArray[_3].PRTN_CORE_PUPD;
+  # DEBUG TempValue => TempValue_7
+  # DEBUG BEGIN_STMT
+  TempValue_8 = TempValue_7 & 4294967294;
+  # DEBUG TempValue => TempValue_8
+  # DEBUG BEGIN_STMT
+  TempValue_9 = TempValue_8 | 1;
+  # DEBUG TempValue => TempValue_9
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.13_1->McMePrtnArray[_2].McMePrtnCoreArray[_3].PRTN_CORE_PUPD ={v} TempValue_9;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_WriteControlKeys ();
+  return;
+
+}
+
+
+Power_Ip_MC_ME_TriggerCofbUpdate (uint8 PartitionIndex)
+{
+  uint32 TempValue;
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.3_1;
+  int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempValue => 0
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.3_1 = Power_Ip_pxMC_ME;
+  _2 = (int) PartitionIndex_4(D);
+  TempValue_5 ={v} Power_Ip_pxMC_ME.3_1->McMePrtnArray[_2].PRTN_PUPD;
+  # DEBUG TempValue => TempValue_5
+  # DEBUG BEGIN_STMT
+  TempValue_6 = TempValue_5 & 4294967294;
+  # DEBUG TempValue => TempValue_6
+  # DEBUG BEGIN_STMT
+  TempValue_7 = TempValue_6 | 1;
+  # DEBUG TempValue => TempValue_7
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.3_1->McMePrtnArray[_2].PRTN_PUPD ={v} TempValue_7;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_WriteControlKeys ();
+  return;
+
+}
+
+
+Power_Ip_MC_ME_TriggerModeUpdate ()
+{
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.23_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.23_1 = Power_Ip_pxMC_ME;
+  Power_Ip_pxMC_ME.23_1->MODE_UPD ={v} 1;
+  # DEBUG BEGIN_STMT
+  Power_Ip_MC_ME_WriteControlKeys ();
+  return;
+
+}
+
+
+Power_Ip_MC_ME_WriteControlKeys ()
+{
+  struct Power_Ip_MC_ME_Type * Power_Ip_pxMC_ME.5_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.5_1 = Power_Ip_pxMC_ME;
+  Power_Ip_pxMC_ME.5_1->CTL_KEY ={v} 23280;
+  # DEBUG BEGIN_STMT
+  Power_Ip_pxMC_ME.5_1->CTL_KEY ={v} 42255;
+  return;
+
+}
+
+

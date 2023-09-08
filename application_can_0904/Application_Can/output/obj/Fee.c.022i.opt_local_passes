@@ -1,0 +1,5329 @@
+Fee_ForceSwapOnNextWrite (uint8 ClrGrpIndex)
+{
+  Std_ReturnType RetVal;
+  unsigned char Fee_eModuleStatus.199_1;
+  unsigned char Fee_eModuleStatus.200_2;
+  int _3;
+  long unsigned int _4;
+  int _5;
+  long unsigned int _6;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.199_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.199_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 20, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 1;
+  # DEBUG RetVal => RetVal_18
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.200_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.200_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 20, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 1;
+  # DEBUG RetVal => RetVal_16
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ClrGrpIndex_10(D) != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 20, 11);
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) ClrGrpIndex_10(D);
+  _4 = Fee_aClrGrpInfo[_3].HdrAddrIt;
+  _5 = (int) ClrGrpIndex_10(D);
+  _6 = _4 + 192;
+  Fee_aClrGrpInfo[_5].DataAddrIt = _6;
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 0;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 9> :
+  # RetVal_7 = PHI <RetVal_18(3), RetVal_16(5), RetVal_14(7), RetVal_12(8)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _19 = RetVal_7;
+  return _19;
+
+}
+
+
+Fee_GetRunTimeInfo (uint8 ClrGrpIndex, struct Fee_ClusterGroupRuntimeInfoType * ClrGrpRTInfo)
+{
+  uint8 ActiveClrIndex;
+  unsigned char Fee_eModuleStatus.197_1;
+  unsigned char Fee_eModuleStatus.198_2;
+  int _3;
+  long unsigned int _4;
+  int _5;
+  long unsigned int _6;
+  int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.197_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.197_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 19, 1);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClrGrpRTInfo_16(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 19, 4);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.198_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.198_2 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 19, 6);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (ClrGrpIndex_17(D) != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 19, 11);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) ClrGrpIndex_17(D);
+  ActiveClrIndex_18 = Fee_aClrGrpInfo[_3].ActClr;
+  # DEBUG ActiveClrIndex => ActiveClrIndex_18
+  # DEBUG BEGIN_STMT
+  _4 = Fee_GetClusterLength (ClrGrpIndex_17(D), ActiveClrIndex_18);
+  ClrGrpRTInfo_16(D)->ClusterTotalSpace = _4;
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClrGrpIndex_17(D);
+  _6 = Fee_aClrGrpInfo[_5].DataAddrIt;
+  _7 = (int) ClrGrpIndex_17(D);
+  _8 = Fee_aClrGrpInfo[_7].HdrAddrIt;
+  _9 = _6 - _8;
+  _10 = _9 + 4294967200;
+  ClrGrpRTInfo_16(D)->ClusterFreeSpace = _10;
+  # DEBUG BEGIN_STMT
+  ClrGrpRTInfo_16(D)->BlockHeaderOverhead = 96;
+  # DEBUG BEGIN_STMT
+  ClrGrpRTInfo_16(D)->VirtualPageSize = 32;
+  # DEBUG BEGIN_STMT
+  _11 = (int) ClrGrpIndex_17(D);
+  _12 = Fee_aClrGrpInfo[_11].ActClrID;
+  _13 = _12 + 4294967295;
+  ClrGrpRTInfo_16(D)->NumberOfSwap = _13;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Fee_MainFunction ()
+{
+  unsigned char Fee_eJobResult.193_1;
+  <unnamed type> Fee_eJob.194_2;
+  unsigned char _3;
+  unsigned char Fee_eJobResult.195_4;
+  unsigned char Fee_eJobResult.196_5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.193_1 = Fee_eJobResult;
+  if (Fee_eJobResult.193_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob.194_2 = Fee_eJob;
+  switch (Fee_eJob.194_2) <default: <L32> [INV], case 0 ... 1: <L1> [INV], case 6: <L1> [INV], case 8 ... 9: <L1> [INV], case 21: <L1> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobSchedule ();
+  Fee_eJobResult = _3;
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L32>:
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.195_4 = Fee_eJobResult;
+  if (Fee_eJobResult.195_4 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.196_5 = Fee_eJobResult;
+  if (Fee_eJobResult.196_5 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobEndNotification ();
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobErrorNotification ();
+
+  <bb 9> :
+  return;
+
+}
+
+
+Fee_JobErrorNotification ()
+{
+  unsigned char Fee_eModuleStatus.187_1;
+  unsigned char Fee_eJobResult.188_2;
+  <unnamed type> Fee_eJob.189_3;
+  unsigned char Fee_eJobResult.190_4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.187_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.187_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  Fee_eJobResult.188_2 = Fee_eJobResult;
+  if (Fee_eJobResult.188_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  Fee_eJob.189_3 = Fee_eJob;
+  if (Fee_eJob.189_3 == 20)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 17, 1);
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.190_4 = Fee_eJobResult;
+  if (Fee_eJobResult.190_4 == 3)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_JobErrorSchedule ();
+
+  <bb 8> :
+  return;
+
+}
+
+
+Fee_JobEndNotification ()
+{
+  unsigned char Fee_eModuleStatus.12_1;
+  unsigned char Fee_eJobResult.13_2;
+  <unnamed type> Fee_eJob.14_3;
+  <unnamed type> Fee_eJob.15_4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char Fee_eJobResult.16_7;
+  unsigned char Fee_eJobResult.17_8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.12_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.12_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  Fee_eJobResult.13_2 = Fee_eJobResult;
+  if (Fee_eJobResult.13_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  Fee_eJob.14_3 = Fee_eJob;
+  if (Fee_eJob.14_3 == 20)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 16, 1);
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob.15_4 = Fee_eJob;
+  if (Fee_eJob.15_4 == 20)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = Fls_GetJobResult ();
+  Fee_eJobResult = _5;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobEndNotification ();
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = Fee_JobSchedule ();
+  Fee_eJobResult = _6;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.16_7 = Fee_eJobResult;
+  if (Fee_eJobResult.16_7 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobEndNotification ();
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult.17_8 = Fee_eJobResult;
+  if (Fee_eJobResult.17_8 == 2)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobErrorNotification ();
+
+  <bb 12> :
+  return;
+
+}
+
+
+Fee_EraseImmediateBlock (uint16 BlockNumber)
+{
+  uint16 BlockIndex;
+  Std_ReturnType RetVal;
+  unsigned char Fee_eModuleStatus.10_1;
+  int _2;
+  unsigned char _3;
+  unsigned char Fee_eModuleStatus.11_4;
+  Std_ReturnType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockIndex_10 = Fee_GetBlockIndex (BlockNumber_8(D));
+  # DEBUG BlockIndex => BlockIndex_10
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fee_FEE_EXCLUSIVE_AREA_03 ();
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.10_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.10_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 9, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_24 = 1;
+  # DEBUG RetVal => RetVal_24
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_10 == 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 9, 2);
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockIndex_10;
+  _3 = Fee_BlockConfig[_2].ImmediateData;
+  if (_3 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 9, 2);
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 1;
+  # DEBUG RetVal => RetVal_20
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.11_4 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.11_4 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 9, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 1;
+  # DEBUG RetVal => RetVal_18
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex = BlockIndex_10;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 8;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 0;
+  # DEBUG RetVal => RetVal_16
+
+  <bb 11> :
+  # RetVal_5 = PHI <RetVal_24(3), RetVal_22(5), RetVal_20(7), RetVal_18(9), RetVal_16(10)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fee_FEE_EXCLUSIVE_AREA_03 ();
+  # DEBUG BEGIN_STMT
+  _26 = RetVal_5;
+  return _26;
+
+}
+
+
+Fee_GetVersionInfo (struct Std_VersionInfoType * VersionInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (VersionInfoPtr_2(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 8, 4);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->moduleID = 21;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->vendorID = 43;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_major_version = 2;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_minor_version = 0;
+  # DEBUG BEGIN_STMT
+  VersionInfoPtr_2(D)->sw_patch_version = 1;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Fee_InvalidateBlock (uint16 BlockNumber)
+{
+  uint16 BlockIndex;
+  Std_ReturnType RetVal;
+  unsigned char Fee_eModuleStatus.8_1;
+  unsigned char Fee_eModuleStatus.9_2;
+  Std_ReturnType _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 1;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  BlockIndex_9 = Fee_GetBlockIndex (BlockNumber_7(D));
+  # DEBUG BlockIndex => BlockIndex_9
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fee_FEE_EXCLUSIVE_AREA_02 ();
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.8_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.8_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 7, 1);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_9 == 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 7, 2);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.9_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.9_2 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 7, 6);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex = BlockIndex_9;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 6;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 0;
+  # DEBUG RetVal => RetVal_15
+
+  <bb 9> :
+  # RetVal_3 = PHI <RetVal_5(3), RetVal_5(5), RetVal_5(7), RetVal_15(8)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fee_FEE_EXCLUSIVE_AREA_02 ();
+  # DEBUG BEGIN_STMT
+  _20 = RetVal_3;
+  return _20;
+
+}
+
+
+Fee_GetJobResult ()
+{
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_eModuleStatus.7_1;
+  MemIf_JobResultType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = Fee_eJobResult;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.7_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.7_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 6, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 4> :
+  # RetVal_2 = PHI <RetVal_5(2), RetVal_7(3)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_2;
+  return _8;
+
+}
+
+
+Fee_GetStatus ()
+{
+  MemIf_StatusType _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _2 = Fee_eModuleStatus;
+  return _2;
+
+}
+
+
+Fee_Cancel ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 4, 10);
+  return;
+
+}
+
+
+Fee_Write (uint16 BlockNumber, const uint8 * DataBufferPtr)
+{
+  uint16 BlockIndex;
+  Std_ReturnType RetVal;
+  unsigned char Fee_eModuleStatus.5_1;
+  unsigned char Fee_eModuleStatus.6_2;
+  Std_ReturnType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 0;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  BlockIndex_9 = Fee_GetBlockIndex (BlockNumber_7(D));
+  # DEBUG BlockIndex => BlockIndex_9
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fee_FEE_EXCLUSIVE_AREA_01 ();
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.5_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.5_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 3, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_24 = 1;
+  # DEBUG RetVal => RetVal_24
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.6_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.6_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 3, 6);
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_9 == 65535)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 3, 2);
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 1;
+  # DEBUG RetVal => RetVal_20
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (DataBufferPtr_11(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 3, 4);
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 1;
+  # DEBUG RetVal => RetVal_18
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex = BlockIndex_9;
+  # DEBUG BEGIN_STMT
+  Fee_pJobWriteDataDestPtr = DataBufferPtr_11(D);
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 1;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+
+  <bb 11> :
+  # RetVal_3 = PHI <RetVal_24(3), RetVal_22(5), RetVal_20(7), RetVal_18(9), RetVal_5(10)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fee_FEE_EXCLUSIVE_AREA_01 ();
+  # DEBUG BEGIN_STMT
+  _26 = RetVal_3;
+  return _26;
+
+}
+
+
+Fee_Read (uint16 BlockNumber, uint16 BlockOffset, uint8 * DataBufferPtr, uint16 Length)
+{
+  uint16 BlockIndex;
+  boolean bCheck;
+  Std_ReturnType RetVal;
+  unsigned char Fee_eModuleStatus.3_1;
+  unsigned char Fee_eModuleStatus.4_2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  short unsigned int _9;
+  int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_17 = 1;
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  bCheck_18 = 0;
+  # DEBUG bCheck => bCheck_18
+  # DEBUG BEGIN_STMT
+  BlockIndex_22 = Fee_GetBlockIndex (BlockNumber_20(D));
+  # DEBUG BlockIndex => BlockIndex_22
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Fee_FEE_EXCLUSIVE_AREA_00 ();
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.3_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.3_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 2, 1);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.4_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.4_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 2, 6);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_22 == 65535)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 2, 2);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) BlockIndex_22;
+  _4 = Fee_BlockConfig[_3].BlockSize;
+  if (BlockOffset_24(D) >= _4)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 2, 3);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  bCheck_25 = 1;
+  # DEBUG bCheck => bCheck_25
+
+  <bb 11> :
+  # bCheck_14 = PHI <bCheck_18(3), bCheck_18(5), bCheck_18(7), bCheck_18(9), bCheck_25(10)>
+  # DEBUG bCheck => bCheck_14
+  # DEBUG BEGIN_STMT
+  if (bCheck_14 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (Length_30(D) == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _5 = (int) BlockOffset_24(D);
+  _6 = (int) Length_30(D);
+  _7 = _5 + _6;
+  _8 = (int) BlockIndex_22;
+  _9 = Fee_BlockConfig[_8].BlockSize;
+  _10 = (int) _9;
+  if (_7 > _10)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 2, 5);
+  goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (DataBufferPtr_31(D) == 0B)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 2, 4);
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex = BlockIndex_22;
+  # DEBUG BEGIN_STMT
+  _11 = (long unsigned int) BlockOffset_24(D);
+  Fee_uJobBlockOffset = _11;
+  # DEBUG BEGIN_STMT
+  _12 = (long unsigned int) Length_30(D);
+  Fee_uJobBlockLength = _12;
+  # DEBUG BEGIN_STMT
+  Fee_pJobReadDataDestPtr = DataBufferPtr_31(D);
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 0;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+  # DEBUG BEGIN_STMT
+  RetVal_39 = 0;
+  # DEBUG RetVal => RetVal_39
+
+  <bb 18> :
+  # RetVal_13 = PHI <RetVal_17(11), RetVal_17(14), RetVal_17(16), RetVal_39(17)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Fee_FEE_EXCLUSIVE_AREA_00 ();
+  # DEBUG BEGIN_STMT
+  _43 = RetVal_13;
+  return _43;
+
+}
+
+
+Fee_SetMode (MemIf_ModeType Mode)
+{
+  unsigned char Fee_eModuleStatus.1_1;
+  unsigned char Fee_eModuleStatus.2_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.1_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.1_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 1, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.2_2 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.2_2 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 1, 6);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 21;
+  # DEBUG BEGIN_STMT
+  Fee_eMode = Mode_6(D);
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+
+  <bb 7> :
+  return;
+
+}
+
+
+Fee_Init (const struct Fee_ConfigType * ConfigPtr)
+{
+  uint32 InvalIndex;
+  unsigned char Fee_eModuleStatus.0_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_7(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (21, 0, 0, 9);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus.0_1 = Fee_eModuleStatus;
+  if (Fee_eModuleStatus.0_1 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 0, 6);
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  InvalIndex_9 = 0;
+  # DEBUG InvalIndex => InvalIndex_9
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_aBlockInfo[InvalIndex_2].BlockStatus = 1;
+  # DEBUG BEGIN_STMT
+  Fee_aBlockInfo[InvalIndex_2].DataAddr = 0;
+  # DEBUG BEGIN_STMT
+  Fee_aBlockInfo[InvalIndex_2].InvalidAddr = 0;
+  # DEBUG BEGIN_STMT
+  InvalIndex_18 = InvalIndex_2 + 1;
+  # DEBUG InvalIndex => InvalIndex_18
+
+  <bb 8> :
+  # InvalIndex_2 = PHI <InvalIndex_9(6), InvalIndex_18(7)>
+  # DEBUG InvalIndex => InvalIndex_2
+  # DEBUG BEGIN_STMT
+  if (InvalIndex_2 <= 10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  InvalIndex_10 = 0;
+  # DEBUG InvalIndex => InvalIndex_10
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Fee_aClrGrpInfo[InvalIndex_3].ActClrID = 0;
+  # DEBUG BEGIN_STMT
+  InvalIndex_14 = InvalIndex_3 + 1;
+  # DEBUG InvalIndex => InvalIndex_14
+
+  <bb 11> :
+  # InvalIndex_3 = PHI <InvalIndex_10(9), InvalIndex_14(10)>
+  # DEBUG InvalIndex => InvalIndex_3
+  # DEBUG BEGIN_STMT
+  if (InvalIndex_3 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 9;
+  # DEBUG BEGIN_STMT
+  Fee_eJobResult = 2;
+
+  <bb 13> :
+  return;
+
+}
+
+
+Fee_GetClusterLength (uint8 ClrGrpIt, uint8 ClrIt)
+{
+  int _1;
+  const struct Fee_ClusterType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct Fee_ClusterType * _5;
+  Fls_LengthType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClrGrpIt_6(D);
+  _2 = Fee_ClrGrps[_1].ClrPtr;
+  _3 = (unsigned int) ClrIt_8(D);
+  _4 = _3 * 8;
+  _5 = _2 + _4;
+  _9 = _5->Length;
+  return _9;
+
+}
+
+
+Fee_EraseCluster (uint8 ClrGrpIt, uint8 ClrIt)
+{
+  Fls_LengthType ClusterLength;
+  Fls_AddressType clusterAddress;
+  int _1;
+  const struct Fee_ClusterType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct Fee_ClusterType * _5;
+  Std_ReturnType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClrGrpIt_6(D);
+  _2 = Fee_ClrGrps[_1].ClrPtr;
+  _3 = (unsigned int) ClrIt_8(D);
+  _4 = _3 * 8;
+  _5 = _2 + _4;
+  clusterAddress_9 = _5->StartAddr;
+  # DEBUG clusterAddress => clusterAddress_9
+  # DEBUG BEGIN_STMT
+  ClusterLength_11 = Fee_GetClusterLength (ClrGrpIt_6(D), ClrIt_8(D));
+  # DEBUG ClusterLength => ClusterLength_11
+  # DEBUG BEGIN_STMT
+  _13 = Fls_Erase (clusterAddress_9, ClusterLength_11);
+  return _13;
+
+}
+
+
+Fee_WriteToFls (Fls_AddressType TargetAddress, const uint8 * SourceAddressPtr, Fls_LengthType Length)
+{
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _6 = Fls_Write (TargetAddress_2(D), SourceAddressPtr_3(D), Length_4(D));
+  return _6;
+
+}
+
+
+Fee_ReadFromFls (Fls_AddressType SourceAddress, uint8 * TargetAddressPtr, Fls_LengthType Length)
+{
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _6 = Fls_Read (SourceAddress_2(D), TargetAddressPtr_3(D), Length_4(D));
+  return _6;
+
+}
+
+
+Fee_JobErrorSchedule ()
+{
+  uint8 ClrGrpIndex;
+  <unnamed type> Fee_eJob.191_1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  short unsigned int Fee_uJobBlockIndex.192_5;
+  int _6;
+  long unsigned int _7;
+  int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  unsigned char _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_eJob.191_1 = Fee_eJob;
+  switch (Fee_eJob.191_1) <default: <L9> [INV], case 1 ... 5: <L3> [INV], case 8: <L3> [INV], case 11: <L1> [INV], case 14: <L0> [INV], case 18: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = Fee_JobInternalScanBlockHdrParse (0);
+  Fee_eJobResult = _2;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobInternalScanClusterHdrParse (0);
+  Fee_eJobResult = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _4 = Fee_JobInternalSwapDataWrite (0);
+  Fee_eJobResult = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.192_5 = Fee_uJobBlockIndex;
+  ClrGrpIndex_21 = Fee_GetBlockClusterGrp (Fee_uJobBlockIndex.192_5);
+  # DEBUG ClrGrpIndex => ClrGrpIndex_21
+  # DEBUG BEGIN_STMT
+  _6 = (int) ClrGrpIndex_21;
+  _7 = Fee_aClrGrpInfo[_6].HdrAddrIt;
+  _8 = (int) ClrGrpIndex_21;
+  _9 = _7 + 192;
+  Fee_aClrGrpInfo[_8].DataAddrIt = _9;
+  # DEBUG BEGIN_STMT
+  _10 = Fls_GetJobResult ();
+  Fee_eJobResult = _10;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobErrorNotification ();
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  _11 = Fls_GetJobResult ();
+  Fee_eJobResult = _11;
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 1;
+  # DEBUG BEGIN_STMT
+  NvM_JobErrorNotification ();
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  return;
+
+}
+
+
+Fee_ReservedAreaWritable ()
+{
+  boolean ImmediateData;
+  uint32 ReservedSpace;
+  uint8 ClrGrpIndex;
+  Fls_LengthType AvailClrSpace;
+  uint16 AlignedBlockSize;
+  uint16 BlockSize;
+  boolean RetVal;
+  short unsigned int Fee_uJobBlockIndex.149_1;
+  int _2;
+  int _3;
+  long unsigned int _4;
+  int _5;
+  long unsigned int _6;
+  short unsigned int Fee_uJobBlockIndex.150_7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  short unsigned int Fee_uJobBlockIndex.151_13;
+  short unsigned int Fee_uJobBlockIndex.152_14;
+  int _15;
+  long unsigned int _16;
+  short unsigned int Fee_uJobBlockIndex.153_17;
+  int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  short unsigned int Fee_uJobBlockIndex.154_21;
+  int _22;
+  long unsigned int _23;
+  short unsigned int Fee_uJobBlockIndex.155_24;
+  int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  boolean _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.149_1 = Fee_uJobBlockIndex;
+  ClrGrpIndex_33 = Fee_GetBlockClusterGrp (Fee_uJobBlockIndex.149_1);
+  # DEBUG ClrGrpIndex => ClrGrpIndex_33
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClrGrpIndex_33;
+  ReservedSpace_34 = Fee_ClrGrps[_2].ReservedSize;
+  # DEBUG ReservedSpace => ReservedSpace_34
+  # DEBUG BEGIN_STMT
+  _3 = (int) ClrGrpIndex_33;
+  _4 = Fee_aClrGrpInfo[_3].DataAddrIt;
+  _5 = (int) ClrGrpIndex_33;
+  _6 = Fee_aClrGrpInfo[_5].HdrAddrIt;
+  AvailClrSpace_35 = _4 - _6;
+  # DEBUG AvailClrSpace => AvailClrSpace_35
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.150_7 = Fee_uJobBlockIndex;
+  BlockSize_37 = Fee_GetBlockSize (Fee_uJobBlockIndex.150_7);
+  # DEBUG BlockSize => BlockSize_37
+  # DEBUG BEGIN_STMT
+  AlignedBlockSize_39 = Fee_AlignToVirtualPageSize (BlockSize_37);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_39
+  # DEBUG BEGIN_STMT
+  _8 = (long unsigned int) AlignedBlockSize_39;
+  _9 = _8 + 192;
+  if (AvailClrSpace_35 < _9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_46 = 0;
+  # DEBUG RetVal => RetVal_46
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _10 = (long unsigned int) AlignedBlockSize_39;
+  _11 = ReservedSpace_34 + _10;
+  _12 = _11 + 192;
+  if (AvailClrSpace_35 < _12)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.151_13 = Fee_uJobBlockIndex;
+  ImmediateData_42 = Fee_GetBlockImmediate (Fee_uJobBlockIndex.151_13);
+  # DEBUG ImmediateData => ImmediateData_42
+  # DEBUG BEGIN_STMT
+  if (ImmediateData_42 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.152_14 = Fee_uJobBlockIndex;
+  _15 = (int) Fee_uJobBlockIndex.152_14;
+  _16 = Fee_aBlockInfo[_15].DataAddr;
+  if (_16 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  Fee_uJobBlockIndex.153_17 = Fee_uJobBlockIndex;
+  _18 = (int) Fee_uJobBlockIndex.153_17;
+  _19 = Fee_aBlockInfo[_18].InvalidAddr;
+  if (_19 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _20 = ReservedSpace_34 + 96;
+  Fee_uJobBlockIndex.154_21 = Fee_uJobBlockIndex;
+  _22 = (int) Fee_uJobBlockIndex.154_21;
+  _23 = Fee_aBlockInfo[_22].DataAddr;
+  Fee_uJobBlockIndex.155_24 = Fee_uJobBlockIndex;
+  _25 = (int) Fee_uJobBlockIndex.155_24;
+  _26 = Fee_aBlockInfo[_25].InvalidAddr;
+  _27 = _23 - _26;
+  _28 = _27 + 4294967264;
+  if (_20 <= _28)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_45 = 1;
+  # DEBUG RetVal => RetVal_45
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_44 = 0;
+  # DEBUG RetVal => RetVal_44
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_43 = 0;
+  # DEBUG RetVal => RetVal_43
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RetVal_40 = 1;
+  # DEBUG RetVal => RetVal_40
+
+  <bb 13> :
+  # RetVal_29 = PHI <RetVal_46(3), RetVal_43(11), RetVal_40(12), RetVal_44(10), RetVal_45(9)>
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  _47 = RetVal_29;
+  return _47;
+
+}
+
+
+Fee_JobScheduleAfterSwapClusterVldDone ()
+{
+  MemIf_JobResultType eRetVal;
+  <unnamed type> Fee_eJob.35_1;
+  MemIf_JobResultType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  eRetVal_4 = 1;
+  # DEBUG eRetVal => eRetVal_4
+  # DEBUG BEGIN_STMT
+  Fee_eJob.35_1 = Fee_eJob;
+  switch (Fee_eJob.35_1) <default: <L5> [INV], case 1: <L0> [INV], case 8: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  eRetVal_9 = Fee_JobWriteBlock ();
+  # DEBUG eRetVal => eRetVal_9
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  eRetVal_7 = Fee_JobEraseImmediateBlock ();
+  # DEBUG eRetVal => eRetVal_7
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # eRetVal_2 = PHI <eRetVal_9(3), eRetVal_7(4), eRetVal_4(2)>
+<L5>:
+  # DEBUG eRetVal => eRetVal_2
+  # DEBUG BEGIN_STMT
+  _10 = eRetVal_2;
+  return _10;
+
+}
+
+
+Fee_JobSchedule ()
+{
+  <unnamed type> Fee_eJob.18_1;
+  MemIf_JobResultType (*<Tb17>) (void) _2;
+  MemIf_JobResultType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob.18_1 = Fee_eJob;
+  _2 = Fee_JobScheduleLookupTable[Fee_eJob.18_1];
+  _5 = _2 ();
+  return _5;
+
+}
+
+
+Fee_JobEraseImmediateBlock ()
+{
+  MemIf_JobResultType RetVal;
+  unsigned char _1;
+  short unsigned int Fee_uJobBlockIndex.148_2;
+  int _3;
+  unsigned char _4;
+  MemIf_JobResultType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 0;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _1 = Fee_ReservedAreaWritable ();
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.148_2 = Fee_uJobBlockIndex;
+  _3 = (int) Fee_uJobBlockIndex.148_2;
+  _4 = Fee_BlockConfig[_3].ClrGrp;
+  Fee_uJobIntClrGrpIt = _4;
+  # DEBUG BEGIN_STMT
+  RetVal_13 = Fee_JobInternalSwap ();
+  # DEBUG RetVal => RetVal_13
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+
+  <bb 5> :
+  # RetVal_5 = PHI <RetVal_13(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _14 = RetVal_5;
+  return _14;
+
+}
+
+
+Fee_JobInvalidateBlockDone ()
+{
+  short unsigned int Fee_uJobBlockIndex.162_1;
+  int _2;
+  MemIf_JobResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.162_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.162_1;
+  Fee_aBlockInfo[_2].BlockStatus = 1;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+  # DEBUG BEGIN_STMT
+  _6 = 0;
+  return _6;
+
+}
+
+
+Fee_JobInvalidateBlock ()
+{
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobBlockIndex.163_1;
+  int _2;
+  <unnamed type> _3;
+  short unsigned int Fee_uJobBlockIndex.164_4;
+  int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  MemIf_JobResultType _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 0;
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.163_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.163_1;
+  _3 = Fee_aBlockInfo[_2].BlockStatus;
+  if (_3 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 0;
+  # DEBUG RetVal => RetVal_19
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_SerializeFlag (&Fee_aDataBuffer, 24);
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.164_4 = Fee_uJobBlockIndex;
+  _5 = (int) Fee_uJobBlockIndex.164_4;
+  _6 = Fee_aBlockInfo[_5].InvalidAddr;
+  _7 = Fee_WriteToFls (_6, &Fee_aDataBuffer, 32);
+  if (_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 2;
+  # DEBUG RetVal => RetVal_16
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 1;
+  # DEBUG RetVal => RetVal_15
+
+  <bb 7> :
+  # RetVal_8 = PHI <RetVal_16(5), RetVal_15(6)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 7;
+
+  <bb 8> :
+  # RetVal_9 = PHI <RetVal_19(3), RetVal_8(7)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _20 = RetVal_9;
+  return _20;
+
+}
+
+
+Fee_JobWriteBlockDone ()
+{
+  short unsigned int Fee_uJobBlockIndex.165_1;
+  int _2;
+  MemIf_JobResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.165_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.165_1;
+  Fee_aBlockInfo[_2].BlockStatus = 0;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+  # DEBUG BEGIN_STMT
+  _6 = 0;
+  return _6;
+
+}
+
+
+Fee_JobSetModeTransfer ()
+{
+  MemIf_JobResultType RetVal;
+  unsigned char _1;
+  unsigned char Fee_eMode.19_2;
+  MemIf_JobResultType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 0;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _1 = Fls_GetStatus ();
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eMode.19_2 = Fee_eMode;
+  Fls_SetMode (Fee_eMode.19_2);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 1;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (21, 0, 1, 6);
+
+  <bb 5> :
+  # RetVal_3 = PHI <RetVal_5(3), RetVal_8(4)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  _12 = RetVal_3;
+  return _12;
+
+}
+
+
+Fee_JobWriteBlockValidate ()
+{
+  Fls_AddressType HdrAddr;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobBlockIndex.166_1;
+  int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  MemIf_JobResultType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_SerializeFlag (&Fee_aDataBuffer, 129);
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.166_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.166_1;
+  _3 = Fee_aBlockInfo[_2].InvalidAddr;
+  HdrAddr_8 = _3 + 4294967264;
+  # DEBUG HdrAddr => HdrAddr_8
+  # DEBUG BEGIN_STMT
+  _4 = Fee_WriteToFls (HdrAddr_8, &Fee_aDataBuffer, 32);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 2;
+  # DEBUG RetVal => RetVal_11
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 1;
+  # DEBUG RetVal => RetVal_10
+
+  <bb 5> :
+  # RetVal_5 = PHI <RetVal_11(3), RetVal_10(4)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 5;
+  # DEBUG BEGIN_STMT
+  _13 = RetVal_5;
+  return _13;
+
+}
+
+
+Fee_JobWriteBlockUnalignedData ()
+{
+  uint16 BlockSize;
+  uint16 WriteLength;
+  uint16 WriteOffset;
+  Fls_AddressType DataAddr;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobBlockIndex.167_1;
+  int _2;
+  short unsigned int _3;
+  const uint8 * Fee_pJobWriteDataDestPtr.168_4;
+  sizetype _5;
+  const uint8 * _6;
+  short unsigned int Fee_uJobBlockIndex.169_7;
+  int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  unsigned char _11;
+  MemIf_JobResultType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.167_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.167_1;
+  BlockSize_14 = Fee_BlockConfig[_2].BlockSize;
+  # DEBUG BlockSize => BlockSize_14
+  # DEBUG BEGIN_STMT
+  _3 = BlockSize_14 / 32;
+  WriteOffset_15 = _3 * 32;
+  # DEBUG WriteOffset => WriteOffset_15
+  # DEBUG BEGIN_STMT
+  WriteLength_16 = BlockSize_14 & 31;
+  # DEBUG WriteLength => WriteLength_16
+  # DEBUG BEGIN_STMT
+  Fee_pJobWriteDataDestPtr.168_4 = Fee_pJobWriteDataDestPtr;
+  _5 = (sizetype) WriteOffset_15;
+  _6 = Fee_pJobWriteDataDestPtr.168_4 + _5;
+  Fee_CopyDataToPageBuffer (_6, &Fee_aDataBuffer, WriteLength_16);
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.169_7 = Fee_uJobBlockIndex;
+  _8 = (int) Fee_uJobBlockIndex.169_7;
+  DataAddr_18 = Fee_aBlockInfo[_8].DataAddr;
+  # DEBUG DataAddr => DataAddr_18
+  # DEBUG BEGIN_STMT
+  _9 = (long unsigned int) WriteOffset_15;
+  _10 = DataAddr_18 + _9;
+  _11 = Fee_WriteToFls (_10, &Fee_aDataBuffer, 32);
+  if (_11 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 2;
+  # DEBUG RetVal => RetVal_21
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 1;
+  # DEBUG RetVal => RetVal_20
+
+  <bb 5> :
+  # RetVal_12 = PHI <RetVal_21(3), RetVal_20(4)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 4;
+  # DEBUG BEGIN_STMT
+  _23 = RetVal_12;
+  return _23;
+
+}
+
+
+Fee_JobWriteBlock ()
+{
+  MemIf_JobResultType RetVal;
+  <unnamed type> Fee_eJob.177_1;
+  MemIf_JobResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_5 = Fee_JobWriteHdr ();
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  Fee_eJob.177_1 = Fee_eJob;
+  if (Fee_eJob.177_1 == 15)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 2;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = RetVal_5;
+  return _7;
+
+}
+
+
+Fee_JobWriteBlockData ()
+{
+  uint8 ClrGrpIndex;
+  Fls_AddressType HdrAddr;
+  const uint8 * WriteDataPtr;
+  uint8 ClrGrp;
+  Fls_LengthType WriteLength;
+  uint16 AlignedBlockSize;
+  uint16 BlockSize;
+  MemIf_JobResultType RetVal;
+  Fls_AddressType DataAddr;
+  short unsigned int Fee_uJobBlockIndex.170_1;
+  int _2;
+  short unsigned int Fee_uJobBlockIndex.171_3;
+  int _4;
+  int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  int _8;
+  short unsigned int Fee_uJobBlockIndex.172_9;
+  int _10;
+  short unsigned int Fee_uJobBlockIndex.173_11;
+  int _12;
+  long unsigned int _13;
+  short unsigned int Fee_uJobBlockIndex.174_14;
+  int _15;
+  short unsigned int Fee_uJobBlockIndex.175_16;
+  int _17;
+  int _18;
+  long unsigned int _19;
+  int _20;
+  long unsigned int _21;
+  int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  int _25;
+  long unsigned int _26;
+  const uint8 * Fee_pJobWriteDataDestPtr.176_27;
+  long unsigned int _28;
+  int _29;
+  unsigned char _30;
+  MemIf_JobResultType _61;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.170_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.170_1;
+  BlockSize_36 = Fee_BlockConfig[_2].BlockSize;
+  # DEBUG BlockSize => BlockSize_36
+  # DEBUG BEGIN_STMT
+  AlignedBlockSize_38 = Fee_AlignToVirtualPageSize (BlockSize_36);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_38
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.171_3 = Fee_uJobBlockIndex;
+  _4 = (int) Fee_uJobBlockIndex.171_3;
+  ClrGrpIndex_39 = Fee_BlockConfig[_4].ClrGrp;
+  # DEBUG ClrGrpIndex => ClrGrpIndex_39
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClrGrpIndex_39;
+  _6 = Fee_aClrGrpInfo[_5].DataAddrIt;
+  _7 = (long unsigned int) AlignedBlockSize_38;
+  DataAddr_40 = _6 - _7;
+  # DEBUG DataAddr => DataAddr_40
+  # DEBUG BEGIN_STMT
+  _8 = (int) ClrGrpIndex_39;
+  HdrAddr_41 = Fee_aClrGrpInfo[_8].HdrAddrIt;
+  # DEBUG HdrAddr => HdrAddr_41
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.172_9 = Fee_uJobBlockIndex;
+  _10 = (int) Fee_uJobBlockIndex.172_9;
+  Fee_aBlockInfo[_10].DataAddr = DataAddr_40;
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.173_11 = Fee_uJobBlockIndex;
+  _12 = (int) Fee_uJobBlockIndex.173_11;
+  _13 = HdrAddr_41 + 64;
+  Fee_aBlockInfo[_12].InvalidAddr = _13;
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.174_14 = Fee_uJobBlockIndex;
+  _15 = (int) Fee_uJobBlockIndex.174_14;
+  Fee_aBlockInfo[_15].BlockStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.175_16 = Fee_uJobBlockIndex;
+  _17 = (int) Fee_uJobBlockIndex.175_16;
+  ClrGrp_45 = Fee_BlockConfig[_17].ClrGrp;
+  # DEBUG ClrGrp => ClrGrp_45
+  # DEBUG BEGIN_STMT
+  _18 = (int) ClrGrp_45;
+  _19 = Fee_aClrGrpInfo[_18].HdrAddrIt;
+  _20 = (int) ClrGrp_45;
+  _21 = _19 + 96;
+  Fee_aClrGrpInfo[_20].HdrAddrIt = _21;
+  # DEBUG BEGIN_STMT
+  _22 = (int) ClrGrp_45;
+  _23 = Fee_aClrGrpInfo[_22].DataAddrIt;
+  _24 = (long unsigned int) AlignedBlockSize_38;
+  _25 = (int) ClrGrp_45;
+  _26 = _23 - _24;
+  Fee_aClrGrpInfo[_25].DataAddrIt = _26;
+  # DEBUG BEGIN_STMT
+  if (BlockSize_36 <= 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_pJobWriteDataDestPtr.176_27 = Fee_pJobWriteDataDestPtr;
+  Fee_CopyDataToPageBuffer (Fee_pJobWriteDataDestPtr.176_27, &Fee_aDataBuffer, BlockSize_36);
+  # DEBUG BEGIN_STMT
+  WriteDataPtr_54 = &Fee_aDataBuffer;
+  # DEBUG WriteDataPtr => WriteDataPtr_54
+  # DEBUG BEGIN_STMT
+  WriteLength_55 = 32;
+  # DEBUG WriteLength => WriteLength_55
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 4;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  WriteDataPtr_48 = Fee_pJobWriteDataDestPtr;
+  # DEBUG WriteDataPtr => WriteDataPtr_48
+  # DEBUG BEGIN_STMT
+  if (AlignedBlockSize_38 == BlockSize_36)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  WriteLength_51 = (Fls_LengthType) BlockSize_36;
+  # DEBUG WriteLength => WriteLength_51
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 4;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _28 = (long unsigned int) AlignedBlockSize_38;
+  WriteLength_49 = _28 + 4294967264;
+  # DEBUG WriteLength => WriteLength_49
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 3;
+
+  <bb 7> :
+  # WriteLength_32 = PHI <WriteLength_55(3), WriteLength_51(5), WriteLength_49(6)>
+  # WriteDataPtr_33 = PHI <WriteDataPtr_54(3), WriteDataPtr_48(5), WriteDataPtr_48(6)>
+  # DEBUG WriteDataPtr => WriteDataPtr_33
+  # DEBUG WriteLength => WriteLength_32
+  # DEBUG BEGIN_STMT
+  _29 = (int) ClrGrp_45;
+  DataAddr_57 = Fee_aClrGrpInfo[_29].DataAddrIt;
+  # DEBUG DataAddr => DataAddr_57
+  # DEBUG BEGIN_STMT
+  _30 = Fee_WriteToFls (DataAddr_57, WriteDataPtr_33, WriteLength_32);
+  if (_30 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_60 = 2;
+  # DEBUG RetVal => RetVal_60
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_59 = 1;
+  # DEBUG RetVal => RetVal_59
+
+  <bb 10> :
+  # RetVal_31 = PHI <RetVal_60(8), RetVal_59(9)>
+  # DEBUG RetVal => RetVal_31
+  # DEBUG BEGIN_STMT
+  _61 = RetVal_31;
+  return _61;
+
+}
+
+
+Fee_JobWriteHdr ()
+{
+  Fls_AddressType HdrAddr;
+  Fls_AddressType DataAddr;
+  uint8 ClrGrpIndex;
+  uint16 AlignedBlockSize;
+  struct Fee_BlockType BlockHder;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobBlockIndex.178_1;
+  int _2;
+  short unsigned int Fee_uJobBlockIndex.179_3;
+  int _4;
+  short unsigned int _5;
+  short unsigned int Fee_uJobBlockIndex.180_6;
+  int _7;
+  short unsigned int _8;
+  short unsigned int Fee_uJobBlockIndex.181_9;
+  int _10;
+  unsigned char _11;
+  short unsigned int _12;
+  unsigned char _13;
+  int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  int _17;
+  unsigned char _18;
+  MemIf_JobResultType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.178_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.178_1;
+  ClrGrpIndex_22 = Fee_BlockConfig[_2].ClrGrp;
+  # DEBUG ClrGrpIndex => ClrGrpIndex_22
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.179_3 = Fee_uJobBlockIndex;
+  _4 = (int) Fee_uJobBlockIndex.179_3;
+  _5 = Fee_BlockConfig[_4].BlockSize;
+  BlockHder.Length = _5;
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.180_6 = Fee_uJobBlockIndex;
+  _7 = (int) Fee_uJobBlockIndex.180_6;
+  _8 = Fee_BlockConfig[_7].BlockNumber;
+  BlockHder.BlockNumber = _8;
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.181_9 = Fee_uJobBlockIndex;
+  _10 = (int) Fee_uJobBlockIndex.181_9;
+  _11 = Fee_BlockConfig[_10].ImmediateData;
+  BlockHder.ImmediateBlock = _11;
+  # DEBUG BEGIN_STMT
+  _12 = BlockHder.Length;
+  AlignedBlockSize_27 = Fee_AlignToVirtualPageSize (_12);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_27
+  # DEBUG BEGIN_STMT
+  _13 = Fee_ReservedAreaWritable ();
+  if (_13 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt = ClrGrpIndex_22;
+  # DEBUG BEGIN_STMT
+  RetVal_37 = Fee_JobInternalSwap ();
+  # DEBUG RetVal => RetVal_37
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) ClrGrpIndex_22;
+  _15 = Fee_aClrGrpInfo[_14].DataAddrIt;
+  _16 = (long unsigned int) AlignedBlockSize_27;
+  DataAddr_29 = _15 - _16;
+  # DEBUG DataAddr => DataAddr_29
+  # DEBUG BEGIN_STMT
+  _17 = (int) ClrGrpIndex_22;
+  HdrAddr_30 = Fee_aClrGrpInfo[_17].HdrAddrIt;
+  # DEBUG HdrAddr => HdrAddr_30
+  # DEBUG BEGIN_STMT
+  Fee_SerializeBlockHdr (&BlockHder, DataAddr_29, &Fee_aDataBuffer);
+  # DEBUG BEGIN_STMT
+  _18 = Fee_WriteToFls (HdrAddr_30, &Fee_aDataBuffer, 32);
+  if (_18 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 2;
+  # DEBUG RetVal => RetVal_33
+
+  <bb 7> :
+  # RetVal_19 = PHI <RetVal_37(3), RetVal_34(5), RetVal_33(6)>
+  # DEBUG RetVal => RetVal_19
+  # DEBUG BEGIN_STMT
+  _38 = RetVal_19;
+  BlockHder ={v} {CLOBBER};
+  return _38;
+
+}
+
+
+Fee_JobInternalSwapClusterVldDone ()
+{
+  uint8 BlockClusterGrp;
+  uint16 AlignedBlockSize;
+  uint16 BlockSize;
+  Fls_AddressType DataAddrIt;
+  Fls_AddressType HdrAddrIt;
+  uint16 BlockIt;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.20_1;
+  int _2;
+  const struct Fee_ClusterType * _3;
+  unsigned char Fee_uJobIntClrIt.21_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct Fee_ClusterType * _7;
+  unsigned char Fee_uJobIntClrGrpIt.22_8;
+  unsigned char Fee_uJobIntClrIt.23_9;
+  long unsigned int _10;
+  unsigned char Fee_uJobIntClrGrpIt.24_11;
+  int _12;
+  <unnamed type> _13;
+  int _14;
+  <unnamed type> _15;
+  int _16;
+  <unnamed type> _17;
+  int _18;
+  long unsigned int _19;
+  int _20;
+  <unnamed type> _21;
+  long unsigned int _22;
+  int _23;
+  int _24;
+  int _25;
+  <unnamed type> _26;
+  long unsigned int _27;
+  int _28;
+  int _29;
+  int _30;
+  short unsigned int BlockIt.25_31;
+  unsigned char Fee_uJobIntClrGrpIt.26_32;
+  int _33;
+  unsigned char Fee_uJobIntClrIt.27_34;
+  unsigned char Fee_uJobIntClrGrpIt.28_35;
+  int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  unsigned char Fee_uJobIntClrGrpIt.29_39;
+  int _40;
+  unsigned char Fee_uJobIntClrGrpIt.30_41;
+  int _42;
+  <unnamed type> Fee_eJobIntOriginalJob.31_43;
+  unsigned char Fee_uJobIntClrGrpIt.32_44;
+  unsigned char Fee_uJobIntClrGrpIt.33_45;
+  unsigned char _46;
+  <unnamed type> Fee_eJobIntOriginalJob.34_47;
+  MemIf_JobResultType _75;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.20_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.20_1;
+  _3 = Fee_ClrGrps[_2].ClrPtr;
+  Fee_uJobIntClrIt.21_4 = Fee_uJobIntClrIt;
+  _5 = (unsigned int) Fee_uJobIntClrIt.21_4;
+  _6 = _5 * 8;
+  _7 = _3 + _6;
+  HdrAddrIt_61 = _7->StartAddr;
+  # DEBUG HdrAddrIt => HdrAddrIt_61
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.22_8 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.23_9 = Fee_uJobIntClrIt;
+  _10 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.22_8, Fee_uJobIntClrIt.23_9);
+  DataAddrIt_63 = HdrAddrIt_61 + _10;
+  # DEBUG DataAddrIt => DataAddrIt_63
+  # DEBUG BEGIN_STMT
+  HdrAddrIt_64 = HdrAddrIt_61 + 96;
+  # DEBUG HdrAddrIt => HdrAddrIt_64
+  # DEBUG BEGIN_STMT
+  BlockIt_65 = 0;
+  # DEBUG BlockIt => BlockIt_65
+  goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockClusterGrp_77 = Fee_GetBlockClusterGrp (BlockIt_48);
+  # DEBUG BlockClusterGrp => BlockClusterGrp_77
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.24_11 = Fee_uJobIntClrGrpIt;
+  if (BlockClusterGrp_77 == Fee_uJobIntClrGrpIt.24_11)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) BlockIt_48;
+  _13 = Fee_aBlockInfo[_12].BlockStatus;
+  if (_13 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _14 = (int) BlockIt_48;
+  _15 = Fee_aBlockInfo[_14].BlockStatus;
+  if (_15 == 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _16 = (int) BlockIt_48;
+  _17 = Fee_aBlockInfo[_16].BlockStatus;
+  if (_17 == 6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) BlockIt_48;
+  _19 = HdrAddrIt_50 + 64;
+  Fee_aBlockInfo[_18].InvalidAddr = _19;
+  # DEBUG BEGIN_STMT
+  _20 = (int) BlockIt_48;
+  _21 = Fee_aBlockInfo[_20].BlockStatus;
+  if (_21 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  BlockSize_83 = Fee_GetBlockSize (BlockIt_48);
+  # DEBUG BlockSize => BlockSize_83
+  # DEBUG BEGIN_STMT
+  AlignedBlockSize_85 = Fee_AlignToVirtualPageSize (BlockSize_83);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_85
+  # DEBUG BEGIN_STMT
+  _22 = (long unsigned int) AlignedBlockSize_85;
+  DataAddrIt_86 = DataAddrIt_54 - _22;
+  # DEBUG DataAddrIt => DataAddrIt_86
+  # DEBUG BEGIN_STMT
+  _23 = (int) BlockIt_48;
+  Fee_aBlockInfo[_23].DataAddr = DataAddrIt_86;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _24 = (int) BlockIt_48;
+  Fee_aBlockInfo[_24].DataAddr = 0;
+
+  <bb 10> :
+  # DataAddrIt_51 = PHI <DataAddrIt_86(8), DataAddrIt_54(9)>
+  # DEBUG DataAddrIt => DataAddrIt_51
+  # DEBUG BEGIN_STMT
+  _25 = (int) BlockIt_48;
+  _26 = Fee_aBlockInfo[_25].BlockStatus;
+  if (_26 == 6)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  BlockSize_89 = Fee_GetBlockSize (BlockIt_48);
+  # DEBUG BlockSize => BlockSize_89
+  # DEBUG BEGIN_STMT
+  AlignedBlockSize_91 = Fee_AlignToVirtualPageSize (BlockSize_89);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_91
+  # DEBUG BEGIN_STMT
+  _27 = (long unsigned int) AlignedBlockSize_91;
+  DataAddrIt_92 = DataAddrIt_51 - _27;
+  # DEBUG DataAddrIt => DataAddrIt_92
+  # DEBUG BEGIN_STMT
+  _28 = (int) BlockIt_48;
+  Fee_aBlockInfo[_28].BlockStatus = 2;
+
+  <bb 12> :
+  # DataAddrIt_52 = PHI <DataAddrIt_51(10), DataAddrIt_92(11)>
+  # DEBUG DataAddrIt => DataAddrIt_52
+  # DEBUG BEGIN_STMT
+  HdrAddrIt_94 = HdrAddrIt_50 + 96;
+  # DEBUG HdrAddrIt => HdrAddrIt_94
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _29 = (int) BlockIt_48;
+  Fee_aBlockInfo[_29].DataAddr = 0;
+  # DEBUG BEGIN_STMT
+  _30 = (int) BlockIt_48;
+  Fee_aBlockInfo[_30].InvalidAddr = 0;
+
+  <bb 14> :
+  # HdrAddrIt_49 = PHI <HdrAddrIt_50(3), HdrAddrIt_94(12), HdrAddrIt_50(13)>
+  # DataAddrIt_53 = PHI <DataAddrIt_54(3), DataAddrIt_52(12), DataAddrIt_54(13)>
+  # DEBUG DataAddrIt => DataAddrIt_53
+  # DEBUG HdrAddrIt => HdrAddrIt_49
+  # DEBUG BEGIN_STMT
+  BlockIt.25_31 = BlockIt_48;
+  BlockIt_95 = BlockIt.25_31 + 1;
+  # DEBUG BlockIt => BlockIt_95
+
+  <bb 15> :
+  # BlockIt_48 = PHI <BlockIt_65(2), BlockIt_95(14)>
+  # HdrAddrIt_50 = PHI <HdrAddrIt_64(2), HdrAddrIt_49(14)>
+  # DataAddrIt_54 = PHI <DataAddrIt_63(2), DataAddrIt_53(14)>
+  # DEBUG DataAddrIt => DataAddrIt_54
+  # DEBUG HdrAddrIt => HdrAddrIt_50
+  # DEBUG BlockIt => BlockIt_48
+  # DEBUG BEGIN_STMT
+  if (BlockIt_48 <= 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.26_32 = Fee_uJobIntClrGrpIt;
+  _33 = (int) Fee_uJobIntClrGrpIt.26_32;
+  Fee_uJobIntClrIt.27_34 = Fee_uJobIntClrIt;
+  Fee_aClrGrpInfo[_33].ActClr = Fee_uJobIntClrIt.27_34;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.28_35 = Fee_uJobIntClrGrpIt;
+  _36 = (int) Fee_uJobIntClrGrpIt.28_35;
+  _37 = Fee_aClrGrpInfo[_36].ActClrID;
+  _38 = _37 + 1;
+  Fee_aClrGrpInfo[_36].ActClrID = _38;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.29_39 = Fee_uJobIntClrGrpIt;
+  _40 = (int) Fee_uJobIntClrGrpIt.29_39;
+  Fee_aClrGrpInfo[_40].HdrAddrIt = HdrAddrIt_50;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.30_41 = Fee_uJobIntClrGrpIt;
+  _42 = (int) Fee_uJobIntClrGrpIt.30_41;
+  Fee_aClrGrpInfo[_42].DataAddrIt = DataAddrIt_54;
+  # DEBUG BEGIN_STMT
+  Fee_eJobIntOriginalJob.31_43 = Fee_eJobIntOriginalJob;
+  if (Fee_eJobIntOriginalJob.31_43 == 10)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.32_44 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrGrpIt.33_45 = Fee_uJobIntClrGrpIt.32_44;
+  _46 = Fee_uJobIntClrGrpIt.33_45 + 1;
+  Fee_uJobIntClrGrpIt = _46;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_eModuleStatus = 2;
+  # DEBUG BEGIN_STMT
+  Fee_eJobIntOriginalJob.34_47 = Fee_eJobIntOriginalJob;
+  Fee_eJob = Fee_eJobIntOriginalJob.34_47;
+  # DEBUG BEGIN_STMT
+  RetVal_74 = Fee_JobScheduleAfterSwapClusterVldDone ();
+  # DEBUG RetVal => RetVal_74
+  # DEBUG BEGIN_STMT
+  _75 = RetVal_74;
+  return _75;
+
+}
+
+
+Fee_JobInternalSwapDataWrite (const boolean BufferValid)
+{
+  MemIf_JobResultType RetVal;
+  long unsigned int Fee_uJobIntAddrIt.36_1;
+  long unsigned int Fee_uJobBlockLength.37_2;
+  unsigned char _3;
+  long unsigned int Fee_uJobIntAddrIt.38_4;
+  long unsigned int Fee_uJobBlockLength.39_5;
+  long unsigned int _6;
+  MemIf_JobResultType _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 0;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  if (BufferValid_11(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.36_1 = Fee_uJobIntAddrIt;
+  Fee_uJobBlockLength.37_2 = Fee_uJobBlockLength;
+  _3 = Fee_WriteToFls (Fee_uJobIntAddrIt.36_1, &Fee_aDataBuffer, Fee_uJobBlockLength.37_2);
+  if (_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_17 = 2;
+  # DEBUG RetVal => RetVal_17
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 1;
+  # DEBUG RetVal => RetVal_16
+
+  <bb 6> :
+  # RetVal_7 = PHI <RetVal_17(4), RetVal_16(5)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.38_4 = Fee_uJobIntAddrIt;
+  Fee_uJobBlockLength.39_5 = Fee_uJobBlockLength;
+  _6 = Fee_uJobIntAddrIt.38_4 + Fee_uJobBlockLength.39_5;
+  Fee_uJobIntAddrIt = _6;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 17;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = Fee_JobInternalSwapDataRead (0);
+  # DEBUG RetVal => RetVal_14
+
+  <bb 8> :
+  # RetVal_8 = PHI <RetVal_7(6), RetVal_14(7)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _20 = RetVal_8;
+  return _20;
+
+}
+
+
+Fee_JobInternalSwapDataRead (const boolean BufferValid)
+{
+  uint16 BlockSize;
+  uint16 AlignedBlockSize;
+  Fls_AddressType ReadAddr;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobIntBlockIt.40_1;
+  long unsigned int _2;
+  long unsigned int Fee_uJobIntDataAddr.41_3;
+  long unsigned int _4;
+  long unsigned int Fee_uJobIntAddrIt.42_5;
+  long unsigned int _6;
+  short unsigned int Fee_uJobIntBlockIt.43_7;
+  int _8;
+  short unsigned int Fee_uJobIntBlockIt.44_9;
+  short unsigned int Fee_uJobIntBlockIt.45_10;
+  short unsigned int _11;
+  long unsigned int Fee_uJobBlockLength.46_12;
+  short unsigned int Fee_uJobIntBlockIt.47_13;
+  short unsigned int Fee_uJobIntBlockIt.48_14;
+  short unsigned int _15;
+  long unsigned int Fee_uJobBlockLength.49_16;
+  short unsigned int Fee_uJobIntBlockIt.50_17;
+  int _18;
+  long unsigned int _19;
+  long unsigned int Fee_uJobIntAddrIt.51_20;
+  long unsigned int _21;
+  long unsigned int Fee_uJobIntDataAddr.52_22;
+  long unsigned int Fee_uJobBlockLength.53_23;
+  unsigned char _24;
+  MemIf_JobResultType _49;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.40_1 = Fee_uJobIntBlockIt;
+  BlockSize_31 = Fee_GetBlockSize (Fee_uJobIntBlockIt.40_1);
+  # DEBUG BlockSize => BlockSize_31
+  # DEBUG BEGIN_STMT
+  AlignedBlockSize_33 = Fee_AlignToVirtualPageSize (BlockSize_31);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_33
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) AlignedBlockSize_33;
+  Fee_uJobIntDataAddr.41_3 = Fee_uJobIntDataAddr;
+  _4 = _2 + Fee_uJobIntDataAddr.41_3;
+  Fee_uJobIntAddrIt.42_5 = Fee_uJobIntAddrIt;
+  _6 = _4 - Fee_uJobIntAddrIt.42_5;
+  Fee_uJobBlockLength = _6;
+  # DEBUG BEGIN_STMT
+  if (BufferValid_35(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.43_7 = Fee_uJobIntBlockIt;
+  _8 = (int) Fee_uJobIntBlockIt.43_7;
+  Fee_aBlockInfo[_8].BlockStatus = 6;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.44_9 = Fee_uJobIntBlockIt;
+  Fee_uJobIntBlockIt.45_10 = Fee_uJobIntBlockIt.44_9;
+  _11 = Fee_uJobIntBlockIt.45_10 + 1;
+  Fee_uJobIntBlockIt = _11;
+  # DEBUG BEGIN_STMT
+  RetVal_48 = Fee_JobInternalSwapBlock ();
+  # DEBUG RetVal => RetVal_48
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockLength.46_12 = Fee_uJobBlockLength;
+  if (Fee_uJobBlockLength.46_12 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.47_13 = Fee_uJobIntBlockIt;
+  Fee_uJobIntBlockIt.48_14 = Fee_uJobIntBlockIt.47_13;
+  _15 = Fee_uJobIntBlockIt.48_14 + 1;
+  Fee_uJobIntBlockIt = _15;
+  # DEBUG BEGIN_STMT
+  RetVal_44 = Fee_JobInternalSwapBlockVld ();
+  # DEBUG RetVal => RetVal_44
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockLength.49_16 = Fee_uJobBlockLength;
+  if (Fee_uJobBlockLength.49_16 > 96)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockLength = 96;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.50_17 = Fee_uJobIntBlockIt;
+  _18 = (int) Fee_uJobIntBlockIt.50_17;
+  _19 = Fee_aBlockInfo[_18].DataAddr;
+  Fee_uJobIntAddrIt.51_20 = Fee_uJobIntAddrIt;
+  _21 = _19 + Fee_uJobIntAddrIt.51_20;
+  Fee_uJobIntDataAddr.52_22 = Fee_uJobIntDataAddr;
+  ReadAddr_37 = _21 - Fee_uJobIntDataAddr.52_22;
+  # DEBUG ReadAddr => ReadAddr_37
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockLength.53_23 = Fee_uJobBlockLength;
+  _24 = Fee_ReadFromFls (ReadAddr_37, &Fee_aDataBuffer, Fee_uJobBlockLength.53_23);
+  if (_24 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_40 = 1;
+  # DEBUG RetVal => RetVal_40
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_39 = 2;
+  # DEBUG RetVal => RetVal_39
+
+  <bb 11> :
+  # RetVal_25 = PHI <RetVal_40(9), RetVal_39(10)>
+  # DEBUG RetVal => RetVal_25
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 18;
+
+  <bb 12> :
+  # RetVal_26 = PHI <RetVal_48(3), RetVal_44(5), RetVal_25(11)>
+  # DEBUG RetVal => RetVal_26
+  # DEBUG BEGIN_STMT
+  _49 = RetVal_26;
+  return _49;
+
+}
+
+
+Fee_JobInternalSwapBlockVld ()
+{
+  MemIf_JobResultType RetVal;
+  long unsigned int Fee_uJobIntHdrAddr.54_1;
+  long unsigned int _2;
+  unsigned char _3;
+  MemIf_JobResultType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 0;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  Fee_SerializeFlag (&Fee_aDataBuffer, 129);
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntHdrAddr.54_1 = Fee_uJobIntHdrAddr;
+  _2 = Fee_uJobIntHdrAddr.54_1 + 4294967232;
+  _3 = Fee_WriteToFls (_2, &Fee_aDataBuffer, 32);
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 1;
+  # DEBUG RetVal => RetVal_10
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 2;
+  # DEBUG RetVal => RetVal_9
+
+  <bb 5> :
+  # RetVal_4 = PHI <RetVal_10(3), RetVal_9(4)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 16;
+  # DEBUG BEGIN_STMT
+  _12 = RetVal_4;
+  return _12;
+
+}
+
+
+Fee_JobReadBlock ()
+{
+  Fls_AddressType BlockAddress;
+  Fee_BlockStatusType BlockStatus;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobBlockIndex.182_1;
+  int _2;
+  short unsigned int Fee_uJobBlockIndex.183_3;
+  int _4;
+  long unsigned int Fee_uJobBlockOffset.184_5;
+  long unsigned int _6;
+  uint8 * Fee_pJobReadDataDestPtr.185_7;
+  long unsigned int Fee_uJobBlockLength.186_8;
+  unsigned char _9;
+  MemIf_JobResultType _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 1;
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  BlockStatus_13 = 0;
+  # DEBUG BlockStatus => BlockStatus_13
+  # DEBUG BEGIN_STMT
+  BlockAddress_14 = 0;
+  # DEBUG BlockAddress => BlockAddress_14
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.182_1 = Fee_uJobBlockIndex;
+  _2 = (int) Fee_uJobBlockIndex.182_1;
+  BlockStatus_16 = Fee_aBlockInfo[_2].BlockStatus;
+  # DEBUG BlockStatus => BlockStatus_16
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex.183_3 = Fee_uJobBlockIndex;
+  _4 = (int) Fee_uJobBlockIndex.183_3;
+  BlockAddress_17 = Fee_aBlockInfo[_4].DataAddr;
+  # DEBUG BlockAddress => BlockAddress_17
+  # DEBUG BEGIN_STMT
+  if (BlockStatus_16 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockOffset.184_5 = Fee_uJobBlockOffset;
+  _6 = BlockAddress_17 + Fee_uJobBlockOffset.184_5;
+  Fee_pJobReadDataDestPtr.185_7 = Fee_pJobReadDataDestPtr;
+  Fee_uJobBlockLength.186_8 = Fee_uJobBlockLength;
+  _9 = Fee_ReadFromFls (_6, Fee_pJobReadDataDestPtr.185_7, Fee_uJobBlockLength.186_8);
+  if (_9 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 2;
+  # DEBUG RetVal => RetVal_21
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BlockStatus_16 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 5;
+  # DEBUG RetVal => RetVal_19
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (BlockStatus_16 == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (BlockStatus_16 == 6)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 4;
+  # DEBUG RetVal => RetVal_18
+
+  <bb 11> :
+  # RetVal_10 = PHI <RetVal_21(5), RetVal_19(7), RetVal_12(9), RetVal_18(10), RetVal_22(4)>
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+  # DEBUG BEGIN_STMT
+  _24 = RetVal_10;
+  return _24;
+
+}
+
+
+Fee_JobInternalScanClusterHdrParse (const boolean BufferValid)
+{
+  boolean bScanClusterDone;
+  Fls_LengthType CfgClrSize;
+  struct Fee_ClusterHeaderType ClrHdr;
+  Fls_AddressType CfgStartAddr;
+  Fee_ClusterStatusType ClrStatus;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.119_1;
+  int _2;
+  const struct Fee_ClusterType * _3;
+  unsigned char Fee_uJobIntClrIt.120_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct Fee_ClusterType * _7;
+  unsigned char Fee_uJobIntClrGrpIt.121_8;
+  unsigned char Fee_uJobIntClrIt.122_9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  unsigned char Fee_uJobIntClrGrpIt.123_13;
+  int _14;
+  long unsigned int _15;
+  unsigned char Fee_uJobIntClrGrpIt.124_16;
+  int _17;
+  unsigned char Fee_uJobIntClrIt.125_18;
+  unsigned char Fee_uJobIntClrGrpIt.126_19;
+  int _20;
+  long unsigned int _21;
+  MemIf_JobResultType _41;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  bScanClusterDone_25 = 0;
+  # DEBUG bScanClusterDone => bScanClusterDone_25
+  # DEBUG BEGIN_STMT
+  ClrStatus_28 = Fee_DeserializeClusterHdr (&ClrHdr, &Fee_aDataBuffer);
+  # DEBUG ClrStatus => ClrStatus_28
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.119_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.119_1;
+  _3 = Fee_ClrGrps[_2].ClrPtr;
+  Fee_uJobIntClrIt.120_4 = Fee_uJobIntClrIt;
+  _5 = (unsigned int) Fee_uJobIntClrIt.120_4;
+  _6 = _5 * 8;
+  _7 = _3 + _6;
+  CfgStartAddr_29 = _7->StartAddr;
+  # DEBUG CfgStartAddr => CfgStartAddr_29
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.121_8 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.122_9 = Fee_uJobIntClrIt;
+  CfgClrSize_31 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.121_8, Fee_uJobIntClrIt.122_9);
+  # DEBUG CfgClrSize => CfgClrSize_31
+  # DEBUG BEGIN_STMT
+  if (BufferValid_32(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  if (ClrStatus_28 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  _10 = ClrHdr.StartAddr;
+  if (CfgStartAddr_29 == _10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  _11 = ClrHdr.Length;
+  if (CfgClrSize_31 == _11)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = ClrHdr.ClrID;
+  Fee_uJobIntClrGrpIt.123_13 = Fee_uJobIntClrGrpIt;
+  _14 = (int) Fee_uJobIntClrGrpIt.123_13;
+  _15 = Fee_aClrGrpInfo[_14].ActClrID;
+  if (_12 > _15)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.124_16 = Fee_uJobIntClrGrpIt;
+  _17 = (int) Fee_uJobIntClrGrpIt.124_16;
+  Fee_uJobIntClrIt.125_18 = Fee_uJobIntClrIt;
+  Fee_aClrGrpInfo[_17].ActClr = Fee_uJobIntClrIt.125_18;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.126_19 = Fee_uJobIntClrGrpIt;
+  _20 = (int) Fee_uJobIntClrGrpIt.126_19;
+  _21 = ClrHdr.ClrID;
+  Fee_aClrGrpInfo[_20].ActClrID = _21;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  bScanClusterDone_36 = Fee_JobInternalScanClusterHdrDone ();
+  # DEBUG bScanClusterDone => bScanClusterDone_36
+  # DEBUG BEGIN_STMT
+  if (bScanClusterDone_36 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_40 = Fee_JobInternalScanCluster ();
+  # DEBUG RetVal => RetVal_40
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_38 = Fee_JobInternalScanClusterHdrRead ();
+  # DEBUG RetVal => RetVal_38
+
+  <bb 11> :
+  # RetVal_22 = PHI <RetVal_40(9), RetVal_38(10)>
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  _41 = RetVal_22;
+  ClrHdr ={v} {CLOBBER};
+  return _41;
+
+}
+
+
+Fee_JobInternalScanClusterHdrDone ()
+{
+  boolean RetVal;
+  unsigned char Fee_uJobIntClrIt.129_1;
+  unsigned char Fee_uJobIntClrIt.130_2;
+  unsigned char _3;
+  unsigned char Fee_uJobIntClrIt.131_4;
+  long unsigned int _5;
+  unsigned char Fee_uJobIntClrGrpIt.132_6;
+  int _7;
+  long unsigned int _8;
+  unsigned char Fee_uJobIntClrGrpIt.133_9;
+  unsigned char Fee_uJobIntClrGrpIt.134_10;
+  unsigned char _11;
+  unsigned char Fee_uJobIntClrGrpIt.135_12;
+  boolean _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt.129_1 = Fee_uJobIntClrIt;
+  Fee_uJobIntClrIt.130_2 = Fee_uJobIntClrIt.129_1;
+  _3 = Fee_uJobIntClrIt.130_2 + 1;
+  Fee_uJobIntClrIt = _3;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt.131_4 = Fee_uJobIntClrIt;
+  _5 = (long unsigned int) Fee_uJobIntClrIt.131_4;
+  Fee_uJobIntClrGrpIt.132_6 = Fee_uJobIntClrGrpIt;
+  _7 = (int) Fee_uJobIntClrGrpIt.132_6;
+  _8 = Fee_ClrGrps[_7].ClrCount;
+  if (_5 == _8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.133_9 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrGrpIt.134_10 = Fee_uJobIntClrGrpIt.133_9;
+  _11 = Fee_uJobIntClrGrpIt.134_10 + 1;
+  Fee_uJobIntClrGrpIt = _11;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.135_12 = Fee_uJobIntClrGrpIt;
+  if (Fee_uJobIntClrGrpIt.135_12 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 0;
+  # DEBUG RetVal => RetVal_20
+
+  <bb 7> :
+  # RetVal_13 = PHI <RetVal_22(5), RetVal_20(6)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  _23 = RetVal_13;
+  return _23;
+
+}
+
+
+Fee_JobInternalScan ()
+{
+  MemIf_JobResultType RetVal;
+  MemIf_JobResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_1 = 0;
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt = 0;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_6 = Fee_JobInternalScanClusterHdrRead ();
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  _7 = RetVal_6;
+  return _7;
+
+}
+
+
+Fee_JobInternalScanClusterHdrRead ()
+{
+  Fls_AddressType ReadAddress;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.136_1;
+  int _2;
+  const struct Fee_ClusterType * _3;
+  unsigned char Fee_uJobIntClrIt.137_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct Fee_ClusterType * _7;
+  unsigned char _8;
+  MemIf_JobResultType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.136_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.136_1;
+  _3 = Fee_ClrGrps[_2].ClrPtr;
+  Fee_uJobIntClrIt.137_4 = Fee_uJobIntClrIt;
+  _5 = (unsigned int) Fee_uJobIntClrIt.137_4;
+  _6 = _5 * 8;
+  _7 = _3 + _6;
+  ReadAddress_11 = _7->StartAddr;
+  # DEBUG ReadAddress => ReadAddress_11
+  # DEBUG BEGIN_STMT
+  _8 = Fls_Read (ReadAddress_11, &Fee_aDataBuffer, 96);
+  if (_8 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 1;
+  # DEBUG RetVal => RetVal_14
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 2;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 5> :
+  # RetVal_9 = PHI <RetVal_14(3), RetVal_13(4)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 11;
+  # DEBUG BEGIN_STMT
+  _16 = RetVal_9;
+  return _16;
+
+}
+
+
+Fee_JobInternalScanBlockHdrParse (const boolean BufferValid)
+{
+  uint16 BlockRuntimeInfoIndex;
+  uint16 BlockIndex;
+  Fls_AddressType DataAddr;
+  struct Fee_BlockType BlockHder;
+  Fee_BlockStatusType BlockStatus;
+  MemIf_JobResultType RetVal;
+  long unsigned int Fee_uJobIntAddrIt.81_1;
+  long unsigned int _2;
+  unsigned char Fee_uJobIntClrGrpIt.82_3;
+  int _4;
+  long unsigned int Fee_uJobIntAddrIt.83_5;
+  unsigned char bSwapToBePerformed.84_6;
+  long unsigned int Fee_uJobIntAddrIt.85_7;
+  unsigned char Fee_uJobIntClrGrpIt.86_8;
+  int _9;
+  long unsigned int _10;
+  unsigned char Fee_uJobIntClrGrpIt.87_11;
+  unsigned char Fee_uJobIntClrGrpIt.88_12;
+  unsigned char _13;
+  short unsigned int _14;
+  long unsigned int DataAddr.89_15;
+  unsigned char _16;
+  long unsigned int DataAddr.90_17;
+  unsigned char _18;
+  long unsigned int Fee_uJobIntAddrIt.91_19;
+  long unsigned int _20;
+  unsigned char Fee_uJobIntClrGrpIt.92_21;
+  int _22;
+  long unsigned int Fee_uJobIntAddrIt.93_23;
+  MemIf_JobResultType _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_29 = 0;
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BlockRuntimeInfoIndex_30 = 65535;
+  # DEBUG BlockRuntimeInfoIndex => BlockRuntimeInfoIndex_30
+  # DEBUG BEGIN_STMT
+  BlockStatus_33 = Fee_DeserializeBlockHdr (&BlockHder, &DataAddr, &Fee_aDataBuffer);
+  # DEBUG BlockStatus => BlockStatus_33
+  # DEBUG BEGIN_STMT
+  if (BlockStatus_33 == 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (BufferValid_34(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobBlockIndex = 65535;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.81_1 = Fee_uJobIntAddrIt;
+  _2 = Fee_uJobIntAddrIt.81_1 + 96;
+  Fee_uJobIntAddrIt = _2;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.82_3 = Fee_uJobIntClrGrpIt;
+  _4 = (int) Fee_uJobIntClrGrpIt.82_3;
+  Fee_uJobIntAddrIt.83_5 = Fee_uJobIntAddrIt;
+  Fee_aClrGrpInfo[_4].HdrAddrIt = Fee_uJobIntAddrIt.83_5;
+  # DEBUG BEGIN_STMT
+  bSwapToBePerformed = 1;
+  # DEBUG BEGIN_STMT
+  RetVal_55 = Fee_JobInternalScanBlockHdrRead ();
+  # DEBUG RetVal => RetVal_55
+  goto <bb 16>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (BlockStatus_33 == 5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  bSwapToBePerformed.84_6 = bSwapToBePerformed;
+  if (bSwapToBePerformed.84_6 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  bSwapToBePerformed = 0;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.85_7 = Fee_uJobIntAddrIt;
+  Fee_uJobIntClrGrpIt.86_8 = Fee_uJobIntClrGrpIt;
+  _9 = (int) Fee_uJobIntClrGrpIt.86_8;
+  _10 = Fee_uJobIntAddrIt.85_7 + 192;
+  Fee_aClrGrpInfo[_9].DataAddrIt = _10;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.87_11 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrGrpIt.88_12 = Fee_uJobIntClrGrpIt.87_11;
+  _13 = Fee_uJobIntClrGrpIt.88_12 + 1;
+  Fee_uJobIntClrGrpIt = _13;
+  # DEBUG BEGIN_STMT
+  RetVal_49 = Fee_JobInternalScanCluster ();
+  # DEBUG RetVal => RetVal_49
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _14 = BlockHder.BlockNumber;
+  BlockIndex_36 = Fee_GetBlockIndex (_14);
+  # DEBUG BlockIndex => BlockIndex_36
+  # DEBUG BEGIN_STMT
+  if (RetVal_29 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  DataAddr.89_15 = DataAddr;
+  _16 = Fee_IsBlockMatchedConfig (BlockIndex_36, BlockRuntimeInfoIndex_30, &BlockHder, DataAddr.89_15);
+  if (_16 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (BlockRuntimeInfoIndex_30 == 65535)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  BlockRuntimeInfoIndex_39 = BlockIndex_36;
+  # DEBUG BlockRuntimeInfoIndex => BlockRuntimeInfoIndex_39
+
+  <bb 13> :
+  # BlockRuntimeInfoIndex_25 = PHI <BlockRuntimeInfoIndex_30(11), BlockRuntimeInfoIndex_39(12)>
+  # DEBUG BlockRuntimeInfoIndex => BlockRuntimeInfoIndex_25
+  # DEBUG BEGIN_STMT
+  DataAddr.90_17 = DataAddr;
+  _18 = BlockHder.ImmediateBlock;
+  Fee_UpdateBlockRuntimeInfo (BlockRuntimeInfoIndex_25, BlockStatus_33, DataAddr.90_17, _18);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  bSwapToBePerformed = 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.91_19 = Fee_uJobIntAddrIt;
+  _20 = Fee_uJobIntAddrIt.91_19 + 96;
+  Fee_uJobIntAddrIt = _20;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.92_21 = Fee_uJobIntClrGrpIt;
+  _22 = (int) Fee_uJobIntClrGrpIt.92_21;
+  Fee_uJobIntAddrIt.93_23 = Fee_uJobIntAddrIt;
+  Fee_aClrGrpInfo[_22].HdrAddrIt = Fee_uJobIntAddrIt.93_23;
+  # DEBUG BEGIN_STMT
+  RetVal_44 = Fee_JobInternalScanBlockHdrRead ();
+  # DEBUG RetVal => RetVal_44
+
+  <bb 16> :
+  # RetVal_24 = PHI <RetVal_55(4), RetVal_49(8), RetVal_29(9), RetVal_44(15)>
+  # DEBUG RetVal => RetVal_24
+  # DEBUG BEGIN_STMT
+  _56 = RetVal_24;
+  BlockHder ={v} {CLOBBER};
+  DataAddr ={v} {CLOBBER};
+  return _56;
+
+}
+
+
+Fee_UpdateBlockRuntimeInfo (uint16 BlockRuntimeInfoIndex, Fee_BlockStatusType BlockStatus, Fls_AddressType DataAddr, boolean ImmediateBlock)
+{
+  int _1;
+  int _2;
+  long unsigned int Fee_uJobIntAddrIt.101_3;
+  int _4;
+  long unsigned int _5;
+  unsigned char Fee_uJobIntClrGrpIt.102_6;
+  int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockRuntimeInfoIndex_8(D);
+  Fee_aBlockInfo[_1].BlockStatus = BlockStatus_10(D);
+  # DEBUG BEGIN_STMT
+  _2 = (int) BlockRuntimeInfoIndex_8(D);
+  Fee_aBlockInfo[_2].DataAddr = DataAddr_12(D);
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.101_3 = Fee_uJobIntAddrIt;
+  _4 = (int) BlockRuntimeInfoIndex_8(D);
+  _5 = Fee_uJobIntAddrIt.101_3 + 64;
+  Fee_aBlockInfo[_4].InvalidAddr = _5;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.102_6 = Fee_uJobIntClrGrpIt;
+  _7 = (int) Fee_uJobIntClrGrpIt.102_6;
+  Fee_aClrGrpInfo[_7].DataAddrIt = DataAddr_12(D);
+  return;
+
+}
+
+
+Fee_IsBlockMatchedConfig (uint16 BlockIndex, uint16 BlockRuntimeInfoIndex, const struct Fee_BlockType * BlockHder, Fls_AddressType DataAddr)
+{
+  uint16 AlignedBlockSize;
+  boolean RetVal;
+  short unsigned int _1;
+  unsigned char Fee_uJobIntClrGrpIt.98_2;
+  int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char Fee_uJobIntClrGrpIt.99_7;
+  int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  int _11;
+  unsigned char _12;
+  unsigned char Fee_uJobIntClrGrpIt.100_13;
+  int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  int _17;
+  unsigned char _18;
+  unsigned char _19;
+  boolean _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (BlockIndex_23(D) != 65535)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (BlockRuntimeInfoIndex_24(D) != 65535)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = BlockHder_27(D)->Length;
+  AlignedBlockSize_29 = Fee_AlignToVirtualPageSize (_1);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_29
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.98_2 = Fee_uJobIntClrGrpIt;
+  _3 = (int) Fee_uJobIntClrGrpIt.98_2;
+  _4 = Fee_aClrGrpInfo[_3].DataAddrIt;
+  _5 = (long unsigned int) AlignedBlockSize_29;
+  _6 = _4 - _5;
+  if (DataAddr_30(D) <= _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  Fee_uJobIntClrGrpIt.99_7 = Fee_uJobIntClrGrpIt;
+  _8 = (int) Fee_uJobIntClrGrpIt.99_7;
+  _9 = Fee_aClrGrpInfo[_8].HdrAddrIt;
+  _10 = _9 + 192;
+  if (DataAddr_30(D) >= _10)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BlockRuntimeInfoIndex_24(D) == 65535)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) BlockIndex_23(D);
+  _12 = Fee_BlockConfig[_11].ClrGrp;
+  Fee_uJobIntClrGrpIt.100_13 = Fee_uJobIntClrGrpIt;
+  if (_12 != Fee_uJobIntClrGrpIt.100_13)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _14 = (int) BlockIndex_23(D);
+  _15 = Fee_BlockConfig[_14].BlockSize;
+  _16 = BlockHder_27(D)->Length;
+  if (_15 != _16)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _17 = (int) BlockIndex_23(D);
+  _18 = Fee_BlockConfig[_17].ImmediateData;
+  _19 = BlockHder_27(D)->ImmediateBlock;
+  if (_18 != _19)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_31 = 0;
+  # DEBUG RetVal => RetVal_31
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_32 = 0;
+  # DEBUG RetVal => RetVal_32
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RetVal_25 = 0;
+  # DEBUG RetVal => RetVal_25
+
+  <bb 13> :
+  # RetVal_20 = PHI <RetVal_32(11), RetVal_25(12), RetVal_22(9), RetVal_31(10), RetVal_22(6)>
+  # DEBUG RetVal => RetVal_20
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_20;
+  return _33;
+
+}
+
+
+Fee_JobInternalScanClusterFmtDone ()
+{
+  Fls_LengthType ClrLength;
+  Fls_AddressType ClrStartAddr;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.104_1;
+  int _2;
+  unsigned char Fee_uJobIntClrIt.105_3;
+  unsigned char Fee_uJobIntClrGrpIt.106_4;
+  int _5;
+  unsigned char Fee_uJobIntClrGrpIt.107_6;
+  int _7;
+  const struct Fee_ClusterType * _8;
+  unsigned char Fee_uJobIntClrIt.108_9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct Fee_ClusterType * _12;
+  unsigned char Fee_uJobIntClrGrpIt.109_13;
+  unsigned char Fee_uJobIntClrIt.110_14;
+  unsigned char Fee_uJobIntClrGrpIt.111_15;
+  int _16;
+  long unsigned int _17;
+  unsigned char Fee_uJobIntClrGrpIt.112_18;
+  int _19;
+  long unsigned int _20;
+  unsigned char Fee_uJobIntClrGrpIt.113_21;
+  unsigned char Fee_uJobIntClrGrpIt.114_22;
+  unsigned char _23;
+  MemIf_JobResultType _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.104_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.104_1;
+  Fee_uJobIntClrIt.105_3 = Fee_uJobIntClrIt;
+  Fee_aClrGrpInfo[_2].ActClr = Fee_uJobIntClrIt.105_3;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.106_4 = Fee_uJobIntClrGrpIt;
+  _5 = (int) Fee_uJobIntClrGrpIt.106_4;
+  Fee_aClrGrpInfo[_5].ActClrID = 1;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.107_6 = Fee_uJobIntClrGrpIt;
+  _7 = (int) Fee_uJobIntClrGrpIt.107_6;
+  _8 = Fee_ClrGrps[_7].ClrPtr;
+  Fee_uJobIntClrIt.108_9 = Fee_uJobIntClrIt;
+  _10 = (unsigned int) Fee_uJobIntClrIt.108_9;
+  _11 = _10 * 8;
+  _12 = _8 + _11;
+  ClrStartAddr_27 = _12->StartAddr;
+  # DEBUG ClrStartAddr => ClrStartAddr_27
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.109_13 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.110_14 = Fee_uJobIntClrIt;
+  ClrLength_29 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.109_13, Fee_uJobIntClrIt.110_14);
+  # DEBUG ClrLength => ClrLength_29
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.111_15 = Fee_uJobIntClrGrpIt;
+  _16 = (int) Fee_uJobIntClrGrpIt.111_15;
+  _17 = ClrStartAddr_27 + 96;
+  Fee_aClrGrpInfo[_16].HdrAddrIt = _17;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.112_18 = Fee_uJobIntClrGrpIt;
+  _19 = (int) Fee_uJobIntClrGrpIt.112_18;
+  _20 = ClrStartAddr_27 + ClrLength_29;
+  Fee_aClrGrpInfo[_19].DataAddrIt = _20;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.113_21 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrGrpIt.114_22 = Fee_uJobIntClrGrpIt.113_21;
+  _23 = Fee_uJobIntClrGrpIt.114_22 + 1;
+  Fee_uJobIntClrGrpIt = _23;
+  # DEBUG BEGIN_STMT
+  RetVal_34 = Fee_JobInternalScanCluster ();
+  # DEBUG RetVal => RetVal_34
+  # DEBUG BEGIN_STMT
+  _35 = RetVal_34;
+  return _35;
+
+}
+
+
+Fee_JobInternalScanClusterFmt ()
+{
+  Fls_LengthType ClusterLength;
+  struct Fee_ClusterHeaderType ClrHdr;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.115_1;
+  unsigned char Fee_uJobIntClrIt.116_2;
+  unsigned char Fee_uJobIntClrGrpIt.117_3;
+  int _4;
+  const struct Fee_ClusterType * _5;
+  unsigned char Fee_uJobIntClrIt.118_6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Fee_ClusterType * _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  unsigned char _12;
+  MemIf_JobResultType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.115_1 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.116_2 = Fee_uJobIntClrIt;
+  ClusterLength_16 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.115_1, Fee_uJobIntClrIt.116_2);
+  # DEBUG ClusterLength => ClusterLength_16
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.117_3 = Fee_uJobIntClrGrpIt;
+  _4 = (int) Fee_uJobIntClrGrpIt.117_3;
+  _5 = Fee_ClrGrps[_4].ClrPtr;
+  Fee_uJobIntClrIt.118_6 = Fee_uJobIntClrIt;
+  _7 = (unsigned int) Fee_uJobIntClrIt.118_6;
+  _8 = _7 * 8;
+  _9 = _5 + _8;
+  _10 = _9->StartAddr;
+  ClrHdr.StartAddr = _10;
+  # DEBUG BEGIN_STMT
+  ClrHdr.Length = ClusterLength_16;
+  # DEBUG BEGIN_STMT
+  ClrHdr.ClrID = 1;
+  # DEBUG BEGIN_STMT
+  Fee_SerializeClusterHdr (&ClrHdr, &Fee_aDataBuffer);
+  # DEBUG BEGIN_STMT
+  Fee_SerializeFlag (&Fee_aDataBuffer[32], 129);
+  # DEBUG BEGIN_STMT
+  _11 = ClrHdr.StartAddr;
+  _12 = Fee_WriteToFls (_11, &Fee_aDataBuffer, 64);
+  if (_12 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_24 = 2;
+  # DEBUG RetVal => RetVal_24
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+
+  <bb 5> :
+  # RetVal_13 = PHI <RetVal_24(3), RetVal_23(4)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 13;
+  # DEBUG BEGIN_STMT
+  _26 = RetVal_13;
+  ClrHdr ={v} {CLOBBER};
+  return _26;
+
+}
+
+
+Fee_JobInternalScanCluster ()
+{
+  Fls_LengthType ClrLength;
+  Fls_AddressType ClrStartAddr;
+  uint8 ClrIndex;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.138_1;
+  unsigned char Fee_uJobIntClrGrpIt.139_2;
+  int _3;
+  long unsigned int _4;
+  unsigned char Fee_uJobIntClrGrpIt.140_5;
+  int _6;
+  unsigned char Fee_uJobIntClrGrpIt.141_7;
+  int _8;
+  const struct Fee_ClusterType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct Fee_ClusterType * _12;
+  long unsigned int _13;
+  unsigned char Fee_uJobIntClrGrpIt.142_14;
+  int _15;
+  long unsigned int Fee_uJobIntAddrIt.143_16;
+  unsigned char Fee_uJobIntClrGrpIt.144_17;
+  unsigned char Fee_uJobIntClrGrpIt.145_18;
+  int _19;
+  long unsigned int _20;
+  MemIf_JobResultType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 0;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.138_1 = Fee_uJobIntClrGrpIt;
+  if (Fee_uJobIntClrGrpIt.138_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 20;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.139_2 = Fee_uJobIntClrGrpIt;
+  _3 = (int) Fee_uJobIntClrGrpIt.139_2;
+  _4 = Fee_aClrGrpInfo[_3].ActClrID;
+  if (_4 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_36 = Fee_JobInternalScanClusterErase ();
+  # DEBUG RetVal => RetVal_36
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.140_5 = Fee_uJobIntClrGrpIt;
+  _6 = (int) Fee_uJobIntClrGrpIt.140_5;
+  ClrIndex_25 = Fee_aClrGrpInfo[_6].ActClr;
+  # DEBUG ClrIndex => ClrIndex_25
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.141_7 = Fee_uJobIntClrGrpIt;
+  _8 = (int) Fee_uJobIntClrGrpIt.141_7;
+  _9 = Fee_ClrGrps[_8].ClrPtr;
+  _10 = (unsigned int) ClrIndex_25;
+  _11 = _10 * 8;
+  _12 = _9 + _11;
+  ClrStartAddr_26 = _12->StartAddr;
+  # DEBUG ClrStartAddr => ClrStartAddr_26
+  # DEBUG BEGIN_STMT
+  _13 = ClrStartAddr_26 + 96;
+  Fee_uJobIntAddrIt = _13;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.142_14 = Fee_uJobIntClrGrpIt;
+  _15 = (int) Fee_uJobIntClrGrpIt.142_14;
+  Fee_uJobIntAddrIt.143_16 = Fee_uJobIntAddrIt;
+  Fee_aClrGrpInfo[_15].HdrAddrIt = Fee_uJobIntAddrIt.143_16;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.144_17 = Fee_uJobIntClrGrpIt;
+  ClrLength_30 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.144_17, ClrIndex_25);
+  # DEBUG ClrLength => ClrLength_30
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.145_18 = Fee_uJobIntClrGrpIt;
+  _19 = (int) Fee_uJobIntClrGrpIt.145_18;
+  _20 = ClrStartAddr_26 + ClrLength_30;
+  Fee_aClrGrpInfo[_19].DataAddrIt = _20;
+  # DEBUG BEGIN_STMT
+  RetVal_33 = Fee_JobInternalScanBlockHdrRead ();
+  # DEBUG RetVal => RetVal_33
+
+  <bb 7> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_36(5), RetVal_33(6)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _38 = RetVal_21;
+  return _38;
+
+}
+
+
+Fee_JobInternalScanClusterErase ()
+{
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.146_1;
+  unsigned char Fee_uJobIntClrIt.147_2;
+  unsigned char _3;
+  MemIf_JobResultType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.146_1 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.147_2 = Fee_uJobIntClrIt;
+  _3 = Fee_EraseCluster (Fee_uJobIntClrGrpIt.146_1, Fee_uJobIntClrIt.147_2);
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 2;
+  # DEBUG RetVal => RetVal_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 5> :
+  # RetVal_4 = PHI <RetVal_8(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 12;
+  # DEBUG BEGIN_STMT
+  _10 = RetVal_4;
+  return _10;
+
+}
+
+
+Fee_JobInternalScanBlockHdrRead ()
+{
+  MemIf_JobResultType RetVal;
+  long unsigned int Fee_uJobIntAddrIt.103_1;
+  unsigned char _2;
+  MemIf_JobResultType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 0;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt.103_1 = Fee_uJobIntAddrIt;
+  _2 = Fee_ReadFromFls (Fee_uJobIntAddrIt.103_1, &Fee_aDataBuffer, 96);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 1;
+  # DEBUG RetVal => RetVal_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 2;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 5> :
+  # RetVal_3 = PHI <RetVal_8(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 14;
+  # DEBUG BEGIN_STMT
+  _10 = RetVal_3;
+  return _10;
+
+}
+
+
+Fee_JobInternalSwap ()
+{
+  uint8 NextCluster;
+  uint8 CurrentCluster;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.156_1;
+  int _2;
+  <unnamed type> Fee_eJob.157_3;
+  MemIf_JobResultType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 1;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.156_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.156_1;
+  CurrentCluster_6 = Fee_aClrGrpInfo[_2].ActClr;
+  # DEBUG CurrentCluster => CurrentCluster_6
+  # DEBUG BEGIN_STMT
+  NextCluster_8 = Fee_GetNextClusterToSwap (CurrentCluster_6);
+  # DEBUG NextCluster => NextCluster_8
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrIt = NextCluster_8;
+  # DEBUG BEGIN_STMT
+  Fee_eJob.157_3 = Fee_eJob;
+  Fee_eJobIntOriginalJob = Fee_eJob.157_3;
+  # DEBUG BEGIN_STMT
+  RetVal_12 = Fee_JobInternalSwapClusterErase ();
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  _13 = RetVal_12;
+  return _13;
+
+}
+
+
+Fee_GetNextClusterToSwap (uint8 CurrentCluster)
+{
+  uint8 NextCluster;
+  unsigned char NextCluster.158_1;
+  long unsigned int _2;
+  unsigned char Fee_uJobIntClrGrpIt.159_3;
+  int _4;
+  long unsigned int _5;
+  uint8 _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NextCluster_8 = CurrentCluster_7(D);
+  # DEBUG NextCluster => NextCluster_8
+  # DEBUG BEGIN_STMT
+  NextCluster.158_1 = NextCluster_8;
+  NextCluster_9 = NextCluster.158_1 + 1;
+  # DEBUG NextCluster => NextCluster_9
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) NextCluster_9;
+  Fee_uJobIntClrGrpIt.159_3 = Fee_uJobIntClrGrpIt;
+  _4 = (int) Fee_uJobIntClrGrpIt.159_3;
+  _5 = Fee_ClrGrps[_4].ClrCount;
+  if (_2 == _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NextCluster_11 = 0;
+  # DEBUG NextCluster => NextCluster_11
+
+  <bb 4> :
+  # NextCluster_6 = PHI <NextCluster_9(2), NextCluster_11(3)>
+  # DEBUG NextCluster => NextCluster_6
+  # DEBUG BEGIN_STMT
+  _12 = NextCluster_6;
+  return _12;
+
+}
+
+
+Fee_JobInternalSwapClusterErase ()
+{
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.160_1;
+  unsigned char Fee_uJobIntClrIt.161_2;
+  unsigned char _3;
+  MemIf_JobResultType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.160_1 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.161_2 = Fee_uJobIntClrIt;
+  _3 = Fee_EraseCluster (Fee_uJobIntClrGrpIt.160_1, Fee_uJobIntClrIt.161_2);
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 2;
+  # DEBUG RetVal => RetVal_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 5> :
+  # RetVal_4 = PHI <RetVal_8(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 15;
+  # DEBUG BEGIN_STMT
+  _10 = RetVal_4;
+  return _10;
+
+}
+
+
+Fee_JobInternalSwapClusterFmt ()
+{
+  Fls_LengthType ClusterLength;
+  struct Fee_ClusterHeaderType ClrHdr;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.76_1;
+  unsigned char Fee_uJobIntClrIt.77_2;
+  unsigned char Fee_uJobIntClrGrpIt.78_3;
+  int _4;
+  const struct Fee_ClusterType * _5;
+  unsigned char Fee_uJobIntClrIt.79_6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Fee_ClusterType * _9;
+  long unsigned int _10;
+  unsigned char Fee_uJobIntClrGrpIt.80_11;
+  int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  unsigned char _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  MemIf_JobResultType _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.76_1 = Fee_uJobIntClrGrpIt;
+  Fee_uJobIntClrIt.77_2 = Fee_uJobIntClrIt;
+  ClusterLength_25 = Fee_GetClusterLength (Fee_uJobIntClrGrpIt.76_1, Fee_uJobIntClrIt.77_2);
+  # DEBUG ClusterLength => ClusterLength_25
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.78_3 = Fee_uJobIntClrGrpIt;
+  _4 = (int) Fee_uJobIntClrGrpIt.78_3;
+  _5 = Fee_ClrGrps[_4].ClrPtr;
+  Fee_uJobIntClrIt.79_6 = Fee_uJobIntClrIt;
+  _7 = (unsigned int) Fee_uJobIntClrIt.79_6;
+  _8 = _7 * 8;
+  _9 = _5 + _8;
+  _10 = _9->StartAddr;
+  ClrHdr.StartAddr = _10;
+  # DEBUG BEGIN_STMT
+  ClrHdr.Length = ClusterLength_25;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.80_11 = Fee_uJobIntClrGrpIt;
+  _12 = (int) Fee_uJobIntClrGrpIt.80_11;
+  _13 = Fee_aClrGrpInfo[_12].ActClrID;
+  _14 = _13 + 1;
+  ClrHdr.ClrID = _14;
+  # DEBUG BEGIN_STMT
+  Fee_SerializeClusterHdr (&ClrHdr, &Fee_aDataBuffer);
+  # DEBUG BEGIN_STMT
+  _15 = ClrHdr.StartAddr;
+  _16 = Fee_WriteToFls (_15, &Fee_aDataBuffer, 32);
+  if (_16 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_32 = 2;
+  # DEBUG RetVal => RetVal_32
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_31 = 1;
+  # DEBUG RetVal => RetVal_31
+
+  <bb 5> :
+  # RetVal_22 = PHI <RetVal_32(3), RetVal_31(4)>
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  _17 = ClrHdr.StartAddr;
+  _18 = _17 + 96;
+  Fee_uJobIntHdrAddr = _18;
+  # DEBUG BEGIN_STMT
+  _19 = ClrHdr.StartAddr;
+  _20 = ClrHdr.Length;
+  _21 = _19 + _20;
+  Fee_uJobIntDataAddr = _21;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt = 0;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 16;
+  # DEBUG BEGIN_STMT
+  _37 = RetVal_22;
+  ClrHdr ={v} {CLOBBER};
+  return _37;
+
+}
+
+
+Fee_JobInternalSwapBlock ()
+{
+  uint8 BlockClusterGrp;
+  uint16 AlignedBlockSize;
+  struct Fee_BlockType BlockHder;
+  Fls_AddressType DataAddr;
+  MemIf_JobResultType RetVal;
+  short unsigned int Fee_uJobIntBlockIt.55_1;
+  unsigned char Fee_uJobIntClrGrpIt.56_2;
+  short unsigned int Fee_uJobIntBlockIt.57_3;
+  int _4;
+  <unnamed type> _5;
+  short unsigned int Fee_uJobIntBlockIt.58_6;
+  int _7;
+  <unnamed type> _8;
+  short unsigned int Fee_uJobIntBlockIt.59_9;
+  int _10;
+  <unnamed type> _11;
+  short unsigned int Fee_uJobIntBlockIt.60_12;
+  short unsigned int Fee_uJobIntBlockIt.61_13;
+  short unsigned int _14;
+  short unsigned int Fee_uJobIntBlockIt.62_15;
+  short unsigned int Fee_uJobIntBlockIt.63_16;
+  short unsigned int Fee_uJobIntBlockIt.64_17;
+  short unsigned int _18;
+  short unsigned int Fee_uJobIntBlockIt.65_19;
+  unsigned char _20;
+  short unsigned int Fee_uJobIntBlockIt.66_21;
+  short unsigned int _22;
+  short unsigned int Fee_uJobIntBlockIt.67_23;
+  int _24;
+  <unnamed type> _25;
+  short unsigned int _26;
+  long unsigned int Fee_uJobIntDataAddr.68_27;
+  long unsigned int _28;
+  short unsigned int Fee_uJobIntBlockIt.69_29;
+  int _30;
+  <unnamed type> _31;
+  short unsigned int Fee_uJobIntBlockIt.70_32;
+  short unsigned int Fee_uJobIntBlockIt.71_33;
+  short unsigned int _34;
+  long unsigned int Fee_uJobIntHdrAddr.72_35;
+  unsigned char _36;
+  long unsigned int Fee_uJobIntHdrAddr.73_37;
+  long unsigned int _38;
+  MemIf_JobResultType _73;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.55_1 = Fee_uJobIntBlockIt;
+  BlockClusterGrp_49 = Fee_GetBlockClusterGrp (Fee_uJobIntBlockIt.55_1);
+  # DEBUG BlockClusterGrp => BlockClusterGrp_49
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.56_2 = Fee_uJobIntClrGrpIt;
+  if (BlockClusterGrp_49 == Fee_uJobIntClrGrpIt.56_2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  Fee_uJobIntBlockIt.57_3 = Fee_uJobIntBlockIt;
+  _4 = (int) Fee_uJobIntBlockIt.57_3;
+  _5 = Fee_aBlockInfo[_4].BlockStatus;
+  if (_5 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  Fee_uJobIntBlockIt.58_6 = Fee_uJobIntBlockIt;
+  _7 = (int) Fee_uJobIntBlockIt.58_6;
+  _8 = Fee_aBlockInfo[_7].BlockStatus;
+  if (_8 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  Fee_uJobIntBlockIt.59_9 = Fee_uJobIntBlockIt;
+  _10 = (int) Fee_uJobIntBlockIt.59_9;
+  _11 = Fee_aBlockInfo[_10].BlockStatus;
+  if (_11 == 6)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.60_12 = Fee_uJobIntBlockIt;
+  Fee_uJobIntBlockIt.61_13 = Fee_uJobIntBlockIt.60_12;
+  _14 = Fee_uJobIntBlockIt.61_13 + 1;
+  Fee_uJobIntBlockIt = _14;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.62_15 = Fee_uJobIntBlockIt;
+  if (Fee_uJobIntBlockIt.62_15 <= 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.63_16 = Fee_uJobIntBlockIt;
+  if (Fee_uJobIntBlockIt.63_16 == 11)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_72 = Fee_JobInternalSwapClusterVld ();
+  # DEBUG RetVal => RetVal_72
+  goto <bb 21>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.64_17 = Fee_uJobIntBlockIt;
+  _18 = Fee_GetBlockSize (Fee_uJobIntBlockIt.64_17);
+  BlockHder.Length = _18;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.65_19 = Fee_uJobIntBlockIt;
+  _20 = Fee_GetBlockImmediate (Fee_uJobIntBlockIt.65_19);
+  BlockHder.ImmediateBlock = _20;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.66_21 = Fee_uJobIntBlockIt;
+  _22 = Fee_GetBlockNumber (Fee_uJobIntBlockIt.66_21);
+  BlockHder.BlockNumber = _22;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.67_23 = Fee_uJobIntBlockIt;
+  _24 = (int) Fee_uJobIntBlockIt.67_23;
+  _25 = Fee_aBlockInfo[_24].BlockStatus;
+  if (_25 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _26 = BlockHder.Length;
+  AlignedBlockSize_59 = Fee_AlignToVirtualPageSize (_26);
+  # DEBUG AlignedBlockSize => AlignedBlockSize_59
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntDataAddr.68_27 = Fee_uJobIntDataAddr;
+  _28 = (long unsigned int) AlignedBlockSize_59;
+  DataAddr_60 = Fee_uJobIntDataAddr.68_27 - _28;
+  # DEBUG DataAddr => DataAddr_60
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntDataAddr = DataAddr_60;
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntAddrIt = DataAddr_60;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  DataAddr_57 = 0;
+  # DEBUG DataAddr => DataAddr_57
+
+  <bb 14> :
+  # DataAddr_41 = PHI <DataAddr_60(12), DataAddr_57(13)>
+  # DEBUG DataAddr => DataAddr_41
+  # DEBUG BEGIN_STMT
+  Fee_SerializeBlockHdr (&BlockHder, DataAddr_41, &Fee_aDataBuffer);
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.69_29 = Fee_uJobIntBlockIt;
+  _30 = (int) Fee_uJobIntBlockIt.69_29;
+  _31 = Fee_aBlockInfo[_30].BlockStatus;
+  if (_31 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 17;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntBlockIt.70_32 = Fee_uJobIntBlockIt;
+  Fee_uJobIntBlockIt.71_33 = Fee_uJobIntBlockIt.70_32;
+  _34 = Fee_uJobIntBlockIt.71_33 + 1;
+  Fee_uJobIntBlockIt = _34;
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 16;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntHdrAddr.72_35 = Fee_uJobIntHdrAddr;
+  _36 = Fee_WriteToFls (Fee_uJobIntHdrAddr.72_35, &Fee_aDataBuffer, 32);
+  if (_36 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  RetVal_69 = 1;
+  # DEBUG RetVal => RetVal_69
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  RetVal_68 = 2;
+  # DEBUG RetVal => RetVal_68
+
+  <bb 20> :
+  # RetVal_39 = PHI <RetVal_69(18), RetVal_68(19)>
+  # DEBUG RetVal => RetVal_39
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntHdrAddr.73_37 = Fee_uJobIntHdrAddr;
+  _38 = Fee_uJobIntHdrAddr.73_37 + 96;
+  Fee_uJobIntHdrAddr = _38;
+
+  <bb 21> :
+  # RetVal_40 = PHI <RetVal_72(10), RetVal_39(20)>
+  # DEBUG RetVal => RetVal_40
+  # DEBUG BEGIN_STMT
+  _73 = RetVal_40;
+  BlockHder ={v} {CLOBBER};
+  return _73;
+
+}
+
+
+Fee_JobInternalSwapClusterVld ()
+{
+  Fls_AddressType StartAddr;
+  MemIf_JobResultType RetVal;
+  unsigned char Fee_uJobIntClrGrpIt.74_1;
+  int _2;
+  const struct Fee_ClusterType * _3;
+  unsigned char Fee_uJobIntClrIt.75_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct Fee_ClusterType * _7;
+  long unsigned int _8;
+  unsigned char _9;
+  MemIf_JobResultType _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_uJobIntClrGrpIt.74_1 = Fee_uJobIntClrGrpIt;
+  _2 = (int) Fee_uJobIntClrGrpIt.74_1;
+  _3 = Fee_ClrGrps[_2].ClrPtr;
+  Fee_uJobIntClrIt.75_4 = Fee_uJobIntClrIt;
+  _5 = (unsigned int) Fee_uJobIntClrIt.75_4;
+  _6 = _5 * 8;
+  _7 = _3 + _6;
+  StartAddr_12 = _7->StartAddr;
+  # DEBUG StartAddr => StartAddr_12
+  # DEBUG BEGIN_STMT
+  Fee_SerializeFlag (&Fee_aDataBuffer, 129);
+  # DEBUG BEGIN_STMT
+  _8 = StartAddr_12 + 32;
+  _9 = Fee_WriteToFls (_8, &Fee_aDataBuffer, 32);
+  if (_9 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 2;
+  # DEBUG RetVal => RetVal_16
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 1;
+  # DEBUG RetVal => RetVal_15
+
+  <bb 5> :
+  # RetVal_10 = PHI <RetVal_16(3), RetVal_15(4)>
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  Fee_eJob = 19;
+  # DEBUG BEGIN_STMT
+  _18 = RetVal_10;
+  return _18;
+
+}
+
+
+Fee_SerializeFlag (uint8 * TargetPtr, const uint8 FlagPattern)
+{
+  uint8 * TempPtr;
+  const uint8 * TargetEndPtr;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TargetEndPtr_4 = TargetPtr_3(D) + 32;
+  # DEBUG TargetEndPtr => TargetEndPtr_4
+  # DEBUG BEGIN_STMT
+  TempPtr_5 = TargetPtr_3(D);
+  # DEBUG TempPtr => TempPtr_5
+  # DEBUG BEGIN_STMT
+  *TempPtr_5 = FlagPattern_7(D);
+  # DEBUG BEGIN_STMT
+  TempPtr_9 = TempPtr_5 + 1;
+  # DEBUG TempPtr => TempPtr_9
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *TempPtr_1 = 255;
+  # DEBUG BEGIN_STMT
+  TempPtr_11 = TempPtr_1 + 1;
+  # DEBUG TempPtr => TempPtr_11
+
+  <bb 4> :
+  # TempPtr_1 = PHI <TempPtr_9(2), TempPtr_11(3)>
+  # DEBUG TempPtr => TempPtr_1
+  # DEBUG BEGIN_STMT
+  if (TempPtr_1 < TargetEndPtr_4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Fee_CopyDataToPageBuffer (const uint8 * SourcePtr, uint8 * TargetPtr, const uint16 Length)
+{
+  const uint8 * TempSourcePtr;
+  uint8 * TempTargetPtr;
+  const uint8 * PageEndPtr;
+  const uint8 * TargetEndPtr;
+  sizetype _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (sizetype) Length_8(D);
+  TargetEndPtr_10 = TargetPtr_9(D) + _1;
+  # DEBUG TargetEndPtr => TargetEndPtr_10
+  # DEBUG BEGIN_STMT
+  PageEndPtr_11 = TargetPtr_9(D) + 32;
+  # DEBUG PageEndPtr => PageEndPtr_11
+  # DEBUG BEGIN_STMT
+  TempTargetPtr_12 = TargetPtr_9(D);
+  # DEBUG TempTargetPtr => TempTargetPtr_12
+  # DEBUG BEGIN_STMT
+  TempSourcePtr_14 = SourcePtr_13(D);
+  # DEBUG TempSourcePtr => TempSourcePtr_14
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = *TempSourcePtr_5;
+  *TempTargetPtr_3 = _2;
+  # DEBUG BEGIN_STMT
+  TempSourcePtr_19 = TempSourcePtr_5 + 1;
+  # DEBUG TempSourcePtr => TempSourcePtr_19
+  # DEBUG BEGIN_STMT
+  TempTargetPtr_20 = TempTargetPtr_3 + 1;
+  # DEBUG TempTargetPtr => TempTargetPtr_20
+
+  <bb 4> :
+  # TempTargetPtr_3 = PHI <TempTargetPtr_12(2), TempTargetPtr_20(3)>
+  # TempSourcePtr_5 = PHI <TempSourcePtr_14(2), TempSourcePtr_19(3)>
+  # DEBUG TempSourcePtr => TempSourcePtr_5
+  # DEBUG TempTargetPtr => TempTargetPtr_3
+  # DEBUG BEGIN_STMT
+  if (TempTargetPtr_3 < TargetEndPtr_10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *TempTargetPtr_4 = 255;
+  # DEBUG BEGIN_STMT
+  TempTargetPtr_17 = TempTargetPtr_4 + 1;
+  # DEBUG TempTargetPtr => TempTargetPtr_17
+
+  <bb 6> :
+  # TempTargetPtr_4 = PHI <TempTargetPtr_3(4), TempTargetPtr_17(5)>
+  # DEBUG TempTargetPtr => TempTargetPtr_4
+  # DEBUG BEGIN_STMT
+  if (TempTargetPtr_4 < PageEndPtr_11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+Fee_AlignToVirtualPageSize (uint16 BlockSize)
+{
+  uint16 Retval;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  uint16 _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Retval_5 = 0;
+  # DEBUG Retval => Retval_5
+  # DEBUG BEGIN_STMT
+  _1 = BlockSize_6(D) & 31;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Retval_8 = BlockSize_6(D);
+  # DEBUG Retval => Retval_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = BlockSize_6(D) / 32;
+  _3 = _2 + 1;
+  Retval_7 = _3 * 32;
+  # DEBUG Retval => Retval_7
+
+  <bb 5> :
+  # Retval_4 = PHI <Retval_8(3), Retval_7(4)>
+  # DEBUG Retval => Retval_4
+  # DEBUG BEGIN_STMT
+  _9 = Retval_4;
+  return _9;
+
+}
+
+
+Fee_GetBlockImmediate (const uint16 BlockRuntimeInfoIndex)
+{
+  boolean Immediate;
+  int _1;
+  boolean _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockRuntimeInfoIndex_2(D);
+  Immediate_4 = Fee_BlockConfig[_1].ImmediateData;
+  # DEBUG Immediate => Immediate_4
+  # DEBUG BEGIN_STMT
+  _5 = Immediate_4;
+  return _5;
+
+}
+
+
+Fee_GetBlockNumber (const uint16 BlockRuntimeInfoIndex)
+{
+  uint16 BlockNumber;
+  int _1;
+  uint16 _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockNumber_2 = 0;
+  # DEBUG BlockNumber => BlockNumber_2
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockRuntimeInfoIndex_3(D);
+  BlockNumber_5 = Fee_BlockConfig[_1].BlockNumber;
+  # DEBUG BlockNumber => BlockNumber_5
+  # DEBUG BEGIN_STMT
+  _6 = BlockNumber_5;
+  return _6;
+
+}
+
+
+Fee_GetBlockSize (const uint16 BlockRuntimeInfoIndex)
+{
+  uint16 BlockSize;
+  int _1;
+  uint16 _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockRuntimeInfoIndex_2(D);
+  BlockSize_4 = Fee_BlockConfig[_1].BlockSize;
+  # DEBUG BlockSize => BlockSize_4
+  # DEBUG BEGIN_STMT
+  _5 = BlockSize_4;
+  return _5;
+
+}
+
+
+Fee_GetBlockIndex (const uint16 BlockNumber)
+{
+  uint16 RetVal;
+  sint32 Middle;
+  sint32 High;
+  sint32 Low;
+  long int _1;
+  long int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  uint16 _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Low_8 = 0;
+  # DEBUG Low => Low_8
+  # DEBUG BEGIN_STMT
+  High_9 = 10;
+  # DEBUG High => High_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 65535;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = High_6 - Low_5;
+  _2 = _1 / 2;
+  Middle_11 = Low_5 + _2;
+  # DEBUG Middle => Middle_11
+  # DEBUG BEGIN_STMT
+  _3 = Fee_BlockConfig[Middle_11].BlockNumber;
+  if (BlockNumber_13(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  High_16 = Middle_11 + -1;
+  # DEBUG High => High_16
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Fee_BlockConfig[Middle_11].BlockNumber;
+  if (BlockNumber_13(D) > _4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Low_15 = Middle_11 + 1;
+  # DEBUG Low => Low_15
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = (uint16) Middle_11;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # Low_5 = PHI <Low_8(2), Low_5(4), Low_15(6)>
+  # High_6 = PHI <High_9(2), High_16(4), High_6(6)>
+  # DEBUG High => High_6
+  # DEBUG Low => Low_5
+  # DEBUG BEGIN_STMT
+  if (Low_5 <= High_6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # RetVal_7 = PHI <RetVal_14(7), RetVal_10(8)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _17 = RetVal_7;
+  return _17;
+
+}
+
+
+Fee_SerializeClusterHdr (const struct Fee_ClusterHeaderType * ClrHdr, uint8 * ClrHdrPtr)
+{
+  uint8 * TempClrHdrPtr;
+  const uint8 * TargetEndPtr;
+  uint32 CheckSum;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_11 = ClrHdrPtr_10(D);
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_11
+  # DEBUG BEGIN_STMT
+  TargetEndPtr_12 = ClrHdrPtr_10(D) + 96;
+  # DEBUG TargetEndPtr => TargetEndPtr_12
+  # DEBUG BEGIN_STMT
+  _1 = ClrHdr_14(D)->ClrID;
+  _2 = ClrHdr_14(D)->StartAddr;
+  _3 = _1 + _2;
+  _4 = ClrHdr_14(D)->Length;
+  CheckSum_15 = _3 + _4;
+  # DEBUG CheckSum => CheckSum_15
+  # DEBUG BEGIN_STMT
+  _5 = ClrHdr_14(D)->ClrID;
+  MEM[(uint32 *)TempClrHdrPtr_11] = _5;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_17 = TempClrHdrPtr_11 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_17
+  # DEBUG BEGIN_STMT
+  _6 = ClrHdr_14(D)->StartAddr;
+  MEM[(Fls_AddressType *)TempClrHdrPtr_17] = _6;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_19 = TempClrHdrPtr_17 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_19
+  # DEBUG BEGIN_STMT
+  _7 = ClrHdr_14(D)->Length;
+  MEM[(Fls_LengthType *)TempClrHdrPtr_19] = _7;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_21 = TempClrHdrPtr_19 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_21
+  # DEBUG BEGIN_STMT
+  MEM[(uint32 *)TempClrHdrPtr_21] = CheckSum_15;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_23 = TempClrHdrPtr_21 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_23
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  *TempClrHdrPtr_8 = 255;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_25 = TempClrHdrPtr_8 + 1;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_25
+
+  <bb 4> :
+  # TempClrHdrPtr_8 = PHI <TempClrHdrPtr_23(2), TempClrHdrPtr_25(3)>
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_8
+  # DEBUG BEGIN_STMT
+  if (TempClrHdrPtr_8 < TargetEndPtr_12)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Fee_DeserializeClusterHdr (struct Fee_ClusterHeaderType * ClrHdr, const uint8 * ClrHdrPtr)
+{
+  const uint8 * TempClrHdrPtr;
+  const uint8 * TargetEndPtr;
+  boolean FlagInvalid;
+  boolean FlagValid;
+  uint32 CheckSumCal;
+  uint32 CheckSumHdr;
+  Fee_ClusterStatusType RetVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  const uint8 * _10;
+  unsigned char _11;
+  unsigned char FlagInvalid.127_12;
+  unsigned char FlagValid.128_13;
+  Fee_ClusterStatusType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 3;
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FlagValid = 0;
+  # DEBUG BEGIN_STMT
+  FlagInvalid = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_21 = ClrHdrPtr_20(D);
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_21
+  # DEBUG BEGIN_STMT
+  TargetEndPtr_22 = ClrHdrPtr_20(D) + 32;
+  # DEBUG TargetEndPtr => TargetEndPtr_22
+  # DEBUG BEGIN_STMT
+  _1 = MEM[(const uint32 *)TempClrHdrPtr_21];
+  ClrHdr_23(D)->ClrID = _1;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_25 = TempClrHdrPtr_21 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_25
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const Fls_AddressType *)TempClrHdrPtr_25];
+  ClrHdr_23(D)->StartAddr = _2;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_27 = TempClrHdrPtr_25 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_27
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const Fls_LengthType *)TempClrHdrPtr_27];
+  ClrHdr_23(D)->Length = _3;
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_29 = TempClrHdrPtr_27 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_29
+  # DEBUG BEGIN_STMT
+  _4 = ClrHdr_23(D)->ClrID;
+  _5 = ClrHdr_23(D)->StartAddr;
+  _6 = _4 + _5;
+  _7 = ClrHdr_23(D)->Length;
+  CheckSumCal_30 = _6 + _7;
+  # DEBUG CheckSumCal => CheckSumCal_30
+  # DEBUG BEGIN_STMT
+  CheckSumHdr_31 = MEM[(const uint32 *)TempClrHdrPtr_29];
+  # DEBUG CheckSumHdr => CheckSumHdr_31
+  # DEBUG BEGIN_STMT
+  TempClrHdrPtr_32 = TempClrHdrPtr_29 + 4;
+  # DEBUG TempClrHdrPtr => TempClrHdrPtr_32
+  # DEBUG BEGIN_STMT
+  if (CheckSumCal_30 != CheckSumHdr_31)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _8 = Fee_BlankCheck (TempClrHdrPtr_32, TargetEndPtr_22);
+  if (_8 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _9 = Fee_DeserializeFlag (TargetEndPtr_22, 129, &FlagValid);
+  if (_9 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _10 = TargetEndPtr_22 + 32;
+  _11 = Fee_DeserializeFlag (_10, 24, &FlagInvalid);
+  if (_11 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FlagInvalid.127_12 = FlagInvalid;
+  if (FlagInvalid.127_12 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  FlagValid.128_13 = FlagValid;
+  if (FlagValid.128_13 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_38 = 2;
+  # DEBUG RetVal => RetVal_38
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_37 = 0;
+  # DEBUG RetVal => RetVal_37
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 1;
+  # DEBUG RetVal => RetVal_36
+
+  <bb 11> :
+  # RetVal_14 = PHI <RetVal_16(2), RetVal_16(3), RetVal_16(4), RetVal_16(5), RetVal_37(9), RetVal_36(10), RetVal_38(8)>
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  _39 = RetVal_14;
+  FlagValid ={v} {CLOBBER};
+  FlagInvalid ={v} {CLOBBER};
+  return _39;
+
+}
+
+
+Fee_DeserializeBlockHdr (struct Fee_BlockType * const BlockHder, Fls_AddressType * const TargetAddress, const uint8 * BlockHdrPtr)
+{
+  uint8 ReservedSpace;
+  boolean FlagInvalid;
+  boolean FlagValid;
+  const uint8 * TempBlockHdrPtr;
+  const uint8 * TargetEndPtr;
+  uint32 CalcCheckSum;
+  uint32 ReadCheckSum;
+  Fee_BlockStatusType RetVal;
+  const uint8 * _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  long unsigned int _5;
+  short unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  long unsigned int _11;
+  signed int ReadCheckSum.94_12;
+  long unsigned int _13;
+  long unsigned int _14;
+  unsigned char _15;
+  unsigned char _16;
+  const uint8 * _17;
+  unsigned char _18;
+  unsigned char FlagValid.95_19;
+  unsigned char FlagInvalid.96_20;
+  unsigned char FlagInvalid.97_21;
+  Fee_BlockStatusType _58;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_27 = 1;
+  # DEBUG RetVal => RetVal_27
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_29 = BlockHdrPtr_28(D);
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_29
+  # DEBUG BEGIN_STMT
+  FlagValid = 0;
+  # DEBUG BEGIN_STMT
+  FlagInvalid = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = BlockHdrPtr_28(D) + 96;
+  _2 = Fee_BlankCheck (BlockHdrPtr_28(D), _1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_57 = 5;
+  # DEBUG RetVal => RetVal_57
+  goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  TargetEndPtr_34 = BlockHdrPtr_28(D) + 32;
+  # DEBUG TargetEndPtr => TargetEndPtr_34
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const uint16 *)TempBlockHdrPtr_29];
+  BlockHder_35(D)->BlockNumber = _3;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_37 = TempBlockHdrPtr_29 + 2;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_37
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const uint16 *)TempBlockHdrPtr_37];
+  BlockHder_35(D)->Length = _4;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_39 = TempBlockHdrPtr_37 + 2;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_39
+  # DEBUG BEGIN_STMT
+  _5 = MEM[(const Fls_AddressType *)TempBlockHdrPtr_39];
+  *TargetAddress_40(D) = _5;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_42 = TempBlockHdrPtr_39 + 4;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_42
+  # DEBUG BEGIN_STMT
+  ReadCheckSum_43 = MEM[(const uint32 *)TempBlockHdrPtr_42];
+  # DEBUG ReadCheckSum => ReadCheckSum_43
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_44 = TempBlockHdrPtr_42 + 4;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_44
+  # DEBUG BEGIN_STMT
+  ReservedSpace_45 = *TempBlockHdrPtr_44;
+  # DEBUG ReservedSpace => ReservedSpace_45
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_46 = TempBlockHdrPtr_44 + 1;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = BlockHder_35(D)->Length;
+  _7 = (long unsigned int) _6;
+  _8 = *TargetAddress_40(D);
+  _9 = _7 + _8;
+  _10 = BlockHder_35(D)->BlockNumber;
+  _11 = (long unsigned int) _10;
+  CalcCheckSum_47 = _9 + _11;
+  # DEBUG CalcCheckSum => CalcCheckSum_47
+  # DEBUG BEGIN_STMT
+  ReadCheckSum.94_12 = (signed int) ReadCheckSum_43;
+  if (ReadCheckSum.94_12 >= 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BlockHder_35(D)->ImmediateBlock = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  BlockHder_35(D)->ImmediateBlock = 1;
+  # DEBUG BEGIN_STMT
+  CalcCheckSum_49 = CalcCheckSum_47 + 1;
+  # DEBUG CalcCheckSum => CalcCheckSum_49
+
+  <bb 7> :
+  # CalcCheckSum_23 = PHI <CalcCheckSum_47(5), CalcCheckSum_49(6)>
+  # DEBUG CalcCheckSum => CalcCheckSum_23
+  # DEBUG BEGIN_STMT
+  _13 = ReadCheckSum_43 ^ CalcCheckSum_23;
+  _14 = _13 & 2147483647;
+  if (_14 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _15 = Fee_BlankCheck (TempBlockHdrPtr_46, TargetEndPtr_34);
+  if (_15 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _16 = Fee_DeserializeFlag (TargetEndPtr_34, 129, &FlagValid);
+  if (_16 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _17 = TargetEndPtr_34 + 32;
+  _18 = Fee_DeserializeFlag (_17, 24, &FlagInvalid);
+  if (_18 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_56 = 3;
+  # DEBUG RetVal => RetVal_56
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  FlagValid.95_19 = FlagValid;
+  if (FlagValid.95_19 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  FlagInvalid.96_20 = FlagInvalid;
+  if (FlagInvalid.96_20 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetVal_55 = 0;
+  # DEBUG RetVal => RetVal_55
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  FlagInvalid.97_21 = FlagInvalid;
+  if (FlagInvalid.97_21 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  RetVal_54 = 2;
+  # DEBUG RetVal => RetVal_54
+
+  <bb 17> :
+  # RetVal_22 = PHI <RetVal_57(3), RetVal_56(11), RetVal_55(14), RetVal_27(15), RetVal_54(16), RetVal_27(13)>
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  _58 = RetVal_22;
+  FlagValid ={v} {CLOBBER};
+  FlagInvalid ={v} {CLOBBER};
+  return _58;
+
+}
+
+
+Fee_DeserializeFlag (const uint8 * const TargetPtr, const uint8 FlagPattern, boolean * pFlagValue)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  const uint8 * _4;
+  const uint8 * _5;
+  Std_ReturnType _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = *TargetPtr_10(D);
+  if (FlagPattern_11(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = *TargetPtr_10(D);
+  if (_2 == 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = *TargetPtr_10(D);
+  if (FlagPattern_11(D) == _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *pFlagValue_13(D) = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *pFlagValue_13(D) = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _4 = TargetPtr_10(D) + 1;
+  _5 = TargetPtr_10(D) + 32;
+  RetVal_17 = Fee_BlankCheck (_4, _5);
+  # DEBUG RetVal => RetVal_17
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 1;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 9> :
+  # RetVal_6 = PHI <RetVal_17(7), RetVal_12(8)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  _18 = RetVal_6;
+  return _18;
+
+}
+
+
+Fee_BlankCheck (const uint8 * TargetPtr, const uint8 * const TargetEndPtr)
+{
+  const uint8 * TempTargetPtr;
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  Std_ReturnType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 0;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  TempTargetPtr_6 = TargetPtr_5(D);
+  # DEBUG TempTargetPtr => TempTargetPtr_6
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = *TempTargetPtr_3;
+  if (_1 == 255)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 1;
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempTargetPtr_10 = TempTargetPtr_3 + 1;
+  # DEBUG TempTargetPtr => TempTargetPtr_10
+
+  <bb 6> :
+  # TempTargetPtr_3 = PHI <TempTargetPtr_6(2), TempTargetPtr_10(5)>
+  # DEBUG TempTargetPtr => TempTargetPtr_3
+  # DEBUG BEGIN_STMT
+  if (TempTargetPtr_3 < TargetEndPtr_7(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # RetVal_2 = PHI <RetVal_9(4), RetVal_4(6)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  _11 = RetVal_2;
+  return _11;
+
+}
+
+
+Fee_SerializeBlockHdr (const struct Fee_BlockType * BlockHder, const Fls_AddressType TargetAddress, uint8 * BlockHdrPtr)
+{
+  uint8 * TempBlockHdrPtr;
+  const uint8 * TargetEndPtr;
+  uint32 CheckSum;
+  short unsigned int _1;
+  long unsigned int _2;
+  short unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  unsigned char _6;
+  short unsigned int _7;
+  short unsigned int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CheckSum_12 = 0;
+  # DEBUG CheckSum => CheckSum_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_14 = BlockHdrPtr_13(D);
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_14
+  # DEBUG BEGIN_STMT
+  TargetEndPtr_15 = BlockHdrPtr_13(D) + 96;
+  # DEBUG TargetEndPtr => TargetEndPtr_15
+  # DEBUG BEGIN_STMT
+  _1 = BlockHder_17(D)->BlockNumber;
+  _2 = (long unsigned int) _1;
+  _3 = BlockHder_17(D)->Length;
+  _4 = (long unsigned int) _3;
+  _5 = _2 + _4;
+  CheckSum_19 = TargetAddress_18(D) + _5;
+  # DEBUG CheckSum => CheckSum_19
+  # DEBUG BEGIN_STMT
+  _6 = BlockHder_17(D)->ImmediateBlock;
+  if (_6 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CheckSum_21 = CheckSum_19 + 1;
+  # DEBUG CheckSum => CheckSum_21
+  # DEBUG BEGIN_STMT
+  CheckSum_22 = CheckSum_21 | 2147483648;
+  # DEBUG CheckSum => CheckSum_22
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CheckSum_20 = CheckSum_19 & 2147483647;
+  # DEBUG CheckSum => CheckSum_20
+
+  <bb 5> :
+  # CheckSum_9 = PHI <CheckSum_22(3), CheckSum_20(4)>
+  # DEBUG CheckSum => CheckSum_9
+  # DEBUG BEGIN_STMT
+  _7 = BlockHder_17(D)->BlockNumber;
+  MEM[(uint16 *)TempBlockHdrPtr_14] = _7;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_24 = TempBlockHdrPtr_14 + 2;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_24
+  # DEBUG BEGIN_STMT
+  _8 = BlockHder_17(D)->Length;
+  MEM[(uint16 *)TempBlockHdrPtr_24] = _8;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_26 = TempBlockHdrPtr_24 + 2;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_26
+  # DEBUG BEGIN_STMT
+  MEM[(Fls_AddressType *)TempBlockHdrPtr_26] = TargetAddress_18(D);
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_28 = TempBlockHdrPtr_26 + 4;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_28
+  # DEBUG BEGIN_STMT
+  MEM[(uint32 *)TempBlockHdrPtr_28] = CheckSum_9;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_30 = TempBlockHdrPtr_28 + 4;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_30
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *TempBlockHdrPtr_10 = 255;
+  # DEBUG BEGIN_STMT
+  TempBlockHdrPtr_32 = TempBlockHdrPtr_10 + 1;
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_32
+
+  <bb 7> :
+  # TempBlockHdrPtr_10 = PHI <TempBlockHdrPtr_30(5), TempBlockHdrPtr_32(6)>
+  # DEBUG TempBlockHdrPtr => TempBlockHdrPtr_10
+  # DEBUG BEGIN_STMT
+  if (TempBlockHdrPtr_10 < TargetEndPtr_15)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+Fee_GetBlockClusterGrp (const uint16 BlockRuntimeInfoIndex)
+{
+  uint8 BlockClusterGrp;
+  int _1;
+  uint8 _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) BlockRuntimeInfoIndex_2(D);
+  BlockClusterGrp_4 = Fee_BlockConfig[_1].ClrGrp;
+  # DEBUG BlockClusterGrp => BlockClusterGrp_4
+  # DEBUG BEGIN_STMT
+  _5 = BlockClusterGrp_4;
+  return _5;
+
+}
+
+
+Fee_JobSystemDone ()
+{
+  MemIf_JobResultType _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1;
+  return _1;
+
+}
+
+
+Fee_JobInternalSwapDataWrite_Wrapper ()
+{
+  MemIf_JobResultType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobInternalSwapDataWrite (1);
+  return _3;
+
+}
+
+
+Fee_JobInternalSwapDataRead_Wrapper ()
+{
+  MemIf_JobResultType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobInternalSwapDataRead (1);
+  return _3;
+
+}
+
+
+Fee_JobInternalScanBlockHdrParse_Wrapper ()
+{
+  MemIf_JobResultType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobInternalScanBlockHdrParse (1);
+  return _3;
+
+}
+
+
+Fee_JobInternalScanClusterHdrParse_Wrapper ()
+{
+  MemIf_JobResultType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _3 = Fee_JobInternalScanClusterHdrParse (1);
+  return _3;
+
+}
+
+

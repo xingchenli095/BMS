@@ -1,0 +1,384 @@
+__attribute__((target ("general-regs-only")))
+OS_CallErrorHook (const struct os_appcontext_t * app, os_result_t code)
+{
+  register os_stackelement_t * OS_getSpResult;
+  struct os_kerneldata_t * const k_data;
+  register os_stackelement_t * OS_getSpResult;
+  os_intstatus_t is;
+  os_uint8_t saveInFunction;
+  os_oldlevel_t saveOldSuspendAll;
+  os_uint8_t saveNestSuspendAll;
+  const struct os_appcontext_t * saveHookApp;
+  struct os_kerneldata_t * const kernel_data;
+  unsigned int OS_configMode.1_1;
+  unsigned int _2;
+  os_stackelement_t * _3;
+  int _4;
+  unsigned int _5;
+  int _6;
+  unsigned int OS_configMode.2_7;
+  unsigned int _8;
+  void (*<T4f2>) (os_result_t) _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned char OS_eHookMpuSize.4_12;
+  unsigned char OS_eHookMpuSize.5_13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  os_stackelement_t * _19;
+  os_stackelement_t * _20;
+  unsigned int OS_eHookStackLen.6_21;
+  sizetype _22;
+  sizetype _23;
+  os_stackelement_t * _24;
+  unsigned char OS_eHookMpuSize.7_25;
+  unsigned int _26;
+  short unsigned int OS_kernDisableLevel.8_27;
+  void (*<T4f2>) (os_result_t) _28;
+  os_stackelement_t * _29;
+  unsigned char _30;
+  int iftmp.0_31;
+  unsigned int iftmp.3_32;
+  os_uint8_t iftmp.9_33;
+  os_stackelement_t * _43;
+  int iftmp.0_44;
+  int iftmp.0_45;
+  os_stackelement_t * _55;
+  unsigned int iftmp.3_56;
+  unsigned int iftmp.3_57;
+  os_uint8_t iftmp.9_61;
+  os_uint8_t iftmp.9_62;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_37 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_37
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  saveHookApp_39 = OS_kernelData.hookApp;
+  # DEBUG saveHookApp => saveHookApp_39
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = app_40(D);
+  # DEBUG BEGIN_STMT
+  OS_configMode.1_1 = OS_configMode;
+  _2 = OS_configMode.1_1 & 64;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_42);
+  # DEBUG OS_getSpResult => OS_getSpResult_42
+  # DEBUG BEGIN_STMT
+  _43 = OS_getSpResult_42;
+  _3 = OS_kernelData.iStackBase;
+  _4 = _43 - _3;
+  _5 = app_40(D)->errorHookStack;
+  _6 = (int) _5;
+  if (_4 <= _6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0_44 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0_45 = 0;
+
+  <bb 6> :
+  # iftmp.0_31 = PHI <iftmp.0_44(4), iftmp.0_45(5)>
+  if (iftmp.0_31 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_HookHandler, 57, 0B);
+  goto <bb 20>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  saveInFunction_46 = OS_kernelData.inFunction;
+  # DEBUG saveInFunction => saveInFunction_46
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 10;
+  # DEBUG BEGIN_STMT
+  is_49 = OS_IntDisableConditional ();
+  # DEBUG is => is_49
+  # DEBUG BEGIN_STMT
+  saveNestSuspendAll_50 = OS_kernelData.nestSuspendAll;
+  # DEBUG saveNestSuspendAll => saveNestSuspendAll_50
+  # DEBUG BEGIN_STMT
+  saveOldSuspendAll_51 = OS_kernelData.oldSuspendAll;
+  # DEBUG saveOldSuspendAll => saveOldSuspendAll_51
+  # DEBUG BEGIN_STMT
+  OS_kernelData.nestSuspendAll = 0;
+  # DEBUG BEGIN_STMT
+  OS_configMode.2_7 = OS_configMode;
+  _8 = OS_configMode.2_7 & 8192;
+  if (_8 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _9 = app_40(D)->errorHook;
+  _9 (code_63(D));
+  goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  k_data_53 = &OS_kernelData;
+  # DEBUG k_data => k_data_53
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_54);
+  # DEBUG OS_getSpResult => OS_getSpResult_54
+  # DEBUG BEGIN_STMT
+  _55 = OS_getSpResult_54;
+  _10 = (unsigned int) _55;
+  _11 = _10 + 4294967232;
+  OS_eHookMpuSize.4_12 = OS_eHookMpuSize;
+  if (OS_eHookMpuSize.4_12 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  OS_eHookMpuSize.5_13 = OS_eHookMpuSize;
+  _14 = (unsigned int) OS_eHookMpuSize.5_13;
+  _15 = _14 >> 1;
+  _16 = _15 + 1;
+  _17 = 1 << _16;
+  iftmp.3_57 = -_17;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  iftmp.3_56 = 4294967288;
+
+  <bb 13> :
+  # iftmp.3_32 = PHI <iftmp.3_57(11), iftmp.3_56(12)>
+  _18 = iftmp.3_32 & _11;
+  _19 = (os_stackelement_t *) _18;
+  OS_kernelData.eHookContext.c.sp = _19;
+  # DEBUG BEGIN_STMT
+  _20 = OS_kernelData.eHookContext.c.sp;
+  OS_eHookStackLen.6_21 = OS_eHookStackLen;
+  _22 = OS_eHookStackLen.6_21 & 4294967292;
+  _23 = -_22;
+  _24 = _20 + _23;
+  OS_kernelData.eHookContext.c.stackLimit = _24;
+  # DEBUG BEGIN_STMT
+  OS_eHookMpuSize.7_25 = OS_eHookMpuSize;
+  _26 = (unsigned int) OS_eHookMpuSize.7_25;
+  OS_SetHookProtection (app_40(D), &OS_kernelData.eHookContext.c, _26);
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.8_27 = OS_kernDisableLevel;
+  _28 = app_40(D)->errorHook;
+  _29 = OS_kernelData.eHookContext.c.sp;
+  if (app_40(D) != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  iftmp.9_62 = app_40(D)->flags;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  iftmp.9_61 = 1;
+
+  <bb 16> :
+  # iftmp.9_33 = PHI <iftmp.9_62(14), iftmp.9_61(15)>
+  OS_CORTEXM_Call (OS_kernDisableLevel.8_27, _28, &OS_kernelData.eHookContext.c.sp, _29, iftmp.9_33, code_63(D));
+  # DEBUG BEGIN_STMT
+  OS_kernelData.eHookContext.c.sp = 0B;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.eHookContext.c.stackLimit = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_HookRestoreMemprot (&OS_kernelData, app_40(D), saveHookApp_39, saveInFunction_46);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _30 = OS_kernelData.nestSuspendAll;
+  if (_30 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_HookHandler, 55, 0B);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.nestSuspendAll = saveNestSuspendAll_50;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.oldSuspendAll = saveOldSuspendAll_51;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_49);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = saveInFunction_46;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = saveHookApp_39;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_HookRestoreMemprot (struct os_kerneldata_t * kernel_data, const struct os_appcontext_t * app, const struct os_appcontext_t * oldApp, os_uint8_t oldInFunction)
+{
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  int _4;
+  short unsigned int _5;
+  short unsigned int OS_nInterrupts.10_6;
+  const struct os_isr_t * OS_isrTableBase.11_7;
+  short unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct os_isr_t * _11;
+  const struct os_isr_t * OS_isrTableBase.12_12;
+  short unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct os_isr_t * _16;
+  struct os_isrdynamic_t * _17;
+  const struct os_task_t * _18;
+  const struct os_task_t * _19;
+  unsigned char _20;
+  unsigned int _21;
+  unsigned int _22;
+  struct os_savedcontext_t * _23;
+  unsigned char OS_sHookMpuSize.13_24;
+  unsigned int _25;
+  unsigned char _26;
+  unsigned int _27;
+  unsigned int _28;
+  struct os_savedcontext_t * _29;
+  unsigned char OS_sHookMpuSize.14_30;
+  unsigned int _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = app_34(D)->flags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 1;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) oldInFunction_35(D);
+  switch (_4) <default: <L16> [INV], case 1: <L4> [INV], case 3: <L1> [INV], case 8: <L7> [INV], case 9: <L10> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 = kernel_data_37(D)->isrCurrent;
+  OS_nInterrupts.10_6 = OS_nInterrupts;
+  if (_5 < OS_nInterrupts.10_6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.11_7 = OS_isrTableBase;
+  _8 = kernel_data_37(D)->isrCurrent;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 68;
+  _11 = OS_isrTableBase.11_7 + _10;
+  OS_isrTableBase.12_12 = OS_isrTableBase;
+  _13 = kernel_data_37(D)->isrCurrent;
+  _14 = (unsigned int) _13;
+  _15 = _14 * 68;
+  _16 = OS_isrTableBase.12_12 + _15;
+  _17 = _16->dynamic;
+  OS_SetIsrProtection (_11, _17);
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _18 = kernel_data_37(D)->taskCurrent;
+  if (_18 != 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _19 = kernel_data_37(D)->taskCurrent;
+  OS_SetProtection (_19);
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _20 = oldApp_36(D)->flags;
+  _21 = (unsigned int) _20;
+  _22 = _21 & 1;
+  if (_22 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _23 = &kernel_data_37(D)->sHookContext.c;
+  OS_sHookMpuSize.13_24 = OS_sHookMpuSize;
+  _25 = (unsigned int) OS_sHookMpuSize.13_24;
+  OS_SetHookProtection (oldApp_36(D), _23, _25);
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _26 = oldApp_36(D)->flags;
+  _27 = (unsigned int) _26;
+  _28 = _27 & 1;
+  if (_28 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _29 = &kernel_data_37(D)->sHookContext.c;
+  OS_sHookMpuSize.14_30 = OS_sHookMpuSize;
+  _31 = (unsigned int) OS_sHookMpuSize.14_30;
+  OS_SetHookProtection (oldApp_36(D), _29, _31);
+
+  <bb 12> :
+<L16>:
+  return;
+
+}
+
+

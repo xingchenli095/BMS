@@ -1,0 +1,114 @@
+
+Analyzing function: OS_GetTaskMaxRuntime/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;; 2 succs { 3 5 }
+;; 3 succs { 4 5 }
+;; 4 succs { 5 }
+;; 5 succs { 1 }
+
+Analyzing function body size: OS_GetTaskMaxRuntime
+
+IPA function summary for OS_GetTaskMaxRuntime/0 inlinable
+  global time:     11.045000
+  self size:       16
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:11.500000, time:8.183750
+    size:3.500000, time:2.211250,  executed if:(not inlined)
+    size:1.000000, time:0.650000,  nonconst if:(op0 changed)
+  calls:
+
+Symbol table:
+
+OS_taskTableBase/2 (OS_taskTableBase) @06be8750
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetTaskMaxRuntime/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nTasks/1 (OS_nTasks) @06be8708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetTaskMaxRuntime/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_GetTaskMaxRuntime/0 (OS_GetTaskMaxRuntime) @06c08a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_nTasks/1 (read)OS_taskTableBase/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_GetTaskMaxRuntime (os_taskid_t t, os_tick_t * out)
+{
+  struct os_taskaccounting_t * ta;
+  const struct os_task_t * ts;
+  os_result_t r;
+  unsigned char OS_nTasks.0_1;
+  const struct os_task_t * OS_taskTableBase.1_2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned char _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_nTasks.0_1 = OS_nTasks;
+  if (OS_nTasks.0_1 > t_11(D))
+    goto <bb 3>; [65.00%]
+  else
+    goto <bb 5>; [35.00%]
+
+  <bb 3> [local count: 697932186]:
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.1_2 = OS_taskTableBase;
+  _3 = (unsigned int) t_11(D);
+  _4 = _3 * 76;
+  ts_12 = OS_taskTableBase.1_2 + _4;
+  # DEBUG ts => ts_12
+  # DEBUG BEGIN_STMT
+  ta_13 = ts_12->accounting;
+  # DEBUG ta => ta_13
+  # DEBUG BEGIN_STMT
+  _5 = ts_12->flags;
+  _9 = _5 & 64;
+  if (_9 != 0)
+    goto <bb 4>; [65.00%]
+  else
+    goto <bb 5>; [35.00%]
+
+  <bb 4> [local count: 453655921]:
+  # DEBUG BEGIN_STMT
+  _6 = ta_13->etMax;
+  *out_14(D) = _6;
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 0
+
+  <bb 5> [local count: 1073741824]:
+  # r_7 = PHI <3(2), 3(3), 0(4)>
+  # DEBUG r => r_7
+  # DEBUG BEGIN_STMT
+  return r_7;
+
+}
+
+

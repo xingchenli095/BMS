@@ -1,0 +1,227 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_EnqueueLink/5:
+  Jump functions of caller  OS_AppIsAccessible/3:
+  Jump functions of caller  OS_CORTEXM_IntSetDisablingLevel/2:
+  Jump functions of caller  OS_LocalSetEvent/0:
+    indirect simple callsite, calling param -1, offset 0, for stmt _11 = OS_rateMonitorFunc.1_10 (_9);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffff
+         Unknown VR
+
+ Propagating constants:
+
+Not considering OS_LocalSetEvent for cloning; -fipa-cp-clone disabled.
+
+overall_size: 51, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_LocalSetEvent/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [1]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueLink/5 (OS_EnqueueLink) @06c6f000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 (66395839 (estimated locally),0.06 per call) 
+  Calls: 
+OS_rateMonitorFunc/4 (OS_rateMonitorFunc) @06c4bd80
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetEvent/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/3 (OS_AppIsAccessible) @06c6fee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 (1073741823 (estimated locally),1.00 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c6fe00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 (1073741824 (estimated locally),1.00 per call) OS_LocalSetEvent/0 (1073741823 (estimated locally),1.00 per call) 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06c4bca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetEvent/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalSetEvent/0 (OS_LocalSetEvent) @06c6fc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)OS_rateMonitorFunc/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 (1073741824 (estimated locally),1.00 per call) OS_EnqueueLink/5 (66395839 (estimated locally),0.06 per call) OS_AppIsAccessible/3 (1073741823 (estimated locally),1.00 per call) OS_CORTEXM_IntSetDisablingLevel/2 (1073741823 (estimated locally),1.00 per call) 
+   Indirect call(56984725 (estimated locally),0.05 per call) 
+
+;; Function OS_LocalSetEvent (OS_LocalSetEvent, funcdef_no=0, decl_uid=6858, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_LocalSetEvent/0
+__attribute__((target ("general-regs-only")))
+OS_LocalSetEvent (const struct os_task_t * ts, os_eventmask_t e)
+{
+  os_intstatus_t is;
+  struct os_taskdynamic_t * td;
+  os_errorresult_t result;
+  short unsigned int OS_kernDisableLevel.0_1;
+  const struct os_appcontext_t * _2;
+  int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int _9;
+  os_boolean_t (*<T68c>) (os_ratemonitorid_t) OS_rateMonitorFunc.1_10;
+  int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  struct os_taskaccounting_t * _14;
+  short unsigned int _15;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  td_22 = ts_21(D)->dynamic;
+  # DEBUG td => td_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is_24 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG is => is_24
+  # DEBUG BEGIN_STMT
+  _2 = ts_21(D)->app;
+  _3 = OS_AppIsAccessible (_2);
+  if (_3 == 0)
+    goto <bb 11>; [35.00%]
+  else
+    goto <bb 3>; [65.00%]
+
+  <bb 3> [local count: 697932185]:
+  # DEBUG BEGIN_STMT
+  _4 = td_22->state;
+  if (_4 <= 1)
+    goto <bb 11>; [27.23%]
+  else
+    goto <bb 4>; [72.77%]
+
+  <bb 4> [local count: 507885250]:
+  # DEBUG BEGIN_STMT
+  _5 = td_22->pEvents;
+  _6 = _5 | e_26(D);
+  td_22->pEvents = _6;
+  # DEBUG BEGIN_STMT
+  if (_4 == 6)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 5> [local count: 172680985]:
+  _7 = td_22->wEvents;
+  _8 = _6 & _7;
+  if (_8 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 6> [local count: 86340493]:
+  # DEBUG BEGIN_STMT
+  _9 = ts_21(D)->rateMonitor;
+  if (_9 != 65535)
+    goto <bb 7>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 7> [local count: 56984725]:
+  OS_rateMonitorFunc.1_10 = OS_rateMonitorFunc;
+  _11 = OS_rateMonitorFunc.1_10 (_9);
+  if (_11 != 0)
+    goto <bb 11>; [35.00%]
+  else
+    goto <bb 8>; [65.00%]
+
+  <bb 8> [local count: 66395839]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_22->state = 3;
+  # DEBUG BEGIN_STMT
+  _12 = ts_21(D)->queuePrio;
+  _13 = (short unsigned int) _12;
+  td_22->prio = _13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = ts_21(D)->accounting;
+  if (_14 != 0B)
+    goto <bb 9>; [70.00%]
+  else
+    goto <bb 10>; [30.00%]
+
+  <bb 9> [local count: 46477087]:
+  # DEBUG BEGIN_STMT
+  _14->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _14->etType = 1;
+
+  <bb 10> [local count: 66395839]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = ts_21(D)->linkBase;
+  OS_EnqueueLink (_15, _13);
+
+  <bb 11> [local count: 1073741824]:
+  # result_16 = PHI <154(2), 28(3), 0(4), 0(5), 0(10), 54(7)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_24);
+  # DEBUG BEGIN_STMT
+  return result_16;
+
+}
+
+

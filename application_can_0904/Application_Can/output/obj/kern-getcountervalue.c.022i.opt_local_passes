@@ -1,0 +1,248 @@
+__attribute__((target ("general-regs-only")))
+OS_KernGetCounterValue (os_counterid_t c, os_tick_t * out)
+{
+  os_paramtype_t p[3];
+  os_result_t r;
+  const struct os_counter_t * cs;
+  unsigned int _1;
+  unsigned int out.0_2;
+  unsigned char _3;
+  const os_callermask_t * OS_permittedContext.3_4;
+  const os_callermask_t * _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  const os_callermask_t * OS_permittedContext.4_9;
+  const os_callermask_t * _10;
+  short unsigned int _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  short unsigned int _15;
+  short unsigned int _16;
+  const os_callermask_t * OS_permittedContext.5_17;
+  const os_callermask_t * _18;
+  short unsigned int _19;
+  unsigned char _20;
+  int _21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  unsigned char OS_iecMode.6_25;
+  unsigned char _26;
+  const struct os_task_t * _27;
+  struct os_taskdynamic_t * _28;
+  short unsigned int _29;
+  short unsigned int _30;
+  short unsigned int _31;
+  short unsigned int _32;
+  int _33;
+  unsigned char OS_nCounters.7_34;
+  const struct os_counter_t * OS_counterTableBase.8_35;
+  unsigned int _36;
+  unsigned int _37;
+  const struct os_counter_t * _38;
+  const struct os_appcontext_t * _39;
+  int _40;
+  const struct os_counter_t * OS_counterTableBase.9_41;
+  unsigned int _42;
+  unsigned int _43;
+  unsigned int _44;
+  _Bool iftmp.1_46;
+  int iftmp.2_47;
+  _Bool iftmp.1_55;
+  int iftmp.2_56;
+  int iftmp.2_57;
+  _Bool iftmp.1_58;
+  os_result_t _74;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r_49 = 0;
+  # DEBUG r => r_49
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) c_50(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  out.0_2 = (unsigned int) out_53(D);
+  p[1] = out.0_2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.3_4 = OS_permittedContext;
+  _5 = OS_permittedContext.3_4 + 32;
+  _6 = *_5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1024;
+  if (_8 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.4_9 = OS_permittedContext;
+  _10 = OS_permittedContext.4_9 + 32;
+  _11 = *_10;
+  _12 = OS_kernelData.errorStatus.calledFrom;
+  _13 = (int) _12;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.2_56 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.2_57 = 0;
+
+  <bb 7> :
+  # iftmp.2_47 = PHI <iftmp.2_56(5), iftmp.2_57(6)>
+  iftmp.1_58 = iftmp.2_47 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.5_17 = OS_permittedContext;
+  _18 = OS_permittedContext.5_17 + 32;
+  _19 = *_18;
+  _20 = OS_kernelData.inFunction;
+  _21 = (int) _20;
+  _22 = 1 << _21;
+  _23 = (short unsigned int) _22;
+  _24 = _19 & _23;
+  iftmp.1_55 = _24 == 0;
+
+  <bb 9> :
+  # iftmp.1_46 = PHI <iftmp.1_58(7), iftmp.1_55(8)>
+  if (iftmp.1_46 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r_73 = OS_Error (&OS_svc_GetCounterValue, 12, &p);
+  # DEBUG r => r_73
+  goto <bb 23>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_25 = OS_iecMode;
+  if (OS_iecMode.6_25 > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _26 = OS_kernelData.inFunction;
+  if (_26 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _27 = OS_kernelData.taskCurrent;
+  _28 = _27->dynamic;
+  _29 = BIT_FIELD_REF <MEM[(void *)_28], 16, 160>;
+  _30 = _29;
+  if (_30 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _31 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _32 = _31;
+  if (_32 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  r_60 = OS_Error (&OS_svc_GetCounterValue, 55, &p);
+  # DEBUG r => r_60
+  goto <bb 23>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _33 = OS_CanWrite (out_53(D), 4);
+  if (_33 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r_71 = OS_Error (&OS_svc_GetCounterValue, 6, &p);
+  # DEBUG r => r_71
+  goto <bb 23>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_nCounters.7_34 = OS_nCounters;
+  if (c_50(D) >= OS_nCounters.7_34)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  r_69 = OS_Error (&OS_svc_GetCounterValue, 17, &p);
+  # DEBUG r => r_69
+  goto <bb 23>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.8_35 = OS_counterTableBase;
+  _36 = (unsigned int) c_50(D);
+  _37 = _36 * 32;
+  _38 = OS_counterTableBase.8_35 + _37;
+  _39 = _38->app;
+  _40 = OS_AppIsAccessible (_39);
+  if (_40 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  r_67 = OS_Error (&OS_svc_GetCounterValue, 154, &p);
+  # DEBUG r => r_67
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.9_41 = OS_counterTableBase;
+  _42 = (unsigned int) c_50(D);
+  _43 = _42 * 32;
+  cs_63 = OS_counterTableBase.9_41 + _43;
+  # DEBUG cs => cs_63
+  # DEBUG BEGIN_STMT
+  _44 = OS_GetCount (cs_63);
+  *out_53(D) = _44;
+
+  <bb 23> :
+  # r_45 = PHI <r_73(10), r_60(15), r_71(17), r_69(19), r_67(21), r_49(22)>
+  # DEBUG r => r_45
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _74 = r_45;
+  p ={v} {CLOBBER};
+  return _74;
+
+}
+
+

@@ -1,0 +1,157 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_KernTerminateTask
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_DoTerminateTask/5 (OS_DoTerminateTask) @06cc80e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernTerminateTask/0 
+  Calls: 
+OS_svc_TerminateTask/4 (OS_svc_TerminateTask) @06c02ca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernTerminateTask/0 (addr)OS_KernTerminateTask/0 (addr)OS_KernTerminateTask/0 (addr)OS_KernTerminateTask/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/3 (OS_Error) @06c26000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernTerminateTask/0 OS_KernTerminateTask/0 OS_KernTerminateTask/0 OS_KernTerminateTask/0 
+  Calls: 
+OS_iecMode/2 (OS_iecMode) @06c02c18
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernTerminateTask/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06c02bd0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernTerminateTask/0 (read)OS_KernTerminateTask/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_KernTerminateTask/0 (OS_KernTerminateTask) @06c26e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)OS_iecMode/2 (read)OS_svc_TerminateTask/4 (addr)OS_svc_TerminateTask/4 (addr)OS_svc_TerminateTask/4 (addr)OS_svc_TerminateTask/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_Error/3 OS_DoTerminateTask/5 OS_Error/3 OS_Error/3 OS_Error/3 
+__attribute__((target ("general-regs-only")))
+OS_KernTerminateTask ()
+{
+  os_result_t r;
+  struct os_taskdynamic_t * td;
+  const struct os_task_t * tp;
+  os_result_t D.7426;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  tp = OS_kernelData.taskCurrent;
+  # DEBUG BEGIN_STMT
+  td = tp->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_2 = OS_iecMode;
+  if (OS_iecMode.0_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = BIT_FIELD_REF <MEM[(void *)td], 16, 160>;
+  _4 = _3;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 55, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = td->lastLock;
+  if (_5 != 4294967295)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = td->lastLock;
+  _7 = _6 >> 24;
+  if (_7 == 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 156, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 13, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_DoTerminateTask (tp, td);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_TerminateTask, 12, 0B);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7426 = r;
+  return D.7426;
+
+}
+
+

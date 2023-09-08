@@ -1,0 +1,1803 @@
+Parsed function:Dcm_Dsl_RoeServices_InitPreconf.part.0
+Parsed function:Dcm_Dsl_RoeServices_ResponseOnOneEvent
+Parsed function:Dcm_Dsl_RoeServices_RoeEventDispatch
+Parsed function:Dcm_Dsl_RoeServices_GetRoeRxDataInformation
+Parsed function:Dcm_Dsl_RoeServices_ChangeState
+Parsed function:Dcm_Dsl_RoeServices_StartResponseOnEvent
+Parsed function:Dcm_Dsl_RoeServices_ReportActivatedEvents
+Parsed function:Dcm_Dsl_RoeServices_StopResponseOnEvent
+Parsed function:Dcm_Dem_RoeServices_CommonTriggerProcedure
+Parsed function:Dcm_Dsl_RoeServices_TriggerOnDTCStatus
+Parsed function:Dcm_Dsl_RoeServices_TriggerOnEvent
+Parsed function:Dcm_Dsl_RoeServices_SessionChange
+Parsed function:Dcm_Dsl_RoeServices_GetRxPduId
+Parsed function:Dcm_Dsl_RoeServices_MapToRelevantCase
+Parsed function:Dcm_Dsl_RoeServices_InitInternal
+Parsed function:Dcm_Dsl_RoeServices_InitPreconf
+Parsed function:Dcm_Dsl_RoeServices_IsInitialized
+Parsed function:Dcm_Dsl_RoeServices_Init
+Parsed function:Dcm_Dsl_RoeServices_MainFunction
+Parsed function:Dcm_Dsl_RoeServices_ClearEvents
+Dump after hash based groups
+Congruence classes: 20 (unique hash values: 20), with total: 20 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 20 classes
+
+
+Dump after WPA based types groups
+Congruence classes: 20 (unique hash values: 20), with total: 20 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 20 classes
+
+
+Worklist has been filled with: 10
+Address reference subdivision created: 0 new classes.
+Dump after callgraph-based congruence reduction
+Congruence classes: 20 (unique hash values: 20), with total: 20 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 20 classes
+
+
+Init called for 0 items (0.00%).
+Dump after full equality comparison of groups
+Congruence classes: 20 (unique hash values: 20), with total: 20 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 20 classes
+
+
+Worklist has been filled with: 10
+Address reference subdivision created: 0 new classes.
+Congruence classes: 20 (unique hash values: 20), with total: 20 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 20 classes
+
+
+
+Item count: 20
+Congruent classes before: 20, after: 20
+Average class size before: 1.00, after: 1.00
+Average non-singular class size: 0.00, count: 0
+Equal symbols: 0
+Fraction of visited symbols: 0.00%
+
+Dcm_Dsl_RoeServices_InitPreconf.part.0 ()
+{
+  uint8 PreconfEventIndex;
+  boolean NvMChanged;
+  const Dcm_RoeEventTypeType EventType;
+
+  <bb 4> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 3> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_ResponseOnOneEvent (Dcm_MsgItemType * MsgPtr, Dcm_MsgLenType MsgLen, PduIdType DcmRxPduId)
+{
+  Dcm_StatusType RetVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 6
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.FilledLength = MsgLen_2(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.Size = MsgLen_2(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxBuffer.BufferPtr = MsgPtr_5(D);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.RxPduId = DcmRxPduId_7(D);
+  # DEBUG BEGIN_STMT
+  RetVal_10 = Dcm_Dsl_RoeServices_RoeEventDispatch (&Dcm_Dsl_RoeRxData);
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  return RetVal_10;
+
+}
+
+
+Dcm_Dsl_RoeServices_RoeEventDispatch (struct Dcm_RoeRxDataType * RoeRxData)
+{
+  Dcm_RequestTypeType AcceptAs;
+  Dcm_StatusType RetVal;
+  short unsigned int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 6
+  # DEBUG BEGIN_STMT
+  # DEBUG AcceptAs => 17
+  # DEBUG BEGIN_STMT
+  _1 = RoeRxData_8(D)->RxPduId;
+  AcceptAs_10 = Dcm_Dsl_Supervisor_RequestRxPermission (_1, 0, 2);
+  # DEBUG AcceptAs => AcceptAs_10
+  # DEBUG BEGIN_STMT
+  _2 = AcceptAs_10 + 246;
+  if (_2 <= 3)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_GetRoeRxDataInformation (RoeRxData_8(D), &Dcm_Dsl_RoeRxDataCopy);
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_Dsl_RoeRxDataCopy.RxPduId;
+  Dcm_Dsl_Supervisor_IncomingReception (_3, AcceptAs_10);
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeRxDataCopy.RxPduId;
+  Dcm_Dsl_RxConnectionRxIndication (_4, AcceptAs_10, Dcm_Dsl_RoeRxDataCopy.RxBuffer);
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (AcceptAs_10 == 16)
+    goto <bb 5>; [48.89%]
+  else
+    goto <bb 6>; [51.11%]
+
+  <bb 5> [local count: 351718093]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 6> [local count: 1073741824]:
+  # RetVal_5 = PHI <0(3), 0(5), 6(4)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  return RetVal_5;
+
+}
+
+
+Dcm_Dsl_RoeServices_GetRoeRxDataInformation (const struct Dcm_RoeRxDataType * RoeRxData, struct Dcm_RoeRxDataType * RoeRxDataCopy)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  Dcm_MsgItemType * _6;
+  short unsigned int _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = RoeRxData_9(D)->MsgBuf[0];
+  RoeRxDataCopy_10(D)->MsgBuf[0] = _1;
+  # DEBUG BEGIN_STMT
+  _2 = RoeRxData_9(D)->MsgBuf[1];
+  RoeRxDataCopy_10(D)->MsgBuf[1] = _2;
+  # DEBUG BEGIN_STMT
+  _3 = RoeRxData_9(D)->MsgBuf[2];
+  RoeRxDataCopy_10(D)->MsgBuf[2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = RoeRxData_9(D)->RxBuffer.FilledLength;
+  RoeRxDataCopy_10(D)->RxBuffer.FilledLength = _4;
+  # DEBUG BEGIN_STMT
+  _5 = RoeRxData_9(D)->RxBuffer.FilledLength;
+  RoeRxDataCopy_10(D)->RxBuffer.Size = _5;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = &RoeRxDataCopy_10(D)->MsgBuf[0];
+  RoeRxDataCopy_10(D)->RxBuffer.BufferPtr = _6;
+  # DEBUG BEGIN_STMT
+  _7 = RoeRxData_9(D)->RxPduId;
+  RoeRxDataCopy_10(D)->RxPduId = _7;
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_ChangeState (Dcm_RoeEventTypeType Event, Dcm_RoeEventStateType State)
+{
+  int _1;
+  unsigned char _2;
+  int _3;
+  Std_ReturnType (*<T744>) (uint8) _4;
+  unsigned char Dcm_RoeEnqueueEvent.0_5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) Event_7(D);
+  Dcm_Dsl_RoeServices_Runtime_Data[_1].State = State_9(D);
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].PreconfIdx;
+  _3 = (int) _2;
+  _4 = Dcm_RoeSchMSwitchFunctionList[_3];
+  _4 (State_9(D));
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.0_5 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.0_5 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  if (State_9(D) <= 1)
+    goto <bb 4>; [41.00%]
+  else
+    goto <bb 5>; [59.00%]
+
+  <bb 4> [local count: 149679610]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_StartResponseOnEvent (boolean StoreEvent, PduIdType RxPduId)
+{
+  Dcm_SesCtrlType CurrentSession;
+  boolean EventsToStart[2];
+  Dcm_RoeEventTypeType ClearedEvents;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _5;
+  unsigned char _6;
+  unsigned char CurrentSession.17_7;
+  unsigned char _8;
+  unsigned char CurrentSession.18_9;
+  struct Dcm_RoeEventDataType * _10;
+  struct Dcm_RoeEventDataType * _11;
+
+  <bb 2> [local count: 362429610]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ClearedEvents => 0
+  # DEBUG BEGIN_STMT
+  EventsToStart = "\x00";
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG EventType => 0
+  goto <bb 10>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_14;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 243393649]:
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[_1].OrigEventWindowTime;
+  if (_3 == 3)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 82753841]:
+  if (StoreEvent_27(D) == 1)
+    goto <bb 11>; [5.50%]
+  else
+    goto <bb 6>; [94.50%]
+
+  <bb 6> [local count: 238842189]:
+  # DEBUG BEGIN_STMT
+  EventsToStart[_1] = 1;
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 472470025]:
+  # DEBUG BEGIN_STMT
+  if (_2 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 236235012]:
+  # DEBUG BEGIN_STMT
+  ClearedEvents_26 = ClearedEvents_17 + 1;
+  # DEBUG ClearedEvents => ClearedEvents_26
+
+  <bb 9> [local count: 711312214]:
+  # ClearedEvents_16 = PHI <ClearedEvents_17(6), ClearedEvents_17(7), ClearedEvents_26(8)>
+  # DEBUG ClearedEvents => ClearedEvents_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventType_29 = EventType_14 + 1;
+  # DEBUG EventType => EventType_29
+
+  <bb 10> [local count: 1073741824]:
+  # EventType_14 = PHI <0(2), EventType_29(9)>
+  # ClearedEvents_17 = PHI <0(2), ClearedEvents_16(9)>
+  # DEBUG ClearedEvents => ClearedEvents_17
+  # DEBUG EventType => EventType_14
+  # DEBUG BEGIN_STMT
+  if (EventType_14 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 11>; [33.33%]
+
+  <bb 11> [local count: 362429612]:
+  # RetVal_12 = PHI <49(5), 1(10)>
+  # ClearedEvents_4 = PHI <ClearedEvents_17(5), ClearedEvents_17(10)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  if (RetVal_12 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 123226068]:
+  if (ClearedEvents_4 == 2)
+    goto <bb 21>; [21.72%]
+  else
+    goto <bb 13>; [78.28%]
+
+  <bb 13> [local count: 335664910]:
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  if (RetVal_12 == 1)
+    goto <bb 22>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 22> [local count: 114126069]:
+  goto <bb 20>; [100.00%]
+
+  <bb 14> [local count: 228286380]:
+  # DEBUG BEGIN_STMT
+  _5 = (int) EventType_15;
+  _6 = EventsToStart[_5];
+  if (_6 == 1)
+    goto <bb 15>; [20.24%]
+  else
+    goto <bb 19>; [79.76%]
+
+  <bb 15> [local count: 46205163]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_GetSesCtrlTypeExt (&CurrentSession);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_5].RxPduId = RxPduId_31(D);
+  # DEBUG BEGIN_STMT
+  CurrentSession.17_7 = CurrentSession;
+  Dcm_Dsl_RoeServices_Runtime_Data[_5].Session = CurrentSession.17_7;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_5].ActivationCnt = 0;
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_Dsl_RoeServices_Runtime_Data[_5].OrigEventWindowTime;
+  Dcm_Dsl_RoeServices_Runtime_Data[_5].EventWindowTime = _8;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_15, 2);
+  # DEBUG BEGIN_STMT
+  if (StoreEvent_27(D) == 1)
+    goto <bb 16>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 16> [local count: 15709756]:
+  CurrentSession.18_9 = CurrentSession;
+  if (CurrentSession.18_9 == 1)
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 18>; [79.76%]
+
+  <bb 17> [local count: 3179655]:
+  # DEBUG BEGIN_STMT
+  _10 = &Dcm_Dsl_RoeServices_Persistent_Data[_5];
+  _11 = &Dcm_Dsl_RoeServices_Runtime_Data[_5];
+  TS_MemCpy32 (_10, _11, 8);
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 18> [local count: 46205163]:
+  CurrentSession ={v} {CLOBBER};
+
+  <bb 19> [local count: 228286380]:
+  # DEBUG BEGIN_STMT
+  EventType_40 = EventType_15 + 1;
+  # DEBUG EventType => EventType_40
+
+  <bb 20> [local count: 342412449]:
+  # EventType_15 = PHI <EventType_40(19), 0(22)>
+  # DEBUG EventType => EventType_15
+  # DEBUG BEGIN_STMT
+  if (EventType_15 != 2)
+    goto <bb 14>; [66.67%]
+  else
+    goto <bb 21>; [33.33%]
+
+  <bb 21> [local count: 362429612]:
+  # RetVal_13 = PHI <RetVal_12(13), 0(20), 36(12)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventsToStart ={v} {CLOBBER};
+  return RetVal_13;
+
+}
+
+
+Dcm_Dsl_RoeServices_ReportActivatedEvents (Dcm_MsgItemType * ResData, Dcm_MsgLenType * MsgLen)
+{
+  unsigned char event$DTCStatusMask;
+  unsigned char event$EventType;
+  short unsigned int event$Did;
+  Dcm_RoeEventTypeType EventType;
+  uint8 numOfActiveEvents;
+  Dcm_MsgLenType offset;
+  int _1;
+  unsigned char _2;
+  unsigned char _4;
+  int _5;
+  Dcm_MsgItemType * _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  short unsigned int _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  Dcm_MsgItemType * _12;
+  unsigned char _13;
+  Dcm_MsgItemType * _14;
+  Dcm_MsgItemType * _15;
+  Dcm_MsgItemType * _16;
+  Dcm_MsgItemType * _17;
+  unsigned char _18;
+  Dcm_MsgItemType * _19;
+  unsigned char _20;
+  Dcm_MsgItemType * _21;
+  Dcm_MsgItemType * _22;
+  Dcm_MsgItemType * _23;
+  const struct Dcm_RoeEventPreconfListType * _34;
+
+  <bb 2> [local count: 357902488]:
+  # DEBUG BEGIN_STMT
+  # DEBUG offset => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG numOfActiveEvents => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG EventType => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_29;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 2)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 4> [local count: 243393649]:
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_1].PreconfIdx;
+  _5 = (int) _4;
+  _34 = &Dcm_RoeEventPreconfList[_5];
+  event$Did_68 = MEM[(struct  *)_34];
+  # DEBUG event$Did => event$Did_68
+  event$EventType_69 = MEM[(struct  *)_34 + 3B];
+  # DEBUG event$EventType => event$EventType_69
+  event$DTCStatusMask_70 = MEM[(struct  *)_34 + 4B];
+  # DEBUG event$DTCStatusMask => event$DTCStatusMask_70
+  # DEBUG BEGIN_STMT
+  switch (event$EventType_69) <default: <L11> [33.33%], case 0: <L3> [33.33%], case 1: <L2> [33.33%]>
+
+  <bb 5> [local count: 81123103]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  _6 = ResData_37(D) + offset_26;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *_6 = 67;
+  # DEBUG BEGIN_STMT
+  offset_42 = offset_26 + 1;
+  # DEBUG offset => offset_42
+  # DEBUG BEGIN_STMT
+  _7 = ResData_37(D) + offset_42;
+  _8 = Dcm_Dsl_RoeServices_Runtime_Data[1].EventWindowTime;
+  *_7 = _8;
+  # DEBUG BEGIN_STMT
+  offset_44 = offset_26 + 2;
+  # DEBUG offset => offset_44
+  # DEBUG BEGIN_STMT
+  _9 = event$Did_68 >> 8;
+  _10 = ResData_37(D) + offset_44;
+  _11 = (unsigned char) _9;
+  *_10 = _11;
+  # DEBUG BEGIN_STMT
+  offset_46 = offset_26 + 3;
+  # DEBUG offset => offset_46
+  # DEBUG BEGIN_STMT
+  _12 = ResData_37(D) + offset_46;
+  _13 = (unsigned char) event$Did_68;
+  *_12 = _13;
+  # DEBUG BEGIN_STMT
+  offset_48 = offset_26 + 4;
+  # DEBUG offset => offset_48
+  # DEBUG BEGIN_STMT
+  _14 = ResData_37(D) + offset_48;
+  *_14 = 34;
+  # DEBUG BEGIN_STMT
+  offset_50 = offset_26 + 5;
+  # DEBUG offset => offset_50
+  # DEBUG BEGIN_STMT
+  _15 = ResData_37(D) + offset_50;
+  *_15 = _11;
+  # DEBUG BEGIN_STMT
+  offset_52 = offset_26 + 6;
+  # DEBUG offset => offset_52
+  # DEBUG BEGIN_STMT
+  _16 = ResData_37(D) + offset_52;
+  *_16 = _13;
+  # DEBUG BEGIN_STMT
+  offset_54 = offset_26 + 7;
+  # DEBUG offset => offset_54
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 81123103]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  _17 = ResData_37(D) + offset_26;
+  *_17 = 1;
+  # DEBUG BEGIN_STMT
+  _18 = Dcm_Dsl_RoeServices_Persistent_Data[0].State;
+  if (_18 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 40561552]:
+  # DEBUG BEGIN_STMT
+  *_17 = 65;
+
+  <bb 8> [local count: 81123103]:
+  # DEBUG BEGIN_STMT
+  offset_57 = offset_26 + 1;
+  # DEBUG offset => offset_57
+  # DEBUG BEGIN_STMT
+  _19 = ResData_37(D) + offset_57;
+  _20 = Dcm_Dsl_RoeServices_Runtime_Data[0].EventWindowTime;
+  *_19 = _20;
+  # DEBUG BEGIN_STMT
+  offset_59 = offset_26 + 2;
+  # DEBUG offset => offset_59
+  # DEBUG BEGIN_STMT
+  _21 = ResData_37(D) + offset_59;
+  *_21 = event$DTCStatusMask_70;
+  # DEBUG BEGIN_STMT
+  offset_61 = offset_26 + 3;
+  # DEBUG offset => offset_61
+  # DEBUG BEGIN_STMT
+  _22 = ResData_37(D) + offset_61;
+  *_22 = 25;
+  # DEBUG BEGIN_STMT
+  offset_63 = offset_26 + 4;
+  # DEBUG offset => offset_63
+  # DEBUG BEGIN_STMT
+  _23 = ResData_37(D) + offset_63;
+  *_23 = 14;
+  # DEBUG BEGIN_STMT
+  offset_65 = offset_26 + 5;
+  # DEBUG offset => offset_65
+  # DEBUG BEGIN_STMT
+
+  <bb 9> [local count: 243369310]:
+  # offset_24 = PHI <offset_54(5), offset_65(8), offset_26(4)>
+<L11>:
+  # DEBUG offset => offset_24
+  # DEBUG BEGIN_STMT
+  numOfActiveEvents_66 = numOfActiveEvents_28 + 1;
+  # DEBUG numOfActiveEvents => numOfActiveEvents_66
+  # DEBUG D#1 => {CLOBBER}
+  # DEBUG event$Did => D#1
+  # DEBUG D#2 => {CLOBBER}
+  # DEBUG event$EventType => D#2
+  # DEBUG D#3 => {CLOBBER}
+  # DEBUG event$DTCStatusMask => D#3
+
+  <bb 10> [local count: 715839336]:
+  # offset_25 = PHI <offset_26(3), offset_24(9)>
+  # numOfActiveEvents_27 = PHI <numOfActiveEvents_28(3), numOfActiveEvents_66(9)>
+  # DEBUG numOfActiveEvents => numOfActiveEvents_27
+  # DEBUG offset => offset_25
+  # DEBUG BEGIN_STMT
+  EventType_67 = EventType_29 + 1;
+  # DEBUG EventType => EventType_67
+
+  <bb 11> [local count: 1073741824]:
+  # offset_26 = PHI <1(2), offset_25(10)>
+  # numOfActiveEvents_28 = PHI <0(2), numOfActiveEvents_27(10)>
+  # EventType_29 = PHI <0(2), EventType_67(10)>
+  # DEBUG EventType => EventType_29
+  # DEBUG numOfActiveEvents => numOfActiveEvents_28
+  # DEBUG offset => offset_26
+  # DEBUG BEGIN_STMT
+  if (EventType_29 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 12>; [33.33%]
+
+  <bb 12> [local count: 357878150]:
+  # offset_3 = PHI <offset_26(11)>
+  # numOfActiveEvents_35 = PHI <numOfActiveEvents_28(11)>
+  # DEBUG BEGIN_STMT
+  *ResData_37(D) = numOfActiveEvents_35;
+  # DEBUG BEGIN_STMT
+  *MsgLen_39(D) = offset_3;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_StopResponseOnEvent (boolean StoreEvent)
+{
+  boolean EventsToStop[2];
+  Dcm_RoeEventTypeType ClearedEvents;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> [local count: 363366676]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ClearedEvents => 0
+  # DEBUG BEGIN_STMT
+  EventsToStop = "\x00";
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG EventType => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_11;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  _3 = _2 + 255;
+  if (_3 <= 1)
+    goto <bb 4>; [41.00%]
+  else
+    goto <bb 7>; [59.00%]
+
+  <bb 4> [local count: 293504107]:
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_1].EventWindowTime;
+  if (_4 == 3)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 99791396]:
+  if (StoreEvent_25(D) == 1)
+    goto <bb 10>; [5.50%]
+  else
+    goto <bb 6>; [94.50%]
+
+  <bb 6> [local count: 288015580]:
+  # DEBUG BEGIN_STMT
+  EventsToStop[_1] = 1;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 422359568]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClearedEvents_24 = ClearedEvents_14 + 1;
+  # DEBUG ClearedEvents => ClearedEvents_24
+
+  <bb 8> [local count: 710375148]:
+  # ClearedEvents_13 = PHI <ClearedEvents_14(6), ClearedEvents_24(7)>
+  # DEBUG ClearedEvents => ClearedEvents_13
+  # DEBUG BEGIN_STMT
+  EventType_27 = EventType_11 + 1;
+  # DEBUG EventType => EventType_27
+
+  <bb 9> [local count: 1073741824]:
+  # EventType_11 = PHI <0(2), EventType_27(8)>
+  # ClearedEvents_14 = PHI <0(2), ClearedEvents_13(8)>
+  # DEBUG ClearedEvents => ClearedEvents_14
+  # DEBUG EventType => EventType_11
+  # DEBUG BEGIN_STMT
+  if (EventType_11 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 10>; [33.33%]
+
+  <bb 10> [local count: 363366677]:
+  # RetVal_9 = PHI <49(5), 1(9)>
+  # ClearedEvents_5 = PHI <ClearedEvents_14(5), ClearedEvents_14(9)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  if (RetVal_9 == 1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 11> [local count: 123544670]:
+  if (ClearedEvents_5 == 2)
+    goto <bb 21>; [21.72%]
+  else
+    goto <bb 12>; [78.28%]
+
+  <bb 12> [local count: 336532775]:
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  if (RetVal_9 == 1)
+    goto <bb 22>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 22> [local count: 114421143]:
+  goto <bb 20>; [100.00%]
+
+  <bb 13> [local count: 228876617]:
+  # DEBUG BEGIN_STMT
+  _6 = (int) EventType_12;
+  _7 = EventsToStop[_6];
+  if (_7 == 1)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+
+  <bb 14> [local count: 77818050]:
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_Dsl_RoeServices_Runtime_Data[_6].State;
+  if (_8 == 2)
+    goto <bb 15>; [20.24%]
+  else
+    goto <bb 16>; [79.76%]
+
+  <bb 15> [local count: 15750373]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_12, 1);
+
+  <bb 16> [local count: 77818050]:
+  # DEBUG BEGIN_STMT
+  if (StoreEvent_25(D) == 1)
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 18>; [79.76%]
+
+  <bb 17> [local count: 15750373]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Persistent_Data[_6].Session = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Persistent_Data[_6].State = 1;
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 18> [local count: 77818050]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_6].Session = 0;
+
+  <bb 19> [local count: 228876617]:
+  # DEBUG BEGIN_STMT
+  EventType_33 = EventType_12 + 1;
+  # DEBUG EventType => EventType_33
+
+  <bb 20> [local count: 343297760]:
+  # EventType_12 = PHI <EventType_33(19), 0(22)>
+  # DEBUG EventType => EventType_12
+  # DEBUG BEGIN_STMT
+  if (EventType_12 != 2)
+    goto <bb 13>; [66.67%]
+  else
+    goto <bb 21>; [33.33%]
+
+  <bb 21> [local count: 363366677]:
+  # RetVal_10 = PHI <RetVal_9(12), 0(20), 36(11)>
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EventsToStop ={v} {CLOBBER};
+  return RetVal_10;
+
+}
+
+
+Dcm_Dem_RoeServices_CommonTriggerProcedure (Dcm_RoeEventTypeType EventType)
+{
+  Dcm_MsgLenType ServiceToRespondToLenght;
+  uint8 PreconfIdx;
+  Dcm_StatusType triggerRetVal;
+  int _1;
+  unsigned char Dcm_RoeEnqueueEvent.11_2;
+  int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  unsigned char _6;
+  unsigned char _7;
+  short unsigned int _8;
+  unsigned char _9;
+  unsigned char _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG triggerRetVal => 6
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_17(D);
+  PreconfIdx_19 = Dcm_Dsl_RoeServices_Runtime_Data[_1].PreconfIdx;
+  # DEBUG PreconfIdx => PreconfIdx_19
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceToRespondToLenght => 0
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.11_2 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.11_2 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EventType_17(D) == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[0] = 25;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[1] = 14;
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceToRespondToLenght => 2
+
+  <bb 6> [local count: 1073741824]:
+  # ServiceToRespondToLenght_11 = PHI <0(4), 2(5)>
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_11
+  # DEBUG BEGIN_STMT
+  if (EventType_17(D) == 1)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeRxData.MsgBuf[0] = 34;
+  # DEBUG BEGIN_STMT
+  _3 = (int) PreconfIdx_19;
+  _4 = Dcm_RoeEventPreconfList[_3].Did;
+  _5 = _4 >> 8;
+  _6 = (unsigned char) _5;
+  Dcm_Dsl_RoeRxData.MsgBuf[1] = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned char) _4;
+  Dcm_Dsl_RoeRxData.MsgBuf[2] = _7;
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceToRespondToLenght => 3
+
+  <bb 8> [local count: 1073741824]:
+  # ServiceToRespondToLenght_12 = PHI <ServiceToRespondToLenght_11(6), 3(7)>
+  # DEBUG ServiceToRespondToLenght => ServiceToRespondToLenght_12
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_Dsl_RoeServices_Runtime_Data[_1].RxPduId;
+  triggerRetVal_28 = Dcm_Dsl_RoeServices_ResponseOnOneEvent (&Dcm_Dsl_RoeRxData.MsgBuf[0], ServiceToRespondToLenght_12, _8);
+  # DEBUG triggerRetVal => triggerRetVal_28
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (triggerRetVal_28 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_Dsl_RoeServices_Runtime_Data[_1].ActivationCnt;
+  _10 = _9 + 1;
+  Dcm_Dsl_RoeServices_Runtime_Data[_1].ActivationCnt = _10;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle = 200;
+
+  <bb 10> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_TriggerOnDTCStatus (uint8 DTCStatusOld, uint8 DTCStatusNew)
+{
+  uint8 PreconfIdx;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.12_1;
+  unsigned char _2;
+  short unsigned int Dcm_RoeInterMsgCycle.13_3;
+  unsigned char _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.12_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.12_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[0].State;
+  if (_2 == 2)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 124124555]:
+  Dcm_RoeInterMsgCycle.13_3 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.13_3 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 5> [local count: 62062277]:
+  # DEBUG BEGIN_STMT
+  PreconfIdx_11 = Dcm_Dsl_RoeServices_Runtime_Data[0].PreconfIdx;
+  # DEBUG PreconfIdx => PreconfIdx_11
+  # DEBUG BEGIN_STMT
+  _4 = ~DTCStatusOld_12(D);
+  _5 = _4 & DTCStatusNew_13(D);
+  _6 = (int) PreconfIdx_11;
+  _7 = Dcm_RoeEventPreconfList[_6].DTCStatusMask;
+  _8 = _5 & _7;
+  if (_8 != 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 20480552]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dem_RoeServices_CommonTriggerProcedure (0);
+
+  <bb 7> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_TriggerOnEvent (uint8 RoeEventId)
+{
+  Std_ReturnType RetVal;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.9_1;
+  unsigned char _2;
+  unsigned char _3;
+  short unsigned int Dcm_RoeInterMsgCycle.10_4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.9_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.9_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[1].PreconfIdx;
+  if (_2 == RoeEventId_8(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 124124555]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[1].State;
+  if (_3 == 2)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 5> [local count: 42202349]:
+  Dcm_RoeInterMsgCycle.10_4 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.10_4 == 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 13926775]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dem_RoeServices_CommonTriggerProcedure (1);
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_5 = PHI <1(2), 1(3), 0(4), 0(5), 0(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_5;
+
+}
+
+
+Dcm_Dsl_RoeServices_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  Dcm_RoeEventTypeType EventType;
+  unsigned char Dcm_Dsl_RoeServices_Initialized.8_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OldSession_16(D) != NewSession_17(D))
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 16>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  Dcm_Dsl_RoeServices_Initialized.8_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.8_1 == 1)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 18> [local count: 240947665]:
+  goto <bb 8>; [100.00%]
+
+  <bb 4> [local count: 481967622]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) EventType_9;
+  _3 = Dcm_Dsl_RoeServices_Runtime_Data[_2].State;
+  if (_3 == 2)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 5> [local count: 97550247]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_9, 1);
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_2].Session;
+  if (_4 != 1)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 6> [local count: 64383163]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_2].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_2].Session = 0;
+
+  <bb 7> [local count: 481967622]:
+  # DEBUG BEGIN_STMT
+  EventType_24 = EventType_9 + 1;
+  # DEBUG EventType => EventType_24
+
+  <bb 8> [local count: 722915288]:
+  # EventType_9 = PHI <EventType_24(7), 0(18)>
+  # DEBUG EventType => EventType_9
+  # DEBUG BEGIN_STMT
+  if (EventType_9 != 2)
+    goto <bb 4>; [66.67%]
+  else
+    goto <bb 9>; [33.33%]
+
+  <bb 9> [local count: 240947665]:
+  # DEBUG BEGIN_STMT
+  if (NewSession_17(D) == 1)
+    goto <bb 17>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 17> [local count: 81922206]:
+  goto <bb 15>; [100.00%]
+
+  <bb 10> [local count: 163868991]:
+  # DEBUG BEGIN_STMT
+  _5 = (int) EventType_10;
+  _6 = Dcm_Dsl_RoeServices_Runtime_Data[_5].State;
+  if (_6 == 1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 11> [local count: 55715457]:
+  _7 = Dcm_Dsl_RoeServices_Runtime_Data[_5].EventWindowTime;
+  if (_7 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 12> [local count: 27857729]:
+  _8 = Dcm_Dsl_RoeServices_Runtime_Data[_5].Session;
+  if (_8 != 0)
+    goto <bb 13>; [33.00%]
+  else
+    goto <bb 14>; [67.00%]
+
+  <bb 13> [local count: 9193050]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_10, 2);
+
+  <bb 14> [local count: 163868991]:
+  # DEBUG BEGIN_STMT
+  EventType_20 = EventType_10 + 1;
+  # DEBUG EventType => EventType_20
+
+  <bb 15> [local count: 245791198]:
+  # EventType_10 = PHI <EventType_20(14), 0(17)>
+  # DEBUG EventType => EventType_10
+  # DEBUG BEGIN_STMT
+  if (EventType_10 != 2)
+    goto <bb 10>; [66.67%]
+  else
+    goto <bb 16>; [33.33%]
+
+  <bb 16> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_GetRxPduId (PduIdType * RxPduId)
+{
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 397250652]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG EventType => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_6;
+  _2 = Dcm_Dsl_RoeServices_Runtime_Data[_1].State;
+  if (_2 == 2)
+    goto <bb 4>; [5.50%]
+  else
+    goto <bb 5>; [94.50%]
+
+  <bb 4> [local count: 39372502]:
+  # _3 = PHI <_1(3)>
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_RoeServices_Runtime_Data[_3].RxPduId;
+  *RxPduId_10(D) = _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 676491173]:
+  # DEBUG BEGIN_STMT
+  EventType_9 = EventType_6 + 1;
+  # DEBUG EventType => EventType_9
+
+  <bb 6> [local count: 1073741824]:
+  # EventType_6 = PHI <0(2), EventType_9(5)>
+  # DEBUG EventType => EventType_6
+  # DEBUG BEGIN_STMT
+  if (EventType_6 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 7>; [33.33%]
+
+  <bb 7> [local count: 397250652]:
+  # RetVal_5 = PHI <0(4), 1(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_5;
+
+}
+
+
+Dcm_Dsl_RoeServices_MapToRelevantCase (Dcm_RoeEventStateType State, RoeEventWindowTimeType EventWindowTime)
+{
+  uint8 ReturnValue;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnValue => 4
+  # DEBUG BEGIN_STMT
+  if (State_6(D) == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  if (EventWindowTime_7(D) != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnValue => 0
+
+  <bb 5> [local count: 1073741824]:
+  # ReturnValue_2 = PHI <4(2), 4(3), 0(4)>
+  # DEBUG ReturnValue => ReturnValue_2
+  # DEBUG BEGIN_STMT
+  _1 = State_6(D) + 255;
+  if (_1 <= 1)
+    goto <bb 6>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+
+  <bb 6> [local count: 440234148]:
+  if (EventWindowTime_7(D) == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 220117074]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnValue => 1
+
+  <bb 8> [local count: 1073741824]:
+  # ReturnValue_3 = PHI <ReturnValue_2(5), ReturnValue_2(6), 1(7)>
+  # DEBUG ReturnValue => ReturnValue_3
+  # DEBUG BEGIN_STMT
+  if (State_6(D) == 2)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 9> [local count: 365072220]:
+  if (EventWindowTime_7(D) != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 10> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnValue => 2
+
+  <bb 11> [local count: 1073741824]:
+  # ReturnValue_4 = PHI <ReturnValue_3(8), ReturnValue_3(9), 2(10)>
+  # DEBUG ReturnValue => ReturnValue_4
+  # DEBUG BEGIN_STMT
+  if (State_6(D) == 0)
+    goto <bb 12>; [35.00%]
+  else
+    goto <bb 13>; [65.00%]
+
+  <bb 12> [local count: 375809639]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReturnValue => 3
+
+  <bb 13> [local count: 1073741824]:
+  # ReturnValue_5 = PHI <ReturnValue_4(11), 3(12)>
+  # DEBUG ReturnValue => ReturnValue_5
+  # DEBUG BEGIN_STMT
+  return ReturnValue_5;
+
+}
+
+
+Dcm_Dsl_RoeServices_InitInternal ()
+{
+  uint8 State_Time_Scenario;
+  boolean NvMChanged;
+  Dcm_RoeEventTypeType EventType;
+  Std_ReturnType NvMRetVal;
+  NvM_RequestResultType RestoredNvmData;
+  unsigned char RestoredNvmData.5_1;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  struct Dcm_RoeEventDataType * _10;
+  struct Dcm_RoeEventDataType * _11;
+  struct Dcm_RoeEventDataType * _12;
+  struct Dcm_RoeEventDataType * _13;
+  struct Dcm_RoeEventDataType * _14;
+  struct Dcm_RoeEventDataType * _15;
+  struct Dcm_RoeEventDataType * _16;
+  struct Dcm_RoeEventDataType * _17;
+
+  <bb 2> [local count: 1068380586]:
+  # DEBUG BEGIN_STMT
+  RestoredNvmData = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMRetVal_33 = NvM_ASR40_GetErrorStatus (3, &RestoredNvmData);
+  # DEBUG NvMRetVal => NvMRetVal_33
+  # DEBUG BEGIN_STMT
+  if (NvMRetVal_33 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 25>; [50.00%]
+
+  <bb 3> [local count: 534190293]:
+  # DEBUG BEGIN_STMT
+  RestoredNvmData.5_1 = RestoredNvmData;
+  if (RestoredNvmData.5_1 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 357907496]:
+  # EventType_18 = PHI <0(3), 0(5)>
+  # NvMChanged_41 = PHI <0(3), 0(5)>
+  goto <bb 11>; [100.00%]
+
+  <bb 5> [local count: 267095146]:
+  if (RestoredNvmData.5_1 == 7)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 23>; [66.00%]
+
+  <bb 6> [local count: 715863672]:
+  # DEBUG BEGIN_STMT
+  _3 = (int) EventType_19;
+  _4 = Dcm_Dsl_RoeServices_Persistent_Data[_3].State;
+  _5 = _4 + 255;
+  if (_5 <= 1)
+    goto <bb 7>; [41.00%]
+  else
+    goto <bb 10>; [59.00%]
+
+  <bb 7> [local count: 293504105]:
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_Dsl_RoeServices_Persistent_Data[_3].EventWindowTime;
+  switch (_6) <default: <L32> [33.33%], case 3: <L5> [33.33%], case 4: <L6> [33.33%]>
+
+  <bb 8> [local count: 97824918]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Persistent_Data[_3].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG NvMChanged => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 9> [local count: 97824918]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Persistent_Data[_3].EventWindowTime = 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG NvMChanged => 1
+  # DEBUG BEGIN_STMT
+
+  <bb 10> [local count: 715834322]:
+  # NvMChanged_21 = PHI <NvMChanged_22(6), 1(8), 1(9), NvMChanged_22(7)>
+<L32>:
+  # DEBUG NvMChanged => NvMChanged_21
+  # DEBUG BEGIN_STMT
+  EventType_58 = EventType_19 + 1;
+  # DEBUG EventType => EventType_58
+
+  <bb 11> [local count: 1073741819]:
+  # EventType_19 = PHI <EventType_18(4), EventType_58(10)>
+  # NvMChanged_22 = PHI <NvMChanged_41(4), NvMChanged_21(10)>
+  # DEBUG NvMChanged => NvMChanged_22
+  # DEBUG EventType => EventType_19
+  # DEBUG BEGIN_STMT
+  if (EventType_19 != 2)
+    goto <bb 6>; [66.67%]
+  else
+    goto <bb 12>; [33.33%]
+
+  <bb 12> [local count: 357878148]:
+  # NvMChanged_2 = PHI <NvMChanged_22(11)>
+  # DEBUG BEGIN_STMT
+  if (NvMChanged_2 == 1)
+    goto <bb 13>; [20.24%]
+  else
+    goto <bb 14>; [79.76%]
+
+  <bb 13> [local count: 72434537]:
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+
+  <bb 14> [local count: 357878148]:
+  # EventType_43 = PHI <0(13), 0(12)>
+  goto <bb 21>; [100.00%]
+
+  <bb 15> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _7 = (int) EventType_20;
+  _8 = Dcm_Dsl_RoeServices_Persistent_Data[_7].State;
+  _9 = Dcm_Dsl_RoeServices_Persistent_Data[_7].EventWindowTime;
+  State_Time_Scenario_45 = Dcm_Dsl_RoeServices_MapToRelevantCase (_8, _9);
+  # DEBUG State_Time_Scenario => State_Time_Scenario_45
+  # DEBUG BEGIN_STMT
+  switch (State_Time_Scenario_45) <default: <L33> [20.00%], case 0: <L15> [20.00%], case 1: <L16> [20.00%], case 2: <L17> [20.00%], case 3: <L18> [20.00%]>
+
+  <bb 16> [local count: 143172735]:
+<L15>:
+  # DEBUG BEGIN_STMT
+  _10 = &Dcm_Dsl_RoeServices_Runtime_Data[_7];
+  _11 = &Dcm_Dsl_RoeServices_Persistent_Data[_7];
+  TS_MemCpy32 (_10, _11, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_20, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 17> [local count: 143172735]:
+<L16>:
+  # DEBUG BEGIN_STMT
+  _12 = &Dcm_Dsl_RoeServices_Runtime_Data[_7];
+  _13 = &Dcm_Dsl_RoeServices_Persistent_Data[_7];
+  TS_MemCpy32 (_12, _13, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_20, 1);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 18> [local count: 143172735]:
+<L17>:
+  # DEBUG BEGIN_STMT
+  _14 = &Dcm_Dsl_RoeServices_Runtime_Data[_7];
+  _15 = &Dcm_Dsl_RoeServices_Persistent_Data[_7];
+  TS_MemCpy32 (_14, _15, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_20, 2);
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 19> [local count: 143172735]:
+<L18>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Persistent_Data[_7].EventWindowTime = 0;
+  # DEBUG BEGIN_STMT
+  _16 = &Dcm_Dsl_RoeServices_Runtime_Data[_7];
+  _17 = &Dcm_Dsl_RoeServices_Persistent_Data[_7];
+  TS_MemCpy32 (_16, _17, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_20, 0);
+  # DEBUG BEGIN_STMT
+
+  <bb 20> [local count: 715863675]:
+<L33>:
+  # DEBUG BEGIN_STMT
+  EventType_55 = EventType_20 + 1;
+  # DEBUG EventType => EventType_55
+
+  <bb 21> [local count: 1073741824]:
+  # EventType_20 = PHI <EventType_43(14), EventType_55(20)>
+  # DEBUG EventType => EventType_20
+  # DEBUG BEGIN_STMT
+  if (EventType_20 != 2)
+    goto <bb 15>; [66.67%]
+  else
+    goto <bb 22>; [33.33%]
+
+  <bb 22> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+  goto <bb 28>; [100.00%]
+
+  <bb 23> [local count: 176282797]:
+  # DEBUG BEGIN_STMT
+  if (RestoredNvmData.5_1 == 2)
+    goto <bb 28>; [51.12%]
+  else
+    goto <bb 24>; [48.88%]
+
+  <bb 24> [local count: 86167031]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitPreconf ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+  goto <bb 28>; [100.00%]
+
+  <bb 25> [local count: 534190293]:
+  # DEBUG BEGIN_STMT
+  if (NvMRetVal_33 != 1)
+    goto <bb 26>; [48.88%]
+  else
+    goto <bb 27>; [51.12%]
+
+  <bb 26> [local count: 261112215]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 213, 2);
+
+  <bb 27> [local count: 534190293]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitPreconf ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 1;
+
+  <bb 28> [local count: 1068351240]:
+  RestoredNvmData ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_InitPreconf ()
+{
+  const Dcm_RoeEventTypeType EventType;
+  boolean NvMChanged;
+  uint8 PreconfEventIndex;
+  unsigned char _2;
+  int _4;
+  struct Dcm_RoeEventDataType * _6;
+  struct Dcm_RoeEventDataType * _7;
+
+  <bb 2> [local count: 59055800]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG NvMChanged => 0
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ClearEvents (0);
+  # DEBUG BEGIN_STMT
+  # DEBUG PreconfEventIndex => 0
+  goto <bb 5>; [100.00%]
+
+  <bb 3> [local count: 1014686025]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_RoeEventPreconfList[0].InitialEventStatus;
+  if (_2 == 1)
+    goto <bb 4>; [67.00%]
+  else
+    goto <bb 10>; [33.00%]
+
+  <bb 10> [local count: 334846386]:
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 679839637]:
+  # DEBUG BEGIN_STMT
+  EventType_15 = Dcm_RoeEventPreconfList[0].EventType;
+  # DEBUG EventType => EventType_15
+  # DEBUG BEGIN_STMT
+  _4 = (int) EventType_15;
+  Dcm_Dsl_RoeServices_Runtime_Data[_4].PreconfIdx = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_4].OrigEventWindowTime = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_4].EventWindowTime = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Runtime_Data[_4].Session = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_15, 1);
+  # DEBUG BEGIN_STMT
+  _6 = &Dcm_Dsl_RoeServices_Persistent_Data[_4];
+  _7 = &Dcm_Dsl_RoeServices_Runtime_Data[_4];
+  TS_MemCpy32 (_6, _7, 8);
+  # DEBUG BEGIN_STMT
+  # DEBUG NvMChanged => 1
+
+  <bb 5> [local count: 738895437]:
+  # PreconfEventIndex_11 = PHI <0(2), 1(4)>
+  # NvMChanged_9 = PHI <0(2), 1(4)>
+
+  <bb 6> [local count: 1073741824]:
+  # PreconfEventIndex_8 = PHI <PreconfEventIndex_11(5), 1(10)>
+  # NvMChanged_10 = PHI <NvMChanged_9(5), NvMChanged_10(10)>
+  # DEBUG NvMChanged => NvMChanged_10
+  # DEBUG PreconfEventIndex => PreconfEventIndex_8
+  # DEBUG BEGIN_STMT
+  if (PreconfEventIndex_8 == 0)
+    goto <bb 3>; [94.50%]
+  else
+    goto <bb 7>; [5.50%]
+
+  <bb 7> [local count: 59055800]:
+  # NvMChanged_3 = PHI <NvMChanged_10(6)>
+  # DEBUG BEGIN_STMT
+  if (NvMChanged_3 == 1)
+    goto <bb 8>; [20.24%]
+  else
+    goto <bb 9>; [79.76%]
+
+  <bb 8> [local count: 11952894]:
+  Dcm_Dsl_RoeServices_InitPreconf.part.0 ();
+
+  <bb 9> [local count: 59055800]:
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_IsInitialized ()
+{
+  boolean Initialized;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Initialized_2 = Dcm_Dsl_RoeServices_Initialized;
+  # DEBUG Initialized => Initialized_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Initialized_2;
+
+}
+
+
+Dcm_Dsl_RoeServices_Init ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_MainFunction ()
+{
+  unsigned char Dcm_Dsl_RoeServices_Initialized.1_1;
+  short unsigned int Dcm_RoeInterMsgCycle.2_2;
+  short unsigned int _3;
+  unsigned char Dcm_RoeEnqueueEvent.4_4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Initialized.1_1 = Dcm_Dsl_RoeServices_Initialized;
+  if (Dcm_Dsl_RoeServices_Initialized.1_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_InitInternal ();
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeInterMsgCycle.2_2 = Dcm_RoeInterMsgCycle;
+  if (Dcm_RoeInterMsgCycle.2_2 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_RoeInterMsgCycle.2_2 + 65535;
+  Dcm_RoeInterMsgCycle = _3;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent.4_4 = Dcm_RoeEnqueueEvent;
+  if (Dcm_RoeEnqueueEvent.4_4 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_RoeEventDispatch (&Dcm_Dsl_RoeRxData);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 8> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RoeServices_ClearEvents (boolean ServiceCall)
+{
+  Dcm_RoeEventTypeType EventType;
+  int _1;
+  int _2;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&Dcm_Dsl_RoeServices_Runtime_Data, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG EventType => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  if (ServiceCall_9(D) == 1)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 144890808]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_ChangeState (EventType_3, 0);
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 570972868]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) EventType_3;
+  Dcm_Dsl_RoeServices_Runtime_Data[_1].State = 0;
+
+  <bb 6> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) EventType_3;
+  Dcm_Dsl_RoeServices_Persistent_Data[_2].State = 0;
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetRamBlockStatus (3, 1);
+  # DEBUG BEGIN_STMT
+  EventType_15 = EventType_3 + 1;
+  # DEBUG EventType => EventType_15
+
+  <bb 7> [local count: 1073741824]:
+  # EventType_3 = PHI <0(2), EventType_15(6)>
+  # DEBUG EventType => EventType_3
+  # DEBUG BEGIN_STMT
+  if (EventType_3 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 8>; [33.33%]
+
+  <bb 8> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  if (ServiceCall_9(D) == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 178939075]:
+  # DEBUG BEGIN_STMT
+  Dcm_RoeEnqueueEvent = 0;
+
+  <bb 10> [local count: 357878150]:
+  return;
+
+}
+
+

@@ -1,0 +1,99 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StartupChecks
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_ShutdownNoHooks/2 (OS_ShutdownNoHooks) @06c69c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartupChecks/0 
+  Calls: 
+OS_startupCheckFunc/1 (OS_startupCheckFunc) @06c44900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecks/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartupChecks/0 (OS_StartupChecks) @06c69a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_startupCheckFunc/1 (addr)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_ShutdownNoHooks/2 
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_StartupChecks ()
+{
+  os_result_t (*os_schkfunc_t) (void) * fct;
+  os_result_t result;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  fct = &OS_startupCheckFunc[0];
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = *fct;
+  _2 = _1 ();
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = 22;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  fct = fct + 4;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = *fct;
+  if (_3 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (result != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 9> :
+  return;
+
+}
+
+
