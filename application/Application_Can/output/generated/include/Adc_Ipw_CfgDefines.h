@@ -94,6 +94,11 @@ extern "C"{
 #define ADC_IPW_PDB_AVAILABLE                   (STD_OFF)
 
 /**
+* @brief           PDB channel delays available/unavailable (STD_ON/STD_OFF).
+*/
+#define ADC_IPW_DELAY_AVAILABLE                 (ADC_IPW_PDB_AVAILABLE)
+
+/**
 * @brief           BCTU available/unavailable (STD_ON/STD_OFF).
 */
 #define ADC_IPW_BCTU_AVAILABLE                  (STD_ON)

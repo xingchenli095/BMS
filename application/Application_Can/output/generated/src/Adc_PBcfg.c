@@ -157,9 +157,9 @@ static const Adc_GroupConfigurationType Adc_GroupsCfg[] =
         /**< @brief ADC Logical Unit Id that the group belongs to */
         (Adc_HwUnitType)0, /* AdcLogicalUnitId */
         /**< @brief Access mode */
-        ADC_ACCESS_MODE_STREAMING, /* AccessMode */
+        ADC_ACCESS_MODE_SINGLE, /* AccessMode */
         /**< @brief Conversion mode */
-        ADC_CONV_MODE_CONTINUOUS, /* Mode */
+        ADC_CONV_MODE_ONESHOT, /* Mode */
         /**< @brief Conversion type */
         ADC_CONV_TYPE_NORMAL, /* Type */
 #if (ADC_PRIORITY_IMPLEMENTATION != ADC_PRIORITY_NONE)

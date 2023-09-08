@@ -222,7 +222,7 @@ const Clock_Ip_ClockConfigType Mcu_aClockConfigPB[1U] = {
             #if CLOCK_IP_XOSCS_NO > 0U
             {
                 FXOSC_CLK,                    /* Clock name associated to xosc */
-                16000000U,                    /* External oscillator frequency. */
+                8000000U,                    /* External oscillator frequency. */
                 1U,                           /* Enable xosc. */
                 157U,                         /* Startup stabilization time. */
                 0U,                           /* XOSC bypass option */
@@ -260,7 +260,7 @@ const Clock_Ip_ClockConfigType Mcu_aClockConfigPB[1U] = {
                 0U,                           /*!<     multiplier;              */
                 0U,                           /*!<     postdivider;              */
                 0U,                           /*!<     numeratorFracLoopDiv;    */
-                60U,                          /*!<     mulFactorDiv;            */
+                120U,                          /*!<     mulFactorDiv;            */
                 0U,                           /*!<     modulation;              */
                 1U,                           /*!<     modulationType;          */
                 0U,                           /*!<     modulationPeriod;        */
@@ -1130,7 +1130,7 @@ const Clock_Ip_ClockConfigType Mcu_aClockConfigPB[1U] = {
                 CMU_FC_IER_FLLAIE(0U) |
                 CMU_FC_IER_FHHAIE(0U)
                 ),
-                16000000U,
+                8000000U,
                 {                                               
                     0U,          /* Start index in register values array */
                     0U,          /* End index in register values array */
@@ -1221,7 +1221,7 @@ const Clock_Ip_ClockConfigType Mcu_aClockConfigPB[1U] = {
             #if CLOCK_IP_CONFIGURED_FREQUENCIES_NO > 2U
             {
                 FXOSC_CLK,
-                16000000U,
+                8000000U,
             },
             #endif
 

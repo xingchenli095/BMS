@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  * 
- * Date         : 9/7/23 9:18 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/8/23 2:48 PM           !!!IGNORE-LINE!!!
  * 
  * The name of the optimized lib will be : OS_lib_4003af7b98
  */
@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_LIBCONF_H  0xed32d25eUL
+#define OS_GENERATION_ID_OS_LIBCONF_H  0xd964d033UL
 
 #define OS_AUTOSAROS_VER         6
 

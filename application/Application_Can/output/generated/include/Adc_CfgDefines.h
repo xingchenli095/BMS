@@ -188,7 +188,7 @@ extern "C"{
 /**
 * @brief          Add/remove ((STD_ON)/(STD_OFF)) the service Adc_SetChannel() from the code.
 */
-#define ADC_SETCHANNEL_API                        (STD_OFF)
+#define ADC_SETCHANNEL_API                        (STD_ON)
 
 /**
 * @brief          Extra group notification mechanism is/is not ((STD_ON)/(STD_OFF)) available at runtime.
@@ -223,7 +223,7 @@ extern "C"{
 /**
 * @brief           Switch to enable/disable the API for Tempsense.
 */
-#define ADC_ENABLE_TEMPSENSE_API                  (STD_OFF)
+#define ADC_ENABLE_TEMPSENSE_API                  (STD_ON)
 #define ADC_POWER_ON_TEMPSENSE                    (STD_OFF)
 
 /**
@@ -234,7 +234,7 @@ extern "C"{
 /**
 * @brief           Enable Group Streaming Result as multiple set.
 */
-#define ADC_ENABLE_GROUP_STREAMING_RESULTS_REORDER (STD_OFF)
+#define ADC_ENABLE_GROUP_STREAMING_RESULTS_REORDER (STD_ON)
 
 /**
 * @brief IRQ definition

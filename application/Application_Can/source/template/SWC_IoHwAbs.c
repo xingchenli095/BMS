@@ -56,6 +56,8 @@ uint16 AdcGroupResult[ADC_NUM_RESULTS] = {0};
 #include <SWC_IoHwAbs_MemMap.h>
 FUNC(void, RTE_CODE) Adc_ReadValue (void)
 {
+  Adc_SetupResultBuffer(AdcConf_AdcGroup_AdcChannel_VER_G0,AdcGroupResult);
+  Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
   Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);
 
 } /* FUNC(void, RTE_CODE) Adc_ReadValue (void) */
@@ -73,7 +75,7 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
   
   ComM_RequestComMode(ComMConf_ComMUser_ComMUser_0,COMM_FULL_COMMUNICATION);
   
-  /*
+  
   if(Dio_ReadChannel(DioConf_DioChannel_MY_LED_CYCLIC) == DIO_LOW_VALUE)
   {
     Dio_WriteChannel(DioConf_DioChannel_MY_LED_CYCLIC, (Dio_LevelType) DIO_HIGH_VALUE);
@@ -82,8 +84,9 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
   {
     Dio_WriteChannel(DioConf_DioChannel_MY_LED_CYCLIC, (Dio_LevelType) DIO_LOW_VALUE);
   }
-  */
+  
 
+/*
   if(flag)
   {
     Dio_WriteChannel(DioConf_DioChannel_MY_LED_CYCLIC, (Dio_LevelType) DIO_HIGH_VALUE);
@@ -99,11 +102,12 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
 	  Count= 0;
   }
   Count++;
+  */
 
-  Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
+  /*Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
   Adc_SetupResultBuffer(AdcConf_AdcGroup_AdcChannel_VER_G0,AdcGroupResult);
-  Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);
-  Adc_StopGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
+  Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);*/
+  /*Adc_StopGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);*/
 
 } /* FUNC(void, RTE_CODE) LedControl_IO (void) */
 

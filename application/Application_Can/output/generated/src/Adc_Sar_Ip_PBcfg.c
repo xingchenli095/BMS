@@ -293,6 +293,8 @@ const Adc_Sar_Ip_ConfigType AdcSarIpConfig_1 =
 #define ADC_START_SEC_CONFIG_DATA_16
 #include "Adc_MemMap.h"
 
+const uint16 AdcVoltageRefs[ADC_INSTANCE_COUNT] = { 80U, 53U };
+
 #define ADC_STOP_SEC_CONFIG_DATA_16
 #include "Adc_MemMap.h"
 

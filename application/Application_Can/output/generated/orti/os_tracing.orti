@@ -8,7 +8,7 @@
 // 91058 Erlangen
 // GERMANY
 //
-// Date         : 9/7/23 9:18 PM           !!!IGNORE-LINE!!!
+// Date         : 9/8/23 2:48 PM           !!!IGNORE-LINE!!!
 
 //-------------------------------------------------------------------
 // 00 ORTI Version
@@ -45,7 +45,8 @@ OS
     "CAN0_ORED_IRQHandler" = 0,
     "CAN0_ORED_0_31_MB_IRQHandler" = 1,
     "CAN0_ORED_32_63_MB_IRQHandler" = 2,
-    "Os_Counter_STM0_0" = 3
+    "Adc_Sar_0_Isr" = 3,
+    "Os_Counter_STM0_0" = 4
   ] RUNNINGISR2, "Running ISR identification";
   ENUM [
     "Boot"           = 0,
@@ -175,7 +176,8 @@ RESOURCE
     "CAN0_ORED_IRQHandler" = 256,
     "CAN0_ORED_0_31_MB_IRQHandler" = 257,
     "CAN0_ORED_32_63_MB_IRQHandler" = 258,
-    "Os_Counter_STM0_0" = 259
+    "Adc_Sar_0_Isr" = 259,
+    "Os_Counter_STM0_0" = 260
   ] LOCKER, "Locker identification";
   ENUM "unsigned char" [ "UNLOCKED"=0,"LOCKED"=1 ] STATE, "Resource state";
 };
@@ -498,7 +500,7 @@ vs_APPLICATION OS_SYSTEM_0
 {
   vs_NUMBER_TASKS          = "8";
   vs_NUMBER_RESOURCES      = "4";
-  vs_NUMBER_ISRS           = "4";
+  vs_NUMBER_ISRS           = "5";
   vs_NUMBER_ALARMS         = "3";
   vs_NUMBER_SCHEDULETABLES = "2";
   vs_NUMBER_COUNTER        = "2";
@@ -640,13 +642,25 @@ vs_ISR CAN0_ORED_32_63_MB_IRQHandler
   vs_REALPRIORITY        = "7";
   vs_TIMING_PROTECTION   = "false";
 };
+vs_ISR Adc_Sar_0_Isr
+{
+  vs_CATEGORY            = "2";
+  vs_ENABLE_ON_STARTUP   = "true";
+  vs_MEASURE_MAX_RUNTIME = "false";
+  vs_STACKSIZE           = "1024";
+  vs_STATUS              = "(OS_isrTableBase[3].dynamic->statusflags & 0x30)";
+  vs_STACK               = "OS_kernStack0";
+  vs_ASSIGNEDPRIO        = "7";
+  vs_REALPRIORITY        = "7";
+  vs_TIMING_PROTECTION   = "false";
+};
 vs_ISR Os_Counter_STM0_0
 {
   vs_CATEGORY            = "2";
   vs_ENABLE_ON_STARTUP   = "true";
   vs_MEASURE_MAX_RUNTIME = "false";
   vs_STACKSIZE           = "512";
-  vs_STATUS              = "(OS_isrTableBase[3].dynamic->statusflags & 0x30)";
+  vs_STATUS              = "(OS_isrTableBase[4].dynamic->statusflags & 0x30)";
   vs_STACK               = "OS_kernStack0";
   vs_ASSIGNEDPRIO        = "2";
   vs_REALPRIORITY        = "2";

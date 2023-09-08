@@ -116,6 +116,10 @@ extern const Adc_Sar_Ip_ConfigType AdcSarIpConfig_1;
 
 #define ADC_START_SEC_CONFIG_DATA_16
 #include "Adc_MemMap.h"
+/**
+* @brief          ADC SAR Ip Config for voltage references.
+*/
+extern const uint16 AdcVoltageRefs[ADC_INSTANCE_COUNT];
 
 #define ADC_STOP_SEC_CONFIG_DATA_16
 #include "Adc_MemMap.h"

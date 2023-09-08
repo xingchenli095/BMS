@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  *
- * Date         : 9/7/23 9:18 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/8/23 2:48 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_USER_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_H    0xed32d25eUL
+#define OS_GENERATION_ID_OS_H    0xd964d033UL
 
 #define OS_AUTOSAROS_VER         6
 
@@ -137,6 +137,12 @@ extern void OS_ISR_CAN0_ORED_32_63_MB_IRQHandler(void);
 #define CAN0_ORED_32_63_MB_IRQHandler_ISR_CATEGORY  2
 #define CAN0_ORED_32_63_MB_IRQHandler_ISR_VECTOR    111
 #define CAN0_ORED_32_63_MB_IRQHandler_ISR_LEVEL     7
+#ifndef OS_ASM
+extern void OS_ISR_Adc_Sar_0_Isr(void);
+#endif  /* OS_ASM */
+#define Adc_Sar_0_Isr_ISR_CATEGORY  2
+#define Adc_Sar_0_Isr_ISR_VECTOR    180
+#define Adc_Sar_0_Isr_ISR_LEVEL     7
 #define Os_Counter_STM0_0_ISR_CATEGORY  2
 #define Os_Counter_STM0_0_ISR_VECTOR    39
 #define Os_Counter_STM0_0_ISR_LEVEL     2
@@ -148,6 +154,9 @@ extern void OS_ISR_CAN0_ORED_32_63_MB_IRQHandler(void);
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
 #define CAN0_ORED_32_63_MB_IRQHandler  2
+#endif
+#if OS_KERNEL_TYPE != OS_MICROKERNEL
+#define Adc_Sar_0_Isr  3
 #endif
 
 /*===================================================================
