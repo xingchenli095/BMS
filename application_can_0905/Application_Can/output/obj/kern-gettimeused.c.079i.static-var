@@ -1,0 +1,72 @@
+callgraph:
+
+OS_GetTimeUsed/0 (OS_GetTimeUsed) @06c6cb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_executionTimer/2 (read)OS_kernelData/1 (read)OS_kernelData/1 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(1073741824 (estimated locally),1.00 per call) 
+Clearing variable flags:
+
+Function name:OS_GetTimeUsed/0:
+  locals read: 
+  locals written: 
+
+ ordered call graph: reduced
+OS_GetTimeUsed/0 (OS_GetTimeUsed) @06c6cb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06857120
+  References: OS_executionTimer/2 (read)OS_kernelData/1 (read)OS_kernelData/1 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(1073741824 (estimated locally),1.00 per call) 
+
+
+Function name:OS_GetTimeUsed/0:
+    locals read: 
+    locals written: 
+  globals read: ALL
+  globals written: ALL
+__attribute__((target ("general-regs-only")))
+OS_GetTimeUsed ()
+{
+  os_tick_t used;
+  os_timervalue_t frc;
+  const struct os_hwt_t * _1;
+  const struct os_hwtdrv_t * _2;
+  os_timervalue_t (*<T526>) (const struct os_hwt_t *) _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  _1 = OS_executionTimer[0];
+  _2 = _1->driver;
+  _3 = _2->hwtRead;
+  frc_9 = _3 (_1);
+  # DEBUG frc => frc_9
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.accounting.frc;
+  _5 = frc_9 - _4;
+  _6 = _1->wrapMask;
+  used_10 = _5 & _6;
+  # DEBUG used => used_10
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.frc = frc_9;
+  # DEBUG BEGIN_STMT
+  return used_10;
+
+}
+
+

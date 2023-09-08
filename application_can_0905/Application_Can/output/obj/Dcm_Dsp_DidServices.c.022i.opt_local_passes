@@ -1,0 +1,3244 @@
+Dcm_Dsp_DidServices_EndianessConversion_CalculateDataPosition (Dcm_DidDataByteType DataType, uint16 DataLength, uint16 DataPosition)
+{
+  uint16 SignalLength;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  uint16 _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SignalLength_13 = DataPosition_12(D);
+  # DEBUG SignalLength => SignalLength_13
+  # DEBUG BEGIN_STMT
+  if (DataType_14(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (DataType_14(D) == 7)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = DataLength_15(D) & 15;
+  if (_1 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = DataLength_15(D) / 16;
+  _3 = _2 + 1;
+  _4 = _3 * 16;
+  _5 = _4 - DataLength_15(D);
+  SignalLength_17 = SignalLength_13 + _5;
+  # DEBUG SignalLength => SignalLength_17
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DataType_14(D) == 3)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (DataType_14(D) == 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = DataLength_15(D) & 31;
+  if (_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _7 = DataLength_15(D) / 32;
+  _8 = _7 + 1;
+  _9 = _8 * 32;
+  _10 = _9 - DataLength_15(D);
+  SignalLength_16 = SignalLength_13 + _10;
+  # DEBUG SignalLength => SignalLength_16
+
+  <bb 10> :
+  # SignalLength_11 = PHI <SignalLength_17(5), SignalLength_13(7), SignalLength_13(8), SignalLength_16(9), SignalLength_13(4)>
+  # DEBUG SignalLength => SignalLength_11
+  # DEBUG BEGIN_STMT
+  _18 = SignalLength_11;
+  return _18;
+
+}
+
+
+Dcm_Dsp_DidServices_StoreDidId (struct Dcm_DspMsgBufferCfgType * BufferCfgPtr, uint16 Did)
+{
+  Dcm_MsgItemType * dataPtr;
+  boolean result;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  uint8 * _4;
+  long unsigned int _5;
+  short unsigned int _6;
+  unsigned char _7;
+  Dcm_MsgItemType * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  boolean _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_14 = 0;
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  _1 = BufferCfgPtr_16(D)->Occupied;
+  _2 = _1 + 2;
+  _3 = BufferCfgPtr_16(D)->Size;
+  if (_2 <= _3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = BufferCfgPtr_16(D)->BufferPtr;
+  _5 = BufferCfgPtr_16(D)->Occupied;
+  dataPtr_17 = _4 + _5;
+  # DEBUG dataPtr => dataPtr_17
+  # DEBUG BEGIN_STMT
+  _6 = Did_18(D) >> 8;
+  _7 = (unsigned char) _6;
+  *dataPtr_17 = _7;
+  # DEBUG BEGIN_STMT
+  _8 = dataPtr_17 + 1;
+  _9 = (unsigned char) Did_18(D);
+  *_8 = _9;
+  # DEBUG BEGIN_STMT
+  _10 = BufferCfgPtr_16(D)->Occupied;
+  _11 = _10 + 2;
+  BufferCfgPtr_16(D)->Occupied = _11;
+  # DEBUG BEGIN_STMT
+  result_22 = 1;
+  # DEBUG result => result_22
+
+  <bb 4> :
+  # result_12 = PHI <result_14(2), result_22(3)>
+  # DEBUG result => result_12
+  # DEBUG BEGIN_STMT
+  _23 = result_12;
+  return _23;
+
+}
+
+
+Dcm_Dsp_DidServices_DidSetStatus (const struct Dcm_DidInfoContextExtType * DidInfoPtr, struct Dcm_ReadSignalContextType * pReadSignalContext)
+{
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_5(D)->SignalInd = 0;
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_5(D)->NrcConditions = 0;
+  # DEBUG BEGIN_STMT
+  _1 = DidInfoPtr_8(D)->ProtocolIdx;
+  _2 = (int) _1;
+  _3 = Dcm_ProtocolConfig[_2].EndiannessConversion;
+  pReadSignalContext_5(D)->EndiannessConversion = _3;
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_5(D)->NewSignal = 1;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetAccessInfo (Dcm_DidInfoIdxType didInfoIdx, Dcm_DidOpType didOpType)
+{
+  const Dcm_DidWriteAccessInfoIdxType AccessInfoIdx;
+  const Dcm_DidReadAccessInfoIdxType AccessInfoIdx;
+  const struct Dcm_DidAccessInfoBaseType * AccessInfo;
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  const struct Dcm_DidAccessInfoBaseType * _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  AccessInfo_6 = 0B;
+  # DEBUG AccessInfo => AccessInfo_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (didOpType_7(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (didOpType_7(D) == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (didOpType_7(D) == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) didInfoIdx_8(D);
+  AccessInfoIdx_12 = Dcm_DidInfo[_1].ReadAccessInfoIdx;
+  # DEBUG AccessInfoIdx => AccessInfoIdx_12
+  # DEBUG BEGIN_STMT
+  if (AccessInfoIdx_12 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) AccessInfoIdx_12;
+  AccessInfo_13 = &Dcm_DidReadAccessInfo[_2].AccessInfoBase;
+  # DEBUG AccessInfo => AccessInfo_13
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (didOpType_7(D) == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) didInfoIdx_8(D);
+  AccessInfoIdx_10 = Dcm_DidInfo[_3].WriteAccessInfoIdx;
+  # DEBUG AccessInfoIdx => AccessInfoIdx_10
+  # DEBUG BEGIN_STMT
+  if (AccessInfoIdx_10 != 255)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) AccessInfoIdx_10;
+  AccessInfo_11 = &Dcm_DidWriteAccessInfo[_4].AccessInfoBase;
+  # DEBUG AccessInfo => AccessInfo_11
+
+  <bb 10> :
+  # AccessInfo_5 = PHI <AccessInfo_13(6), AccessInfo_6(7), AccessInfo_11(9), AccessInfo_6(5), AccessInfo_6(8)>
+  # DEBUG AccessInfo => AccessInfo_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = AccessInfo_5;
+  return _14;
+
+}
+
+
+Dcm_Dsp_DidServices_IsDidAvailableInSecLevel (const struct Dcm_DidAccessInfoBaseType * AccessInfo)
+{
+  uint8_least secLevIdx;
+  Dcm_SecLevelType curSecLevel;
+  boolean didIsAvailable;
+  unsigned char _1;
+  const Dcm_SecLevelType * _2;
+  const Dcm_SecLevelType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  long unsigned int _6;
+  boolean _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_10 = 0;
+  # DEBUG didIsAvailable => didIsAvailable_10
+  # DEBUG BEGIN_STMT
+  if (AccessInfo_11(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  _1 = AccessInfo_11(D)->NumSecLevels;
+  if (_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  curSecLevel_14 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  # DEBUG curSecLevel => curSecLevel_14
+  # DEBUG BEGIN_STMT
+  if (curSecLevel_14 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  secLevIdx_15 = 0;
+  # DEBUG secLevIdx => secLevIdx_15
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = AccessInfo_11(D)->SecLevels;
+  _3 = _2 + secLevIdx_8;
+  _4 = *_3;
+  if (curSecLevel_14 == _4)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_17 = 1;
+  # DEBUG didIsAvailable => didIsAvailable_17
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  secLevIdx_16 = secLevIdx_8 + 1;
+  # DEBUG secLevIdx => secLevIdx_16
+
+  <bb 9> :
+  # secLevIdx_8 = PHI <secLevIdx_15(5), secLevIdx_16(8)>
+  # DEBUG secLevIdx => secLevIdx_8
+  # DEBUG BEGIN_STMT
+  _5 = AccessInfo_11(D)->NumSecLevels;
+  _6 = (long unsigned int) _5;
+  if (secLevIdx_8 < _6)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_18 = 1;
+  # DEBUG didIsAvailable => didIsAvailable_18
+
+  <bb 11> :
+  # didIsAvailable_7 = PHI <didIsAvailable_17(7), didIsAvailable_18(10), didIsAvailable_10(4), didIsAvailable_10(9)>
+  # DEBUG didIsAvailable => didIsAvailable_7
+  # DEBUG BEGIN_STMT
+  _19 = didIsAvailable_7;
+  return _19;
+
+}
+
+
+Dcm_Dsp_DidServices_IsDidInValidRange (uint16 reqDid, Dcm_DidOpType DidOp)
+{
+  const boolean inObdRange;
+  boolean result;
+  short unsigned int _1;
+  short unsigned int _2;
+  boolean _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_4 = 0;
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  inObdRange_8 = Dcm_Dsp_DidServices_IsDidInObdRange (reqDid_6(D));
+  # DEBUG inObdRange => inObdRange_8
+  # DEBUG BEGIN_STMT
+  if (reqDid_6(D) <= 61951)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (reqDid_6(D) == 65280)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _1 = reqDid_6(D) + 768;
+  if (_1 <= 511)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _2 = reqDid_6(D) + 3584;
+  if (_2 <= 255)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (DidOp_9(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (DidOp_9(D) == 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (reqDid_6(D) > 63743)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  if (reqDid_6(D) <= 65279)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (DidOp_9(D) <= 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  if (inObdRange_8 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  result_10 = 1;
+  # DEBUG result => result_10
+
+  <bb 13> :
+  # result_3 = PHI <result_4(10), result_4(11), result_10(12)>
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _11 = result_3;
+  return _11;
+
+}
+
+
+Dcm_Dsp_DidServices_IsDidInObdRange (uint16 Did)
+{
+  boolean result;
+  short unsigned int _1;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_3 = 0;
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  _1 = Did_4(D) + 3072;
+  if (_1 <= 1279)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_5 = 1;
+  # DEBUG result => result_5
+
+  <bb 4> :
+  # result_2 = PHI <result_3(2), result_5(3)>
+  # DEBUG result => result_2
+  # DEBUG BEGIN_STMT
+  _6 = result_2;
+  return _6;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ReadLocalData (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  const struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  struct Dcm_DspMsgBufferCfgType * const BufferCfgPtr;
+  struct Dcm_ReadSignalContextType * ReadSignalContextPtr;
+  void * _1;
+  void * _2;
+  void * _3;
+  unsigned char _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned char _7;
+  unsigned char _8;
+  long unsigned int _9;
+  long unsigned int _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_13(D)->SpecialPtr;
+  ReadSignalContextPtr_14 = &MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext.ReadSignalContext;
+  # DEBUG ReadSignalContextPtr => ReadSignalContextPtr_14
+  # DEBUG BEGIN_STMT
+  _2 = context_13(D)->SpecialPtr;
+  BufferCfgPtr_15 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_2].ReadSingleStaticDidContext.BufferCfgPtr;
+  # DEBUG BufferCfgPtr => BufferCfgPtr_15
+  # DEBUG BEGIN_STMT
+  _3 = context_13(D)->SpecialPtr;
+  DidInfoPtr_16 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_3].ReadSingleStaticDidContext.DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = context_13(D)->opstatus;
+  ReadSignalContextPtr_14->CurrentOpStatus = _4;
+  # DEBUG BEGIN_STMT
+  _5 = DidInfoPtr_16->DidOp;
+  ReadSignalContextPtr_14->DidOp = _5;
+  # DEBUG BEGIN_STMT
+  result_20 = Dcm_Dsp_DidServices_ReadDataOfSingleDid_Execute (ReadSignalContextPtr_14);
+  # DEBUG result => result_20
+  # DEBUG BEGIN_STMT
+  if (result_20 == 26)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _6 = ReadSignalContextPtr_14->AmountOfBufferOccupied;
+  BufferCfgPtr_15->Occupied = _6;
+  # DEBUG BEGIN_STMT
+  context_13(D)->result = 0;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  context_13(D)->result = result_20;
+  # DEBUG BEGIN_STMT
+  _7 = ReadSignalContextPtr_14->NrcConditions;
+  context_13(D)->nrc = _7;
+  # DEBUG BEGIN_STMT
+  _8 = ReadSignalContextPtr_14->NrcConditions;
+  if (_8 == 49)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = BufferCfgPtr_15->Occupied;
+  _10 = _9 + 4294967294;
+  BufferCfgPtr_15->Occupied = _10;
+
+  <bb 6> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_SelectDidDataSrc (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_DspMsgBufferCfgType * const BufferCfgPtr;
+  struct Dcm_ReadSignalContextType * const ReadSignalContextPtr;
+  const struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  void * _1;
+  void * _2;
+  void * _3;
+  uint8 * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_11(D)->SpecialPtr;
+  DidInfoPtr_12 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext.DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_12
+  # DEBUG BEGIN_STMT
+  _2 = context_11(D)->SpecialPtr;
+  ReadSignalContextPtr_13 = &MEM[(struct Dcm_ReadSingleStaticDidContextType *)_2].ReadSingleStaticDidContext.ReadSignalContext;
+  # DEBUG ReadSignalContextPtr => ReadSignalContextPtr_13
+  # DEBUG BEGIN_STMT
+  _3 = context_11(D)->SpecialPtr;
+  BufferCfgPtr_14 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_3].ReadSingleStaticDidContext.BufferCfgPtr;
+  # DEBUG BufferCfgPtr => BufferCfgPtr_14
+  # DEBUG BEGIN_STMT
+  _4 = BufferCfgPtr_14->BufferPtr;
+  ReadSignalContextPtr_13->outputBuffer = _4;
+  # DEBUG BEGIN_STMT
+  _5 = BufferCfgPtr_14->Size;
+  ReadSignalContextPtr_13->BufferLimit = _5;
+  # DEBUG BEGIN_STMT
+  _6 = BufferCfgPtr_14->Occupied;
+  ReadSignalContextPtr_13->AmountOfBufferOccupied = _6;
+  # DEBUG BEGIN_STMT
+  _7 = DidInfoPtr_12->ConfigType;
+  _8 = (int) _7;
+  switch (_8) <default: <L4> [INV], case 1: <L0> [INV], case 5: <L1> [INV], case 6: <L3> [INV], case 7: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  context_11(D)->next_state = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidServices_DidSetStatus (DidInfoPtr_12, ReadSignalContextPtr_13);
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  context_11(D)->next_state = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  context_11(D)->next_state = 5;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  context_11(D)->next_state = 9;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  context_11(D)->nrc = 16;
+  # DEBUG BEGIN_STMT
+  context_11(D)->result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_StoreDidId (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  struct Dcm_DspMsgBufferCfgType * const StoreBufferCfg;
+  void * _1;
+  void * _2;
+  void * _3;
+  unsigned char _4;
+  short unsigned int _5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_9(D)->SpecialPtr;
+  StoreBufferCfg_10 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext.BufferCfgPtr;
+  # DEBUG StoreBufferCfg => StoreBufferCfg_10
+  # DEBUG BEGIN_STMT
+  _2 = context_9(D)->SpecialPtr;
+  DidInfoPtr_11 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_2].ReadSingleStaticDidContext.DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_11
+  # DEBUG BEGIN_STMT
+  _3 = context_9(D)->SpecialPtr;
+  _4 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_3].ReadSingleStaticDidContext.WriteDidIds;
+  if (_4 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = DidInfoPtr_11->Did;
+  _6 = Dcm_Dsp_DidServices_StoreDidId (StoreBufferCfg_10, _5);
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  context_9(D)->next_state = 1;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  context_9(D)->nrc = 20;
+  # DEBUG BEGIN_STMT
+  context_9(D)->result = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  context_9(D)->next_state = 1;
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_Cancel (struct Dcm_ReadSingleStaticDidContextType * ReadSingleStaticDidContextPtr)
+{
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = &ReadSingleStaticDidContextPtr_2(D)->BaseContext;
+  _5 = Dcm_Dsp_Context_Cancel (_1);
+  return _5;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_Execute (struct Dcm_ReadSingleStaticDidContextType * ReadSingleStaticDidContextPtr)
+{
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = &ReadSingleStaticDidContextPtr_2(D)->BaseContext;
+  _5 = Dcm_Dsp_Context_Execute (_1);
+  return _5;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_Init (struct Dcm_ReadSingleStaticDidContextType * ReadSingleStaticDidContextPtr, struct Dcm_DidInfoContextExtType * DidInfoPtr, boolean WriteDidIds, struct Dcm_DspMsgBufferCfgType * BufferCfgPtr)
+{
+  struct Dcm_ReadSignalContextType * ReadSignalContextPtr;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadSignalContextPtr_4 = &ReadSingleStaticDidContextPtr_3(D)->ReadSingleStaticDidContext.ReadSignalContext;
+  # DEBUG ReadSignalContextPtr => ReadSignalContextPtr_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &ReadSingleStaticDidContextPtr_3(D)->BaseContext;
+  Dcm_Dsp_Context_Init (_1, ReadSingleStaticDidContextPtr_3(D), &Dcm_ReadSingleStaticDidStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReadSingleStaticDidContextPtr_3(D)->ReadSingleStaticDidContext.WriteDidIds = WriteDidIds_7(D);
+  # DEBUG BEGIN_STMT
+  ReadSingleStaticDidContextPtr_3(D)->ReadSingleStaticDidContext.BufferCfgPtr = BufferCfgPtr_9(D);
+  # DEBUG BEGIN_STMT
+  ReadSingleStaticDidContextPtr_3(D)->ReadSingleStaticDidContext.DidInfoPtr = DidInfoPtr_11(D);
+  # DEBUG BEGIN_STMT
+  _2 = DidInfoPtr_11(D)->ConfigIdx;
+  ReadSignalContextPtr_4->CurrentDidCfgIndex = _2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidServices_DidSetStatus (DidInfoPtr_11(D), ReadSignalContextPtr_4);
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadStaticDid_PrimaryRead (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  struct Dcm_ReadSingleStaticDidContextType * ReadSingleStaticDidContextPtr;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_7(D)->SpecialPtr;
+  ReadSingleStaticDidContextPtr_8 = &MEM[(struct Dcm_ReadStaticDidContextType *)_1].ReadStaticDidContext.ReadSingleStaticDidContext;
+  # DEBUG ReadSingleStaticDidContextPtr => ReadSingleStaticDidContextPtr_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = context_7(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_12 = Dcm_Dsp_DidServices_ReadSingleStaticDid_Cancel (ReadSingleStaticDidContextPtr_8);
+  # DEBUG result => result_12
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_10 = Dcm_Dsp_DidServices_ReadSingleStaticDid_Execute (ReadSingleStaticDidContextPtr_8);
+  # DEBUG result => result_10
+
+  <bb 5> :
+  # result_4 = PHI <result_12(3), result_10(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  context_7(D)->result = result_4;
+  # DEBUG BEGIN_STMT
+  _3 = ReadSingleStaticDidContextPtr_8->BaseContext.nrc;
+  context_7(D)->nrc = _3;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadStaticDid_PrimarySelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  void * _1;
+  void * _2;
+  struct Dcm_ReadSingleStaticDidContextType * _3;
+  void * _4;
+  unsigned char _5;
+  void * _6;
+  struct Dcm_DspMsgBufferCfgType * _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_9(D)->SpecialPtr;
+  DidInfoPtr_10 = MEM[(struct Dcm_ReadStaticDidContextType *)_1].ReadStaticDidContext.DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_10
+  # DEBUG BEGIN_STMT
+  _2 = context_9(D)->SpecialPtr;
+  _3 = &MEM[(struct Dcm_ReadStaticDidContextType *)_2].ReadStaticDidContext.ReadSingleStaticDidContext;
+  _4 = context_9(D)->SpecialPtr;
+  _5 = MEM[(struct Dcm_ReadStaticDidContextType *)_4].ReadStaticDidContext.WriteDidIds;
+  _6 = context_9(D)->SpecialPtr;
+  _7 = MEM[(struct Dcm_ReadStaticDidContextType *)_6].ReadStaticDidContext.BufferCfgPtr;
+  Dcm_Dsp_DidServices_ReadSingleStaticDid_Init (_3, DidInfoPtr_10, _5, _7);
+  # DEBUG BEGIN_STMT
+  context_9(D)->next_state = 1;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadStaticDid_Cancel (struct Dcm_ReadStaticDidContextType * ReadStaticDidContextPtr)
+{
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = &ReadStaticDidContextPtr_2(D)->BaseContext;
+  _5 = Dcm_Dsp_Context_Cancel (_1);
+  return _5;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadStaticDid_Execute (struct Dcm_ReadStaticDidContextType * ReadStaticDidContextPtr)
+{
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = &ReadStaticDidContextPtr_2(D)->BaseContext;
+  _5 = Dcm_Dsp_Context_Execute (_1);
+  return _5;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadStaticDid_Init (struct Dcm_ReadStaticDidContextType * ReadStaticDidContextPtr, struct Dcm_DidInfoContextExtType * DidInfoPtr, boolean WriteDidIds, struct Dcm_DspMsgBufferCfgType * BufferCfgPtr)
+{
+  struct Dcm_Dsp_ContextBaseType * _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &ReadStaticDidContextPtr_2(D)->BaseContext;
+  Dcm_Dsp_Context_Init (_1, ReadStaticDidContextPtr_2(D), &Dcm_ReadStaticDidStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReadStaticDidContextPtr_2(D)->ReadStaticDidContext.DidInfoPtr = DidInfoPtr_5(D);
+  # DEBUG BEGIN_STMT
+  ReadStaticDidContextPtr_2(D)->ReadStaticDidContext.WriteDidIds = WriteDidIds_7(D);
+  # DEBUG BEGIN_STMT
+  ReadStaticDidContextPtr_2(D)->ReadStaticDidContext.BufferCfgPtr = BufferCfgPtr_9(D);
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ObdInfoSelect_TryLock (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const Std_ReturnType VinLockStatus;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  VinLockStatus_4 = Dcm_Dsp_VinServices_LockService ();
+  # DEBUG VinLockStatus => VinLockStatus_4
+  # DEBUG BEGIN_STMT
+  if (VinLockStatus_4 == 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  context_5(D)->result = 10;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_5(D)->next_state = 7;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ObdInfoRead (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  const uint8 InfoId;
+  struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  struct Dcm_DspMsgBufferCfgType * const BufferCfgPtr;
+  struct Dcm_ReadSingleStaticDidContextExtType * const ReadDidSingleStaticDidContextPtr;
+  void * _1;
+  short unsigned int _2;
+  unsigned char _3;
+  struct Dcm_DspReqVehInfoContextType * _4;
+  unsigned char _5;
+  struct Dcm_DspReqVehInfoContextType * _6;
+  struct Dcm_DspReqVehInfoContextType * _7;
+  void * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  unsigned char _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_18(D)->SpecialPtr;
+  ReadDidSingleStaticDidContextPtr_19 = &MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext;
+  # DEBUG ReadDidSingleStaticDidContextPtr => ReadDidSingleStaticDidContextPtr_19
+  # DEBUG BEGIN_STMT
+  BufferCfgPtr_20 = ReadDidSingleStaticDidContextPtr_19->BufferCfgPtr;
+  # DEBUG BufferCfgPtr => BufferCfgPtr_20
+  # DEBUG BEGIN_STMT
+  DidInfoPtr_21 = ReadDidSingleStaticDidContextPtr_19->DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_21
+  # DEBUG BEGIN_STMT
+  _2 = DidInfoPtr_21->Did;
+  InfoId_22 = (const uint8) _2;
+  # DEBUG InfoId => InfoId_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = context_18(D)->opstatus;
+  if (_3 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = &ReadDidSingleStaticDidContextPtr_19->ReadInfoContext;
+  Dcm_Dsp_VinServices_HelperCancel (_4);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+  # DEBUG BEGIN_STMT
+  result_29 = 26;
+  # DEBUG result => result_29
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = context_18(D)->opstatus;
+  if (_5 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = &ReadDidSingleStaticDidContextPtr_19->ReadInfoContext;
+  result_26 = Dcm_Dsp_VinServices_HelperExecute (1, InfoId_22, _6);
+  # DEBUG result => result_26
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = &ReadDidSingleStaticDidContextPtr_19->ReadInfoContext;
+  result_24 = Dcm_Dsp_VinServices_HelperExecute (0, InfoId_22, _7);
+  # DEBUG result => result_24
+
+  <bb 7> :
+  # result_13 = PHI <result_29(3), result_26(5), result_24(6)>
+  # DEBUG result => result_13
+  # DEBUG BEGIN_STMT
+  if (result_13 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = context_18(D)->SpecialPtr;
+  _9 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_8].ReadSingleStaticDidContext.WriteDidIds;
+  if (_9 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = BufferCfgPtr_20->Occupied;
+  _11 = _10 + 4294967294;
+  BufferCfgPtr_20->Occupied = _11;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (result_13 == 10)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  context_18(D)->opstatus = 1;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  context_18(D)->result = result_13;
+  # DEBUG BEGIN_STMT
+  _12 = ReadDidSingleStaticDidContextPtr_19->ReadInfoContext.nrc;
+  context_18(D)->nrc = _12;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ObdInfoSelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  const uint8 InfoId;
+  struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  struct Dcm_DspMsgBufferCfgType * const BufferCfgPtr;
+  struct Dcm_ReadSingleStaticDidContextExtType * const ReadSingleStaticDidContextPtr;
+  void * _1;
+  short unsigned int _2;
+  struct Dcm_DspReqVehInfoContextType * _3;
+  unsigned char _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_7(D)->SpecialPtr;
+  ReadSingleStaticDidContextPtr_8 = &MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext;
+  # DEBUG ReadSingleStaticDidContextPtr => ReadSingleStaticDidContextPtr_8
+  # DEBUG BEGIN_STMT
+  BufferCfgPtr_9 = ReadSingleStaticDidContextPtr_8->BufferCfgPtr;
+  # DEBUG BufferCfgPtr => BufferCfgPtr_9
+  # DEBUG BEGIN_STMT
+  DidInfoPtr_10 = ReadSingleStaticDidContextPtr_8->DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_10
+  # DEBUG BEGIN_STMT
+  _2 = DidInfoPtr_10->Did;
+  InfoId_11 = (const uint8) _2;
+  # DEBUG InfoId => InfoId_11
+  # DEBUG BEGIN_STMT
+  _3 = &ReadSingleStaticDidContextPtr_8->ReadInfoContext;
+  result_13 = Dcm_Dsp_VinServices_HelperInit (InfoId_11, _3, BufferCfgPtr_9);
+  # DEBUG result => result_13
+  # DEBUG BEGIN_STMT
+  if (result_13 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  context_7(D)->next_state = 8;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  context_7(D)->result = result_13;
+  # DEBUG BEGIN_STMT
+  _4 = ReadSingleStaticDidContextPtr_8->ReadInfoContext.nrc;
+  context_7(D)->nrc = _4;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ObdPidRead (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const Std_ReturnType result;
+  const uint8 Pid;
+  struct Dcm_DidInfoContextExtType * const DidInfoPtr;
+  struct Dcm_DspMsgBufferCfgType * const BufferCfgPtr;
+  struct Dcm_ReadSingleStaticDidContextExtType * const ReadSingleStaticDidContextPtr;
+  void * _1;
+  short unsigned int _2;
+  Dcm_NegativeResponseCodeType * _3;
+  void * _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_10(D)->SpecialPtr;
+  ReadSingleStaticDidContextPtr_11 = &MEM[(struct Dcm_ReadSingleStaticDidContextType *)_1].ReadSingleStaticDidContext;
+  # DEBUG ReadSingleStaticDidContextPtr => ReadSingleStaticDidContextPtr_11
+  # DEBUG BEGIN_STMT
+  BufferCfgPtr_12 = ReadSingleStaticDidContextPtr_11->BufferCfgPtr;
+  # DEBUG BufferCfgPtr => BufferCfgPtr_12
+  # DEBUG BEGIN_STMT
+  DidInfoPtr_13 = ReadSingleStaticDidContextPtr_11->DidInfoPtr;
+  # DEBUG DidInfoPtr => DidInfoPtr_13
+  # DEBUG BEGIN_STMT
+  _2 = DidInfoPtr_13->Did;
+  Pid_14 = (const uint8) _2;
+  # DEBUG Pid => Pid_14
+  # DEBUG BEGIN_STMT
+  _3 = &context_10(D)->nrc;
+  result_16 = Dcm_Dsp_PidServices_Execute (Pid_14, _3, BufferCfgPtr_12);
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  if (result_16 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = context_10(D)->SpecialPtr;
+  _5 = MEM[(struct Dcm_ReadSingleStaticDidContextType *)_4].ReadSingleStaticDidContext.WriteDidIds;
+  if (_5 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = BufferCfgPtr_12->Occupied;
+  _7 = _6 + 4294967294;
+  BufferCfgPtr_12->Occupied = _7;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  context_10(D)->result = result_16;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSingleStaticDid_ObdPidSelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  context_2(D)->next_state = 4;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_StaticRead (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  struct Dcm_ReadStaticDidContextType * ReadStaticDidContextPtr;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_7(D)->SpecialPtr;
+  ReadStaticDidContextPtr_8 = &MEM[(struct Dcm_ReadDidContextType *)_1].ReadDidContext.ReadStaticDidContext;
+  # DEBUG ReadStaticDidContextPtr => ReadStaticDidContextPtr_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = context_7(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_12 = Dcm_Dsp_DidServices_ReadStaticDid_Cancel (ReadStaticDidContextPtr_8);
+  # DEBUG result => result_12
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_10 = Dcm_Dsp_DidServices_ReadStaticDid_Execute (ReadStaticDidContextPtr_8);
+  # DEBUG result => result_10
+
+  <bb 5> :
+  # result_4 = PHI <result_12(3), result_10(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  context_7(D)->result = result_4;
+  # DEBUG BEGIN_STMT
+  _3 = ReadStaticDidContextPtr_8->BaseContext.nrc;
+  context_7(D)->nrc = _3;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_StaticSelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_ReadStaticDidContextType * ReadStaticDidContextPtr;
+  void * _1;
+  void * _2;
+  struct Dcm_DidInfoContextExtType * _3;
+  void * _4;
+  unsigned char _5;
+  void * _6;
+  struct Dcm_DspMsgBufferCfgType * _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_9(D)->SpecialPtr;
+  ReadStaticDidContextPtr_10 = &MEM[(struct Dcm_ReadDidContextType *)_1].ReadDidContext.ReadStaticDidContext;
+  # DEBUG ReadStaticDidContextPtr => ReadStaticDidContextPtr_10
+  # DEBUG BEGIN_STMT
+  _2 = context_9(D)->SpecialPtr;
+  _3 = &MEM[(struct Dcm_ReadDidContextType *)_2].ReadDidContext.DidInfoContext.DidInfoContext;
+  _4 = context_9(D)->SpecialPtr;
+  _5 = MEM[(struct Dcm_ReadDidContextType *)_4].ReadDidContext.WriteDidIds;
+  _6 = context_9(D)->SpecialPtr;
+  _7 = MEM[(struct Dcm_ReadDidContextType *)_6].ReadDidContext.DidBufferCfgPtr;
+  Dcm_Dsp_DidServices_ReadStaticDid_Init (ReadStaticDidContextPtr_10, _3, _5, _7);
+  # DEBUG BEGIN_STMT
+  context_9(D)->next_state = 2;
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_GetDidInfo (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  struct Dcm_DidInfoContextType * const DidInfoContextPtr;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_8(D)->SpecialPtr;
+  DidInfoContextPtr_9 = &MEM[(struct Dcm_ReadDidContextType *)_1].ReadDidContext.DidInfoContext;
+  # DEBUG DidInfoContextPtr => DidInfoContextPtr_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = context_8(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_13 = Dcm_Dsp_DidServices_GetDidInfo_Cancel (DidInfoContextPtr_9);
+  # DEBUG result => result_13
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_11 = Dcm_Dsp_DidServices_GetDidInfo_Execute (DidInfoContextPtr_9);
+  # DEBUG result => result_11
+
+  <bb 5> :
+  # result_4 = PHI <result_13(3), result_11(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  if (result_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_8(D)->next_state = 1;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  context_8(D)->result = result_4;
+  # DEBUG BEGIN_STMT
+  _3 = DidInfoContextPtr_9->BaseContext.nrc;
+  context_8(D)->nrc = _3;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_CheckSecurity (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const boolean DidIsAvailable;
+  const struct Dcm_DidAccessInfoBaseType * AccessInfo;
+  struct Dcm_DidInfoContextExtType * const DidInfo;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  boolean (*<T68a>) (uint8 *) _5;
+  boolean (*<T68a>) (uint8 *) _6;
+  Dcm_NegativeResponseCodeType * _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_10(D)->SpecialPtr;
+  DidInfo_11 = &MEM[(struct Dcm_DidInfoContextType *)_1].DidInfoContext;
+  # DEBUG DidInfo => DidInfo_11
+  # DEBUG BEGIN_STMT
+  _2 = DidInfo_11->InfoIdx;
+  _3 = DidInfo_11->DidOp;
+  AccessInfo_13 = Dcm_Dsp_DidServices_GetAccessInfo (_2, _3);
+  # DEBUG AccessInfo => AccessInfo_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsp_DidServices_IsDidAvailableInSecLevel (AccessInfo_13);
+  if (_4 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = AccessInfo_13->ModeRuleDidFunction;
+  if (_5 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = AccessInfo_13->ModeRuleDidFunction;
+  _7 = &context_10(D)->nrc;
+  DidIsAvailable_18 = _6 (_7);
+  # DEBUG DidIsAvailable => DidIsAvailable_18
+  # DEBUG BEGIN_STMT
+  if (DidIsAvailable_18 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  context_10(D)->result = 0;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DidInfo_11->ModeRuleFailed = 1;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  context_10(D)->result = 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  context_10(D)->nrc = 51;
+
+  <bb 9> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_DidCheckLen (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const struct Dcm_DidSignalType * CurrentSignalCfg;
+  struct Dcm_DidDataType dataCfg;
+  uint16 MaxSignalEndingPositionWithoutVarLen;
+  uint16 MaxSignalEndingPosition;
+  uint16 CurrentSignalEndingPosition;
+  const uint16 NumSignals;
+  uint16_least SignalsIndex;
+  Std_ReturnType DidLengthCheckResult;
+  const struct Dcm_DidInfoContextExtType * const DidInfo;
+  void * _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  unsigned char _11;
+  short unsigned int _12;
+  int _13;
+  short unsigned int _14;
+  int _15;
+  int _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  long unsigned int _20;
+  unsigned char _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_39(D)->SpecialPtr;
+  DidInfo_40 = &MEM[(struct Dcm_DidInfoContextType *)_1].DidInfoContext;
+  # DEBUG DidInfo => DidInfo_40
+  # DEBUG BEGIN_STMT
+  DidLengthCheckResult_41 = 1;
+  # DEBUG DidLengthCheckResult => DidLengthCheckResult_41
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = DidInfo_40->ConfigIdx;
+  _3 = (int) _2;
+  NumSignals_42 = Dcm_DidConfig[_3].NumSignals;
+  # DEBUG NumSignals => NumSignals_42
+  # DEBUG BEGIN_STMT
+  if (NumSignals_42 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxSignalEndingPosition_43 = 0;
+  # DEBUG MaxSignalEndingPosition => MaxSignalEndingPosition_43
+  # DEBUG BEGIN_STMT
+  MaxSignalEndingPositionWithoutVarLen_44 = 0;
+  # DEBUG MaxSignalEndingPositionWithoutVarLen => MaxSignalEndingPositionWithoutVarLen_44
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SignalsIndex_45 = 0;
+  # DEBUG SignalsIndex => SignalsIndex_45
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = DidInfo_40->ConfigIdx;
+  _5 = (int) _4;
+  _6 = Dcm_DidConfig[_5].DidSignalsIdx;
+  _7 = (short unsigned int) _6;
+  _8 = (short unsigned int) SignalsIndex_30;
+  _9 = _7 + _8;
+  CurrentSignalCfg_50 = Dcm_Dsp_DidSignals_GetDidSignalConfig (_9);
+  # DEBUG CurrentSignalCfg => CurrentSignalCfg_50
+  # DEBUG BEGIN_STMT
+  _10 = CurrentSignalCfg_50->DspDataIndex;
+  Dcm_Dsp_DidSignals_GetDidDataConfig (&dataCfg, _10);
+  # DEBUG BEGIN_STMT
+  _11 = dataCfg.FixedLength;
+  if (_11 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  MaxSignalEndingPositionWithoutVarLen_52 = MaxSignalEndingPosition_32;
+  # DEBUG MaxSignalEndingPositionWithoutVarLen => MaxSignalEndingPositionWithoutVarLen_52
+
+  <bb 6> :
+  # MaxSignalEndingPositionWithoutVarLen_33 = PHI <MaxSignalEndingPositionWithoutVarLen_34(4), MaxSignalEndingPositionWithoutVarLen_52(5)>
+  # DEBUG MaxSignalEndingPositionWithoutVarLen => MaxSignalEndingPositionWithoutVarLen_33
+  # DEBUG BEGIN_STMT
+  _12 = CurrentSignalCfg_50->DataPos;
+  _13 = (int) _12;
+  _14 = dataCfg.DataLength;
+  _15 = (int) _14;
+  _16 = _13 + _15;
+  _17 = (unsigned int) _16;
+  _18 = _17 + 7;
+  _19 = _18 / 8;
+  CurrentSignalEndingPosition_53 = (uint16) _19;
+  # DEBUG CurrentSignalEndingPosition => CurrentSignalEndingPosition_53
+  # DEBUG BEGIN_STMT
+  if (CurrentSignalEndingPosition_53 > MaxSignalEndingPosition_32)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  MaxSignalEndingPosition_54 = CurrentSignalEndingPosition_53;
+  # DEBUG MaxSignalEndingPosition => MaxSignalEndingPosition_54
+
+  <bb 8> :
+  # MaxSignalEndingPosition_31 = PHI <MaxSignalEndingPosition_32(6), MaxSignalEndingPosition_54(7)>
+  # DEBUG MaxSignalEndingPosition => MaxSignalEndingPosition_31
+  # DEBUG BEGIN_STMT
+  SignalsIndex_55 = SignalsIndex_30 + 1;
+  # DEBUG SignalsIndex => SignalsIndex_55
+
+  <bb 9> :
+  # SignalsIndex_30 = PHI <SignalsIndex_45(3), SignalsIndex_55(8)>
+  # MaxSignalEndingPosition_32 = PHI <MaxSignalEndingPosition_43(3), MaxSignalEndingPosition_31(8)>
+  # MaxSignalEndingPositionWithoutVarLen_34 = PHI <MaxSignalEndingPositionWithoutVarLen_44(3), MaxSignalEndingPositionWithoutVarLen_33(8)>
+  # DEBUG MaxSignalEndingPositionWithoutVarLen => MaxSignalEndingPositionWithoutVarLen_34
+  # DEBUG MaxSignalEndingPosition => MaxSignalEndingPosition_32
+  # DEBUG SignalsIndex => SignalsIndex_30
+  # DEBUG BEGIN_STMT
+  _20 = (long unsigned int) NumSignals_42;
+  if (SignalsIndex_30 < _20)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _21 = dataCfg.FixedLength;
+  if (_21 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _22 = (long unsigned int) MaxSignalEndingPosition_32;
+  _23 = DidInfo_40->ReqLen;
+  if (_22 == _23)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  DidLengthCheckResult_47 = 0;
+  # DEBUG DidLengthCheckResult => DidLengthCheckResult_47
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _24 = (long unsigned int) MaxSignalEndingPosition_32;
+  _25 = DidInfo_40->ReqLen;
+  if (_24 >= _25)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _26 = (long unsigned int) MaxSignalEndingPositionWithoutVarLen_34;
+  _27 = DidInfo_40->ReqLen;
+  if (_26 <= _27)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  DidLengthCheckResult_46 = 0;
+  # DEBUG DidLengthCheckResult => DidLengthCheckResult_46
+
+  <bb 16> :
+  # DidLengthCheckResult_28 = PHI <DidLengthCheckResult_47(12), DidLengthCheckResult_41(13), DidLengthCheckResult_41(14), DidLengthCheckResult_46(15), DidLengthCheckResult_41(11)>
+  # DEBUG DidLengthCheckResult => DidLengthCheckResult_28
+  dataCfg ={v} {CLOBBER};
+
+  <bb 17> :
+  # DidLengthCheckResult_29 = PHI <DidLengthCheckResult_41(2), DidLengthCheckResult_28(16)>
+  # DEBUG DidLengthCheckResult => DidLengthCheckResult_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (DidLengthCheckResult_29 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  context_39(D)->next_state = 3;
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  context_39(D)->nrc = 19;
+  # DEBUG BEGIN_STMT
+  context_39(D)->result = 1;
+
+  <bb 20> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_CheckSession (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const struct Dcm_DidAccessInfoBaseType * AccessInfo;
+  const struct Dcm_DidInfoContextExtType * const DidInfo;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_8(D)->SpecialPtr;
+  DidInfo_9 = &MEM[(struct Dcm_DidInfoContextType *)_1].DidInfoContext;
+  # DEBUG DidInfo => DidInfo_9
+  # DEBUG BEGIN_STMT
+  _2 = DidInfo_9->InfoIdx;
+  _3 = DidInfo_9->DidOp;
+  AccessInfo_11 = Dcm_Dsp_DidServices_GetAccessInfo (_2, _3);
+  # DEBUG AccessInfo => AccessInfo_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_8(D)->result = 1;
+  # DEBUG BEGIN_STMT
+  if (AccessInfo_11 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsp_DidServices_IsDidAvailableInSession (AccessInfo_11);
+  if (_4 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = DidInfo_9->DidOp;
+  if (_5 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  context_8(D)->next_state = 2;
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  context_8(D)->next_state = 3;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  context_8(D)->nrc = 49;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_SelectType (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_DidInfoContextExtType * const DidInfo;
+  void * _1;
+  short unsigned int _2;
+  unsigned char _3;
+  unsigned char _4;
+  short unsigned int _5;
+  Dcm_DidConfigIdxType * _6;
+  unsigned char _7;
+  unsigned char _8;
+  int _9;
+  unsigned char _10;
+  short unsigned int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  short unsigned int _16;
+  Dcm_DidType * _17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned char _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_25(D)->SpecialPtr;
+  DidInfo_26 = &MEM[(struct Dcm_DidInfoContextType *)_1].DidInfoContext;
+  # DEBUG DidInfo => DidInfo_26
+  # DEBUG BEGIN_STMT
+  _2 = DidInfo_26->Did;
+  _3 = DidInfo_26->DidOp;
+  _4 = Dcm_Dsp_DidServices_IsDidInValidRange (_2, _3);
+  if (_4 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = DidInfo_26->Did;
+  _6 = &DidInfo_26->ConfigIdx;
+  _7 = Dcm_Dsp_DidServices_GetDidIndex (_5, _6);
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = DidInfo_26->ConfigIdx;
+  _9 = (int) _8;
+  _10 = Dcm_DidConfig[_9].DidInfoIdx;
+  DidInfo_26->InfoIdx = _10;
+  # DEBUG BEGIN_STMT
+  _11 = DidInfo_26->Did;
+  _12 = Dcm_Dsp_DidServices_IsDidInObdRange (_11);
+  if (_12 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DidInfo_26->ConfigType = 1;
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  DidInfo_26->ConfigType = 1;
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = DidInfo_26->Did;
+  _14 = Dcm_Dsp_DidServices_IsDidInObdRange (_13);
+  if (_14 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _15 = DidInfo_26->DidOp;
+  if (_15 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _16 = DidInfo_26->Did;
+  _17 = &DidInfo_26->ConfigType;
+  Dcm_Dsp_DidServices_GetDidInfo_IsObdDIDAvailable (_16, _17);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = DidInfo_26->ConfigType;
+  if (_18 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  context_25(D)->result = 1;
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _19 = DidInfo_26->ConfigType;
+  if (_19 == 5)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _20 = DidInfo_26->ConfigType;
+  if (_20 == 7)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  _21 = DidInfo_26->ConfigType;
+  if (_21 == 6)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  context_25(D)->result = 0;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  context_25(D)->next_state = 1;
+
+  <bb 17> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_IsObdDIDAvailable (uint16 Did, Dcm_DidType * ConfigType)
+{
+  uint8_least vehInfoIndex;
+  const Dcm_DspVehInfoInfoTypeType VehInfoInfoType;
+  uint8_least Index;
+  const Dcm_DspPidIdentifierType PidId;
+  const uint8 Range;
+  unsigned char _1;
+  unsigned char _2;
+  short unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  short unsigned int _17;
+  long unsigned int _18;
+  unsigned char _19;
+  long unsigned int _20;
+  unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) Did_36(D);
+  _2 = _1 / 32;
+  Range_37 = _2 * 32;
+  # DEBUG Range => Range_37
+  # DEBUG BEGIN_STMT
+  *ConfigType_39(D) = 0;
+  # DEBUG BEGIN_STMT
+  _3 = Did_36(D) + 3072;
+  if (_3 <= 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  PidId_41 = (const Dcm_DspPidIdentifierType) Did_36(D);
+  # DEBUG PidId => PidId_41
+  # DEBUG BEGIN_STMT
+  if (PidId_41 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *ConfigType_39(D) = 5;
+  goto <bb 15>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Index_42 = 0;
+  # DEBUG Index => Index_42
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = Index_28 / 8;
+  _5 = Dcm_DspPidUsed[_4];
+  _6 = Index_28 & 7;
+  _7 = 1 << _6;
+  _8 = (unsigned char) _7;
+  _9 = _5 & _8;
+  if (_9 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  _10 = Dcm_DspPidConfig[Index_28].BitField;
+  _11 = (unsigned int) _10;
+  _12 = _11 & 3;
+  if (_12 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_DspPidConfig[Index_28].PidIdentifier;
+  if (PidId_41 == _13)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _14 = PidId_41 & 31;
+  if (_14 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _15 = Dcm_DspPidConfig[Index_28].PidIdentifier;
+  if (Range_37 < _15)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  *ConfigType_39(D) = 5;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Index_44 = Index_28 + 1;
+  # DEBUG Index => Index_44
+
+  <bb 13> :
+  # Index_28 = PHI <Index_42(5), Index_44(12)>
+  # DEBUG Index => Index_28
+  # DEBUG BEGIN_STMT
+  if (Index_28 <= 2)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _16 = *ConfigType_39(D);
+  if (_16 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _17 = Did_36(D) + 2048;
+  if (_17 <= 255)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  VehInfoInfoType_46 = (const Dcm_DspVehInfoInfoTypeType) Did_36(D);
+  # DEBUG VehInfoInfoType => VehInfoInfoType_46
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_47 = 0;
+  # DEBUG vehInfoIndex => vehInfoIndex_47
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _18 = vehInfoIndex_29 / 8;
+  _19 = Dcm_DspVehInfoUsed[_18];
+  _20 = vehInfoIndex_29 & 7;
+  _21 = 1 << _20;
+  _22 = (unsigned char) _21;
+  _23 = _19 & _22;
+  if (_23 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _24 = Dcm_DspVehInfo[vehInfoIndex_29].VehInfoInfoType;
+  if (VehInfoInfoType_46 == _24)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  _25 = VehInfoInfoType_46 & 31;
+  if (_25 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  _26 = Dcm_DspVehInfo[vehInfoIndex_29].VehInfoInfoType;
+  if (Range_37 < _26)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  *ConfigType_39(D) = 6;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_49 = vehInfoIndex_29 + 1;
+  # DEBUG vehInfoIndex => vehInfoIndex_49
+
+  <bb 23> :
+  # vehInfoIndex_29 = PHI <vehInfoIndex_47(16), vehInfoIndex_49(22)>
+  # DEBUG vehInfoIndex => vehInfoIndex_29
+  # DEBUG BEGIN_STMT
+  if (vehInfoIndex_29 <= 1)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  _27 = *ConfigType_39(D);
+  if (_27 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_IsDidAvailableInSession (const struct Dcm_DidAccessInfoBaseType * AccessInfo)
+{
+  Dcm_SesCtrlType curSesCtrl;
+  uint8_least sesLevIdx;
+  boolean didIsAvailable;
+  unsigned char _1;
+  const Dcm_SesCtrlType * _2;
+  const Dcm_SesCtrlType * _3;
+  unsigned char _4;
+  const Dcm_SesCtrlType * _5;
+  const Dcm_SesCtrlType * _6;
+  unsigned char _7;
+  unsigned char _8;
+  long unsigned int _9;
+  boolean _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_12 = 0;
+  # DEBUG didIsAvailable => didIsAvailable_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curSesCtrl_15 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG curSesCtrl => curSesCtrl_15
+  # DEBUG BEGIN_STMT
+  if (AccessInfo_16(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  _1 = AccessInfo_16(D)->NumSesCtrls;
+  if (_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  sesLevIdx_17 = 0;
+  # DEBUG sesLevIdx => sesLevIdx_17
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = AccessInfo_16(D)->SesCtrls;
+  _3 = _2 + sesLevIdx_11;
+  _4 = *_3;
+  if (curSesCtrl_15 == _4)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _5 = AccessInfo_16(D)->SesCtrls;
+  _6 = _5 + sesLevIdx_11;
+  _7 = *_6;
+  if (_7 == 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_19 = 1;
+  # DEBUG didIsAvailable => didIsAvailable_19
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sesLevIdx_18 = sesLevIdx_11 + 1;
+  # DEBUG sesLevIdx => sesLevIdx_18
+
+  <bb 9> :
+  # sesLevIdx_11 = PHI <sesLevIdx_17(4), sesLevIdx_18(8)>
+  # DEBUG sesLevIdx => sesLevIdx_11
+  # DEBUG BEGIN_STMT
+  _8 = AccessInfo_16(D)->NumSesCtrls;
+  _9 = (long unsigned int) _8;
+  if (sesLevIdx_11 < _9)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  didIsAvailable_20 = 1;
+  # DEBUG didIsAvailable => didIsAvailable_20
+
+  <bb 11> :
+  # didIsAvailable_10 = PHI <didIsAvailable_12(9), didIsAvailable_20(10), didIsAvailable_19(7)>
+  # DEBUG didIsAvailable => didIsAvailable_10
+  # DEBUG BEGIN_STMT
+  _21 = didIsAvailable_10;
+  return _21;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_SigWrite (struct Dcm_Dsp_ContextBaseType * context)
+{
+  struct Dcm_WriteDidContextExtType * const WriteDidContext;
+  Std_ReturnType result;
+  void * _1;
+  unsigned char _2;
+  struct Dcm_DidSignalWriteContextType * _3;
+  struct Dcm_DidSignalWriteContextType * _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  unsigned char _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = context_12(D)->SpecialPtr;
+  WriteDidContext_13 = &MEM[(struct Dcm_WriteDidContextType *)_1].WriteDidContext;
+  # DEBUG WriteDidContext => WriteDidContext_13
+  # DEBUG BEGIN_STMT
+  _2 = context_12(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = &WriteDidContext_13->SignalWriteContext;
+  Dcm_Dsp_DidSignals_Write_Cancel (_3);
+  # DEBUG BEGIN_STMT
+  context_12(D)->result = 26;
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = &WriteDidContext_13->SignalWriteContext;
+  result_15 = Dcm_Dsp_DidSignals_Write_Execute (_4);
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  if (result_15 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = WriteDidContext_13->SignalInd;
+  _6 = _5;
+  _7 = _6 + 1;
+  WriteDidContext_13->SignalInd = _7;
+  # DEBUG BEGIN_STMT
+  context_12(D)->next_state = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = WriteDidContext_13->SignalWriteContext.Nrc;
+  context_12(D)->nrc = _8;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  context_12(D)->result = result_15;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_SigSelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType InitRetVal;
+  const uint16 DspDataIndex;
+  const uint16 DataPos;
+  const struct Dcm_DidSignalType * const SignalCfg;
+  const uint16 NumSignals;
+  const struct Dcm_DidInfoContextExtType * const DidInfo;
+  struct Dcm_WriteDidContextExtType * const WriteDidContext;
+  void * _1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct Dcm_DidSignalType * _12;
+  short unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  const struct Dcm_DidSignalType * _16;
+  struct Dcm_DidSignalWriteContextType * _17;
+  uint8 * _18;
+  long unsigned int _19;
+  unsigned char _20;
+  unsigned char _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_24(D)->SpecialPtr;
+  WriteDidContext_25 = &MEM[(struct Dcm_WriteDidContextType *)_1].WriteDidContext;
+  # DEBUG WriteDidContext => WriteDidContext_25
+  # DEBUG BEGIN_STMT
+  DidInfo_26 = &WriteDidContext_25->DidInfoContext.DidInfoContext;
+  # DEBUG DidInfo => DidInfo_26
+  # DEBUG BEGIN_STMT
+  _2 = DidInfo_26->ConfigIdx;
+  _3 = (int) _2;
+  NumSignals_27 = Dcm_DidConfig[_3].NumSignals;
+  # DEBUG NumSignals => NumSignals_27
+  # DEBUG BEGIN_STMT
+  _4 = WriteDidContext_25->SignalInd;
+  if (NumSignals_27 > _4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = DidInfo_26->ConfigIdx;
+  _6 = (int) _5;
+  _7 = Dcm_DidConfig[_6].DidSignalsIdx;
+  _8 = (short unsigned int) _7;
+  SignalCfg_30 = Dcm_Dsp_DidSignals_GetDidSignalConfig (_8);
+  # DEBUG SignalCfg => SignalCfg_30
+  # DEBUG BEGIN_STMT
+  _9 = WriteDidContext_25->SignalInd;
+  _10 = (unsigned int) _9;
+  _11 = _10 * 4;
+  _12 = SignalCfg_30 + _11;
+  DataPos_31 = _12->DataPos;
+  # DEBUG DataPos => DataPos_31
+  # DEBUG BEGIN_STMT
+  _13 = WriteDidContext_25->SignalInd;
+  _14 = (unsigned int) _13;
+  _15 = _14 * 4;
+  _16 = SignalCfg_30 + _15;
+  DspDataIndex_32 = _16->DspDataIndex;
+  # DEBUG DspDataIndex => DspDataIndex_32
+  # DEBUG BEGIN_STMT
+  _17 = &WriteDidContext_25->SignalWriteContext;
+  _18 = WriteDidContext_25->BufferCfg.BufferPtr;
+  _19 = WriteDidContext_25->BufferCfg.Occupied;
+  _20 = WriteDidContext_25->EndiannessConversion;
+  InitRetVal_34 = Dcm_Dsp_DidSignals_Write_Init (_17, _18, _19, DspDataIndex_32, DataPos_31, _20);
+  # DEBUG InitRetVal => InitRetVal_34
+  # DEBUG BEGIN_STMT
+  if (InitRetVal_34 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _21 = WriteDidContext_25->SignalWriteContext.Nrc;
+  context_24(D)->nrc = _21;
+  # DEBUG BEGIN_STMT
+  context_24(D)->result = InitRetVal_34;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  context_24(D)->next_state = 2;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_24(D)->result = 0;
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_GetDidInfo (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  struct Dcm_DidInfoContextType * const DidInfoContextPtr;
+  void * _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = context_8(D)->SpecialPtr;
+  DidInfoContextPtr_9 = &MEM[(struct Dcm_WriteDidContextType *)_1].WriteDidContext.DidInfoContext;
+  # DEBUG DidInfoContextPtr => DidInfoContextPtr_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = context_8(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_13 = Dcm_Dsp_DidServices_GetDidInfo_Cancel (DidInfoContextPtr_9);
+  # DEBUG result => result_13
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_11 = Dcm_Dsp_DidServices_GetDidInfo_Execute (DidInfoContextPtr_9);
+  # DEBUG result => result_11
+
+  <bb 5> :
+  # result_4 = PHI <result_13(3), result_11(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  if (result_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_8(D)->next_state = 1;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  context_8(D)->result = result_4;
+  # DEBUG BEGIN_STMT
+  _3 = DidInfoContextPtr_9->BaseContext.nrc;
+  context_8(D)->nrc = _3;
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_Cancel (struct Dcm_WriteDidContextType * WriteDidContext)
+{
+  Std_ReturnType statusOfWriteDidCancel;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  statusOfWriteDidCancel_2 = 1;
+  # DEBUG statusOfWriteDidCancel => statusOfWriteDidCancel_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &WriteDidContext_3(D)->BaseContext;
+  statusOfWriteDidCancel_6 = Dcm_Dsp_Context_Cancel (_1);
+  # DEBUG statusOfWriteDidCancel => statusOfWriteDidCancel_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = statusOfWriteDidCancel_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_Execute (struct Dcm_WriteDidContextType * WriteDidContext)
+{
+  Std_ReturnType statusOfWriteDIDExecute;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  statusOfWriteDIDExecute_2 = 1;
+  # DEBUG statusOfWriteDIDExecute => statusOfWriteDIDExecute_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &WriteDidContext_3(D)->BaseContext;
+  statusOfWriteDIDExecute_6 = Dcm_Dsp_Context_Execute (_1);
+  # DEBUG statusOfWriteDIDExecute => statusOfWriteDIDExecute_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = statusOfWriteDIDExecute_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_DidServices_WriteDid_Init (struct Dcm_WriteDidContextType * WriteDidContext, uint16 Did, uint8 * DataPtr, uint32 DataLen, uint8 ProtocolIdx)
+{
+  const boolean EndiannessConversion;
+  const struct Dcm_ProtocolConfigType * const curProtocolConfig;
+  int _1;
+  struct Dcm_Dsp_ContextBaseType * _2;
+  struct Dcm_DidInfoContextType * _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIdx_4(D);
+  curProtocolConfig_5 = &Dcm_ProtocolConfig[_1];
+  # DEBUG curProtocolConfig => curProtocolConfig_5
+  # DEBUG BEGIN_STMT
+  EndiannessConversion_7 = curProtocolConfig_5->EndiannessConversion;
+  # DEBUG EndiannessConversion => EndiannessConversion_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = &WriteDidContext_8(D)->BaseContext;
+  Dcm_Dsp_Context_Init (_2, WriteDidContext_8(D), &Dcm_WriteDidStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WriteDidContext_8(D)->WriteDidContext.BufferCfg.BufferPtr = DataPtr_10(D);
+  # DEBUG BEGIN_STMT
+  WriteDidContext_8(D)->WriteDidContext.BufferCfg.Occupied = DataLen_12(D);
+  # DEBUG BEGIN_STMT
+  WriteDidContext_8(D)->WriteDidContext.EndiannessConversion = EndiannessConversion_7;
+  # DEBUG BEGIN_STMT
+  WriteDidContext_8(D)->WriteDidContext.SignalInd = 0;
+  # DEBUG BEGIN_STMT
+  WriteDidContext_8(D)->WriteDidContext.DidInfoContext.DidInfoContext.ReqLen = DataLen_12(D);
+  # DEBUG BEGIN_STMT
+  _3 = &WriteDidContext_8(D)->WriteDidContext.DidInfoContext;
+  Dcm_Dsp_DidServices_GetDidInfo_Init (_3, Did_17(D), 1, ProtocolIdx_4(D));
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadSignal_GetResults (const struct Dcm_ReadSignalContextType * pReadSignalContext, Dcm_NegativeResponseCodeType * Nrc, uint32 * AmountOfBufferOccupied)
+{
+  Std_ReturnType operationResult;
+  unsigned char _1;
+  long unsigned int _2;
+  unsigned char _3;
+  Std_ReturnType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pReadSignalContext_6(D)->NrcConditions;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  operationResult_8 = 26;
+  # DEBUG operationResult => operationResult_8
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  operationResult_7 = 1;
+  # DEBUG operationResult => operationResult_7
+
+  <bb 5> :
+  # operationResult_4 = PHI <operationResult_8(3), operationResult_7(4)>
+  # DEBUG operationResult => operationResult_4
+  # DEBUG BEGIN_STMT
+  _2 = pReadSignalContext_6(D)->AmountOfBufferOccupied;
+  *AmountOfBufferOccupied_9(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = pReadSignalContext_6(D)->NrcConditions;
+  *Nrc_11(D) = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = operationResult_4;
+  return _13;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDataOfSingleDid_Execute (struct Dcm_ReadSignalContextType * pReadSignalContext)
+{
+  uint16 DataIndexPrev;
+  uint16_least PreviousSignalIndex;
+  struct Dcm_DidDataType LocalDataCfg;
+  uint16 didDataPosn;
+  const uint16 DidDataIndex;
+  const struct Dcm_DidSignalType * const SignalCfg;
+  boolean breakConditionsNotFulfilled;
+  Std_ReturnType SignalReadRetVal;
+  Std_ReturnType RetVal;
+  Dcm_NegativeResponseCodeType nrc;
+  uint16 numSignals;
+  unsigned char _1;
+  struct Dcm_DidSignalReadContextType * _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct Dcm_DidSignalType * _13;
+  short unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  const struct Dcm_DidSignalType * _17;
+  short unsigned int _18;
+  unsigned char _19;
+  long unsigned int _20;
+  const struct Dcm_DidSignalType * _21;
+  unsigned char _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  long unsigned int _25;
+  struct Dcm_DidSignalReadContextType * _26;
+  uint8 * _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  unsigned char _30;
+  unsigned char _31;
+  struct Dcm_DidSignalReadContextType * _32;
+  short unsigned int _33;
+  short unsigned int _34;
+  short unsigned int _35;
+  short unsigned int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  long unsigned int _39;
+  short unsigned int _40;
+  Std_ReturnType _89;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  nrc_52 = 0;
+  # DEBUG nrc => nrc_52
+  # DEBUG BEGIN_STMT
+  RetVal_53 = 1;
+  # DEBUG RetVal => RetVal_53
+  # DEBUG BEGIN_STMT
+  SignalReadRetVal_54 = 1;
+  # DEBUG SignalReadRetVal => SignalReadRetVal_54
+  # DEBUG BEGIN_STMT
+  breakConditionsNotFulfilled_55 = 1;
+  # DEBUG breakConditionsNotFulfilled => breakConditionsNotFulfilled_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pReadSignalContext_57(D)->CurrentOpStatus;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = &pReadSignalContext_57(D)->SignalReadContext;
+  Dcm_Dsp_DidSignals_Read_Cancel (_2);
+  # DEBUG BEGIN_STMT
+  RetVal_88 = 26;
+  # DEBUG RetVal => RetVal_88
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = pReadSignalContext_57(D)->CurrentDidCfgIndex;
+  _4 = (int) _3;
+  numSignals_58 = Dcm_DidConfig[_4].NumSignals;
+  # DEBUG numSignals => numSignals_58
+  # DEBUG BEGIN_STMT
+  if (numSignals_58 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = pReadSignalContext_57(D)->NewSignal;
+  if (_5 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = pReadSignalContext_57(D)->CurrentDidCfgIndex;
+  _7 = (int) _6;
+  _8 = Dcm_DidConfig[_7].DidSignalsIdx;
+  _9 = (short unsigned int) _8;
+  SignalCfg_61 = Dcm_Dsp_DidSignals_GetDidSignalConfig (_9);
+  # DEBUG SignalCfg => SignalCfg_61
+  # DEBUG BEGIN_STMT
+  _10 = pReadSignalContext_57(D)->SignalInd;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 4;
+  _13 = SignalCfg_61 + _12;
+  DidDataIndex_62 = _13->DspDataIndex;
+  # DEBUG DidDataIndex => DidDataIndex_62
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = pReadSignalContext_57(D)->SignalInd;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 4;
+  _17 = SignalCfg_61 + _16;
+  didDataPosn_63 = _17->DataPos;
+  # DEBUG didDataPosn => didDataPosn_63
+  # DEBUG BEGIN_STMT
+  _18 = pReadSignalContext_57(D)->SignalInd;
+  if (_18 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  _19 = pReadSignalContext_57(D)->EndiannessConversion;
+  if (_19 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PreviousSignalIndex_64 = 0;
+  # DEBUG PreviousSignalIndex => PreviousSignalIndex_64
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _20 = PreviousSignalIndex_46 * 4;
+  _21 = SignalCfg_61 + _20;
+  DataIndexPrev_66 = _21->DspDataIndex;
+  # DEBUG DataIndexPrev => DataIndexPrev_66
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetDidDataConfig (&LocalDataCfg, DataIndexPrev_66);
+  # DEBUG BEGIN_STMT
+  _22 = LocalDataCfg.DataType;
+  _23 = LocalDataCfg.DataLength;
+  didDataPosn_69 = Dcm_Dsp_DidServices_EndianessConversion_CalculateDataPosition (_22, _23, didDataPosn_44);
+  # DEBUG didDataPosn => didDataPosn_69
+  # DEBUG BEGIN_STMT
+  PreviousSignalIndex_70 = PreviousSignalIndex_46 + 1;
+  # DEBUG PreviousSignalIndex => PreviousSignalIndex_70
+
+  <bb 10> :
+  # didDataPosn_44 = PHI <didDataPosn_63(8), didDataPosn_69(9)>
+  # PreviousSignalIndex_46 = PHI <PreviousSignalIndex_64(8), PreviousSignalIndex_70(9)>
+  # DEBUG PreviousSignalIndex => PreviousSignalIndex_46
+  # DEBUG didDataPosn => didDataPosn_44
+  # DEBUG BEGIN_STMT
+  _24 = pReadSignalContext_57(D)->SignalInd;
+  _25 = (long unsigned int) _24;
+  if (PreviousSignalIndex_46 < _25)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  LocalDataCfg ={v} {CLOBBER};
+
+  <bb 12> :
+  # didDataPosn_45 = PHI <didDataPosn_63(6), didDataPosn_63(7), didDataPosn_44(11)>
+  # DEBUG didDataPosn => didDataPosn_45
+  # DEBUG BEGIN_STMT
+  _26 = &pReadSignalContext_57(D)->SignalReadContext;
+  _27 = pReadSignalContext_57(D)->outputBuffer;
+  _28 = pReadSignalContext_57(D)->BufferLimit;
+  _29 = pReadSignalContext_57(D)->AmountOfBufferOccupied;
+  _30 = pReadSignalContext_57(D)->DidOp;
+  _31 = pReadSignalContext_57(D)->EndiannessConversion;
+  Dcm_Dsp_DidSignals_Read_Init (_26, _27, _28, DidDataIndex_62, didDataPosn_45, _29, _30, _31);
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_57(D)->NewSignal = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _32 = &pReadSignalContext_57(D)->SignalReadContext;
+  SignalReadRetVal_74 = Dcm_Dsp_DidSignals_Read_Execute (_32);
+  # DEBUG SignalReadRetVal => SignalReadRetVal_74
+  # DEBUG BEGIN_STMT
+  nrc_75 = pReadSignalContext_57(D)->SignalReadContext.Nrc;
+  # DEBUG nrc => nrc_75
+  # DEBUG BEGIN_STMT
+  if (SignalReadRetVal_74 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _33 = pReadSignalContext_57(D)->SignalInd;
+  _34 = _33;
+  _35 = _34 + 1;
+  pReadSignalContext_57(D)->SignalInd = _35;
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_57(D)->NewSignal = 1;
+  # DEBUG BEGIN_STMT
+  _36 = pReadSignalContext_57(D)->SignalInd;
+  if (numSignals_58 == _36)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _37 = pReadSignalContext_57(D)->AmountOfBufferOccupied;
+  _38 = pReadSignalContext_57(D)->SignalReadContext.BufferOffset;
+  _39 = _37 + _38;
+  pReadSignalContext_57(D)->AmountOfBufferOccupied = _39;
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_57(D)->NrcConditions = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_85 = 26;
+  # DEBUG RetVal => RetVal_85
+  # DEBUG BEGIN_STMT
+  breakConditionsNotFulfilled_86 = 0;
+  # DEBUG breakConditionsNotFulfilled => breakConditionsNotFulfilled_86
+  goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  if (SignalReadRetVal_74 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  pReadSignalContext_57(D)->NrcConditions = nrc_75;
+  # DEBUG BEGIN_STMT
+  RetVal_79 = 1;
+  # DEBUG RetVal => RetVal_79
+  # DEBUG BEGIN_STMT
+  breakConditionsNotFulfilled_80 = 0;
+  # DEBUG breakConditionsNotFulfilled => breakConditionsNotFulfilled_80
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_76 = 10;
+  # DEBUG RetVal => RetVal_76
+  # DEBUG BEGIN_STMT
+  breakConditionsNotFulfilled_77 = 0;
+  # DEBUG breakConditionsNotFulfilled => breakConditionsNotFulfilled_77
+
+  <bb 19> :
+  # RetVal_41 = PHI <RetVal_53(4), RetVal_85(15), RetVal_79(17), RetVal_76(18), RetVal_41(14)>
+  # breakConditionsNotFulfilled_43 = PHI <breakConditionsNotFulfilled_55(4), breakConditionsNotFulfilled_86(15), breakConditionsNotFulfilled_80(17), breakConditionsNotFulfilled_77(18), breakConditionsNotFulfilled_43(14)>
+  # DEBUG breakConditionsNotFulfilled => breakConditionsNotFulfilled_43
+  # DEBUG RetVal => RetVal_41
+  # DEBUG BEGIN_STMT
+  _40 = pReadSignalContext_57(D)->SignalInd;
+  if (numSignals_58 > _40)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  if (breakConditionsNotFulfilled_43 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  RetVal_59 = 26;
+  # DEBUG RetVal => RetVal_59
+
+  <bb 22> :
+  # RetVal_42 = PHI <RetVal_88(3), RetVal_41(20), RetVal_59(21), RetVal_41(19)>
+  # DEBUG RetVal => RetVal_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _89 = RetVal_42;
+  return _89;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_Cancel (struct Dcm_ReadDidContextType * ReadDidContext)
+{
+  Std_ReturnType stsOfReadDidCancel;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &ReadDidContext_2(D)->BaseContext;
+  stsOfReadDidCancel_5 = Dcm_Dsp_Context_Cancel (_1);
+  # DEBUG stsOfReadDidCancel => stsOfReadDidCancel_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = stsOfReadDidCancel_5;
+  return _6;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_Execute (struct Dcm_ReadDidContextType * ReadDidContext)
+{
+  Std_ReturnType statusOfReadDid;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &ReadDidContext_2(D)->BaseContext;
+  statusOfReadDid_5 = Dcm_Dsp_Context_Execute (_1);
+  # DEBUG statusOfReadDid => statusOfReadDid_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = statusOfReadDid_5;
+  return _6;
+
+}
+
+
+Dcm_Dsp_DidServices_ReadDid_Init (struct Dcm_ReadDidContextType * ReadDidContext, uint16 Did, Dcm_DidOpType DidOp, boolean WriteDidIds, struct Dcm_DspMsgBufferCfgType * DidBufferConfig, boolean EnableRuleChecks, PduIdType RxPduId)
+{
+  const uint8 ProtocolIdx;
+  int _1;
+  unsigned char _2;
+  int _3;
+  struct Dcm_Dsp_ContextBaseType * _4;
+  struct Dcm_DidInfoContextType * _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxPduId_6(D);
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  _3 = (int) _2;
+  ProtocolIdx_8 = Dcm_MainConnectionConfig[_3].ProtocolIndex;
+  # DEBUG ProtocolIdx => ProtocolIdx_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = &ReadDidContext_9(D)->BaseContext;
+  Dcm_Dsp_Context_Init (_4, ReadDidContext_9(D), &Dcm_ReadDidStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReadDidContext_9(D)->ReadDidContext.DidBufferCfgPtr = DidBufferConfig_11(D);
+  # DEBUG BEGIN_STMT
+  ReadDidContext_9(D)->ReadDidContext.WriteDidIds = WriteDidIds_13(D);
+  # DEBUG BEGIN_STMT
+  _5 = &ReadDidContext_9(D)->ReadDidContext.DidInfoContext;
+  Dcm_Dsp_DidServices_GetDidInfo_Init (_5, Did_15(D), DidOp_16(D), ProtocolIdx_8);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidGeneralBuffer ()
+{
+  union Dcm_Union_BufferType * pDIDGeneralBuffer;
+  union Dcm_Union_BufferType * _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pDIDGeneralBuffer_1 = 0B;
+  # DEBUG pDIDGeneralBuffer => pDIDGeneralBuffer_1
+  # DEBUG BEGIN_STMT
+  pDIDGeneralBuffer_2 = &Dcm_DIDGeneralBuffer;
+  # DEBUG pDIDGeneralBuffer => pDIDGeneralBuffer_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = pDIDGeneralBuffer_2;
+  return _3;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_Cancel (struct Dcm_DidInfoContextType * DidInfoContext)
+{
+  Std_ReturnType stateOfCtxCancel;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  stateOfCtxCancel_2 = 1;
+  # DEBUG stateOfCtxCancel => stateOfCtxCancel_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &DidInfoContext_3(D)->BaseContext;
+  stateOfCtxCancel_6 = Dcm_Dsp_Context_Cancel (_1);
+  # DEBUG stateOfCtxCancel => stateOfCtxCancel_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = stateOfCtxCancel_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_Execute (struct Dcm_DidInfoContextType * DidInfoContext)
+{
+  Std_ReturnType stateOfCtxExe;
+  struct Dcm_Dsp_ContextBaseType * _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  stateOfCtxExe_2 = 1;
+  # DEBUG stateOfCtxExe => stateOfCtxExe_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &DidInfoContext_3(D)->BaseContext;
+  stateOfCtxExe_6 = Dcm_Dsp_Context_Execute (_1);
+  # DEBUG stateOfCtxExe => stateOfCtxExe_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = stateOfCtxExe_6;
+  return _7;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidInfo_Init (struct Dcm_DidInfoContextType * DidInfoContext, uint16 Did, Dcm_DidOpType DidOp, uint8 ProtocolIdx)
+{
+  struct Dcm_DidInfoContextExtType * const DidInfo;
+  struct Dcm_Dsp_ContextBaseType * _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DidInfo_3 = &DidInfoContext_2(D)->DidInfoContext;
+  # DEBUG DidInfo => DidInfo_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = &DidInfoContext_2(D)->BaseContext;
+  Dcm_Dsp_Context_Init (_1, DidInfoContext_2(D), &Dcm_GetDidInfoStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DidInfo_3->Did = Did_6(D);
+  # DEBUG BEGIN_STMT
+  DidInfo_3->DidOp = DidOp_8(D);
+  # DEBUG BEGIN_STMT
+  DidInfo_3->ProtocolIdx = ProtocolIdx_10(D);
+  # DEBUG BEGIN_STMT
+  DidInfo_3->ConfigType = 0;
+  # DEBUG BEGIN_STMT
+  DidInfoContext_2(D)->BaseContext.nrc = 49;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetMaximumDidLength (const struct Dcm_DidInfoContextExtType * DidInfo)
+{
+  struct Dcm_DidDataType CurrentDataCfg;
+  const struct Dcm_DidSignalType * SignalCfg;
+  const uint16 numSignals;
+  uint32 DidDataLength;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  short unsigned int _13;
+  long unsigned int _14;
+  short unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  uint32 _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DidDataLength_22 = 0;
+  # DEBUG DidDataLength => DidDataLength_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = DidInfo_24(D)->ConfigType;
+  if (_1 == 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = DidInfo_24(D)->ConfigType;
+  if (_2 == 7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = DidInfo_24(D)->ConfigType;
+  if (_3 == 6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DidDataLength_25 = 1028;
+  # DEBUG DidDataLength => DidDataLength_25
+
+  <bb 6> :
+  # DidDataLength_19 = PHI <DidDataLength_22(4), DidDataLength_25(5)>
+  # DEBUG DidDataLength => DidDataLength_19
+  # DEBUG BEGIN_STMT
+  _4 = DidInfo_24(D)->ConfigIdx;
+  _5 = (int) _4;
+  numSignals_26 = Dcm_DidConfig[_5].NumSignals;
+  # DEBUG numSignals => numSignals_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (numSignals_26 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = DidInfo_24(D)->ConfigIdx;
+  _7 = (int) _6;
+  _8 = Dcm_DidConfig[_7].DidSignalsIdx;
+  _9 = (short unsigned int) _8;
+  _10 = numSignals_26 + _9;
+  _11 = _10 + 65535;
+  SignalCfg_28 = Dcm_Dsp_DidSignals_GetDidSignalConfig (_11);
+  # DEBUG SignalCfg => SignalCfg_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = SignalCfg_28->DspDataIndex;
+  Dcm_Dsp_DidSignals_GetDidDataConfig (&CurrentDataCfg, _12);
+  # DEBUG BEGIN_STMT
+  _13 = SignalCfg_28->DataPos;
+  _14 = (long unsigned int) _13;
+  _15 = CurrentDataCfg.DataLength;
+  _16 = (long unsigned int) _15;
+  _17 = _14 + _16;
+  _18 = _17 + 7;
+  DidDataLength_30 = _18 / 8;
+  # DEBUG DidDataLength => DidDataLength_30
+  CurrentDataCfg ={v} {CLOBBER};
+
+  <bb 8> :
+  # DidDataLength_20 = PHI <DidDataLength_19(6), DidDataLength_30(7)>
+  # DEBUG DidDataLength => DidDataLength_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _32 = DidDataLength_20;
+  return _32;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidIndex (uint16 Did, Dcm_DidConfigIdxType * ConfigIdx)
+{
+  const Dcm_DidConfigIdxType MidDidIdx;
+  Dcm_DidConfigIdxType HighDidIdx;
+  Dcm_DidConfigIdxType LowDidIdx;
+  boolean DIDFound;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  short unsigned int _13;
+  boolean _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DIDFound_20 = 0;
+  # DEBUG DIDFound => DIDFound_20
+  # DEBUG BEGIN_STMT
+  LowDidIdx_21 = 0;
+  # DEBUG LowDidIdx => LowDidIdx_21
+  # DEBUG BEGIN_STMT
+  HighDidIdx_22 = 2;
+  # DEBUG HighDidIdx => HighDidIdx_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) LowDidIdx_21;
+  _2 = Dcm_DidConfig[_1].Did;
+  if (Did_24(D) >= _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  _3 = (int) HighDidIdx_22;
+  _4 = Dcm_DidConfig[_3].Did;
+  if (Did_24(D) <= _4)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) HighDidIdx_17;
+  _6 = (int) LowDidIdx_16;
+  _7 = _5 - _6;
+  _8 = _7 >> 1;
+  _9 = (unsigned char) _8;
+  MidDidIdx_25 = LowDidIdx_16 + _9;
+  # DEBUG MidDidIdx => MidDidIdx_25
+  # DEBUG BEGIN_STMT
+  _10 = (int) MidDidIdx_25;
+  _11 = Dcm_DidConfig[_10].Did;
+  if (Did_24(D) < _11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  HighDidIdx_30 = MidDidIdx_25 + 255;
+  # DEBUG HighDidIdx => HighDidIdx_30
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) MidDidIdx_25;
+  _13 = Dcm_DidConfig[_12].Did;
+  if (Did_24(D) > _13)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  LowDidIdx_29 = MidDidIdx_25 + 1;
+  # DEBUG LowDidIdx => LowDidIdx_29
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DIDFound_26 = 1;
+  # DEBUG DIDFound => DIDFound_26
+  # DEBUG BEGIN_STMT
+  *ConfigIdx_27(D) = MidDidIdx_25;
+
+  <bb 9> :
+  # DIDFound_14 = PHI <DIDFound_20(3), DIDFound_14(5), DIDFound_14(7), DIDFound_26(8)>
+  # LowDidIdx_16 = PHI <LowDidIdx_21(3), LowDidIdx_16(5), LowDidIdx_29(7), LowDidIdx_16(8)>
+  # HighDidIdx_17 = PHI <HighDidIdx_22(3), HighDidIdx_30(5), HighDidIdx_17(7), HighDidIdx_17(8)>
+  # DEBUG HighDidIdx => HighDidIdx_17
+  # DEBUG LowDidIdx => LowDidIdx_16
+  # DEBUG DIDFound => DIDFound_14
+  # DEBUG BEGIN_STMT
+  if (HighDidIdx_17 >= LowDidIdx_16)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  if (DIDFound_14 != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DIDFound_15 = PHI <DIDFound_20(2), DIDFound_20(3), DIDFound_14(9), DIDFound_14(10)>
+  # DEBUG DIDFound => DIDFound_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = DIDFound_15;
+  return _31;
+
+}
+
+
+Dcm_Dsp_DidServices_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

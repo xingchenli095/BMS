@@ -1,0 +1,4060 @@
+Crypto_CMACVrfyStateFinReqSbFin ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 14;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Finish (_3);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateFinCompare ()
+{
+  uint8 Pos;
+  uint8 Mask;
+  Crypto_VerifyResultType result;
+  const uint8 * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  unsigned char Pos.12_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  unsigned char _14;
+  const uint8 * _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  const uint8 * _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned char _21;
+  Crypto_VerifyResultType * _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CurrentMode = 4;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.CmacPtr;
+  _2 = Crypto_CMACVrfyContext.CmacLength;
+  _3 = _2 / 8;
+  _4 = Crypto_MemCmp_Sec (&Crypto_CMACVrfyContext.LastEncryptedBlock, _1, _3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_30 = 0;
+  # DEBUG result => result_30
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.CmacLength;
+  _6 = _5 & 7;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Mask_31 = 0;
+  # DEBUG Mask => Mask_31
+  # DEBUG BEGIN_STMT
+  Pos_32 = 0;
+  # DEBUG Pos => Pos_32
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = Mask_24 >> 1;
+  Mask_34 = _7 + 128;
+  # DEBUG Mask => Mask_34
+  # DEBUG BEGIN_STMT
+  Pos.12_8 = Pos_25;
+  Pos_35 = Pos.12_8 + 1;
+  # DEBUG Pos => Pos_35
+
+  <bb 6> :
+  # Mask_24 = PHI <Mask_31(4), Mask_34(5)>
+  # Pos_25 = PHI <Pos_32(4), Pos_35(5)>
+  # DEBUG Pos => Pos_25
+  # DEBUG Mask => Mask_24
+  # DEBUG BEGIN_STMT
+  _9 = (long unsigned int) Pos_25;
+  _10 = Crypto_CMACVrfyContext.CmacLength;
+  _11 = _10 & 7;
+  if (_9 < _11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_CMACVrfyContext.CmacLength;
+  _13 = _12 / 8;
+  _14 = Crypto_CMACVrfyContext.LastEncryptedBlock[_13];
+  _15 = Crypto_CMACVrfyContext.CmacPtr;
+  _16 = Crypto_CMACVrfyContext.CmacLength;
+  _17 = _16 / 8;
+  _18 = _15 + _17;
+  _19 = *_18;
+  _20 = _14 ^ _19;
+  _21 = Mask_24 & _20;
+  if (_21 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  result_33 = 1;
+  # DEBUG result => result_33
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result_29 = 1;
+  # DEBUG result => result_29
+
+  <bb 10> :
+  # result_23 = PHI <result_30(7), result_29(9), result_30(3), result_33(8)>
+  # DEBUG result => result_23
+  # DEBUG BEGIN_STMT
+  _22 = Crypto_CMACVrfyContext.ResultPtr;
+  *_22 = result_23;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateFinReqSbFin ();
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateFinReqSbUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 11;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACVrfyContext.Block, 16, &Crypto_CMACVrfyContext.LastEncryptedBlock, &Crypto_CMACVrfyContext.BytesStoredInBlock);
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateFinPadLastBlock ()
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  if (_1 == 16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACVrfyContext.Block, &Crypto_CMACVrfyContext.K1, 16);
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  Crypto_CMACVrfyContext.Block[_2] = 128;
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _4 = _3 + 1;
+  Crypto_CMACVrfyContext.BytesStoredInBlock = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  Crypto_CMACVrfyContext.Block[_5] = 0;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _7 = _6 + 1;
+  Crypto_CMACVrfyContext.BytesStoredInBlock = _7;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  if (_8 <= 15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACVrfyContext.Block, &Crypto_CMACVrfyContext.K2, 16);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACVrfyContext.Block, &Crypto_CMACVrfyContext.LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 10;
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateUpdReqSbUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 8;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACVrfyContext.Block, 16, &Crypto_CMACVrfyContext.LastEncryptedBlock, &Crypto_CMACVrfyContext.BytesStoredInBlock);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateUpdCpFromInput ()
+{
+  uint32 NewLen;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  uint8 * _6;
+  const uint8 * _7;
+  const uint8 * _8;
+  const uint8 * _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  uint8 * _13;
+  const uint8 * _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _2 = Crypto_CMACVrfyContext.DataLength;
+  _3 = _1 + _2;
+  if (_3 > 16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  NewLen_26 = 16 - _4;
+  # DEBUG NewLen => NewLen_26
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _6 = &Crypto_CMACVrfyContext.Block[_5];
+  _7 = Crypto_CMACVrfyContext.DataPtr;
+  TS_MemCpy32 (_6, _7, NewLen_26);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.BytesStoredInBlock = 16;
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACVrfyContext.DataPtr;
+  _9 = _8 + NewLen_26;
+  Crypto_CMACVrfyContext.DataPtr = _9;
+  # DEBUG BEGIN_STMT
+  _10 = Crypto_CMACVrfyContext.DataLength;
+  _11 = _10 - NewLen_26;
+  Crypto_CMACVrfyContext.DataLength = _11;
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACVrfyContext.Block, &Crypto_CMACVrfyContext.LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 7;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _13 = &Crypto_CMACVrfyContext.Block[_12];
+  _14 = Crypto_CMACVrfyContext.DataPtr;
+  _15 = Crypto_CMACVrfyContext.DataLength;
+  TS_MemCpy32 (_13, _14, _15);
+  # DEBUG BEGIN_STMT
+  _16 = Crypto_CMACVrfyContext.BytesStoredInBlock;
+  _17 = Crypto_CMACVrfyContext.DataLength;
+  _18 = _16 + _17;
+  Crypto_CMACVrfyContext.BytesStoredInBlock = _18;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 15;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackResult = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateStartK1AndK2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_CMACVrfyContext.K1, 16);
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CMACVrfyContext.K2, &Crypto_CMACVrfyContext.K1, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_CMACVrfyContext.K2, 16);
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CMACVrfyContext.LastEncryptedBlock, &Crypto_CMACZeroBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.BytesStoredInBlock = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 15;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackResult = 0;
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateStartReqSBUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 4;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.BytesStoredInBlock = 16;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACZeroBlock, 16, &Crypto_CMACVrfyContext.K1, &Crypto_CMACVrfyContext.BytesStoredInBlock);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACVrfyStateStartReqSBSt ()
+{
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  struct Crypto_JobType * _2;
+  struct Crypto_JobType * _3;
+  const struct Crypto_JobPrimitiveInfoType * _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  Std_ReturnType _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 1;
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.ObjId;
+  _2 = Crypto_CMACVrfyContext.Job;
+  _3 = Crypto_CMACVrfyContext.Job;
+  _4 = _3->jobPrimitiveInfo;
+  _5 = _4->processingType;
+  _6 = Crypto_AES_Helper_Encrypt_Start (_1, Crypto_CMACVrfyCallback, _2, _5, &Crypto_CMACVrfyContext.Key);
+  _7 = (int) _6;
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 0;
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 1;
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # RetVal_8 = PHI <RetVal_12(3), RetVal_13(4)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _14 = RetVal_8;
+  return _14;
+
+}
+
+
+Crypto_CMACVrfyCallback (struct Crypto_JobType * Job, Std_ReturnType Result)
+{
+  unsigned char _1;
+  int _2;
+  boolean * _3;
+  boolean * _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.State;
+  _2 = (int) _1;
+  switch (_2) <default: <L8> [INV], case 4: <L0> [INV], case 8: <L1> [INV], case 11: <L4> [INV], case 14: <L5> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateStartK1AndK2 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.BytesStoredInBlock = 0;
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACVrfyContext.IsBusy;
+  if (_3 != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACVrfyContext.IsBusy;
+  *_4 = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateUpdCpFromInput ();
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 12;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackResult = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Crypto_CMACVrfyCallbackCancel ()
+{
+  unsigned char _1;
+  Std_ReturnType * _2;
+  boolean * _3;
+  boolean * _4;
+  Std_ReturnType * _5;
+  struct Crypto_JobType * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _10;
+  struct Crypto_JobType * _11;
+  unsigned char _12;
+  Std_ReturnType * _13;
+  boolean * _14;
+  boolean * _15;
+  Std_ReturnType * _16;
+  unsigned char _17;
+  struct Crypto_JobType * _18;
+  const struct Crypto_JobPrimitiveInfoType * _19;
+  unsigned char _20;
+  struct Crypto_JobType * _21;
+  unsigned char _22;
+  unsigned char _23;
+  struct Crypto_JobType * _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+  long unsigned int _28;
+  struct Crypto_JobType * _29;
+  struct Crypto_JobType * _30;
+  const struct Crypto_JobPrimitiveInfoType * _31;
+  unsigned char _32;
+  struct Crypto_JobType * _33;
+  unsigned char _34;
+  unsigned char _35;
+  unsigned char _36;
+  long unsigned int _37;
+  struct Crypto_JobType * _38;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _39;
+  struct Crypto_JobType * _40;
+  unsigned char _41;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.CancelFlag;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CMACVrfyContext.Result;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACVrfyContext.IsBusy;
+  if (_3 != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACVrfyContext.IsBusy;
+  *_4 = 0;
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.Result;
+  *_5 = 12;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACVrfyContext.Job;
+  _6->jobState = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_7].DriverObjectState = 0;
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_8].CurrentJob = 0B;
+  # DEBUG BEGIN_STMT
+  _9 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_9].SkipPeriodicMainFunction = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = Crypto_CMACVrfyContext.Crypto_Generic_Callback;
+  _11 = Crypto_CMACVrfyContext.Job;
+  _10 (_11, 12);
+  goto <bb 21>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_CMACVrfyContext.CallbackFlag;
+  if (_12 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = Crypto_CMACVrfyContext.Result;
+  if (_13 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _14 = Crypto_CMACVrfyContext.IsBusy;
+  if (_14 != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = Crypto_CMACVrfyContext.IsBusy;
+  *_15 = 0;
+  # DEBUG BEGIN_STMT
+  _16 = Crypto_CMACVrfyContext.Result;
+  _17 = Crypto_CMACVrfyContext.CallbackResult;
+  *_16 = _17;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _18 = Crypto_CMACVrfyContext.Job;
+  _19 = _18->jobPrimitiveInfo;
+  _20 = _19->processingType;
+  if (_20 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _21 = Crypto_CMACVrfyContext.Job;
+  _22 = _21->jobPrimitiveInputOutput.mode;
+  _23 = _22 & 7;
+  if (_23 == 7)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _24 = Crypto_CMACVrfyContext.Job;
+  _25 = _24->jobPrimitiveInputOutput.mode;
+  _26 = _25 & 3;
+  if (_26 == 3)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _27 = Crypto_CMACVrfyContext.CurrentMode;
+  if (_27 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _28 = Crypto_CMACVrfyContext.ObjId;
+  _29 = Crypto_CMACVrfyContext.Job;
+  Crypto_AL_MACVERIFY_AES_CMAC_Update (_28, _29);
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _30 = Crypto_CMACVrfyContext.Job;
+  _31 = _30->jobPrimitiveInfo;
+  _32 = _31->processingType;
+  if (_32 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  _33 = Crypto_CMACVrfyContext.Job;
+  _34 = _33->jobPrimitiveInputOutput.mode;
+  _35 = _34 & 7;
+  if (_35 == 7)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  _36 = Crypto_CMACVrfyContext.CurrentMode;
+  if (_36 == 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _37 = Crypto_CMACVrfyContext.ObjId;
+  _38 = Crypto_CMACVrfyContext.Job;
+  Crypto_AL_MACVERIFY_AES_CMAC_Finish (_37, _38);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _39 = Crypto_CMACVrfyContext.Crypto_Generic_Callback;
+  _40 = Crypto_CMACVrfyContext.Job;
+  _41 = Crypto_CMACVrfyContext.CallbackResult;
+  _39 (_40, _41);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CallbackFlag = 0;
+
+  <bb 21> :
+  return;
+
+}
+
+
+Crypto_CMACVrfyMainFunction (Std_ReturnType * Result, boolean * Busy)
+{
+  long unsigned int _1;
+  unsigned char _2;
+  boolean * _3;
+  Std_ReturnType * _4;
+  unsigned char _5;
+  int _6;
+  boolean * _7;
+  boolean * _8;
+  boolean * _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.ObjId;
+  _2 = Crypto_CheckSkipMain (Result_15(D), Busy_16(D), _1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.Result = Result_15(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.IsBusy = Busy_16(D);
+  # DEBUG BEGIN_STMT
+  if (Result_15(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (Busy_16(D) != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACVrfyContext.IsBusy;
+  *_3 = 1;
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACVrfyContext.Result;
+  *_4 = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.State;
+  _6 = (int) _5;
+  switch (_6) <default: <L17> [INV], case 6: <L5> [INV], case 7: <L8> [INV], case 11: <L13> [INV], case 12: <L9> [INV], case 15: <L10> [INV]>
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACVrfyContext.IsBusy;
+  if (_7 != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACVrfyContext.IsBusy;
+  *_8 = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CurrentMode = 2;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateUpdCpFromInput ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateUpdReqSbUpd ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 11> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateFinCompare ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  if (Busy_16(D) != 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _9 = Crypto_CMACVrfyContext.IsBusy;
+  *_9 = 0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  # DEBUG BEGIN_STMT
+
+  <bb 15> :
+<L17>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyCallbackCancel ();
+
+  <bb 16> :
+  return;
+
+}
+
+
+Crypto_CMACVrfyFinish (const uint8 * AuthenticationPtr, uint32 AuthenticationLength, Crypto_VerifyResultType * ResultPtr)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  Std_ReturnType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 1;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.State;
+  if (_1 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Crypto_CMACVrfyContext.State;
+  if (_2 == 10)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACVrfyContext.State;
+  if (_3 == 11)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _4 = Crypto_CMACVrfyContext.State;
+  if (_4 == 12)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _5 = Crypto_CMACVrfyContext.State;
+  if (_5 == 13)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _6 = Crypto_CMACVrfyContext.State;
+  if (_6 == 14)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_24 = 1;
+  # DEBUG RetVal => RetVal_24
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACVrfyContext.State;
+  if (_7 == 15)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (AuthenticationLength_13(D) > 128)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_22 = 1;
+  # DEBUG RetVal => RetVal_22
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CmacPtr = AuthenticationPtr_14(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CmacLength = AuthenticationLength_13(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.ResultPtr = ResultPtr_17(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateFinPadLastBlock ();
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateFinReqSbUpd ();
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 0;
+  # DEBUG RetVal => RetVal_21
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 2;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 14> :
+  # RetVal_8 = PHI <RetVal_24(8), RetVal_21(12), RetVal_12(13), RetVal_22(11)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _25 = RetVal_8;
+  return _25;
+
+}
+
+
+Crypto_CMACVrfyUpdate (const uint8 * DataPtr, uint32 DataLength)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  Std_ReturnType _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 1;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.State;
+  if (_1 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Crypto_CMACVrfyContext.State;
+  if (_2 == 10)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACVrfyContext.State;
+  if (_3 == 11)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _4 = Crypto_CMACVrfyContext.State;
+  if (_4 == 12)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _5 = Crypto_CMACVrfyContext.State;
+  if (_5 == 13)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _6 = Crypto_CMACVrfyContext.State;
+  if (_6 == 14)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_20 = 1;
+  # DEBUG RetVal => RetVal_20
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACVrfyContext.State;
+  if (_7 == 15)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.DataPtr = DataPtr_13(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.DataLength = DataLength_15(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.State = 6;
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 0;
+  # DEBUG RetVal => RetVal_18
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 2;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 12> :
+  # RetVal_8 = PHI <RetVal_20(8), RetVal_18(10), RetVal_12(11)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _21 = RetVal_8;
+  return _21;
+
+}
+
+
+Crypto_CMACVrfyStart (const void * CfgPtr, const struct Crypto_SymKeyType * KeyPtr)
+{
+  const struct Crypto_CMACVrfyConfigType * LocCfgPtr;
+  Std_ReturnType RetVal;
+  const uint8[16] * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _5;
+  struct Crypto_JobType * _6;
+  Std_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LocCfgPtr_9 = CfgPtr_8(D);
+  # DEBUG LocCfgPtr => LocCfgPtr_9
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CurrentMode = 1;
+  # DEBUG BEGIN_STMT
+  _1 = &KeyPtr_12(D)->data;
+  _2 = KeyPtr_12(D)->length;
+  TS_MemCpy32 (&Crypto_CMACVrfyContext.Key.data, _1, _2);
+  # DEBUG BEGIN_STMT
+  _3 = KeyPtr_12(D)->length;
+  Crypto_CMACVrfyContext.Key.length = _3;
+  # DEBUG BEGIN_STMT
+  _4 = LocCfgPtr_9->ObjId;
+  Crypto_CMACVrfyContext.ObjId = _4;
+  # DEBUG BEGIN_STMT
+  _5 = LocCfgPtr_9->Crypto_Generic_Callback;
+  Crypto_CMACVrfyContext.Crypto_Generic_Callback = _5;
+  # DEBUG BEGIN_STMT
+  _6 = LocCfgPtr_9->Job;
+  Crypto_CMACVrfyContext.Job = _6;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.IsBusy = 0B;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.Result = 0B;
+  # DEBUG BEGIN_STMT
+  RetVal_21 = Crypto_CMACVrfyStateStartReqSBSt ();
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  if (RetVal_21 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyStateStartReqSBUpd ();
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _23 = RetVal_21;
+  return _23;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_CallBack (struct Crypto_JobType * Job, uint8 Error)
+{
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  struct Crypto_JobType * _10;
+  unsigned char _11;
+  unsigned char _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Job_16(D)->jobPrimitiveInfo;
+  _2 = _1->processingType;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACVrfyContext.CurrentMode;
+  _4 = _3 & 4;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (Error_17(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Job_16(D)->jobState = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CurrentMode = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_5].DriverObjectState = 0;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_6].CurrentJob = 0B;
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACVrfyContext.ObjId;
+  Crypto_DriverObjects[_7].SkipPeriodicMainFunction = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  CryIf_CallbackNotification (Job_16(D), Error_17(D));
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACVERIFY_AES_CMAC_Reset ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACVrfyContext.CurrentMode;
+  _9 = _8 & 2;
+  if (_9 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _10 = Crypto_CMACVrfyContext.Job;
+  _11 = _10->jobPrimitiveInputOutput.mode;
+  _12 = _11 & 7;
+  if (_12 != 7)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CryIf_CallbackNotification (Job_16(D), Error_17(D));
+
+  <bb 9> :
+  return;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_Reset ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_AL_ENCRYPT_AES_ECB_Reset ();
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&Crypto_CMACVrfyContext, 136);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  return;
+
+}
+
+
+Crypto_CompareMac (const struct Crypto_JobType * Job)
+{
+  Crypto_VerifyResultType Result;
+  uint8 Pos;
+  uint8 Mask;
+  const uint8 * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  unsigned char Pos.11_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  unsigned char _14;
+  const uint8 * _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  const uint8 * _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned char _21;
+  Crypto_VerifyResultType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Mask_25 = 0;
+  # DEBUG Mask => Mask_25
+  # DEBUG BEGIN_STMT
+  Pos_26 = 0;
+  # DEBUG Pos => Pos_26
+  # DEBUG BEGIN_STMT
+  Result_27 = 1;
+  # DEBUG Result => Result_27
+  # DEBUG BEGIN_STMT
+  _1 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+  _2 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _3 = _2 / 8;
+  _4 = Crypto_MemCmp_Sec (&Crypto_LastEncryptedBlock, _1, _3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result_32 = 0;
+  # DEBUG Result => Result_32
+  # DEBUG BEGIN_STMT
+  _5 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _6 = _5 & 7;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Mask_33 = 0;
+  # DEBUG Mask => Mask_33
+  # DEBUG BEGIN_STMT
+  Pos_34 = 0;
+  # DEBUG Pos => Pos_34
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = Mask_22 >> 1;
+  Mask_36 = _7 + 128;
+  # DEBUG Mask => Mask_36
+  # DEBUG BEGIN_STMT
+  Pos.11_8 = Pos_23;
+  Pos_37 = Pos.11_8 + 1;
+  # DEBUG Pos => Pos_37
+
+  <bb 6> :
+  # Mask_22 = PHI <Mask_33(4), Mask_36(5)>
+  # Pos_23 = PHI <Pos_34(4), Pos_37(5)>
+  # DEBUG Pos => Pos_23
+  # DEBUG Mask => Mask_22
+  # DEBUG BEGIN_STMT
+  _9 = (long unsigned int) Pos_23;
+  _10 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _11 = _10 & 7;
+  if (_9 < _11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _13 = _12 / 8;
+  _14 = Crypto_LastEncryptedBlock[_13];
+  _15 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+  _16 = Job_29(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _17 = _16 / 8;
+  _18 = _15 + _17;
+  _19 = *_18;
+  _20 = _14 ^ _19;
+  _21 = Mask_22 & _20;
+  if (_21 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Result_35 = 1;
+  # DEBUG Result => Result_35
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Result_31 = 1;
+  # DEBUG Result => Result_31
+
+  <bb 10> :
+  # Result_24 = PHI <Result_32(7), Result_31(9), Result_32(3), Result_35(8)>
+  # DEBUG Result => Result_24
+  # DEBUG BEGIN_STMT
+  _38 = Result_24;
+  return _38;
+
+}
+
+
+Crypto_CMACGenStateFinReqSbFin ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 14;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Finish (_3);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACGenStateFinCpToResult ()
+{
+  unsigned char _1;
+  uint32 * _2;
+  long unsigned int _3;
+  uint32 * _4;
+  uint8 * _5;
+  uint32 * _6;
+  long unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.CurrentMode;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CurrentMode = 4;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CMACGenContext.ResultLengthPtr;
+  _3 = *_2;
+  if (_3 > 16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACGenContext.ResultLengthPtr;
+  *_4 = 16;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.Result;
+  _6 = Crypto_CMACGenContext.ResultLengthPtr;
+  _7 = *_6;
+  TS_MemCpy32 (_5, &Crypto_CMACGenContext.LastEncryptedBlock, _7);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateFinReqSbFin ();
+  return;
+
+}
+
+
+Crypto_CMACGenStateFinReqSbUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 11;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACGenContext.Block, 16, &Crypto_CMACGenContext.LastEncryptedBlock, &Crypto_CMACGenContext.BytesStoredInBlock);
+  return;
+
+}
+
+
+Crypto_CMACGenStateFinPadLastBlock ()
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.BytesStoredInBlock;
+  if (_1 == 16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACGenContext.Block, &Crypto_CMACGenContext.K1, 16);
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CMACGenContext.BytesStoredInBlock;
+  Crypto_CMACGenContext.Block[_2] = 128;
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _4 = _3 + 1;
+  Crypto_CMACGenContext.BytesStoredInBlock = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.BytesStoredInBlock;
+  Crypto_CMACGenContext.Block[_5] = 0;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _7 = _6 + 1;
+  Crypto_CMACGenContext.BytesStoredInBlock = _7;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.BytesStoredInBlock;
+  if (_8 <= 15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACGenContext.Block, &Crypto_CMACGenContext.K2, 16);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACGenContext.Block, &Crypto_CMACGenContext.LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 10;
+  return;
+
+}
+
+
+Crypto_CMACGenStateUpdReqSbUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 8;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACGenContext.Block, 16, &Crypto_CMACGenContext.LastEncryptedBlock, &Crypto_CMACGenContext.BytesStoredInBlock);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACGenStateUpdCpFromInput ()
+{
+  uint32 NewLen;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  uint8 * _6;
+  const uint8 * _7;
+  const uint8 * _8;
+  const uint8 * _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  uint8 * _13;
+  const uint8 * _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _2 = Crypto_CMACGenContext.DataLength;
+  _3 = _1 + _2;
+  if (_3 > 16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACGenContext.BytesStoredInBlock;
+  NewLen_26 = 16 - _4;
+  # DEBUG NewLen => NewLen_26
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _6 = &Crypto_CMACGenContext.Block[_5];
+  _7 = Crypto_CMACGenContext.DataPtr;
+  TS_MemCpy32 (_6, _7, NewLen_26);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.BytesStoredInBlock = 16;
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.DataPtr;
+  _9 = _8 + NewLen_26;
+  Crypto_CMACGenContext.DataPtr = _9;
+  # DEBUG BEGIN_STMT
+  _10 = Crypto_CMACGenContext.DataLength;
+  _11 = _10 - NewLen_26;
+  Crypto_CMACGenContext.DataLength = _11;
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_CMACGenContext.Block, &Crypto_CMACGenContext.LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 7;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _13 = &Crypto_CMACGenContext.Block[_12];
+  _14 = Crypto_CMACGenContext.DataPtr;
+  _15 = Crypto_CMACGenContext.DataLength;
+  TS_MemCpy32 (_13, _14, _15);
+  # DEBUG BEGIN_STMT
+  _16 = Crypto_CMACGenContext.BytesStoredInBlock;
+  _17 = Crypto_CMACGenContext.DataLength;
+  _18 = _16 + _17;
+  Crypto_CMACGenContext.BytesStoredInBlock = _18;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 15;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackResult = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+
+Crypto_CMACGenStateStartK1AndK2 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_CMACGenContext.K1, 16);
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CMACGenContext.K2, &Crypto_CMACGenContext.K1, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_CMACGenContext.K2, 16);
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CMACGenContext.LastEncryptedBlock, &Crypto_CMACZeroBlock, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.BytesStoredInBlock = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 15;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackResult = 0;
+  return;
+
+}
+
+
+Crypto_CMACGenStateStartReqSBUpd ()
+{
+  struct Crypto_JobType * _1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 4;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.BytesStoredInBlock = 16;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.Job;
+  _2 = _1->jobPrimitiveInfo;
+  _3 = _2->processingType;
+  Crypto_AES_Helper_Encrypt_Update (_3, &Crypto_CMACZeroBlock, 16, &Crypto_CMACGenContext.K1, &Crypto_CMACGenContext.BytesStoredInBlock);
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CMACGenStateStartReqSBSt ()
+{
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  struct Crypto_JobType * _2;
+  struct Crypto_JobType * _3;
+  const struct Crypto_JobPrimitiveInfoType * _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 1;
+  # DEBUG RetVal => RetVal_10
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 2;
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.ObjId;
+  _2 = Crypto_CMACGenContext.Job;
+  _3 = Crypto_CMACGenContext.Job;
+  _4 = _3->jobPrimitiveInfo;
+  _5 = _4->processingType;
+  _6 = Crypto_AES_Helper_Encrypt_Start (_1, Crypto_CMACGenCallback, _2, _5, &Crypto_CMACGenContext.Key);
+  _7 = (int) _6;
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 0;
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackResult = 1;
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 1;
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # RetVal_8 = PHI <RetVal_14(3), RetVal_18(4)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _19 = RetVal_8;
+  return _19;
+
+}
+
+
+Crypto_CMACGenCallback (struct Crypto_JobType * Job, Std_ReturnType Result)
+{
+  unsigned char _1;
+  int _2;
+  boolean * _3;
+  boolean * _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.State;
+  _2 = (int) _1;
+  switch (_2) <default: <L9> [INV], case 2: <L0> [INV], case 4: <L1> [INV], case 8: <L2> [INV], case 11: <L5> [INV], case 14: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateStartK1AndK2 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.BytesStoredInBlock = 0;
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACGenContext.IsBusy;
+  if (_3 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACGenContext.IsBusy;
+  *_4 = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateUpdCpFromInput ();
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 12;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackFlag = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackResult = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Crypto_CMACGenCallbackCancel ()
+{
+  unsigned char _1;
+  Std_ReturnType * _2;
+  boolean * _3;
+  boolean * _4;
+  Std_ReturnType * _5;
+  struct Crypto_JobType * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _10;
+  struct Crypto_JobType * _11;
+  unsigned char _12;
+  Std_ReturnType * _13;
+  boolean * _14;
+  boolean * _15;
+  Std_ReturnType * _16;
+  unsigned char _17;
+  struct Crypto_JobType * _18;
+  const struct Crypto_JobPrimitiveInfoType * _19;
+  unsigned char _20;
+  struct Crypto_JobType * _21;
+  unsigned char _22;
+  unsigned char _23;
+  struct Crypto_JobType * _24;
+  unsigned char _25;
+  unsigned char _26;
+  unsigned char _27;
+  long unsigned int _28;
+  struct Crypto_JobType * _29;
+  struct Crypto_JobType * _30;
+  const struct Crypto_JobPrimitiveInfoType * _31;
+  unsigned char _32;
+  struct Crypto_JobType * _33;
+  unsigned char _34;
+  unsigned int _35;
+  unsigned int _36;
+  unsigned char _37;
+  long unsigned int _38;
+  struct Crypto_JobType * _39;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _40;
+  struct Crypto_JobType * _41;
+  unsigned char _42;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.CancelFlag;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CMACGenContext.ResultVal;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACGenContext.IsBusy;
+  if (_3 != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACGenContext.IsBusy;
+  *_4 = 0;
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.ResultVal;
+  *_5 = 12;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACGenContext.Job;
+  _6->jobState = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_7].DriverObjectState = 0;
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_8].CurrentJob = 0B;
+  # DEBUG BEGIN_STMT
+  _9 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_9].SkipPeriodicMainFunction = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = Crypto_CMACGenContext.Crypto_Generic_Callback;
+  _11 = Crypto_CMACGenContext.Job;
+  _10 (_11, 12);
+  goto <bb 21>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_CMACGenContext.CallbackFlag;
+  if (_12 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = Crypto_CMACGenContext.ResultVal;
+  if (_13 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _14 = Crypto_CMACGenContext.IsBusy;
+  if (_14 != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = Crypto_CMACGenContext.IsBusy;
+  *_15 = 0;
+  # DEBUG BEGIN_STMT
+  _16 = Crypto_CMACGenContext.ResultVal;
+  _17 = Crypto_CMACGenContext.CallbackResult;
+  *_16 = _17;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _18 = Crypto_CMACGenContext.Job;
+  _19 = _18->jobPrimitiveInfo;
+  _20 = _19->processingType;
+  if (_20 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _21 = Crypto_CMACGenContext.Job;
+  _22 = _21->jobPrimitiveInputOutput.mode;
+  _23 = _22 & 7;
+  if (_23 == 7)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _24 = Crypto_CMACGenContext.Job;
+  _25 = _24->jobPrimitiveInputOutput.mode;
+  _26 = _25 & 3;
+  if (_26 == 3)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _27 = Crypto_CMACGenContext.CurrentMode;
+  if (_27 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _28 = Crypto_CMACGenContext.ObjId;
+  _29 = Crypto_CMACGenContext.Job;
+  Crypto_AL_MACGENERATE_AES_CMAC_Update (_28, _29);
+  goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _30 = Crypto_CMACGenContext.Job;
+  _31 = _30->jobPrimitiveInfo;
+  _32 = _31->processingType;
+  if (_32 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  _33 = Crypto_CMACGenContext.Job;
+  _34 = _33->jobPrimitiveInputOutput.mode;
+  _35 = (unsigned int) _34;
+  _36 = _35 & 7;
+  if (_36 == 7)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  _37 = Crypto_CMACGenContext.CurrentMode;
+  if (_37 == 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _38 = Crypto_CMACGenContext.ObjId;
+  _39 = Crypto_CMACGenContext.Job;
+  Crypto_AL_MACGENERATE_AES_CMAC_Finish (_38, _39);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _40 = Crypto_CMACGenContext.Crypto_Generic_Callback;
+  _41 = Crypto_CMACGenContext.Job;
+  _42 = Crypto_CMACGenContext.CallbackResult;
+  _40 (_41, _42);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CallbackFlag = 0;
+
+  <bb 21> :
+  return;
+
+}
+
+
+Crypto_CMACGenMainFunction (Std_ReturnType * Result, boolean * Busy)
+{
+  long unsigned int _1;
+  unsigned char _2;
+  Std_ReturnType * _3;
+  boolean * _4;
+  unsigned char _5;
+  int _6;
+  boolean * _7;
+  boolean * _8;
+  boolean * _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.ObjId;
+  _2 = Crypto_CheckSkipMain (Result_15(D), Busy_16(D), _1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.ResultVal = Result_15(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.IsBusy = Busy_16(D);
+  # DEBUG BEGIN_STMT
+  if (Result_15(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (Busy_16(D) != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACGenContext.ResultVal;
+  *_3 = 0;
+  # DEBUG BEGIN_STMT
+  _4 = Crypto_CMACGenContext.IsBusy;
+  *_4 = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.State;
+  _6 = (int) _5;
+  switch (_6) <default: <L18> [INV], case 6: <L5> [INV], case 7: <L8> [INV], case 8: <L13> [INV], case 11: <L13> [INV], case 12: <L9> [INV], case 15: <L10> [INV]>
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACGenContext.IsBusy;
+  if (_7 != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.IsBusy;
+  *_8 = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CurrentMode = 2;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateUpdCpFromInput ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateUpdReqSbUpd ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 11> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateFinCpToResult ();
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  if (Busy_16(D) != 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _9 = Crypto_CMACGenContext.IsBusy;
+  *_9 = 0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  Crypto_AES_Helper_Encrypt_MainFunction ();
+  # DEBUG BEGIN_STMT
+
+  <bb 15> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenCallbackCancel ();
+
+  <bb 16> :
+  return;
+
+}
+
+
+Crypto_CMACGenFinish (uint8 * ResultPtr, uint32 * ResultLengthPtr, boolean TruncationIsAllowed)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  Std_ReturnType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 1;
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.State;
+  if (_1 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Crypto_CMACGenContext.State;
+  if (_2 == 9)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACGenContext.State;
+  if (_3 == 10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _4 = Crypto_CMACGenContext.State;
+  if (_4 == 11)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _5 = Crypto_CMACGenContext.State;
+  if (_5 == 12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _6 = Crypto_CMACGenContext.State;
+  if (_6 == 13)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _7 = Crypto_CMACGenContext.State;
+  if (_7 == 14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_25 = 1;
+  # DEBUG RetVal => RetVal_25
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.State;
+  if (_8 == 15)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.Result = ResultPtr_14(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.ResultLengthPtr = ResultLengthPtr_16(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.TruncationIsAllowed = TruncationIsAllowed_18(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 9;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateFinPadLastBlock ();
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateFinReqSbUpd ();
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 0;
+  # DEBUG RetVal => RetVal_23
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 2;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 13> :
+  # RetVal_9 = PHI <RetVal_25(9), RetVal_23(11), RetVal_13(12)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _26 = RetVal_9;
+  return _26;
+
+}
+
+
+Crypto_CMACGenUpdate (const uint8 * DataPtr, uint32 DataLength)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 1;
+  # DEBUG RetVal => RetVal_11
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.State;
+  if (_1 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Crypto_CMACGenContext.State;
+  if (_2 == 9)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = Crypto_CMACGenContext.State;
+  if (_3 == 10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _4 = Crypto_CMACGenContext.State;
+  if (_4 == 11)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _5 = Crypto_CMACGenContext.State;
+  if (_5 == 12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _6 = Crypto_CMACGenContext.State;
+  if (_6 == 13)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _7 = Crypto_CMACGenContext.State;
+  if (_7 == 14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 1;
+  # DEBUG RetVal => RetVal_21
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.State;
+  if (_8 == 15)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.DataPtr = DataPtr_14(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.DataLength = DataLength_16(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 6;
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 0;
+  # DEBUG RetVal => RetVal_19
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 2;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 13> :
+  # RetVal_9 = PHI <RetVal_21(9), RetVal_19(11), RetVal_13(12)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _22 = RetVal_9;
+  return _22;
+
+}
+
+
+Crypto_CMACGenStart (const void * CfgPtr, const struct Crypto_SymKeyType * KeyPtr)
+{
+  const struct Crypto_CMACGenConfigType * LocCfgPtr;
+  Std_ReturnType RetVal;
+  const uint8[16] * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  void (*<T6f6>) (struct Crypto_JobType *, uint8) _5;
+  struct Crypto_JobType * _6;
+  Std_ReturnType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 0;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  LocCfgPtr_10 = CfgPtr_9(D);
+  # DEBUG LocCfgPtr => LocCfgPtr_10
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.State = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CurrentMode = 1;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.IsBusy = 0B;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.ResultVal = 0B;
+  # DEBUG BEGIN_STMT
+  _1 = &KeyPtr_16(D)->data;
+  _2 = KeyPtr_16(D)->length;
+  TS_MemCpy32 (&Crypto_CMACGenContext.Key.data, _1, _2);
+  # DEBUG BEGIN_STMT
+  _3 = KeyPtr_16(D)->length;
+  Crypto_CMACGenContext.Key.length = _3;
+  # DEBUG BEGIN_STMT
+  _4 = LocCfgPtr_10->ObjId;
+  Crypto_CMACGenContext.ObjId = _4;
+  # DEBUG BEGIN_STMT
+  _5 = LocCfgPtr_10->Crypto_Generic_Callback;
+  Crypto_CMACGenContext.Crypto_Generic_Callback = _5;
+  # DEBUG BEGIN_STMT
+  _6 = LocCfgPtr_10->Job;
+  Crypto_CMACGenContext.Job = _6;
+  # DEBUG BEGIN_STMT
+  RetVal_23 = Crypto_CMACGenStateStartReqSBSt ();
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  if (RetVal_23 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenStateStartReqSBUpd ();
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _25 = RetVal_23;
+  return _25;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_CallBack (struct Crypto_JobType * Job, uint8 Error)
+{
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  struct Crypto_JobType * _10;
+  unsigned char _11;
+  unsigned char _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Job_16(D)->jobPrimitiveInfo;
+  _2 = _1->processingType;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = Crypto_CMACGenContext.CurrentMode;
+  _4 = _3 & 4;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (Error_17(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Job_16(D)->jobState = 0;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CurrentMode = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  _5 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_5].DriverObjectState = 0;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_6].CurrentJob = 0B;
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CMACGenContext.ObjId;
+  Crypto_DriverObjects[_7].SkipPeriodicMainFunction = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  CryIf_CallbackNotification (Job_16(D), Error_17(D));
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACGENERATE_AES_CMAC_Reset ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = Crypto_CMACGenContext.CurrentMode;
+  _9 = _8 & 2;
+  if (_9 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _10 = Crypto_CMACGenContext.Job;
+  _11 = _10->jobPrimitiveInputOutput.mode;
+  _12 = _11 & 7;
+  if (_12 != 7)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CryIf_CallbackNotification (Job_16(D), Error_17(D));
+
+  <bb 9> :
+  return;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_Reset ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_AL_ENCRYPT_AES_ECB_Reset ();
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&Crypto_CMACGenContext, 136);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  return;
+
+}
+
+
+Crypto_CipherMiddleBlocks (uint32 NrBlocks, const struct Crypto_JobType * Job, boolean ExpandedKeyAvailable, struct Crypto_SymKeyType Key)
+{
+  Std_ReturnType RetVal;
+  uint32 OutputLengthPtr;
+  uint32 BlockIdx;
+  const uint8 * _1;
+  long unsigned int _2;
+  const void * _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  Std_ReturnType _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockIdx_13 = 0;
+  # DEBUG BlockIdx => BlockIdx_13
+  # DEBUG BEGIN_STMT
+  OutputLengthPtr = 16;
+  # DEBUG BEGIN_STMT
+  RetVal_16 = 1;
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  if (NrBlocks_17(D) <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_28 = 0;
+  # DEBUG RetVal => RetVal_28
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BlockIdx_18 = 0;
+  # DEBUG BlockIdx => BlockIdx_18
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = Job_19(D)->jobPrimitiveInputOutput.inputPtr;
+  _2 = BlockIdx_6 * 16;
+  _3 = _1 + _2;
+  TS_MemCpy32 (&Crypto_Block, _3, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_Block, &Crypto_LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  if (ExpandedKeyAvailable_22(D) == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = Key.length;
+  RetVal_26 = Crypto_AL_AES_EncryptPreCalc (&Crypto_Block, &Crypto_LastEncryptedBlock, &OutputLengthPtr, _4, &Crypto_CmacGenExpKey32);
+  # DEBUG RetVal => RetVal_26
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_24 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_Block, 16, &Crypto_LastEncryptedBlock, &OutputLengthPtr, &Key);
+  # DEBUG RetVal => RetVal_24
+
+  <bb 8> :
+  # RetVal_7 = PHI <RetVal_26(6), RetVal_24(7)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  if (RetVal_7 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  BlockIdx_27 = BlockIdx_6 + 1;
+  # DEBUG BlockIdx => BlockIdx_27
+
+  <bb 10> :
+  # BlockIdx_6 = PHI <BlockIdx_18(4), BlockIdx_27(9)>
+  # RetVal_8 = PHI <RetVal_16(4), RetVal_7(9)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BlockIdx => BlockIdx_6
+  # DEBUG BEGIN_STMT
+  _5 = NrBlocks_17(D) + 4294967295;
+  if (BlockIdx_6 < _5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # RetVal_9 = PHI <RetVal_28(3), RetVal_7(8), RetVal_8(10)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  _29 = RetVal_9;
+  OutputLengthPtr ={v} {CLOBBER};
+  return _29;
+
+}
+
+
+Crypto_CMACCalcKx (uint8 * Kx, uint32 Length)
+{
+  uint8 Msb;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = *Kx_4(D);
+  Msb_5 = _1 & 128;
+  # DEBUG Msb => Msb_5
+  # DEBUG BEGIN_STMT
+  Crypto_CMACShiftBlockOneBitLeft (Kx_4(D));
+  # DEBUG BEGIN_STMT
+  if (Msb_5 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (Kx_4(D), &Crypto_CMACSubKeyGenerationConstant, Length_7(D));
+
+  <bb 4> :
+  return;
+
+}
+
+
+Crypto_CMACShiftBlockOneBitLeft (uint8 * Block)
+{
+  uint8 i;
+  sizetype _1;
+  uint8 * _2;
+  unsigned char _3;
+  unsigned char _4;
+  sizetype _5;
+  sizetype _6;
+  uint8 * _7;
+  unsigned char _8;
+  unsigned char _9;
+  sizetype _10;
+  uint8 * _11;
+  unsigned char _12;
+  unsigned char i.0_13;
+  uint8 * _14;
+  unsigned char _15;
+  uint8 * _16;
+  unsigned char _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_20 = 0;
+  # DEBUG i => i_20
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (sizetype) i_18;
+  _2 = Block_22(D) + _1;
+  _3 = *_2;
+  _4 = _3 << 1;
+  _5 = (sizetype) i_18;
+  _6 = _5 + 1;
+  _7 = Block_22(D) + _6;
+  _8 = *_7;
+  _9 = _8 >> 7;
+  _10 = (sizetype) i_18;
+  _11 = Block_22(D) + _10;
+  _12 = _4 | _9;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  i.0_13 = i_18;
+  i_25 = i.0_13 + 1;
+  # DEBUG i => i_25
+
+  <bb 4> :
+  # i_18 = PHI <i_20(2), i_25(3)>
+  # DEBUG i => i_18
+  # DEBUG BEGIN_STMT
+  if (i_18 <= 14)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 = Block_22(D) + 15;
+  _15 = *_14;
+  _16 = Block_22(D) + 15;
+  _17 = _15 << 1;
+  *_16 = _17;
+  return;
+
+}
+
+
+Crypto_AL_AESCMAC_PrecalculateKeys (uint32 CryptoKeyId)
+{
+  uint32 K2Index;
+  boolean K2Exists;
+  uint32 KeyContentIndex;
+  uint32 ExpKeyIndex;
+  uint32 K1Index;
+  boolean KeyExists;
+  boolean K1Exists;
+  uint32 OutputLengthPtr;
+  struct Crypto_AL_KeyDataType * _1;
+  long unsigned int KeyContentIndex.13_2;
+  long unsigned int _3;
+  struct Crypto_AL_KeyDataType * _4;
+  long unsigned int _5;
+  struct Crypto_AL_KeyDataType * _6;
+  long unsigned int KeyContentIndex.14_7;
+  long unsigned int _8;
+  struct Crypto_AL_KeyDataType * _9;
+  uint8 * _10;
+  long unsigned int _11;
+  struct Crypto_AL_KeyDataType * _12;
+  long unsigned int K1Index.15_13;
+  long unsigned int _14;
+  struct Crypto_AL_KeyDataType * _15;
+  struct Crypto_AL_KeyDataType * _16;
+  long unsigned int K1Index.16_17;
+  long unsigned int _18;
+  struct Crypto_AL_KeyDataType * _19;
+  uint8 * _20;
+  unsigned char _21;
+  struct Crypto_AL_KeyDataType * _22;
+  long unsigned int K1Index.17_23;
+  long unsigned int _24;
+  struct Crypto_AL_KeyDataType * _25;
+  struct Crypto_AL_KeyDataType * _26;
+  long unsigned int K1Index.18_27;
+  long unsigned int _28;
+  struct Crypto_AL_KeyDataType * _29;
+  uint8 * _30;
+  struct Crypto_AL_KeyDataType * _31;
+  long unsigned int K2Index.19_32;
+  long unsigned int _33;
+  struct Crypto_AL_KeyDataType * _34;
+  uint8 * _35;
+  struct Crypto_AL_KeyDataType * _36;
+  long unsigned int K1Index.20_37;
+  long unsigned int _38;
+  struct Crypto_AL_KeyDataType * _39;
+  uint8 * _40;
+  struct Crypto_AL_KeyDataType * _41;
+  long unsigned int K2Index.21_42;
+  long unsigned int _43;
+  struct Crypto_AL_KeyDataType * _44;
+  uint8 * _45;
+  struct Crypto_AL_KeyDataType * _46;
+  long unsigned int K2Index.22_47;
+  long unsigned int _48;
+  struct Crypto_AL_KeyDataType * _49;
+  unsigned char _50;
+  struct Crypto_AL_KeyDataType * _51;
+  long unsigned int ExpKeyIndex.23_52;
+  long unsigned int _53;
+  struct Crypto_AL_KeyDataType * _54;
+  long unsigned int _55;
+  struct Crypto_AL_KeyDataType * _56;
+  long unsigned int ExpKeyIndex.24_57;
+  long unsigned int _58;
+  struct Crypto_AL_KeyDataType * _59;
+  uint8 * _60;
+  long unsigned int _61;
+  struct Crypto_AL_KeyDataType * _62;
+  long unsigned int ExpKeyIndex.25_63;
+  long unsigned int _64;
+  struct Crypto_AL_KeyDataType * _65;
+  uint8 * _66;
+  long unsigned int _67;
+  struct Crypto_AL_KeyDataType * _68;
+  long unsigned int ExpKeyIndex.26_69;
+  long unsigned int _70;
+  struct Crypto_AL_KeyDataType * _71;
+  uint8 * _72;
+  struct Crypto_AL_KeyDataType * _73;
+  long unsigned int ExpKeyIndex.27_74;
+  long unsigned int _75;
+  struct Crypto_AL_KeyDataType * _76;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OutputLengthPtr = 16;
+  # DEBUG BEGIN_STMT
+  K1Exists_82 = 0;
+  # DEBUG K1Exists => K1Exists_82
+  # DEBUG BEGIN_STMT
+  KeyExists_83 = 0;
+  # DEBUG KeyExists => KeyExists_83
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  K1Exists_86 = Crypto_AL_FindKeyElement (CryptoKeyId_84(D), 1001, &K1Index);
+  # DEBUG K1Exists => K1Exists_86
+  # DEBUG BEGIN_STMT
+  KeyExists_88 = Crypto_AL_FindKeyElement (CryptoKeyId_84(D), 1, &KeyContentIndex);
+  # DEBUG KeyExists => KeyExists_88
+  # DEBUG BEGIN_STMT
+  if (K1Exists_86 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  if (KeyExists_88 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  KeyContentIndex.13_2 = KeyContentIndex;
+  _3 = KeyContentIndex.13_2 * 12;
+  _4 = _1 + _3;
+  _5 = _4->RfKeyElemDataSize;
+  Crypto_PreCalcKey.length = _5;
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  KeyContentIndex.14_7 = KeyContentIndex;
+  _8 = KeyContentIndex.14_7 * 12;
+  _9 = _6 + _8;
+  _10 = _9->RfKeyElemData;
+  _11 = Crypto_PreCalcKey.length;
+  TS_MemCpy32 (&Crypto_PreCalcKey.data, _10, _11);
+  # DEBUG BEGIN_STMT
+  _12 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K1Index.15_13 = K1Index;
+  _14 = K1Index.15_13 * 12;
+  _15 = _12 + _14;
+  _15->RfKeyElemDataSize = 0;
+  # DEBUG BEGIN_STMT
+  _16 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K1Index.16_17 = K1Index;
+  _18 = K1Index.16_17 * 12;
+  _19 = _16 + _18;
+  _20 = _19->RfKeyElemData;
+  _21 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_CMACZeroBlock, 16, _20, &OutputLengthPtr, &Crypto_PreCalcKey);
+  if (_21 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  K2Exists_93 = 0;
+  # DEBUG K2Exists => K2Exists_93
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K1Index.17_23 = K1Index;
+  _24 = K1Index.17_23 * 12;
+  _25 = _22 + _24;
+  _25->RfKeyElemDataSize = 16;
+  # DEBUG BEGIN_STMT
+  _26 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K1Index.18_27 = K1Index;
+  _28 = K1Index.18_27 * 12;
+  _29 = _26 + _28;
+  _30 = _29->RfKeyElemData;
+  Crypto_CMACCalcKx (_30, 16);
+  # DEBUG BEGIN_STMT
+  K2Exists_97 = Crypto_AL_FindKeyElement (CryptoKeyId_84(D), 1002, &K2Index);
+  # DEBUG K2Exists => K2Exists_97
+  # DEBUG BEGIN_STMT
+  if (K2Exists_97 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _31 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K2Index.19_32 = K2Index;
+  _33 = K2Index.19_32 * 12;
+  _34 = _31 + _33;
+  _35 = _34->RfKeyElemData;
+  _36 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K1Index.20_37 = K1Index;
+  _38 = K1Index.20_37 * 12;
+  _39 = _36 + _38;
+  _40 = _39->RfKeyElemData;
+  TS_MemCpy32 (_35, _40, 16);
+  # DEBUG BEGIN_STMT
+  _41 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K2Index.21_42 = K2Index;
+  _43 = K2Index.21_42 * 12;
+  _44 = _41 + _43;
+  _45 = _44->RfKeyElemData;
+  Crypto_CMACCalcKx (_45, 16);
+  # DEBUG BEGIN_STMT
+  _46 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  K2Index.22_47 = K2Index;
+  _48 = K2Index.22_47 * 12;
+  _49 = _46 + _48;
+  _49->RfKeyElemDataSize = 16;
+
+  <bb 7> :
+  K2Index ={v} {CLOBBER};
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _50 = Crypto_AL_FindKeyElement (CryptoKeyId_84(D), 1000, &ExpKeyIndex);
+  if (_50 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 9> :
+  if (KeyExists_88 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _51 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  ExpKeyIndex.23_52 = ExpKeyIndex;
+  _53 = ExpKeyIndex.23_52 * 12;
+  _54 = _51 + _53;
+  _54->RfKeyElemDataSize = 240;
+  # DEBUG BEGIN_STMT
+  _55 = Crypto_PreCalcKey.length;
+  if (_55 == 16)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _56 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  ExpKeyIndex.24_57 = ExpKeyIndex;
+  _58 = ExpKeyIndex.24_57 * 12;
+  _59 = _56 + _58;
+  _60 = _59->RfKeyElemData;
+  Crypto_AL_AESPreCalculateKeySchedule (4, 10, &Crypto_PreCalcKey.data, _60);
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _61 = Crypto_PreCalcKey.length;
+  if (_61 == 24)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _62 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  ExpKeyIndex.25_63 = ExpKeyIndex;
+  _64 = ExpKeyIndex.25_63 * 12;
+  _65 = _62 + _64;
+  _66 = _65->RfKeyElemData;
+  Crypto_AL_AESPreCalculateKeySchedule (6, 12, &Crypto_PreCalcKey.data, _66);
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _67 = Crypto_PreCalcKey.length;
+  if (_67 == 32)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _68 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  ExpKeyIndex.26_69 = ExpKeyIndex;
+  _70 = ExpKeyIndex.26_69 * 12;
+  _71 = _68 + _70;
+  _72 = _71->RfKeyElemData;
+  Crypto_AL_AESPreCalculateKeySchedule (8, 14, &Crypto_PreCalcKey.data, _72);
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _73 = Crypto_AL_Keys_Data[CryptoKeyId_84(D)].KeyData;
+  ExpKeyIndex.27_74 = ExpKeyIndex;
+  _75 = ExpKeyIndex.27_74 * 12;
+  _76 = _73 + _75;
+  _76->RfKeyElemDataSize = 0;
+
+  <bb 17> :
+  OutputLengthPtr ={v} {CLOBBER};
+  K1Index ={v} {CLOBBER};
+  ExpKeyIndex ={v} {CLOBBER};
+  KeyContentIndex ={v} {CLOBBER};
+  return;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_MainFunction (Std_ReturnType * Result, boolean * Busy)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyMainFunction (Result_2(D), Busy_3(D));
+  return;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_Cancel (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  Std_ReturnType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 1;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACVrfyContext.State;
+  if (_1 == 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACVERIFY_AES_CMAC_Reset ();
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 0;
+  # DEBUG RetVal => RetVal_9
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVrfyContext.CancelFlag = 1;
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 12;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 5> :
+  # RetVal_2 = PHI <RetVal_9(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = RetVal_2;
+  return _10;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_SyncSingleCall (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  uint8 i;
+  boolean ExpandedKeyAvailable;
+  uint32 OutputLengthPtr;
+  uint32 SubKeyLength;
+  uint32 FinalBlockSize;
+  uint32 NrBlocks;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char i.6_2;
+  long unsigned int _3;
+  long unsigned int SubKeyLength.7_4;
+  const struct Crypto_JobPrimitiveInfoType * _5;
+  const struct Crypto_PrimitiveInfoType * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int SubKeyLength.8_10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int SubKeyLength.9_13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  const uint8 * _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  const void * _20;
+  const uint8 * _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  const void * _24;
+  uint8 * _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  Crypto_VerifyResultType * _29;
+  unsigned char _30;
+  long unsigned int iftmp.10_37;
+  long unsigned int iftmp.10_75;
+  long unsigned int iftmp.10_76;
+  Std_ReturnType _95;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_46 = 1;
+  # DEBUG RetVal => RetVal_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SubKeyLength = 240;
+  # DEBUG BEGIN_STMT
+  OutputLengthPtr = 16;
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_50 = 0;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_50
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_51 = 0;
+  # DEBUG i => i_51
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_36;
+  Crypto_LastEncryptedBlock[_1] = 0;
+  # DEBUG BEGIN_STMT
+  i.6_2 = i_36;
+  i_99 = i.6_2 + 1;
+  # DEBUG i => i_99
+
+  <bb 4> :
+  # i_36 = PHI <i_51(2), i_99(3)>
+  # DEBUG i => i_36
+  # DEBUG BEGIN_STMT
+  if (i_36 <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Job_52(D)->cryptoKeyId;
+  RetVal_54 = Crypto_AL_KeyElementGet (_3, 1000, &Crypto_CmacGenExpKey, &SubKeyLength);
+  # DEBUG RetVal => RetVal_54
+  # DEBUG BEGIN_STMT
+  if (RetVal_54 == 8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  SubKeyLength.7_4 = SubKeyLength;
+  if (SubKeyLength.7_4 != 240)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_57 = 0;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_57
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CmacGenExpKey32, &Crypto_CmacGenExpKey, 240);
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_56 = 1;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_56
+
+  <bb 9> :
+  # ExpandedKeyAvailable_35 = PHI <ExpandedKeyAvailable_57(7), ExpandedKeyAvailable_56(8)>
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_35
+  # DEBUG BEGIN_STMT
+  SubKeyLength = 16;
+  # DEBUG BEGIN_STMT
+  _5 = Job_52(D)->jobPrimitiveInfo;
+  _6 = _5->primitiveInfo;
+  _7 = _6->algorithm.keyLength;
+  Crypto_CmacVrfyKey.length = _7;
+  # DEBUG BEGIN_STMT
+  _8 = Job_52(D)->cryptoKeyId;
+  RetVal_61 = Crypto_AL_KeyElementGet (_8, 1, &Crypto_CmacVrfyKey.data, &Crypto_CmacVrfyKey.length);
+  # DEBUG RetVal => RetVal_61
+  # DEBUG BEGIN_STMT
+  if (RetVal_61 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = Job_52(D)->cryptoKeyId;
+  RetVal_63 = Crypto_AL_KeyElementGet (_9, 1001, &Crypto_K1, &SubKeyLength);
+  # DEBUG RetVal => RetVal_63
+  # DEBUG BEGIN_STMT
+  if (RetVal_63 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  SubKeyLength.8_10 = SubKeyLength;
+  if (SubKeyLength.8_10 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (ExpandedKeyAvailable_35 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _11 = Crypto_CmacVrfyKey.length;
+  RetVal_67 = Crypto_AL_AES_EncryptPreCalc (&Crypto_CMACZeroBlock, &Crypto_K1, &OutputLengthPtr, _11, &Crypto_CmacGenExpKey32);
+  # DEBUG RetVal => RetVal_67
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetVal_65 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_CMACZeroBlock, 16, &Crypto_K1, &OutputLengthPtr, &Crypto_CmacVrfyKey);
+  # DEBUG RetVal => RetVal_65
+
+  <bb 15> :
+  # RetVal_31 = PHI <RetVal_67(13), RetVal_65(14)>
+  # DEBUG RetVal => RetVal_31
+  # DEBUG BEGIN_STMT
+  if (RetVal_31 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_K1, 16);
+
+  <bb 17> :
+  # RetVal_32 = PHI <RetVal_63(11), RetVal_31(15), RetVal_31(16)>
+  # DEBUG RetVal => RetVal_32
+  # DEBUG BEGIN_STMT
+  if (RetVal_32 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _12 = Job_52(D)->cryptoKeyId;
+  RetVal_70 = Crypto_AL_KeyElementGet (_12, 1002, &Crypto_K2, &SubKeyLength);
+  # DEBUG RetVal => RetVal_70
+  # DEBUG BEGIN_STMT
+  if (RetVal_70 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  SubKeyLength.9_13 = SubKeyLength;
+  if (SubKeyLength.9_13 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_K2, &Crypto_K1, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_K2, 16);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _14 = Job_52(D)->jobPrimitiveInputOutput.inputLength;
+  NrBlocks_73 = _14 / 16;
+  # DEBUG NrBlocks => NrBlocks_73
+  # DEBUG BEGIN_STMT
+  _15 = Job_52(D)->jobPrimitiveInputOutput.inputLength;
+  FinalBlockSize_74 = _15 & 15;
+  # DEBUG FinalBlockSize => FinalBlockSize_74
+  # DEBUG BEGIN_STMT
+  if (FinalBlockSize_74 != 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  if (NrBlocks_73 == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  iftmp.10_76 = 1;
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  iftmp.10_75 = 0;
+
+  <bb 25> :
+  # iftmp.10_37 = PHI <iftmp.10_76(23), iftmp.10_75(24)>
+  NrBlocks_77 = iftmp.10_37 + NrBlocks_73;
+  # DEBUG NrBlocks => NrBlocks_77
+  # DEBUG BEGIN_STMT
+  if (FinalBlockSize_74 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 26> :
+  _16 = Job_52(D)->jobPrimitiveInputOutput.inputLength;
+  if (_16 != 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _17 = Job_52(D)->jobPrimitiveInputOutput.inputPtr;
+  _18 = NrBlocks_77 + 4294967295;
+  _19 = _18 * 16;
+  _20 = _17 + _19;
+  TS_MemCpy32 (&Crypto_FinalBlock, _20, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_K1, 16);
+  goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _21 = Job_52(D)->jobPrimitiveInputOutput.inputPtr;
+  _22 = NrBlocks_77 + 4294967295;
+  _23 = _22 * 16;
+  _24 = _21 + _23;
+  TS_MemCpy32 (&Crypto_FinalBlock, _24, FinalBlockSize_74);
+  # DEBUG BEGIN_STMT
+  Crypto_FinalBlock[FinalBlockSize_74] = 128;
+  # DEBUG BEGIN_STMT
+  FinalBlockSize_82 = FinalBlockSize_74 + 1;
+  # DEBUG FinalBlockSize => FinalBlockSize_82
+  # DEBUG BEGIN_STMT
+  _25 = &Crypto_FinalBlock[FinalBlockSize_82];
+  _26 = 16 - FinalBlockSize_82;
+  TS_MemSet32 (_25, 0, _26);
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_K2, 16);
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  RetVal_86 = Crypto_CipherMiddleBlocks (NrBlocks_77, Job_52(D), ExpandedKeyAvailable_35, Crypto_CmacVrfyKey);
+  # DEBUG RetVal => RetVal_86
+  # DEBUG BEGIN_STMT
+  if (RetVal_86 == 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  if (ExpandedKeyAvailable_35 == 1)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _27 = Crypto_CmacVrfyKey.length;
+  RetVal_91 = Crypto_AL_AES_EncryptPreCalc (&Crypto_FinalBlock, &Crypto_LastEncryptedBlock, &OutputLengthPtr, _27, &Crypto_CmacGenExpKey32);
+  # DEBUG RetVal => RetVal_91
+  goto <bb 33>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  RetVal_89 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_FinalBlock, 16, &Crypto_LastEncryptedBlock, &OutputLengthPtr, &Crypto_CmacVrfyKey);
+  # DEBUG RetVal => RetVal_89
+
+  <bb 33> :
+  # RetVal_33 = PHI <RetVal_86(29), RetVal_91(31), RetVal_89(32)>
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  if (RetVal_33 == 0)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _28 = Job_52(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  if (_28 <= 128)
+    goto <bb 35>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _29 = Job_52(D)->jobPrimitiveInputOutput.verifyPtr;
+  _30 = Crypto_CompareMac (Job_52(D));
+  *_29 = _30;
+  goto <bb 37>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  RetVal_92 = 1;
+  # DEBUG RetVal => RetVal_92
+
+  <bb 37> :
+  # RetVal_34 = PHI <RetVal_61(9), RetVal_32(17), RetVal_33(33), RetVal_33(35), RetVal_92(36)>
+  # DEBUG RetVal => RetVal_34
+  # DEBUG BEGIN_STMT
+  _95 = RetVal_34;
+  SubKeyLength ={v} {CLOBBER};
+  OutputLengthPtr ={v} {CLOBBER};
+  return _95;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_Finish (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  const uint8 * _1;
+  long unsigned int _2;
+  Crypto_VerifyResultType * _3;
+  Std_ReturnType _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 1;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Job_6(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+  _2 = Job_6(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  _3 = Job_6(D)->jobPrimitiveInputOutput.verifyPtr;
+  RetVal_8 = Crypto_CMACVrfyFinish (_1, _2, _3);
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _9 = RetVal_8;
+  return _9;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_Update (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  const uint8 * _1;
+  long unsigned int _2;
+  Std_ReturnType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_3 = 1;
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Job_5(D)->jobPrimitiveInputOutput.inputPtr;
+  _2 = Job_5(D)->jobPrimitiveInputOutput.inputLength;
+  RetVal_7 = Crypto_CMACVrfyUpdate (_1, _2);
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_7;
+  return _8;
+
+}
+
+
+Crypto_AL_MACVERIFY_AES_CMAC_Start (uint32 ObjectId, struct Crypto_JobType * Job)
+{
+  struct Crypto_SymKeyType Key;
+  Std_ReturnType RetVal;
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  const struct Crypto_PrimitiveInfoType * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  Std_ReturnType _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  Key = *.LC0;
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACVERIFY_AES_CMAC_Reset ();
+  # DEBUG BEGIN_STMT
+  _1 = Job_11(D)->jobPrimitiveInfo;
+  _2 = _1->primitiveInfo;
+  _3 = _2->algorithm.keyLength;
+  Key.length = _3;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVerifyConfig.Crypto_Generic_Callback = Crypto_AL_MACVERIFY_AES_CMAC_CallBack;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVerifyConfig.ObjId = ObjectId_14(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACVerifyConfig.Job = Job_11(D);
+  # DEBUG BEGIN_STMT
+  _4 = Job_11(D)->cryptoKeyId;
+  RetVal_18 = Crypto_AL_KeyElementGet (_4, 1, &Key.data, &Key.length);
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  if (RetVal_18 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_20 = Crypto_CMACVrfyStart (&Crypto_CMACVerifyConfig, &Key);
+  # DEBUG RetVal => RetVal_20
+
+  <bb 4> :
+  # RetVal_5 = PHI <RetVal_18(2), RetVal_20(3)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _21 = RetVal_5;
+  Key ={v} {CLOBBER};
+  return _21;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_MainFunction (Std_ReturnType * Result, boolean * Busy)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenMainFunction (Result_2(D), Busy_3(D));
+  return;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_Cancel (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  Std_ReturnType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 1;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_CMACGenContext.State;
+  if (_1 == 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACGENERATE_AES_CMAC_Reset ();
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 0;
+  # DEBUG RetVal => RetVal_9
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenContext.CancelFlag = 1;
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 12;
+  # DEBUG RetVal => RetVal_7
+
+  <bb 5> :
+  # RetVal_2 = PHI <RetVal_9(3), RetVal_7(4)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = RetVal_2;
+  return _10;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_SyncSingleCall (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  boolean ExpandedKeyAvailable;
+  uint32 OutputLengthPtr;
+  uint32 SubKeyLength;
+  uint8 i;
+  uint32 FinalBlockSize;
+  uint32 NrBlocks;
+  Std_ReturnType RetVal;
+  int _1;
+  unsigned char i.1_2;
+  long unsigned int _3;
+  long unsigned int SubKeyLength.2_4;
+  const struct Crypto_JobPrimitiveInfoType * _5;
+  const struct Crypto_PrimitiveInfoType * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int SubKeyLength.3_10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int SubKeyLength.4_13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  const uint8 * _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  const void * _20;
+  const uint8 * _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  const void * _24;
+  uint8 * _25;
+  long unsigned int _26;
+  uint8 * _27;
+  uint32 * _28;
+  long unsigned int _29;
+  uint8 * _30;
+  uint32 * _31;
+  long unsigned int iftmp.5_37;
+  long unsigned int iftmp.5_74;
+  long unsigned int iftmp.5_75;
+  Std_ReturnType _91;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_45 = 1;
+  # DEBUG RetVal => RetVal_45
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SubKeyLength = 240;
+  # DEBUG BEGIN_STMT
+  OutputLengthPtr = 16;
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_49 = 0;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_49
+  # DEBUG BEGIN_STMT
+  i_50 = 0;
+  # DEBUG i => i_50
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_35;
+  Crypto_LastEncryptedBlock[_1] = 0;
+  # DEBUG BEGIN_STMT
+  i.1_2 = i_35;
+  i_95 = i.1_2 + 1;
+  # DEBUG i => i_95
+
+  <bb 4> :
+  # i_35 = PHI <i_50(2), i_95(3)>
+  # DEBUG i => i_35
+  # DEBUG BEGIN_STMT
+  if (i_35 <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Job_51(D)->cryptoKeyId;
+  RetVal_53 = Crypto_AL_KeyElementGet (_3, 1000, &Crypto_CmacGenExpKey, &SubKeyLength);
+  # DEBUG RetVal => RetVal_53
+  # DEBUG BEGIN_STMT
+  if (RetVal_53 == 8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  SubKeyLength.2_4 = SubKeyLength;
+  if (SubKeyLength.2_4 != 240)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_56 = 0;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_56
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_CmacGenExpKey32, &Crypto_CmacGenExpKey, 240);
+  # DEBUG BEGIN_STMT
+  ExpandedKeyAvailable_55 = 1;
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_55
+
+  <bb 9> :
+  # ExpandedKeyAvailable_36 = PHI <ExpandedKeyAvailable_56(7), ExpandedKeyAvailable_55(8)>
+  # DEBUG ExpandedKeyAvailable => ExpandedKeyAvailable_36
+  # DEBUG BEGIN_STMT
+  SubKeyLength = 16;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = Job_51(D)->jobPrimitiveInfo;
+  _6 = _5->primitiveInfo;
+  _7 = _6->algorithm.keyLength;
+  Crypto_CmacGenKey.length = _7;
+  # DEBUG BEGIN_STMT
+  _8 = Job_51(D)->cryptoKeyId;
+  RetVal_60 = Crypto_AL_KeyElementGet (_8, 1, &Crypto_CmacGenKey.data, &Crypto_CmacGenKey.length);
+  # DEBUG RetVal => RetVal_60
+  # DEBUG BEGIN_STMT
+  if (RetVal_60 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = Job_51(D)->cryptoKeyId;
+  RetVal_62 = Crypto_AL_KeyElementGet (_9, 1001, &Crypto_K1, &SubKeyLength);
+  # DEBUG RetVal => RetVal_62
+  # DEBUG BEGIN_STMT
+  if (RetVal_62 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  SubKeyLength.3_10 = SubKeyLength;
+  if (SubKeyLength.3_10 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (ExpandedKeyAvailable_36 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _11 = Crypto_CmacGenKey.length;
+  RetVal_66 = Crypto_AL_AES_EncryptPreCalc (&Crypto_CMACZeroBlock, &Crypto_K1, &OutputLengthPtr, _11, &Crypto_CmacGenExpKey32);
+  # DEBUG RetVal => RetVal_66
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetVal_64 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_CMACZeroBlock, 16, &Crypto_K1, &OutputLengthPtr, &Crypto_CmacGenKey);
+  # DEBUG RetVal => RetVal_64
+
+  <bb 15> :
+  # RetVal_32 = PHI <RetVal_66(13), RetVal_64(14)>
+  # DEBUG RetVal => RetVal_32
+  # DEBUG BEGIN_STMT
+  if (RetVal_32 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_K1, 16);
+
+  <bb 17> :
+  # RetVal_33 = PHI <RetVal_62(11), RetVal_32(15), RetVal_32(16)>
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  if (RetVal_33 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _12 = Job_51(D)->cryptoKeyId;
+  RetVal_69 = Crypto_AL_KeyElementGet (_12, 1002, &Crypto_K2, &SubKeyLength);
+  # DEBUG RetVal => RetVal_69
+  # DEBUG BEGIN_STMT
+  if (RetVal_69 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  SubKeyLength.4_13 = SubKeyLength;
+  if (SubKeyLength.4_13 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  TS_MemCpy32 (&Crypto_K2, &Crypto_K1, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACCalcKx (&Crypto_K2, 16);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _14 = Job_51(D)->jobPrimitiveInputOutput.inputLength;
+  NrBlocks_72 = _14 / 16;
+  # DEBUG NrBlocks => NrBlocks_72
+  # DEBUG BEGIN_STMT
+  _15 = Job_51(D)->jobPrimitiveInputOutput.inputLength;
+  FinalBlockSize_73 = _15 & 15;
+  # DEBUG FinalBlockSize => FinalBlockSize_73
+  # DEBUG BEGIN_STMT
+  if (FinalBlockSize_73 != 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  if (NrBlocks_72 == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  iftmp.5_75 = 1;
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  iftmp.5_74 = 0;
+
+  <bb 25> :
+  # iftmp.5_37 = PHI <iftmp.5_75(23), iftmp.5_74(24)>
+  NrBlocks_76 = iftmp.5_37 + NrBlocks_72;
+  # DEBUG NrBlocks => NrBlocks_76
+  # DEBUG BEGIN_STMT
+  if (FinalBlockSize_73 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 26> :
+  _16 = Job_51(D)->jobPrimitiveInputOutput.inputLength;
+  if (_16 != 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _17 = Job_51(D)->jobPrimitiveInputOutput.inputPtr;
+  _18 = NrBlocks_76 + 4294967295;
+  _19 = _18 * 16;
+  _20 = _17 + _19;
+  TS_MemCpy32 (&Crypto_FinalBlock, _20, 16);
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_K1, 16);
+  goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _21 = Job_51(D)->jobPrimitiveInputOutput.inputPtr;
+  _22 = NrBlocks_76 + 4294967295;
+  _23 = _22 * 16;
+  _24 = _21 + _23;
+  TS_MemCpy32 (&Crypto_FinalBlock, _24, FinalBlockSize_73);
+  # DEBUG BEGIN_STMT
+  Crypto_FinalBlock[FinalBlockSize_73] = 128;
+  # DEBUG BEGIN_STMT
+  FinalBlockSize_81 = FinalBlockSize_73 + 1;
+  # DEBUG FinalBlockSize => FinalBlockSize_81
+  # DEBUG BEGIN_STMT
+  _25 = &Crypto_FinalBlock[FinalBlockSize_81];
+  _26 = 16 - FinalBlockSize_81;
+  TS_MemSet32 (_25, 0, _26);
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_K2, 16);
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  RetVal_85 = Crypto_CipherMiddleBlocks (NrBlocks_76, Job_51(D), ExpandedKeyAvailable_36, Crypto_CmacGenKey);
+  # DEBUG RetVal => RetVal_85
+  # DEBUG BEGIN_STMT
+  if (RetVal_85 == 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  Crypto_CommonXOR (&Crypto_FinalBlock, &Crypto_LastEncryptedBlock, 16);
+  # DEBUG BEGIN_STMT
+  if (ExpandedKeyAvailable_36 == 1)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _27 = Job_51(D)->jobPrimitiveInputOutput.outputPtr;
+  _28 = Job_51(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  _29 = Crypto_CmacGenKey.length;
+  RetVal_90 = Crypto_AL_AES_EncryptPreCalc (&Crypto_FinalBlock, _27, _28, _29, &Crypto_CmacGenExpKey32);
+  # DEBUG RetVal => RetVal_90
+  goto <bb 33>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _30 = Job_51(D)->jobPrimitiveInputOutput.outputPtr;
+  _31 = Job_51(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  RetVal_88 = Crypto_AES_Helper_Encrypt_SyncSingleCall (&Crypto_FinalBlock, 16, _30, _31, &Crypto_CmacGenKey);
+  # DEBUG RetVal => RetVal_88
+
+  <bb 33> :
+  # RetVal_34 = PHI <RetVal_60(9), RetVal_33(17), RetVal_85(29), RetVal_90(31), RetVal_88(32)>
+  # DEBUG RetVal => RetVal_34
+  # DEBUG BEGIN_STMT
+  _91 = RetVal_34;
+  SubKeyLength ={v} {CLOBBER};
+  OutputLengthPtr ={v} {CLOBBER};
+  return _91;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_Finish (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  uint8 * _1;
+  uint32 * _2;
+  Std_ReturnType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_3 = 1;
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Job_5(D)->jobPrimitiveInputOutput.outputPtr;
+  _2 = Job_5(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  RetVal_7 = Crypto_CMACGenFinish (_1, _2, 1);
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_7;
+  return _8;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_Update (uint32 ObjectId, const struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  const uint8 * _1;
+  long unsigned int _2;
+  Std_ReturnType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_3 = 1;
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Job_5(D)->jobPrimitiveInputOutput.inputPtr;
+  _2 = Job_5(D)->jobPrimitiveInputOutput.inputLength;
+  RetVal_7 = Crypto_CMACGenUpdate (_1, _2);
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  _8 = RetVal_7;
+  return _8;
+
+}
+
+
+Crypto_AL_MACGENERATE_AES_CMAC_Start (uint32 ObjectId, struct Crypto_JobType * Job)
+{
+  struct Crypto_SymKeyType Key;
+  Std_ReturnType RetVal;
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  const struct Crypto_PrimitiveInfoType * _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  Std_ReturnType _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  Key = *.LC0;
+  # DEBUG BEGIN_STMT
+  Crypto_AL_MACGENERATE_AES_CMAC_Reset ();
+  # DEBUG BEGIN_STMT
+  _1 = Job_11(D)->jobPrimitiveInfo;
+  _2 = _1->primitiveInfo;
+  _3 = _2->algorithm.keyLength;
+  Key.length = _3;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenerateConfig.Crypto_Generic_Callback = Crypto_AL_MACGENERATE_AES_CMAC_CallBack;
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenerateConfig.ObjId = ObjectId_14(D);
+  # DEBUG BEGIN_STMT
+  Crypto_CMACGenerateConfig.Job = Job_11(D);
+  # DEBUG BEGIN_STMT
+  _4 = Job_11(D)->cryptoKeyId;
+  RetVal_18 = Crypto_AL_KeyElementGet (_4, 1, &Key.data, &Key.length);
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  if (RetVal_18 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_20 = Crypto_CMACGenStart (&Crypto_CMACGenerateConfig, &Key);
+  # DEBUG RetVal => RetVal_20
+
+  <bb 4> :
+  # RetVal_5 = PHI <RetVal_18(2), RetVal_20(3)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  _21 = RetVal_5;
+  Key ={v} {CLOBBER};
+  return _21;
+
+}
+
+

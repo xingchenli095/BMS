@@ -1,0 +1,607 @@
+
+
+ local analysis of OS_InitDataArea.part.0
+   scanning: _2 = *src_1;
+    Indirect ref read is not const
+  scanning: *dest_3 = _2;
+    Indirect ref write is not const/pure
+  scanning: dest_4 = dest_3 + 1;
+  scanning: src_5 = src_1 + 1;
+  scanning: if (src_1 < slimit_6(D))
+  scanning: *dest_7 = 0;
+    Indirect ref write is not const/pure
+  scanning: dest_8 = dest_7 + 1;
+  scanning: if (dest_7 < dlimit_9(D))
+  scanning: return;
+
+
+ local analysis of OS_InitDataArea
+   scanning: if (dest_4(D) != 0B)
+  scanning: if (src_6(D) != 0B)
+  scanning: OS_InitDataArea.part.0 (dest_4(D), dlimit_8(D), src_6(D), slimit_7(D));
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of OS_InitApplicationData
+   scanning: OS_appTableBase.0_1 = OS_appTableBase;
+  scanning: _2 = (unsigned int) a_25;
+  scanning: _3 = _2 * 64;
+  scanning: ap_38 = OS_appTableBase.0_1 + _3;
+  scanning: _4 = ap_38->dataStart;
+    Indirect ref read is not const
+  scanning: _5 = ap_38->dataEnd;
+    Indirect ref read is not const
+  scanning: _6 = ap_38->idataStart;
+    Indirect ref read is not const
+  scanning: _7 = ap_38->idataEnd;
+    Indirect ref read is not const
+  scanning: OS_InitDataArea (_4, _5, _6, _7);
+  scanning: a_40 = a_25 + 1;
+  scanning: OS_nApps.2_8 = OS_nApps;
+  scanning: if (OS_nApps.2_8 > a_25)
+  scanning: OS_taskTableBase.3_9 = OS_taskTableBase;
+  scanning: _10 = (unsigned int) t_26;
+  scanning: _11 = _10 * 76;
+  scanning: tp_35 = OS_taskTableBase.3_9 + _11;
+  scanning: _12 = tp_35->dataStart;
+    Indirect ref read is not const
+  scanning: _13 = tp_35->dataEnd;
+    Indirect ref read is not const
+  scanning: _14 = tp_35->idataStart;
+    Indirect ref read is not const
+  scanning: _15 = tp_35->idataEnd;
+    Indirect ref read is not const
+  scanning: OS_InitDataArea (_12, _13, _14, _15);
+  scanning: t_37 = t_26 + 1;
+  scanning: OS_nTasks.5_16 = OS_nTasks;
+  scanning: if (OS_nTasks.5_16 > t_26)
+  scanning: OS_isrTableBase.6_17 = OS_isrTableBase;
+  scanning: _18 = (unsigned int) i_27;
+  scanning: _19 = _18 * 68;
+  scanning: ip_32 = OS_isrTableBase.6_17 + _19;
+  scanning: _20 = ip_32->dataStart;
+    Indirect ref read is not const
+  scanning: _21 = ip_32->dataEnd;
+    Indirect ref read is not const
+  scanning: _22 = ip_32->idataStart;
+    Indirect ref read is not const
+  scanning: _23 = ip_32->idataEnd;
+    Indirect ref read is not const
+  scanning: OS_InitDataArea (_20, _21, _22, _23);
+  scanning: i_34 = i_27 + 1;
+  scanning: OS_nInterrupts.8_24 = OS_nInterrupts;
+  scanning: if (OS_nInterrupts.8_24 > i_27)
+  scanning: return;
+;; 4 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 11 5 6 10 7 8 9
+;;
+;; Loop 3
+;;  header 8, latch 7
+;;  depth 1, outer 0
+;;  nodes: 8 7
+;;
+;; Loop 2
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 11 }
+;; 11 succs { 6 }
+;; 5 succs { 6 }
+;; 6 succs { 5 10 }
+;; 10 succs { 8 }
+;; 7 succs { 8 }
+;; 8 succs { 7 9 }
+;; 9 succs { 1 }
+    cannot prove finiteness of loop 3
+Function is locally looping.
+Function is locally pure.
+callgraph:
+
+OS_InitDataArea/10 (OS_InitDataArea) @06ea9380
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 9
+  Aux: @06907360
+  References: 
+  Referring: 
+  Function OS_InitDataArea/10 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630214 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630214 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258802 (estimated locally),3.96 per call) 
+OS_InitDataArea/9 (OS_InitDataArea) @06ea9ee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 1
+  previous sharing asm name: 10
+  Aux: @069075e0
+  References: 
+  Referring: 
+  Function OS_InitDataArea/9 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630224 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630224 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258807 (estimated locally),3.96 per call) 
+OS_InitDataArea.part.0/8 (OS_InitDataArea.part.0) @06dd0000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @069072e0
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: OS_InitDataArea/10 (468258802 (estimated locally),3.96 per call) OS_InitDataArea/9 (468258807 (estimated locally),3.96 per call) OS_InitDataArea/1 (468258804 (estimated locally),3.96 per call) 
+  Calls: 
+OS_InitDataArea/1 (OS_InitDataArea) @06d1aee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 9
+  Aux: @06907500
+  References: 
+  Referring: 
+  Function OS_InitDataArea/1 is inline copy in OS_InitApplicationData/0
+  Availability: local
+  Function flags: count:955630217 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630217 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258804 (estimated locally),3.96 per call) 
+OS_InitApplicationData/0 (OS_InitApplicationData) @06d1ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907400
+  References: OS_appTableBase/2 (read)OS_nApps/3 (read)OS_taskTableBase/4 (read)OS_nTasks/5 (read)OS_isrTableBase/6 (read)OS_nInterrupts/7 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111599 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_InitDataArea/9 (inlined) (955630224 (estimated locally),8.09 per call) OS_InitDataArea/1 (inlined) (955630217 (estimated locally),8.09 per call) OS_InitDataArea/10 (inlined) (955630214 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_InitDataArea/10 (OS_InitDataArea) @06ea9380
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 9
+  Aux: @06907360
+  References: 
+  Referring: 
+  Function OS_InitDataArea/10 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630214 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630214 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258802 (estimated locally),3.96 per call) 
+OS_InitDataArea/9 (OS_InitDataArea) @06ea9ee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 1
+  previous sharing asm name: 10
+  Aux: @069075e0
+  References: 
+  Referring: 
+  Function OS_InitDataArea/9 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630224 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630224 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258807 (estimated locally),3.96 per call) 
+OS_InitDataArea.part.0/8 (OS_InitDataArea.part.0) @06dd0000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @069072e0
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: OS_InitDataArea/10 (468258802 (estimated locally),3.96 per call) OS_InitDataArea/9 (468258807 (estimated locally),3.96 per call) OS_InitDataArea/1 (468258804 (estimated locally),3.96 per call) 
+  Calls: 
+OS_InitDataArea/1 (OS_InitDataArea) @06d1aee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 9
+  Aux: @06907500
+  References: 
+  Referring: 
+  Function OS_InitDataArea/1 is inline copy in OS_InitApplicationData/0
+  Availability: local
+  Function flags: count:955630217 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630217 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258804 (estimated locally),3.96 per call) 
+OS_InitApplicationData/0 (OS_InitApplicationData) @06d1ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907400
+  References: OS_appTableBase/2 (read)OS_nApps/3 (read)OS_taskTableBase/4 (read)OS_nTasks/5 (read)OS_isrTableBase/6 (read)OS_nInterrupts/7 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111599 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_InitDataArea/9 (inlined) (955630224 (estimated locally),8.09 per call) OS_InitDataArea/1 (inlined) (955630217 (estimated locally),8.09 per call) OS_InitDataArea/10 (inlined) (955630214 (estimated locally),8.09 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_InitDataArea: malloc_bottom
+OS_InitDataArea: malloc_bottom
+OS_InitDataArea.part.0: malloc_bottom
+OS_InitDataArea: malloc_bottom
+OS_InitApplicationData: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_InitDataArea: malloc_bottom
+OS_InitDataArea: malloc_bottom
+OS_InitDataArea.part.0: malloc_bottom
+OS_InitDataArea: malloc_bottom
+OS_InitApplicationData: malloc_bottom
+callgraph:
+
+OS_InitDataArea/10 (OS_InitDataArea) @06ea9380
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 9
+  Aux: @069072e0
+  References: 
+  Referring: 
+  Function OS_InitDataArea/10 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630214 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630214 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258802 (estimated locally),3.96 per call) 
+OS_InitDataArea/9 (OS_InitDataArea) @06ea9ee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 1
+  previous sharing asm name: 10
+  Aux: @06907340
+  References: 
+  Referring: 
+  Function OS_InitDataArea/9 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630224 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630224 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258807 (estimated locally),3.96 per call) 
+OS_InitDataArea.part.0/8 (OS_InitDataArea.part.0) @06dd0000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @069074a0
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: OS_InitDataArea/10 (468258802 (estimated locally),3.96 per call) OS_InitDataArea/9 (468258807 (estimated locally),3.96 per call) OS_InitDataArea/1 (468258804 (estimated locally),3.96 per call) 
+  Calls: 
+OS_InitDataArea/1 (OS_InitDataArea) @06d1aee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 9
+  Aux: @06907500
+  References: 
+  Referring: 
+  Function OS_InitDataArea/1 is inline copy in OS_InitApplicationData/0
+  Availability: local
+  Function flags: count:955630217 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630217 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258804 (estimated locally),3.96 per call) 
+OS_InitApplicationData/0 (OS_InitApplicationData) @06d1ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907360
+  References: OS_appTableBase/2 (read)OS_nApps/3 (read)OS_taskTableBase/4 (read)OS_nTasks/5 (read)OS_isrTableBase/6 (read)OS_nInterrupts/7 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111599 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_InitDataArea/9 (inlined) (955630224 (estimated locally),8.09 per call) OS_InitDataArea/1 (inlined) (955630217 (estimated locally),8.09 per call) OS_InitDataArea/10 (inlined) (955630214 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced
+OS_InitApplicationData/0 (OS_InitApplicationData) @06d1ad20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06907360
+  References: OS_appTableBase/2 (read)OS_nApps/3 (read)OS_taskTableBase/4 (read)OS_nTasks/5 (read)OS_isrTableBase/6 (read)OS_nInterrupts/7 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111599 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_InitDataArea/9 (inlined) (955630224 (estimated locally),8.09 per call) OS_InitDataArea/1 (inlined) (955630217 (estimated locally),8.09 per call) OS_InitDataArea/10 (inlined) (955630214 (estimated locally),8.09 per call) 
+OS_InitDataArea/10 (OS_InitDataArea) @06ea9380
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 9
+  Aux: @069072e0
+  References: 
+  Referring: 
+  Function OS_InitDataArea/10 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630214 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630214 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258802 (estimated locally),3.96 per call) 
+OS_InitDataArea/1 (OS_InitDataArea) @06d1aee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 9
+  Aux: @06907500
+  References: 
+  Referring: 
+  Function OS_InitDataArea/1 is inline copy in OS_InitApplicationData/0
+  Availability: local
+  Function flags: count:955630217 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630217 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258804 (estimated locally),3.96 per call) 
+OS_InitDataArea/9 (OS_InitDataArea) @06ea9ee0
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 1
+  previous sharing asm name: 10
+  Aux: @06907340
+  References: 
+  Referring: 
+  Function OS_InitDataArea/9 is inline copy in OS_InitApplicationData/0
+  Clone of OS_InitDataArea/1
+  Availability: local
+  Function flags: count:955630224 (estimated locally) body local optimize_size
+  Called by: OS_InitApplicationData/0 (inlined) (955630224 (estimated locally),8.09 per call) 
+  Calls: OS_InitDataArea.part.0/8 (468258807 (estimated locally),3.96 per call) 
+OS_InitDataArea.part.0/8 (OS_InitDataArea.part.0) @06dd0000
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @069074a0
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: OS_InitDataArea/10 (468258802 (estimated locally),3.96 per call) OS_InitDataArea/9 (468258807 (estimated locally),3.96 per call) OS_InitDataArea/1 (468258804 (estimated locally),3.96 per call) 
+  Calls: 
+
+Function found not to call free: OS_InitDataArea.part.0
+Function found not to call free: OS_InitDataArea
+Function found not to call free: OS_InitDataArea
+Function found not to call free: OS_InitDataArea
+Function found not to call free: OS_InitApplicationData
+__attribute__((target ("general-regs-only")))
+OS_InitDataArea.part.0 (os_uint8_t * dest, os_uint8_t * dlimit, const os_uint8_t * src, const os_uint8_t * slimit)
+{
+  unsigned char _2;
+
+  <bb 8> [local count: 118111600]:
+  goto <bb 3>; [100.00%]
+
+  <bb 2> [local count: 955630220]:
+  # DEBUG BEGIN_STMT
+  _2 = *src_1;
+  *dest_3 = _2;
+  # DEBUG BEGIN_STMT
+  dest_4 = dest_3 + 1;
+  # DEBUG dest => dest_4
+  # DEBUG BEGIN_STMT
+  src_5 = src_1 + 1;
+  # DEBUG src => src_5
+
+  <bb 3> [local count: 1073741821]:
+  # dest_3 = PHI <dest_4(2), dest_10(D)(8)>
+  # src_1 = PHI <src_5(2), src_11(D)(8)>
+  # DEBUG src => src_1
+  # DEBUG dest => dest_3
+  # DEBUG BEGIN_STMT
+  if (src_1 < slimit_6(D))
+    goto <bb 2>; [89.00%]
+  else
+    goto <bb 4>; [11.00%]
+
+  <bb 4> [local count: 118111600]:
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  *dest_7 = 0;
+  # DEBUG BEGIN_STMT
+  dest_8 = dest_7 + 1;
+  # DEBUG dest => dest_8
+
+  <bb 6> [local count: 1073741824]:
+  # dest_7 = PHI <dest_3(4), dest_8(5)>
+  # DEBUG dest => dest_7
+  # DEBUG BEGIN_STMT
+  if (dest_7 < dlimit_9(D))
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_InitDataArea (os_uint8_t * dest, os_uint8_t * dlimit, const os_uint8_t * src, const os_uint8_t * slimit)
+{
+  <bb 2> [local count: 241044081]:
+  # DEBUG BEGIN_STMT
+  if (dest_4(D) != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 3> [local count: 168730857]:
+  # DEBUG BEGIN_STMT
+  if (src_6(D) != 0B)
+    goto <bb 4>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 4> [local count: 118111599]:
+  # dest_1 = PHI <dest_4(D)(3)>
+  # src_2 = PHI <src_6(D)(3)>
+  OS_InitDataArea.part.0 (dest_4(D), dlimit_8(D), src_6(D), slimit_7(D));
+
+  <bb 5> [local count: 241044082]:
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_InitApplicationData ()
+{
+  const struct os_isr_t * ip;
+  const struct os_task_t * tp;
+  const struct os_appcontext_t * ap;
+  os_isrid_t i;
+  os_taskid_t t;
+  os_applicationid_t a;
+  const struct os_appcontext_t * OS_appTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  os_uint8_t * _4;
+  os_uint8_t * _5;
+  const os_uint8_t * _6;
+  const os_uint8_t * _7;
+  unsigned char OS_nApps.2_8;
+  const struct os_task_t * OS_taskTableBase.3_9;
+  unsigned int _10;
+  unsigned int _11;
+  os_uint8_t * _12;
+  os_uint8_t * _13;
+  os_uint8_t * _14;
+  os_uint8_t * _15;
+  unsigned char OS_nTasks.5_16;
+  const struct os_isr_t * OS_isrTableBase.6_17;
+  unsigned int _18;
+  unsigned int _19;
+  os_uint8_t * _20;
+  os_uint8_t * _21;
+  os_uint8_t * _22;
+  os_uint8_t * _23;
+  short unsigned int OS_nInterrupts.8_24;
+
+  <bb 2> [local count: 118111599]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG a => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630214]:
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = (unsigned int) a_25;
+  _3 = _2 * 64;
+  ap_38 = OS_appTableBase.0_1 + _3;
+  # DEBUG ap => ap_38
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = ap_38->dataStart;
+  _5 = ap_38->dataEnd;
+  _6 = ap_38->idataStart;
+  _7 = ap_38->idataEnd;
+  OS_InitDataArea (_4, _5, _6, _7);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  a_40 = a_25 + 1;
+  # DEBUG a => a_40
+
+  <bb 4> [local count: 1073741815]:
+  # a_25 = PHI <0(2), a_40(3)>
+  # DEBUG a => a_25
+  # DEBUG BEGIN_STMT
+  OS_nApps.2_8 = OS_nApps;
+  if (OS_nApps.2_8 > a_25)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 11>; [11.00%]
+
+  <bb 11> [local count: 118111599]:
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 955630217]:
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.3_9 = OS_taskTableBase;
+  _10 = (unsigned int) t_26;
+  _11 = _10 * 76;
+  tp_35 = OS_taskTableBase.3_9 + _11;
+  # DEBUG tp => tp_35
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = tp_35->dataStart;
+  _13 = tp_35->dataEnd;
+  _14 = tp_35->idataStart;
+  _15 = tp_35->idataEnd;
+  OS_InitDataArea (_12, _13, _14, _15);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  t_37 = t_26 + 1;
+  # DEBUG t => t_37
+
+  <bb 6> [local count: 1073741818]:
+  # t_26 = PHI <t_37(5), 0(11)>
+  # DEBUG t => t_26
+  # DEBUG BEGIN_STMT
+  OS_nTasks.5_16 = OS_nTasks;
+  if (OS_nTasks.5_16 > t_26)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 10>; [11.00%]
+
+  <bb 10> [local count: 118111600]:
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.6_17 = OS_isrTableBase;
+  _18 = (unsigned int) i_27;
+  _19 = _18 * 68;
+  ip_32 = OS_isrTableBase.6_17 + _19;
+  # DEBUG ip => ip_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = ip_32->dataStart;
+  _21 = ip_32->dataEnd;
+  _22 = ip_32->idataStart;
+  _23 = ip_32->idataEnd;
+  OS_InitDataArea (_20, _21, _22, _23);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_34 = i_27 + 1;
+  # DEBUG i => i_34
+
+  <bb 8> [local count: 1073741824]:
+  # i_27 = PHI <i_34(7), 0(10)>
+  # DEBUG i => i_27
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.8_24 = OS_nInterrupts;
+  if (OS_nInterrupts.8_24 > i_27)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 9>; [11.00%]
+
+  <bb 9> [local count: 118111601]:
+  return;
+
+}
+
+

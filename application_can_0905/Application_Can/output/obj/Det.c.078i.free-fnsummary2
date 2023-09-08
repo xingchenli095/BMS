@@ -1,0 +1,294 @@
+Det_ReportErrorStatus.part.0 (uint8 ErrorType, uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  Std_ReturnType transientFaultRetVal;
+  uint16 * Det_WriteIndex;
+  uint16 * Det_UsedSlots;
+  uint16 * Det_ErrorLost;
+  int _2;
+  unsigned char _3;
+  short unsigned int _11;
+  int _12;
+  short unsigned int _17;
+  short unsigned int _18;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _23;
+  short unsigned int _24;
+
+  <bb 11> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) ErrorType_1(D);
+  _3 = ErrorType_1(D);
+  if (_3 <= 2)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+<L0>:
+  Det_WriteIndex_4 = 0B;
+  Det_UsedSlots_5 = 0B;
+  Det_ErrorLost_6 = 0B;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+<L1>:
+  Det_WriteIndex_7 = CSWTCH.3[_3];
+  Det_UsedSlots_8 = CSWTCH.4[_3];
+  Det_ErrorLost_9 = CSWTCH.5[_3];
+
+  <bb 5> [local count: 1073741824]:
+  # Det_WriteIndex_10 = PHI <Det_WriteIndex_4(3), Det_WriteIndex_7(4)>
+  # Det_UsedSlots_19 = PHI <Det_UsedSlots_5(3), Det_UsedSlots_8(4)>
+  # Det_ErrorLost_22 = PHI <Det_ErrorLost_6(3), Det_ErrorLost_9(4)>
+<L2>:
+<L3>:
+  # DEBUG Det_ErrorLost => Det_ErrorLost_22
+  # DEBUG Det_UsedSlots => Det_UsedSlots_19
+  # DEBUG Det_WriteIndex => Det_WriteIndex_10
+  # DEBUG BEGIN_STMT
+  Det_Enter_SCHM_DET_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _11 = *Det_WriteIndex_10;
+  _12 = (int) _11;
+  Det_ErrorBuffer[_2][_12].ModuleId = ModuleId_13(D);
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_2][_12].InstanceId = InstanceId_14(D);
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_2][_12].ApiId = ApiId_15(D);
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_2][_12].ErrorId = ErrorId_16(D);
+  # DEBUG BEGIN_STMT
+  _17 = _11 + 1;
+  # DEBUG BEGIN_STMT
+  _18 = _17 % 10;
+  *Det_WriteIndex_10 = _18;
+  # DEBUG BEGIN_STMT
+  _20 = *Det_UsedSlots_19;
+  if (_20 <= 9)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _21 = _20 + 1;
+  *Det_UsedSlots_19 = _21;
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _23 = *Det_ErrorLost_22;
+  if (_23 != 65535)
+    goto <bb 8>; [66.00%]
+  else
+    goto <bb 9>; [34.00%]
+
+  <bb 8> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _24 = _23 + 1;
+  *Det_ErrorLost_22 = _24;
+
+  <bb 9> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Det_Exit_SCHM_DET_EXCLUSIVE_AREA_0 ();
+
+  <bb 10> [local count: 1073741824]:
+  return;
+
+}
+
+
+Det_ASR40_ReportError (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  Std_ReturnType retVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_7 = Det_ReportErrorStatus (0, ModuleId_2(D), InstanceId_3(D), ApiId_4(D), ErrorId_5(D));
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_7;
+
+}
+
+
+Det_ASR43_ReportRuntimeError (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  Std_ReturnType retVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_7 = Det_ReportErrorStatus (1, ModuleId_2(D), InstanceId_3(D), ApiId_4(D), ErrorId_5(D));
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_7;
+
+}
+
+
+Det_ASR43_ReportTransientFault (uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 FaultId)
+{
+  Std_ReturnType retVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_7 = Det_ReportErrorStatus (2, ModuleId_2(D), InstanceId_3(D), ApiId_4(D), FaultId_5(D));
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_7;
+
+}
+
+
+Det_ReportErrorStatus (uint8 ErrorType, uint16 ModuleId, uint8 InstanceId, uint8 ApiId, uint8 ErrorId)
+{
+  unsigned char Det_State.1_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG transientFaultRetVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG Det_WriteIndex => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG Det_UsedSlots => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG Det_ErrorLost => 0B
+  # DEBUG BEGIN_STMT
+  Det_State.1_1 = Det_State;
+  if (Det_State.1_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870912]:
+  Det_ReportErrorStatus.part.0 (ErrorType_5(D), ModuleId_6(D), InstanceId_7(D), ApiId_8(D), ErrorId_9(D));
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+Det_Start ()
+{
+  unsigned char Det_State.0_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_State.0_1 = Det_State;
+  if (Det_State.0_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Det_State = 2;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Det_Init ()
+{
+  uint8 Det_ErrorType;
+  uint16 Det_ErrorNumber;
+  int _1;
+  int _2;
+
+  <bb 2> [local count: 32534378]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Det_ErrorType => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 976138694]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) Det_ErrorType_4;
+  _2 = (int) Det_ErrorNumber_3;
+  Det_ErrorBuffer[_1][_2].ModuleId = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_1][_2].InstanceId = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_1][_2].ApiId = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorBuffer[_1][_2].ErrorId = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorNumber_23 = Det_ErrorNumber_3 + 1;
+  # DEBUG Det_ErrorNumber => Det_ErrorNumber_23
+
+  <bb 4> [local count: 1073741824]:
+  # Det_ErrorNumber_3 = PHI <Det_ErrorNumber_23(3), 0(8)>
+  # DEBUG Det_ErrorNumber => Det_ErrorNumber_3
+  # DEBUG BEGIN_STMT
+  if (Det_ErrorNumber_3 != 10)
+    goto <bb 3>; [90.91%]
+  else
+    goto <bb 5>; [9.09%]
+
+  <bb 5> [local count: 97603132]:
+  # DEBUG BEGIN_STMT
+  Det_ErrorType_18 = Det_ErrorType_4 + 1;
+  # DEBUG Det_ErrorType => Det_ErrorType_18
+
+  <bb 6> [local count: 130137509]:
+  # Det_ErrorType_4 = PHI <0(2), Det_ErrorType_18(5)>
+  # DEBUG Det_ErrorType => Det_ErrorType_4
+  # DEBUG BEGIN_STMT
+  if (Det_ErrorType_4 != 3)
+    goto <bb 8>; [75.00%]
+  else
+    goto <bb 7>; [25.00%]
+
+  <bb 8> [local count: 97603132]:
+  goto <bb 4>; [100.00%]
+
+  <bb 7> [local count: 32534377]:
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_WriteIndex_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_ErrorLost_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_FaultLost_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_DevelopmentError = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_RuntimeError = 0;
+  # DEBUG BEGIN_STMT
+  Det_UsedSlots_TransientFault = 0;
+  # DEBUG BEGIN_STMT
+  Det_State = 1;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

@@ -1,0 +1,150 @@
+
+
+ local analysis of OS_InitTimers
+   scanning: OS_hwTimerTableBase.0_1 = OS_hwTimerTableBase;
+  scanning: _2 = (unsigned int) i_7;
+  scanning: _3 = _2 * 24;
+  scanning: t_10 = OS_hwTimerTableBase.0_1 + _3;
+  scanning: _4 = t_10->driver;
+    Indirect ref read is not const
+  scanning: _5 = _4->hwtInit;
+    Indirect ref read is not const
+  scanning: _5 (t_10);
+  scanning: i_12 = i_7 + 1;
+  scanning: OS_nHwTimers.1_6 = OS_nHwTimers;
+  scanning: if (OS_nHwTimers.1_6 > i_7)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+callgraph:
+
+OS_InitTimers/0 (OS_InitTimers) @06cbcb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a7000
+  References: OS_hwTimerTableBase/1 (read)OS_nHwTimers/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(955630223 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_InitTimers/0 (OS_InitTimers) @06cbcb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a7000
+  References: OS_hwTimerTableBase/1 (read)OS_nHwTimers/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(955630223 (estimated locally),8.09 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_InitTimers: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_InitTimers: malloc_bottom
+callgraph:
+
+OS_InitTimers/0 (OS_InitTimers) @06cbcb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a71a0
+  References: OS_hwTimerTableBase/1 (read)OS_nHwTimers/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(955630223 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced
+OS_InitTimers/0 (OS_InitTimers) @06cbcb60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068a71a0
+  References: OS_hwTimerTableBase/1 (read)OS_nHwTimers/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(955630223 (estimated locally),8.09 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_InitTimers ()
+{
+  const struct os_hwt_t * const t;
+  os_uint8_t i;
+  const struct os_hwt_t * OS_hwTimerTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_hwtdrv_t * _4;
+  void (*<T521>) (const struct os_hwt_t *) _5;
+  unsigned char OS_nHwTimers.1_6;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  OS_hwTimerTableBase.0_1 = OS_hwTimerTableBase;
+  _2 = (unsigned int) i_7;
+  _3 = _2 * 24;
+  t_10 = OS_hwTimerTableBase.0_1 + _3;
+  # DEBUG t => t_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = t_10->driver;
+  _5 = _4->hwtInit;
+  _5 (t_10);
+  # DEBUG BEGIN_STMT
+  i_12 = i_7 + 1;
+  # DEBUG i => i_12
+
+  <bb 4> [local count: 1073741824]:
+  # i_7 = PHI <0(2), i_12(3)>
+  # DEBUG i => i_7
+  # DEBUG BEGIN_STMT
+  OS_nHwTimers.1_6 = OS_nHwTimers;
+  if (OS_nHwTimers.1_6 > i_7)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+

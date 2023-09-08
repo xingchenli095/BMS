@@ -1,0 +1,93 @@
+__attribute__((target ("general-regs-only")))
+OS_EnqueueLink (os_tasklink_t tAct, os_prio_t prio)
+{
+  os_tasklink_t lAct;
+  os_tasklink_t qAct;
+  os_tasklink_t * const taskActivations;
+  int iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations = &OS_taskActivations;
+  # DEBUG BEGIN_STMT
+  qAct = OS_taskActivations[0];
+  # DEBUG BEGIN_STMT
+  lAct = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  lAct = qAct;
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) qAct;
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  qAct = *_3;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (qAct != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  _4 = (int) qAct;
+  _5 = (int) qAct;
+  _6 = OS_taskPtrs[_5];
+  _7 = _6->linkBase;
+  _8 = (int) _7;
+  _9 = (int) qAct;
+  _10 = OS_taskPtrs[_9];
+  _11 = _10->dynamic;
+  _12 = _11->cAct;
+  _13 = (int) _12;
+  _14 = _8 + _13;
+  if (_4 == _14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  _15 = (int) qAct;
+  _16 = OS_taskPtrs[_15];
+  _17 = _16->dynamic;
+  _18 = _17->prio;
+  iftmp.0 = (int) _18;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  _19 = (int) qAct;
+  _20 = OS_taskPtrs[_19];
+  _21 = _20->queuePrio;
+  iftmp.0 = (int) _21;
+
+  <bb 8> :
+  _22 = (int) prio;
+  if (iftmp.0 >= _22)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _23 = (unsigned int) lAct;
+  _24 = _23 * 2;
+  _25 = &OS_taskActivations + _24;
+  *_25 = tAct;
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned int) tAct;
+  _27 = _26 * 2;
+  _28 = &OS_taskActivations + _27;
+  *_28 = qAct;
+  # DEBUG BEGIN_STMT
+  _29 = OS_taskActivations[0];
+  _30 = (int) _29;
+  _31 = OS_taskPtrs[_30];
+  OS_kernelData.taskQueueHead = _31;
+  return;
+
+}
+
+

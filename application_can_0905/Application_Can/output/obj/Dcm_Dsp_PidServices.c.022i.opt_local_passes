@@ -1,0 +1,1154 @@
+Dcm_Dsp_RequestPowertrainFreezeFrameData_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  unsigned char _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OpStatus_3(D) + 251;
+  if (_1 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_ObdService_CommonPid_Func (2, pMsgContext_5(D));
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = 26;
+  return _7;
+
+}
+
+
+Dcm_Dsp_RequestCurrentPowertrainDiagnosticData_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  unsigned char _1;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OpStatus_3(D) + 251;
+  if (_1 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_ObdService_CommonPid_Func (1, pMsgContext_5(D));
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = 26;
+  return _7;
+
+}
+
+
+Dcm_Dsp_PidServices_Execute (Dcm_GenericUint8IdType PidId, Dcm_NegativeResponseCodeType * Nrc, struct Dcm_DspMsgBufferCfgType * BufferCfg)
+{
+  Dcm_MsgLenType Size;
+  Std_ReturnType retVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int Size.0_5;
+  uint8 * _6;
+  long unsigned int _7;
+  uint8 * _8;
+  uint8 * _9;
+  long unsigned int _10;
+  uint8 * _11;
+  long unsigned int _12;
+  long unsigned int Size.1_13;
+  long unsigned int _14;
+  Std_ReturnType _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_18 = 1;
+  # DEBUG retVal => retVal_18
+  # DEBUG BEGIN_STMT
+  _1 = BufferCfg_20(D)->Size;
+  _2 = BufferCfg_20(D)->Occupied;
+  _3 = _1 - _2;
+  Size = _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = PidId_22(D) & 31;
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Size.0_5 = Size;
+  if (Size.0_5 <= 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *Nrc_23(D) = 20;
+  # DEBUG BEGIN_STMT
+  retVal_30 = 1;
+  # DEBUG retVal => retVal_30
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = BufferCfg_20(D)->BufferPtr;
+  _7 = BufferCfg_20(D)->Occupied;
+  _8 = _6 + _7;
+  retVal_27 = Dcm_DspInternal_PidGetAvailabilityPid (1, PidId_22(D), _8, Nrc_23(D));
+  # DEBUG retVal => retVal_27
+  # DEBUG BEGIN_STMT
+  if (retVal_27 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Size = 4;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _9 = BufferCfg_20(D)->BufferPtr;
+  _10 = BufferCfg_20(D)->Occupied;
+  _11 = _9 + _10;
+  retVal_25 = Dcm_PidGetNonAvailabilityPid (1, PidId_22(D), _11, &Size, Nrc_23(D));
+  # DEBUG retVal => retVal_25
+
+  <bb 8> :
+  # retVal_15 = PHI <retVal_27(5), retVal_25(7), retVal_30(4), retVal_27(6)>
+  # DEBUG retVal => retVal_15
+  # DEBUG BEGIN_STMT
+  if (retVal_15 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _12 = BufferCfg_20(D)->Occupied;
+  Size.1_13 = Size;
+  _14 = _12 + Size.1_13;
+  BufferCfg_20(D)->Occupied = _14;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _32 = retVal_15;
+  Size ={v} {CLOBBER};
+  return _32;
+
+}
+
+
+Dcm_DspInternal_ObdService_CommonPid_Func (Dcm_ServiceIdType ServiceId, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 currReqPid;
+  uint8 ResponsePosOffset;
+  Dcm_MsgLenType RemainingBufSize;
+  Dcm_MsgLenType ResponsePos;
+  uint8_least Index;
+  uint8_least IndexWrite;
+  uint8_least Index;
+  uint8 * ReqPidList;
+  Dcm_MsgItemType Dcm_ReqPidBuffer[6];
+  Dcm_NegativeResponseCodeType Nrc;
+  Dcm_MsgLenType RequestLen;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  unsigned char _4;
+  Dcm_MsgItemType * _5;
+  sizetype _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int _11;
+  unsigned char _12;
+  unsigned char _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  uint8 * _18;
+  Dcm_MsgItemType * _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  Dcm_MsgItemType * _22;
+  unsigned char _23;
+  Dcm_MsgItemType * _24;
+  Dcm_MsgItemType * _25;
+  Dcm_MsgItemType * _26;
+  sizetype _27;
+  Dcm_MsgItemType * _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  uint8 * _31;
+  unsigned char _32;
+  Dcm_MsgItemType * _33;
+  sizetype _34;
+  Dcm_MsgItemType * _35;
+  unsigned char _36;
+  uint8 * _37;
+  Dcm_MsgItemType * _38;
+  Dcm_MsgItemType * _39;
+  unsigned char _40;
+  long unsigned int RemainingBufSize.4_41;
+  long unsigned int _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  Std_ReturnType _100;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RequestLen_63 = pMsgContext_62(D)->reqDataLen;
+  # DEBUG RequestLen => RequestLen_63
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  if (ServiceId_66(D) == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  if (RequestLen_63 > 6)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (ServiceId_66(D) == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  if (RequestLen_63 > 6)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _1 = RequestLen_63 & 1;
+  if (_1 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (RequestLen_63 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->msgAddInfo.suppressPosResponse = 1;
+  goto <bb 36>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ServiceId_66(D) == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  IndexWrite_68 = 0;
+  # DEBUG IndexWrite => IndexWrite_68
+  # DEBUG BEGIN_STMT
+  Index_69 = 0;
+  # DEBUG Index => Index_69
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_62(D)->reqData;
+  _3 = _2 + Index_47;
+  _4 = *_3;
+  Dcm_ReqPidBuffer[IndexWrite_49] = _4;
+  # DEBUG BEGIN_STMT
+  IndexWrite_73 = IndexWrite_49 + 1;
+  # DEBUG IndexWrite => IndexWrite_73
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_62(D)->reqData;
+  _6 = Index_47 + 1;
+  _7 = _5 + _6;
+  _8 = *_7;
+  if (_8 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  IndexWrite_74 = IndexWrite_73 + 4294967295;
+  # DEBUG IndexWrite => IndexWrite_74
+
+  <bb 13> :
+  # IndexWrite_48 = PHI <IndexWrite_73(11), IndexWrite_74(12)>
+  # DEBUG IndexWrite => IndexWrite_48
+  # DEBUG BEGIN_STMT
+  Index_75 = Index_47 + 2;
+  # DEBUG Index => Index_75
+
+  <bb 14> :
+  # Index_47 = PHI <Index_69(10), Index_75(13)>
+  # IndexWrite_49 = PHI <IndexWrite_68(10), IndexWrite_48(13)>
+  # DEBUG IndexWrite => IndexWrite_49
+  # DEBUG Index => Index_47
+  # DEBUG BEGIN_STMT
+  _9 = RequestLen_63 + 4294967295;
+  if (Index_47 < _9)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ReqPidList_70 = &Dcm_ReqPidBuffer;
+  # DEBUG ReqPidList => ReqPidList_70
+  # DEBUG BEGIN_STMT
+  RequestLen_71 = IndexWrite_49;
+  # DEBUG RequestLen => RequestLen_71
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ReqPidList_67 = pMsgContext_62(D)->reqData;
+  # DEBUG ReqPidList => ReqPidList_67
+
+  <bb 17> :
+  # RequestLen_45 = PHI <RequestLen_71(15), RequestLen_63(16)>
+  # ReqPidList_46 = PHI <ReqPidList_70(15), ReqPidList_67(16)>
+  # DEBUG ReqPidList => ReqPidList_46
+  # DEBUG RequestLen => RequestLen_45
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_OBDSupport_CheckRequestCombinedIds (ReqPidList_46, RequestLen_45);
+  if (_10 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Index_78 = 0;
+  # DEBUG Index => Index_78
+  # DEBUG BEGIN_STMT
+  ResponsePos_79 = 0;
+  # DEBUG ResponsePos => ResponsePos_79
+  # DEBUG BEGIN_STMT
+  _11 = pMsgContext_62(D)->resMaxDataLen;
+  RemainingBufSize = _11;
+  # DEBUG BEGIN_STMT
+  Index_81 = 0;
+  # DEBUG Index => Index_81
+  goto <bb 32>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _12 = *ReqPidList_46;
+  _13 = _12 & 31;
+  if (_13 == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ServiceId_66(D) == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  ResponsePosOffset_89 = 1;
+  # DEBUG ResponsePosOffset => ResponsePosOffset_89
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  ResponsePosOffset_88 = 2;
+  # DEBUG ResponsePosOffset => ResponsePosOffset_88
+
+  <bb 23> :
+  # ResponsePosOffset_53 = PHI <ResponsePosOffset_89(21), ResponsePosOffset_88(22)>
+  # DEBUG ResponsePosOffset => ResponsePosOffset_53
+  # DEBUG BEGIN_STMT
+  _14 = (long unsigned int) ResponsePosOffset_53;
+  _15 = ResponsePos_52 + _14;
+  _16 = _15 + 4;
+  _17 = pMsgContext_62(D)->resMaxDataLen;
+  if (_16 <= _17)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _18 = ReqPidList_46 + Index_50;
+  currReqPid_90 = *_18;
+  # DEBUG currReqPid => currReqPid_90
+  # DEBUG BEGIN_STMT
+  _19 = pMsgContext_62(D)->resData;
+  _20 = (long unsigned int) ResponsePosOffset_53;
+  _21 = ResponsePos_52 + _20;
+  _22 = _19 + _21;
+  _23 = Dcm_DspInternal_PidGetAvailabilityPid (ServiceId_66(D), currReqPid_90, _22, &Nrc);
+  if (_23 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  if (currReqPid_90 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _24 = pMsgContext_62(D)->resData;
+  _25 = _24 + ResponsePos_52;
+  *_25 = currReqPid_90;
+  # DEBUG BEGIN_STMT
+  if (ServiceId_66(D) == 2)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _26 = pMsgContext_62(D)->resData;
+  _27 = ResponsePos_52 + 1;
+  _28 = _26 + _27;
+  *_28 = 0;
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _29 = (long unsigned int) ResponsePosOffset_53;
+  _30 = ResponsePos_52 + _29;
+  ResponsePos_94 = _30 + 4;
+  # DEBUG ResponsePos => ResponsePos_94
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->msgAddInfo.suppressPosResponse = 0;
+  goto <bb 31>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _31 = ReqPidList_46 + Index_50;
+  _32 = *_31;
+  _33 = pMsgContext_62(D)->resData;
+  _34 = ResponsePos_52 + 1;
+  _35 = _33 + _34;
+  _36 = Dcm_PidGetNonAvailabilityPid (ServiceId_66(D), _32, _35, &RemainingBufSize, &Nrc);
+  if (_36 == 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _37 = ReqPidList_46 + Index_50;
+  _38 = pMsgContext_62(D)->resData;
+  _39 = _38 + ResponsePos_52;
+  _40 = *_37;
+  *_39 = _40;
+  # DEBUG BEGIN_STMT
+  RemainingBufSize.4_41 = RemainingBufSize;
+  _42 = ResponsePos_52 + RemainingBufSize.4_41;
+  ResponsePos_86 = _42 + 1;
+  # DEBUG ResponsePos => ResponsePos_86
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->msgAddInfo.suppressPosResponse = 0;
+
+  <bb 31> :
+  # ResponsePos_51 = PHI <ResponsePos_52(25), ResponsePos_52(29), ResponsePos_86(30), ResponsePos_52(23), ResponsePos_94(28)>
+  # DEBUG ResponsePos => ResponsePos_51
+  # DEBUG BEGIN_STMT
+  _43 = pMsgContext_62(D)->resMaxDataLen;
+  _44 = _43 - ResponsePos_51;
+  RemainingBufSize = _44;
+  # DEBUG BEGIN_STMT
+  Index_97 = Index_50 + 1;
+  # DEBUG Index => Index_97
+
+  <bb 32> :
+  # Index_50 = PHI <Index_81(18), Index_97(31)>
+  # ResponsePos_52 = PHI <ResponsePos_79(18), ResponsePos_51(31)>
+  # DEBUG ResponsePos => ResponsePos_52
+  # DEBUG Index => Index_50
+  # DEBUG BEGIN_STMT
+  if (Index_50 < RequestLen_45)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->resDataLen = ResponsePos_52;
+  RemainingBufSize ={v} {CLOBBER};
+  goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_62(D)->msgAddInfo.suppressPosResponse = 1;
+
+  <bb 35> :
+  Dcm_ReqPidBuffer ={v} {CLOBBER};
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  _100 = 26;
+  Nrc ={v} {CLOBBER};
+  return _100;
+
+}
+
+
+Dcm_PidGetNonAvailabilityPid (Dcm_ServiceIdType ServiceId, Dcm_DspPidIdentifierType PidId, uint8 * DestBuffer, Dcm_MsgLenType * Bufsize, Dcm_NegativeResponseCodeType * Nrc)
+{
+  uint8 PidDataConfigRelIndex;
+  uint16 UsedBufsize;
+  const struct Dcm_DspPidDataConfigType * const curPidDataConfig;
+  uint32 DTCNumber;
+  uint8 DestBufferOffset;
+  uint8 PidSize;
+  uint32_least PidDataConfigIndex;
+  const uint8 PidUsedBit;
+  const uint8 PidUsedByte;
+  uint8 ValidPidFound;
+  const struct Dcm_DspPidConfigType * curPidConfig;
+  uint8_least Index;
+  Std_ReturnType ReturnVal;
+  unsigned char _1;
+  long unsigned int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  sizetype _20;
+  uint8 * _21;
+  long unsigned int _22;
+  unsigned char _23;
+  long unsigned int DTCNumber.2_24;
+  long unsigned int _25;
+  uint8 * _26;
+  unsigned char _27;
+  long unsigned int DTCNumber.3_28;
+  long unsigned int _29;
+  uint8 * _30;
+  unsigned char _31;
+  Std_ReturnType (*<T746>) (uint8 *) _32;
+  unsigned char _33;
+  short unsigned int _34;
+  short unsigned int _35;
+  short unsigned int _36;
+  unsigned char _37;
+  long unsigned int _38;
+  unsigned char _39;
+  unsigned char _40;
+  sizetype _41;
+  uint8 * _42;
+  short unsigned int _43;
+  long unsigned int _44;
+  short unsigned int _45;
+  long unsigned int _46;
+  long unsigned int _47;
+  short unsigned int _48;
+  long unsigned int _49;
+  long unsigned int _50;
+  long unsigned int _51;
+  long unsigned int _52;
+  long unsigned int _53;
+  Std_ReturnType _119;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_76 = 1;
+  # DEBUG ReturnVal => ReturnVal_76
+  # DEBUG BEGIN_STMT
+  Index_77 = 0;
+  # DEBUG Index => Index_77
+  # DEBUG BEGIN_STMT
+  curPidConfig_78 = &Dcm_DspPidConfig;
+  # DEBUG curPidConfig => curPidConfig_78
+  # DEBUG BEGIN_STMT
+  ValidPidFound_79 = 1;
+  # DEBUG ValidPidFound => ValidPidFound_79
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (PidId_81(D) != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Index_83 = 0;
+  # DEBUG Index => Index_83
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  curPidConfig_84 = &Dcm_DspPidConfig[Index_57];
+  # DEBUG curPidConfig => curPidConfig_84
+  # DEBUG BEGIN_STMT
+  _1 = curPidConfig_84->PidIdentifier;
+  if (PidId_81(D) == _1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = Index_57 / 8;
+  PidUsedByte_86 = (const uint8) _2;
+  # DEBUG PidUsedByte => PidUsedByte_86
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned char) Index_57;
+  PidUsedBit_87 = _3 & 7;
+  # DEBUG PidUsedBit => PidUsedBit_87
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  _4 = curPidConfig_84->BitField;
+  _5 = (unsigned int) _4;
+  _6 = _5 & 1;
+  if (_6 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  if (ServiceId_80(D) == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  _7 = curPidConfig_84->BitField;
+  _8 = (unsigned int) _7;
+  _9 = _8 & 2;
+  if (_9 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _10 = (int) PidUsedByte_86;
+  _11 = Dcm_DspPidUsed[_10];
+  _12 = (int) PidUsedBit_87;
+  _13 = 1 << _12;
+  _14 = (unsigned char) _13;
+  _15 = _11 & _14;
+  if (_15 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ValidPidFound_88 = 0;
+  # DEBUG ValidPidFound => ValidPidFound_88
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Index_85 = Index_57 + 1;
+  # DEBUG Index => Index_85
+
+  <bb 13> :
+  # Index_57 = PHI <Index_83(4), Index_85(12)>
+  # curPidConfig_59 = PHI <curPidConfig_78(4), curPidConfig_84(12)>
+  # DEBUG curPidConfig => curPidConfig_59
+  # DEBUG Index => Index_57
+  # DEBUG BEGIN_STMT
+  if (Index_57 <= 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # curPidConfig_60 = PHI <curPidConfig_84(11), curPidConfig_59(13), curPidConfig_84(10)>
+  # ValidPidFound_62 = PHI <ValidPidFound_88(11), ValidPidFound_79(13), ValidPidFound_79(10)>
+  # DEBUG ValidPidFound => ValidPidFound_62
+  # DEBUG curPidConfig => curPidConfig_60
+  # DEBUG BEGIN_STMT
+  if (Index_57 == 3)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  if (ValidPidFound_62 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  if (ServiceId_80(D) == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  *Nrc_89(D) = 49;
+
+  <bb 18> :
+  # Index_58 = PHI <Index_77(3), Index_57(15), Index_57(16), Index_57(17)>
+  # curPidConfig_61 = PHI <curPidConfig_78(3), curPidConfig_60(15), curPidConfig_60(16), curPidConfig_60(17)>
+  # ValidPidFound_63 = PHI <ValidPidFound_79(3), ValidPidFound_62(15), ValidPidFound_62(16), ValidPidFound_62(17)>
+  # DEBUG ValidPidFound => ValidPidFound_63
+  # DEBUG curPidConfig => curPidConfig_61
+  # DEBUG Index => Index_58
+  # DEBUG BEGIN_STMT
+  if (Index_58 <= 2)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 45>; [INV]
+
+  <bb 19> :
+  if (ValidPidFound_63 == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 45>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PidSize_91 = curPidConfig_61->PidSize;
+  # DEBUG PidSize => PidSize_91
+  # DEBUG BEGIN_STMT
+  DestBufferOffset_92 = 0;
+  # DEBUG DestBufferOffset => DestBufferOffset_92
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 2)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  DestBufferOffset_93 = 1;
+  # DEBUG DestBufferOffset => DestBufferOffset_93
+  # DEBUG BEGIN_STMT
+  if (PidId_81(D) == 2)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  PidSize_94 = 2;
+  # DEBUG PidSize => PidSize_94
+
+  <bb 23> :
+  # PidSize_65 = PHI <PidSize_91(20), PidSize_91(21), PidSize_94(22)>
+  # DestBufferOffset_66 = PHI <DestBufferOffset_92(20), DestBufferOffset_93(21), DestBufferOffset_93(22)>
+  # DEBUG DestBufferOffset => DestBufferOffset_66
+  # DEBUG PidSize => PidSize_65
+  # DEBUG BEGIN_STMT
+  _16 = (long unsigned int) PidSize_65;
+  _17 = *Bufsize_95(D);
+  _18 = (long unsigned int) DestBufferOffset_66;
+  _19 = _17 - _18;
+  if (_16 <= _19)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 45>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 2)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  *DestBuffer_96(D) = 0;
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _20 = (sizetype) DestBufferOffset_66;
+  _21 = DestBuffer_96(D) + _20;
+  _22 = (long unsigned int) PidSize_65;
+  TS_MemSet32 (_21, 0, _22);
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 2)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 27> :
+  if (PidId_81(D) == 2)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = Dcm_Dsp_DemFacade_GetDTCOfOBDFreezeFrame (&DTCNumber);
+  if (_23 == 0)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  DTCNumber.2_24 = DTCNumber;
+  _25 = DTCNumber.2_24 >> 16;
+  _26 = DestBuffer_96(D) + 1;
+  _27 = (unsigned char) _25;
+  *_26 = _27;
+  # DEBUG BEGIN_STMT
+  DTCNumber.3_28 = DTCNumber;
+  _29 = DTCNumber.3_28 >> 8;
+  _30 = DestBuffer_96(D) + 2;
+  _31 = (unsigned char) _29;
+  *_30 = _31;
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_102 = 0;
+  # DEBUG ReturnVal => ReturnVal_102
+  DTCNumber ={v} {CLOBBER};
+  goto <bb 44>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  PidDataConfigIndex_104 = curPidConfig_61->DataStartIndex;
+  # DEBUG PidDataConfigIndex => PidDataConfigIndex_104
+  goto <bb 40>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  curPidDataConfig_105 = &Dcm_DspPidDataConfig[PidDataConfigIndex_64];
+  # DEBUG curPidDataConfig => curPidDataConfig_105
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 1)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _32 = curPidDataConfig_105->Service0x01ReadFnc;
+  _33 = _32 (&Dcm_PidDataBuffer);
+  if (_33 != 0)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_107 = 131;
+  # DEBUG ReturnVal => ReturnVal_107
+  # DEBUG BEGIN_STMT
+  goto <bb 41>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  if (ServiceId_80(D) == 2)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  _34 = curPidDataConfig_105->DataSize;
+  _35 = _34 + 7;
+  _36 = _35 / 8;
+  UsedBufsize = _36;
+  # DEBUG BEGIN_STMT
+  _37 = (unsigned char) PidDataConfigIndex_64;
+  _38 = curPidConfig_61->DataStartIndex;
+  _39 = (unsigned char) _38;
+  PidDataConfigRelIndex_109 = _37 - _39;
+  # DEBUG PidDataConfigRelIndex => PidDataConfigRelIndex_109
+  # DEBUG BEGIN_STMT
+  _40 = Dcm_Dsp_DemFacade_ReadDataOfOBDFreezeFrame (PidId_81(D), PidDataConfigRelIndex_109, &Dcm_PidDataBuffer, &UsedBufsize);
+  if (_40 != 0)
+    goto <bb 37>; [INV]
+  else
+    goto <bb 38>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_112 = 131;
+  # DEBUG ReturnVal => ReturnVal_112
+  # DEBUG BEGIN_STMT
+  UsedBufsize ={v} {CLOBBER};
+  goto <bb 41>; [INV]
+
+  <bb 38> :
+  UsedBufsize ={v} {CLOBBER};
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  _41 = (sizetype) DestBufferOffset_66;
+  _42 = DestBuffer_96(D) + _41;
+  _43 = curPidDataConfig_105->DataPos;
+  _44 = (long unsigned int) _43;
+  _45 = curPidDataConfig_105->DataSize;
+  _46 = (long unsigned int) _45;
+  Dcm_DspInternal_CopySignalData (&Dcm_PidDataBuffer, _42, 0, _44, _46, 3, 1);
+  # DEBUG BEGIN_STMT
+  PidDataConfigIndex_115 = PidDataConfigIndex_64 + 1;
+  # DEBUG PidDataConfigIndex => PidDataConfigIndex_115
+
+  <bb 40> :
+  # PidDataConfigIndex_64 = PHI <PidDataConfigIndex_104(31), PidDataConfigIndex_115(39)>
+  # DEBUG PidDataConfigIndex => PidDataConfigIndex_64
+  # DEBUG BEGIN_STMT
+  _47 = curPidConfig_61->DataStartIndex;
+  _48 = curPidConfig_61->NumOfData;
+  _49 = (long unsigned int) _48;
+  _50 = _47 + _49;
+  if (PidDataConfigIndex_64 < _50)
+    goto <bb 32>; [INV]
+  else
+    goto <bb 41>; [INV]
+
+  <bb 41> :
+  # ReturnVal_54 = PHI <ReturnVal_107(34), ReturnVal_112(37), ReturnVal_76(40)>
+  # DEBUG ReturnVal => ReturnVal_54
+  # DEBUG BEGIN_STMT
+  if (ReturnVal_54 != 131)
+    goto <bb 42>; [INV]
+  else
+    goto <bb 43>; [INV]
+
+  <bb 42> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_117 = 0;
+  # DEBUG ReturnVal => ReturnVal_117
+  goto <bb 44>; [INV]
+
+  <bb 43> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_116 = 1;
+  # DEBUG ReturnVal => ReturnVal_116
+
+  <bb 44> :
+  # ReturnVal_55 = PHI <ReturnVal_102(30), ReturnVal_117(42), ReturnVal_116(43)>
+  # DEBUG ReturnVal => ReturnVal_55
+  # DEBUG BEGIN_STMT
+  _51 = (long unsigned int) DestBufferOffset_66;
+  _52 = (long unsigned int) PidSize_65;
+  _53 = _51 + _52;
+  *Bufsize_95(D) = _53;
+
+  <bb 45> :
+  # ReturnVal_56 = PHI <ReturnVal_76(18), ReturnVal_76(19), ReturnVal_76(23), ReturnVal_55(44)>
+  # DEBUG ReturnVal => ReturnVal_56
+  # DEBUG BEGIN_STMT
+  _119 = ReturnVal_56;
+  return _119;
+
+}
+
+
+Dcm_DspInternal_PidGetAvailabilityPid (Dcm_ServiceIdType ServiceId, Dcm_DspPidIdentifierType RequestedAvailabilityPidId, uint8 * availabilityData, Dcm_NegativeResponseCodeType * Nrc)
+{
+  const struct Dcm_DspPidConfigType * curPidConfig;
+  uint8_least Index;
+  Std_ReturnType UpdateAvailableInfoWithIDRetVal;
+  Std_ReturnType ReturnVal;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned int _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _9;
+  Std_ReturnType _36;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_21 = 1;
+  # DEBUG ReturnVal => ReturnVal_21
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (availabilityData_23(D), 0, 4);
+  # DEBUG BEGIN_STMT
+  UpdateAvailableInfoWithIDRetVal_25 = 1;
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_25
+  # DEBUG BEGIN_STMT
+  Index_26 = 0;
+  # DEBUG Index => Index_26
+  # DEBUG BEGIN_STMT
+  curPidConfig_27 = &Dcm_DspPidConfig[0];
+  # DEBUG curPidConfig => curPidConfig_27
+  # DEBUG BEGIN_STMT
+  Index_28 = 0;
+  # DEBUG Index => Index_28
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curPidConfig_37 = &Dcm_DspPidConfig[Index_16];
+  # DEBUG curPidConfig => curPidConfig_37
+  # DEBUG BEGIN_STMT
+  _1 = Index_16 / 8;
+  _2 = Dcm_DspPidUsed[_1];
+  _3 = Index_16 & 7;
+  _4 = 1 << _3;
+  _5 = (unsigned char) _4;
+  _6 = _2 & _5;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  _7 = curPidConfig_37->BitField;
+  _8 = ServiceId_29(D) & _7;
+  if (_8 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = curPidConfig_37->PidIdentifier;
+  UpdateAvailableInfoWithIDRetVal_39 = Dcm_OBDSupport_UpdateAvailableInfoWithID (_9, RequestedAvailabilityPidId_30(D), availabilityData_23(D));
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_39
+  # DEBUG BEGIN_STMT
+  if (UpdateAvailableInfoWithIDRetVal_39 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_40 = 0;
+  # DEBUG ReturnVal => ReturnVal_40
+
+  <bb 7> :
+  # ReturnVal_10 = PHI <ReturnVal_11(3), ReturnVal_11(4), ReturnVal_11(5), ReturnVal_40(6)>
+  # UpdateAvailableInfoWithIDRetVal_13 = PHI <UpdateAvailableInfoWithIDRetVal_14(3), UpdateAvailableInfoWithIDRetVal_14(4), UpdateAvailableInfoWithIDRetVal_39(5), UpdateAvailableInfoWithIDRetVal_39(6)>
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_13
+  # DEBUG ReturnVal => ReturnVal_10
+  # DEBUG BEGIN_STMT
+  Index_41 = Index_16 + 1;
+  # DEBUG Index => Index_41
+
+  <bb 8> :
+  # ReturnVal_11 = PHI <ReturnVal_21(2), ReturnVal_10(7)>
+  # UpdateAvailableInfoWithIDRetVal_14 = PHI <UpdateAvailableInfoWithIDRetVal_25(2), UpdateAvailableInfoWithIDRetVal_13(7)>
+  # Index_16 = PHI <Index_28(2), Index_41(7)>
+  # DEBUG Index => Index_16
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_14
+  # DEBUG ReturnVal => ReturnVal_11
+  # DEBUG BEGIN_STMT
+  if (Index_16 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ServiceId_29(D) == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  if (RequestedAvailabilityPidId_30(D) == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  UpdateAvailableInfoWithIDRetVal_32 = Dcm_OBDSupport_UpdateAvailableInfoWithID (2, RequestedAvailabilityPidId_30(D), availabilityData_23(D));
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_32
+
+  <bb 12> :
+  # UpdateAvailableInfoWithIDRetVal_15 = PHI <UpdateAvailableInfoWithIDRetVal_14(9), UpdateAvailableInfoWithIDRetVal_14(10), UpdateAvailableInfoWithIDRetVal_32(11)>
+  # DEBUG UpdateAvailableInfoWithIDRetVal => UpdateAvailableInfoWithIDRetVal_15
+  # DEBUG BEGIN_STMT
+  if (UpdateAvailableInfoWithIDRetVal_15 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReturnVal_33 = 0;
+  # DEBUG ReturnVal => ReturnVal_33
+
+  <bb 14> :
+  # ReturnVal_12 = PHI <ReturnVal_11(12), ReturnVal_33(13)>
+  # DEBUG ReturnVal => ReturnVal_12
+  # DEBUG BEGIN_STMT
+  if (ReturnVal_12 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  *Nrc_34(D) = 49;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _36 = ReturnVal_12;
+  return _36;
+
+}
+
+

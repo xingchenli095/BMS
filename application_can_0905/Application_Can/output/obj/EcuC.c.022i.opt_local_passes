@@ -1,0 +1,790 @@
+EcuC_TpTransmission_entry_IDLE (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (TxControlInfoPtr_2(D), 4);
+  return;
+
+}
+
+
+EcuC_TpReception_entry_IDLE (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (RxControlInfoPtr_2(D), 6);
+  return;
+
+}
+
+
+EcuC_TpTxConfirmation (struct EcuC_TxControlInfoType * TxControlInfoPtr, NotifResultType Result)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+  Std_ReturnType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Result_3(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_6(D)->state;
+  if (_1 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  retVal_8 = 1;
+  # DEBUG retVal => retVal_8
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_7 = 0;
+  # DEBUG retVal => retVal_7
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal_4 = 1;
+  # DEBUG retVal => retVal_4
+
+  <bb 7> :
+  # retVal_2 = PHI <retVal_7(5), retVal_4(6), retVal_8(4)>
+  # DEBUG retVal => retVal_2
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_6(D));
+  # DEBUG BEGIN_STMT
+  _10 = retVal_2;
+  return _10;
+
+}
+
+
+EcuC_TpTransmit (struct EcuC_TxControlInfoType * TxControlInfoPtr, PduIdType PduId, const struct PduInfoType * TxBufferInfoPtr, Std_ReturnType (*EcuC_LoTpTransmitFunctPtrType) (PduIdType, const struct PduInfoType *) LoTpTransmitFunctPtr)
+{
+  Std_ReturnType retVal;
+  unsigned char _1;
+  short unsigned int _2;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_5 = 1;
+  # DEBUG retVal => retVal_5
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_7(D)->state;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  retVal_16 = 1;
+  # DEBUG retVal => retVal_16
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (LoTpTransmitFunctPtr_8(D) != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = TxBufferInfoPtr_9(D)->SduLength;
+  TxControlInfoPtr_7(D)->remainMsgSize = _2;
+  # DEBUG BEGIN_STMT
+  TxControlInfoPtr_7(D)->state = 2;
+  # DEBUG BEGIN_STMT
+  retVal_14 = LoTpTransmitFunctPtr_8(D) (PduId_12(D), TxBufferInfoPtr_9(D));
+  # DEBUG retVal => retVal_14
+  # DEBUG BEGIN_STMT
+  if (retVal_14 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_7(D));
+
+  <bb 7> :
+  # retVal_3 = PHI <retVal_16(3), retVal_5(4), retVal_14(5), retVal_14(6)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  _17 = retVal_3;
+  return _17;
+
+}
+
+
+EcuC_TxBufferIsLocked (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  boolean retVal;
+  unsigned char _1;
+  int _2;
+  boolean _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_4 = 0;
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_6(D)->state;
+  _2 = (int) _1;
+  switch (_2) <default: <L6> [INV], case 0: <L0> [INV], case 2: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  retVal_8 = 0;
+  # DEBUG retVal => retVal_8
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  retVal_7 = 1;
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # retVal_3 = PHI <retVal_8(3), retVal_7(4), retVal_4(2)>
+<L6>:
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  _9 = retVal_3;
+  return _9;
+
+}
+
+
+EcuC_CopyTxData (struct EcuC_TxControlInfoType * TxControlInfoPtr, const struct PduInfoType * TxBufferInfoPtr, struct PduInfoType * PduInfoPtr, struct RetryInfoType * RetryInfoPtr, PduLengthType * TxDataCntPtr)
+{
+  PduLengthType retry;
+  PduLengthType copiedOffset;
+  BufReq_ReturnType retVal;
+  unsigned char _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  <unnamed type> _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  int _7;
+  short unsigned int _8;
+  int _9;
+  int _10;
+  int _11;
+  short unsigned int _12;
+  uint8 * _13;
+  uint8 * _14;
+  int _15;
+  int _16;
+  int _17;
+  sizetype _18;
+  uint8 * _19;
+  short unsigned int _20;
+  long unsigned int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  short unsigned int _25;
+  short unsigned int _26;
+  short unsigned int _27;
+  BufReq_ReturnType _50;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_33 = 0;
+  # DEBUG retVal => retVal_33
+  # DEBUG BEGIN_STMT
+  _1 = TxControlInfoPtr_35(D)->state;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = TxBufferInfoPtr_37(D)->SduLength;
+  _3 = TxControlInfoPtr_35(D)->remainMsgSize;
+  copiedOffset_38 = _2 - _3;
+  # DEBUG copiedOffset => copiedOffset_38
+  # DEBUG BEGIN_STMT
+  retry_39 = 0;
+  # DEBUG retry => retry_39
+  # DEBUG BEGIN_STMT
+  if (RetryInfoPtr_40(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = RetryInfoPtr_40(D)->TpDataState;
+  if (_4 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = RetryInfoPtr_40(D)->TxTpDataCnt;
+  if (copiedOffset_38 < _5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal_42 = 1;
+  # DEBUG retVal => retVal_42
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  retry_41 = RetryInfoPtr_40(D)->TxTpDataCnt;
+  # DEBUG retry => retry_41
+
+  <bb 8> :
+  # retVal_28 = PHI <retVal_33(3), retVal_33(4), retVal_42(6), retVal_33(7)>
+  # retry_30 = PHI <retry_39(3), retry_39(4), retry_39(6), retry_41(7)>
+  # DEBUG retry => retry_30
+  # DEBUG retVal => retVal_28
+  # DEBUG BEGIN_STMT
+  if (retVal_28 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = PduInfoPtr_43(D)->SduLength;
+  _7 = (int) _6;
+  _8 = TxControlInfoPtr_35(D)->remainMsgSize;
+  _9 = (int) _8;
+  _10 = (int) retry_30;
+  _11 = _9 + _10;
+  if (_7 > _11)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  retVal_49 = 2;
+  # DEBUG retVal => retVal_49
+  goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _12 = PduInfoPtr_43(D)->SduLength;
+  if (_12 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _13 = PduInfoPtr_43(D)->SduDataPtr;
+  _14 = TxBufferInfoPtr_37(D)->SduDataPtr;
+  _15 = (int) copiedOffset_38;
+  _16 = (int) retry_30;
+  _17 = _15 - _16;
+  _18 = (sizetype) _17;
+  _19 = _14 + _18;
+  _20 = PduInfoPtr_43(D)->SduLength;
+  _21 = (long unsigned int) _20;
+  TS_MemCpy32 (_13, _19, _21);
+  # DEBUG BEGIN_STMT
+  _22 = PduInfoPtr_43(D)->SduLength;
+  if (retry_30 < _22)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _23 = TxControlInfoPtr_35(D)->remainMsgSize;
+  _24 = PduInfoPtr_43(D)->SduLength;
+  _25 = retry_30 - _24;
+  _26 = _23 + _25;
+  TxControlInfoPtr_35(D)->remainMsgSize = _26;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _27 = TxControlInfoPtr_35(D)->remainMsgSize;
+  *TxDataCntPtr_46(D) = _27;
+  # DEBUG BEGIN_STMT
+  retVal_48 = 0;
+  # DEBUG retVal => retVal_48
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  retVal_36 = 1;
+  # DEBUG retVal => retVal_36
+
+  <bb 16> :
+  # retVal_29 = PHI <retVal_49(10), retVal_36(15), retVal_28(8), retVal_48(14)>
+  # DEBUG retVal => retVal_29
+  # DEBUG BEGIN_STMT
+  _50 = retVal_29;
+  return _50;
+
+}
+
+
+EcuC_InitTx (struct EcuC_TxControlInfoType * TxControlInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuC_TpTransmission_entry_IDLE (TxControlInfoPtr_2(D));
+  return;
+
+}
+
+
+EcuC_TpRxIndication (struct EcuC_RxControlInfoType * RxControlInfoPtr, NotifResultType Result, PduLengthType * CopiedDataSize)
+{
+  Std_ReturnType retVal;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_9 = 1;
+  # DEBUG retVal => retVal_9
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_11(D)->totalMsgSize;
+  _2 = RxControlInfoPtr_11(D)->remainMsgSize;
+  _3 = _1 - _2;
+  *CopiedDataSize_12(D) = _3;
+  # DEBUG BEGIN_STMT
+  _4 = RxControlInfoPtr_11(D)->state;
+  _5 = (int) _4;
+  switch (_5) <default: <L9> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  retVal_18 = 1;
+  # DEBUG retVal => retVal_18
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  if (Result_14(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retVal_16 = 0;
+  # DEBUG retVal => retVal_16
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal_15 = 1;
+  # DEBUG retVal => retVal_15
+
+  <bb 7> :
+  # retVal_6 = PHI <retVal_16(5), retVal_15(6)>
+  # DEBUG retVal => retVal_6
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_11(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # retVal_7 = PHI <retVal_18(3), retVal_6(7), retVal_9(2)>
+<L9>:
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+  _19 = retVal_7;
+  return _19;
+
+}
+
+
+EcuC_StartOfReceptionDet (PduLengthType TpSduLength, PduLengthType * RxBufferSizePtr)
+{
+  Std_ReturnType Result;
+  Std_ReturnType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (RxBufferSizePtr_2(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result_4 = 1;
+  # DEBUG Result => Result_4
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Result_3 = 0;
+  # DEBUG Result => Result_3
+
+  <bb 5> :
+  # Result_1 = PHI <Result_4(3), Result_3(4)>
+  # DEBUG Result => Result_1
+  # DEBUG BEGIN_STMT
+  _5 = Result_1;
+  return _5;
+
+}
+
+
+EcuC_CopyRxDataDet (const struct PduInfoType * PduInfoPtr, PduLengthType * RxBufferSizePtr)
+{
+  Std_ReturnType Result;
+  short unsigned int _1;
+  uint8 * _2;
+  Std_ReturnType _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_4 = 1;
+  # DEBUG Result => Result_4
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_5(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result_11 = 1;
+  # DEBUG Result => Result_11
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (RxBufferSizePtr_6(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Result_10 = 1;
+  # DEBUG Result => Result_10
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = PduInfoPtr_5(D)->SduLength;
+  if (_1 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _2 = PduInfoPtr_5(D)->SduDataPtr;
+  if (_2 == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Result_8 = 1;
+  # DEBUG Result => Result_8
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Result_9 = 0;
+  # DEBUG Result => Result_9
+
+  <bb 10> :
+  # Result_3 = PHI <Result_11(3), Result_10(5), Result_8(8), Result_9(9)>
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  _12 = Result_3;
+  return _12;
+
+}
+
+
+EcuC_RxBufferIsLocked (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  boolean Result;
+  unsigned char _1;
+  int _2;
+  boolean _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_4 = 1;
+  # DEBUG Result => Result_4
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_6(D)->state;
+  _2 = (int) _1;
+  switch (_2) <default: <L6> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Result_8 = 0;
+  # DEBUG Result => Result_8
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Result_7 = 1;
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # Result_3 = PHI <Result_8(3), Result_7(4), Result_4(2)>
+<L6>:
+  # DEBUG Result => Result_3
+  # DEBUG BEGIN_STMT
+  _9 = Result_3;
+  return _9;
+
+}
+
+
+EcuC_CopyRxData (struct EcuC_RxControlInfoType * RxControlInfoPtr, struct PduInfoType * RxBufferInfoPtr, const struct PduInfoType * PduInfoPtr, PduLengthType * RxBufferSizePtr)
+{
+  BufReq_ReturnType Result;
+  unsigned char _1;
+  int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  uint8 * _7;
+  short unsigned int _8;
+  int _9;
+  short unsigned int _10;
+  int _11;
+  int _12;
+  sizetype _13;
+  uint8 * _14;
+  uint8 * _15;
+  short unsigned int _16;
+  long unsigned int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  BufReq_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_24 = 1;
+  # DEBUG Result => Result_24
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_26(D)->state;
+  _2 = (int) _1;
+  switch (_2) <default: <L12> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Result_38 = 1;
+  # DEBUG Result => Result_38
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = PduInfoPtr_27(D)->SduLength;
+  if (_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = RxControlInfoPtr_26(D)->remainMsgSize;
+  *RxBufferSizePtr_31(D) = _4;
+  # DEBUG BEGIN_STMT
+  Result_37 = 0;
+  # DEBUG Result => Result_37
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = PduInfoPtr_27(D)->SduLength;
+  _6 = RxControlInfoPtr_26(D)->remainMsgSize;
+  if (_5 > _6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_26(D));
+  # DEBUG BEGIN_STMT
+  Result_35 = 1;
+  # DEBUG Result => Result_35
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = RxBufferInfoPtr_28(D)->SduDataPtr;
+  _8 = RxControlInfoPtr_26(D)->totalMsgSize;
+  _9 = (int) _8;
+  _10 = RxControlInfoPtr_26(D)->remainMsgSize;
+  _11 = (int) _10;
+  _12 = _9 - _11;
+  _13 = (sizetype) _12;
+  _14 = _7 + _13;
+  _15 = PduInfoPtr_27(D)->SduDataPtr;
+  _16 = PduInfoPtr_27(D)->SduLength;
+  _17 = (long unsigned int) _16;
+  TS_MemCpy32 (_14, _15, _17);
+  # DEBUG BEGIN_STMT
+  _18 = RxControlInfoPtr_26(D)->remainMsgSize;
+  _19 = PduInfoPtr_27(D)->SduLength;
+  _20 = _18 - _19;
+  RxControlInfoPtr_26(D)->remainMsgSize = _20;
+  # DEBUG BEGIN_STMT
+  _21 = RxControlInfoPtr_26(D)->remainMsgSize;
+  *RxBufferSizePtr_31(D) = _21;
+  # DEBUG BEGIN_STMT
+  Result_33 = 0;
+  # DEBUG Result => Result_33
+
+  <bb 9> :
+  # Result_22 = PHI <Result_38(3), Result_35(7), Result_24(2), Result_37(5), Result_33(8)>
+<L12>:
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+  _39 = Result_22;
+  return _39;
+
+}
+
+
+EcuC_StartOfReception (struct EcuC_RxControlInfoType * RxControlInfoPtr, struct PduInfoType * RxBufferInfoPtr, PduLengthType TpSduLength, PduLengthType * RxBufferSizePtr)
+{
+  PduLengthType msgSize;
+  BufReq_ReturnType Result;
+  unsigned char _1;
+  int _2;
+  short unsigned int _3;
+  BufReq_ReturnType _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result_7 = 1;
+  # DEBUG Result => Result_7
+  # DEBUG BEGIN_STMT
+  _1 = RxControlInfoPtr_9(D)->state;
+  _2 = (int) _1;
+  switch (_2) <default: <L12> [INV], case 0: <L0> [INV], case 1: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  msgSize_11 = 0;
+  # DEBUG msgSize => msgSize_11
+  # DEBUG BEGIN_STMT
+  _3 = RxBufferInfoPtr_12(D)->SduLength;
+  if (TpSduLength_13(D) > _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Result_22 = 3;
+  # DEBUG Result => Result_22
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (TpSduLength_13(D) == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  msgSize_15 = RxBufferInfoPtr_12(D)->SduLength;
+  # DEBUG msgSize => msgSize_15
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  msgSize_14 = TpSduLength_13(D);
+  # DEBUG msgSize => msgSize_14
+
+  <bb 8> :
+  # msgSize_5 = PHI <msgSize_15(6), msgSize_14(7)>
+  # DEBUG msgSize => msgSize_5
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_9(D)->remainMsgSize = msgSize_5;
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_9(D)->totalMsgSize = msgSize_5;
+  # DEBUG BEGIN_STMT
+  RxControlInfoPtr_9(D)->state = 1;
+  # DEBUG BEGIN_STMT
+  *RxBufferSizePtr_19(D) = msgSize_5;
+  # DEBUG BEGIN_STMT
+  Result_21 = 0;
+  # DEBUG Result => Result_21
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  Result_10 = 1;
+  # DEBUG Result => Result_10
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+  # Result_4 = PHI <Result_21(8), Result_10(9), Result_7(2), Result_22(4)>
+<L12>:
+  # DEBUG Result => Result_4
+  # DEBUG BEGIN_STMT
+  _23 = Result_4;
+  return _23;
+
+}
+
+
+EcuC_InitRx (struct EcuC_RxControlInfoType * RxControlInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuC_TpReception_entry_IDLE (RxControlInfoPtr_2(D));
+  return;
+
+}
+
+

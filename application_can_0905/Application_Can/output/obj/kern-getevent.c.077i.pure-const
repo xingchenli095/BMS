@@ -1,0 +1,399 @@
+
+
+ local analysis of OS_KernGetEvent
+   scanning: _1 = (unsigned int) t_33(D);
+  scanning: p[0] = _1;
+  scanning: ep.0_2 = (unsigned int) ep_36(D);
+  scanning: p[1] = ep.0_2;
+  scanning: _3 = OS_kernelData.inFunction;
+  scanning: if (_3 == 10)
+  scanning: OS_permittedContext.3_4 = OS_permittedContext;
+  scanning: _5 = MEM[(const os_callermask_t *)OS_permittedContext.3_4 + 68B];
+    Indirect ref read is not const
+  scanning: _32 = _5 & 1024;
+  scanning: if (_32 != 0)
+  scanning: _6 = OS_kernelData.errorStatus.calledFrom;
+  scanning: _7 = (int) _6;
+  scanning: _8 = 1 << _7;
+  scanning: _9 = (short unsigned int) _8;
+  scanning: _10 = _5 & _9;
+  scanning: if (_10 != 0)
+  scanning: _13 = iftmp.2_30 ^ 1;
+  scanning: iftmp.1_40 = (_Bool) _13;
+  scanning: OS_permittedContext.5_11 = OS_permittedContext;
+  scanning: _12 = MEM[(const os_callermask_t *)OS_permittedContext.5_11 + 68B];
+    Indirect ref read is not const
+  scanning: _14 = (int) _3;
+  scanning: _15 = 1 << _14;
+  scanning: _16 = (short unsigned int) _15;
+  scanning: _17 = _12 & _16;
+  scanning: iftmp.1_38 = _17 == 0;
+  scanning: if (iftmp.1_29 != 0)
+  scanning: r_56 = OS_Error (&OS_svc_GetEvent, 12, &p);
+  scanning: OS_iecMode.6_18 = OS_iecMode;
+  scanning: if (OS_iecMode.6_18 > 1)
+  scanning: if (_3 == 1)
+  scanning: _19 = OS_kernelData.taskCurrent;
+  scanning: _20 = _19->dynamic;
+    Indirect ref read is not const
+  scanning: _21 = BIT_FIELD_REF <MEM[(void *)_20], 16, 160>;
+    Indirect ref read is not const
+  scanning: if (_21 != 0)
+  scanning: _22 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+    Indirect ref read is not const
+  scanning: if (_22 != 0)
+  scanning: r_42 = OS_Error (&OS_svc_GetEvent, 55, &p);
+  scanning: OS_nTasks.7_23 = OS_nTasks;
+  scanning: if (OS_nTasks.7_23 <= t_33(D))
+  scanning: r_54 = OS_Error (&OS_svc_GetEvent, 2, &p);
+  scanning: OS_taskTableBase.8_24 = OS_taskTableBase;
+  scanning: _25 = _1 * 76;
+  scanning: ts_43 = OS_taskTableBase.8_24 + _25;
+  scanning: _26 = ts_43->flags;
+    Indirect ref read is not const
+  scanning: _39 = _26 & 2;
+  scanning: if (_39 == 0)
+  scanning: r_52 = OS_Error (&OS_svc_GetEvent, 15, &p);
+  scanning: _27 = OS_CanWrite (ep_36(D), 4);
+  scanning: if (_27 != 0)
+  scanning: e_48 = OS_LocalGetEvent (ts_43, ep_36(D));
+  scanning: if (e_48 != 0)
+  scanning: r_50 = OS_Error (&OS_svc_GetEvent, e_48, &p);
+  scanning: r_46 = OS_Error (&OS_svc_GetEvent, 6, &p);
+  scanning: return r_28;
+Function is locally pure.
+callgraph:
+
+OS_LocalGetEvent/9 (OS_LocalGetEvent) @06cbea80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (84952977 (estimated locally),0.08 per call) 
+  Calls: 
+OS_CanWrite/8 (OS_CanWrite) @06cbe9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (169905953 (estimated locally),0.16 per call) 
+  Calls: 
+OS_Error/3 (OS_Error) @06cbe8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (84952977 (estimated locally),0.08 per call) OS_KernGetEvent/0 (28034482 (estimated locally),0.03 per call) OS_KernGetEvent/0 (169905953 (estimated locally),0.16 per call) OS_KernGetEvent/0 (167370044 (estimated locally),0.16 per call) OS_KernGetEvent/0 (212225071 (estimated locally),0.20 per call) OS_KernGetEvent/0 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+OS_KernGetEvent/0 (OS_KernGetEvent) @06cbe460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807440
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_svc_GetEvent/4 (addr)OS_iecMode/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetEvent/4 (addr)OS_nTasks/6 (read)OS_svc_GetEvent/4 (addr)OS_taskTableBase/7 (read)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/3 (84952977 (estimated locally),0.08 per call) OS_Error/3 (28034482 (estimated locally),0.03 per call) OS_LocalGetEvent/9 (84952977 (estimated locally),0.08 per call) OS_CanWrite/8 (169905953 (estimated locally),0.16 per call) OS_Error/3 (169905953 (estimated locally),0.16 per call) OS_Error/3 (167370044 (estimated locally),0.16 per call) OS_Error/3 (212225071 (estimated locally),0.20 per call) OS_Error/3 (354334802 (estimated locally),0.33 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_KernGetEvent/0 (OS_KernGetEvent) @06cbe460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06807440
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_svc_GetEvent/4 (addr)OS_iecMode/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetEvent/4 (addr)OS_nTasks/6 (read)OS_svc_GetEvent/4 (addr)OS_taskTableBase/7 (read)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/3 (84952977 (estimated locally),0.08 per call) OS_Error/3 (28034482 (estimated locally),0.03 per call) OS_LocalGetEvent/9 (84952977 (estimated locally),0.08 per call) OS_CanWrite/8 (169905953 (estimated locally),0.16 per call) OS_Error/3 (169905953 (estimated locally),0.16 per call) OS_Error/3 (167370044 (estimated locally),0.16 per call) OS_Error/3 (212225071 (estimated locally),0.20 per call) OS_Error/3 (354334802 (estimated locally),0.33 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_KernGetEvent: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_KernGetEvent: malloc_bottom
+callgraph:
+
+OS_LocalGetEvent/9 (OS_LocalGetEvent) @06cbea80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (84952977 (estimated locally),0.08 per call) 
+  Calls: 
+OS_CanWrite/8 (OS_CanWrite) @06cbe9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (169905953 (estimated locally),0.16 per call) 
+  Calls: 
+OS_Error/3 (OS_Error) @06cbe8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetEvent/0 (84952977 (estimated locally),0.08 per call) OS_KernGetEvent/0 (28034482 (estimated locally),0.03 per call) OS_KernGetEvent/0 (169905953 (estimated locally),0.16 per call) OS_KernGetEvent/0 (167370044 (estimated locally),0.16 per call) OS_KernGetEvent/0 (212225071 (estimated locally),0.20 per call) OS_KernGetEvent/0 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+OS_KernGetEvent/0 (OS_KernGetEvent) @06cbe460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068075e0
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_svc_GetEvent/4 (addr)OS_iecMode/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetEvent/4 (addr)OS_nTasks/6 (read)OS_svc_GetEvent/4 (addr)OS_taskTableBase/7 (read)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/3 (84952977 (estimated locally),0.08 per call) OS_Error/3 (28034482 (estimated locally),0.03 per call) OS_LocalGetEvent/9 (84952977 (estimated locally),0.08 per call) OS_CanWrite/8 (169905953 (estimated locally),0.16 per call) OS_Error/3 (169905953 (estimated locally),0.16 per call) OS_Error/3 (167370044 (estimated locally),0.16 per call) OS_Error/3 (212225071 (estimated locally),0.20 per call) OS_Error/3 (354334802 (estimated locally),0.33 per call) 
+
+
+ ordered call graph: reduced
+OS_KernGetEvent/0 (OS_KernGetEvent) @06cbe460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068075e0
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_svc_GetEvent/4 (addr)OS_iecMode/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetEvent/4 (addr)OS_nTasks/6 (read)OS_svc_GetEvent/4 (addr)OS_taskTableBase/7 (read)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)OS_svc_GetEvent/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/3 (84952977 (estimated locally),0.08 per call) OS_Error/3 (28034482 (estimated locally),0.03 per call) OS_LocalGetEvent/9 (84952977 (estimated locally),0.08 per call) OS_CanWrite/8 (169905953 (estimated locally),0.16 per call) OS_Error/3 (169905953 (estimated locally),0.16 per call) OS_Error/3 (167370044 (estimated locally),0.16 per call) OS_Error/3 (212225071 (estimated locally),0.20 per call) OS_Error/3 (354334802 (estimated locally),0.33 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_KernGetEvent (os_taskid_t t, os_eventmask_t * ep)
+{
+  os_errorresult_t e;
+  os_paramtype_t p[3];
+  os_result_t r;
+  const struct os_task_t * ts;
+  unsigned int _1;
+  unsigned int ep.0_2;
+  unsigned char _3;
+  const os_callermask_t * OS_permittedContext.3_4;
+  short unsigned int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  const os_callermask_t * OS_permittedContext.5_11;
+  short unsigned int _12;
+  int _13;
+  int _14;
+  int _15;
+  short unsigned int _16;
+  short unsigned int _17;
+  unsigned char OS_iecMode.6_18;
+  const struct os_task_t * _19;
+  struct os_taskdynamic_t * _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  unsigned char OS_nTasks.7_23;
+  const struct os_task_t * OS_taskTableBase.8_24;
+  unsigned int _25;
+  unsigned char _26;
+  int _27;
+  _Bool iftmp.1_29;
+  int iftmp.2_30;
+  short unsigned int _32;
+  _Bool iftmp.1_38;
+  unsigned char _39;
+  _Bool iftmp.1_40;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) t_33(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  ep.0_2 = (unsigned int) ep_36(D);
+  p[1] = ep.0_2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  OS_permittedContext.3_4 = OS_permittedContext;
+  _5 = MEM[(const os_callermask_t *)OS_permittedContext.3_4 + 68B];
+  _32 = _5 & 1024;
+  if (_32 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  _6 = OS_kernelData.errorStatus.calledFrom;
+  _7 = (int) _6;
+  _8 = 1 << _7;
+  _9 = (short unsigned int) _8;
+  _10 = _5 & _9;
+  if (_10 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 273804165]:
+
+  <bb 6> [local count: 365072220]:
+  # iftmp.2_30 = PHI <1(4), 0(5)>
+  _13 = iftmp.2_30 ^ 1;
+  iftmp.1_40 = (_Bool) _13;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 708669604]:
+  OS_permittedContext.5_11 = OS_permittedContext;
+  _12 = MEM[(const os_callermask_t *)OS_permittedContext.5_11 + 68B];
+  _14 = (int) _3;
+  _15 = 1 << _14;
+  _16 = (short unsigned int) _15;
+  _17 = _12 & _16;
+  iftmp.1_38 = _17 == 0;
+
+  <bb 8> [local count: 1073741823]:
+  # iftmp.1_29 = PHI <iftmp.1_40(6), iftmp.1_38(7)>
+  if (iftmp.1_29 != 0)
+    goto <bb 9>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 9> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  r_56 = OS_Error (&OS_svc_GetEvent, 12, &p);
+  # DEBUG r => r_56
+  goto <bb 23>; [100.00%]
+
+  <bb 10> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_18 = OS_iecMode;
+  if (OS_iecMode.6_18 > 1)
+    goto <bb 11>; [59.00%]
+  else
+    goto <bb 15>; [41.00%]
+
+  <bb 11> [local count: 424450142]:
+  if (_3 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 144313049]:
+  _19 = OS_kernelData.taskCurrent;
+  _20 = _19->dynamic;
+  _21 = BIT_FIELD_REF <MEM[(void *)_20], 16, 160>;
+  if (_21 != 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 13> [local count: 280137094]:
+  _22 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  if (_22 != 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 14> [local count: 212225071]:
+  # DEBUG BEGIN_STMT
+  r_42 = OS_Error (&OS_svc_GetEvent, 55, &p);
+  # DEBUG r => r_42
+  goto <bb 23>; [100.00%]
+
+  <bb 15> [local count: 507181950]:
+  # DEBUG BEGIN_STMT
+  OS_nTasks.7_23 = OS_nTasks;
+  if (OS_nTasks.7_23 <= t_33(D))
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+
+  <bb 16> [local count: 167370044]:
+  # DEBUG BEGIN_STMT
+  r_54 = OS_Error (&OS_svc_GetEvent, 2, &p);
+  # DEBUG r => r_54
+  goto <bb 23>; [100.00%]
+
+  <bb 17> [local count: 339811907]:
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.8_24 = OS_taskTableBase;
+  _25 = _1 * 76;
+  ts_43 = OS_taskTableBase.8_24 + _25;
+  # DEBUG ts => ts_43
+  # DEBUG BEGIN_STMT
+  _26 = ts_43->flags;
+  _39 = _26 & 2;
+  if (_39 == 0)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 18> [local count: 169905953]:
+  # DEBUG BEGIN_STMT
+  r_52 = OS_Error (&OS_svc_GetEvent, 15, &p);
+  # DEBUG r => r_52
+  goto <bb 23>; [100.00%]
+
+  <bb 19> [local count: 169905953]:
+  # DEBUG BEGIN_STMT
+  _27 = OS_CanWrite (ep_36(D), 4);
+  if (_27 != 0)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 22>; [50.00%]
+
+  <bb 20> [local count: 84952977]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e_48 = OS_LocalGetEvent (ts_43, ep_36(D));
+  # DEBUG e => e_48
+  # DEBUG BEGIN_STMT
+  if (e_48 != 0)
+    goto <bb 21>; [33.00%]
+  else
+    goto <bb 23>; [67.00%]
+
+  <bb 21> [local count: 28034482]:
+  # DEBUG BEGIN_STMT
+  r_50 = OS_Error (&OS_svc_GetEvent, e_48, &p);
+  # DEBUG r => r_50
+  goto <bb 23>; [100.00%]
+
+  <bb 22> [local count: 84952977]:
+  # DEBUG BEGIN_STMT
+  r_46 = OS_Error (&OS_svc_GetEvent, 6, &p);
+  # DEBUG r => r_46
+
+  <bb 23> [local count: 1073741824]:
+  # r_28 = PHI <r_56(9), r_42(14), r_54(16), r_52(18), r_50(21), r_46(22), 0(20)>
+  # DEBUG r => r_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p ={v} {CLOBBER};
+  return r_28;
+
+}
+
+

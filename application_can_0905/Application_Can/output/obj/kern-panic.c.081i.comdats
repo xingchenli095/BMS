@@ -1,0 +1,33 @@
+__attribute__((target ("general-regs-only")))
+OS_Panic (os_panic_t curPanicCode)
+{
+  os_panic_e _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.panicCode;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.panicCode = curPanicCode_5(D);
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (22, 0);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return 22;
+
+}
+
+

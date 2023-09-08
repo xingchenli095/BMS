@@ -1,0 +1,1735 @@
+Crypto_AL_DerSkipIdentifier.part.0 (const uint8 * EncodingPtr)
+{
+  uint32 NumOctets;
+  const uint8 * _3;
+  unsigned char _4;
+  signed char _5;
+
+  <bb 8> [local count: 312727306]:
+  goto <bb 4>; [100.00%]
+
+  <bb 2> [local count: 805306368]:
+  # DEBUG BEGIN_STMT
+  _3 = EncodingPtr_1(D) + NumOctets_2;
+  _4 = *_3;
+  _5 = (signed char) _4;
+  if (_5 >= 0)
+    goto <bb 5>; [5.50%]
+  else
+    goto <bb 3>; [94.50%]
+
+  <bb 3> [local count: 761014519]:
+  # DEBUG BEGIN_STMT
+  NumOctets_6 = NumOctets_2 + 1;
+  # DEBUG NumOctets => NumOctets_6
+
+  <bb 4> [local count: 1073741824]:
+  # NumOctets_2 = PHI <NumOctets_6(3), 1(8)>
+  # DEBUG NumOctets => NumOctets_2
+  # DEBUG BEGIN_STMT
+  if (NumOctets_2 != 4)
+    goto <bb 2>; [75.00%]
+  else
+    goto <bb 5>; [25.00%]
+
+  <bb 5> [local count: 312727306]:
+  # NumOctets_7 = PHI <NumOctets_2(2), NumOctets_2(4)>
+  # DEBUG BEGIN_STMT
+  NumOctets_8 = NumOctets_7 + 1;
+  # DEBUG NumOctets => NumOctets_8
+  # DEBUG BEGIN_STMT
+  if (NumOctets_8 == 5)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 6> [local count: 106327284]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NumOctets => 0
+
+  <bb 7> [local count: 312727306]:
+  # NumOctets_9 = PHI <NumOctets_8(5), 0(6)>
+  # DEBUG NumOctets => NumOctets_9
+  # DEBUG BEGIN_STMT
+  return NumOctets_9;
+
+}
+
+
+Crypto_AL_DerCheckIdentifier.isra.0 (const uint8 * EncodingPtr, const uint32 * ISRA.13)
+{
+  boolean RetVal;
+  uint32 TagValue;
+  uint32 OctetIndex;
+  unsigned char _2;
+  unsigned char _4;
+  const uint8 * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  signed char _12;
+  long unsigned int _16;
+
+  <bb 10> [local count: 919786196]:
+  # DEBUG SubComponentPtr s=> SubComponentPtr
+
+  <bb 2> [local count: 919786196]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _2 = *EncodingPtr_1(D);
+  TagValue_3 = (uint32) _2;
+  # DEBUG TagValue => TagValue_3
+  # DEBUG BEGIN_STMT
+  # DEBUG OctetIndex => 1
+  # DEBUG BEGIN_STMT
+  _4 = _2 & 31;
+  if (_4 == 31)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 11> [local count: 312727306]:
+  goto <bb 5>; [100.00%]
+
+  <bb 3> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  TagValue_6 = TagValue_5 << 8;
+  # DEBUG TagValue => TagValue_6
+  # DEBUG BEGIN_STMT
+  _8 = EncodingPtr_1(D) + OctetIndex_7;
+  _9 = *_8;
+  _10 = (long unsigned int) _9;
+  TagValue_11 = TagValue_6 | _10;
+  # DEBUG TagValue => TagValue_11
+  # DEBUG BEGIN_STMT
+  _12 = (signed char) _9;
+  if (_12 >= 0)
+    goto <bb 6>; [5.50%]
+  else
+    goto <bb 4>; [94.50%]
+
+  <bb 4> [local count: 761014520]:
+  # DEBUG BEGIN_STMT
+  OctetIndex_13 = OctetIndex_7 + 1;
+  # DEBUG OctetIndex => OctetIndex_13
+
+  <bb 5> [local count: 1073741824]:
+  # TagValue_5 = PHI <TagValue_11(4), TagValue_3(11)>
+  # OctetIndex_7 = PHI <OctetIndex_13(4), 1(11)>
+  # DEBUG OctetIndex => OctetIndex_7
+  # DEBUG TagValue => TagValue_5
+  # DEBUG BEGIN_STMT
+  if (OctetIndex_7 != 4)
+    goto <bb 3>; [75.00%]
+  else
+    goto <bb 6>; [25.00%]
+
+  <bb 6> [local count: 312727306]:
+  # TagValue_19 = PHI <TagValue_11(3), TagValue_5(5)>
+  # OctetIndex_14 = PHI <OctetIndex_7(3), OctetIndex_7(5)>
+  # DEBUG OctetIndex => OctetIndex_14
+  # DEBUG TagValue => TagValue_19
+  # DEBUG BEGIN_STMT
+  if (OctetIndex_14 != 4)
+    goto <bb 7>; [66.00%]
+  else
+    goto <bb 9>; [34.00%]
+
+  <bb 7> [local count: 813458912]:
+  # TagValue_17 = PHI <TagValue_3(2), TagValue_19(6)>
+  # DEBUG OctetIndex => NULL
+  # DEBUG TagValue => NULL
+  _16 = *ISRA.13_21(D);
+  if (_16 == TagValue_17)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 8> [local count: 276576030]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 9> [local count: 919786198]:
+  # RetVal_18 = PHI <0(6), 0(7), 1(8)>
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  return RetVal_18;
+
+}
+
+
+Crypto_AL_DerCheckValidDate (uint8 Year, uint8 Month, uint8 Day)
+{
+  uint8 DaysInMonth;
+  boolean DateValid;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG DateValid => 0
+  # DEBUG BEGIN_STMT
+  _1 = Month_7(D) + 255;
+  if (_1 <= 11)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) Month_7(D);
+  _3 = _2 + 4294967295;
+  DaysInMonth_9 = Crypto_DaysPerMonth[_3];
+  # DEBUG DaysInMonth => DaysInMonth_9
+  # DEBUG BEGIN_STMT
+  _4 = Year_10(D) & 3;
+  if (_4 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+  if (Month_7(D) == 2)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  DaysInMonth_11 = DaysInMonth_9 + 1;
+  # DEBUG DaysInMonth => DaysInMonth_11
+
+  <bb 6> [local count: 536870913]:
+  # DaysInMonth_6 = PHI <DaysInMonth_9(3), DaysInMonth_9(4), DaysInMonth_11(5)>
+  # DEBUG DaysInMonth => DaysInMonth_6
+  # DEBUG BEGIN_STMT
+  if (Day_12(D) != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 7> [local count: 268435456]:
+  if (DaysInMonth_6 >= Day_12(D))
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG DateValid => 1
+
+  <bb 9> [local count: 1073741824]:
+  # DateValid_5 = PHI <0(2), 0(6), 0(7), 1(8)>
+  # DEBUG DateValid => DateValid_5
+  # DEBUG BEGIN_STMT
+  return DateValid_5;
+
+}
+
+
+Crypto_AL_DerCheckRanges (uint32 Value, boolean Overflow, uint32 NrOfRanges, const struct Crypto_DerRangeType * Ranges)
+{
+  boolean Valid;
+  uint32 i;
+  long unsigned int _1;
+  const struct Crypto_DerRangeType * _2;
+  unsigned char _3;
+  long unsigned int _4;
+  const struct Crypto_DerRangeType * _5;
+  long unsigned int _6;
+  unsigned char _7;
+  long unsigned int _8;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  if (Overflow_15(D) != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 477815111]:
+  # DEBUG BEGIN_STMT
+  _1 = i_9 * 12;
+  _2 = Ranges_16(D) + _1;
+  _3 = _2->Unbounded;
+  if (_3 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 5> [local count: 238907556]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 477815111]:
+  # DEBUG BEGIN_STMT
+  _4 = i_9 * 12;
+  _5 = Ranges_16(D) + _4;
+  _6 = _5->Min;
+  if (_6 <= Value_17(D))
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 7> [local count: 238907556]:
+  _7 = _5->Unbounded;
+  if (_7 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 8> [local count: 119453778]:
+  _8 = _5->Max;
+  if (_8 >= Value_17(D))
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 179180667]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+
+  <bb 10> [local count: 955630223]:
+  # Valid_10 = PHI <1(5), Valid_11(6), Valid_11(8), 1(9), Valid_11(4)>
+  # DEBUG Valid => Valid_10
+  # DEBUG BEGIN_STMT
+  i_18 = i_9 + 1;
+  # DEBUG i => i_18
+
+  <bb 11> [local count: 1073741824]:
+  # i_9 = PHI <0(2), i_18(10)>
+  # Valid_11 = PHI <0(2), Valid_10(10)>
+  # DEBUG Valid => Valid_11
+  # DEBUG i => i_9
+  # DEBUG BEGIN_STMT
+  if (i_9 < NrOfRanges_12(D))
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+
+  <bb 12> [local count: 118111601]:
+  # Valid_13 = PHI <Valid_11(11)>
+  # DEBUG BEGIN_STMT
+  return Valid_13;
+
+}
+
+
+Crypto_AL_DerCheckDate (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  uint8 Day;
+  uint8 Month;
+  uint8 Year;
+  boolean Valid;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  const uint8 * _4;
+  unsigned char _5;
+  unsigned char _6;
+  sizetype _7;
+  const uint8 * _8;
+  unsigned char _9;
+  sizetype _10;
+  const uint8 * _11;
+  unsigned char _12;
+  unsigned char _13;
+  sizetype _14;
+  const uint8 * _15;
+  unsigned char _16;
+  sizetype _17;
+  const uint8 * _18;
+  unsigned char _19;
+  unsigned char _20;
+  sizetype _21;
+  const uint8 * _22;
+  unsigned char _23;
+  unsigned char _24;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  # DEBUG BEGIN_STMT
+  Position_28 = Crypto_AL_DerEncGetContentsStart (Encoding_27(D));
+  # DEBUG Position => Position_28
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_27(D));
+  _2 = _1 + Position_28;
+  *LengthPtr_29(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_31(D))
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  _3 = Position_28 + 6;
+  if (_2 != _3)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 4> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Encoding_27(D) + Position_28;
+  _5 = *_4;
+  _6 = _5 * 10;
+  _7 = Position_28 + 1;
+  _8 = Encoding_27(D) + _7;
+  _9 = *_8;
+  Year_32 = _6 + _9;
+  # DEBUG Year => Year_32
+  # DEBUG BEGIN_STMT
+  _10 = Position_28 + 2;
+  _11 = Encoding_27(D) + _10;
+  _12 = *_11;
+  _13 = _12 * 10;
+  _14 = Position_28 + 3;
+  _15 = Encoding_27(D) + _14;
+  _16 = *_15;
+  Month_33 = _13 + _16;
+  # DEBUG Month => Month_33
+  # DEBUG BEGIN_STMT
+  _17 = Position_28 + 4;
+  _18 = Encoding_27(D) + _17;
+  _19 = *_18;
+  _20 = _19 * 10;
+  _21 = Position_28 + 5;
+  _22 = Encoding_27(D) + _21;
+  _23 = *_22;
+  Day_34 = _20 + _23;
+  # DEBUG Day => Day_34
+  # DEBUG BEGIN_STMT
+  _24 = Crypto_AL_DerCheckValidDate (Year_32, Month_33, Day_34);
+  if (_24 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 6> [local count: 1073741824]:
+  # Valid_25 = PHI <0(3), 1(4), 0(5), 0(2)>
+  # DEBUG Valid => Valid_25
+  # DEBUG BEGIN_STMT
+  return Valid_25;
+
+}
+
+
+Crypto_AL_DerCheckInteger (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 Position;
+  boolean Overflow;
+  uint32 Value;
+  long unsigned int _1;
+  long unsigned int _2;
+  const uint8 * _3;
+  unsigned char _4;
+  sizetype _5;
+  const uint8 * _6;
+  unsigned char _7;
+  signed char _8;
+  sizetype _9;
+  const uint8 * _10;
+  unsigned char _11;
+  signed char _12;
+  const struct Crypto_DerRangeType * _13;
+  const uint8 * _14;
+  unsigned char _15;
+  signed char _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  const uint8 * _19;
+  unsigned char _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  unsigned char _23;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  # DEBUG BEGIN_STMT
+  Position_33 = Crypto_AL_DerEncGetContentsStart (Encoding_32(D));
+  # DEBUG Position => Position_33
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_32(D));
+  _2 = _1 + Position_33;
+  *LengthPtr_34(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_36(D))
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  if (_2 == 0)
+    goto <bb 20>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  if (_1 > 1)
+    goto <bb 5>; [59.00%]
+  else
+    goto <bb 11>; [41.00%]
+
+  <bb 5> [local count: 158376919]:
+  # DEBUG BEGIN_STMT
+  _3 = Encoding_32(D) + Position_33;
+  _4 = *_3;
+  if (_4 == 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 6> [local count: 79188460]:
+  _5 = Position_33 + 1;
+  _6 = Encoding_32(D) + _5;
+  _7 = *_6;
+  _8 = (signed char) _7;
+  if (_8 >= 0)
+    goto <bb 7>; [59.00%]
+  else
+    goto <bb 8>; [41.00%]
+
+  <bb 7> [local count: 46721191]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 8> [local count: 158376919]:
+  # Valid_29 = PHI <1(5), 1(6), 0(7)>
+  # DEBUG Valid => Valid_29
+  # DEBUG BEGIN_STMT
+  if (_4 == 255)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 9> [local count: 53848152]:
+  _9 = Position_33 + 1;
+  _10 = Encoding_32(D) + _9;
+  _11 = *_10;
+  _12 = (signed char) _11;
+  if (_12 < 0)
+    goto <bb 20>; [41.00%]
+  else
+    goto <bb 10>; [59.00%]
+
+  <bb 10> [local count: 136299177]:
+  # DEBUG Valid => Valid_29
+  # DEBUG BEGIN_STMT
+  if (Valid_29 == 1)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 20>; [66.00%]
+
+  <bb 11> [local count: 156400257]:
+  # Valid_37 = PHI <Valid_29(10), 1(4)>
+  # DEBUG Valid => NULL
+  _13 = ComponentPtr_38(D)->Ranges;
+  if (_13 != 0B)
+    goto <bb 12>; [70.00%]
+  else
+    goto <bb 20>; [30.00%]
+
+  <bb 12> [local count: 109480180]:
+  # DEBUG BEGIN_STMT
+  _14 = Encoding_32(D) + Position_33;
+  _15 = *_14;
+  _16 = (signed char) _15;
+  if (_16 < 0)
+    goto <bb 20>; [41.00%]
+  else
+    goto <bb 13>; [59.00%]
+
+  <bb 13> [local count: 64593306]:
+  # DEBUG BEGIN_STMT
+  if (_15 == 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 14> [local count: 32296653]:
+  # DEBUG BEGIN_STMT
+  Position_39 = Position_33 + 1;
+  # DEBUG Position => Position_39
+
+  <bb 15> [local count: 64593306]:
+  # Position_27 = PHI <Position_33(13), Position_39(14)>
+  # DEBUG Position => Position_27
+  # DEBUG BEGIN_STMT
+  _17 = _2 - Position_27;
+  if (_17 > 4)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 21> [local count: 32296653]:
+  goto <bb 17>; [100.00%]
+
+  <bb 16> [local count: 261309285]:
+  # DEBUG BEGIN_STMT
+  _18 = Value_24 << 8;
+  _19 = Encoding_32(D) + Position_28;
+  _20 = *_19;
+  _21 = (long unsigned int) _20;
+  Value_40 = _18 + _21;
+  # DEBUG Value => Value_40
+  # DEBUG BEGIN_STMT
+  Position_41 = Position_28 + 1;
+  # DEBUG Position => Position_41
+
+  <bb 17> [local count: 293605939]:
+  # Value_24 = PHI <Value_40(16), 0(21)>
+  # Position_28 = PHI <Position_41(16), Position_27(21)>
+  # DEBUG Overflow => NULL
+  # DEBUG Position => Position_28
+  # DEBUG Value => Value_24
+  # DEBUG BEGIN_STMT
+  if (_2 > Position_28)
+    goto <bb 16>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+
+  <bb 18> [local count: 64593306]:
+  # Value_25 = PHI <0(15), Value_24(17)>
+  # Overflow_26 = PHI <1(15), 0(17)>
+  # DEBUG Overflow => Overflow_26
+  # DEBUG Value => Value_25
+  # DEBUG BEGIN_STMT
+  _22 = ComponentPtr_38(D)->NrOfRanges;
+  _23 = Crypto_AL_DerCheckRanges (Value_25, Overflow_26, _22, _13);
+  if (_23 == 0)
+    goto <bb 19>; [50.00%]
+  else
+    goto <bb 20>; [50.00%]
+
+  <bb 19> [local count: 32296653]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 20> [local count: 1073741824]:
+  # Valid_30 = PHI <0(3), Valid_29(10), Valid_37(11), 0(12), Valid_37(18), 0(19), 0(2), 0(9)>
+  # DEBUG Valid => Valid_30
+  # DEBUG BEGIN_STMT
+  return Valid_30;
+
+}
+
+
+Crypto_AL_DerCheckCharacterString (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint8 CurrentByte;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  const uint8 * _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 472446400]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  # DEBUG BEGIN_STMT
+  Position_11 = Crypto_AL_DerEncGetContentsStart (Encoding_10(D));
+  # DEBUG Position => Position_11
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_10(D));
+  _2 = _1 + Position_11;
+  *LengthPtr_12(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_14(D))
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 236223200]:
+  if (_2 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 10> [local count: 118111600]:
+  goto <bb 8>; [100.00%]
+
+  <bb 4> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _3 = Encoding_10(D) + Position_5;
+  CurrentByte_15 = *_3;
+  # DEBUG CurrentByte => CurrentByte_15
+  # DEBUG BEGIN_STMT
+  if (CurrentByte_15 <= 31)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 477815111]:
+  _4 = CurrentByte_15 + 129;
+  if (_4 <= 32)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 716722668]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 7> [local count: 955630223]:
+  # Valid_6 = PHI <Valid_7(5), 0(6)>
+  # DEBUG Valid => Valid_6
+  # DEBUG BEGIN_STMT
+  Position_16 = Position_5 + 1;
+  # DEBUG Position => Position_16
+
+  <bb 8> [local count: 1073741824]:
+  # Position_5 = PHI <Position_16(7), Position_11(10)>
+  # Valid_7 = PHI <Valid_6(7), 1(10)>
+  # DEBUG Valid => Valid_7
+  # DEBUG Position => Position_5
+  # DEBUG BEGIN_STMT
+  if (_2 > Position_5)
+    goto <bb 4>; [89.00%]
+  else
+    goto <bb 9>; [11.00%]
+
+  <bb 9> [local count: 472446401]:
+  # Valid_8 = PHI <0(3), Valid_7(8), 0(2)>
+  # DEBUG Valid => Valid_8
+  # DEBUG BEGIN_STMT
+  return Valid_8;
+
+}
+
+
+Crypto_AL_DerCheckObjectIdentifier (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean retval.31;
+
+  <bb 2> [local count: 1073741824]:
+  retval.31_7 = Crypto_AL_DerCheckOctetstring (ComponentPtr_2(D), Encoding_3(D), MaxLength_4(D), LengthPtr_5(D)); [tail call]
+  return retval.31_7;
+
+}
+
+
+Crypto_AL_DerCheckOctetstring (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  # DEBUG BEGIN_STMT
+  Position_6 = Crypto_AL_DerEncGetContentsStart (Encoding_5(D));
+  # DEBUG Position => Position_6
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_5(D));
+  _2 = _1 + Position_6;
+  *LengthPtr_7(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_9(D))
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  if (_2 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 5> [local count: 1073741824]:
+  # Valid_3 = PHI <1(3), 0(4)>
+  # DEBUG Valid => Valid_3
+  # DEBUG BEGIN_STMT
+  return Valid_3;
+
+}
+
+
+Crypto_AL_DerCheckPublicKey (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Found;
+  uint32 SubComponentLength;
+  uint32 Position;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  const struct Crypto_DerSubComponentStruct * _3;
+  long unsigned int _4;
+  const struct Crypto_DerSubComponentStruct * _5;
+  unsigned char _7;
+  long unsigned int SubComponentLength.5_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+
+  <bb 2> [local count: 454537881]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  Position_22 = Crypto_AL_DerEncGetContentsStart (Encoding_21(D));
+  # DEBUG Position => Position_22
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_21(D));
+  _2 = _1 + Position_22;
+  *LengthPtr_23(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_25(D))
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 227268940]:
+  if (Position_22 == 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 14> [local count: 113634470]:
+  goto <bb 8>; [100.00%]
+
+  <bb 4> [local count: 960107354]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Position => 0
+  # DEBUG BEGIN_STMT
+  _3 = ComponentPtr_26(D)->SubComponents;
+  _4 = i_12 * 12;
+  _5 = _3 + _4;
+  _7 = Crypto_AL_DerCheckSubComponent (_5, Encoding_21(D), _10, &SubComponentLength);
+  if (_7 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 480053677]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 1
+  # DEBUG BEGIN_STMT
+  SubComponentLength.5_8 = SubComponentLength;
+  # DEBUG Position => SubComponentLength.5_8
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 480053677]:
+  # DEBUG BEGIN_STMT
+  i_29 = i_12 + 1;
+  # DEBUG i => i_29
+
+  <bb 7> [local count: 960107354]:
+  # i_18 = PHI <i_12(5), i_29(6)>
+  # Position_30 = PHI <SubComponentLength.5_8(5), 0(6)>
+  # Found_6 = PHI <1(5), 0(6)>
+
+  <bb 8> [local count: 1073741824]:
+  # i_12 = PHI <i_18(7), 0(14)>
+  # Position_13 = PHI <Position_30(7), Position_22(14)>
+  # Found_14 = PHI <Found_6(7), 0(14)>
+  # DEBUG Found => Found_14
+  # DEBUG Position => Position_13
+  # DEBUG i => i_12
+  # DEBUG BEGIN_STMT
+  if (Found_14 == 0)
+    goto <bb 9>; [96.34%]
+  else
+    goto <bb 11>; [3.66%]
+
+  <bb 9> [local count: 1034442874]:
+  _9 = ComponentPtr_26(D)->NrOfSubComponents;
+  if (_9 > i_12)
+    goto <bb 10>; [96.34%]
+  else
+    goto <bb 11>; [3.66%]
+
+  <bb 10> [local count: 996582265]:
+  _10 = *LengthPtr_23(D);
+  if (_10 >= Position_13)
+    goto <bb 4>; [96.34%]
+  else
+    goto <bb 11>; [3.66%]
+
+  <bb 11> [local count: 113634471]:
+  # Position_19 = PHI <Position_13(8), Position_13(9), Position_13(10)>
+  # Found_27 = PHI <Found_14(8), 0(9), 0(10)>
+  # DEBUG BEGIN_STMT
+  _11 = *LengthPtr_23(D);
+  if (_11 != Position_19)
+    goto <bb 12>; [66.00%]
+  else
+    goto <bb 13>; [34.00%]
+
+  <bb 12> [local count: 74998751]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 0
+
+  <bb 13> [local count: 454537882]:
+  # Found_15 = PHI <0(3), Found_27(11), 0(12), 0(2)>
+  # DEBUG Found => Found_15
+  # DEBUG BEGIN_STMT
+  SubComponentLength ={v} {CLOBBER};
+  return Found_15;
+
+}
+
+
+Crypto_AL_DerCheckSequence (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 SubComponentLength;
+  uint32 Position;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  const struct Crypto_DerSubComponentStruct * _3;
+  long unsigned int _4;
+  const struct Crypto_DerSubComponentStruct * _5;
+  const uint8 * _6;
+  long unsigned int _8;
+  unsigned char _9;
+  long unsigned int SubComponentLength.2_10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 2> [local count: 454537881]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  Position_25 = Crypto_AL_DerEncGetContentsStart (Encoding_24(D));
+  # DEBUG Position => Position_25
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_24(D));
+  _2 = _1 + Position_25;
+  *LengthPtr_26(D) = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 > MaxLength_28(D))
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 227268940]:
+  if (Position_25 == 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 14> [local count: 113634470]:
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 960107354]:
+  # DEBUG BEGIN_STMT
+  _3 = ComponentPtr_29(D)->SubComponents;
+  _4 = i_15 * 12;
+  _5 = _3 + _4;
+  _6 = Encoding_24(D) + Position_16;
+  _8 = _12 - Position_16;
+  _9 = Crypto_AL_DerCheckSubComponent (_5, _6, _8, &SubComponentLength);
+  if (_9 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 480053677]:
+  # DEBUG BEGIN_STMT
+  SubComponentLength.2_10 = SubComponentLength;
+  Position_32 = SubComponentLength.2_10 + Position_16;
+  # DEBUG Position => Position_32
+  # DEBUG BEGIN_STMT
+  i_33 = i_15 + 1;
+  # DEBUG i => i_33
+
+  <bb 6> [local count: 960107354]:
+  # i_21 = PHI <i_33(5), i_15(4)>
+  # Position_35 = PHI <Position_32(5), Position_16(4)>
+  # Valid_7 = PHI <1(5), 0(4)>
+
+  <bb 7> [local count: 1073741824]:
+  # i_15 = PHI <i_21(6), 0(14)>
+  # Position_16 = PHI <Position_35(6), Position_25(14)>
+  # Valid_17 = PHI <Valid_7(6), 1(14)>
+  # DEBUG Valid => Valid_17
+  # DEBUG Position => Position_16
+  # DEBUG i => i_15
+  # DEBUG BEGIN_STMT
+  if (Valid_17 == 1)
+    goto <bb 8>; [96.34%]
+  else
+    goto <bb 10>; [3.66%]
+
+  <bb 8> [local count: 1034442874]:
+  _11 = ComponentPtr_29(D)->NrOfSubComponents;
+  if (_11 > i_15)
+    goto <bb 9>; [96.34%]
+  else
+    goto <bb 10>; [3.66%]
+
+  <bb 9> [local count: 996582265]:
+  _12 = *LengthPtr_26(D);
+  if (_12 >= Position_16)
+    goto <bb 4>; [96.34%]
+  else
+    goto <bb 10>; [3.66%]
+
+  <bb 10> [local count: 113634471]:
+  # i_22 = PHI <i_15(7), i_15(8), i_15(9)>
+  # Position_31 = PHI <Position_16(7), Position_16(8), Position_16(9)>
+  # Valid_34 = PHI <Valid_17(7), 1(8), 1(9)>
+  # DEBUG BEGIN_STMT
+  _13 = *LengthPtr_26(D);
+  if (_13 != Position_31)
+    goto <bb 12>; [66.00%]
+  else
+    goto <bb 11>; [34.00%]
+
+  <bb 11> [local count: 38635720]:
+  _14 = ComponentPtr_29(D)->NrOfSubComponents;
+  if (_14 != i_22)
+    goto <bb 12>; [66.00%]
+  else
+    goto <bb 13>; [34.00%]
+
+  <bb 12> [local count: 100498326]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Valid => 0
+
+  <bb 13> [local count: 454537882]:
+  # Valid_18 = PHI <0(3), Valid_34(11), 0(12), 0(2)>
+  # DEBUG Valid => Valid_18
+  # DEBUG BEGIN_STMT
+  SubComponentLength ={v} {CLOBBER};
+  return Valid_18;
+
+}
+
+
+Crypto_AL_DerCheckSubComponent (const struct Crypto_DerSubComponentType * SubComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Identifier;
+  boolean Valid;
+  long unsigned int _1;
+  const struct Crypto_DerComponentStruct * _2;
+  const struct Crypto_DerParseFunctionsType * _3;
+  boolean (*<T48a>) (const struct Crypto_DerComponentStruct *, const uint8 *, uint32, uint32 *) _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => SubComponentPtr_9(D)
+  Identifier_10 = Crypto_AL_DerCheckIdentifier.isra.0 (Encoding_8(D), SubComponentPtr_9(D));
+  # DEBUG Identifier => Identifier_10
+  # DEBUG BEGIN_STMT
+  _1 = SubComponentPtr_9(D)->Tag;
+  if (_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  if (Identifier_10 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  *LengthPtr_11(D) = 0;
+  # DEBUG BEGIN_STMT
+  Valid_13 = SubComponentPtr_9(D)->IsOptional;
+  # DEBUG Valid => Valid_13
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  _2 = SubComponentPtr_9(D)->ComponentPtr;
+  _3 = _2->ParseFunctionsPtr;
+  _4 = _3->CheckFunction;
+  Valid_16 = _4 (_2, Encoding_8(D), MaxLength_14(D), LengthPtr_11(D));
+  # DEBUG Valid => Valid_16
+
+  <bb 6> [local count: 1073741824]:
+  # Valid_5 = PHI <Valid_13(4), Valid_16(5)>
+  # DEBUG Valid => Valid_5
+  # DEBUG BEGIN_STMT
+  return Valid_5;
+
+}
+
+
+Crypto_AL_DerFindInSequence (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  boolean Identifier;
+  uint32 EncodingLength;
+  boolean Found;
+  uint32 FoundPos;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  const struct Crypto_DerSubComponentStruct * _3;
+  long unsigned int _4;
+  const struct Crypto_DerSubComponentStruct * _5;
+  const struct Crypto_DerComponentStruct * _6;
+  const struct Crypto_DerParseFunctionsType * _7;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _8;
+  const uint8 * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int FoundPos.1_12;
+  long unsigned int _13;
+  long unsigned int _14;
+  const uint8 * _15;
+  const struct Crypto_DerSubComponentStruct * _16;
+  const struct Crypto_DerSubComponentStruct * _17;
+  unsigned char _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int iftmp.0_28;
+  long unsigned int iftmp.0_41;
+  long unsigned int _44;
+
+  <bb 2> [local count: 218508944]:
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  FoundPos = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG EncodingLength => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPositionVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsStart (Encoding_34(D));
+  *PositionPtr_35(D) = _1;
+  # DEBUG BEGIN_STMT
+  if (_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 3> [local count: 109254472]:
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_AL_DerEncGetContentsLength (Encoding_34(D));
+  EncodingLength_37 = _1 + _2;
+  # DEBUG EncodingLength => EncodingLength_37
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [100.00%]
+
+  <bb 4> [local count: 987571846]:
+  # DEBUG BEGIN_STMT
+  _3 = ComponentPtr_38(D)->SubComponents;
+  _4 = i_24 * 12;
+  _5 = _3 + _4;
+  if (_5 == SubComponentToFindPtr_39(D))
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 296271554]:
+  if (_23 >= StartSearch_40(D))
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 6> [local count: 839436070]:
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPositionVal => _23
+  # DEBUG BEGIN_STMT
+  _6 = _5->ComponentPtr;
+  _7 = _6->ParseFunctionsPtr;
+  _8 = _7->FindFunction;
+  _9 = Encoding_34(D) + _23;
+  if (_23 <= StartSearch_40(D))
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 419718035]:
+  iftmp.0_41 = StartSearch_40(D) - _23;
+
+  <bb 8> [local count: 839436070]:
+  # iftmp.0_28 = PHI <iftmp.0_41(7), 0(6)>
+  _10 = _8 (_6, _9, SubComponentToFindPtr_39(D), &FoundPos, iftmp.0_28);
+  if (_10 == 1)
+    goto <bb 9>; [2.75%]
+  else
+    goto <bb 10>; [97.25%]
+
+  <bb 9> [local count: 23084492]:
+  # DEBUG BEGIN_STMT
+  _11 = *PositionPtr_35(D);
+  FoundPos.1_12 = FoundPos;
+  _13 = _11 + FoundPos.1_12;
+  *PositionPtr_35(D) = _13;
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [100.00%]
+
+  <bb 10> [local count: 816351577]:
+  # DEBUG BEGIN_STMT
+  _14 = *PositionPtr_35(D);
+  _15 = Encoding_34(D) + _14;
+  _16 = ComponentPtr_38(D)->SubComponents;
+  _17 = _16 + _4;
+  # DEBUG D#1 => _17
+  Identifier_43 = Crypto_AL_DerCheckIdentifier.isra.0 (_15, _17);
+  # DEBUG Identifier => Identifier_43
+  # DEBUG BEGIN_STMT
+  _18 = _17->IsOptional;
+  if (_18 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 11> [local count: 408175788]:
+  if (Identifier_43 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 546955557]:
+  # DEBUG BEGIN_STMT
+  _19 = Crypto_AL_DerEncGetContentsStart (_15);
+  _20 = Crypto_AL_DerEncGetContentsLength (_15);
+  _44 = _19 + _20;
+  _21 = _14 + _44;
+  *PositionPtr_35(D) = _21;
+
+  <bb 13> [local count: 964487355]:
+  # Found_25 = PHI <1(5), 0(11), 0(12)>
+  # DEBUG Found => Found_25
+  # DEBUG BEGIN_STMT
+  i_47 = i_24 + 1;
+  # DEBUG i => i_47
+
+  <bb 14> [local count: 1073741824]:
+  # i_24 = PHI <0(3), i_47(13)>
+  # Found_26 = PHI <0(3), Found_25(13)>
+  # DEBUG Found => Found_26
+  # DEBUG i => i_24
+  # DEBUG BEGIN_STMT
+  if (Found_26 == 0)
+    goto <bb 15>; [97.25%]
+  else
+    goto <bb 17>; [2.75%]
+
+  <bb 15> [local count: 1044213925]:
+  _22 = ComponentPtr_38(D)->NrOfSubComponents;
+  if (_22 > i_24)
+    goto <bb 16>; [97.25%]
+  else
+    goto <bb 17>; [2.75%]
+
+  <bb 16> [local count: 1015498042]:
+  _23 = *PositionPtr_35(D);
+  if (_23 < EncodingLength_37)
+    goto <bb 4>; [97.25%]
+  else
+    goto <bb 17>; [2.75%]
+
+  <bb 17> [local count: 218508943]:
+  # Found_27 = PHI <0(2), 1(9), Found_26(14), 0(15), 0(16)>
+  # DEBUG Found => Found_27
+  # DEBUG BEGIN_STMT
+  FoundPos ={v} {CLOBBER};
+  return Found_27;
+
+}
+
+
+Crypto_AL_DerFindInSequenceIgnoreTag (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  boolean Identifier;
+  boolean Found;
+  uint32 TempPositionVal;
+  uint32 FoundPos;
+  uint32 i;
+  const struct Crypto_DerSubComponentStruct * _1;
+  long unsigned int _2;
+  const struct Crypto_DerSubComponentStruct * _3;
+  long unsigned int _4;
+  const struct Crypto_DerComponentStruct * _5;
+  const struct Crypto_DerParseFunctionsType * _6;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _7;
+  const uint8 * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  long unsigned int FoundPos.4_11;
+  long unsigned int _12;
+  long unsigned int _13;
+  const uint8 * _14;
+  const struct Crypto_DerSubComponentStruct * _15;
+  const struct Crypto_DerSubComponentStruct * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int iftmp.3_24;
+  long unsigned int iftmp.3_36;
+  long unsigned int _39;
+
+  <bb 2> [local count: 88102030]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG TempPositionVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  *PositionPtr_29(D) = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [100.00%]
+
+  <bb 3> [local count: 1034442875]:
+  # DEBUG BEGIN_STMT
+  _1 = ComponentPtr_31(D)->SubComponents;
+  _2 = i_22 * 12;
+  _3 = _1 + _2;
+  if (_3 == SubComponentToFindPtr_32(D))
+    goto <bb 4>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 4> [local count: 310332862]:
+  _4 = *PositionPtr_29(D);
+  if (_4 >= StartSearch_33(D))
+    goto <bb 15>; [3.66%]
+  else
+    goto <bb 6>; [96.34%]
+
+  <bb 6> [local count: 1023084693]:
+  # DEBUG BEGIN_STMT
+  TempPositionVal_34 = *PositionPtr_29(D);
+  # DEBUG TempPositionVal => TempPositionVal_34
+  # DEBUG BEGIN_STMT
+  _5 = _3->ComponentPtr;
+  _6 = _5->ParseFunctionsPtr;
+  _7 = _6->FindFunction;
+  _8 = Encoding_35(D) + TempPositionVal_34;
+  if (StartSearch_33(D) >= TempPositionVal_34)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 511542346]:
+  iftmp.3_36 = StartSearch_33(D) - TempPositionVal_34;
+
+  <bb 8> [local count: 1023084693]:
+  # iftmp.3_24 = PHI <iftmp.3_36(7), 0(6)>
+  _9 = _7 (_5, _8, SubComponentToFindPtr_32(D), &FoundPos, iftmp.3_24);
+  if (_9 != 0)
+    goto <bb 9>; [3.66%]
+  else
+    goto <bb 10>; [96.34%]
+
+  <bb 9> [local count: 37444900]:
+  # DEBUG BEGIN_STMT
+  _10 = *PositionPtr_29(D);
+  FoundPos.4_11 = FoundPos;
+  _12 = _10 + FoundPos.4_11;
+  *PositionPtr_29(D) = _12;
+  # DEBUG BEGIN_STMT
+  # DEBUG Found => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 10> [local count: 985639793]:
+  # DEBUG BEGIN_STMT
+  _13 = *PositionPtr_29(D);
+  _14 = Encoding_35(D) + _13;
+  _15 = ComponentPtr_31(D)->SubComponents;
+  _16 = _15 + _2;
+  # DEBUG D#1 => _16
+  Identifier_38 = Crypto_AL_DerCheckIdentifier.isra.0 (_14, _16);
+  # DEBUG Identifier => Identifier_38
+  # DEBUG BEGIN_STMT
+  _17 = _16->IsOptional;
+  if (_17 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 11> [local count: 492819896]:
+  if (Identifier_38 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 660378661]:
+  # DEBUG BEGIN_STMT
+  _18 = Crypto_AL_DerEncGetContentsStart (_14);
+  _19 = Crypto_AL_DerEncGetContentsLength (_14);
+  _39 = _18 + _19;
+  _20 = _13 + _39;
+  *PositionPtr_29(D) = _20;
+
+  <bb 13> [local count: 985639792]:
+  # DEBUG BEGIN_STMT
+  i_41 = i_22 + 1;
+  # DEBUG i => i_41
+
+  <bb 14> [local count: 1073741824]:
+  # i_22 = PHI <0(2), i_41(13)>
+  # DEBUG Found => 0
+  # DEBUG i => i_22
+  # DEBUG BEGIN_STMT
+  _21 = ComponentPtr_31(D)->NrOfSubComponents;
+  if (_21 > i_22)
+    goto <bb 3>; [96.34%]
+  else
+    goto <bb 15>; [3.66%]
+
+  <bb 15> [local count: 88102033]:
+  # Found_23 = PHI <1(9), 1(4), 0(14)>
+  # DEBUG i => NULL
+  # DEBUG Found => Found_23
+  # DEBUG BEGIN_STMT
+  FoundPos ={v} {CLOBBER};
+  return Found_23;
+
+}
+
+
+Crypto_AL_DerFindNothing (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *PositionPtr_2(D) = 0;
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+Crypto_AL_DerSkipIdentifier (const uint8 * EncodingPtr)
+{
+  uint32 NumOctets;
+  unsigned char _1;
+  unsigned char _5;
+
+  <bb 2> [local count: 919786196]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NumOctets => 1
+  # DEBUG BEGIN_STMT
+  _1 = *EncodingPtr_7(D);
+  _5 = _1 & 31;
+  if (_5 == 31)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 312727306]:
+  # NumOctets_3 = PHI <1(2)>
+  NumOctets_2 = Crypto_AL_DerSkipIdentifier.part.0 (EncodingPtr_7(D));
+
+  <bb 4> [local count: 919786196]:
+  # NumOctets_4 = PHI <NumOctets_2(3), 1(2)>
+  # DEBUG NumOctets => NumOctets_4
+  # DEBUG BEGIN_STMT
+  return NumOctets_4;
+
+}
+
+
+Crypto_AL_DerEncGetContentsLength (const uint8 * Encoding)
+{
+  uint32 Position;
+  uint8 LengthLength;
+  uint32 Length;
+  uint8 i;
+  const uint8 * _1;
+  unsigned char _2;
+  signed char _3;
+  const uint8 * _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  const uint8 * _11;
+  unsigned char _12;
+  long unsigned int _13;
+
+  <bb 2> [local count: 560309914]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG Length => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position_21 = Crypto_AL_DerSkipIdentifier (Encoding_20(D));
+  # DEBUG Position => Position_21
+  # DEBUG BEGIN_STMT
+  if (Position_21 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 3> [local count: 280154957]:
+  # DEBUG BEGIN_STMT
+  _1 = Encoding_20(D) + Position_21;
+  _2 = *_1;
+  _3 = (signed char) _2;
+  if (_3 >= 0)
+    goto <bb 4>; [59.00%]
+  else
+    goto <bb 5>; [41.00%]
+
+  <bb 4> [local count: 165291424]:
+  # DEBUG BEGIN_STMT
+  Length_28 = (uint32) _2;
+  # DEBUG Length => Length_28
+  goto <bb 12>; [100.00%]
+
+  <bb 5> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  LengthLength_22 = _2 & 127;
+  # DEBUG LengthLength => LengthLength_22
+  # DEBUG BEGIN_STMT
+  Position_23 = Position_21 + 1;
+  # DEBUG Position => Position_23
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 958878295]:
+  # DEBUG BEGIN_STMT
+  Position_24 = Position_18 + 1;
+  # DEBUG Position => Position_24
+  # DEBUG BEGIN_STMT
+  LengthLength_25 = LengthLength_17 + 255;
+  # DEBUG LengthLength => LengthLength_25
+
+  <bb 7> [local count: 1073741824]:
+  # LengthLength_17 = PHI <LengthLength_22(5), LengthLength_25(6)>
+  # Position_18 = PHI <Position_23(5), Position_24(6)>
+  # DEBUG Position => Position_18
+  # DEBUG LengthLength => LengthLength_17
+  # DEBUG BEGIN_STMT
+  _6 = Encoding_20(D) + Position_18;
+  _7 = *_6;
+  if (_7 == 0)
+    goto <bb 8>; [94.50%]
+  else
+    goto <bb 9>; [5.50%]
+
+  <bb 8> [local count: 1014686025]:
+  if (LengthLength_17 != 0)
+    goto <bb 6>; [94.50%]
+  else
+    goto <bb 9>; [5.50%]
+
+  <bb 9> [local count: 114863532]:
+  # LengthLength_4 = PHI <LengthLength_17(7), LengthLength_17(8)>
+  # Position_5 = PHI <Position_18(7), Position_18(8)>
+  # DEBUG BEGIN_STMT
+  if (LengthLength_4 > 4)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 13> [local count: 57431766]:
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 229727064]:
+  # DEBUG BEGIN_STMT
+  _8 = Length_15 << 8;
+  _9 = (long unsigned int) i_14;
+  _10 = Position_5 + _9;
+  _11 = Encoding_20(D) + _10;
+  _12 = *_11;
+  _13 = (long unsigned int) _12;
+  Length_26 = _8 + _13;
+  # DEBUG Length => Length_26
+  # DEBUG BEGIN_STMT
+  i_27 = i_14 + 1;
+  # DEBUG i => i_27
+
+  <bb 11> [local count: 287158831]:
+  # i_14 = PHI <i_27(10), 0(13)>
+  # Length_15 = PHI <Length_26(10), 0(13)>
+  # DEBUG Length => Length_15
+  # DEBUG i => i_14
+  # DEBUG BEGIN_STMT
+  if (LengthLength_4 > i_14)
+    goto <bb 10>; [80.00%]
+  else
+    goto <bb 12>; [20.00%]
+
+  <bb 12> [local count: 560309914]:
+  # Length_16 = PHI <0(2), Length_28(4), 0(9), Length_15(11)>
+  # DEBUG Length => Length_16
+  # DEBUG BEGIN_STMT
+  return Length_16;
+
+}
+
+
+Crypto_AL_DerEncGetContentsStart (const uint8 * Encoding)
+{
+  uint32 Position;
+  const uint8 * _1;
+  unsigned char _2;
+  signed char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  unsigned char _12;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position_9 = Crypto_AL_DerSkipIdentifier (Encoding_8(D));
+  # DEBUG Position => Position_9
+  # DEBUG BEGIN_STMT
+  if (Position_9 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _1 = Encoding_8(D) + Position_9;
+  _2 = *_1;
+  _3 = (signed char) _2;
+  if (_3 >= 0)
+    goto <bb 4>; [59.00%]
+  else
+    goto <bb 5>; [41.00%]
+
+  <bb 4> [local count: 316753838]:
+  # DEBUG BEGIN_STMT
+  Position_11 = Position_9 + 1;
+  # DEBUG Position => Position_11
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 220117074]:
+  # DEBUG BEGIN_STMT
+  _12 = _2 & 127;
+  _4 = (long unsigned int) _12;
+  _5 = _4 + Position_9;
+  Position_10 = _5 + 1;
+  # DEBUG Position => Position_10
+
+  <bb 6> [local count: 1073741824]:
+  # Position_6 = PHI <Position_9(2), Position_11(4), Position_10(5)>
+  # DEBUG Position => Position_6
+  # DEBUG BEGIN_STMT
+  return Position_6;
+
+}
+
+
+Crypto_AL_DerSubComponentContents (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * ContentsLengthPtr, uint32 StartSearch)
+{
+  uint32 CurrentPos;
+  const struct Crypto_DerParseFunctionsType * _1;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _2;
+  unsigned char _3;
+  long unsigned int CurrentPos.7_4;
+  const uint8 * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _19;
+  uint32 _21;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ComponentPtr_10(D)->ParseFunctionsPtr;
+  _2 = _1->FindFunction;
+  _3 = _2 (ComponentPtr_10(D), Encoding_11(D), SubComponentToFindPtr_12(D), &CurrentPos, StartSearch_13(D));
+  if (_3 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  CurrentPos.7_4 = CurrentPos;
+  _5 = Encoding_11(D) + CurrentPos.7_4;
+  _6 = Crypto_AL_DerEncGetContentsLength (_5);
+  *ContentsLengthPtr_15(D) = _6;
+  # DEBUG BEGIN_STMT
+  _19 = Crypto_AL_DerEncGetContentsStart (_5);
+  _7 = CurrentPos.7_4 + _19;
+  CurrentPos = _7;
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  *ContentsLengthPtr_15(D) = 0;
+  # DEBUG BEGIN_STMT
+  CurrentPos = 0;
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _21 = CurrentPos;
+  CurrentPos ={v} {CLOBBER};
+  return _21;
+
+}
+
+

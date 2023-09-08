@@ -1,0 +1,2316 @@
+BswM_HandleRequest (struct BswM_PartitionContextType * inst, void * port, uint32 mode, uint8 type, uint8 sid, boolean isImmediate)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecuteModeArbitration (inst_2(D), port_3(D), mode_4(D), type_5(D));
+  return;
+
+}
+
+
+BswM_ExecuteActionList (const struct BswMActionListType * actionListPtr, struct BswM_PartitionContextType * inst, struct BswM_DeferredActionsQueueType * deferredActionsQueue)
+{
+  BswMIndexType actionListIndex;
+  struct BswMActionListContextType actionListContext;
+  boolean isInterrupted;
+  struct BswMActionListContextStackType stack;
+  const struct BswMActionListItemType * currentItemPtr;
+  Std_ReturnType result;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.26_1;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.27_2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  const struct BswM_ConfigType * _6;
+  long unsigned int _7;
+  short unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  sizetype _11;
+  short unsigned int _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  unsigned char _15;
+  int _16;
+  unsigned char _17;
+  unsigned char _18;
+  short unsigned int _19;
+  int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  struct BswM_LinkTimeContextType * _25;
+  Std_ReturnType (*<Tc50>) (uint16) _26;
+  short unsigned int _27;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.28_28;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.29_29;
+  unsigned char _30;
+  unsigned int _31;
+  unsigned int _32;
+  const struct BswM_ConfigType * _33;
+  long unsigned int _34;
+  short unsigned int _35;
+  unsigned int _36;
+  unsigned int _37;
+  sizetype _38;
+  const struct BswMActionListType * _39;
+  void (*<T5bb>) (void) _40;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.30_41;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.31_42;
+  unsigned char _43;
+  unsigned int _44;
+  unsigned int _45;
+  const struct BswM_ConfigType * _46;
+  long unsigned int _47;
+  short unsigned int _48;
+  unsigned int _49;
+  unsigned int _50;
+  sizetype _51;
+  const struct BswMRuleType * _52;
+  void (*<T5bb>) (void) _53;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.32_54;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.33_55;
+  unsigned char _56;
+  unsigned int _57;
+  unsigned int _58;
+  const struct BswM_ConfigType * _59;
+  long unsigned int _60;
+  unsigned int _61;
+  unsigned int _62;
+  sizetype _63;
+  const struct BswMActionListType * _64;
+  unsigned char _65;
+  short unsigned int _66;
+  short unsigned int _67;
+  unsigned char _68;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_77 = 0;
+  # DEBUG result => result_77
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  stack = {};
+  # DEBUG BEGIN_STMT
+  BswM_PushActionList (inst_80(D), &stack, actionListPtr_81(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  isInterrupted_84 = 0;
+  # DEBUG isInterrupted => isInterrupted_84
+  # DEBUG BEGIN_STMT
+  actionListContext = BswM_PopActionListContext (&stack);
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.26_1 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.27_2 = BswM_PostBuildConfig;
+  _3 = inst_80(D)->ID;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 60;
+  _6 = BswM_PostBuildConfig.27_2 + _5;
+  _7 = _6->ActionListItemTable;
+  _8 = actionListContext.NextItemIndex;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 6;
+  _11 = _7 + _10;
+  currentItemPtr_86 = BswM_PostBuildConfig.26_1 + _11;
+  # DEBUG currentItemPtr => currentItemPtr_86
+  # DEBUG BEGIN_STMT
+  _12 = actionListContext.NextItemIndex;
+  _13 = _12;
+  _14 = _13 + 1;
+  actionListContext.NextItemIndex = _14;
+  # DEBUG BEGIN_STMT
+  _15 = currentItemPtr_86->ActionListItemType;
+  _16 = (int) _15;
+  switch (_16) <default: <L21> [INV], case 0: <L2> [INV], case 1: <L6> [INV], case 2: <L7> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _17 = currentItemPtr_86->ActionType;
+  _18 = _17 + 255;
+  if (_18 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _19 = deferredActionsQueue_100(D)->size;
+  _20 = (int) _19;
+  _21 = currentItemPtr_86->ArtifactIndex;
+  deferredActionsQueue_100(D)->data[_20] = _21;
+  # DEBUG BEGIN_STMT
+  _22 = deferredActionsQueue_100(D)->size;
+  _23 = _22;
+  _24 = _23 + 1;
+  deferredActionsQueue_100(D)->size = _24;
+  # DEBUG BEGIN_STMT
+  result_103 = 0;
+  # DEBUG result => result_103
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _25 = inst_80(D)->LinkTimeContext;
+  _26 = _25->executeActionFuncPtr;
+  _27 = currentItemPtr_86->ArtifactIndex;
+  result_99 = _26 (_27);
+  # DEBUG result => result_99
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  BswM_PushActionListContext (inst_80(D), &stack, actionListContext);
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.28_28 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.29_29 = BswM_PostBuildConfig;
+  _30 = inst_80(D)->ID;
+  _31 = (unsigned int) _30;
+  _32 = _31 * 60;
+  _33 = BswM_PostBuildConfig.29_29 + _32;
+  _34 = _33->ActionListTable;
+  _35 = currentItemPtr_86->ArtifactIndex;
+  _36 = (unsigned int) _35;
+  _37 = _36 * 6;
+  _38 = _34 + _37;
+  _39 = BswM_PostBuildConfig.28_28 + _38;
+  BswM_PushActionList (inst_80(D), &stack, _39);
+  # DEBUG BEGIN_STMT
+  isInterrupted_97 = 1;
+  # DEBUG isInterrupted => isInterrupted_97
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _40 = inst_80(D)->SchMEnter;
+  _40 ();
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.30_41 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.31_42 = BswM_PostBuildConfig;
+  _43 = inst_80(D)->ID;
+  _44 = (unsigned int) _43;
+  _45 = _44 * 60;
+  _46 = BswM_PostBuildConfig.31_42 + _45;
+  _47 = _46->RuleTable;
+  _48 = currentItemPtr_86->ArtifactIndex;
+  _49 = (unsigned int) _48;
+  _50 = _49 * 10;
+  _51 = _47 + _50;
+  _52 = BswM_PostBuildConfig.30_41 + _51;
+  actionListIndex_90 = BswM_ExecuteRule (_52, inst_80(D));
+  # DEBUG actionListIndex => actionListIndex_90
+  # DEBUG BEGIN_STMT
+  _53 = inst_80(D)->SchMExit;
+  _53 ();
+  # DEBUG BEGIN_STMT
+  if (actionListIndex_90 != 65535)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  BswM_PushActionListContext (inst_80(D), &stack, actionListContext);
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.32_54 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.33_55 = BswM_PostBuildConfig;
+  _56 = inst_80(D)->ID;
+  _57 = (unsigned int) _56;
+  _58 = _57 * 60;
+  _59 = BswM_PostBuildConfig.33_55 + _58;
+  _60 = _59->ActionListTable;
+  _61 = (unsigned int) actionListIndex_90;
+  _62 = _61 * 6;
+  _63 = _60 + _62;
+  _64 = BswM_PostBuildConfig.32_54 + _63;
+  BswM_PushActionList (inst_80(D), &stack, _64);
+  # DEBUG BEGIN_STMT
+  isInterrupted_94 = 1;
+  # DEBUG isInterrupted => isInterrupted_94
+
+  <bb 11> :
+  # result_69 = PHI <result_99(7), result_70(8), result_70(10), result_70(4), result_103(6), result_70(9)>
+  # isInterrupted_72 = PHI <isInterrupted_73(7), isInterrupted_97(8), isInterrupted_94(10), isInterrupted_73(4), isInterrupted_73(6), isInterrupted_73(9)>
+<L21>:
+  # DEBUG isInterrupted => isInterrupted_72
+  # DEBUG result => result_69
+  # DEBUG BEGIN_STMT
+  _65 = currentItemPtr_86->IsAbortOnFail;
+  if (_65 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  if (result_69 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  isInterrupted_104 = 1;
+  # DEBUG isInterrupted => isInterrupted_104
+
+  <bb 14> :
+  # result_70 = PHI <result_71(3), result_69(11), result_69(12), result_69(13)>
+  # isInterrupted_73 = PHI <isInterrupted_84(3), isInterrupted_72(11), isInterrupted_72(12), isInterrupted_104(13)>
+  # DEBUG isInterrupted => isInterrupted_73
+  # DEBUG result => result_70
+  # DEBUG BEGIN_STMT
+  if (isInterrupted_73 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  _66 = actionListContext.NextItemIndex;
+  _67 = actionListContext.TailItemIndex;
+  if (_66 < _67)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  actionListContext ={v} {CLOBBER};
+
+  <bb 17> :
+  # result_71 = PHI <result_77(2), result_70(16)>
+  # DEBUG result => result_71
+  # DEBUG BEGIN_STMT
+  _68 = stack.StackIndex;
+  if (_68 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  stack ={v} {CLOBBER};
+  return;
+
+}
+
+
+BswM_PopActionListContext (struct BswMActionListContextStackType * stackPtr)
+{
+  struct BswMActionListContextType topContext;
+  struct BswMActionListContextType D.10390;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = stackPtr_7(D)->StackIndex;
+  _2 = (int) _1;
+  topContext = stackPtr_7(D)->StackElements[_2];
+  # DEBUG BEGIN_STMT
+  _3 = stackPtr_7(D)->StackIndex;
+  _4 = _3;
+  _5 = _4 + 255;
+  stackPtr_7(D)->StackIndex = _5;
+  # DEBUG BEGIN_STMT
+  D.10390 = topContext;
+  topContext ={v} {CLOBBER};
+  return D.10390;
+
+}
+
+
+BswM_PushActionListContext (const struct BswM_PartitionContextType * inst, struct BswMActionListContextStackType * stackPtr, struct BswMActionListContextType element)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = stackPtr_7(D)->StackIndex;
+  _2 = _1;
+  _3 = _2 + 1;
+  stackPtr_7(D)->StackIndex = _3;
+  # DEBUG BEGIN_STMT
+  _4 = stackPtr_7(D)->StackIndex;
+  _5 = (int) _4;
+  stackPtr_7(D)->StackElements[_5] = element;
+  return;
+
+}
+
+
+BswM_PushActionList (const struct BswM_PartitionContextType * inst, struct BswMActionListContextStackType * stackPtr, const struct BswMActionListType * actionListPtr)
+{
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+  unsigned char _7;
+  int _8;
+  short unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = stackPtr_11(D)->StackIndex;
+  _2 = _1;
+  _3 = _2 + 1;
+  stackPtr_11(D)->StackIndex = _3;
+  # DEBUG BEGIN_STMT
+  _4 = stackPtr_11(D)->StackIndex;
+  _5 = (int) _4;
+  _6 = actionListPtr_13(D)->ActionListItemSegment.Head;
+  stackPtr_11(D)->StackElements[_5].NextItemIndex = _6;
+  # DEBUG BEGIN_STMT
+  _7 = stackPtr_11(D)->StackIndex;
+  _8 = (int) _7;
+  _9 = actionListPtr_13(D)->ActionListItemSegment.Tail;
+  stackPtr_11(D)->StackElements[_8].TailItemIndex = _9;
+  return;
+
+}
+
+
+BswM_ExecuteRule (const struct BswMRuleType * rulePtr, struct BswM_PartitionContextType * inst)
+{
+  boolean isTriggered;
+  boolean isTriggered;
+  BswMIndexType actionListIndex;
+  BswMResultType exprResult;
+  short unsigned int _1;
+  short unsigned int _2;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.6_3;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.7_4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct BswM_ConfigType * _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  sizetype _13;
+  const struct BswMActionListType * _14;
+  short unsigned int _15;
+  int _16;
+  unsigned char _17;
+  short unsigned int _18;
+  int _19;
+  short unsigned int _20;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.8_21;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.9_22;
+  unsigned char _23;
+  unsigned int _24;
+  unsigned int _25;
+  const struct BswM_ConfigType * _26;
+  long unsigned int _27;
+  short unsigned int _28;
+  unsigned int _29;
+  unsigned int _30;
+  sizetype _31;
+  const struct BswMActionListType * _32;
+  short unsigned int _33;
+  int _34;
+  unsigned char _35;
+  short unsigned int _36;
+  int _37;
+  BswMIndexType _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  actionListIndex_42 = 65535;
+  # DEBUG actionListIndex => actionListIndex_42
+  # DEBUG BEGIN_STMT
+  _1 = rulePtr_44(D)->LogicalExprIndex;
+  exprResult_47 = BswM_EvaluateLogicalExpression (inst_45(D), _1);
+  # DEBUG exprResult => exprResult_47
+  # DEBUG BEGIN_STMT
+  if (exprResult_47 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = rulePtr_44(D)->TrueActionListIndex;
+  if (_2 != 65535)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.6_3 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.7_4 = BswM_PostBuildConfig;
+  _5 = inst_45(D)->ID;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 60;
+  _8 = BswM_PostBuildConfig.7_4 + _7;
+  _9 = _8->ActionListTable;
+  _10 = rulePtr_44(D)->TrueActionListIndex;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 6;
+  _13 = _9 + _12;
+  _14 = BswM_PostBuildConfig.6_3 + _13;
+  isTriggered_52 = _14->IsTriggered;
+  # DEBUG isTriggered => isTriggered_52
+  # DEBUG BEGIN_STMT
+  if (isTriggered_52 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  actionListIndex_54 = rulePtr_44(D)->TrueActionListIndex;
+  # DEBUG actionListIndex => actionListIndex_54
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _15 = rulePtr_44(D)->ID;
+  _16 = (int) _15;
+  _17 = inst_45(D)->RunTimeContext.RuleResultTable[_16];
+  if (exprResult_47 != _17)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  actionListIndex_53 = rulePtr_44(D)->TrueActionListIndex;
+  # DEBUG actionListIndex => actionListIndex_53
+
+  <bb 8> :
+  # actionListIndex_38 = PHI <actionListIndex_42(3), actionListIndex_54(5), actionListIndex_42(6), actionListIndex_53(7)>
+  # DEBUG actionListIndex => actionListIndex_38
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = rulePtr_44(D)->ID;
+  _19 = (int) _18;
+  inst_45(D)->RunTimeContext.RuleResultTable[_19] = exprResult_47;
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (exprResult_47 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _20 = rulePtr_44(D)->FalseActionListIndex;
+  if (_20 != 65535)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.8_21 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.9_22 = BswM_PostBuildConfig;
+  _23 = inst_45(D)->ID;
+  _24 = (unsigned int) _23;
+  _25 = _24 * 60;
+  _26 = BswM_PostBuildConfig.9_22 + _25;
+  _27 = _26->ActionListTable;
+  _28 = rulePtr_44(D)->FalseActionListIndex;
+  _29 = (unsigned int) _28;
+  _30 = _29 * 6;
+  _31 = _27 + _30;
+  _32 = BswM_PostBuildConfig.8_21 + _31;
+  isTriggered_48 = _32->IsTriggered;
+  # DEBUG isTriggered => isTriggered_48
+  # DEBUG BEGIN_STMT
+  if (isTriggered_48 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  actionListIndex_50 = rulePtr_44(D)->FalseActionListIndex;
+  # DEBUG actionListIndex => actionListIndex_50
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _33 = rulePtr_44(D)->ID;
+  _34 = (int) _33;
+  _35 = inst_45(D)->RunTimeContext.RuleResultTable[_34];
+  if (exprResult_47 != _35)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  actionListIndex_49 = rulePtr_44(D)->FalseActionListIndex;
+  # DEBUG actionListIndex => actionListIndex_49
+
+  <bb 15> :
+  # actionListIndex_39 = PHI <actionListIndex_42(10), actionListIndex_50(12), actionListIndex_42(13), actionListIndex_49(14)>
+  # DEBUG actionListIndex => actionListIndex_39
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _36 = rulePtr_44(D)->ID;
+  _37 = (int) _36;
+  inst_45(D)->RunTimeContext.RuleResultTable[_37] = exprResult_47;
+
+  <bb 16> :
+  # actionListIndex_40 = PHI <actionListIndex_38(8), actionListIndex_42(9), actionListIndex_39(15)>
+  # DEBUG actionListIndex => actionListIndex_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _56 = actionListIndex_40;
+  return _56;
+
+}
+
+
+BswM_ExecutePduGroupSwitchAction (struct BswM_PartitionContextType * inst, BswMIndexType pbIndex)
+{
+  const struct BswMPduGroupSwitchActionType * action;
+  uint16 i;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.34_1;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.35_2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  const struct BswM_ConfigType * _6;
+  long unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  sizetype _10;
+  unsigned char _11;
+  unsigned char _12;
+  int _13;
+  unsigned char _14;
+  int _15;
+  unsigned char _16;
+  int _17;
+  unsigned char _18;
+  int _19;
+  unsigned char _20;
+  int _21;
+  unsigned char _22;
+  int _23;
+  unsigned char _24;
+  int _25;
+  unsigned char _26;
+  int _27;
+  unsigned char _28;
+  int _29;
+  unsigned char _30;
+  int _31;
+  unsigned char _32;
+  int _33;
+  unsigned char _34;
+  int _35;
+  unsigned char _36;
+  int _37;
+  unsigned char _38;
+  int _39;
+  unsigned char _40;
+  int _41;
+  unsigned char _42;
+  short unsigned int i.36_43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.34_1 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.35_2 = BswM_PostBuildConfig;
+  _3 = inst_49(D)->ID;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 60;
+  _6 = BswM_PostBuildConfig.35_2 + _5;
+  _7 = _6->PduGroupSwitchActionTable;
+  _8 = (unsigned int) pbIndex_50(D);
+  _9 = _8 * 9;
+  _10 = _7 + _9;
+  action_51 = BswM_PostBuildConfig.34_1 + _10;
+  # DEBUG action => action_51
+  # DEBUG BEGIN_STMT
+  _11 = action_51->RequestInit;
+  if (_11 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  inst_49(D)->RunTimeContext.PduGroupSwitchReInitTriggered = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  inst_49(D)->RunTimeContext.PduGroupSwitchTriggered = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_54 = 0;
+  # DEBUG i => i_54
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = action_51->RequestInit;
+  if (_12 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) i_44;
+  _14 = inst_49(D)->RunTimeContext.IPduGroupReInitVector[_13];
+  _15 = (int) i_44;
+  _16 = action_51->EnableMask[_15];
+  _17 = (int) i_44;
+  _18 = _14 | _16;
+  inst_49(D)->RunTimeContext.IPduGroupReInitVector[_17] = _18;
+  # DEBUG BEGIN_STMT
+  _19 = (int) i_44;
+  _20 = inst_49(D)->RunTimeContext.IPduGroupReInitVector[_19];
+  _21 = (int) i_44;
+  _22 = action_51->DisableMask[_21];
+  _23 = (int) i_44;
+  _24 = _20 & _22;
+  inst_49(D)->RunTimeContext.IPduGroupReInitVector[_23] = _24;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _25 = (int) i_44;
+  _26 = inst_49(D)->RunTimeContext.IPduGroupReInitVector[_25];
+  _27 = (int) i_44;
+  _28 = action_51->DisableMask[_27];
+  _29 = (int) i_44;
+  _30 = _26 & _28;
+  inst_49(D)->RunTimeContext.IPduGroupReInitVector[_29] = _30;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _31 = (int) i_44;
+  _32 = inst_49(D)->RunTimeContext.IPduGroupVector[_31];
+  _33 = (int) i_44;
+  _34 = action_51->EnableMask[_33];
+  _35 = (int) i_44;
+  _36 = _32 | _34;
+  inst_49(D)->RunTimeContext.IPduGroupVector[_35] = _36;
+  # DEBUG BEGIN_STMT
+  _37 = (int) i_44;
+  _38 = inst_49(D)->RunTimeContext.IPduGroupVector[_37];
+  _39 = (int) i_44;
+  _40 = action_51->DisableMask[_39];
+  _41 = (int) i_44;
+  _42 = _38 & _40;
+  inst_49(D)->RunTimeContext.IPduGroupVector[_41] = _42;
+  # DEBUG BEGIN_STMT
+  i.36_43 = i_44;
+  i_60 = i.36_43 + 1;
+  # DEBUG i => i_60
+
+  <bb 10> :
+  # i_44 = PHI <i_54(5), i_60(9)>
+  # DEBUG i => i_44
+  # DEBUG BEGIN_STMT
+  if (i_44 <= 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  return;
+
+}
+
+
+BswM_ExecuteModeControl (const boolean * activatedActionLists, struct BswM_PartitionContextType * inst)
+{
+  struct BswM_DeferredActionsQueueType deferredActionsQueue;
+  uint8 pduGroupSwitchReInitTriggered;
+  uint8 pduGroupSwitchTriggered;
+  BswMIndexType i;
+  int _1;
+  short unsigned int i.19_2;
+  sizetype _3;
+  const boolean * _4;
+  unsigned char _5;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.20_6;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.21_7;
+  unsigned char _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct BswM_ConfigType * _11;
+  long unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  sizetype _15;
+  const struct BswMActionListType * _16;
+  short unsigned int i.22_17;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.23_18;
+  unsigned char _19;
+  unsigned int _20;
+  unsigned int _21;
+  const struct BswM_ConfigType * _22;
+  short unsigned int _23;
+  void (*<T5bb>) (void) _24;
+  struct BswM_LinkTimeContextType * _25;
+  Std_ReturnType (*<Tc50>) (uint16) _26;
+  int _27;
+  short unsigned int _28;
+  short unsigned int i.24_29;
+  short unsigned int _30;
+  void (*<T5bb>) (void) _31;
+  void (*<T5bb>) (void) _32;
+  void (*<T5bb>) (void) _33;
+  void (*<T5bb>) (void) _34;
+  void (*<T5bb>) (void) _35;
+  uint8[4] * _36;
+  void (*<T5bb>) (void) _37;
+  void (*<T5bb>) (void) _38;
+  uint8[4] * _39;
+  void (*<T5bb>) (void) _40;
+  int _41;
+  unsigned char _42;
+  int _43;
+  unsigned char _44;
+  int _45;
+  unsigned char _46;
+  short unsigned int i.25_47;
+  void (*<T5bb>) (void) _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  pduGroupSwitchTriggered_60 = 0;
+  # DEBUG pduGroupSwitchTriggered => pduGroupSwitchTriggered_60
+  # DEBUG BEGIN_STMT
+  pduGroupSwitchReInitTriggered_61 = 0;
+  # DEBUG pduGroupSwitchReInitTriggered => pduGroupSwitchReInitTriggered_61
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  deferredActionsQueue.size = 0;
+  # DEBUG BEGIN_STMT
+  i_64 = 0;
+  # DEBUG i => i_64
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_49;
+  deferredActionsQueue.data[_1] = 0;
+  # DEBUG BEGIN_STMT
+  i.19_2 = i_49;
+  i_94 = i.19_2 + 1;
+  # DEBUG i => i_94
+
+  <bb 4> :
+  # i_49 = PHI <i_64(2), i_94(3)>
+  # DEBUG i => i_49
+  # DEBUG BEGIN_STMT
+  if (i_49 <= 7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_65 = 0;
+  # DEBUG i => i_65
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = (sizetype) i_50;
+  _4 = activatedActionLists_90(D) + _3;
+  _5 = *_4;
+  if (_5 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.20_6 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.21_7 = BswM_PostBuildConfig;
+  _8 = inst_66(D)->ID;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 60;
+  _11 = BswM_PostBuildConfig.21_7 + _10;
+  _12 = _11->ActionListTable;
+  _13 = (unsigned int) i_50;
+  _14 = _13 * 6;
+  _15 = _12 + _14;
+  _16 = BswM_PostBuildConfig.20_6 + _15;
+  BswM_ExecuteActionList (_16, inst_66(D), &deferredActionsQueue);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.22_17 = i_50;
+  i_92 = i.22_17 + 1;
+  # DEBUG i => i_92
+
+  <bb 9> :
+  # i_50 = PHI <i_65(5), i_92(8)>
+  # DEBUG i => i_50
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.23_18 = BswM_PostBuildConfig;
+  _19 = inst_66(D)->ID;
+  _20 = (unsigned int) _19;
+  _21 = _20 * 60;
+  _22 = BswM_PostBuildConfig.23_18 + _21;
+  _23 = _22->NumActionLists;
+  if (i_50 < _23)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _24 = inst_66(D)->SchMEnter;
+  _24 ();
+  # DEBUG BEGIN_STMT
+  i_68 = 0;
+  # DEBUG i => i_68
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _25 = inst_66(D)->LinkTimeContext;
+  _26 = _25->executeActionFuncPtr;
+  _27 = (int) i_51;
+  _28 = deferredActionsQueue.data[_27];
+  _26 (_28);
+  # DEBUG BEGIN_STMT
+  i.24_29 = i_51;
+  i_89 = i.24_29 + 1;
+  # DEBUG i => i_89
+
+  <bb 12> :
+  # i_51 = PHI <i_68(10), i_89(11)>
+  # DEBUG i => i_51
+  # DEBUG BEGIN_STMT
+  _30 = deferredActionsQueue.size;
+  if (i_51 < _30)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _31 = inst_66(D)->SchMExit;
+  _31 ();
+  # DEBUG BEGIN_STMT
+  _32 = inst_66(D)->SchMEnter;
+  _32 ();
+  # DEBUG BEGIN_STMT
+  pduGroupSwitchTriggered_71 = inst_66(D)->RunTimeContext.PduGroupSwitchTriggered;
+  # DEBUG pduGroupSwitchTriggered => pduGroupSwitchTriggered_71
+  # DEBUG BEGIN_STMT
+  pduGroupSwitchReInitTriggered_72 = inst_66(D)->RunTimeContext.PduGroupSwitchReInitTriggered;
+  # DEBUG pduGroupSwitchReInitTriggered => pduGroupSwitchReInitTriggered_72
+  # DEBUG BEGIN_STMT
+  _33 = inst_66(D)->SchMExit;
+  _33 ();
+  # DEBUG BEGIN_STMT
+  if (pduGroupSwitchReInitTriggered_72 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _34 = inst_66(D)->SchMEnter;
+  _34 ();
+  # DEBUG BEGIN_STMT
+  inst_66(D)->RunTimeContext.PduGroupSwitchReInitTriggered = 0;
+  # DEBUG BEGIN_STMT
+  _35 = inst_66(D)->SchMExit;
+  _35 ();
+  # DEBUG BEGIN_STMT
+  _36 = &inst_66(D)->RunTimeContext.IPduGroupReInitVector;
+  Com_IpduGroupControl (_36, 1);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (pduGroupSwitchTriggered_71 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _37 = inst_66(D)->SchMEnter;
+  _37 ();
+  # DEBUG BEGIN_STMT
+  inst_66(D)->RunTimeContext.PduGroupSwitchTriggered = 0;
+  # DEBUG BEGIN_STMT
+  _38 = inst_66(D)->SchMExit;
+  _38 ();
+  # DEBUG BEGIN_STMT
+  _39 = &inst_66(D)->RunTimeContext.IPduGroupVector;
+  Com_IpduGroupControl (_39, 0);
+  # DEBUG BEGIN_STMT
+  _40 = inst_66(D)->SchMEnter;
+  _40 ();
+  # DEBUG BEGIN_STMT
+  i_83 = 0;
+  # DEBUG i => i_83
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _41 = (int) i_52;
+  _42 = inst_66(D)->RunTimeContext.IPduGroupReInitVector[_41];
+  _43 = (int) i_52;
+  _44 = inst_66(D)->RunTimeContext.IPduGroupVector[_43];
+  _45 = (int) i_52;
+  _46 = _42 | _44;
+  inst_66(D)->RunTimeContext.IPduGroupReInitVector[_45] = _46;
+  # DEBUG BEGIN_STMT
+  i.25_47 = i_52;
+  i_86 = i.25_47 + 1;
+  # DEBUG i => i_86
+
+  <bb 18> :
+  # i_52 = PHI <i_83(16), i_86(17)>
+  # DEBUG i => i_52
+  # DEBUG BEGIN_STMT
+  if (i_52 <= 3)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _48 = inst_66(D)->SchMExit;
+  _48 ();
+
+  <bb 20> :
+  deferredActionsQueue ={v} {CLOBBER};
+  return;
+
+}
+
+
+BswM_EvaluateLogicalExpression (struct BswM_PartitionContextType * inst, BswM_IndexType exprIndex)
+{
+  BswMResultType result;
+  int _1;
+  unsigned char _2;
+  struct BswM_LinkTimeContextType * _3;
+  BswMResultType (*<Tc4f>) (uint16) _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  struct BswM_LinkTimeContextType * _9;
+  BswMResultType (*<Tc4f>) (uint16) _10;
+  BswMResultType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) exprIndex_14(D);
+  _2 = inst_16(D)->RunTimeContext.LogicalExprInitStatus[_1];
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_16(D)->LinkTimeContext;
+  _4 = _3->logicalExprGetStateFuncPtr;
+  _5 = (int) exprIndex_14(D);
+  _6 = _4 (exprIndex_14(D));
+  inst_16(D)->RunTimeContext.LogicalExprInitStatus[_5] = _6;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = (int) exprIndex_14(D);
+  _8 = inst_16(D)->RunTimeContext.LogicalExprInitStatus[_7];
+  if (_8 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = inst_16(D)->LinkTimeContext;
+  _10 = _9->logicalExprGetResultFuncPtr;
+  result_21 = _10 (exprIndex_14(D));
+  # DEBUG result => result_21
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result_19 = 2;
+  # DEBUG result => result_19
+
+  <bb 7> :
+  # result_11 = PHI <result_21(5), result_19(6)>
+  # DEBUG result => result_11
+  # DEBUG BEGIN_STMT
+  _22 = result_11;
+  return _22;
+
+}
+
+
+BswM_PortUpdated (struct BswMBasicPortType * portPtr, boolean * activatedActionLists, struct BswM_PartitionContextType * inst)
+{
+  BswMIndexType actionListIndex;
+  BswMIndexType dependIndex;
+  boolean retVal;
+  unsigned char _1;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.10_2;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.11_3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct BswM_ConfigType * _7;
+  long unsigned int _8;
+  short unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  sizetype _12;
+  const struct BswMRangeType * _13;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.12_14;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.13_15;
+  unsigned char _16;
+  unsigned int _17;
+  unsigned int _18;
+  const struct BswM_ConfigType * _19;
+  long unsigned int _20;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.14_21;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.15_22;
+  unsigned char _23;
+  unsigned int _24;
+  unsigned int _25;
+  const struct BswM_ConfigType * _26;
+  long unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  sizetype _30;
+  const uint16 * _31;
+  short unsigned int _32;
+  unsigned int _33;
+  unsigned int _34;
+  sizetype _35;
+  const struct BswMRuleType * _36;
+  sizetype _37;
+  boolean * _38;
+  short unsigned int dependIndex.16_39;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.17_40;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.18_41;
+  unsigned char _42;
+  unsigned int _43;
+  unsigned int _44;
+  const struct BswM_ConfigType * _45;
+  long unsigned int _46;
+  short unsigned int _47;
+  unsigned int _48;
+  unsigned int _49;
+  sizetype _50;
+  const struct BswMRangeType * _51;
+  short unsigned int _52;
+  boolean _72;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_60 = 0;
+  # DEBUG retVal => retVal_60
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  portPtr_62(D)->isDefined = 1;
+  # DEBUG BEGIN_STMT
+  _1 = portPtr_62(D)->isImmediate;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.10_2 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.11_3 = BswM_PostBuildConfig;
+  _4 = inst_64(D)->ID;
+  _5 = (unsigned int) _4;
+  _6 = _5 * 60;
+  _7 = BswM_PostBuildConfig.11_3 + _6;
+  _8 = _7->RuleDependencyListRangeTable;
+  _9 = portPtr_62(D)->id;
+  _10 = (unsigned int) _9;
+  _11 = _10 * 4;
+  _12 = _8 + _11;
+  _13 = BswM_PostBuildConfig.10_2 + _12;
+  dependIndex_65 = _13->Head;
+  # DEBUG dependIndex => dependIndex_65
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.12_14 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.13_15 = BswM_PostBuildConfig;
+  _16 = inst_64(D)->ID;
+  _17 = (unsigned int) _16;
+  _18 = _17 * 60;
+  _19 = BswM_PostBuildConfig.13_15 + _18;
+  _20 = _19->RuleTable;
+  BswM_PostBuildConfig.14_21 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.15_22 = BswM_PostBuildConfig;
+  _23 = inst_64(D)->ID;
+  _24 = (unsigned int) _23;
+  _25 = _24 * 60;
+  _26 = BswM_PostBuildConfig.15_22 + _25;
+  _27 = _26->RuleDependencyTable;
+  _28 = (unsigned int) dependIndex_56;
+  _29 = _28 * 2;
+  _30 = _27 + _29;
+  _31 = BswM_PostBuildConfig.14_21 + _30;
+  _32 = *_31;
+  _33 = (unsigned int) _32;
+  _34 = _33 * 10;
+  _35 = _20 + _34;
+  _36 = BswM_PostBuildConfig.12_14 + _35;
+  actionListIndex_67 = BswM_ExecuteRule (_36, inst_64(D));
+  # DEBUG actionListIndex => actionListIndex_67
+  # DEBUG BEGIN_STMT
+  if (actionListIndex_67 != 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _37 = (sizetype) actionListIndex_67;
+  _38 = activatedActionLists_68(D) + _37;
+  *_38 = 1;
+  # DEBUG BEGIN_STMT
+  retVal_70 = 1;
+  # DEBUG retVal => retVal_70
+
+  <bb 6> :
+  # retVal_53 = PHI <retVal_54(4), retVal_70(5)>
+  # DEBUG retVal => retVal_53
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  dependIndex.16_39 = dependIndex_56;
+  dependIndex_71 = dependIndex.16_39 + 1;
+  # DEBUG dependIndex => dependIndex_71
+
+  <bb 7> :
+  # retVal_54 = PHI <retVal_60(3), retVal_53(6)>
+  # dependIndex_56 = PHI <dependIndex_65(3), dependIndex_71(6)>
+  # DEBUG dependIndex => dependIndex_56
+  # DEBUG retVal => retVal_54
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.17_40 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.18_41 = BswM_PostBuildConfig;
+  _42 = inst_64(D)->ID;
+  _43 = (unsigned int) _42;
+  _44 = _43 * 60;
+  _45 = BswM_PostBuildConfig.18_41 + _44;
+  _46 = _45->RuleDependencyListRangeTable;
+  _47 = portPtr_62(D)->id;
+  _48 = (unsigned int) _47;
+  _49 = _48 * 4;
+  _50 = _46 + _49;
+  _51 = BswM_PostBuildConfig.17_40 + _50;
+  _52 = _51->Tail;
+  if (dependIndex_56 < _52)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # retVal_55 = PHI <retVal_60(2), retVal_54(7)>
+  # DEBUG retVal => retVal_55
+  # DEBUG BEGIN_STMT
+  _72 = retVal_55;
+  return _72;
+
+}
+
+
+BswM_MainFunction ()
+{
+  boolean activatedActionLists[17];
+  boolean hasActivatedActionLists;
+  BswMIndexType actionListIndex;
+  BswM_IndexType i;
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  void (*<T5bb>) (void) _2;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.2_3;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.3_4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct BswM_ConfigType * _8;
+  long unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  sizetype _12;
+  const struct BswMRuleType * _13;
+  int _14;
+  short unsigned int i.4_15;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.5_16;
+  unsigned char _17;
+  unsigned int _18;
+  unsigned int _19;
+  const struct BswM_ConfigType * _20;
+  short unsigned int _21;
+  void (*<T5bb>) (void) _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_32 = BswM_GetInstance ();
+  # DEBUG inst => inst_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_32->RunTimeContext.IsInitialized;
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  hasActivatedActionLists_33 = 0;
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&activatedActionLists, 0, 17);
+  # DEBUG BEGIN_STMT
+  _2 = inst_32->SchMEnter;
+  _2 ();
+  # DEBUG BEGIN_STMT
+  i_36 = 0;
+  # DEBUG i => i_36
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.2_3 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.3_4 = BswM_PostBuildConfig;
+  _5 = inst_32->ID;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 60;
+  _8 = BswM_PostBuildConfig.3_4 + _7;
+  _9 = _8->RuleTable;
+  _10 = (unsigned int) i_23;
+  _11 = _10 * 10;
+  _12 = _9 + _11;
+  _13 = BswM_PostBuildConfig.2_3 + _12;
+  actionListIndex_41 = BswM_ExecuteRule (_13, inst_32);
+  # DEBUG actionListIndex => actionListIndex_41
+  # DEBUG BEGIN_STMT
+  if (actionListIndex_41 != 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  hasActivatedActionLists_42 = 1;
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_42
+  # DEBUG BEGIN_STMT
+  _14 = (int) actionListIndex_41;
+  activatedActionLists[_14] = 1;
+
+  <bb 6> :
+  # hasActivatedActionLists_24 = PHI <hasActivatedActionLists_25(4), hasActivatedActionLists_42(5)>
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_24
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.4_15 = i_23;
+  i_44 = i.4_15 + 1;
+  # DEBUG i => i_44
+
+  <bb 7> :
+  # i_23 = PHI <i_36(3), i_44(6)>
+  # hasActivatedActionLists_25 = PHI <hasActivatedActionLists_33(3), hasActivatedActionLists_24(6)>
+  # DEBUG hasActivatedActionLists => hasActivatedActionLists_25
+  # DEBUG i => i_23
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.5_16 = BswM_PostBuildConfig;
+  _17 = inst_32->ID;
+  _18 = (unsigned int) _17;
+  _19 = _18 * 60;
+  _20 = BswM_PostBuildConfig.5_16 + _19;
+  _21 = _20->NumRulesDeferred;
+  if (i_23 < _21)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = inst_32->SchMExit;
+  _22 ();
+  # DEBUG BEGIN_STMT
+  if (hasActivatedActionLists_25 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  BswM_ExecuteModeControl (&activatedActionLists, inst_32);
+
+  <bb 10> :
+  activatedActionLists ={v} {CLOBBER};
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_NvM_CurrentJobMode (uint8 ServiceId, NvM_RequestResultType CurrentJobMode)
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  struct BswM_LinkTimeContextType * _4;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _5;
+  long unsigned int _6;
+  short unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_11 = BswM_GetInstance ();
+  # DEBUG inst => inst_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_11->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_11->ID;
+  Det_ASR40_ReportError (42, _2, 23, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (CurrentJobMode_12(D) > 8)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_11->ID;
+  Det_ASR40_ReportError (42, _3, 23, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_11->LinkTimeContext;
+  _5 = _4->handleStaticRequestFuncPtr;
+  _6 = (long unsigned int) ServiceId_13(D);
+  _7 = (short unsigned int) CurrentJobMode_12(D);
+  _5 (_6, _7, 13, 23);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_NvM_CurrentBlockMode (NvM_BlockIdType Block, NvM_RequestResultType CurrentBlockMode)
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  struct BswM_LinkTimeContextType * _4;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _5;
+  long unsigned int _6;
+  short unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_11 = BswM_GetInstance ();
+  # DEBUG inst => inst_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_11->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_11->ID;
+  Det_ASR40_ReportError (42, _2, 22, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (CurrentBlockMode_12(D) > 8)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_11->ID;
+  Det_ASR40_ReportError (42, _3, 22, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_11->LinkTimeContext;
+  _5 = _4->handleStaticRequestFuncPtr;
+  _6 = (long unsigned int) Block_13(D);
+  _7 = (short unsigned int) CurrentBlockMode_12(D);
+  _5 (_6, _7, 14, 22);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_NmIf_CarWakeUpIndication (NetworkHandleType Network)
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  struct BswM_LinkTimeContextType * _3;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _4;
+  long unsigned int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_9 = BswM_GetInstance ();
+  # DEBUG inst => inst_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_9->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_9->ID;
+  Det_ASR40_ReportError (42, _2, 36, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_9->LinkTimeContext;
+  _4 = _3->handleStaticRequestFuncPtr;
+  _5 = (long unsigned int) Network_10(D);
+  _4 (_5, 0, 12, 36);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_EcuM_CurrentWakeup (EcuM_WakeupSourceType source, EcuM_WakeupStatusType state)
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  struct BswM_LinkTimeContextType * _4;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _5;
+  short unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_10 = BswM_GetInstance ();
+  # DEBUG inst => inst_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_10->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_10->ID;
+  Det_ASR40_ReportError (42, _2, 16, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (state_11(D) > 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_10->ID;
+  Det_ASR40_ReportError (42, _3, 16, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_10->LinkTimeContext;
+  _5 = _4->handleStaticRequestFuncPtr;
+  _6 = (short unsigned int) state_11(D);
+  _5 (source_12(D), _6, 10, 16);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_EcuM_CurrentState (EcuM_StateType CurrentState)
+{
+  boolean in_range;
+  struct BswM_PartitionContextType * inst;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  struct BswM_LinkTimeContextType * _5;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _6;
+  short unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_12 = BswM_GetInstance ();
+  # DEBUG inst => inst_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) CurrentState_13(D);
+  switch (_1) <default: <L21> [INV], case 15 ... 18: <L0> [INV], case 32: <L0> [INV], case 34 ... 38: <L0> [INV], case 48: <L0> [INV], case 50 ... 51: <L0> [INV], case 64: <L0> [INV], case 68: <L0> [INV], case 73: <L0> [INV], case 77 ... 78: <L0> [INV], case 80: <L0> [INV], case 128: <L0> [INV], case 144: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  in_range_14 = 1;
+  # DEBUG in_range => in_range_14
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L21>:
+  # DEBUG BEGIN_STMT
+  in_range_15 = 0;
+  # DEBUG in_range => in_range_15
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # in_range_8 = PHI <in_range_14(3), in_range_15(4)>
+  # DEBUG in_range => in_range_8
+  # DEBUG BEGIN_STMT
+  _2 = inst_12->RunTimeContext.IsInitialized;
+  if (_2 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_12->ID;
+  Det_ASR40_ReportError (42, _3, 15, 1);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (in_range_8 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_12->ID;
+  Det_ASR40_ReportError (42, _4, 15, 5);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _5 = inst_12->LinkTimeContext;
+  _6 = _5->handleStaticRequestFuncPtr;
+  _7 = (short unsigned int) CurrentState_13(D);
+  _6 (0, _7, 9, 15);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_CanSM_CurrentState (NetworkHandleType Network, CanSM_BswMCurrentStateType CurrentState)
+{
+  boolean in_range;
+  struct BswM_PartitionContextType * inst;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  struct BswM_LinkTimeContextType * _5;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _6;
+  long unsigned int _7;
+  short unsigned int _8;
+  unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_13 = BswM_GetInstance ();
+  # DEBUG inst => inst_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) CurrentState_14(D);
+  _15 = (unsigned int) _1;
+  if (_15 <= 6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  in_range_16 = 1;
+  # DEBUG in_range => in_range_16
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  in_range_17 = 0;
+  # DEBUG in_range => in_range_17
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # in_range_9 = PHI <in_range_16(3), in_range_17(4)>
+  # DEBUG in_range => in_range_9
+  # DEBUG BEGIN_STMT
+  _2 = inst_13->RunTimeContext.IsInitialized;
+  if (_2 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_13->ID;
+  Det_ASR40_ReportError (42, _3, 5, 1);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (in_range_9 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_13->ID;
+  Det_ASR40_ReportError (42, _4, 5, 5);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _5 = inst_13->LinkTimeContext;
+  _6 = _5->handleStaticRequestFuncPtr;
+  _7 = (long unsigned int) Network_18(D);
+  _8 = (short unsigned int) CurrentState_14(D);
+  _6 (_7, _8, 0, 5);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_Dcm_ApplicationUpdated ()
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  struct BswM_LinkTimeContextType * _3;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_8 = BswM_GetInstance ();
+  # DEBUG inst => inst_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_8->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_8->ID;
+  Det_ASR40_ReportError (42, _2, 20, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_8->LinkTimeContext;
+  _4 = _3->handleStaticRequestFuncPtr;
+  _4 (0, 0, 4, 20);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_Dcm_CommunicationMode_CurrentState (NetworkHandleType Network, Dcm_CommunicationModeType RequestedMode)
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  struct BswM_LinkTimeContextType * _4;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _5;
+  long unsigned int _6;
+  short unsigned int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_11 = BswM_GetInstance ();
+  # DEBUG inst => inst_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = inst_11->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_11->ID;
+  Det_ASR40_ReportError (42, _2, 6, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (RequestedMode_12(D) > 11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_11->ID;
+  Det_ASR40_ReportError (42, _3, 6, 5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_11->LinkTimeContext;
+  _5 = _4->handleStaticRequestFuncPtr;
+  _6 = (long unsigned int) Network_13(D);
+  _7 = (short unsigned int) RequestedMode_12(D);
+  _5 (_6, _7, 5, 6);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_ComM_InitiateReset ()
+{
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  unsigned char _2;
+  struct BswM_LinkTimeContextType * _3;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_8 = BswM_GetInstance ();
+  # DEBUG inst => inst_8
+  # DEBUG BEGIN_STMT
+  _1 = inst_8->RunTimeContext.IsInitialized;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_8->ID;
+  Det_ASR40_ReportError (42, _2, 34, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_8->LinkTimeContext;
+  _4 = _3->handleStaticRequestFuncPtr;
+  _4 (0, 1, 2, 34);
+
+  <bb 5> :
+  return;
+
+}
+
+
+BswM_ComM_CurrentPNCMode (PNCHandleType PNC, ComM_PncModeType RequestedMode)
+{
+  BswM_IndexType i;
+  boolean in_range;
+  struct BswM_PartitionContextType * inst;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  struct BswM_LinkTimeContextType * _6;
+  struct BswMComMPncRequestPortType * _7;
+  unsigned int _8;
+  unsigned int _9;
+  struct BswMComMPncRequestPortType * _10;
+  short unsigned int _11;
+  struct BswM_LinkTimeContextType * _12;
+  struct BswMComMPncRequestPortType * _13;
+  unsigned int _14;
+  unsigned int _15;
+  struct BswMComMPncRequestPortType * _16;
+  long unsigned int _17;
+  struct BswM_LinkTimeContextType * _18;
+  struct BswMComMPncRequestPortType * _19;
+  unsigned int _20;
+  unsigned int _21;
+  struct BswMComMPncRequestPortType * _22;
+  unsigned char _23;
+  short unsigned int i.1_24;
+  struct BswM_LinkTimeContextType * _25;
+  short unsigned int _26;
+  unsigned int _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_35 = BswM_GetInstance ();
+  # DEBUG inst => inst_35
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RequestedMode_36(D);
+  _37 = (unsigned int) _1;
+  if (_37 <= 4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  in_range_38 = 1;
+  # DEBUG in_range => in_range_38
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  in_range_39 = 0;
+  # DEBUG in_range => in_range_39
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # in_range_27 = PHI <in_range_38(3), in_range_39(4)>
+  # DEBUG in_range => in_range_27
+  # DEBUG BEGIN_STMT
+  _2 = inst_35->RunTimeContext.IsInitialized;
+  if (_2 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_35->ID;
+  Det_ASR40_ReportError (42, _3, 21, 1);
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (in_range_27 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_35->ID;
+  Det_ASR40_ReportError (42, _4, 21, 5);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = inst_35->RunTimeContext.IsInitialized;
+  if (_5 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_42 = 0;
+  # DEBUG i => i_42
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _6 = inst_35->LinkTimeContext;
+  _7 = _6->comMPncRequestPortsTablePtr;
+  _8 = (unsigned int) i_28;
+  _9 = _8 * 8;
+  _10 = _7 + _9;
+  _11 = _10->channel;
+  if (PNC_43(D) == _11)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _12 = inst_35->LinkTimeContext;
+  _13 = _12->comMPncRequestPortsTablePtr;
+  _14 = (unsigned int) i_28;
+  _15 = _14 * 8;
+  _16 = _13 + _15;
+  _17 = (long unsigned int) RequestedMode_36(D);
+  _18 = inst_35->LinkTimeContext;
+  _19 = _18->comMPncRequestPortsTablePtr;
+  _20 = (unsigned int) i_28;
+  _21 = _20 * 8;
+  _22 = _19 + _21;
+  _23 = _22->base.isImmediate;
+  BswM_HandleRequest (inst_35, _16, _17, 3, 21, _23);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  i.1_24 = i_28;
+  i_45 = i.1_24 + 1;
+  # DEBUG i => i_45
+
+  <bb 14> :
+  # i_28 = PHI <i_42(10), i_45(13)>
+  # DEBUG i => i_28
+  # DEBUG BEGIN_STMT
+  _25 = inst_35->LinkTimeContext;
+  _26 = _25->numBswMComMPncRequestPorts;
+  if (i_28 < _26)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_ComM_CurrentMode (NetworkHandleType Network, ComM_ModeType RequestedMode)
+{
+  boolean in_range;
+  struct BswM_PartitionContextType * inst;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  struct BswM_LinkTimeContextType * _5;
+  Std_ReturnType (*<Tc53>) (uint32, uint16, uint8, uint8) _6;
+  long unsigned int _7;
+  short unsigned int _8;
+  unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_13 = BswM_GetInstance ();
+  # DEBUG inst => inst_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RequestedMode_14(D);
+  _15 = (unsigned int) _1;
+  if (_15 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  in_range_16 = 1;
+  # DEBUG in_range => in_range_16
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  in_range_17 = 0;
+  # DEBUG in_range => in_range_17
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+  # in_range_9 = PHI <in_range_16(3), in_range_17(4)>
+  # DEBUG in_range => in_range_9
+  # DEBUG BEGIN_STMT
+  _2 = inst_13->RunTimeContext.IsInitialized;
+  if (_2 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = inst_13->ID;
+  Det_ASR40_ReportError (42, _3, 14, 1);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (in_range_9 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = inst_13->ID;
+  Det_ASR40_ReportError (42, _4, 14, 5);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _5 = inst_13->LinkTimeContext;
+  _6 = _5->handleStaticRequestFuncPtr;
+  _7 = (long unsigned int) Network_18(D);
+  _8 = (short unsigned int) RequestedMode_14(D);
+  _6 (_7, _8, 1, 14);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_RequestMode (BswM_UserType requesting_user, BswM_ModeType requested_mode)
+{
+  BswM_IndexType i;
+  struct BswMGenericRequestPortType * foundPort;
+  struct BswM_PartitionContextType * inst;
+  unsigned char _1;
+  struct BswM_LinkTimeContextType * _2;
+  struct BswMGenericRequestPortType * _3;
+  unsigned int _4;
+  unsigned int _5;
+  struct BswMGenericRequestPortType * _6;
+  short unsigned int _7;
+  struct BswM_LinkTimeContextType * _8;
+  struct BswMGenericRequestPortType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  short unsigned int i.0_12;
+  struct BswM_LinkTimeContextType * _13;
+  short unsigned int _14;
+  unsigned char _15;
+  long unsigned int _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_26 = BswM_GetInstance ();
+  # DEBUG inst => inst_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  foundPort_27 = 0B;
+  # DEBUG foundPort => foundPort_27
+  # DEBUG BEGIN_STMT
+  _1 = inst_26->RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_28 = 0;
+  # DEBUG i => i_28
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = inst_26->LinkTimeContext;
+  _3 = _2->genericRequestPortsTablePtr;
+  _4 = (unsigned int) i_22;
+  _5 = _4 * 8;
+  _6 = _3 + _5;
+  _7 = _6->channel;
+  if (requesting_user_29(D) == _7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = inst_26->LinkTimeContext;
+  _9 = _8->genericRequestPortsTablePtr;
+  _10 = (unsigned int) i_22;
+  _11 = _10 * 8;
+  foundPort_31 = _9 + _11;
+  # DEBUG foundPort => foundPort_31
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.0_12 = i_22;
+  i_30 = i.0_12 + 1;
+  # DEBUG i => i_30
+
+  <bb 7> :
+  # i_22 = PHI <i_28(3), i_30(6)>
+  # DEBUG i => i_22
+  # DEBUG BEGIN_STMT
+  _13 = inst_26->LinkTimeContext;
+  _14 = _13->numBswMGenericRequestPorts;
+  if (i_22 < _14)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # foundPort_21 = PHI <foundPort_27(2), foundPort_31(5), foundPort_27(7)>
+  # DEBUG foundPort => foundPort_21
+  # DEBUG BEGIN_STMT
+  _15 = inst_26->RunTimeContext.IsInitialized;
+  if (_15 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (foundPort_21 != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _16 = (long unsigned int) requested_mode_32(D);
+  _17 = foundPort_21->base.isImmediate;
+  BswM_HandleRequest (inst_26, foundPort_21, _16, 1, 2, _17);
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _18 = inst_26->RunTimeContext.IsInitialized;
+  if (_18 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _19 = inst_26->ID;
+  Det_ASR40_ReportError (42, _19, 2, 1);
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _20 = inst_26->ID;
+  Det_ASR40_ReportError (42, _20, 2, 4);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_Deinit ()
+{
+  struct BswM_PartitionContextType * inst;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  inst_3 = BswM_GetInstance ();
+  # DEBUG inst => inst_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inst_3->RunTimeContext.IsInitialized = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

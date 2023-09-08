@@ -1,0 +1,56 @@
+__attribute__((target ("general-regs-only")))
+OS_WrapActivateTask (const struct os_alarm_t * a)
+{
+  os_paramtype_t p[3];
+  os_errorresult_t e;
+  os_uint8_t save;
+  const struct os_task_t * tp;
+  unsigned int _1;
+  const struct os_task_t * OS_taskTableBase.0_2;
+  unsigned int _3;
+  unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  _1 = a_7(D)->object;
+  # DEBUG t => (const os_taskid_t) _1
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_2 = OS_taskTableBase;
+  _5 = _1 & 255;
+  _3 = _5 * 76;
+  tp_8 = OS_taskTableBase.0_2 + _3;
+  # DEBUG tp => tp_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  save_9 = OS_kernelData.inFunction;
+  # DEBUG save => save_9
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 7;
+  # DEBUG BEGIN_STMT
+  e_12 = OS_LocalActivateTask (tp_8);
+  # DEBUG e => e_12
+  # DEBUG BEGIN_STMT
+  if (e_12 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  p[0] = _5;
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_ActivateTask, e_12, &p);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = save_9;
+  p ={v} {CLOBBER};
+  return;
+
+}
+
+

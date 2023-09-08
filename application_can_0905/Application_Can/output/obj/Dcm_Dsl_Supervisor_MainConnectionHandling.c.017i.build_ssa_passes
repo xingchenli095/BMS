@@ -1,0 +1,509 @@
+Dcm_Dsl_Supervisor_MainConnectionHandling_SendQueuedNRC (Dcm_MainConnectionIndexType MainConnectionIndex)
+{
+  NetworkHandleType ComMChannelId;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  const Dcm_BufferUserType TxConnectionId;
+  const PduIdType ConfirmationTxPduId;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  ConfirmationTxPduId = Dcm_MainConnectionConfig[_1].ConfirmationTxPduId;
+  # DEBUG BEGIN_STMT
+  TxConnectionId = ConfirmationTxPduId + 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  _3 = Dcm_MainConnectionStatus[_2].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_3, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  ComMChannelId = RxPduIdInfo.ComMChannelId;
+  # DEBUG BEGIN_STMT
+  _4 = (int) MainConnectionIndex;
+  _5 = Dcm_MainConnectionStatus[_4].NRCBuffer.BufferPtr;
+  *_5 = 127;
+  # DEBUG BEGIN_STMT
+  _6 = (int) MainConnectionIndex;
+  _7 = (int) MainConnectionIndex;
+  _8 = Dcm_MainConnectionStatus[_7].NRCBuffer.BufferPtr;
+  _9 = _8 + 1;
+  _10 = Dcm_MainConnectionStatus[_6].ServiceId;
+  *_9 = _10;
+  # DEBUG BEGIN_STMT
+  _11 = (int) MainConnectionIndex;
+  _12 = (int) MainConnectionIndex;
+  _13 = Dcm_MainConnectionStatus[_12].NRCBuffer.BufferPtr;
+  _14 = _13 + 2;
+  _15 = Dcm_MainConnectionStatus[_11].RespondWithNRC;
+  *_14 = _15;
+  # DEBUG BEGIN_STMT
+  _16 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_16].NRCBuffer.FilledLength = 3;
+  # DEBUG BEGIN_STMT
+  _17 = (int) MainConnectionIndex;
+  _18 = Dcm_MainConnectionStatus[_17].State;
+  if (_18 == 4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_19].State = 5;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_20].State = 7;
+  # DEBUG BEGIN_STMT
+  _21 = RxPduIdInfo.ProtocolIndex;
+  Dcm_Dsl_Supervisor_ProtocolHandling_RCRRPSent (_21);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _22 = (int) MainConnectionIndex;
+  _23 = Dcm_MainConnectionStatus[_22].NRCTimeout;
+  _24 = (int) MainConnectionIndex;
+  Dcm_Dsl_TxConnectionTransmit (TxConnectionId, ComMChannelId, 14, 0, 3, _23, Dcm_MainConnectionStatus[_24].NRCBuffer);
+  RxPduIdInfo = {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_GetRxConnectionId (Dcm_MainConnectionIndexType MainConnIdx)
+{
+  PduIdType RxConnectionId;
+  PduIdType D.7021;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnIdx;
+  RxConnectionId = Dcm_MainConnectionStatus[_1].RxConnectionId;
+  # DEBUG BEGIN_STMT
+  D.7021 = RxConnectionId;
+  return D.7021;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_End (Dcm_MainConnectionIndexType MainConnectionIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  _2 = Dcm_MainConnectionStatus[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_2);
+  # DEBUG BEGIN_STMT
+  _3 = (int) MainConnectionIndex;
+  _4 = Dcm_MainConnectionStatus[_3].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingEnd (_4);
+  # DEBUG BEGIN_STMT
+  _5 = (int) MainConnectionIndex;
+  _6 = Dcm_MainConnectionStatus[_5].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFree (14, _6);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_MainConnectionHandling_ClearMainConnection (MainConnectionIndex);
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_GetNRCTimeout (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_TimerValueType ServerAdjust;
+  Dcm_TimerValueType P2StarMaxTime;
+  Dcm_TimerValueType NRCTimeout;
+  Dcm_TimerValueType D.7019;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NRCTimeout = 0;
+  # DEBUG BEGIN_STMT
+  P2StarMaxTime = Dcm_Dsl_DiagnosticSessionHandler_GetP2StarMaxTime (ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex;
+  _2 = Dcm_ProtocolConfig[_1].P2StarServerAdjustTime;
+  ServerAdjust = (Dcm_TimerValueType) _2;
+  # DEBUG BEGIN_STMT
+  if (P2StarMaxTime > ServerAdjust)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NRCTimeout = P2StarMaxTime - ServerAdjust;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.7019 = NRCTimeout;
+  return D.7019;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_RequestDispatchedToProtocol (Dcm_MainConnectionIndexType MainConnectionIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_1].State = 3;
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_2].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  _3 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_3].RespondWithNRC = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_4].ServiceId = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_5].NRCTimeout = 0;
+  # DEBUG BEGIN_STMT
+  _6 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_6].NRCBuffer.BufferId = 18;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_BusyWithRequest (Dcm_MainConnectionIndexType MainConnectionIndex, Dcm_BufferUserType RxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_1].State = 2;
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_2].RxConnectionId = RxConnectionId;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_ClearMainConnection (Dcm_MainConnectionIndexType MainConnectionIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_1].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_2].RespondWithNRC = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_3].ServiceId = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_4].NRCTimeout = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_5].State = 1;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_TransmissionFinished (Dcm_MainConnectionIndexType MainConnectionIndex, Dcm_TxResultType TransmissionResult)
+{
+  const Dcm_TimerValueType NRCTimeout;
+  const Dcm_ProtocolIndexType ProtocolIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  ProtocolIndex = Dcm_MainConnectionConfig[_1].ProtocolIndex;
+  # DEBUG BEGIN_STMT
+  NRCTimeout = Dcm_Dsl_Supervisor_MainConnectionHandling_GetNRCTimeout (ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  _3 = Dcm_MainConnectionStatus[_2].State;
+  _4 = (int) _3;
+  switch (_4) <default: <L11> [INV], case 5: <L0> [INV], case 7: <L1> [INV], case 8: <L5> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_MainConnectionHandling_End (MainConnectionIndex);
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  if (TransmissionResult == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_5].State = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_RCRRPTransmissionFinished (ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (14, ProtocolIndex, NRCTimeout);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_MainConnectionHandling_End (MainConnectionIndex);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, ProtocolIndex);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex, 0);
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  if (TransmissionResult == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_6].State = 4;
+  # DEBUG BEGIN_STMT
+  _7 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_7].NRCTimeout = NRCTimeout;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_MainConnectionHandling_End (MainConnectionIndex);
+
+  <bb 10> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_MainConnectionBusy (Dcm_MainConnectionIndexType MainConnectionIndex)
+{
+  boolean MainConnectionBusy;
+  boolean D.7008;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  MainConnectionBusy = 1;
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  _2 = Dcm_MainConnectionStatus[_1].State;
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  MainConnectionBusy = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.7008 = MainConnectionBusy;
+  return D.7008;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_InitiateNRC (Dcm_BufferUserType RxConnectionId, struct Dcm_BufferType RequestBuffer, Dcm_NegativeResponseCodeType NRC, Dcm_TimerValueType NRCTimeout)
+{
+  PduIdType ConfirmationTxPduId;
+  Dcm_BufferUserType TxConnectionId;
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = RxPduIdInfo.MainConnectionIndex;
+  # DEBUG BEGIN_STMT
+  _1 = (int) MainConnectionIndex;
+  ConfirmationTxPduId = Dcm_MainConnectionConfig[_1].ConfirmationTxPduId;
+  # DEBUG BEGIN_STMT
+  TxConnectionId = ConfirmationTxPduId + 6;
+  # DEBUG BEGIN_STMT
+  _2 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_2].RxConnectionId = RxConnectionId;
+  # DEBUG BEGIN_STMT
+  _3 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_3].RespondWithNRC = NRC;
+  # DEBUG BEGIN_STMT
+  _4 = RequestBuffer.BufferPtr;
+  _5 = (int) MainConnectionIndex;
+  _6 = *_4;
+  Dcm_MainConnectionStatus[_5].ServiceId = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_7].NRCTimeout = NRCTimeout;
+  # DEBUG BEGIN_STMT
+  _8 = (int) MainConnectionIndex;
+  _9 = Dcm_MainConnectionStatus[_8].State;
+  _10 = (int) _9;
+  switch (_10) <default: <L9> [INV], case 1 ... 2: <L0> [INV], case 6: <L6> [INV], case 7: <L5> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _11 = (int) MainConnectionIndex;
+  _12 = &Dcm_MainConnectionStatus[_11].NRCBuffer;
+  Dcm_Dsl_BufferAllocate (TxConnectionId, 7, 3, _12);
+  # DEBUG BEGIN_STMT
+  if (NRC == 120)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_13].State = 6;
+  # DEBUG BEGIN_STMT
+  _14 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_14].NRCTimeout = 0;
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_15].State = 4;
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_16].State = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_17].NRCTimeout = 0;
+  # DEBUG BEGIN_STMT
+  _18 = (int) MainConnectionIndex;
+  Dcm_MainConnectionStatus[_18].State = 4;
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+<L9>:
+  RxPduIdInfo = {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_MainFunction ()
+{
+  uint8_least MainConnectionIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_MainConnectionStatus[MainConnectionIndex].State;
+  _2 = (int) _1;
+  switch (_2) <default: <L7> [INV], case 4: <L1> [INV], case 6: <L1> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned char) MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_SendQueuedNRC (_3);
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = MainConnectionIndex + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (MainConnectionIndex <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_MainConnectionHandling_Init ()
+{
+  uint8_least MainConnectionIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].State = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].RespondWithNRC = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].ServiceId = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].NRCTimeout = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_MainConnectionStatus[MainConnectionIndex].NRCBuffer.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = MainConnectionIndex + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (MainConnectionIndex <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

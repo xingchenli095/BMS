@@ -1,0 +1,196 @@
+SWC_CyclicCounter_Cyclic_FD ()
+{
+  uint8 counterValue;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  counterValue = 0;
+  # DEBUG BEGIN_STMT
+  counterValue = Rte_IrvRead_SWC_CyclicCounter_Cyclic_FD_CurrentCounterValue_FD ();
+  # DEBUG BEGIN_STMT
+  _1 = counterValue + 1;
+  Rte_IrvWrite_SWC_CyclicCounter_Cyclic_FD_CurrentCounterValue_FD (_1);
+  # DEBUG BEGIN_STMT
+  Rte_Write_SWC_CyclicCounter_P_CounterOut_FD_CounterValue_FD (counterValue);
+  return;
+
+}
+
+
+SWC_CyclicCounter_SetCounter_FD (uint8 newCounterValue, uint8 * returnSum)
+{
+  uint8 currentCounter;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  currentCounter = 0;
+  # DEBUG BEGIN_STMT
+  currentCounter = Rte_IrvRead_SWC_CyclicCounter_SetCounter_FD_CurrentCounterValue_FD ();
+  # DEBUG BEGIN_STMT
+  Rte_IrvWrite_SWC_CyclicCounter_SetCounter_FD_CurrentCounterValue_FD (newCounterValue);
+  # DEBUG BEGIN_STMT
+  _1 = currentCounter + newCounterValue;
+  *returnSum = _1;
+  return;
+
+}
+
+
+SWC_CyclicCounter_SetCounter (uint8 newCounterValue, uint8 * returnSum)
+{
+  uint8 currentCounter;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  currentCounter = 0;
+  # DEBUG BEGIN_STMT
+  currentCounter = Rte_IrvRead_SWC_CyclicCounter_SetCounter_CurrentCounterValue ();
+  # DEBUG BEGIN_STMT
+  Rte_IrvWrite_SWC_CyclicCounter_SetCounter_CurrentCounterValue (newCounterValue);
+  # DEBUG BEGIN_STMT
+  _1 = currentCounter + newCounterValue;
+  *returnSum = _1;
+  return;
+
+}
+
+
+SWC_CyclicCounter_Cyclic ()
+{
+  boolean specialReceiveCommand;
+  uint8 i;
+  uint8 specialReceiveCommands[10];
+  uint8 counterValue;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  counterValue = 0;
+  # DEBUG BEGIN_STMT
+  specialReceiveCommands = "\x00";
+  # DEBUG BEGIN_STMT
+  i = 0;
+  # DEBUG BEGIN_STMT
+  specialReceiveCommand = 0;
+  # DEBUG BEGIN_STMT
+  WdgM_CheckpointReached (1, 0);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (i > 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) i;
+  _2 = 9 - _1;
+  _3 = specialReceiveCommands[0];
+  specialReceiveCommands[_2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = (int) i;
+  _5 = specialReceiveCommands[_4];
+  if (_5 == 241)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Rte_Call_SWC_CyclicCounter_R_CyclicCounterDet_ReportError (1, 2, 3);
+  # DEBUG BEGIN_STMT
+  specialReceiveCommand = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.2_6 = i;
+  i = i.2_6 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = Rte_Receive_SWC_CyclicCounter_R_SpecialHandling_EventMessage (&specialReceiveCommands[0]);
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (specialReceiveCommand == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  counterValue = Rte_IrvRead_SWC_CyclicCounter_Cyclic_CurrentCounterValue ();
+  # DEBUG BEGIN_STMT
+  _8 = counterValue & 1;
+  if (_8 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Rte_Call_SWC_CyclicCounter_R_MyLED_SetDiscreteValue (1);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Rte_Call_SWC_CyclicCounter_R_MyLED_SetDiscreteValue (0);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _9 = counterValue + 1;
+  Rte_IrvWrite_SWC_CyclicCounter_Cyclic_CurrentCounterValue (_9);
+  # DEBUG BEGIN_STMT
+  Rte_Write_SWC_CyclicCounter_P_CounterOut_CounterValue (counterValue);
+
+  <bb 13> :
+  specialReceiveCommands = {CLOBBER};
+  return;
+
+}
+
+
+SWC_CyclicCounter_Shutdown ()
+{
+  uint8 counterValue;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  counterValue = 0;
+  # DEBUG BEGIN_STMT
+  counterValue = Rte_IrvRead_SWC_CyclicCounter_Cyclic_CurrentCounterValue ();
+  # DEBUG BEGIN_STMT
+  Rte_Inst_SWC_CyclicCounter.1_1 = Rte_Inst_SWC_CyclicCounter;
+  _2 = Rte_Inst_SWC_CyclicCounter.1_1->Pim_PimCounterValue;
+  *_2 = counterValue;
+  # DEBUG BEGIN_STMT
+  Rte_Call_SWC_CyclicCounter_PS_PersistentCounterValue_SetRamBlockStatus (1);
+  return;
+
+}
+
+
+SWC_CyclicCounter_Init ()
+{
+  uint8 counterValue;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  counterValue = 0;
+  # DEBUG BEGIN_STMT
+  Rte_Inst_SWC_CyclicCounter.0_1 = Rte_Inst_SWC_CyclicCounter;
+  _2 = Rte_Inst_SWC_CyclicCounter.0_1->Pim_PimCounterValue;
+  counterValue = *_2;
+  # DEBUG BEGIN_STMT
+  Rte_IrvWrite_SWC_CyclicCounter_Cyclic_CurrentCounterValue (counterValue);
+  return;
+
+}
+
+

@@ -1,0 +1,286 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalStartScheduleTable (const struct os_schedule_t * ss, os_counterid_t c, os_tick_t offset, os_boolean_t rel)
+{
+  os_intstatus_t is;
+  struct os_counterdynamic_t * cd;
+  const struct os_counter_t * cs;
+  struct os_alarmdynamic_t * ad;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t result;
+  os_errorresult_t D.7459;
+  os_tick_t iftmp.6;
+  os_tick_t iftmp.5;
+  os_tick_t iftmp.4;
+  os_tick_t iftmp.3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.0_1 = OS_alarmTableBase;
+  _2 = ss->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  _5 = OS_alarmTableBase.0_1 + _4;
+  ad = _5->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.1_6 = OS_counterTableBase;
+  _7 = (unsigned int) c;
+  _8 = _7 * 32;
+  cs = OS_counterTableBase.1_6 + _8;
+  # DEBUG BEGIN_STMT
+  cd = cs->dynamic;
+  # DEBUG BEGIN_STMT
+  _9 = cs->hwt;
+  if (_9 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _10 = cd->lock;
+  if (_10 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = cs->updFunc;
+  _11 (cs);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_12 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.2_12);
+  # DEBUG BEGIN_STMT
+  _13 = ss->app;
+  _14 = OS_AppIsAccessible (_13);
+  if (_14 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 32>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _15 = sd->status;
+  if (_15 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  result = 69;
+  goto <bb 32>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _16 = ad->inUse;
+  if (_16 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result = 20;
+  goto <bb 32>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 4294967295;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd->next = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = 3;
+  # DEBUG BEGIN_STMT
+  _17 = ss->flags;
+  _18 = (unsigned int) _17;
+  _19 = _18 & 4;
+  if (_19 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _20 = sd->status;
+  _21 = _20 | 8;
+  sd->status = _21;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ad->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad->period = 0;
+  # DEBUG BEGIN_STMT
+  if (rel != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _22 = cs->maxallowedvalue;
+  _23 = _22 - offset;
+  _24 = ss->table;
+  _25 = _24->offset;
+  if (_23 < _25)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  _26 = ss->table;
+  _27 = _26->offset;
+  _28 = offset + _27;
+  _29 = cs->maxallowedvalue;
+  _30 = _28 - _29;
+  iftmp.3 = _30 + 4294967295;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  _31 = ss->table;
+  _32 = _31->offset;
+  iftmp.3 = offset + _32;
+
+  <bb 17> :
+  ad->delta = iftmp.3;
+  # DEBUG BEGIN_STMT
+  _33 = cs->maxallowedvalue;
+  _34 = cd->current;
+  _35 = _33 - _34;
+  _36 = ad->delta;
+  if (_35 < _36)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  _37 = cd->current;
+  _38 = ad->delta;
+  _39 = _37 + _38;
+  _40 = cs->maxallowedvalue;
+  _41 = _39 - _40;
+  iftmp.4 = _41 + 4294967295;
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  _42 = cd->current;
+  _43 = ad->delta;
+  iftmp.4 = _42 + _43;
+
+  <bb 20> :
+  sd->ctrAbs = iftmp.4;
+  goto <bb 28>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _44 = cs->maxallowedvalue;
+  _45 = _44 - offset;
+  _46 = ss->table;
+  _47 = _46->offset;
+  if (_45 < _47)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  _48 = ss->table;
+  _49 = _48->offset;
+  _50 = offset + _49;
+  _51 = cs->maxallowedvalue;
+  _52 = _50 - _51;
+  iftmp.5 = _52 + 4294967295;
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  _53 = ss->table;
+  _54 = _53->offset;
+  iftmp.5 = offset + _54;
+
+  <bb 24> :
+  sd->ctrAbs = iftmp.5;
+  # DEBUG BEGIN_STMT
+  _55 = sd->ctrAbs;
+  _56 = cd->current;
+  if (_55 < _56)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  _57 = sd->ctrAbs;
+  _58 = cd->current;
+  _59 = _57 - _58;
+  _60 = cs->maxallowedvalue;
+  _61 = _59 + _60;
+  iftmp.6 = _61 + 1;
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  _62 = sd->ctrAbs;
+  _63 = cd->current;
+  iftmp.6 = _62 - _63;
+
+  <bb 27> :
+  ad->delta = iftmp.6;
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _64 = ss->alarm;
+  OS_EnqueueAlarm (cs, cd, _64, ad);
+  # DEBUG BEGIN_STMT
+  _65 = cs->hwt;
+  if (_65 != 0B)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _66 = cd->lock;
+  if (_66 == 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 30> :
+  _67 = cd->head;
+  _68 = ss->alarm;
+  if (_67 == _68)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _69 = cs->updFunc;
+  _69 (cs);
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7459 = result;
+  return D.7459;
+
+}
+
+

@@ -1,0 +1,587 @@
+__attribute__((target ("general-regs-only")))
+OS_ErrorAction (os_erroraction_t act, os_result_t res)
+{
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t D.7480;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  if (act == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  res = 0;
+  goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (act == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 6)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_ErrorActionTask (act, res);
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_ErrorActionCat2 (act, res);
+  goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.inFunction;
+  if (_4 == 8)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_ErrorActionStartupHook (act, res);
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.inFunction;
+  if (_5 == 9)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_ErrorActionShutdownHook ();
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _6 = OS_kernelData.inFunction;
+  if (_6 == 10)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  OS_ErrorActionErrorHook (act, res);
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  D.7480 = res;
+  return D.7480;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_ErrorActionErrorHook (os_erroraction_t act, os_result_t res)
+{
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t killresult;
+  os_erroraction_t iftmp.11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  killresult = 21;
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.hookApp;
+  if (_1 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = OS_kernelData.hookApp;
+  _3 = _2->flags;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = act + 254;
+  if (_6 <= 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (act == 5)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.11 = 5;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.11 = 4;
+
+  <bb 9> :
+  OS_kernelData.errorStatus.action = iftmp.11;
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.12_7 = OS_killHookFunc;
+  if (OS_killHookFunc.12_7 != 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.13_8 = OS_killHookFunc;
+  killresult = OS_killHookFunc.13_8 (&OS_kernelData.eHookContext);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (killresult != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+
+  <bb 14> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_ErrorActionShutdownHook ()
+{
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t killresult;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  killresult = 21;
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.hookApp;
+  if (_1 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = OS_kernelData.hookApp;
+  _3 = _2->flags;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.9_6 = OS_killHookFunc;
+  if (OS_killHookFunc.9_6 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.10_7 = OS_killHookFunc;
+  killresult = OS_killHookFunc.10_7 (&OS_kernelData.sHookContext);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (killresult != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 9> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_ErrorActionStartupHook (os_erroraction_t act, os_result_t res)
+{
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t killresult;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  killresult = 21;
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.hookApp;
+  if (_1 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = OS_kernelData.hookApp;
+  _3 = _2->flags;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 2;
+  if (_5 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = act + 254;
+  if (_6 <= 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = OS_kernelData.hookApp;
+  OS_QuarantineApplication (_7);
+  # DEBUG BEGIN_STMT
+  if (act == 5)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.hookApp;
+  OS_RestartApplication (_8);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.7_9 = OS_killHookFunc;
+  if (OS_killHookFunc.7_9 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_killHookFunc.8_10 = OS_killHookFunc;
+  killresult = OS_killHookFunc.8_10 (&OS_kernelData.sHookContext);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (killresult != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+
+  <bb 13> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_ErrorActionCat2 (os_erroraction_t act, os_result_t res)
+{
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t killresult;
+  const struct os_appcontext_t * app;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  killresult = 21;
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _1 = act + 254;
+  if (_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (act == 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.1_2 = OS_isrTableBase;
+  _3 = OS_kernelData.isrCurrent;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 68;
+  _6 = OS_isrTableBase.1_2 + _5;
+  _7 = &_6->arch;
+  OS_CORTEXM_IntDisableIsr (_7);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_killIsrFunc.2_8 = OS_killIsrFunc;
+  if (OS_killIsrFunc.2_8 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_killIsrFunc.3_9 = OS_killIsrFunc;
+  _10 = OS_kernelData.isrCurrent;
+  killresult = OS_killIsrFunc.3_9 (_10);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (killresult != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 20>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _11 = act + 252;
+  if (_11 <= 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.4_12 = OS_isrTableBase;
+  _13 = OS_kernelData.isrCurrent;
+  _14 = (unsigned int) _13;
+  _15 = _14 * 68;
+  _16 = OS_isrTableBase.4_12 + _15;
+  app = _16->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _17 = app->flags;
+  _18 = (unsigned int) _17;
+  _19 = _18 & 2;
+  if (_19 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 20>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_QuarantineApplication (app);
+  # DEBUG BEGIN_STMT
+  if (act == 5)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OS_RestartApplication (app);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  OS_killIsrFunc.5_20 = OS_killIsrFunc;
+  if (OS_killIsrFunc.5_20 != 0B)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_killIsrFunc.6_21 = OS_killIsrFunc;
+  _22 = OS_kernelData.isrCurrent;
+  killresult = OS_killIsrFunc.6_21 (_22);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (killresult != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+
+  <bb 20> :
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_ErrorActionTask (os_erroraction_t act, os_result_t res)
+{
+  const struct os_appcontext_t * const app;
+  struct os_kerneldata_t * const kernel_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _1 = act + 254;
+  if (_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_killTaskFunc.0_2 = OS_killTaskFunc;
+  _3 = OS_kernelData.taskCurrent;
+  _4 = act != 2;
+  _5 = (unsigned char) _4;
+  OS_killTaskFunc.0_2 (_3, _5);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = act + 252;
+  if (_6 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = OS_kernelData.taskCurrent;
+  app = _7->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _8 = app->flags;
+  _9 = (unsigned int) _8;
+  _10 = _9 & 2;
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_QuarantineApplication (app);
+  # DEBUG BEGIN_STMT
+  if (act == 5)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_RestartApplication (app);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_Shutdown (res, 0);
+
+  <bb 11> :
+  return;
+
+}
+
+

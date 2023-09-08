@@ -1,0 +1,134 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksIsr ()
+{
+  const struct os_appcontext_t * const app;
+  const struct os_isr_t * const isr;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  os_result_t D.7435;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = i * 68;
+  isr = OS_isrTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  app = isr->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (51);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = isr->flags;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 64;
+  if (_5 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _6 = isr->accounting;
+  if (_6 == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (52);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = isr->execBudget;
+  if (_7 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _8 = isr->osLockTime;
+  if (_8 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _9 = isr->allLockTime;
+  if (_9 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _10 = isr->resourceLockTime;
+  if (_10 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _11 = isr->accounting;
+  if (_11 == 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (53);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _12 = isr->osLockTime;
+  _13 = isr->allLockTime;
+  if (_12 < _13)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (54);
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.1_14 = OS_nInterrupts;
+  _15 = (unsigned int) OS_nInterrupts.1_14;
+  if (i < _15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.7435 = result;
+  return D.7435;
+
+}
+
+

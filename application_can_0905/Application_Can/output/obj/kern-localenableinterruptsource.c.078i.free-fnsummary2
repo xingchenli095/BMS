@@ -1,0 +1,76 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalEnableInterruptSource (const struct os_isr_t * isr, os_boolean_t clearPending)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  short unsigned int OS_kernDisableLevel.0_3;
+  struct os_isrdynamic_t * _4;
+  unsigned char _5;
+  unsigned char _6;
+  const struct os_archisr_t * _7;
+  const struct os_archisr_t * _8;
+  unsigned char _14;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr_16(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 8>; [52.23%]
+  else
+    goto <bb 3>; [47.77%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_3 = OS_kernDisableLevel;
+  is_19 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_3);
+  # DEBUG is => is_19
+  # DEBUG BEGIN_STMT
+  _4 = isr_16(D)->dynamic;
+  _5 = _4->statusflags;
+  _14 = _5 & 32;
+  if (_14 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 4> [local count: 256463235]:
+  # DEBUG BEGIN_STMT
+  _6 = _5 & 223;
+  _4->statusflags = _6;
+  # DEBUG BEGIN_STMT
+  if (clearPending_21(D) != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 84632867]:
+  # DEBUG BEGIN_STMT
+  _7 = &isr_16(D)->arch;
+  OS_CORTEXM_IntClearIsr (_7);
+
+  <bb 6> [local count: 256463234]:
+  # DEBUG BEGIN_STMT
+  _8 = &isr_16(D)->arch;
+  OS_CORTEXM_IntEnableIsr (_8);
+
+  <bb 7> [local count: 512926469]:
+  # result_9 = PHI <0(6), 174(3)>
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_19);
+
+  <bb 8> [local count: 1073741824]:
+  # result_10 = PHI <154(2), result_9(7)>
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  return result_10;
+
+}
+
+

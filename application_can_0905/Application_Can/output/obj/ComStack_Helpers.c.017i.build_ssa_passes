@@ -1,0 +1,113 @@
+ComStack_FindNextOne (const void * const bitfield, const uint32 prev)
+{
+  uint32 x;
+  const uint32 m4;
+  const uint32 m2;
+  const uint32 m1;
+  const uint32 rep32;
+  uint32 z;
+  uint8_least y;
+  uint32 result;
+  register BF_type bits;
+  register const BF_type * const bf;
+  register uint32 ofs;
+  uint32 bit;
+  const uint32 start;
+  const uint32 BF_MASK;
+  uint32 D.5424;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BF_MASK = 31;
+  # DEBUG BEGIN_STMT
+  start = prev + 1;
+  # DEBUG BEGIN_STMT
+  bit = start & 31;
+  # DEBUG BEGIN_STMT
+  ofs = start >> 5;
+  # DEBUG BEGIN_STMT
+  bf = bitfield;
+  # DEBUG BEGIN_STMT
+  _1 = ofs * 4;
+  _2 = bf + _1;
+  _3 = *_2;
+  _4 = 4294967295 << bit;
+  bits = _3 & _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ofs = ofs + 1;
+  # DEBUG BEGIN_STMT
+  _5 = ofs * 4;
+  _6 = bf + _5;
+  bits = *_6;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (bits == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  z = bits;
+  # DEBUG BEGIN_STMT
+  _7 = z + 4294967295;
+  z = z ^ _7;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  rep32 = 16843009;
+  # DEBUG BEGIN_STMT
+  m1 = 1431655765;
+  # DEBUG BEGIN_STMT
+  m2 = 858993459;
+  # DEBUG BEGIN_STMT
+  m4 = 252645135;
+  # DEBUG BEGIN_STMT
+  x = z;
+  # DEBUG BEGIN_STMT
+  _8 = x & 1431655765;
+  _9 = x >> 1;
+  _10 = _9 & 1431655765;
+  x = _8 + _10;
+  # DEBUG BEGIN_STMT
+  _11 = x & 858993459;
+  _12 = x >> 2;
+  _13 = _12 & 858993459;
+  x = _11 + _13;
+  # DEBUG BEGIN_STMT
+  _14 = x & 252645135;
+  _15 = x >> 4;
+  _16 = _15 & 252645135;
+  x = _14 + _16;
+  # DEBUG BEGIN_STMT
+  _17 = x << 16;
+  x = x + _17;
+  # DEBUG BEGIN_STMT
+  _18 = x << 8;
+  x = x + _18;
+  # DEBUG BEGIN_STMT
+  y = x >> 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = y + 4294967295;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = ofs * 32;
+  result = result | _19;
+  # DEBUG BEGIN_STMT
+  D.5424 = result;
+  return D.5424;
+
+}
+
+

@@ -1,0 +1,152 @@
+__attribute__((target ("general-regs-only")))
+OS_KillTask (const struct os_task_t * t, os_taskstate_t ts)
+{
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  os_result_t result;
+  os_intstatus_t is;
+  struct os_taskdynamic_t * td;
+  short unsigned int OS_kernDisableLevel.0_1;
+  unsigned int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  void (*<T62f>) (const struct os_task_t *) OS_stopTaskExecTimingFp.1_7;
+  void (*<T467>) (void) OS_ptrPostTaskHook.2_8;
+  os_result_t _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  td_13 = t_12(D)->dynamic;
+  # DEBUG td => td_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_14 = 0;
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is_16 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG is => is_16
+  # DEBUG BEGIN_STMT
+  _2 = td_13->lastLock;
+  OS_ReleaseLocks (_2);
+  # DEBUG BEGIN_STMT
+  td_13->lastLock = 4294967295;
+  # DEBUG BEGIN_STMT
+  td_13->nestSuspendOs = 0;
+  # DEBUG BEGIN_STMT
+  td_13->nestSuspendAll = 0;
+  # DEBUG BEGIN_STMT
+  _3 = td_13->state;
+  _4 = (int) _3;
+  switch (_4) <default: <L14> [INV], case 0: <L9> [INV], case 1: <L10> [INV], case 2: <L0> [INV], case 3 ... 4: <L6> [INV], case 5: <L1> [INV], case 6: <L8> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  OS_DequeueAll (t_12(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.taskTimingNesting;
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _6 = OS_kernelData.accounting.inFunction;
+  if (_6 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_stopTaskExecTimingFp.1_7 = OS_stopTaskExecTimingFp;
+  OS_stopTaskExecTimingFp.1_7 (t_12(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd_24 = &OS_kernelData;
+  # DEBUG OS_kd => OS_kd_24
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_25 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_25
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPostTaskHook.2_8 = OS_ptrPostTaskHook;
+  OS_ptrPostTaskHook.2_8 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_25;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_DequeueAll (t_12(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  OS_DequeueAll (t_12(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_13->state = ts_21(D);
+  # DEBUG BEGIN_STMT
+
+  <bb 12> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_16);
+  # DEBUG BEGIN_STMT
+  _38 = result_14;
+  return _38;
+
+}
+
+

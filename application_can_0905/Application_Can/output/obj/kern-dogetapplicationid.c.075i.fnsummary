@@ -1,0 +1,161 @@
+
+Analyzing function: OS_DoGetApplicationId/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10
+;; 2 succs { 10 3 5 7 }
+;; 3 succs { 4 10 }
+;; 4 succs { 8 }
+;; 5 succs { 6 10 }
+;; 6 succs { 8 }
+;; 7 succs { 8 }
+;; 8 succs { 9 10 }
+;; 9 succs { 10 }
+;; 10 succs { 1 }
+
+Analyzing function body size: OS_DoGetApplicationId
+
+IPA function summary for OS_DoGetApplicationId/0 inlinable
+  global time:     11.584570
+  self size:       28
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:25.000000, time:9.584570
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+
+Symbol table:
+
+OS_isrTableBase/3 (OS_isrTableBase) @06d0bab0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoGetApplicationId/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nInterrupts/2 (OS_nInterrupts) @06d0ba68
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoGetApplicationId/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06d0ba20
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DoGetApplicationId/0 (read)OS_DoGetApplicationId/0 (read)OS_DoGetApplicationId/0 (read)OS_DoGetApplicationId/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_DoGetApplicationId/0 (OS_DoGetApplicationId) @06d2ba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_nInterrupts/2 (read)OS_isrTableBase/3 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_DoGetApplicationId ()
+{
+  const struct os_appcontext_t * app;
+  os_applicationid_t a;
+  os_uint8_t inFunction;
+  const struct os_task_t * _1;
+  short unsigned int _2;
+  short unsigned int OS_nInterrupts.0_3;
+  const struct os_isr_t * OS_isrTableBase.1_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct os_isr_t * _7;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  inFunction_11 = OS_kernelData.inFunction;
+  # DEBUG inFunction => inFunction_11
+  # DEBUG BEGIN_STMT
+  # DEBUG a => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG app => 0B
+  # DEBUG BEGIN_STMT
+  switch (inFunction_11) <default: <L17> [25.00%], case 1: <L0> [25.00%], case 2 ... 3: <L3> [25.00%], case 8 ... 10: <L7> [25.00%]>
+
+  <bb 3> [local count: 268435456]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.taskCurrent;
+  if (_1 != 0B)
+    goto <bb 4>; [81.25%]
+  else
+    goto <bb 10>; [18.75%]
+
+  <bb 4> [local count: 218103808]:
+  # DEBUG BEGIN_STMT
+  app_14 = _1->app;
+  # DEBUG app => app_14
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 268435456]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.isrCurrent;
+  OS_nInterrupts.0_3 = OS_nInterrupts;
+  if (_2 < OS_nInterrupts.0_3)
+    goto <bb 6>; [65.00%]
+  else
+    goto <bb 10>; [35.00%]
+
+  <bb 6> [local count: 174483046]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.1_4 = OS_isrTableBase;
+  _5 = (unsigned int) _2;
+  _6 = _5 * 68;
+  _7 = OS_isrTableBase.1_4 + _6;
+  app_13 = _7->app;
+  # DEBUG app => app_13
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 268435456]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  app_12 = OS_kernelData.hookApp;
+  # DEBUG app => app_12
+  # DEBUG BEGIN_STMT
+
+  <bb 8> [local count: 661022311]:
+  # app_9 = PHI <app_14(4), app_13(6), app_12(7)>
+<L15>:
+  # DEBUG app => app_9
+  # DEBUG BEGIN_STMT
+  if (app_9 != 0B)
+    goto <bb 9>; [81.25%]
+  else
+    goto <bb 10>; [18.75%]
+
+  <bb 9> [local count: 537080628]:
+  # DEBUG BEGIN_STMT
+  a_15 = app_9->appId;
+  # DEBUG a => a_15
+
+  <bb 10> [local count: 1073741824]:
+  # a_8 = PHI <255(8), a_15(9), 255(2), 255(5), 255(3)>
+<L17>:
+  # DEBUG app => NULL
+  # DEBUG a => a_8
+  # DEBUG BEGIN_STMT
+  return a_8;
+
+}
+
+

@@ -1,0 +1,179 @@
+
+Analyzing function: SWC_IoHwAbs_SetDiscreteValue/3
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2
+;; 2 succs { 1 }
+
+Analyzing function body size: SWC_IoHwAbs_SetDiscreteValue
+
+IPA function summary for SWC_IoHwAbs_SetDiscreteValue/3 inlinable
+  global time:     2.000000
+  self size:       3
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:0.000000, time:0.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+
+
+Analyzing function: LedControl_IO/2
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7
+;; 2 succs { 3 4 }
+;; 3 succs { 5 }
+;; 4 succs { 5 }
+;; 5 succs { 6 7 }
+;; 6 succs { 7 }
+;; 7 succs { 1 }
+
+Analyzing function body size: LedControl_IO
+
+IPA function summary for LedControl_IO/2 inlinable
+  global time:     36.360000
+  self size:       25
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:13.000000, time:10.360000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+  calls:
+    Dio_WriteChannel/5 function body not available
+      loop depth: 0 freq:0.50 size: 3 time: 12
+       op0 is compile time invariant
+       op1 is compile time invariant
+    Dio_WriteChannel/5 function body not available
+      loop depth: 0 freq:0.50 size: 3 time: 12
+       op0 is compile time invariant
+       op1 is compile time invariant
+    ComM_ASR40_RequestComMode/4 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+       op0 is compile time invariant
+       op1 is compile time invariant
+
+Symbol table:
+
+Dio_WriteChannel/5 (Dio_WriteChannel) @07027380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: LedControl_IO/2 (536870913 (estimated locally),0.50 per call) LedControl_IO/2 (536870913 (estimated locally),0.50 per call) 
+  Calls: 
+ComM_ASR40_RequestComMode/4 (ComM_ASR40_RequestComMode) @070272a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: LedControl_IO/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+SWC_IoHwAbs_SetDiscreteValue/3 (SWC_IoHwAbs_SetDiscreteValue) @070270e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+LedControl_IO/2 (LedControl_IO) @07024d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: Count/1 (read)Count/1 (write)flag/0 (read)Count/1 (read)flag/0 (read)flag/0 (write)Count/1 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Dio_WriteChannel/5 (536870913 (estimated locally),0.50 per call) Dio_WriteChannel/5 (536870913 (estimated locally),0.50 per call) ComM_ASR40_RequestComMode/4 (1073741824 (estimated locally),1.00 per call) 
+Count/1 (Count) @06f09ea0
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: LedControl_IO/2 (read)LedControl_IO/2 (write)LedControl_IO/2 (read)LedControl_IO/2 (write)
+  Availability: available
+  Varpool flags: initialized
+flag/0 (flag) @06f09e58
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: LedControl_IO/2 (read)LedControl_IO/2 (read)LedControl_IO/2 (write)
+  Availability: available
+  Varpool flags: initialized
+SWC_IoHwAbs_SetDiscreteValue (uint32 pdav0, uint32 value)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+LedControl_IO ()
+{
+  int Count.0_1;
+  int _2;
+  int flag.1_3;
+  int Count.2_4;
+  int flag.3_5;
+  int _6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ComM_ASR40_RequestComMode (0, 2);
+  # DEBUG BEGIN_STMT
+  Count.0_1 = Count;
+  _2 = Count.0_1 + 1;
+  Count = _2;
+  # DEBUG BEGIN_STMT
+  flag.1_3 = flag;
+  if (flag.1_3 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Dio_WriteChannel (8, 1);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Dio_WriteChannel (8, 0);
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Count.2_4 = Count;
+  if (Count.2_4 == 50)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 6> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  flag.3_5 = flag;
+  _6 = ~flag.3_5;
+  flag = _6;
+  # DEBUG BEGIN_STMT
+  Count = 0;
+
+  <bb 7> [local count: 1073741824]:
+  return;
+
+}
+
+

@@ -1,0 +1,141 @@
+
+
+ local analysis of OS_RaiseTaskPriority
+   scanning: _1 = OS_kernelData.taskQueueHead;
+  scanning: _2 = OS_kernelData.taskCurrent;
+  scanning: if (_1 == _2)
+  scanning: td_8(D)->prio = reqPrio_10(D);
+    Indirect ref write is not const/pure
+  scanning: _3 = _2->linkBase;
+    Indirect ref read is not const
+  scanning: _4 = td_8(D)->cAct;
+    Indirect ref read is not const
+  scanning: _5 = (short unsigned int) _4;
+  scanning: link_9 = _3 + _5;
+  scanning: td_8(D)->prio = reqPrio_10(D);
+    Indirect ref write is not const/pure
+  scanning: OS_RequeueUp (link_9, reqPrio_10(D));
+  scanning: return;
+callgraph:
+
+OS_RequeueUp/2 (OS_RequeueUp) @06b80d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_RaiseTaskPriority/0 (574129754 (estimated locally),0.53 per call) 
+  Calls: 
+OS_RaiseTaskPriority/0 (OS_RaiseTaskPriority) @06b80b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817130
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_RequeueUp/2 (574129754 (estimated locally),0.53 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_RaiseTaskPriority/0 (OS_RaiseTaskPriority) @06b80b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817130
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_RequeueUp/2 (574129754 (estimated locally),0.53 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_RaiseTaskPriority: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_RaiseTaskPriority: malloc_bottom
+callgraph:
+
+OS_RequeueUp/2 (OS_RequeueUp) @06b80d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_RaiseTaskPriority/0 (574129754 (estimated locally),0.53 per call) 
+  Calls: 
+OS_RaiseTaskPriority/0 (OS_RaiseTaskPriority) @06b80b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817310
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_RequeueUp/2 (574129754 (estimated locally),0.53 per call) 
+
+
+ ordered call graph: reduced
+OS_RaiseTaskPriority/0 (OS_RaiseTaskPriority) @06b80b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06817310
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_RequeueUp/2 (574129754 (estimated locally),0.53 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_RaiseTaskPriority (struct os_taskdynamic_t * td, os_prio_t reqPrio)
+{
+  os_tasklink_t link;
+  const struct os_task_t * _1;
+  const struct os_task_t * _2;
+  short unsigned int _3;
+  unsigned char _4;
+  short unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.taskQueueHead;
+  _2 = OS_kernelData.taskCurrent;
+  if (_1 == _2)
+    goto <bb 3>; [46.53%]
+  else
+    goto <bb 4>; [53.47%]
+
+  <bb 3> [local count: 499612071]:
+  # DEBUG BEGIN_STMT
+  td_8(D)->prio = reqPrio_10(D);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 574129754]:
+  # DEBUG BEGIN_STMT
+  _3 = _2->linkBase;
+  _4 = td_8(D)->cAct;
+  _5 = (short unsigned int) _4;
+  link_9 = _3 + _5;
+  # DEBUG link => link_9
+  # DEBUG BEGIN_STMT
+  td_8(D)->prio = reqPrio_10(D);
+  # DEBUG BEGIN_STMT
+  OS_RequeueUp (link_9, reqPrio_10(D));
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+

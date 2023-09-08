@@ -1,0 +1,98 @@
+Histogram:
+FreeTimer_ConvertTicks2Us (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInUsType _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = timeInTicks_1(D) / 50;
+  return _2;
+
+}
+
+
+FreeTimer_ConvertTicks2Ms (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInMsType _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = timeInTicks_1(D) / 50000;
+  return _2;
+
+}
+
+
+FreeTimer_ConvertMs2Ticks (const FreeTimer_TimeInMsType timeInMs)
+{
+  FreeTimer_TimeInTicksType _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = timeInMs_1(D) * 50000;
+  return _2;
+
+}
+
+
+FreeTimer_GetTimeInTicks (FreeTimer_TimeInTicksType initialTimeInTicks)
+{
+  const FreeTimer_TimeInTicksType elapsedTimeInTicks;
+  FreeTimer_TimeInTicksType _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  elapsedTimeInTicks_3 = FreeTimer_GetCurrentTimeInTicks ();
+  # DEBUG elapsedTimeInTicks => elapsedTimeInTicks_3
+  # DEBUG BEGIN_STMT
+  _5 = elapsedTimeInTicks_3 - initialTimeInTicks_4(D);
+  return _5;
+
+}
+
+
+FreeTimer_StartTimeMeasurement (FreeTimer_TimeInTicksType * initialTimeInTicks)
+{
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = FreeTimer_GetCurrentTimeInTicks ();
+  *initialTimeInTicks_4(D) = _1;
+  return;
+
+}
+
+
+FreeTimer_Init ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+FreeTimer_GetCurrentTimeInTicks ()
+{
+  struct os_timestamp_t CounterValue;
+  unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&CounterValue);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = CounterValue.tsLo;
+  # DEBUG RetVal => _1
+  # DEBUG BEGIN_STMT
+  CounterValue ={v} {CLOBBER};
+  return _1;
+
+}
+
+

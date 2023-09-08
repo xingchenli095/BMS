@@ -1,0 +1,191 @@
+
+
+ local analysis of OS_Dequeue
+   scanning: qAct_20 = OS_taskActivations[0];
+  scanning: if (qAct_20 == tAct_21(D))
+  scanning: _1 = (unsigned int) tAct_21(D);
+  scanning: _2 = _1 * 2;
+  scanning: _3 = &OS_taskActivations + _2;
+  scanning: _4 = *_3;
+    Indirect ref read is not const
+  scanning: OS_taskActivations[0] = _4;
+  scanning: _5 = (int) _4;
+  scanning: _6 = OS_taskPtrs[_5];
+  scanning: OS_kernelData.taskQueueHead = _6;
+  scanning: *_3 = 0;
+    Indirect ref write is not const/pure
+  scanning: _9 = (unsigned int) qAct_17;
+  scanning: _10 = _9 * 2;
+  scanning: _11 = &OS_taskActivations + _10;
+  scanning: _12 = *_11;
+    Indirect ref read is not const
+  scanning: if (_12 != tAct_21(D))
+  scanning: if (qAct_17 != 0)
+  scanning: if (qAct_8 == 0)
+  scanning: _13 = (unsigned int) tAct_21(D);
+  scanning: _14 = _13 * 2;
+  scanning: _15 = &OS_taskActivations + _14;
+  scanning: _16 = *_15;
+    Indirect ref read is not const
+  scanning: *_7 = _16;
+    Indirect ref write is not const/pure
+  scanning: *_15 = 0;
+    Indirect ref write is not const/pure
+  scanning: return;
+callgraph:
+
+OS_Dequeue/0 (OS_Dequeue) @06d1ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06906f20
+  References: OS_taskActivations/1 (read)OS_taskActivations/1 (addr)OS_taskActivations/1 (write)OS_taskPtrs/2 (read)OS_kernelData/3 (write)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:174035655 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced for nothrow
+OS_Dequeue/0 (OS_Dequeue) @06d1ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06906f20
+  References: OS_taskActivations/1 (read)OS_taskActivations/1 (addr)OS_taskActivations/1 (write)OS_taskPtrs/2 (read)OS_kernelData/3 (write)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:174035655 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+
+MALLOC LATTICE Initial:
+OS_Dequeue: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_Dequeue: malloc_bottom
+callgraph:
+
+OS_Dequeue/0 (OS_Dequeue) @06d1ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06906f20
+  References: OS_taskActivations/1 (read)OS_taskActivations/1 (addr)OS_taskActivations/1 (write)OS_taskPtrs/2 (read)OS_kernelData/3 (write)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:174035655 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced
+OS_Dequeue/0 (OS_Dequeue) @06d1ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06906f20
+  References: OS_taskActivations/1 (read)OS_taskActivations/1 (addr)OS_taskActivations/1 (write)OS_taskPtrs/2 (read)OS_kernelData/3 (write)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:174035655 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+Function found not to call free: OS_Dequeue
+__attribute__((target ("general-regs-only")))
+OS_Dequeue (os_tasklink_t tAct)
+{
+  os_tasklink_t qAct;
+  unsigned int _1;
+  unsigned int _2;
+  os_tasklink_t * _3;
+  short unsigned int _4;
+  int _5;
+  const struct os_task_t * _6;
+  os_tasklink_t * _7;
+  unsigned int _9;
+  unsigned int _10;
+  os_tasklink_t * _11;
+  short unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  os_tasklink_t * _15;
+  short unsigned int _16;
+
+  <bb 2> [local count: 174035655]:
+  # DEBUG BEGIN_STMT
+  # DEBUG taskActivations => &OS_taskActivations
+  # DEBUG BEGIN_STMT
+  qAct_20 = OS_taskActivations[0];
+  # DEBUG qAct => qAct_20
+  # DEBUG BEGIN_STMT
+  if (qAct_20 == tAct_21(D))
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 3> [local count: 59172123]:
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) tAct_21(D);
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  _4 = *_3;
+  OS_taskActivations[0] = _4;
+  # DEBUG BEGIN_STMT
+  _5 = (int) _4;
+  _6 = OS_taskPtrs[_5];
+  OS_kernelData.taskQueueHead = _6;
+  # DEBUG BEGIN_STMT
+  *_3 = 0;
+  goto <bb 8>; [100.00%]
+
+  <bb 9> [local count: 114863532]:
+
+  <bb 4> [local count: 1073741824]:
+  # qAct_17 = PHI <qAct_20(9), _12(10)>
+  # DEBUG qAct => qAct_17
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) qAct_17;
+  _10 = _9 * 2;
+  _11 = &OS_taskActivations + _10;
+  _12 = *_11;
+  if (_12 != tAct_21(D))
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 6>; [5.50%]
+
+  <bb 5> [local count: 1014686025]:
+  if (qAct_17 != 0)
+    goto <bb 10>; [94.50%]
+  else
+    goto <bb 6>; [5.50%]
+
+  <bb 10> [local count: 958878292]:
+  goto <bb 4>; [100.00%]
+
+  <bb 6> [local count: 114863532]:
+  # _7 = PHI <_11(4), _11(5)>
+  # qAct_8 = PHI <qAct_17(4), qAct_17(5)>
+  # DEBUG BEGIN_STMT
+  if (qAct_8 == 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 7> [local count: 57431766]:
+  # DEBUG BEGIN_STMT
+  _13 = (unsigned int) tAct_21(D);
+  _14 = _13 * 2;
+  _15 = &OS_taskActivations + _14;
+  _16 = *_15;
+  *_7 = _16;
+  # DEBUG BEGIN_STMT
+  *_15 = 0;
+
+  <bb 8> [local count: 174035654]:
+  return;
+
+}
+
+

@@ -1,0 +1,2517 @@
+EcuM_ComMWakeupIndication (EcuM_WakeupSourceType ComMevents)
+{
+  Std_ReturnType RetVal;
+  ComM_InitStatusType Status;
+  uint8_least wks;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  wks = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  RetVal = ComM_GetStatus (&Status);
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  Status.60_1 = Status;
+  if (Status.60_1 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = ComMevents & 1;
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = EcuM_WksMapping[wks];
+  _4 = (int) _3;
+  _5 = EcuM_WksConfigList[_4].ComMCh;
+  ComM_EcuM_WakeUpIndication (_5);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ComMevents = ComMevents >> 1;
+  # DEBUG BEGIN_STMT
+  wks = wks + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (ComMevents != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  Status = {CLOBBER};
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_NONE ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksNone;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksNone = CoreInstance->WakeupIndication.None;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupIndication.None = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksNone != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksNone, 0);
+
+  <bb 4> :
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_EXPIRED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksExpired;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksExpired = CoreInstance->WakeupIndication.Expired;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupIndication.Expired = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksExpired, 3);
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_VALIDATED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksValidated;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksValidated = CoreInstance->WakeupIndication.Validated;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupIndication.Validated = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksValidated != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksValidated, 2);
+  # DEBUG BEGIN_STMT
+  _1 = wksValidated & 32;
+  EcuM_ComMWakeupIndication (_1);
+
+  <bb 4> :
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_PENDING ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksPending;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksPending = CoreInstance->WakeupIndication.Pending;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupIndication.Pending = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksPending != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksPending, 1);
+
+  <bb 4> :
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_DISABLED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksDisabled;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksDisabled = CoreInstance->WakeupIndication.Disabled;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupIndication.Disabled = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksDisabled != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksDisabled, 4);
+
+  <bb 4> :
+  return;
+
+}
+
+
+EcuM_SwitchWakeupStatus (EcuM_WakeupSourceType sources, EcuM_WakeupStatusType status, struct EcuM_CoreContextType * CoreInstance)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) status;
+  switch (_1) <default: <L8> [INV], case 0: <L2> [INV], case 1: <L3> [INV], case 2: <L4> [INV], case 3: <L5> [INV], case 4: <L1> [INV], case 6: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->WakeupStatus.Disabled;
+  _3 = ~sources;
+  _4 = _2 & _3;
+  CoreInstance->WakeupStatus.Disabled = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 = CoreInstance->WakeupIndication.Disabled;
+  _6 = sources | _5;
+  CoreInstance->WakeupIndication.Disabled = _6;
+  # DEBUG BEGIN_STMT
+  _7 = CoreInstance->WakeupStatus.Disabled;
+  _8 = sources | _7;
+  CoreInstance->WakeupStatus.Disabled = _8;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _9 = CoreInstance->WakeupIndication.None;
+  _10 = sources | _9;
+  CoreInstance->WakeupIndication.None = _10;
+  # DEBUG BEGIN_STMT
+  _11 = CoreInstance->WakeupStatus.None;
+  _12 = sources | _11;
+  CoreInstance->WakeupStatus.None = _12;
+  # DEBUG BEGIN_STMT
+  _13 = CoreInstance->WakeupStatus.Expired;
+  _14 = ~sources;
+  _15 = _13 & _14;
+  CoreInstance->WakeupStatus.Expired = _15;
+  # DEBUG BEGIN_STMT
+  _16 = CoreInstance->WakeupStatus.Pending;
+  _17 = ~sources;
+  _18 = _16 & _17;
+  CoreInstance->WakeupStatus.Pending = _18;
+  # DEBUG BEGIN_STMT
+  _19 = CoreInstance->WakeupStatus.Validated;
+  _20 = ~sources;
+  _21 = _19 & _20;
+  CoreInstance->WakeupStatus.Validated = _21;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _22 = CoreInstance->WakeupIndication.Pending;
+  _23 = sources | _22;
+  CoreInstance->WakeupIndication.Pending = _23;
+  # DEBUG BEGIN_STMT
+  _24 = CoreInstance->WakeupStatus.Pending;
+  _25 = sources | _24;
+  CoreInstance->WakeupStatus.Pending = _25;
+  # DEBUG BEGIN_STMT
+  _26 = CoreInstance->WakeupStatus.Expired;
+  _27 = ~sources;
+  _28 = _26 & _27;
+  CoreInstance->WakeupStatus.Expired = _28;
+  # DEBUG BEGIN_STMT
+  _29 = CoreInstance->WakeupStatus.None;
+  _30 = ~sources;
+  _31 = _29 & _30;
+  CoreInstance->WakeupStatus.None = _31;
+  # DEBUG BEGIN_STMT
+  _32 = CoreInstance->WakeupStatus.Validated;
+  _33 = ~sources;
+  _34 = _32 & _33;
+  CoreInstance->WakeupStatus.Validated = _34;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _35 = CoreInstance->WakeupIndication.Validated;
+  _36 = sources | _35;
+  CoreInstance->WakeupIndication.Validated = _36;
+  # DEBUG BEGIN_STMT
+  _37 = CoreInstance->WakeupStatus.Validated;
+  _38 = sources | _37;
+  CoreInstance->WakeupStatus.Validated = _38;
+  # DEBUG BEGIN_STMT
+  _39 = CoreInstance->WakeupStatus.Expired;
+  _40 = ~sources;
+  _41 = _39 & _40;
+  CoreInstance->WakeupStatus.Expired = _41;
+  # DEBUG BEGIN_STMT
+  _42 = CoreInstance->WakeupStatus.None;
+  _43 = ~sources;
+  _44 = _42 & _43;
+  CoreInstance->WakeupStatus.None = _44;
+  # DEBUG BEGIN_STMT
+  _45 = CoreInstance->WakeupStatus.Pending;
+  _46 = ~sources;
+  _47 = _45 & _46;
+  CoreInstance->WakeupStatus.Pending = _47;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  _48 = CoreInstance->WakeupIndication.Expired;
+  _49 = sources | _48;
+  CoreInstance->WakeupIndication.Expired = _49;
+  # DEBUG BEGIN_STMT
+  _50 = CoreInstance->WakeupStatus.Expired;
+  _51 = sources | _50;
+  CoreInstance->WakeupStatus.Expired = _51;
+  # DEBUG BEGIN_STMT
+  _52 = CoreInstance->WakeupStatus.None;
+  _53 = ~sources;
+  _54 = _52 & _53;
+  CoreInstance->WakeupStatus.None = _54;
+  # DEBUG BEGIN_STMT
+  _55 = CoreInstance->WakeupStatus.Pending;
+  _56 = ~sources;
+  _57 = _55 & _56;
+  CoreInstance->WakeupStatus.Pending = _57;
+  # DEBUG BEGIN_STMT
+  _58 = CoreInstance->WakeupStatus.Validated;
+  _59 = ~sources;
+  _60 = _58 & _59;
+  CoreInstance->WakeupStatus.Validated = _60;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+<L8>:
+  return;
+
+}
+
+
+EcuM_WakeupRestart ()
+{
+  EcuM_WakeupSourceType wksDisable;
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  Mcu_SetMode (0);
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->WakeupStatus.Pending;
+  if (_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = CoreInstance->WakeupStatus.Validated;
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance->WakeupStatus.Pending;
+  _4 = CoreInstance->WakeupStatus.Validated;
+  wksDisable = _3 | _4;
+  # DEBUG BEGIN_STMT
+  EcuM_DisableWakeupSources (wksDisable);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksDisable, 4, CoreInstance);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 34;
+  # DEBUG BEGIN_STMT
+  _5 = CoreInstance->State;
+  BswM_EcuM_CurrentState (_5);
+  # DEBUG BEGIN_STMT
+  OS_UserReleaseResource (0);
+  return;
+
+}
+
+
+EcuM_GoSleep ()
+{
+  EcuM_WakeupSourceType wksCleared;
+  EcuM_WakeupSourceType wksSleepMode;
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->SleepMode;
+  _2 = (int) _1;
+  wksSleepMode = EcuM_SleepModeConfigList[_2].wakeupSource;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 73;
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance->State;
+  BswM_EcuM_CurrentState (_3);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _4 = CoreInstance->WakeupStatus.Pending;
+  _5 = CoreInstance->WakeupStatus.Validated;
+  _6 = _4 | _5;
+  _7 = ~_6;
+  wksCleared = wksSleepMode & _7;
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksCleared, 0, CoreInstance);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_NONE ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnableWakeupSources (wksSleepMode);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksSleepMode, 6, CoreInstance);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  OS_UserGetResource (0);
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.17_8 = EcuM_ShutdownTarget;
+  EcuM_LastShutdownTarget = EcuM_ShutdownTarget.17_8;
+  # DEBUG BEGIN_STMT
+  _9 = CoreInstance->SleepMode;
+  EcuM_LastSleepMode = _9;
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.18_10 = EcuM_ResetMode;
+  EcuM_LastResetMode = EcuM_ResetMode.18_10;
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 80;
+  # DEBUG BEGIN_STMT
+  _11 = CoreInstance->State;
+  BswM_EcuM_CurrentState (_11);
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_NONE ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_PENDING ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_VALIDATED ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_DISABLED ();
+  return;
+
+}
+
+
+EcuM_IsValidConfig (const void * voidConfigPtr)
+{
+  const struct EcuM_ConfigType * ConfigPtr;
+  Std_ReturnType result;
+  Std_ReturnType D.11058;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 1;
+  # DEBUG BEGIN_STMT
+  ConfigPtr = voidConfigPtr;
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr->CfgSignature;
+  if (_3 == 29041840)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr->LcfgSignature;
+  EcuM_LcfgSignature.65_5 = EcuM_LcfgSignature;
+  if (_4 == EcuM_LcfgSignature.65_5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = ConfigPtr->PublicInfoSignature;
+  if (_6 == 1985306092)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.11058 = result;
+  return D.11058;
+
+}
+
+
+EcuM_ValidateWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  const EcuM_ASR40_StateType state;
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  state = CoreInstance->State;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (state == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 20, 16);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = sources & 63;
+  if (_1 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 20, 23);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->WakeupStatus.Pending;
+  sources = sources & _2;
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) state;
+  _4 = _3 & 240;
+  if (_4 == 48)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  sources = sources & 32;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (sources, 2, CoreInstance);
+  # DEBUG BEGIN_STMT
+  _5 = CoreInstance->WakeupStatus.Stopped;
+  _6 = sources | _5;
+  CoreInstance->WakeupStatus.Stopped = _6;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_SetWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  uint16 maxTimeout;
+  EcuM_WakeupSourceType wksPendingNew;
+  uint8_least wks;
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 12, 16);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = sources & 63;
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 12, 23);
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  wksPendingNew = 0;
+  # DEBUG BEGIN_STMT
+  maxTimeout = 0;
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance->SleepMode;
+  _4 = (int) _3;
+  _5 = EcuM_SleepModeConfigList[_4].wakeupSource;
+  sources = sources & _5;
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _6 = CoreInstance->WakeupStatus.Pending;
+  _7 = _6 | 63;
+  _8 = ~_7;
+  wksPendingNew = sources & _8;
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksPendingNew, 1, CoreInstance);
+  # DEBUG BEGIN_STMT
+  _9 = sources & 63;
+  EcuM_SwitchWakeupStatus (_9, 2, CoreInstance);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wks = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _10 = wksPendingNew & 1;
+  if (_10 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = EcuM_WksMapping[wks];
+  _12 = (int) _11;
+  _13 = EcuM_WksValTimeout[_12];
+  if (maxTimeout < _13)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _14 = EcuM_WksMapping[wks];
+  _15 = (int) _14;
+  maxTimeout = EcuM_WksValTimeout[_15];
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  wksPendingNew = wksPendingNew >> 1;
+  # DEBUG BEGIN_STMT
+  wks = wks + 1;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (wksPendingNew != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _16 = CoreInstance->ValidationCounter;
+  if (maxTimeout > _16)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  CoreInstance->ValidationCounter = maxTimeout;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_ReportRamCheckResult ()
+{
+  Dem_EventStatusType iftmp.63;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus.61_1 = EcuM_RamCheckStatus;
+  if (EcuM_RamCheckStatus.61_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  EcuM_DemErrRamChkFailed.62_2 = EcuM_DemErrRamChkFailed;
+  EcuM_RamCheckStatus.64_3 = EcuM_RamCheckStatus;
+  if (EcuM_RamCheckStatus.64_3 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.63 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.63 = 0;
+
+  <bb 6> :
+  Dem_ReportErrorStatus (EcuM_DemErrRamChkFailed.62_2, iftmp.63);
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 0;
+
+  <bb 7> :
+  return;
+
+}
+
+
+EcuM_MainFunction ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  uint16 wksValCounter;
+  EcuM_WakeupSourceType wksStopped;
+  EcuM_WakeupSourceType wksStarted;
+  EcuM_WakeupSourceType wksValidated;
+  EcuM_WakeupSourceType wksPending;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  wksPending = 0;
+  # DEBUG BEGIN_STMT
+  wksValidated = 0;
+  # DEBUG BEGIN_STMT
+  wksStarted = 0;
+  # DEBUG BEGIN_STMT
+  wksStopped = 0;
+  # DEBUG BEGIN_STMT
+  wksValCounter = 0;
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 24, 16);
+  goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->State;
+  _3 = _2 + 239;
+  if (_3 > 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _4 = CoreInstance->WakeupStatus.Started;
+  _5 = CoreInstance->WakeupStatus.Stopped;
+  _6 = ~_5;
+  _7 = _4 & _6;
+  CoreInstance->WakeupStatus.Started = _7;
+  # DEBUG BEGIN_STMT
+  CoreInstance->WakeupStatus.Stopped = 0;
+  # DEBUG BEGIN_STMT
+  wksPending = CoreInstance->WakeupStatus.Pending;
+  # DEBUG BEGIN_STMT
+  wksValidated = CoreInstance->WakeupStatus.Validated;
+  # DEBUG BEGIN_STMT
+  wksStarted = CoreInstance->WakeupStatus.Started;
+  # DEBUG BEGIN_STMT
+  wksValCounter = CoreInstance->ValidationCounter;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _8 = CoreInstance->State;
+  if (_8 == 34)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (wksValidated != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 48;
+  # DEBUG BEGIN_STMT
+  _9 = CoreInstance->State;
+  BswM_EcuM_CurrentState (_9);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus ();
+  # DEBUG BEGIN_STMT
+  if (wksPending != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (wksValCounter == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksPending, 3, CoreInstance);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_StopWakeupSources (wksPending);
+  # DEBUG BEGIN_STMT
+  wksStopped = wksPending;
+  # DEBUG BEGIN_STMT
+  wksPending = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_EXPIRED ();
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _10 = ~wksStarted;
+  _11 = wksPending & _10;
+  if (_11 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _12 = ~wksStarted;
+  _13 = wksPending & _12;
+  EcuM_StartWakeupSources (_13);
+  # DEBUG BEGIN_STMT
+  wksStarted = wksPending;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (wksPending != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EcuM_CheckValidation (wksPending);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _14 = CoreInstance->ValidationCounter;
+  if (_14 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _15 = CoreInstance->ValidationCounter;
+  _16 = _15;
+  _17 = _16 + 65535;
+  CoreInstance->ValidationCounter = _17;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _18 = CoreInstance->WakeupStatus.Started;
+  _19 = wksStarted | _18;
+  CoreInstance->WakeupStatus.Started = _19;
+  # DEBUG BEGIN_STMT
+  _20 = CoreInstance->WakeupStatus.Started;
+  _21 = ~wksStopped;
+  _22 = _20 & _21;
+  CoreInstance->WakeupStatus.Started = _22;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_ReportRamCheckResult ();
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GetExpiredWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  EcuM_WakeupSourceType D.10990;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 25, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret = CoreInstance->WakeupStatus.Expired;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10990 = ret;
+  return D.10990;
+
+}
+
+
+EcuM_GetValidatedWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  EcuM_WakeupSourceType D.10985;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 21, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret = CoreInstance->WakeupStatus.Validated;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10985 = ret;
+  return D.10985;
+
+}
+
+
+EcuM_ClearWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 22, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (sources, 0, CoreInstance);
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->WakeupStatus.Stopped;
+  _3 = sources | _2;
+  CoreInstance->WakeupStatus.Stopped = _3;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GetPendingWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  EcuM_WakeupSourceType D.10977;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 13, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret = CoreInstance->WakeupStatus.Pending;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10977 = ret;
+  return D.10977;
+
+}
+
+
+EcuM_ASR40_GetNextRecentShutdown (EcuM_ASR40_StateType * target, uint8 * mode, EcuM_ASR40_ShutdownCauseType * cause, uint32 * time)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10972;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 30, 16);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.51_3 = EcuM_NextShutdownInfoIdx;
+  if (EcuM_NextShutdownInfoIdx.51_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.52_4 = EcuM_NextShutdownInfoIdx;
+  EcuM_NextShutdownInfoIdx.53_5 = EcuM_NextShutdownInfoIdx.52_4;
+  _6 = EcuM_NextShutdownInfoIdx.53_5 + 255;
+  EcuM_NextShutdownInfoIdx = _6;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.54_7 = EcuM_NextShutdownInfoIdx;
+  EcuM_ShutdownInfoStartIdx.55_8 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_NextShutdownInfoIdx.54_7 != EcuM_ShutdownInfoStartIdx.55_8)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (target == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (mode == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (cause == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  if (time == 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 30, 18);
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.56_9 = EcuM_NextShutdownInfoIdx;
+  _10 = (int) EcuM_NextShutdownInfoIdx.56_9;
+  _11 = EcuM_ShutdownInfo[_10].target;
+  *target = _11;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.57_12 = EcuM_NextShutdownInfoIdx;
+  _13 = (int) EcuM_NextShutdownInfoIdx.57_12;
+  _14 = EcuM_ShutdownInfo[_13].mode;
+  *mode = _14;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.58_15 = EcuM_NextShutdownInfoIdx;
+  _16 = (int) EcuM_NextShutdownInfoIdx.58_15;
+  _17 = EcuM_ShutdownInfo[_16].cause;
+  *cause = _17;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.59_18 = EcuM_NextShutdownInfoIdx;
+  _19 = (int) EcuM_NextShutdownInfoIdx.59_18;
+  _20 = EcuM_ShutdownInfo[_19].sdTime;
+  *time = _20;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10972 = ret;
+  return D.10972;
+
+}
+
+
+EcuM_ASR40_GetMostRecentShutdown (EcuM_ASR40_StateType * target, uint8 * mode, EcuM_ASR40_ShutdownCauseType * cause, uint32 * time)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10955;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 29, 16);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (target == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (mode == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (cause == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (time == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 29, 18);
+  goto <bb 15>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.41_3 = EcuM_ShutdownInfoCurrentIdx;
+  EcuM_NextShutdownInfoIdx = EcuM_ShutdownInfoCurrentIdx.41_3;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.42_4 = EcuM_NextShutdownInfoIdx;
+  EcuM_ShutdownInfoStartIdx.43_5 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_NextShutdownInfoIdx.42_4 != EcuM_ShutdownInfoStartIdx.43_5)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.44_6 = EcuM_NextShutdownInfoIdx;
+  if (EcuM_NextShutdownInfoIdx.44_6 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx = 0;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.45_7 = EcuM_NextShutdownInfoIdx;
+  EcuM_NextShutdownInfoIdx.46_8 = EcuM_NextShutdownInfoIdx.45_7;
+  _9 = EcuM_NextShutdownInfoIdx.46_8 + 255;
+  EcuM_NextShutdownInfoIdx = _9;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.47_10 = EcuM_NextShutdownInfoIdx;
+  _11 = (int) EcuM_NextShutdownInfoIdx.47_10;
+  _12 = EcuM_ShutdownInfo[_11].target;
+  *target = _12;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.48_13 = EcuM_NextShutdownInfoIdx;
+  _14 = (int) EcuM_NextShutdownInfoIdx.48_13;
+  _15 = EcuM_ShutdownInfo[_14].mode;
+  *mode = _15;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.49_16 = EcuM_NextShutdownInfoIdx;
+  _17 = (int) EcuM_NextShutdownInfoIdx.49_16;
+  _18 = EcuM_ShutdownInfo[_17].cause;
+  *cause = _18;
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.50_19 = EcuM_NextShutdownInfoIdx;
+  _20 = (int) EcuM_NextShutdownInfoIdx.50_19;
+  _21 = EcuM_ShutdownInfo[_20].sdTime;
+  *time = _21;
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10955 = ret;
+  return D.10955;
+
+}
+
+
+EcuM_ASR40_GetShutdownCause (EcuM_ASR40_ShutdownCauseType * shutdownCause)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10939;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 28, 16);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (shutdownCause != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownCause.40_3 = EcuM_ShutdownCause;
+  *shutdownCause = EcuM_ShutdownCause.40_3;
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 28, 18);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10939 = ret;
+  return D.10939;
+
+}
+
+
+EcuM_ASR40_SelectShutdownCause (EcuM_ASR40_ShutdownCauseType target)
+{
+  uint8_least idx;
+  boolean detOk;
+  Std_ReturnType ret;
+  Std_ReturnType D.10931;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  detOk = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  idx = 0;
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_ValidShutdownCause[idx];
+  if (target == _1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  idx = idx + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (idx <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = EcuM_GetMasterCoreInstance ();
+  _3 = _2->State;
+  if (_3 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  detOk = 0;
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 27, 16);
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (idx > 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  detOk = 0;
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 27, 19);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (detOk == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownCause = target;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10931 = ret;
+  return D.10931;
+
+}
+
+
+EcuM_ASR40_GetLastShutdownTarget (EcuM_ASR40_StateType * shutdownTarget, uint8 * sleepMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10919;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 16);
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_LastShutdownTarget.35_3 = EcuM_LastShutdownTarget;
+  *shutdownTarget = EcuM_LastShutdownTarget.35_3;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 18);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (sleepMode != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_LastShutdownTarget.36_4 = EcuM_LastShutdownTarget;
+  if (EcuM_LastShutdownTarget.36_4 == 80)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EcuM_LastSleepMode.37_5 = EcuM_LastSleepMode;
+  *sleepMode = EcuM_LastSleepMode.37_5;
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  EcuM_LastShutdownTarget.38_6 = EcuM_LastShutdownTarget;
+  if (EcuM_LastShutdownTarget.38_6 == 144)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EcuM_LastResetMode.39_7 = EcuM_LastResetMode;
+  *sleepMode = EcuM_LastResetMode.39_7;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 18);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  if (sleepMode != 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10919 = ret;
+  return D.10919;
+
+}
+
+
+EcuM_ASR40_GetShutdownTarget (EcuM_ASR40_StateType * shutdownTarget, uint8 * sleepMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10898;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 16);
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  goto <bb 17>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.31_3 = EcuM_ShutdownTarget;
+  *shutdownTarget = EcuM_ShutdownTarget.31_3;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 18);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (sleepMode != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.32_4 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.32_4 == 80)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _5 = EcuM_GetMasterCoreInstance ();
+  _6 = _5->SleepMode;
+  *sleepMode = _6;
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.33_7 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.33_7 == 144)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.34_8 = EcuM_ResetMode;
+  *sleepMode = EcuM_ResetMode.34_8;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 18);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (sleepMode != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  if (shutdownTarget != 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10898 = ret;
+  return D.10898;
+
+}
+
+
+EcuM_ASR40_SelectShutdownTarget (EcuM_ASR40_StateType target, uint8 mode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10854;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  ret = EcuM_SelectShutdownTargetSequence (target, mode);
+  # DEBUG BEGIN_STMT
+  D.10854 = ret;
+  return D.10854;
+
+}
+
+
+EcuM_SelectShutdownTargetSequence (EcuM_ASR40_StateType target, uint8 mode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10877;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 16);
+  goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (target != 80)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  if (target != 144)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (target != 128)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 22);
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (target == 80)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (mode != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 19);
+  goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (target == 80)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = target;
+  # DEBUG BEGIN_STMT
+  _3 = EcuM_GetCoreInstance ();
+  _3->SleepMode = mode;
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (target == 144)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = target;
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode = mode;
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (target == 128)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = target;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10877 = ret;
+  return D.10877;
+
+}
+
+
+EcuM_Shutdown ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 2, 16);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_OnGoOffTwo ();
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.28_3 = EcuM_ShutdownTarget;
+  EcuM_LastShutdownTarget = EcuM_ShutdownTarget.28_3;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.29_4 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.29_4 == 144)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.30_5 = EcuM_ResetMode;
+  EcuM_AL_Reset (EcuM_ResetMode.30_5);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_AL_SwitchOff ();
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_StartupTwo ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 26, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 18;
+  # DEBUG BEGIN_STMT
+  EcuM_SchM_Init ();
+  # DEBUG BEGIN_STMT
+  BswM_Init (0B);
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 48;
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->State;
+  BswM_EcuM_CurrentState (_2);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_Init ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *CoreInstance = EcuM_InitialContext;
+  # DEBUG BEGIN_STMT
+  CoreInstance->State = 17;
+  # DEBUG BEGIN_STMT
+  EcuM_AL_DriverInitZero ();
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_DeterminePbConfiguration ();
+  EcuM_ConfigPtr = _1;
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.19_2 = EcuM_ConfigPtr;
+  if (EcuM_ConfigPtr.19_2 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 1, 18);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.20_3 = EcuM_ConfigPtr;
+  _4 = EcuM_IsValidConfig (EcuM_ConfigPtr.20_3);
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 1, 27);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_Init_SingleCore ();
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_Init_SingleCore ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_StartPreOS ();
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.21_1 = EcuM_ConfigPtr;
+  _2 = EcuM_ConfigPtr.21_1->DefaultAppMode;
+  OS_UserStartOs (_2);
+  return;
+
+}
+
+
+EcuM_StartPreOS ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_AL_SetProgrammableInterrupts ();
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.22_1 = EcuM_ConfigPtr;
+  EcuM_AL_DriverInitOne (EcuM_ConfigPtr.22_1);
+  # DEBUG BEGIN_STMT
+  EcuM_BootTarget[0] = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_BootTarget[1] = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_SearchResetReason ();
+  # DEBUG BEGIN_STMT
+  EcuM_SetSleepOrResetMode ();
+  return;
+
+}
+
+
+EcuM_SearchResetReason ()
+{
+  const struct EcuM_WksConfigType * wksPtr;
+  boolean reasonFound;
+  Mcu_ResetType mcuResetReason;
+  uint8_least wks;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  reasonFound = 0;
+  # DEBUG BEGIN_STMT
+  mcuResetReason = Mcu_GetResetReason ();
+  # DEBUG BEGIN_STMT
+  wks = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  wksPtr = &EcuM_WksConfigList[wks];
+  # DEBUG BEGIN_STMT
+  _1 = wksPtr->ResetReason;
+  if (_1 != 27)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _2 = wksPtr->ResetReason;
+  if (mcuResetReason == _2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = wksPtr->WksId;
+  _4 = (int) _3;
+  _5 = 1 << _4;
+  EcuM_SetWakeupEvent (_5);
+  # DEBUG BEGIN_STMT
+  reasonFound = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  wks = wks + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (wks <= 5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (reasonFound != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  return;
+
+}
+
+
+EcuM_SetSleepOrResetMode ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.23_1 = EcuM_ConfigPtr;
+  _2 = EcuM_ConfigPtr.23_1->DefaultShutdownTarget;
+  EcuM_ShutdownTarget = _2;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.24_3 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.24_3 == 80)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.25_4 = EcuM_ConfigPtr;
+  _5 = EcuM_GetCoreInstance ();
+  _6 = EcuM_ConfigPtr.25_4->DefaultMode;
+  _5->SleepMode = _6;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.26_7 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.26_7 == 144)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.27_8 = EcuM_ConfigPtr;
+  _9 = EcuM_ConfigPtr.27_8->DefaultMode;
+  EcuM_ResetMode = _9;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GoPoll ()
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * CoreInstance;
+  Std_ReturnType D.10826;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->State;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 33, 16);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_GoSleep ();
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance->SleepMode;
+  _3 = (int) _2;
+  _4 = EcuM_SleepModeConfigList[_3].mcuMode;
+  _5 = (long unsigned int) _4;
+  Mcu_SetMode (_5);
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_SleepActivity ();
+  # DEBUG BEGIN_STMT
+  _6 = CoreInstance->SleepMode;
+  _7 = (int) _6;
+  _8 = EcuM_SleepModeConfigList[_7].wakeupSource;
+  _9 = _8 & 63;
+  EcuM_CheckWakeup (_9);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = CoreInstance->WakeupStatus.Pending;
+  if (_10 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  _11 = CoreInstance->WakeupStatus.Validated;
+  if (_11 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_WakeupRestart ();
+  # DEBUG BEGIN_STMT
+  ret = 0;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10826 = ret;
+  return D.10826;
+
+}
+
+
+EcuM_HaltSequence ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_PreHalt ();
+  # DEBUG BEGIN_STMT
+  EcuM_GenerateRamHash ();
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->WakeupStatus.Pending;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = CoreInstance->WakeupStatus.Validated;
+  if (_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance->SleepMode;
+  _4 = (int) _3;
+  _5 = EcuM_SleepModeConfigList[_4].mcuMode;
+  _6 = (long unsigned int) _5;
+  Mcu_SetMode (_6);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_PostHalt ();
+  # DEBUG BEGIN_STMT
+  _7 = EcuM_CheckRamHash ();
+  if (_7 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 2;
+  # DEBUG BEGIN_STMT
+  EcuM_ErrorHook (2);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 1;
+
+  <bb 8> :
+  return;
+
+}
+
+
+EcuM_GoHalt ()
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10807;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 32, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_GoSleep ();
+  # DEBUG BEGIN_STMT
+  EcuM_HaltSequence ();
+  # DEBUG BEGIN_STMT
+  EcuM_WakeupRestart ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10807 = ret;
+  return D.10807;
+
+}
+
+
+EcuM_GoDownMaster ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  Std_ReturnType ret;
+  Std_ReturnType D.10802;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  CoreInstance = EcuM_GetCoreInstance ();
+  # DEBUG BEGIN_STMT
+  EcuM_OnGoOffOne ();
+  # DEBUG BEGIN_STMT
+  BswM_Deinit ();
+  # DEBUG BEGIN_STMT
+  EcuM_SchM_Deinit ();
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance->WakeupStatus.Pending;
+  if (_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = CoreInstance->WakeupStatus.Validated;
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = 144;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.0_3 = EcuM_ShutdownInfoCurrentIdx;
+  _4 = (int) EcuM_ShutdownInfoCurrentIdx.0_3;
+  EcuM_ShutdownTarget.1_5 = EcuM_ShutdownTarget;
+  EcuM_ShutdownInfo[_4].target = EcuM_ShutdownTarget.1_5;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.2_6 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.2_6 == 144)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.3_7 = EcuM_ShutdownInfoCurrentIdx;
+  _8 = (int) EcuM_ShutdownInfoCurrentIdx.3_7;
+  EcuM_ResetMode.4_9 = EcuM_ResetMode;
+  EcuM_ShutdownInfo[_8].mode = EcuM_ResetMode.4_9;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.5_10 = EcuM_ShutdownInfoCurrentIdx;
+  _11 = (int) EcuM_ShutdownInfoCurrentIdx.5_10;
+  EcuM_ShutdownInfo[_11].mode = 0;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.6_12 = EcuM_ShutdownInfoCurrentIdx;
+  _13 = (int) EcuM_ShutdownInfoCurrentIdx.6_12;
+  EcuM_ShutdownCause.7_14 = EcuM_ShutdownCause;
+  EcuM_ShutdownInfo[_13].cause = EcuM_ShutdownCause.7_14;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.8_15 = EcuM_ShutdownInfoCurrentIdx;
+  _16 = (int) EcuM_ShutdownInfoCurrentIdx.8_15;
+  EcuM_ShutdownInfo[_16].sdTime = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.9_17 = EcuM_ShutdownInfoCurrentIdx;
+  EcuM_ShutdownInfoCurrentIdx.10_18 = EcuM_ShutdownInfoCurrentIdx.9_17;
+  _19 = EcuM_ShutdownInfoCurrentIdx.10_18 + 1;
+  EcuM_ShutdownInfoCurrentIdx = _19;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.11_20 = EcuM_ShutdownInfoCurrentIdx;
+  if (EcuM_ShutdownInfoCurrentIdx.11_20 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.12_21 = EcuM_ShutdownInfoCurrentIdx;
+  EcuM_ShutdownInfoStartIdx.13_22 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_ShutdownInfoCurrentIdx.12_21 == EcuM_ShutdownInfoStartIdx.13_22)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoStartIdx.14_23 = EcuM_ShutdownInfoStartIdx;
+  EcuM_ShutdownInfoStartIdx.15_24 = EcuM_ShutdownInfoStartIdx.14_23;
+  _25 = EcuM_ShutdownInfoStartIdx.15_24 + 1;
+  EcuM_ShutdownInfoStartIdx = _25;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoStartIdx.16_26 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_ShutdownInfoStartIdx.16_26 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoStartIdx = 0;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _27 = EcuM_GetMasterCoreInstance ();
+  _27->State = 128;
+  # DEBUG BEGIN_STMT
+  OS_UserShutdownOs (0);
+  # DEBUG BEGIN_STMT
+  D.10802 = ret;
+  return D.10802;
+
+}
+
+
+EcuM_GoDown (uint16 caller)
+{
+  Std_ReturnType ret;
+  Std_ReturnType D.10788;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 31, 16);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret = EcuM_GoDownMaster ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.10788 = ret;
+  return D.10788;
+
+}
+
+

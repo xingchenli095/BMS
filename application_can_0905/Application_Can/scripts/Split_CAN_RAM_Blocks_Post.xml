@@ -1,0 +1,73 @@
+<Script xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="Scriptor.xsd">
+	<Name>Split_CAN_RAM_Blocks_Post</Name>
+	<Decription>desc</Decription>
+	<Expression>as:modconf('Can')[1]</Expression>
+	<Operations>
+
+		<!--		enable CanHwObjectUsesBlock and set it to CAN as default     -->
+		<Operation Type="ForEach">
+			<Expression>as:modconf('Can')[1]/CanConfigSet/CanHardwareObject/*</Expression>
+			<Operations>	
+			    <Operation Type="ForEach">
+				    <Expression>./CanHwObjectUsesBlock</Expression>
+					<Operations>
+						<Operation Type="SetEnabled">
+							<Expression>boolean(1)</Expression>
+						</Operation>
+					</Operations>
+				</Operation>
+				<Operation Type="ForEach">
+				    <Expression>./CanHwObjectUsesBlock</Expression>
+					<Operations>
+						<Operation Type="SetValue">
+							<Expression>'CAN_RAM_BLOCK_0'</Expression>
+						</Operation>
+					</Operations>
+				</Operation>
+			</Operations>
+		</Operation>
+		
+		<!--		search for CANFD references in CanIfRxPduCfg  -->
+		<Operation Type="ForEach">
+			<Expression>as:modconf('CanIf')[1]/CanIfInitCfg/*[1]/CanIfRxPduCfg/*</Expression>
+			<Operations>
+				<Operation Type="Condition">
+					<Expression>(./CanIfRxPduCanIdType = 'STANDARD_FD_CAN') or (./CanIfRxPduCanIdType = 'EXTENDED_FD_CAN')</Expression>
+					<Operations>
+						<Operation Type="ForEach">
+							<Expression>node:ref(node:ref(./CanIfRxPduHrhIdRef/*[1])/CanIfHrhIdSymRef)/CanHwObjectUsesBlock</Expression>
+							<Operations>
+								<Operation Type="SetValue">
+									<Expression>'CAN_RAM_BLOCK_1'</Expression>
+								</Operation>
+							</Operations>
+						</Operation>
+					</Operations>
+				</Operation>
+			</Operations>
+		</Operation>
+			
+		<!--		search for CANFD references in CanIfTxPduCfg  -->
+		<Operation Type="ForEach">
+			<Expression>as:modconf('CanIf')[1]/CanIfInitCfg/*[1]/CanIfTxPduCfg/*</Expression>
+			<Operations>
+				<Operation Type="Condition">
+					<Expression>(./CanIfTxPduCanIdType = 'STANDARD_FD_CAN') or (./CanIfTxPduCanIdType = 'EXTENDED_FD_CAN')</Expression>
+					<Operations>
+						<Operation Type="ForEach">
+							<Expression>node:ref(node:ref(node:ref(./CanIfTxPduBufferRef)/CanIfBufferHthRef/*[1])/CanIfHthIdSymRef)/CanHwObjectUsesBlock</Expression>
+							<Operations>
+								<Operation Type="SetValue">
+									<Expression>'CAN_RAM_BLOCK_1'</Expression>
+								</Operation>
+							</Operations>
+						</Operation>
+					</Operations>
+				</Operation>
+			</Operations>
+		</Operation>
+		
+		
+	</Operations>
+</Script>

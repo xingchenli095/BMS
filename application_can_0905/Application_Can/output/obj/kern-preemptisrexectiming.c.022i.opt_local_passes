@@ -1,0 +1,77 @@
+__attribute__((target ("general-regs-only")))
+OS_PreemptIsrExecTiming (struct os_accountingsave_t * save)
+{
+  os_tick_t used;
+  struct os_kerneldata_t * const kernel_data;
+  unsigned char _1;
+  const struct os_hwt_t * _2;
+  const struct os_hwtdrv_t * _3;
+  void (*<T521>) (const struct os_hwt_t *) _4;
+  const struct os_hwt_t * _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned char _9;
+  unsigned char _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_12 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.accounting.inFunction;
+  if (_1 == 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  save_17(D)->inFunction = 255;
+  # DEBUG BEGIN_STMT
+  save_17(D)->etType = 0;
+  # DEBUG BEGIN_STMT
+  save_17(D)->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  save_17(D)->etLimit = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = OS_executionTimer[0];
+  _3 = _2->driver;
+  _4 = _3->hwtStop;
+  _5 = OS_executionTimer[0];
+  _4 (_5);
+  # DEBUG BEGIN_STMT
+  used_16 = OS_GetTimeUsed ();
+  # DEBUG used => used_16
+  # DEBUG BEGIN_STMT
+  _6 = OS_kernelData.accounting.etUsed;
+  _7 = used_16 + _6;
+  save_17(D)->etUsed = _7;
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.accounting.etLimit;
+  save_17(D)->etLimit = _8;
+  # DEBUG BEGIN_STMT
+  _9 = OS_kernelData.accounting.inFunction;
+  save_17(D)->inFunction = _9;
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.accounting.etType;
+  save_17(D)->etType = _10;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.inFunction = 255;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etType = 0;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etUsed = 0;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etLimit = 0;
+
+  <bb 5> :
+  return;
+
+}
+
+

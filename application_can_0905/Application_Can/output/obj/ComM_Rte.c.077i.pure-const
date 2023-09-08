@@ -1,0 +1,1001 @@
+
+
+ local analysis of ComM_Rte_GetCurrentPNCComMode
+   scanning: ret_5 = ComM_ASR40_GetCurrentPNCComMode (pdav0_2(D), ComMode_3(D));
+  scanning: return ret_5;
+Function is locally const.
+
+
+ local analysis of ComM_Rte_GetCurrentComMode
+   scanning: ret_5 = ComM_ASR40_GetCurrentComMode (pdav0_2(D), ComMode_3(D));
+  scanning: return ret_5;
+Function is locally const.
+
+
+ local analysis of ComM_Rte_GetRequestedComMode
+   scanning: ret_5 = ComM_ASR40_GetRequestedComMode (pdav0_2(D), ComMode_3(D));
+  scanning: return ret_5;
+Function is locally const.
+
+
+ local analysis of ComM_Rte_GetMaxComMode
+   scanning: ret_5 = ComM_ASR40_GetMaxComMode (pdav0_2(D), ComMode_3(D));
+  scanning: return ret_5;
+Function is locally const.
+
+
+ local analysis of ComM_Rte_RequestComMode
+   scanning: ret_5 = ComM_ASR40_RequestComMode (pdav0_2(D), ComMode_3(D));
+  scanning: return ret_5;
+Function is locally const.
+
+
+ local analysis of ComM_RteNotify
+   scanning: _1 = (int) CurComMMode_6(D);
+  scanning: newRteMode_8 = ComM_ComModeToRteMode[_1];
+  scanning: _2 = (int) User_9(D);
+  scanning: ComM_RteNotificationSuccessful[_2] = 1;
+  scanning: _3 = ComM_RteModeUser[_2];
+  scanning: if (_3 != CurComMMode_6(D))
+  scanning: _4 = ComM_RteSwitchCbk[_2];
+  scanning: rteReturnVal_12 = _4 (newRteMode_8);
+  scanning: if (rteReturnVal_12 == 0)
+  scanning: ComM_RteModeUser[_2] = CurComMMode_6(D);
+  scanning: ComM_RteNotificationSuccessful[_2] = 0;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_EvaluateChannel
+   scanning: ComM_ConfigPtr.0_1 = ComM_ConfigPtr;
+  scanning: _2 = (unsigned int) Channel_30(D);
+  scanning: _3 = _2 + 1;
+  scanning: _4 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_3];
+    Indirect ref read is not const
+  scanning: _5 = (unsigned char) _4;
+  scanning: _6 = (int) Channel_30(D);
+  scanning: _7 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_6];
+    Indirect ref read is not const
+  scanning: _8 = (unsigned char) _7;
+  scanning: _9 = _5 - _8;
+  scanning: _11 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_3];
+    Indirect ref read is not const
+  scanning: _12 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_6];
+    Indirect ref read is not const
+  scanning: NumPncs_32 = _11 - _12;
+  scanning: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: ComM_ConfigPtr.4_13 = ComM_ConfigPtr;
+  scanning: _14 = ComM_ConfigPtr.4_13->pUsersOfAllChannel;
+    Indirect ref read is not const
+  scanning: _15 = ComM_ConfigPtr.4_13->NumUsersOfAllChannel[_6];
+    Indirect ref read is not const
+  scanning: _16 = (int) _15;
+  scanning: _17 = (int) ElementPos_23;
+  scanning: _18 = _16 + _17;
+  scanning: _19 = (sizetype) _18;
+  scanning: _20 = _14 + _19;
+  scanning: _21 = ComM_ConfigPtr.4_13 + _20;
+  scanning: UserOfChannel_38 = *_21;
+    Indirect ref read is not const
+  scanning: UserReqMode_40 = ComM_EB_GetUserRequestedComMode (UserOfChannel_38);
+  scanning: ComMode_22 = MAX_EXPR <UserReqMode_40, ComMode_25>;
+  scanning: ElementPos_41 = ElementPos_23 + 1;
+  scanning: _33 = (short unsigned int) _9;
+  scanning: if (ElementPos_23 < _33)
+  scanning: PncReqMode_36 = ComM_EB_GetPncRequestedComMode (Channel_30(D), ElementPos_24);
+  scanning: ComMode_31 = MAX_EXPR <PncReqMode_36, ComMode_26>;
+  scanning: ElementPos_37 = ElementPos_24 + 1;
+  scanning: if (ElementPos_24 < NumPncs_32)
+  scanning: ComM_EB_SetRequestedComMode (Channel_30(D), ComMode_10);
+  scanning: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 8 5 6 7
+;;
+;; Loop 2
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 8 }
+;; 8 succs { 6 }
+;; 5 succs { 6 }
+;; 6 succs { 5 7 }
+;; 7 succs { 1 }
+Function is locally pure.
+
+
+ local analysis of ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0
+   scanning: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0
+   scanning: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+Function is locally const.
+callgraph:
+
+ComM_ASR40_GetCurrentPNCComMode/23 (ComM_ASR40_GetCurrentPNCComMode) @06d387e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetCurrentPNCComMode/9 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetCurrentComMode/22 (ComM_ASR40_GetCurrentComMode) @06d38620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetCurrentComMode/8 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetRequestedComMode/21 (ComM_ASR40_GetRequestedComMode) @06d38460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetRequestedComMode/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetMaxComMode/20 (ComM_ASR40_GetMaxComMode) @06d382a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetMaxComMode/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_RequestComMode/19 (ComM_ASR40_RequestComMode) @06d380e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_RequestComMode/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_EB_SetRequestedComMode/15 (ComM_EB_SetRequestedComMode) @06d32d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111601 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_EB_GetPncRequestedComMode/14 (ComM_EB_GetPncRequestedComMode) @06d32c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (955630224 (estimated locally),8.09 per call) 
+  Calls: 
+ComM_EB_GetUserRequestedComMode/13 (ComM_EB_GetUserRequestedComMode) @06d32b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (955630220 (estimated locally),8.09 per call) 
+  Calls: 
+SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0) @06d328c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111601 (estimated locally),1.00 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0) @06d32700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111600 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_Rte_GetCurrentPNCComMode/9 (ComM_Rte_GetCurrentPNCComMode) @06d32540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82be8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentPNCComMode/23 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetCurrentComMode/8 (ComM_Rte_GetCurrentComMode) @06d32380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentComMode/22 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetRequestedComMode/7 (ComM_Rte_GetRequestedComMode) @06d321c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82de8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetRequestedComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetMaxComMode/6 (ComM_Rte_GetMaxComMode) @06d32000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ea8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetMaxComMode/20 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_RequestComMode/5 (ComM_Rte_RequestComMode) @06ce62a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_RequestComMode/19 (1073741824 (estimated locally),1.00 per call) 
+ComM_RteNotify/4 (ComM_RteNotify) @06ce60e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82bc8
+  References: ComM_ComModeToRteMode/0 (read)ComM_RteNotificationSuccessful/16 (write)ComM_RteModeUser/17 (read)ComM_RteSwitchCbk/18 (read)ComM_RteModeUser/17 (write)ComM_RteNotificationSuccessful/16 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(708669605 (estimated locally),0.66 per call) 
+ComM_EvaluateChannel/3 (ComM_EvaluateChannel) @06ce6e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82e28
+  References: ComM_ConfigPtr/12 (read)ComM_ConfigPtr/12 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (118111601 (estimated locally),1.00 per call) ComM_EB_SetRequestedComMode/15 (118111601 (estimated locally),1.00 per call) ComM_EB_GetPncRequestedComMode/14 (955630224 (estimated locally),8.09 per call) ComM_EB_GetUserRequestedComMode/13 (955630220 (estimated locally),8.09 per call) SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (118111600 (estimated locally),1.00 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ce8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce69a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82c28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+ComM_Rte_GetCurrentPNCComMode/9 (ComM_Rte_GetCurrentPNCComMode) @06d32540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82be8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentPNCComMode/23 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetCurrentComMode/8 (ComM_Rte_GetCurrentComMode) @06d32380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentComMode/22 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetRequestedComMode/7 (ComM_Rte_GetRequestedComMode) @06d321c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82de8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetRequestedComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetMaxComMode/6 (ComM_Rte_GetMaxComMode) @06d32000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ea8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetMaxComMode/20 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_RequestComMode/5 (ComM_Rte_RequestComMode) @06ce62a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_RequestComMode/19 (1073741824 (estimated locally),1.00 per call) 
+ComM_RteNotify/4 (ComM_RteNotify) @06ce60e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82bc8
+  References: ComM_ComModeToRteMode/0 (read)ComM_RteNotificationSuccessful/16 (write)ComM_RteModeUser/17 (read)ComM_RteSwitchCbk/18 (read)ComM_RteModeUser/17 (write)ComM_RteNotificationSuccessful/16 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(708669605 (estimated locally),0.66 per call) 
+ComM_EvaluateChannel/3 (ComM_EvaluateChannel) @06ce6e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82e28
+  References: ComM_ConfigPtr/12 (read)ComM_ConfigPtr/12 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (118111601 (estimated locally),1.00 per call) ComM_EB_SetRequestedComMode/15 (118111601 (estimated locally),1.00 per call) ComM_EB_GetPncRequestedComMode/14 (955630224 (estimated locally),8.09 per call) ComM_EB_GetUserRequestedComMode/13 (955630220 (estimated locally),8.09 per call) SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (118111600 (estimated locally),1.00 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ce8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce69a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82c28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+ComM_Rte_GetCurrentPNCComMode: malloc_bottom
+ComM_Rte_GetCurrentComMode: malloc_bottom
+ComM_Rte_GetRequestedComMode: malloc_bottom
+ComM_Rte_GetMaxComMode: malloc_bottom
+ComM_Rte_RequestComMode: malloc_bottom
+ComM_RteNotify: malloc_bottom
+ComM_EvaluateChannel: malloc_bottom
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0: malloc_bottom
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+ComM_Rte_GetCurrentPNCComMode: malloc_bottom
+ComM_Rte_GetCurrentComMode: malloc_bottom
+ComM_Rte_GetRequestedComMode: malloc_bottom
+ComM_Rte_GetMaxComMode: malloc_bottom
+ComM_Rte_RequestComMode: malloc_bottom
+ComM_RteNotify: malloc_bottom
+ComM_EvaluateChannel: malloc_bottom
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0: malloc_bottom
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0: malloc_bottom
+callgraph:
+
+ComM_ASR40_GetCurrentPNCComMode/23 (ComM_ASR40_GetCurrentPNCComMode) @06d387e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetCurrentPNCComMode/9 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetCurrentComMode/22 (ComM_ASR40_GetCurrentComMode) @06d38620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetCurrentComMode/8 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetRequestedComMode/21 (ComM_ASR40_GetRequestedComMode) @06d38460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetRequestedComMode/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_GetMaxComMode/20 (ComM_ASR40_GetMaxComMode) @06d382a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_GetMaxComMode/6 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_ASR40_RequestComMode/19 (ComM_ASR40_RequestComMode) @06d380e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_Rte_RequestComMode/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_EB_SetRequestedComMode/15 (ComM_EB_SetRequestedComMode) @06d32d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111601 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_EB_GetPncRequestedComMode/14 (ComM_EB_GetPncRequestedComMode) @06d32c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (955630224 (estimated locally),8.09 per call) 
+  Calls: 
+ComM_EB_GetUserRequestedComMode/13 (ComM_EB_GetUserRequestedComMode) @06d32b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (955630220 (estimated locally),8.09 per call) 
+  Calls: 
+SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0) @06d328c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111601 (estimated locally),1.00 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0) @06d32700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_EvaluateChannel/3 (118111600 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_Rte_GetCurrentPNCComMode/9 (ComM_Rte_GetCurrentPNCComMode) @06d32540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82d48
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentPNCComMode/23 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetCurrentComMode/8 (ComM_Rte_GetCurrentComMode) @06d32380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82bc8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentComMode/22 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetRequestedComMode/7 (ComM_Rte_GetRequestedComMode) @06d321c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82e08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetRequestedComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetMaxComMode/6 (ComM_Rte_GetMaxComMode) @06d32000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82d88
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetMaxComMode/20 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_RequestComMode/5 (ComM_Rte_RequestComMode) @06ce62a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_RequestComMode/19 (1073741824 (estimated locally),1.00 per call) 
+ComM_RteNotify/4 (ComM_RteNotify) @06ce60e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82da8
+  References: ComM_ComModeToRteMode/0 (read)ComM_RteNotificationSuccessful/16 (write)ComM_RteModeUser/17 (read)ComM_RteSwitchCbk/18 (read)ComM_RteModeUser/17 (write)ComM_RteNotificationSuccessful/16 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(708669605 (estimated locally),0.66 per call) 
+ComM_EvaluateChannel/3 (ComM_EvaluateChannel) @06ce6e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ae8
+  References: ComM_ConfigPtr/12 (read)ComM_ConfigPtr/12 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (118111601 (estimated locally),1.00 per call) ComM_EB_SetRequestedComMode/15 (118111601 (estimated locally),1.00 per call) ComM_EB_GetPncRequestedComMode/14 (955630224 (estimated locally),8.09 per call) ComM_EB_GetUserRequestedComMode/13 (955630220 (estimated locally),8.09 per call) SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (118111600 (estimated locally),1.00 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82dc8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce69a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+ComM_Rte_GetCurrentPNCComMode/9 (ComM_Rte_GetCurrentPNCComMode) @06d32540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82d48
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentPNCComMode/23 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetCurrentComMode/8 (ComM_Rte_GetCurrentComMode) @06d32380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82bc8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetCurrentComMode/22 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetRequestedComMode/7 (ComM_Rte_GetRequestedComMode) @06d321c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82e08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetRequestedComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_GetMaxComMode/6 (ComM_Rte_GetMaxComMode) @06d32000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82d88
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_GetMaxComMode/20 (1073741824 (estimated locally),1.00 per call) 
+ComM_Rte_RequestComMode/5 (ComM_Rte_RequestComMode) @06ce62a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b28
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_ASR40_RequestComMode/19 (1073741824 (estimated locally),1.00 per call) 
+ComM_RteNotify/4 (ComM_RteNotify) @06ce60e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82da8
+  References: ComM_ComModeToRteMode/0 (read)ComM_RteNotificationSuccessful/16 (write)ComM_RteModeUser/17 (read)ComM_RteSwitchCbk/18 (read)ComM_RteModeUser/17 (write)ComM_RteNotificationSuccessful/16 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(708669605 (estimated locally),0.66 per call) 
+ComM_EvaluateChannel/3 (ComM_EvaluateChannel) @06ce6e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82ae8
+  References: ComM_ConfigPtr/12 (read)ComM_ConfigPtr/12 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (118111601 (estimated locally),1.00 per call) ComM_EB_SetRequestedComMode/15 (118111601 (estimated locally),1.00 per call) ComM_EB_GetPncRequestedComMode/14 (955630224 (estimated locally),8.09 per call) ComM_EB_GetUserRequestedComMode/13 (955630220 (estimated locally),8.09 per call) SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (118111600 (estimated locally),1.00 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/2 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce6b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82dc8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/1 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06ce69a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b82b08
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0/10 (1073741824 (estimated locally),1.00 per call) 
+
+ComM_Rte_GetCurrentPNCComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentPNCComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetCurrentComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetRequestedComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetRequestedComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetMaxComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetMaxComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_RequestComMode (ComM_UserHandleType pdav0, ComM_ModeType ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_RequestComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_RteNotify (uint8 User, ComM_ASR40_ModeType CurComMMode)
+{
+  const Std_ReturnType rteReturnVal;
+  const Rte_ModeType_ComMMode newRteMode;
+  int _1;
+  int _2;
+  unsigned char _3;
+  Std_ReturnType (*<T699>) (Rte_ModeType_ComMMode) _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) CurComMMode_6(D);
+  newRteMode_8 = ComM_ComModeToRteMode[_1];
+  # DEBUG newRteMode => newRteMode_8
+  # DEBUG BEGIN_STMT
+  _2 = (int) User_9(D);
+  ComM_RteNotificationSuccessful[_2] = 1;
+  # DEBUG BEGIN_STMT
+  _3 = ComM_RteModeUser[_2];
+  if (_3 != CurComMMode_6(D))
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  _4 = ComM_RteSwitchCbk[_2];
+  rteReturnVal_12 = _4 (newRteMode_8);
+  # DEBUG rteReturnVal => rteReturnVal_12
+  # DEBUG BEGIN_STMT
+  if (rteReturnVal_12 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  ComM_RteModeUser[_2] = CurComMMode_6(D);
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationSuccessful[_2] = 0;
+
+  <bb 6> [local count: 1073741824]:
+  return;
+
+}
+
+
+ComM_EvaluateChannel (uint8 Channel)
+{
+  const ComM_ASR40_ModeType PncReqMode;
+  const ComM_ASR40_ModeType UserReqMode;
+  const uint8 UserOfChannel;
+  ComM_ASR40_ModeType ComMode;
+  PNCHandleType ElementPos;
+  const PNCHandleType NumPncs;
+  const struct ComM_ConfigType * ComM_ConfigPtr.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  int _6;
+  short unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  short unsigned int _11;
+  short unsigned int _12;
+  const struct ComM_ConfigType * ComM_ConfigPtr.4_13;
+  long unsigned int _14;
+  short unsigned int _15;
+  int _16;
+  int _17;
+  int _18;
+  sizetype _19;
+  sizetype _20;
+  const uint8 * _21;
+  short unsigned int _33;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.0_1 = ComM_ConfigPtr;
+  _2 = (unsigned int) Channel_30(D);
+  _3 = _2 + 1;
+  _4 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_3];
+  _5 = (unsigned char) _4;
+  _6 = (int) Channel_30(D);
+  _7 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_6];
+  _8 = (unsigned char) _7;
+  _9 = _5 - _8;
+  # DEBUG NumUser => (const uint8_least) _9
+  # DEBUG BEGIN_STMT
+  _11 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_3];
+  _12 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_6];
+  NumPncs_32 = _11 - _12;
+  # DEBUG NumPncs => NumPncs_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ComMode => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG INLINE_ENTRY ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ElementPos => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630220]:
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_13 = ComM_ConfigPtr;
+  _14 = ComM_ConfigPtr.4_13->pUsersOfAllChannel;
+  _15 = ComM_ConfigPtr.4_13->NumUsersOfAllChannel[_6];
+  _16 = (int) _15;
+  _17 = (int) ElementPos_23;
+  _18 = _16 + _17;
+  _19 = (sizetype) _18;
+  _20 = _14 + _19;
+  _21 = ComM_ConfigPtr.4_13 + _20;
+  UserOfChannel_38 = *_21;
+  # DEBUG UserOfChannel => UserOfChannel_38
+  # DEBUG BEGIN_STMT
+  UserReqMode_40 = ComM_EB_GetUserRequestedComMode (UserOfChannel_38);
+  # DEBUG UserReqMode => UserReqMode_40
+  # DEBUG BEGIN_STMT
+  ComMode_22 = MAX_EXPR <UserReqMode_40, ComMode_25>;
+  # DEBUG ComMode => ComMode_22
+  # DEBUG BEGIN_STMT
+  ElementPos_41 = ElementPos_23 + 1;
+  # DEBUG ElementPos => ElementPos_41
+
+  <bb 4> [local count: 1073741821]:
+  # ElementPos_23 = PHI <0(2), ElementPos_41(3)>
+  # ComMode_25 = PHI <0(2), ComMode_22(3)>
+  # DEBUG ComMode => ComMode_25
+  # DEBUG ElementPos => ElementPos_23
+  # DEBUG BEGIN_STMT
+  _33 = (short unsigned int) _9;
+  if (ElementPos_23 < _33)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 118111600]:
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  PncReqMode_36 = ComM_EB_GetPncRequestedComMode (Channel_30(D), ElementPos_24);
+  # DEBUG PncReqMode => PncReqMode_36
+  # DEBUG BEGIN_STMT
+  ComMode_31 = MAX_EXPR <PncReqMode_36, ComMode_26>;
+  # DEBUG ComMode => ComMode_31
+  # DEBUG BEGIN_STMT
+  ElementPos_37 = ElementPos_24 + 1;
+  # DEBUG ElementPos => ElementPos_37
+
+  <bb 6> [local count: 1073741824]:
+  # ElementPos_24 = PHI <ElementPos_37(5), 0(8)>
+  # ComMode_26 = PHI <ComMode_31(5), ComMode_25(8)>
+  # DEBUG ComMode => ComMode_26
+  # DEBUG ElementPos => ElementPos_24
+  # DEBUG BEGIN_STMT
+  if (ElementPos_24 < NumPncs_32)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+  # ComMode_10 = PHI <ComMode_26(6)>
+  # DEBUG BEGIN_STMT
+  ComM_EB_SetRequestedComMode (Channel_30(D), ComMode_10);
+  # DEBUG BEGIN_STMT
+  # DEBUG INLINE_ENTRY ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

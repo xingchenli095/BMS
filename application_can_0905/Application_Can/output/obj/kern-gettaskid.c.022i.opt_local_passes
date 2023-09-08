@@ -1,0 +1,209 @@
+__attribute__((target ("general-regs-only")))
+OS_KernGetTaskId (os_taskid_t * out)
+{
+  os_paramtype_t p[3];
+  os_result_t r;
+  unsigned int out.0_1;
+  unsigned char _2;
+  const os_callermask_t * OS_permittedContext.3_3;
+  const os_callermask_t * _4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  const os_callermask_t * OS_permittedContext.4_8;
+  const os_callermask_t * _9;
+  short unsigned int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  const os_callermask_t * OS_permittedContext.5_16;
+  const os_callermask_t * _17;
+  short unsigned int _18;
+  unsigned char _19;
+  int _20;
+  int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  unsigned char OS_iecMode.6_24;
+  unsigned char _25;
+  const struct os_task_t * _26;
+  struct os_taskdynamic_t * _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  short unsigned int _30;
+  short unsigned int _31;
+  int _32;
+  const struct os_task_t * _33;
+  const struct os_task_t * _34;
+  unsigned char _35;
+  _Bool iftmp.1_37;
+  int iftmp.2_38;
+  _Bool iftmp.1_44;
+  int iftmp.2_45;
+  int iftmp.2_46;
+  _Bool iftmp.1_47;
+  os_result_t _57;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r_40 = 0;
+  # DEBUG r => r_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  out.0_1 = (unsigned int) out_41(D);
+  p[0] = out.0_1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.3_3 = OS_permittedContext;
+  _4 = OS_permittedContext.3_3 + 52;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.4_8 = OS_permittedContext;
+  _9 = OS_permittedContext.4_8 + 52;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.2_45 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.2_46 = 0;
+
+  <bb 7> :
+  # iftmp.2_38 = PHI <iftmp.2_45(5), iftmp.2_46(6)>
+  iftmp.1_47 = iftmp.2_38 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.5_16 = OS_permittedContext;
+  _17 = OS_permittedContext.5_16 + 52;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.1_44 = _23 == 0;
+
+  <bb 9> :
+  # iftmp.1_37 = PHI <iftmp.1_47(7), iftmp.1_44(8)>
+  if (iftmp.1_37 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r_56 = OS_Error (&OS_svc_GetTaskId, 12, &p);
+  # DEBUG r => r_56
+  goto <bb 21>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_24 = OS_iecMode;
+  if (OS_iecMode.6_24 > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _25 = OS_kernelData.inFunction;
+  if (_25 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _26 = OS_kernelData.taskCurrent;
+  _27 = _26->dynamic;
+  _28 = BIT_FIELD_REF <MEM[(void *)_27], 16, 160>;
+  _29 = _28;
+  if (_29 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _30 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _31 = _30;
+  if (_31 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  r_49 = OS_Error (&OS_svc_GetTaskId, 55, &p);
+  # DEBUG r => r_49
+  goto <bb 21>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _32 = OS_CanWrite (out_41(D), 1);
+  if (_32 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r_54 = OS_Error (&OS_svc_GetTaskId, 6, &p);
+  # DEBUG r => r_54
+  goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _33 = OS_kernelData.taskCurrent;
+  if (_33 == 0B)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  *out_41(D) = 255;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _34 = OS_kernelData.taskCurrent;
+  _35 = _34->taskId;
+  *out_41(D) = _35;
+
+  <bb 21> :
+  # r_36 = PHI <r_56(10), r_49(15), r_54(17), r_40(19), r_40(20)>
+  # DEBUG r => r_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _57 = r_36;
+  p ={v} {CLOBBER};
+  return _57;
+
+}
+
+

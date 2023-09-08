@@ -1,0 +1,260 @@
+__attribute__((target ("general-regs-only")))
+OS_KernCallTrustedFunction (os_functionid_t fid, void * parms)
+{
+  os_uint8_t tfCalledFrom;
+  os_uint8_t inFunction;
+  struct os_kerneldata_t * const kernel_data;
+  register os_stackelement_t * OS_getSpResult;
+  os_address_t upperBound;
+  os_address_t lowerBound;
+  os_address_t lowerSp;
+  os_address_t upperSp;
+  const struct os_function_t * const fs;
+  os_paramtype_t p[3];
+  os_result_t r;
+  os_result_t D.7454;
+  os_stackelement_t * D.7415;
+  int iftmp.2;
+  _Bool iftmp.1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) fid;
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  parms.0_2 = (unsigned int) parms;
+  p[1] = parms.0_2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.3_4 = OS_permittedContext;
+  _5 = OS_permittedContext.3_4 + 4;
+  _6 = *_5;
+  _7 = (unsigned int) _6;
+  _8 = _7 & 1024;
+  if (_8 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.4_9 = OS_permittedContext;
+  _10 = OS_permittedContext.4_9 + 4;
+  _11 = *_10;
+  _12 = OS_kernelData.errorStatus.calledFrom;
+  _13 = (int) _12;
+  _14 = 1 << _13;
+  _15 = (short unsigned int) _14;
+  _16 = _11 & _15;
+  if (_16 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.2 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.2 = 0;
+
+  <bb 7> :
+  iftmp.1 = iftmp.2 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.5_17 = OS_permittedContext;
+  _18 = OS_permittedContext.5_17 + 4;
+  _19 = *_18;
+  _20 = OS_kernelData.inFunction;
+  _21 = (int) _20;
+  _22 = 1 << _21;
+  _23 = (short unsigned int) _22;
+  _24 = _19 & _23;
+  iftmp.1 = _24 == 0;
+
+  <bb 9> :
+  if (iftmp.1 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_CallTrustedFunction, 12, &p);
+  goto <bb 26>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_25 = OS_iecMode;
+  if (OS_iecMode.6_25 > 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _26 = OS_kernelData.inFunction;
+  if (_26 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _27 = OS_kernelData.taskCurrent;
+  _28 = _27->dynamic;
+  _29 = BIT_FIELD_REF <MEM[(void *)_28], 16, 160>;
+  _30 = _29;
+  if (_30 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _31 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  _32 = _31;
+  if (_32 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_CallTrustedFunction, 55, &p);
+  goto <bb 26>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_nFunctions.7_33 = OS_nFunctions;
+  if (fid >= OS_nFunctions.7_33)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_CallTrustedFunction, 50, &p);
+  goto <bb 26>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OS_functionTableBase.8_34 = OS_functionTableBase;
+  _35 = (unsigned int) fid;
+  _36 = _35 * 16;
+  fs = OS_functionTableBase.8_34 + _36;
+  # DEBUG BEGIN_STMT
+  _37 = fs->app;
+  _38 = OS_AppIsAccessible (_37);
+  if (_38 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_CallTrustedFunction, 154, &p);
+  goto <bb 26>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult);
+  # DEBUG BEGIN_STMT
+  D.7415 = OS_getSpResult;
+  _39 = (unsigned int) D.7415;
+  upperSp = _39;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  upperSp.9_40 = upperSp;
+  _41 = fs->stackLen;
+  lowerSp = upperSp.9_40 - _41;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _42 = OS_kernelData.iStackBase;
+  _43 = (unsigned int) _42;
+  lowerBound = _43;
+  # DEBUG BEGIN_STMT
+  _44 = OS_kernelData.iStackLen;
+  lowerBound.10_45 = lowerBound;
+  _46 = _44 + lowerBound.10_45;
+  upperBound = _46;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  lowerBound.11_47 = lowerBound;
+  if (lowerSp < lowerBound.11_47)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  upperSp.12_48 = upperSp;
+  upperBound.13_49 = upperBound;
+  if (upperSp.12_48 > upperBound.13_49)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  upperSp.14_50 = upperSp;
+  if (lowerSp > upperSp.14_50)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_CallTrustedFunction, 53, &p);
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inFunction = OS_kernelData.inFunction;
+  # DEBUG BEGIN_STMT
+  tfCalledFrom = OS_kernelData.tfCalledFrom;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 5;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.tfCalledFrom = inFunction;
+  # DEBUG BEGIN_STMT
+  _51 = fs->function;
+  _51 (fid, parms);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = inFunction;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.tfCalledFrom = tfCalledFrom;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  upperSp = {CLOBBER};
+  lowerBound = {CLOBBER};
+  upperBound = {CLOBBER};
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7454 = r;
+  p = {CLOBBER};
+  return D.7454;
+
+}
+
+

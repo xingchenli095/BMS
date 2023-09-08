@@ -1,0 +1,2998 @@
+ComM_PNCWakeUpIndication_ChannelHandle (PNCHandleType pncIdx)
+{
+  const uint8 Channel;
+  uint8 chIdx;
+  boolean PassiveStartupStatus;
+  const struct ComM_ConfigType * ComM_ConfigPtr.51_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.52_2;
+  long unsigned int _3;
+  const struct ComM_ConfigType * ComM_ConfigPtr.53_4;
+  int _5;
+  short unsigned int _6;
+  int _7;
+  int _8;
+  int _9;
+  sizetype _10;
+  sizetype _11;
+  const uint8 * _12;
+  int _13;
+  int _14;
+  unsigned char _15;
+  int _16;
+  short unsigned int _17;
+  unsigned char chIdx.54_18;
+  const struct ComM_ConfigType * ComM_ConfigPtr.55_19;
+  unsigned int _20;
+  unsigned int _21;
+  short unsigned int _22;
+  unsigned char _23;
+  const struct ComM_ConfigType * ComM_ConfigPtr.56_24;
+  int _25;
+  short unsigned int _26;
+  unsigned char _27;
+  unsigned char _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PassiveStartupStatus_32 = 0;
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_32
+  # DEBUG BEGIN_STMT
+  chIdx_33 = 0;
+  # DEBUG chIdx => chIdx_33
+  # DEBUG BEGIN_STMT
+  chIdx_34 = 0;
+  # DEBUG chIdx => chIdx_34
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.51_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.52_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.52_2->pChannelsOfAllPnc;
+  ComM_ConfigPtr.53_4 = ComM_ConfigPtr;
+  _5 = (int) pncIdx_36(D);
+  _6 = ComM_ConfigPtr.53_4->NumChannelsOfAllPnc[_5];
+  _7 = (int) _6;
+  _8 = (int) chIdx_29;
+  _9 = _7 + _8;
+  _10 = (sizetype) _9;
+  _11 = _3 + _10;
+  _12 = ComM_ConfigPtr.51_1 + _11;
+  Channel_37 = *_12;
+  # DEBUG Channel => Channel_37
+  # DEBUG BEGIN_STMT
+  _13 = (int) Channel_37;
+  PassiveStartupStatus_38 = ComM_DcmActiveStatus[_13];
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_38
+  # DEBUG BEGIN_STMT
+  _14 = (int) Channel_37;
+  _15 = ComM_RequestedComMode[_14];
+  if (_15 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (PassiveStartupStatus_38 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) Channel_37;
+  ComM_PassiveStartupStatus[_16] = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _17 = (short unsigned int) Channel_37;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _17, 6);
+  # DEBUG BEGIN_STMT
+  chIdx.54_18 = chIdx_29;
+  chIdx_41 = chIdx.54_18 + 1;
+  # DEBUG chIdx => chIdx_41
+
+  <bb 7> :
+  # chIdx_29 = PHI <chIdx_34(2), chIdx_41(6)>
+  # DEBUG chIdx => chIdx_29
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.55_19 = ComM_ConfigPtr;
+  _20 = (unsigned int) pncIdx_36(D);
+  _21 = _20 + 1;
+  _22 = ComM_ConfigPtr.55_19->NumChannelsOfAllPnc[_21];
+  _23 = (unsigned char) _22;
+  ComM_ConfigPtr.56_24 = ComM_ConfigPtr;
+  _25 = (int) pncIdx_36(D);
+  _26 = ComM_ConfigPtr.56_24->NumChannelsOfAllPnc[_25];
+  _27 = (unsigned char) _26;
+  _28 = _23 - _27;
+  if (chIdx_29 < _28)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+ComM_PNCWakeUpIndication_PncHandle (PNCHandleType pncIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, pncIdx_2(D), 4);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_IsValidConfig (const void * voidConfigPtr)
+{
+  const struct ComM_ConfigType * ConfigPtr;
+  Std_ReturnType result;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int ComM_LcfgSignature.73_5;
+  long unsigned int _6;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_9 = 1;
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  ConfigPtr_11 = voidConfigPtr_10(D);
+  # DEBUG ConfigPtr => ConfigPtr_11
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_11 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_11->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr_11->CfgSignature;
+  if (_3 == 4283348280)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr_11->LcfgSignature;
+  ComM_LcfgSignature.73_5 = ComM_LcfgSignature;
+  if (_4 == ComM_LcfgSignature.73_5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = ConfigPtr_11->PublicInfoSignature;
+  if (_6 == 1499283658)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_14 = 0;
+  # DEBUG result => result_14
+
+  <bb 8> :
+  # result_7 = PHI <result_9(2), result_9(3), result_9(4), result_9(5), result_9(6), result_14(7)>
+  # DEBUG result => result_7
+  # DEBUG BEGIN_STMT
+  _15 = result_7;
+  return _15;
+
+}
+
+
+ComM_PncMainFunction ()
+{
+  boolean ComMExecutePncMainFunction;
+  PNCHandleType PncIdx;
+  unsigned char ComMPncMainfunctionRunning.67_1;
+  struct ComM_HsmInstType * _2;
+  unsigned int _3;
+  unsigned int _4;
+  struct ComM_HsmInstType * _5;
+  unsigned char _6;
+  short unsigned int PncIdx.68_7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMExecutePncMainFunction_14 = 0;
+  # DEBUG ComMExecutePncMainFunction => ComMExecutePncMainFunction_14
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ComMPncMainfunctionRunning.67_1 ={v} ComMPncMainfunctionRunning;
+  if (ComMPncMainfunctionRunning.67_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComMPncMainfunctionRunning ={v} 1;
+  # DEBUG BEGIN_STMT
+  ComMExecutePncMainFunction_18 = 1;
+  # DEBUG ComMExecutePncMainFunction => ComMExecutePncMainFunction_18
+
+  <bb 4> :
+  # ComMExecutePncMainFunction_9 = PHI <ComMExecutePncMainFunction_14(2), ComMExecutePncMainFunction_18(3)>
+  # DEBUG ComMExecutePncMainFunction => ComMExecutePncMainFunction_9
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ComMExecutePncMainFunction_9 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ComM_ProcessPncComSignals (&ComM_RxEiraSignalStatus, &ComM_RxComSignalEiraCfg, &ComM_RxEira, 0);
+  # DEBUG BEGIN_STMT
+  PncIdx_21 = 0;
+  # DEBUG PncIdx => PncIdx_21
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = ComM_HsmScComMPnc.instances;
+  _3 = (unsigned int) PncIdx_8;
+  _4 = _3 * 4;
+  _5 = _2 + _4;
+  _6 = _5->evQueueFill;
+  if (_6 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmMainInst (&ComM_HsmScComMPnc, PncIdx_8);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PncIdx.68_7 = PncIdx_8;
+  PncIdx_24 = PncIdx.68_7 + 1;
+  # DEBUG PncIdx => PncIdx_24
+
+  <bb 9> :
+  # PncIdx_8 = PHI <PncIdx_21(5), PncIdx_24(8)>
+  # DEBUG PncIdx => PncIdx_8
+  # DEBUG BEGIN_STMT
+  if (PncIdx_8 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ComMPncMainfunctionRunning ={v} 0;
+
+  <bb 11> :
+  return;
+
+}
+
+
+ComM_ProcessPncComSignals (boolean * SignalStatusPtr, const struct ComM_RxSignal_Struct_Type * SignalConfigurationPtr, uint8 * SignalMergedPtr, uint8 SignalKind)
+{
+  uint8 EiraMask;
+  Std_ReturnType retVal;
+  uint8 RxEiraReceived[6];
+  uint8 signalCount;
+  boolean EiraStatus;
+  uint8 RxEiraMerged[6];
+  uint8 i;
+  uint8 Index;
+  PNCHandleType PncIdx;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct ComM_RxSignal_Struct_Type * _4;
+  short unsigned int _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  const uint8 * _11;
+  sizetype _12;
+  const uint8 * _13;
+  unsigned char _14;
+  unsigned char _15;
+  int _16;
+  unsigned char _17;
+  unsigned char i.69_18;
+  unsigned char Index.70_19;
+  int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  unsigned char _23;
+  int _24;
+  short unsigned int _25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned int _28;
+  sizetype _29;
+  uint8 * _30;
+  unsigned char _31;
+  int _32;
+  unsigned char _33;
+  unsigned char _34;
+  unsigned char _35;
+  unsigned char _36;
+  int _37;
+  unsigned char _38;
+  unsigned char _39;
+  short unsigned int PncIdx.71_40;
+  int _41;
+  sizetype _42;
+  uint8 * _43;
+  unsigned char _44;
+  unsigned char Index.72_45;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EiraStatus_62 = 0;
+  # DEBUG EiraStatus => EiraStatus_62
+  # DEBUG BEGIN_STMT
+  signalCount_63 = 0;
+  # DEBUG signalCount => signalCount_63
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&RxEiraMerged, 0, 6);
+  # DEBUG BEGIN_STMT
+  signalCount_66 = 1;
+  # DEBUG signalCount => signalCount_66
+  # DEBUG BEGIN_STMT
+  _1 = *SignalStatusPtr_67(D);
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *SignalStatusPtr_67(D) = 0;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Index_71 = 0;
+  # DEBUG Index => Index_71
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) Index_47;
+  _3 = _2 * 2;
+  _4 = SignalConfigurationPtr_72(D) + _3;
+  _5 = _4->ComHandleId;
+  retVal_74 = Com_ReceiveSignal (_5, &RxEiraReceived);
+  # DEBUG retVal => retVal_74
+  # DEBUG BEGIN_STMT
+  if (retVal_74 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  EiraStatus_75 = 1;
+  # DEBUG EiraStatus => EiraStatus_75
+  # DEBUG BEGIN_STMT
+  i_76 = 0;
+  # DEBUG i => i_76
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) i_49;
+  _7 = RxEiraMerged[_6];
+  _8 = (int) i_49;
+  _9 = RxEiraReceived[_8];
+  _10 = (int) Index_47;
+  _11 = ComM_PncRxEiraMask[_10];
+  _12 = (sizetype) i_49;
+  _13 = _11 + _12;
+  _14 = *_13;
+  _15 = _9 & _14;
+  _16 = (int) i_49;
+  _17 = _7 | _15;
+  RxEiraMerged[_16] = _17;
+  # DEBUG BEGIN_STMT
+  i.69_18 = i_49;
+  i_78 = i.69_18 + 1;
+  # DEBUG i => i_78
+
+  <bb 7> :
+  # i_49 = PHI <i_76(5), i_78(6)>
+  # DEBUG i => i_49
+  # DEBUG BEGIN_STMT
+  if (i_49 <= 5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # EiraStatus_50 = PHI <EiraStatus_51(4), EiraStatus_75(7)>
+  # DEBUG EiraStatus => EiraStatus_50
+  # DEBUG BEGIN_STMT
+  RxEiraReceived ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  Index.70_19 = Index_47;
+  Index_80 = Index.70_19 + 1;
+  # DEBUG Index => Index_80
+
+  <bb 9> :
+  # Index_47 = PHI <Index_71(3), Index_80(8)>
+  # EiraStatus_51 = PHI <EiraStatus_62(3), EiraStatus_50(8)>
+  # DEBUG EiraStatus => EiraStatus_51
+  # DEBUG Index => Index_47
+  # DEBUG BEGIN_STMT
+  if (Index_47 < signalCount_66)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # EiraStatus_52 = PHI <EiraStatus_62(2), EiraStatus_51(9)>
+  # DEBUG EiraStatus => EiraStatus_52
+  # DEBUG BEGIN_STMT
+  if (EiraStatus_52 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  PncIdx_81 = 0;
+  # DEBUG PncIdx => PncIdx_81
+  goto <bb 22>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = (int) PncIdx_46;
+  _21 = ComM_PncID[_20];
+  _22 = _21 >> 3;
+  _23 = (unsigned char) _22;
+  Index_86 = _23 + 254;
+  # DEBUG Index => Index_86
+  # DEBUG BEGIN_STMT
+  _24 = (int) PncIdx_46;
+  _25 = ComM_PncID[_24];
+  _26 = (unsigned int) _25;
+  _27 = _26 & 7;
+  _28 = 1 << _27;
+  EiraMask_87 = (uint8) _28;
+  # DEBUG EiraMask => EiraMask_87
+  # DEBUG BEGIN_STMT
+  _29 = (sizetype) Index_86;
+  _30 = SignalMergedPtr_83(D) + _29;
+  _31 = *_30;
+  _32 = (int) Index_86;
+  _33 = RxEiraMerged[_32];
+  _34 = _31 ^ _33;
+  _35 = EiraMask_87 & _34;
+  if (_35 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (SignalKind_88(D) == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_46, 3);
+  goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (SignalKind_88(D) == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_46, 0);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _36 = SignalKind_88(D) + 255;
+  if (_36 <= 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _37 = (int) Index_86;
+  _38 = RxEiraMerged[_37];
+  _39 = EiraMask_87 & _38;
+  if (_39 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_46, 6);
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_46, 2);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  PncIdx.71_40 = PncIdx_46;
+  PncIdx_93 = PncIdx.71_40 + 1;
+  # DEBUG PncIdx => PncIdx_93
+
+  <bb 22> :
+  # PncIdx_46 = PHI <PncIdx_81(11), PncIdx_93(21)>
+  # DEBUG PncIdx => PncIdx_46
+  # DEBUG BEGIN_STMT
+  if (PncIdx_46 <= 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Index_82 = 0;
+  # DEBUG Index => Index_82
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _41 = (int) Index_48;
+  _42 = (sizetype) Index_48;
+  _43 = SignalMergedPtr_83(D) + _42;
+  _44 = RxEiraMerged[_41];
+  *_43 = _44;
+  # DEBUG BEGIN_STMT
+  Index.72_45 = Index_48;
+  Index_85 = Index.72_45 + 1;
+  # DEBUG Index => Index_85
+
+  <bb 25> :
+  # Index_48 = PHI <Index_82(23), Index_85(24)>
+  # DEBUG Index => Index_48
+  # DEBUG BEGIN_STMT
+  if (Index_48 <= 5)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 26> :
+  RxEiraMerged ={v} {CLOBBER};
+  return;
+
+}
+
+
+ComM_EB_GetPncRequestedComMode (uint8 Channel, PNCHandleType PncPos)
+{
+  PNCHandleType PncIDIdx;
+  PNCHandleType Idx;
+  ComM_ASR40_ModeType reqMode;
+  const struct ComM_ConfigType * ComM_ConfigPtr.64_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.65_2;
+  long unsigned int _3;
+  const struct ComM_ConfigType * ComM_ConfigPtr.66_4;
+  int _5;
+  short unsigned int _6;
+  int _7;
+  int _8;
+  int _9;
+  unsigned int _10;
+  unsigned int _11;
+  sizetype _12;
+  const uint16 * _13;
+  short unsigned int _14;
+  int _15;
+  short unsigned int _16;
+  int _17;
+  ComM_ASR40_ModeType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PncIDIdx_21 = 0;
+  # DEBUG PncIDIdx => PncIDIdx_21
+  # DEBUG BEGIN_STMT
+  Idx_22 = 0;
+  # DEBUG Idx => Idx_22
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.64_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.65_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.65_2->pPNCsOfAllChannel;
+  ComM_ConfigPtr.66_4 = ComM_ConfigPtr;
+  _5 = (int) Channel_26(D);
+  _6 = ComM_ConfigPtr.66_4->NumPncOfAllCh[_5];
+  _7 = (int) _6;
+  _8 = (int) PncPos_27(D);
+  _9 = _7 + _8;
+  _10 = (unsigned int) _9;
+  _11 = _10 * 2;
+  _12 = _3 + _11;
+  _13 = ComM_ConfigPtr.64_1 + _12;
+  _14 = *_13;
+  _15 = (int) Idx_18;
+  _16 = ComM_PncID[_15];
+  if (_14 == _16)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PncIDIdx_28 = Idx_18;
+  # DEBUG PncIDIdx => PncIDIdx_28
+
+  <bb 5> :
+  # PncIDIdx_19 = PHI <PncIDIdx_20(3), PncIDIdx_28(4)>
+  # DEBUG PncIDIdx => PncIDIdx_19
+  # DEBUG BEGIN_STMT
+  Idx_29 = Idx_18 + 1;
+  # DEBUG Idx => Idx_29
+
+  <bb 6> :
+  # Idx_18 = PHI <Idx_22(2), Idx_29(5)>
+  # PncIDIdx_20 = PHI <PncIDIdx_21(2), PncIDIdx_19(5)>
+  # DEBUG PncIDIdx => PncIDIdx_20
+  # DEBUG Idx => Idx_18
+  # DEBUG BEGIN_STMT
+  if (Idx_18 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _17 = (int) PncIDIdx_20;
+  reqMode_24 = ComM_PNCRequestedComMode[_17];
+  # DEBUG reqMode => reqMode_24
+  # DEBUG BEGIN_STMT
+  _25 = reqMode_24;
+  return _25;
+
+}
+
+
+ComM_BitArrayIsBitSet (const uint8 * arr, uint16 idx)
+{
+  boolean RetVal;
+  short unsigned int _1;
+  sizetype _2;
+  const uint8 * _3;
+  unsigned char _4;
+  int _5;
+  unsigned int _6;
+  unsigned int _7;
+  int _8;
+  unsigned char _9;
+  boolean _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = idx_10(D) / 8;
+  _2 = (sizetype) _1;
+  _3 = arr_11(D) + _2;
+  _4 = *_3;
+  _5 = (int) _4;
+  _6 = (unsigned int) idx_10(D);
+  _7 = _6 & 7;
+  _8 = _5 >> _7;
+  _9 = (unsigned char) _8;
+  RetVal_13 = _9 & 1;
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  _14 = RetVal_13;
+  return _14;
+
+}
+
+
+ComM_BitArrayClear (uint8 * arr, uint16 idx)
+{
+  sizetype _1;
+  uint8 * _2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  unsigned char _8;
+  sizetype _9;
+  uint8 * _10;
+  unsigned char _11;
+  short unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _13 = idx_12(D) / 8;
+  _1 = (sizetype) _13;
+  _2 = arr_14(D) + _1;
+  _3 = *_2;
+  _4 = (unsigned int) idx_12(D);
+  _5 = _4 & 7;
+  _6 = 1 << _5;
+  _7 = (unsigned char) _6;
+  _8 = ~_7;
+  _9 = (sizetype) _13;
+  _10 = arr_14(D) + _9;
+  _11 = _3 & _8;
+  *_10 = _11;
+  return;
+
+}
+
+
+ComM_BitArraySet (uint8 * arr, uint16 idx)
+{
+  sizetype _1;
+  uint8 * _2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  sizetype _8;
+  uint8 * _9;
+  unsigned char _10;
+  short unsigned int _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _12 = idx_11(D) / 8;
+  _1 = (sizetype) _12;
+  _2 = arr_13(D) + _1;
+  _3 = *_2;
+  _4 = (unsigned int) idx_11(D);
+  _5 = _4 & 7;
+  _6 = 1 << _5;
+  _7 = (unsigned char) _6;
+  _8 = (sizetype) _12;
+  _9 = arr_13(D) + _8;
+  _10 = _3 | _7;
+  *_9 = _10;
+  return;
+
+}
+
+
+ComM_EvaluatePnc (PNCHandleType Pnc, ComM_ASR40_ModeType ComMode)
+{
+  const uint8 UserOfPnc;
+  uint8_least UserPos;
+  const uint8_least NumUser;
+  const struct ComM_ConfigType * ComM_ConfigPtr.59_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  const struct ComM_ConfigType * ComM_ConfigPtr.60_6;
+  int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  unsigned char _10;
+  const struct ComM_ConfigType * ComM_ConfigPtr.61_11;
+  const struct ComM_ConfigType * ComM_ConfigPtr.62_12;
+  long unsigned int _13;
+  const struct ComM_ConfigType * ComM_ConfigPtr.63_14;
+  int _15;
+  short unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  sizetype _19;
+  const uint8 * _20;
+  int _21;
+  unsigned char _22;
+  int _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.59_1 = ComM_ConfigPtr;
+  _2 = (unsigned int) Pnc_29(D);
+  _3 = _2 + 1;
+  _4 = ComM_ConfigPtr.59_1->NumUsersOfAllPnc[_3];
+  _5 = (unsigned char) _4;
+  ComM_ConfigPtr.60_6 = ComM_ConfigPtr;
+  _7 = (int) Pnc_29(D);
+  _8 = ComM_ConfigPtr.60_6->NumUsersOfAllPnc[_7];
+  _9 = (unsigned char) _8;
+  _10 = _5 - _9;
+  NumUser_30 = (const uint8_least) _10;
+  # DEBUG NumUser => NumUser_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  UserPos_32 = 0;
+  # DEBUG UserPos => UserPos_32
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.61_11 = ComM_ConfigPtr;
+  ComM_ConfigPtr.62_12 = ComM_ConfigPtr;
+  _13 = ComM_ConfigPtr.62_12->pUsersOfAllPnc;
+  ComM_ConfigPtr.63_14 = ComM_ConfigPtr;
+  _15 = (int) Pnc_29(D);
+  _16 = ComM_ConfigPtr.63_14->NumUsersOfAllPnc[_15];
+  _17 = (long unsigned int) _16;
+  _18 = UserPos_26 + _17;
+  _19 = _13 + _18;
+  _20 = ComM_ConfigPtr.61_11 + _19;
+  UserOfPnc_37 = *_20;
+  # DEBUG UserOfPnc => UserOfPnc_37
+  # DEBUG BEGIN_STMT
+  _21 = (int) UserOfPnc_37;
+  _22 = ComM_UserRequestedComMode[_21];
+  if (ComMode_25 < _22)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _23 = (int) UserOfPnc_37;
+  ComMode_38 = ComM_UserRequestedComMode[_23];
+  # DEBUG ComMode => ComMode_38
+
+  <bb 5> :
+  # ComMode_24 = PHI <ComMode_25(3), ComMode_38(4)>
+  # DEBUG ComMode => ComMode_24
+  # DEBUG BEGIN_STMT
+  UserPos_39 = UserPos_26 + 1;
+  # DEBUG UserPos => UserPos_39
+
+  <bb 6> :
+  # ComMode_25 = PHI <ComMode_33(D)(2), ComMode_24(5)>
+  # UserPos_26 = PHI <UserPos_32(2), UserPos_39(5)>
+  # DEBUG UserPos => UserPos_26
+  # DEBUG ComMode => ComMode_25
+  # DEBUG BEGIN_STMT
+  if (UserPos_26 < NumUser_30)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ComMode_25 == 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, Pnc_29(D), 6);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, Pnc_29(D), 2);
+
+  <bb 10> :
+  return;
+
+}
+
+
+ComM_EB_SetRequestedComMode (uint8 Channel, ComM_ASR40_ModeType ComMode)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Channel_2(D);
+  ComM_RequestedComMode[_1] = ComMode_4(D);
+  return;
+
+}
+
+
+ComM_EB_GetUserRequestedComMode (uint8 User)
+{
+  ComM_ASR40_ModeType ret;
+  int _1;
+  ComM_ASR40_ModeType _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) User_2(D);
+  ret_4 = ComM_UserRequestedComMode[_1];
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  _5 = ret_4;
+  return _5;
+
+}
+
+
+ComM_BusSM_ModeIndication (NetworkHandleType Channel, ComM_ASR40_ModeType * ComMode)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.58_1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_6 = 0;
+  # DEBUG InstanceID => InstanceID_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.58_1 = ComM_InitStatus;
+  if (ComM_InitStatus.58_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_6, 51, 1);
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_8(D) == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Channel_9(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_6, 51, 2);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_9(D);
+  _3 = *ComMode_8(D);
+  ComM_ChannelMode[_2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) Channel_9(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _4, 0);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_CommunicationAllowed (NetworkHandleType Channel, boolean Allowed)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.57_1;
+  int _2;
+  int _3;
+  short unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_7 = 0;
+  # DEBUG InstanceID => InstanceID_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.57_1 = ComM_InitStatus;
+  if (ComM_InitStatus.57_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 53, 1);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_9(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 53, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Allowed_10(D) == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_9(D);
+  ComM_Communication_Allowed[_2] = 1;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (int) Channel_9(D);
+  ComM_Communication_Allowed[_3] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) Channel_9(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _4, 4);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_EcuM_PNCWakeUpIndication (PNCHandleType PNCid)
+{
+  uint8 InstanceID;
+  PNCHandleType PncIDIdx;
+  int _1;
+  short unsigned int _2;
+  short unsigned int PncIDIdx.48_3;
+  unsigned char ComM_InitStatus.49_4;
+  const struct ComM_ConfigType * ComM_ConfigPtr.50_5;
+  unsigned char _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PncIDIdx_9 = 0;
+  # DEBUG PncIDIdx => PncIDIdx_9
+  # DEBUG BEGIN_STMT
+  InstanceID_10 = 0;
+  # DEBUG InstanceID => InstanceID_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PncIDIdx_11 = 0;
+  # DEBUG PncIDIdx => PncIDIdx_11
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) PncIDIdx_7;
+  _2 = ComM_PncID[_1];
+  if (PNCid_13(D) == _2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  PncIDIdx.48_3 = PncIDIdx_7;
+  PncIDIdx_14 = PncIDIdx.48_3 + 1;
+  # DEBUG PncIDIdx => PncIDIdx_14
+
+  <bb 5> :
+  # PncIDIdx_7 = PHI <PncIDIdx_11(2), PncIDIdx_14(4)>
+  # DEBUG PncIDIdx => PncIDIdx_7
+  # DEBUG BEGIN_STMT
+  if (PncIDIdx_7 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.49_4 = ComM_InitStatus;
+  if (ComM_InitStatus.49_4 != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 55, 1);
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (PncIDIdx_7 > 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 55, 2);
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.50_5 = ComM_ConfigPtr;
+  _6 = ComM_ConfigPtr.50_5->ComMPncEnabled;
+  if (_6 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ComM_PNCWakeUpIndication_PncHandle (PncIDIdx_7);
+  # DEBUG BEGIN_STMT
+  ComM_PNCWakeUpIndication_ChannelHandle (PncIDIdx_7);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_EcuM_WakeUpIndication (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  boolean PassiveStartupStatus;
+  unsigned char ComM_InitStatus.47_1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PassiveStartupStatus_9 = 0;
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_9
+  # DEBUG BEGIN_STMT
+  InstanceID_10 = 0;
+  # DEBUG InstanceID => InstanceID_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.47_1 = ComM_InitStatus;
+  if (ComM_InitStatus.47_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 42, 1);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_12(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 42, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_12(D);
+  PassiveStartupStatus_13 = ComM_DcmActiveStatus[_2];
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_13
+  # DEBUG BEGIN_STMT
+  _3 = (int) Channel_12(D);
+  _4 = ComM_RequestedComMode[_3];
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (PassiveStartupStatus_13 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) Channel_12(D);
+  ComM_PassiveStartupStatus[_5] = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) Channel_12(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _6, 6);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_DCM_InactiveDiagnostic (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.46_1;
+  int _2;
+  short unsigned int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_5 = 0;
+  # DEBUG InstanceID => InstanceID_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.46_1 = ComM_InitStatus;
+  if (ComM_InitStatus.46_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_5, 32, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_7(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_5, 32, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_7(D);
+  ComM_DcmActiveStatus[_2] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) Channel_7(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _3, 9);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_DCM_ActiveDiagnostic (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.45_1;
+  int _2;
+  short unsigned int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_5 = 0;
+  # DEBUG InstanceID => InstanceID_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.45_1 = ComM_InitStatus;
+  if (ComM_InitStatus.45_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_5, 31, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_7(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_5, 31, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_7(D);
+  ComM_DcmActiveStatus[_2] = 1;
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) Channel_7(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _3, 9);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_BusSM_BusSleepMode (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.44_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_3 = 0;
+  # DEBUG InstanceID => InstanceID_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.44_1 = ComM_InitStatus;
+  if (ComM_InitStatus.44_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_3, 246, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_3, 246, 2);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Nm_RestartIndication (NetworkHandleType Channel)
+{
+  boolean PassiveStartupStatus;
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.43_1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_9 = 0;
+  # DEBUG InstanceID => InstanceID_9
+  # DEBUG BEGIN_STMT
+  PassiveStartupStatus_10 = 0;
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.43_1 = ComM_InitStatus;
+  if (ComM_InitStatus.43_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_9, 27, 1);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_12(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_9, 27, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_12(D);
+  PassiveStartupStatus_13 = ComM_DcmActiveStatus[_2];
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_13
+  # DEBUG BEGIN_STMT
+  _3 = (int) Channel_12(D);
+  _4 = ComM_RequestedComMode[_3];
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (PassiveStartupStatus_13 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) Channel_12(D);
+  ComM_PassiveStartupStatus[_5] = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) Channel_12(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _6, 6);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Nm_BusSleepMode (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.42_1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_4 = 0;
+  # DEBUG InstanceID => InstanceID_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.42_1 = ComM_InitStatus;
+  if (ComM_InitStatus.42_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 26, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_6(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 26, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) Channel_6(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _2, 8);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Nm_PrepareBusSleepMode (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.41_1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_4 = 0;
+  # DEBUG InstanceID => InstanceID_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.41_1 = ComM_InitStatus;
+  if (ComM_InitStatus.41_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 25, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_6(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 25, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) Channel_6(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _2, 8);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Nm_NetworkMode (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  unsigned char ComM_InitStatus.40_1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InstanceID_4 = 0;
+  # DEBUG InstanceID => InstanceID_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.40_1 = ComM_InitStatus;
+  if (ComM_InitStatus.40_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 24, 1);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_6(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_4, 24, 2);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) Channel_6(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _2, 8);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Nm_NetworkStartIndication (NetworkHandleType Channel)
+{
+  uint8 InstanceID;
+  boolean PassiveStartupStatus;
+  unsigned char ComM_InitStatus.39_1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PassiveStartupStatus_9 = 0;
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_9
+  # DEBUG BEGIN_STMT
+  InstanceID_10 = 0;
+  # DEBUG InstanceID => InstanceID_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.39_1 = ComM_InitStatus;
+  if (ComM_InitStatus.39_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 21, 1);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Channel_12(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_10, 21, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_12(D);
+  PassiveStartupStatus_13 = ComM_DcmActiveStatus[_2];
+  # DEBUG PassiveStartupStatus => PassiveStartupStatus_13
+  # DEBUG BEGIN_STMT
+  _3 = (int) Channel_12(D);
+  _4 = ComM_RequestedComMode[_3];
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (PassiveStartupStatus_13 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) Channel_12(D);
+  ComM_PassiveStartupStatus[_5] = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) Channel_12(D);
+  ComM_HsmEmitInst (&ComM_HsmScComM, _6, 6);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_ASR40_GetCurrentPNCComMode (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType * ComMode)
+{
+  PNCHandleType numPncs;
+  uint8 InstanceID;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.33_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.34_2;
+  unsigned int _3;
+  unsigned int _4;
+  short unsigned int _5;
+  const struct ComM_ConfigType * ComM_ConfigPtr.35_6;
+  int _7;
+  short unsigned int _8;
+  const struct ComM_ConfigType * ComM_ConfigPtr.36_9;
+  const struct ComM_ConfigType * ComM_ConfigPtr.37_10;
+  long unsigned int _11;
+  const struct ComM_ConfigType * ComM_ConfigPtr.38_12;
+  int _13;
+  short unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  sizetype _17;
+  const uint16 * _18;
+  short unsigned int _19;
+  int _20;
+  unsigned char _21;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_24 = 1;
+  # DEBUG RetVal => RetVal_24
+  # DEBUG BEGIN_STMT
+  InstanceID_25 = 0;
+  # DEBUG InstanceID => InstanceID_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.33_1 = ComM_InitStatus;
+  if (ComM_InitStatus.33_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_25, 254, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_38 = 3;
+  # DEBUG RetVal => RetVal_38
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (User_27(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_25, 254, 2);
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_28(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_25, 254, 2);
+  goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  numPncs_29 = 0;
+  # DEBUG numPncs => numPncs_29
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.34_2 = ComM_ConfigPtr;
+  _3 = (unsigned int) User_27(D);
+  _4 = _3 + 1;
+  _5 = ComM_ConfigPtr.34_2->NumPncOfAllUser[_4];
+  ComM_ConfigPtr.35_6 = ComM_ConfigPtr;
+  _7 = (int) User_27(D);
+  _8 = ComM_ConfigPtr.35_6->NumPncOfAllUser[_7];
+  numPncs_30 = _5 - _8;
+  # DEBUG numPncs => numPncs_30
+  # DEBUG BEGIN_STMT
+  if (numPncs_30 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 4;
+  # DEBUG RetVal => RetVal_34
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (numPncs_30 > 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 3;
+  # DEBUG RetVal => RetVal_33
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.36_9 = ComM_ConfigPtr;
+  ComM_ConfigPtr.37_10 = ComM_ConfigPtr;
+  _11 = ComM_ConfigPtr.37_10->pPncOfAllUser;
+  ComM_ConfigPtr.38_12 = ComM_ConfigPtr;
+  _13 = (int) User_27(D);
+  _14 = ComM_ConfigPtr.38_12->NumPncOfAllUser[_13];
+  _15 = (unsigned int) _14;
+  _16 = _15 * 2;
+  _17 = _11 + _16;
+  _18 = ComM_ConfigPtr.36_9 + _17;
+  _19 = *_18;
+  _20 = (int) _19;
+  _21 = ComM_PNCMode[_20];
+  *ComMode_28(D) = _21;
+  # DEBUG BEGIN_STMT
+  RetVal_32 = 0;
+  # DEBUG RetVal => RetVal_32
+
+  <bb 13> :
+  # RetVal_22 = PHI <RetVal_38(3), RetVal_24(5), RetVal_24(7), RetVal_34(9), RetVal_33(11), RetVal_32(12)>
+  # DEBUG RetVal => RetVal_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _39 = RetVal_22;
+  return _39;
+
+}
+
+
+ComM_ASR40_GetCurrentComMode (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType * ComMode)
+{
+  const uint8 channel;
+  ComM_ASR40_ModeType ResultComMode;
+  ComM_ASR40_ModeType localComMode;
+  uint8 InstanceID;
+  uint8_least i;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.26_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.27_2;
+  const struct ComM_ConfigType * ComM_ConfigPtr.28_3;
+  long unsigned int _4;
+  const struct ComM_ConfigType * ComM_ConfigPtr.29_5;
+  int _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  sizetype _10;
+  const uint8 * _11;
+  Std_ReturnType (*<T71a>) (NetworkHandleType, uint8 *) _12;
+  unsigned char localComMode.30_13;
+  const struct ComM_ConfigType * ComM_ConfigPtr.31_14;
+  unsigned int _15;
+  unsigned int _16;
+  short unsigned int _17;
+  unsigned char _18;
+  const struct ComM_ConfigType * ComM_ConfigPtr.32_19;
+  int _20;
+  short unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  long unsigned int _24;
+  Std_ReturnType _52;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_35 = 1;
+  # DEBUG RetVal => RetVal_35
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  InstanceID_36 = 0;
+  # DEBUG InstanceID => InstanceID_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.26_1 = ComM_InitStatus;
+  if (ComM_InitStatus.26_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_36, 8, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_51 = 3;
+  # DEBUG RetVal => RetVal_51
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_38(D) == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (User_39(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_36, 8, 2);
+  goto <bb 16>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ResultComMode_40 = 2;
+  # DEBUG ResultComMode => ResultComMode_40
+  # DEBUG BEGIN_STMT
+  i_41 = 0;
+  # DEBUG i => i_41
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.27_2 = ComM_ConfigPtr;
+  ComM_ConfigPtr.28_3 = ComM_ConfigPtr;
+  _4 = ComM_ConfigPtr.28_3->pChannelsOfAllUser;
+  ComM_ConfigPtr.29_5 = ComM_ConfigPtr;
+  _6 = (int) User_39(D);
+  _7 = ComM_ConfigPtr.29_5->NumChannelsOfAllUser[_6];
+  _8 = (long unsigned int) _7;
+  _9 = i_28 + _8;
+  _10 = _4 + _9;
+  _11 = ComM_ConfigPtr.27_2 + _10;
+  channel_42 = *_11;
+  # DEBUG channel => channel_42
+  # DEBUG BEGIN_STMT
+  _12 = CanSM_GetCurrentComMode;
+  RetVal_44 = _12 (channel_42, &localComMode);
+  # DEBUG RetVal => RetVal_44
+  # DEBUG BEGIN_STMT
+  if (RetVal_44 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  localComMode.30_13 = localComMode;
+  if (ResultComMode_30 > localComMode.30_13)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ResultComMode_45 = localComMode;
+  # DEBUG ResultComMode => ResultComMode_45
+
+  <bb 11> :
+  # ResultComMode_29 = PHI <ResultComMode_30(9), ResultComMode_45(10)>
+  # DEBUG ResultComMode => ResultComMode_29
+  # DEBUG BEGIN_STMT
+  i_46 = i_28 + 1;
+  # DEBUG i => i_46
+
+  <bb 12> :
+  # RetVal_25 = PHI <RetVal_35(7), RetVal_44(11)>
+  # i_28 = PHI <i_41(7), i_46(11)>
+  # ResultComMode_30 = PHI <ResultComMode_40(7), ResultComMode_29(11)>
+  # DEBUG ResultComMode => ResultComMode_30
+  # DEBUG i => i_28
+  # DEBUG RetVal => RetVal_25
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.31_14 = ComM_ConfigPtr;
+  _15 = (unsigned int) User_39(D);
+  _16 = _15 + 1;
+  _17 = ComM_ConfigPtr.31_14->NumChannelsOfAllUser[_16];
+  _18 = (unsigned char) _17;
+  ComM_ConfigPtr.32_19 = ComM_ConfigPtr;
+  _20 = (int) User_39(D);
+  _21 = ComM_ConfigPtr.32_19->NumChannelsOfAllUser[_20];
+  _22 = (unsigned char) _21;
+  _23 = _18 - _22;
+  _24 = (long unsigned int) _23;
+  if (i_28 < _24)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # RetVal_26 = PHI <RetVal_44(8), RetVal_25(12)>
+  # DEBUG RetVal => RetVal_26
+  # DEBUG BEGIN_STMT
+  if (RetVal_26 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  *ComMode_38(D) = ResultComMode_30;
+
+  <bb 15> :
+  localComMode ={v} {CLOBBER};
+
+  <bb 16> :
+  # RetVal_27 = PHI <RetVal_51(3), RetVal_35(6), RetVal_26(15)>
+  # DEBUG RetVal => RetVal_27
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _52 = RetVal_27;
+  return _52;
+
+}
+
+
+ComM_ASR40_GetRequestedComMode (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType * ComMode)
+{
+  uint8 InstanceID;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.25_1;
+  int _2;
+  unsigned char _3;
+  Std_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_6 = 1;
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  InstanceID_7 = 0;
+  # DEBUG InstanceID => InstanceID_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.25_1 = ComM_InitStatus;
+  if (ComM_InitStatus.25_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 7, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 3;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_9(D) == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (User_10(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 7, 2);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) User_10(D);
+  _3 = ComM_UserRequestedComMode[_2];
+  *ComMode_9(D) = _3;
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 0;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 8> :
+  # RetVal_4 = PHI <RetVal_15(3), RetVal_6(6), RetVal_12(7)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = RetVal_4;
+  return _16;
+
+}
+
+
+ComM_ASR40_GetMaxComMode (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType * ComMode)
+{
+  boolean WkUpInhibitionStatus;
+  boolean NoComInhibitionStatus;
+  ComM_StateType ComM_ChanState_local;
+  uint8 InstanceID;
+  boolean comAllowed;
+  uint8 Channel;
+  uint8_least i;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.19_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.20_2;
+  const struct ComM_ConfigType * ComM_ConfigPtr.21_3;
+  long unsigned int _4;
+  const struct ComM_ConfigType * ComM_ConfigPtr.22_5;
+  int _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  sizetype _10;
+  const uint8 * _11;
+  int _12;
+  int _13;
+  int _14;
+  unsigned char _15;
+  const struct ComM_ConfigType * ComM_ConfigPtr.23_16;
+  unsigned int _17;
+  unsigned int _18;
+  short unsigned int _19;
+  unsigned char _20;
+  const struct ComM_ConfigType * ComM_ConfigPtr.24_21;
+  int _22;
+  short unsigned int _23;
+  unsigned char _24;
+  unsigned char _25;
+  long unsigned int _26;
+  Std_ReturnType _53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 1;
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  comAllowed_34 = 0;
+  # DEBUG comAllowed => comAllowed_34
+  # DEBUG BEGIN_STMT
+  InstanceID_35 = 0;
+  # DEBUG InstanceID => InstanceID_35
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.19_1 = ComM_InitStatus;
+  if (ComM_InitStatus.19_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_35, 6, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_52 = 3;
+  # DEBUG RetVal => RetVal_52
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_37(D) == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (User_38(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_35, 6, 2);
+  goto <bb 20>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *ComMode_37(D) = 2;
+  # DEBUG BEGIN_STMT
+  i_40 = 0;
+  # DEBUG i => i_40
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  NoComInhibitionStatus_41 = 0;
+  # DEBUG NoComInhibitionStatus => NoComInhibitionStatus_41
+  # DEBUG BEGIN_STMT
+  WkUpInhibitionStatus_42 = 0;
+  # DEBUG WkUpInhibitionStatus => WkUpInhibitionStatus_42
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.20_2 = ComM_ConfigPtr;
+  ComM_ConfigPtr.21_3 = ComM_ConfigPtr;
+  _4 = ComM_ConfigPtr.21_3->pChannelsOfAllUser;
+  ComM_ConfigPtr.22_5 = ComM_ConfigPtr;
+  _6 = (int) User_38(D);
+  _7 = ComM_ConfigPtr.22_5->NumChannelsOfAllUser[_6];
+  _8 = (long unsigned int) _7;
+  _9 = i_28 + _8;
+  _10 = _4 + _9;
+  _11 = ComM_ConfigPtr.20_2 + _10;
+  Channel_43 = *_11;
+  # DEBUG Channel => Channel_43
+  # DEBUG BEGIN_STMT
+  _12 = (int) Channel_43;
+  ComM_ChanState_local_44 = ComM_ChanState[_12];
+  # DEBUG ComM_ChanState_local => ComM_ChanState_local_44
+  # DEBUG BEGIN_STMT
+  _13 = (int) Channel_43;
+  comAllowed_45 = ComM_Communication_Allowed[_13];
+  # DEBUG comAllowed => comAllowed_45
+  # DEBUG BEGIN_STMT
+  if (ComM_ChanState_local_44 <= 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  if (NoComInhibitionStatus_41 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (WkUpInhibitionStatus_42 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  if (comAllowed_45 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *ComMode_37(D) = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) Channel_43;
+  _15 = ComM_ChanState[_14];
+  if (_15 == 4)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  if (NoComInhibitionStatus_41 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  if (WkUpInhibitionStatus_42 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  *ComMode_37(D) = 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  i_48 = i_28 + 1;
+  # DEBUG i => i_48
+
+  <bb 18> :
+  # i_28 = PHI <i_40(7), i_48(17)>
+  # DEBUG i => i_28
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.23_16 = ComM_ConfigPtr;
+  _17 = (unsigned int) User_38(D);
+  _18 = _17 + 1;
+  _19 = ComM_ConfigPtr.23_16->NumChannelsOfAllUser[_18];
+  _20 = (unsigned char) _19;
+  ComM_ConfigPtr.24_21 = ComM_ConfigPtr;
+  _22 = (int) User_38(D);
+  _23 = ComM_ConfigPtr.24_21->NumChannelsOfAllUser[_22];
+  _24 = (unsigned char) _23;
+  _25 = _20 - _24;
+  _26 = (long unsigned int) _25;
+  if (i_28 < _26)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  RetVal_49 = 0;
+  # DEBUG RetVal => RetVal_49
+
+  <bb 20> :
+  # RetVal_27 = PHI <RetVal_52(3), RetVal_33(6), RetVal_49(19)>
+  # DEBUG RetVal => RetVal_27
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _53 = RetVal_27;
+  return _53;
+
+}
+
+
+ComM_ASR40_RequestComMode (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType ComMode)
+{
+  uint8 InstanceID;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.4_1;
+  int _2;
+  Std_ReturnType _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 1;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  InstanceID_6 = 0;
+  # DEBUG InstanceID => InstanceID_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.4_1 = ComM_InitStatus;
+  if (ComM_InitStatus.4_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_6, 5, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_17 = 3;
+  # DEBUG RetVal => RetVal_17
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (User_8(D) != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_6, 5, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ComMode_9(D) != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (ComMode_9(D) != 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_6, 5, 2);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) User_8(D);
+  ComM_UserRequestedComMode[_2] = ComMode_9(D);
+  # DEBUG BEGIN_STMT
+  ComM_RequestComModePNC_Helper (User_8(D), ComMode_9(D));
+  # DEBUG BEGIN_STMT
+  RetVal_14 = ComM_RequestComModeChannel_Helper (User_8(D));
+  # DEBUG RetVal => RetVal_14
+
+  <bb 10> :
+  # RetVal_3 = PHI <RetVal_17(3), RetVal_5(5), RetVal_5(8), RetVal_14(9)>
+  # DEBUG RetVal => RetVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = RetVal_3;
+  return _18;
+
+}
+
+
+ComM_RequestComModeChannel_Helper (ComM_ASR40_UserHandleType User)
+{
+  boolean EmitEventReqStatusChanged;
+  const uint8 Channel;
+  uint8_least ChannelPos;
+  Std_ReturnType RetVal;
+  const struct ComM_ConfigType * ComM_ConfigPtr.12_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.13_2;
+  long unsigned int _3;
+  const struct ComM_ConfigType * ComM_ConfigPtr.14_4;
+  int _5;
+  short unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  sizetype _9;
+  const uint8 * _10;
+  int _11;
+  unsigned char _12;
+  const struct ComM_ConfigType * ComM_ConfigPtr.15_13;
+  unsigned int _14;
+  unsigned int _15;
+  short unsigned int _16;
+  unsigned char _17;
+  const struct ComM_ConfigType * ComM_ConfigPtr.16_18;
+  int _19;
+  short unsigned int _20;
+  unsigned char _21;
+  unsigned char _22;
+  long unsigned int _23;
+  short unsigned int _24;
+  const struct ComM_ConfigType * ComM_ConfigPtr.17_25;
+  unsigned int _26;
+  unsigned int _27;
+  short unsigned int _28;
+  unsigned char _29;
+  const struct ComM_ConfigType * ComM_ConfigPtr.18_30;
+  int _31;
+  short unsigned int _32;
+  unsigned char _33;
+  unsigned char _34;
+  long unsigned int _35;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_39 = 0;
+  # DEBUG RetVal => RetVal_39
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelPos_40 = 0;
+  # DEBUG ChannelPos => ChannelPos_40
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.12_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.13_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.13_2->pChannelsOfAllUser;
+  ComM_ConfigPtr.14_4 = ComM_ConfigPtr;
+  _5 = (int) User_42(D);
+  _6 = ComM_ConfigPtr.14_4->NumChannelsOfAllUser[_5];
+  _7 = (long unsigned int) _6;
+  _8 = ChannelPos_36 + _7;
+  _9 = _3 + _8;
+  _10 = ComM_ConfigPtr.12_1 + _9;
+  Channel_44 = *_10;
+  # DEBUG Channel => Channel_44
+  # DEBUG BEGIN_STMT
+  EmitEventReqStatusChanged_45 = 1;
+  # DEBUG EmitEventReqStatusChanged => EmitEventReqStatusChanged_45
+  # DEBUG BEGIN_STMT
+  _11 = (int) User_42(D);
+  _12 = ComM_UserRequestedComMode[_11];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_EvaluateChannel (Channel_44);
+  # DEBUG BEGIN_STMT
+  if (EmitEventReqStatusChanged_45 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  ComM_ConfigPtr.15_13 = ComM_ConfigPtr;
+  _14 = (unsigned int) User_42(D);
+  _15 = _14 + 1;
+  _16 = ComM_ConfigPtr.15_13->DirectNumChannelsOfAllUser[_15];
+  _17 = (unsigned char) _16;
+  ComM_ConfigPtr.16_18 = ComM_ConfigPtr;
+  _19 = (int) User_42(D);
+  _20 = ComM_ConfigPtr.16_18->DirectNumChannelsOfAllUser[_19];
+  _21 = (unsigned char) _20;
+  _22 = _17 - _21;
+  _23 = (long unsigned int) _22;
+  if (ChannelPos_36 < _23)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _24 = (short unsigned int) Channel_44;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _24, 9);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ChannelPos_48 = ChannelPos_36 + 1;
+  # DEBUG ChannelPos => ChannelPos_48
+
+  <bb 7> :
+  # ChannelPos_36 = PHI <ChannelPos_40(2), ChannelPos_48(6)>
+  # DEBUG ChannelPos => ChannelPos_36
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.17_25 = ComM_ConfigPtr;
+  _26 = (unsigned int) User_42(D);
+  _27 = _26 + 1;
+  _28 = ComM_ConfigPtr.17_25->NumChannelsOfAllUser[_27];
+  _29 = (unsigned char) _28;
+  ComM_ConfigPtr.18_30 = ComM_ConfigPtr;
+  _31 = (int) User_42(D);
+  _32 = ComM_ConfigPtr.18_30->NumChannelsOfAllUser[_31];
+  _33 = (unsigned char) _32;
+  _34 = _29 - _33;
+  _35 = (long unsigned int) _34;
+  if (ChannelPos_36 < _35)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _43 = RetVal_39;
+  return _43;
+
+}
+
+
+ComM_RequestComModePNC_Helper (ComM_ASR40_UserHandleType User, ComM_ASR40_ModeType ComMode)
+{
+  const PNCHandleType Pnc;
+  PNCHandleType PncPos;
+  const struct ComM_ConfigType * ComM_ConfigPtr.5_1;
+  unsigned char _2;
+  const struct ComM_ConfigType * ComM_ConfigPtr.6_3;
+  const struct ComM_ConfigType * ComM_ConfigPtr.7_4;
+  long unsigned int _5;
+  const struct ComM_ConfigType * ComM_ConfigPtr.8_6;
+  int _7;
+  short unsigned int _8;
+  int _9;
+  int _10;
+  int _11;
+  unsigned int _12;
+  unsigned int _13;
+  sizetype _14;
+  const uint16 * _15;
+  short unsigned int PncPos.9_16;
+  const struct ComM_ConfigType * ComM_ConfigPtr.10_17;
+  unsigned int _18;
+  unsigned int _19;
+  short unsigned int _20;
+  const struct ComM_ConfigType * ComM_ConfigPtr.11_21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.5_1 = ComM_ConfigPtr;
+  _2 = ComM_ConfigPtr.5_1->ComMPncEnabled;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  PncPos_29 = 0;
+  # DEBUG PncPos => PncPos_29
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.6_3 = ComM_ConfigPtr;
+  ComM_ConfigPtr.7_4 = ComM_ConfigPtr;
+  _5 = ComM_ConfigPtr.7_4->pPncOfAllUser;
+  ComM_ConfigPtr.8_6 = ComM_ConfigPtr;
+  _7 = (int) User_30(D);
+  _8 = ComM_ConfigPtr.8_6->NumPncOfAllUser[_7];
+  _9 = (int) _8;
+  _10 = (int) PncPos_25;
+  _11 = _9 + _10;
+  _12 = (unsigned int) _11;
+  _13 = _12 * 2;
+  _14 = _5 + _13;
+  _15 = ComM_ConfigPtr.6_3 + _14;
+  Pnc_31 = *_15;
+  # DEBUG Pnc => Pnc_31
+  # DEBUG BEGIN_STMT
+  ComM_EvaluatePnc (Pnc_31, ComMode_32(D));
+  # DEBUG BEGIN_STMT
+  PncPos.9_16 = PncPos_25;
+  PncPos_34 = PncPos.9_16 + 1;
+  # DEBUG PncPos => PncPos_34
+
+  <bb 5> :
+  # PncPos_25 = PHI <PncPos_29(3), PncPos_34(4)>
+  # DEBUG PncPos => PncPos_25
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.10_17 = ComM_ConfigPtr;
+  _18 = (unsigned int) User_30(D);
+  _19 = _18 + 1;
+  _20 = ComM_ConfigPtr.10_17->NumPncOfAllUser[_19];
+  ComM_ConfigPtr.11_21 = ComM_ConfigPtr;
+  _22 = (int) User_30(D);
+  _23 = ComM_ConfigPtr.11_21->NumPncOfAllUser[_22];
+  _24 = _20 - _23;
+  if (PncPos_25 < _24)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  return;
+
+}
+
+
+ComM_GetStatus (ComM_InitStatusType * Status)
+{
+  uint8 InstanceID;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.3_1;
+  Std_ReturnType _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_4 = 1;
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  InstanceID_5 = 0;
+  # DEBUG InstanceID => InstanceID_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (Status_6(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_5, 3, 2);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.3_1 = ComM_InitStatus;
+  *Status_6(D) = ComM_InitStatus.3_1;
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 0;
+  # DEBUG RetVal => RetVal_9
+
+  <bb 5> :
+  # RetVal_2 = PHI <RetVal_4(3), RetVal_9(4)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _11 = RetVal_2;
+  return _11;
+
+}
+
+
+ComM_GetState (NetworkHandleType Channel, ComM_StateType * State)
+{
+  uint8 InstanceID;
+  Std_ReturnType RetVal;
+  unsigned char ComM_InitStatus.2_1;
+  int _2;
+  unsigned char _3;
+  Std_ReturnType _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_6 = 1;
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  InstanceID_7 = 0;
+  # DEBUG InstanceID => InstanceID_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.2_1 = ComM_InitStatus;
+  if (ComM_InitStatus.2_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 52, 1);
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 3;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (State_9(D) == 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Channel_10(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, InstanceID_7, 52, 2);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) Channel_10(D);
+  _3 = ComM_ChanState[_2];
+  *State_9(D) = _3;
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 0;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 8> :
+  # RetVal_4 = PHI <RetVal_15(3), RetVal_6(6), RetVal_12(7)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = RetVal_4;
+  return _16;
+
+}
+
+
+ComM_DeInit ()
+{
+  uint8_least i;
+  unsigned char ComM_InitStatus.1_1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus.1_1 = ComM_InitStatus;
+  if (ComM_InitStatus.1_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, 0, 2, 1);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  i_6 = 0;
+  # DEBUG i => i_6
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = ComM_ChanState[i_3];
+  if (_2 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i_7 = i_3 + 1;
+  # DEBUG i => i_7
+
+  <bb 7> :
+  # i_3 = PHI <i_6(4), i_7(6)>
+  # DEBUG i => i_3
+  # DEBUG BEGIN_STMT
+  if (i_3 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (i_3 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Init (const struct ComM_ConfigType * ConfigPtr)
+{
+  const struct ComM_ConfigType * LocalConfigPtr;
+  uint8_least i;
+  unsigned char _1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.0_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LocalConfigPtr_15 = ConfigPtr_14(D);
+  # DEBUG LocalConfigPtr => LocalConfigPtr_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (LocalConfigPtr_15 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, 0, 1, 2);
+  goto <bb 21>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = ComM_IsValidConfig (LocalConfigPtr_15);
+  if (_1 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (12, 0, 1, 2);
+  goto <bb 21>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr = LocalConfigPtr_15;
+  # DEBUG BEGIN_STMT
+  i_19 = 0;
+  # DEBUG i => i_19
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComM_RequestedComMode[i_4] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_ChanState[i_4] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_ChannelMode[i_4] = 0;
+  # DEBUG BEGIN_STMT
+  i_45 = i_4 + 1;
+  # DEBUG i => i_45
+
+  <bb 8> :
+  # i_4 = PHI <i_19(6), i_45(7)>
+  # DEBUG i => i_4
+  # DEBUG BEGIN_STMT
+  if (i_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&ComM_UserRequestedComMode, 0, 1);
+  # DEBUG BEGIN_STMT
+  ComM_HsmInit (&ComM_HsmScComM);
+  # DEBUG BEGIN_STMT
+  i_22 = 0;
+  # DEBUG i => i_22
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ComM_Communication_Allowed[i_5] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_DcmActiveStatus[i_5] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_PassiveStartupStatus[i_5] = 0;
+  # DEBUG BEGIN_STMT
+  i_41 = i_5 + 1;
+  # DEBUG i => i_41
+
+  <bb 11> :
+  # i_5 = PHI <i_22(9), i_41(10)>
+  # DEBUG i => i_5
+  # DEBUG BEGIN_STMT
+  if (i_5 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.0_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.0_2->ComMPncEnabled;
+  if (_3 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmInit (&ComM_HsmScComMPnc);
+  # DEBUG BEGIN_STMT
+  i_24 = 0;
+  # DEBUG i => i_24
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ComM_RxEira[i_6] = 0;
+  # DEBUG BEGIN_STMT
+  ComM_TxEiraEraActive[i_6] = 0;
+  # DEBUG BEGIN_STMT
+  i_30 = i_6 + 1;
+  # DEBUG i => i_30
+
+  <bb 15> :
+  # i_6 = PHI <i_24(13), i_30(14)>
+  # DEBUG i => i_6
+  # DEBUG BEGIN_STMT
+  if (i_6 <= 5)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ComM_RxEiraSignalStatus = 0;
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&ComM_PNCRequestedComMode, 0, 2);
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&ComM_PNCMode, 0, 2);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  ComMPncMainfunctionRunning ={v} 0;
+  # DEBUG BEGIN_STMT
+  i_32 = 0;
+  # DEBUG i => i_32
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationSuccessful[i_7] = 1;
+  # DEBUG BEGIN_STMT
+  ComM_RteModeUser[i_7] = 0;
+  # DEBUG BEGIN_STMT
+  i_37 = i_7 + 1;
+  # DEBUG i => i_37
+
+  <bb 19> :
+  # i_7 = PHI <i_32(17), i_37(18)>
+  # DEBUG i => i_7
+  # DEBUG BEGIN_STMT
+  if (i_7 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationDoActFkp = ComM_RteNotificationDoAction;
+  # DEBUG BEGIN_STMT
+  ComM_InitStatus = 1;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

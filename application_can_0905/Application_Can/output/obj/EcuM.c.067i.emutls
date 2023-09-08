@@ -1,0 +1,2772 @@
+No TLS variables found.
+EcuM_IsValidConfig.part.0 (const void * voidConfigPtr)
+{
+  Std_ReturnType result;
+  const struct EcuM_ConfigType * ConfigPtr;
+  long unsigned int _2;
+  long unsigned int EcuM_LcfgSignature.65_3;
+  long unsigned int _4;
+
+  <bb 6> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct EcuM_ConfigType *)voidConfigPtr_1(D)].LcfgSignature;
+  EcuM_LcfgSignature.65_3 = EcuM_LcfgSignature;
+  if (_2 == EcuM_LcfgSignature.65_3)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(const struct EcuM_ConfigType *)voidConfigPtr_1(D)].PublicInfoSignature;
+  if (_4 == 1985306092)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 4> [local count: 124124555]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+
+  <bb 5> [local count: 1073741824]:
+  # result_5 = PHI <1(2), 1(3), 0(4)>
+  # DEBUG result => result_5
+  # DEBUG BEGIN_STMT
+  return result_5;
+
+}
+
+
+EcuM_ComMWakeupIndication (EcuM_WakeupSourceType ComMevents)
+{
+  Std_ReturnType RetVal;
+  ComM_InitStatusType Status;
+  uint8_least wks;
+  unsigned char Status.60_1;
+  long unsigned int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 902574743]:
+  # DEBUG BEGIN_STMT
+  # DEBUG wks => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  RetVal_13 = ComM_GetStatus (&Status);
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  if (RetVal_13 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 3> [local count: 451287371]:
+  Status.60_1 = Status;
+  if (Status.60_1 == 1)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 9> [local count: 153437706]:
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 920304119]:
+  # DEBUG BEGIN_STMT
+  _2 = ComMevents_6 & 1;
+  if (_2 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 303700359]:
+  # DEBUG BEGIN_STMT
+  _3 = EcuM_WksMapping[wks_7];
+  _4 = (int) _3;
+  _5 = EcuM_WksConfigList[_4].ComMCh;
+  ComM_EcuM_WakeUpIndication (_5);
+
+  <bb 6> [local count: 920304119]:
+  # DEBUG BEGIN_STMT
+  ComMevents_16 = ComMevents_6 >> 1;
+  # DEBUG ComMevents => ComMevents_16
+  # DEBUG BEGIN_STMT
+  wks_17 = wks_7 + 1;
+  # DEBUG wks => wks_17
+
+  <bb 7> [local count: 1073741824]:
+  # ComMevents_6 = PHI <ComMevents_16(6), ComMevents_14(D)(9)>
+  # wks_7 = PHI <wks_17(6), 0(9)>
+  # DEBUG wks => wks_7
+  # DEBUG ComMevents => ComMevents_6
+  # DEBUG BEGIN_STMT
+  if (ComMevents_6 != 0)
+    goto <bb 4>; [85.71%]
+  else
+    goto <bb 8>; [14.29%]
+
+  <bb 8> [local count: 902574745]:
+  Status ={v} {CLOBBER};
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_NONE ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksNone;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_4 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_4
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksNone_6 = CoreInstance_4->WakeupIndication.None;
+  # DEBUG wksNone => wksNone_6
+  # DEBUG BEGIN_STMT
+  CoreInstance_4->WakeupIndication.None = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksNone_6 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksNone_6, 0);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_EXPIRED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksExpired;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_3 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_3
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksExpired_5 = CoreInstance_3->WakeupIndication.Expired;
+  # DEBUG wksExpired => wksExpired_5
+  # DEBUG BEGIN_STMT
+  CoreInstance_3->WakeupIndication.Expired = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksExpired_5, 3);
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_VALIDATED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksValidated;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_5 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_5
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksValidated_7 = CoreInstance_5->WakeupIndication.Validated;
+  # DEBUG wksValidated => wksValidated_7
+  # DEBUG BEGIN_STMT
+  CoreInstance_5->WakeupIndication.Validated = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksValidated_7 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksValidated_7, 2);
+  # DEBUG BEGIN_STMT
+  _1 = wksValidated_7 & 32;
+  EcuM_ComMWakeupIndication (_1);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_PENDING ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksPending;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_4 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_4
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksPending_6 = CoreInstance_4->WakeupIndication.Pending;
+  # DEBUG wksPending => wksPending_6
+  # DEBUG BEGIN_STMT
+  CoreInstance_4->WakeupIndication.Pending = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksPending_6 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksPending_6, 1);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus_DISABLED ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType wksDisabled;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_4 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_4
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  wksDisabled_6 = CoreInstance_4->WakeupIndication.Disabled;
+  # DEBUG wksDisabled => wksDisabled_6
+  # DEBUG BEGIN_STMT
+  CoreInstance_4->WakeupIndication.Disabled = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (wksDisabled_6 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentWakeup (wksDisabled_6, 4);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_SwitchWakeupStatus (EcuM_WakeupSourceType sources, EcuM_WakeupStatusType status, struct EcuM_CoreContextType * CoreInstance)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  long unsigned int _45;
+  long unsigned int _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  long unsigned int _49;
+  long unsigned int _50;
+  long unsigned int _51;
+
+  <bb 2> [local count: 1073419798]:
+  # DEBUG BEGIN_STMT
+  switch (status_53(D)) <default: <L8> [14.29%], case 0: <L2> [14.29%], case 1: <L3> [14.29%], case 2: <L4> [14.29%], case 3: <L5> [14.29%], case 4: <L1> [14.29%], case 6: <L0> [14.29%]>
+
+  <bb 3> [local count: 153391689]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_55(D)->WakeupStatus.Disabled;
+  _2 = ~sources_56(D);
+  _3 = _1 & _2;
+  CoreInstance_55(D)->WakeupStatus.Disabled = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 153391689]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _4 = CoreInstance_55(D)->WakeupIndication.Disabled;
+  _5 = _4 | sources_56(D);
+  CoreInstance_55(D)->WakeupIndication.Disabled = _5;
+  # DEBUG BEGIN_STMT
+  _6 = CoreInstance_55(D)->WakeupStatus.Disabled;
+  _7 = _6 | sources_56(D);
+  CoreInstance_55(D)->WakeupStatus.Disabled = _7;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 5> [local count: 153391689]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  _8 = CoreInstance_55(D)->WakeupIndication.None;
+  _9 = _8 | sources_56(D);
+  CoreInstance_55(D)->WakeupIndication.None = _9;
+  # DEBUG BEGIN_STMT
+  _10 = CoreInstance_55(D)->WakeupStatus.None;
+  _11 = _10 | sources_56(D);
+  CoreInstance_55(D)->WakeupStatus.None = _11;
+  # DEBUG BEGIN_STMT
+  _12 = CoreInstance_55(D)->WakeupStatus.Expired;
+  _13 = ~sources_56(D);
+  _14 = _12 & _13;
+  CoreInstance_55(D)->WakeupStatus.Expired = _14;
+  # DEBUG BEGIN_STMT
+  _15 = CoreInstance_55(D)->WakeupStatus.Pending;
+  _16 = _13 & _15;
+  CoreInstance_55(D)->WakeupStatus.Pending = _16;
+  # DEBUG BEGIN_STMT
+  _17 = CoreInstance_55(D)->WakeupStatus.Validated;
+  _18 = _13 & _17;
+  CoreInstance_55(D)->WakeupStatus.Validated = _18;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 153391689]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  _19 = CoreInstance_55(D)->WakeupIndication.Pending;
+  _20 = _19 | sources_56(D);
+  CoreInstance_55(D)->WakeupIndication.Pending = _20;
+  # DEBUG BEGIN_STMT
+  _21 = CoreInstance_55(D)->WakeupStatus.Pending;
+  _22 = _21 | sources_56(D);
+  CoreInstance_55(D)->WakeupStatus.Pending = _22;
+  # DEBUG BEGIN_STMT
+  _23 = CoreInstance_55(D)->WakeupStatus.Expired;
+  _24 = ~sources_56(D);
+  _25 = _23 & _24;
+  CoreInstance_55(D)->WakeupStatus.Expired = _25;
+  # DEBUG BEGIN_STMT
+  _26 = CoreInstance_55(D)->WakeupStatus.None;
+  _27 = _24 & _26;
+  CoreInstance_55(D)->WakeupStatus.None = _27;
+  # DEBUG BEGIN_STMT
+  _28 = CoreInstance_55(D)->WakeupStatus.Validated;
+  _29 = _24 & _28;
+  CoreInstance_55(D)->WakeupStatus.Validated = _29;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 153391689]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  _30 = CoreInstance_55(D)->WakeupIndication.Validated;
+  _31 = _30 | sources_56(D);
+  CoreInstance_55(D)->WakeupIndication.Validated = _31;
+  # DEBUG BEGIN_STMT
+  _32 = CoreInstance_55(D)->WakeupStatus.Validated;
+  _33 = _32 | sources_56(D);
+  CoreInstance_55(D)->WakeupStatus.Validated = _33;
+  # DEBUG BEGIN_STMT
+  _34 = CoreInstance_55(D)->WakeupStatus.Expired;
+  _35 = ~sources_56(D);
+  _36 = _34 & _35;
+  CoreInstance_55(D)->WakeupStatus.Expired = _36;
+  # DEBUG BEGIN_STMT
+  _37 = CoreInstance_55(D)->WakeupStatus.None;
+  _38 = _35 & _37;
+  CoreInstance_55(D)->WakeupStatus.None = _38;
+  # DEBUG BEGIN_STMT
+  _39 = CoreInstance_55(D)->WakeupStatus.Pending;
+  _40 = _35 & _39;
+  CoreInstance_55(D)->WakeupStatus.Pending = _40;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 153391689]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  _41 = CoreInstance_55(D)->WakeupIndication.Expired;
+  _42 = _41 | sources_56(D);
+  CoreInstance_55(D)->WakeupIndication.Expired = _42;
+  # DEBUG BEGIN_STMT
+  _43 = CoreInstance_55(D)->WakeupStatus.Expired;
+  _44 = _43 | sources_56(D);
+  CoreInstance_55(D)->WakeupStatus.Expired = _44;
+  # DEBUG BEGIN_STMT
+  _45 = CoreInstance_55(D)->WakeupStatus.None;
+  _46 = ~sources_56(D);
+  _47 = _45 & _46;
+  CoreInstance_55(D)->WakeupStatus.None = _47;
+  # DEBUG BEGIN_STMT
+  _48 = CoreInstance_55(D)->WakeupStatus.Pending;
+  _49 = _46 & _48;
+  CoreInstance_55(D)->WakeupStatus.Pending = _49;
+  # DEBUG BEGIN_STMT
+  _50 = CoreInstance_55(D)->WakeupStatus.Validated;
+  _51 = _46 & _50;
+  CoreInstance_55(D)->WakeupStatus.Validated = _51;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> [local count: 1073741824]:
+<L8>:
+  return;
+
+}
+
+
+EcuM_WakeupRestart ()
+{
+  EcuM_WakeupSourceType wksDisable;
+  struct EcuM_CoreContextType * CoreInstance;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_7 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_7
+  # DEBUG BEGIN_STMT
+  Mcu_SetMode (0);
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_7->WakeupStatus.Pending;
+  if (_1 != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 3>; [67.00%]
+
+  <bb 3> [local count: 719407023]:
+  _2 = CoreInstance_7->WakeupStatus.Validated;
+  if (_2 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 714038314]:
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_7->WakeupStatus.Validated;
+  wksDisable_9 = _1 | _3;
+  # DEBUG wksDisable => wksDisable_9
+  # DEBUG BEGIN_STMT
+  EcuM_DisableWakeupSources (wksDisable_9);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  # DEBUG sources => wksDisable_9
+  # DEBUG status => 4
+  # DEBUG CoreInstance => CoreInstance_7
+  # DEBUG INLINE_ENTRY EcuM_SwitchWakeupStatus
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = CoreInstance_7->WakeupIndication.Disabled;
+  _17 = wksDisable_9 | _16;
+  CoreInstance_7->WakeupIndication.Disabled = _17;
+  # DEBUG BEGIN_STMT
+  _18 = CoreInstance_7->WakeupStatus.Disabled;
+  _19 = wksDisable_9 | _18;
+  CoreInstance_7->WakeupStatus.Disabled = _19;
+  # DEBUG BEGIN_STMT
+  # DEBUG sources => NULL
+  # DEBUG status => NULL
+  # DEBUG CoreInstance => NULL
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_7->State = 34;
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentState (34);
+  # DEBUG BEGIN_STMT
+  OS_UserReleaseResource (0);
+  return;
+
+}
+
+
+EcuM_GoSleep ()
+{
+  EcuM_WakeupSourceType wksCleared;
+  EcuM_WakeupSourceType wksSleepMode;
+  struct EcuM_CoreContextType * CoreInstance;
+  unsigned char _1;
+  int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char EcuM_ShutdownTarget.17_7;
+  unsigned char _8;
+  unsigned char EcuM_ResetMode.18_9;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_12 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_12
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_12->SleepMode;
+  _2 = (int) _1;
+  wksSleepMode_13 = EcuM_SleepModeConfigList[_2].wakeupSource;
+  # DEBUG wksSleepMode => wksSleepMode_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CoreInstance_12->State = 73;
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentState (73);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_12->WakeupStatus.Pending;
+  _4 = CoreInstance_12->WakeupStatus.Validated;
+  _5 = _3 | _4;
+  _6 = ~_5;
+  wksCleared_17 = _6 & wksSleepMode_13;
+  # DEBUG wksCleared => wksCleared_17
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksCleared_17, 0, CoreInstance_12);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_NONE ();
+  # DEBUG BEGIN_STMT
+  EcuM_EnableWakeupSources (wksSleepMode_13);
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  # DEBUG sources => wksSleepMode_13
+  # DEBUG status => 6
+  # DEBUG CoreInstance => CoreInstance_12
+  # DEBUG INLINE_ENTRY EcuM_SwitchWakeupStatus
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = CoreInstance_12->WakeupStatus.Disabled;
+  _31 = ~wksSleepMode_13;
+  _32 = _30 & _31;
+  CoreInstance_12->WakeupStatus.Disabled = _32;
+  # DEBUG BEGIN_STMT
+  # DEBUG sources => NULL
+  # DEBUG status => NULL
+  # DEBUG CoreInstance => NULL
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  OS_UserGetResource (0);
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.17_7 = EcuM_ShutdownTarget;
+  EcuM_LastShutdownTarget = EcuM_ShutdownTarget.17_7;
+  # DEBUG BEGIN_STMT
+  _8 = CoreInstance_12->SleepMode;
+  EcuM_LastSleepMode = _8;
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.18_9 = EcuM_ResetMode;
+  EcuM_LastResetMode = EcuM_ResetMode.18_9;
+  # DEBUG BEGIN_STMT
+  CoreInstance_12->State = 80;
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentState (80);
+  return;
+
+}
+
+
+EcuM_WksIndicateStatus ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_NONE ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_PENDING ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_VALIDATED ();
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_DISABLED ();
+  return;
+
+}
+
+
+EcuM_IsValidConfig (const void * voidConfigPtr)
+{
+  Std_ReturnType result;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG ConfigPtr => voidConfigPtr_6(D)
+  # DEBUG BEGIN_STMT
+  _1 = MEM[(const struct EcuM_ConfigType *)voidConfigPtr_6(D)].PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(const struct EcuM_ConfigType *)voidConfigPtr_6(D)].CfgSignature;
+  if (_3 == 29041840)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 4> [local count: 124124556]:
+  result_10 = EcuM_IsValidConfig.part.0 (voidConfigPtr_6(D));
+
+  <bb 5> [local count: 1073741824]:
+  # result_4 = PHI <1(2), 1(3), result_10(4)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+
+EcuM_ValidateWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  const EcuM_ASR40_StateType state;
+  struct EcuM_CoreContextType * CoreInstance;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _20;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_9 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_9
+  # DEBUG BEGIN_STMT
+  state_10 = CoreInstance_9->State;
+  # DEBUG state => state_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (state_10 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 20, 16);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  _1 = sources_11(D) & 63;
+  if (_1 == 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 237404317]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 20, 23);
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 482002704]:
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance_9->WakeupStatus.Pending;
+  sources_12 = _2 & sources_11(D);
+  # DEBUG sources => sources_12
+  # DEBUG BEGIN_STMT
+  _20 = state_10 & 240;
+  if (_20 == 48)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 163880919]:
+  # DEBUG BEGIN_STMT
+  sources_13 = sources_12 & 32;
+  # DEBUG sources => sources_13
+
+  <bb 8> [local count: 482002704]:
+  # sources_5 = PHI <sources_12(6), sources_13(7)>
+  # DEBUG sources => sources_5
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (sources_5, 2, CoreInstance_9);
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_9->WakeupStatus.Stopped;
+  _4 = _3 | sources_5;
+  CoreInstance_9->WakeupStatus.Stopped = _4;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 9> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_SetWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  uint16 maxTimeout;
+  EcuM_WakeupSourceType wksPendingNew;
+  uint8_least wks;
+  struct EcuM_CoreContextType * CoreInstance;
+  unsigned char _1;
+  long unsigned int _2;
+  unsigned char _3;
+  int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  unsigned char _11;
+  int _12;
+  short unsigned int _13;
+  short unsigned int _15;
+  short unsigned int _16;
+
+  <bb 2> [local count: 458023003]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_25 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_25->State;
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 151147591]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 12, 16);
+  goto <bb 14>; [100.00%]
+
+  <bb 4> [local count: 306875412]:
+  # DEBUG BEGIN_STMT
+  _2 = sources_26(D) & 63;
+  if (_2 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 153437706]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 12, 23);
+  goto <bb 14>; [100.00%]
+
+  <bb 6> [local count: 153437706]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG wksPendingNew => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG maxTimeout => 0
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_25->SleepMode;
+  _4 = (int) _3;
+  _5 = EcuM_SleepModeConfigList[_4].wakeupSource;
+  sources_27 = _5 & sources_26(D);
+  # DEBUG sources => sources_27
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _6 = CoreInstance_25->WakeupStatus.Pending;
+  _7 = _6 | 63;
+  _8 = ~_7;
+  wksPendingNew_29 = _8 & sources_27;
+  # DEBUG wksPendingNew => wksPendingNew_29
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksPendingNew_29, 1, CoreInstance_25);
+  # DEBUG BEGIN_STMT
+  _9 = sources_27 & 63;
+  EcuM_SwitchWakeupStatus (_9, 2, CoreInstance_25);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  # DEBUG wks => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 920304118]:
+  # DEBUG BEGIN_STMT
+  _10 = wksPendingNew_18 & 1;
+  if (_10 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 460152059]:
+  # DEBUG BEGIN_STMT
+  _11 = EcuM_WksMapping[wks_17];
+  _12 = (int) _11;
+  _13 = EcuM_WksValTimeout[_12];
+  _15 = MAX_EXPR <_13, maxTimeout_20>;
+
+  <bb 9> [local count: 920304118]:
+  # maxTimeout_19 = PHI <maxTimeout_20(7), _15(8)>
+  # DEBUG maxTimeout => maxTimeout_19
+  # DEBUG BEGIN_STMT
+  wksPendingNew_36 = wksPendingNew_18 >> 1;
+  # DEBUG wksPendingNew => wksPendingNew_36
+  # DEBUG BEGIN_STMT
+  wks_37 = wks_17 + 1;
+  # DEBUG wks => wks_37
+
+  <bb 10> [local count: 1073741824]:
+  # wks_17 = PHI <0(6), wks_37(9)>
+  # wksPendingNew_18 = PHI <wksPendingNew_29(6), wksPendingNew_36(9)>
+  # maxTimeout_20 = PHI <0(6), maxTimeout_19(9)>
+  # DEBUG maxTimeout => maxTimeout_20
+  # DEBUG wksPendingNew => wksPendingNew_18
+  # DEBUG wks => wks_17
+  # DEBUG BEGIN_STMT
+  if (wksPendingNew_18 != 0)
+    goto <bb 7>; [85.71%]
+  else
+    goto <bb 11>; [14.29%]
+
+  <bb 11> [local count: 153437707]:
+  # maxTimeout_14 = PHI <maxTimeout_20(10)>
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _16 = CoreInstance_25->ValidationCounter;
+  if (maxTimeout_14 > _16)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 76718853]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_25->ValidationCounter = maxTimeout_14;
+
+  <bb 13> [local count: 153437707]:
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 14> [local count: 458023004]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_ReportRamCheckResult ()
+{
+  unsigned char EcuM_RamCheckStatus.61_1;
+  short unsigned int EcuM_DemErrRamChkFailed.62_2;
+  Dem_EventStatusType iftmp.63_3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus.61_1 = EcuM_RamCheckStatus;
+  if (EcuM_RamCheckStatus.61_1 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_DemErrRamChkFailed.62_2 = EcuM_DemErrRamChkFailed;
+  if (EcuM_RamCheckStatus.61_1 == 2)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 4> [local count: 354334802]:
+
+  <bb 5> [local count: 536870913]:
+  # iftmp.63_3 = PHI <1(3), 0(4)>
+  Dem_ReportErrorStatus (EcuM_DemErrRamChkFailed.62_2, iftmp.63_3);
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 0;
+
+  <bb 6> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_MainFunction ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  uint16 wksValCounter;
+  EcuM_WakeupSourceType wksStopped;
+  EcuM_WakeupSourceType wksStarted;
+  EcuM_WakeupSourceType wksValidated;
+  EcuM_WakeupSourceType wksPending;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG wksPending => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG wksValidated => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG wksStarted => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG wksStopped => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG wksValCounter => 0
+  # DEBUG BEGIN_STMT
+  CoreInstance_27 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_27
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_27->State;
+  if (_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 24, 16);
+  goto <bb 18>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  _2 = _1 + 239;
+  if (_2 > 1)
+    goto <bb 5>; [41.48%]
+  else
+    goto <bb 18>; [58.52%]
+
+  <bb 5> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_27->WakeupStatus.Started;
+  _4 = CoreInstance_27->WakeupStatus.Stopped;
+  _5 = ~_4;
+  _6 = _3 & _5;
+  CoreInstance_27->WakeupStatus.Started = _6;
+  # DEBUG BEGIN_STMT
+  CoreInstance_27->WakeupStatus.Stopped = 0;
+  # DEBUG BEGIN_STMT
+  wksPending_31 = CoreInstance_27->WakeupStatus.Pending;
+  # DEBUG wksPending => wksPending_31
+  # DEBUG BEGIN_STMT
+  wksValidated_32 = CoreInstance_27->WakeupStatus.Validated;
+  # DEBUG wksValidated => wksValidated_32
+  # DEBUG BEGIN_STMT
+  # DEBUG wksStarted => _6
+  # DEBUG BEGIN_STMT
+  wksValCounter_33 = CoreInstance_27->ValidationCounter;
+  # DEBUG wksValCounter => wksValCounter_33
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _7 = CoreInstance_27->State;
+  if (_7 == 34)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 6> [local count: 101459411]:
+  if (wksValidated_32 != 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 33481606]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_27->State = 48;
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentState (48);
+
+  <bb 8> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus ();
+  # DEBUG BEGIN_STMT
+  if (wksPending_31 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 9> [local count: 149205016]:
+  if (wksValCounter_33 == 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+
+  <bb 10> [local count: 49237655]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (wksPending_31, 3, CoreInstance_27);
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_StopWakeupSources (wksPending_31);
+  # DEBUG BEGIN_STMT
+  # DEBUG wksStopped => wksPending_31
+  # DEBUG BEGIN_STMT
+  # DEBUG wksPending => 0
+  # DEBUG BEGIN_STMT
+  EcuM_WksIndicateStatus_EXPIRED ();
+
+  <bb 11> [local count: 298410033]:
+  # wksPending_16 = PHI <wksPending_31(8), wksPending_31(9), 0(10)>
+  # wksStopped_18 = PHI <0(8), 0(9), wksPending_31(10)>
+  # DEBUG wksStopped => wksStopped_18
+  # DEBUG wksPending => wksPending_16
+  # DEBUG BEGIN_STMT
+  _8 = ~_6;
+  _9 = _8 & wksPending_16;
+  if (_9 != 0)
+    goto <bb 12>; [33.00%]
+  else
+    goto <bb 13>; [67.00%]
+
+  <bb 12> [local count: 98475311]:
+  # DEBUG BEGIN_STMT
+  EcuM_StartWakeupSources (_9);
+  # DEBUG BEGIN_STMT
+  # DEBUG wksStarted => wksPending_16
+
+  <bb 13> [local count: 298410033]:
+  # wksStarted_17 = PHI <_6(11), wksPending_16(12)>
+  # DEBUG wksStarted => wksStarted_17
+  # DEBUG BEGIN_STMT
+  if (wksPending_16 != 0)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 14> [local count: 98475311]:
+  # DEBUG BEGIN_STMT
+  EcuM_CheckValidation (wksPending_16);
+
+  <bb 15> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  _10 = CoreInstance_27->ValidationCounter;
+  if (_10 != 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 16> [local count: 149205016]:
+  # DEBUG BEGIN_STMT
+  _11 = _10 + 65535;
+  CoreInstance_27->ValidationCounter = _11;
+
+  <bb 17> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  _12 = CoreInstance_27->WakeupStatus.Started;
+  _13 = _12 | wksStarted_17;
+  # DEBUG BEGIN_STMT
+  _14 = ~wksStopped_18;
+  _15 = _13 & _14;
+  CoreInstance_27->WakeupStatus.Started = _15;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_ReportRamCheckResult ();
+
+  <bb 18> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GetExpiredWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  CoreInstance_6 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_6->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 25, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret_8 = CoreInstance_6->WakeupStatus.Expired;
+  # DEBUG ret => ret_8
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> [local count: 1073741824]:
+  # ret_2 = PHI <0(3), ret_8(4)>
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_2;
+
+}
+
+
+EcuM_GetValidatedWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  CoreInstance_6 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_6->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 21, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret_8 = CoreInstance_6->WakeupStatus.Validated;
+  # DEBUG ret => ret_8
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> [local count: 1073741824]:
+  # ret_2 = PHI <0(3), ret_8(4)>
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_2;
+
+}
+
+
+EcuM_ClearWakeupEvent (EcuM_WakeupSourceType sources)
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  unsigned char _1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_7 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_7->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 22, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_SwitchWakeupStatus (sources_9(D), 0, CoreInstance_7);
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance_7->WakeupStatus.Stopped;
+  _3 = _2 | sources_9(D);
+  CoreInstance_7->WakeupStatus.Stopped = _3;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GetPendingWakeupEvents ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  EcuM_WakeupSourceType ret;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  CoreInstance_6 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_6->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 13, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  ret_8 = CoreInstance_6->WakeupStatus.Pending;
+  # DEBUG ret => ret_8
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 5> [local count: 1073741824]:
+  # ret_2 = PHI <0(3), ret_8(4)>
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_2;
+
+}
+
+
+EcuM_ASR40_GetNextRecentShutdown (EcuM_ASR40_StateType * target, uint8 * mode, EcuM_ASR40_ShutdownCauseType * cause, uint32 * time)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_NextShutdownInfoIdx.51_3;
+  unsigned char _4;
+  unsigned char EcuM_NextShutdownInfoIdx.54_5;
+  unsigned char EcuM_ShutdownInfoStartIdx.55_6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  long unsigned int _11;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 30, 16);
+  goto <bb 15>; [100.00%]
+
+  <bb 4> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.51_3 = EcuM_NextShutdownInfoIdx;
+  if (EcuM_NextShutdownInfoIdx.51_3 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _4 = EcuM_NextShutdownInfoIdx.51_3 + 255;
+  EcuM_NextShutdownInfoIdx = _4;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx = 0;
+
+  <bb 7> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.54_5 = EcuM_NextShutdownInfoIdx;
+  EcuM_ShutdownInfoStartIdx.55_6 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_NextShutdownInfoIdx.54_5 != EcuM_ShutdownInfoStartIdx.55_6)
+    goto <bb 8>; [79.76%]
+  else
+    goto <bb 14>; [20.24%]
+
+  <bb 8> [local count: 428208239]:
+  # DEBUG BEGIN_STMT
+  if (target_21(D) == 0B)
+    goto <bb 12>; [17.43%]
+  else
+    goto <bb 9>; [82.57%]
+
+  <bb 9> [local count: 353571543]:
+  if (mode_22(D) == 0B)
+    goto <bb 12>; [30.00%]
+  else
+    goto <bb 10>; [70.00%]
+
+  <bb 10> [local count: 247500080]:
+  if (cause_23(D) == 0B)
+    goto <bb 12>; [30.00%]
+  else
+    goto <bb 11>; [70.00%]
+
+  <bb 11> [local count: 173250056]:
+  if (time_24(D) == 0B)
+    goto <bb 12>; [46.53%]
+  else
+    goto <bb 13>; [53.47%]
+
+  <bb 12> [local count: 335571434]:
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 30, 18);
+  goto <bb 15>; [100.00%]
+
+  <bb 13> [local count: 92636805]:
+  # DEBUG BEGIN_STMT
+  _7 = (int) EcuM_NextShutdownInfoIdx.54_5;
+  _8 = EcuM_ShutdownInfo[_7].target;
+  *target_21(D) = _8;
+  # DEBUG BEGIN_STMT
+  _9 = EcuM_ShutdownInfo[_7].mode;
+  *mode_22(D) = _9;
+  # DEBUG BEGIN_STMT
+  _10 = EcuM_ShutdownInfo[_7].cause;
+  *cause_23(D) = _10;
+  # DEBUG BEGIN_STMT
+  _11 = EcuM_ShutdownInfo[_7].sdTime;
+  *time_24(D) = _11;
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  goto <bb 15>; [100.00%]
+
+  <bb 14> [local count: 108662672]:
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 15> [local count: 1073741824]:
+  # ret_12 = PHI <1(3), 0(13), 1(14), 1(12)>
+  # DEBUG ret => ret_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_12;
+
+}
+
+
+EcuM_ASR40_GetMostRecentShutdown (EcuM_ASR40_StateType * target, uint8 * mode, EcuM_ASR40_ShutdownCauseType * cause, uint32 * time)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_ShutdownInfoCurrentIdx.41_3;
+  unsigned char EcuM_ShutdownInfoStartIdx.43_4;
+  unsigned char _5;
+  unsigned char EcuM_NextShutdownInfoIdx.47_6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  long unsigned int _11;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 29, 16);
+  goto <bb 15>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (target_19(D) == 0B)
+    goto <bb 8>; [17.43%]
+  else
+    goto <bb 5>; [82.57%]
+
+  <bb 5> [local count: 594014379]:
+  if (mode_20(D) == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 6> [local count: 415810065]:
+  if (cause_21(D) == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 7>; [70.00%]
+
+  <bb 7> [local count: 291067045]:
+  if (time_22(D) == 0B)
+    goto <bb 8>; [46.53%]
+  else
+    goto <bb 9>; [53.47%]
+
+  <bb 8> [local count: 563773474]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 29, 18);
+  goto <bb 15>; [100.00%]
+
+  <bb 9> [local count: 155633549]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.41_3 = EcuM_ShutdownInfoCurrentIdx;
+  EcuM_NextShutdownInfoIdx = EcuM_ShutdownInfoCurrentIdx.41_3;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoStartIdx.43_4 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_ShutdownInfoCurrentIdx.41_3 != EcuM_ShutdownInfoStartIdx.43_4)
+    goto <bb 10>; [66.00%]
+  else
+    goto <bb 14>; [34.00%]
+
+  <bb 10> [local count: 102718142]:
+  # DEBUG BEGIN_STMT
+  if (EcuM_ShutdownInfoCurrentIdx.41_3 == 0)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 11> [local count: 51359071]:
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx = 0;
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 51359071]:
+  # DEBUG BEGIN_STMT
+  _5 = EcuM_ShutdownInfoCurrentIdx.41_3 + 255;
+  EcuM_NextShutdownInfoIdx = _5;
+
+  <bb 13> [local count: 102718142]:
+  # DEBUG BEGIN_STMT
+  EcuM_NextShutdownInfoIdx.47_6 = EcuM_NextShutdownInfoIdx;
+  _7 = (int) EcuM_NextShutdownInfoIdx.47_6;
+  _8 = EcuM_ShutdownInfo[_7].target;
+  *target_19(D) = _8;
+  # DEBUG BEGIN_STMT
+  _9 = EcuM_ShutdownInfo[_7].mode;
+  *mode_20(D) = _9;
+  # DEBUG BEGIN_STMT
+  _10 = EcuM_ShutdownInfo[_7].cause;
+  *cause_21(D) = _10;
+  # DEBUG BEGIN_STMT
+  _11 = EcuM_ShutdownInfo[_7].sdTime;
+  *time_22(D) = _11;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+
+  <bb 14> [local count: 155633549]:
+  # ret_12 = PHI <1(9), 0(13)>
+  # DEBUG ret => ret_12
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+
+  <bb 15> [local count: 1073741824]:
+  # ret_13 = PHI <1(3), 1(8), ret_12(14)>
+  # DEBUG ret => ret_13
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_13;
+
+}
+
+
+EcuM_ASR40_GetShutdownCause (EcuM_ASR40_ShutdownCauseType * shutdownCause)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_ShutdownCause.40_3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 28, 16);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (shutdownCause_8(D) != 0B)
+    goto <bb 5>; [82.57%]
+  else
+    goto <bb 6>; [17.43%]
+
+  <bb 5> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownCause.40_3 = EcuM_ShutdownCause;
+  *shutdownCause_8(D) = EcuM_ShutdownCause.40_3;
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 28, 18);
+
+  <bb 7> [local count: 1073741824]:
+  # ret_4 = PHI <1(3), 0(5), 1(6)>
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_4;
+
+}
+
+
+EcuM_ASR40_SelectShutdownCause (EcuM_ASR40_ShutdownCauseType target)
+{
+  uint8_least idx;
+  Std_ReturnType ret;
+  unsigned char _1;
+  struct EcuM_CoreContextType * _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 261993004]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG detOk => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG idx => 0
+  goto <bb 5>; [100.00%]
+
+  <bb 3> [local count: 858993459]:
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_ValidShutdownCause[idx_5];
+  if (_1 == target_8(D))
+    goto <bb 6>; [5.50%]
+  else
+    goto <bb 4>; [94.50%]
+
+  <bb 4> [local count: 811748819]:
+  # DEBUG BEGIN_STMT
+  idx_9 = idx_5 + 1;
+  # DEBUG idx => idx_9
+
+  <bb 5> [local count: 1073741824]:
+  # idx_5 = PHI <0(2), idx_9(4)>
+  # DEBUG idx => idx_5
+  # DEBUG BEGIN_STMT
+  if (idx_5 != 4)
+    goto <bb 3>; [80.00%]
+  else
+    goto <bb 6>; [20.00%]
+
+  <bb 6> [local count: 261993005]:
+  # idx_12 = PHI <idx_5(3), idx_5(5)>
+  # DEBUG BEGIN_STMT
+  _2 = EcuM_GetMasterCoreInstance ();
+  _3 = _2->State;
+  if (_3 == 0)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 8>; [67.00%]
+
+  <bb 7> [local count: 86457692]:
+  # DEBUG BEGIN_STMT
+  # DEBUG detOk => 0
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 27, 16);
+  # DEBUG detOk => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 175535313]:
+  # DEBUG BEGIN_STMT
+  if (idx_12 == 4)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 10>; [79.76%]
+
+  <bb 9> [local count: 35528347]:
+  # DEBUG BEGIN_STMT
+  # DEBUG detOk => 0
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 27, 19);
+  # DEBUG detOk => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 140006966]:
+  # DEBUG detOk => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownCause = target_8(D);
+
+  <bb 11> [local count: 261993005]:
+  # ret_4 = PHI <0(10), 1(9), 1(7)>
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_4;
+
+}
+
+
+EcuM_ASR40_GetLastShutdownTarget (EcuM_ASR40_StateType * shutdownTarget, uint8 * sleepMode)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_LastShutdownTarget.35_3;
+  unsigned char EcuM_LastShutdownTarget.36_4;
+  unsigned char EcuM_LastSleepMode.37_5;
+  unsigned char EcuM_LastResetMode.39_6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 16>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget_13(D) != 0B)
+    goto <bb 5>; [82.57%]
+  else
+    goto <bb 6>; [17.43%]
+
+  <bb 5> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  EcuM_LastShutdownTarget.35_3 = EcuM_LastShutdownTarget;
+  *shutdownTarget_13(D) = EcuM_LastShutdownTarget.35_3;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 18);
+
+  <bb 7> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (sleepMode_16(D) != 0B)
+    goto <bb 8>; [82.57%]
+  else
+    goto <bb 12>; [17.43%]
+
+  <bb 8> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  EcuM_LastShutdownTarget.36_4 = EcuM_LastShutdownTarget;
+  if (EcuM_LastShutdownTarget.36_4 == 80)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 9> [local count: 201964889]:
+  # DEBUG BEGIN_STMT
+  EcuM_LastSleepMode.37_5 = EcuM_LastSleepMode;
+  *sleepMode_16(D) = EcuM_LastSleepMode.37_5;
+  goto <bb 13>; [100.00%]
+
+  <bb 10> [local count: 392049490]:
+  # DEBUG BEGIN_STMT
+  if (EcuM_LastShutdownTarget.36_4 == 144)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 11> [local count: 133296826]:
+  # DEBUG BEGIN_STMT
+  EcuM_LastResetMode.39_6 = EcuM_LastResetMode;
+  *sleepMode_16(D) = EcuM_LastResetMode.39_6;
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 8, 18);
+
+  <bb 13> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget_13(D) != 0B)
+    goto <bb 14>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 14> [local count: 503584916]:
+  if (sleepMode_16(D) != 0B)
+    goto <bb 16>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 15> [local count: 366897581]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+
+  <bb 16> [local count: 1073741824]:
+  # ret_7 = PHI <1(3), 0(14), 1(15)>
+  # DEBUG ret => ret_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_7;
+
+}
+
+
+EcuM_ASR40_GetShutdownTarget (EcuM_ASR40_StateType * shutdownTarget, uint8 * sleepMode)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_ShutdownTarget.31_3;
+  unsigned char EcuM_ShutdownTarget.32_4;
+  struct EcuM_CoreContextType * _5;
+  unsigned char _6;
+  unsigned char EcuM_ResetMode.34_7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 16);
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  goto <bb 16>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (shutdownTarget_14(D) != 0B)
+    goto <bb 5>; [82.57%]
+  else
+    goto <bb 6>; [17.43%]
+
+  <bb 5> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.31_3 = EcuM_ShutdownTarget;
+  *shutdownTarget_14(D) = EcuM_ShutdownTarget.31_3;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 18);
+
+  <bb 7> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (sleepMode_17(D) != 0B)
+    goto <bb 8>; [82.57%]
+  else
+    goto <bb 12>; [17.43%]
+
+  <bb 8> [local count: 594014379]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.32_4 = EcuM_ShutdownTarget;
+  if (EcuM_ShutdownTarget.32_4 == 80)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 10>; [79.76%]
+
+  <bb 9> [local count: 120228510]:
+  # DEBUG BEGIN_STMT
+  _5 = EcuM_GetMasterCoreInstance ();
+  _6 = _5->SleepMode;
+  *sleepMode_17(D) = _6;
+  goto <bb 13>; [100.00%]
+
+  <bb 10> [local count: 473785868]:
+  # DEBUG BEGIN_STMT
+  if (EcuM_ShutdownTarget.32_4 == 144)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 11> [local count: 161087195]:
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.34_7 = EcuM_ResetMode;
+  *sleepMode_17(D) = EcuM_ResetMode.34_7;
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 9, 18);
+
+  <bb 13> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  if (sleepMode_17(D) != 0B)
+    goto <bb 14>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 14> [local count: 503584916]:
+  if (shutdownTarget_14(D) != 0B)
+    goto <bb 16>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 15> [local count: 366897581]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+
+  <bb 16> [local count: 1073741824]:
+  # ret_8 = PHI <1(3), 0(14), 1(15)>
+  # DEBUG ret => ret_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_8;
+
+}
+
+
+EcuM_ASR40_SelectShutdownTarget (EcuM_ASR40_StateType target, uint8 mode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  ret_5 = EcuM_SelectShutdownTargetSequence (target_2(D), mode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+EcuM_SelectShutdownTargetSequence (EcuM_ASR40_StateType target, uint8 mode)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  struct EcuM_CoreContextType * _3;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 16);
+  goto <bb 18>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (target_9(D) != 80)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 5> [local count: 474808634]:
+  if (target_9(D) != 144)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 6> [local count: 313373699]:
+  if (target_9(D) != 128)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 153177064]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 22);
+  goto <bb 18>; [100.00%]
+
+  <bb 8> [local count: 566229959]:
+  # DEBUG BEGIN_STMT
+  if (target_9(D) == 80)
+    goto <bb 9>; [51.12%]
+  else
+    goto <bb 11>; [48.88%]
+
+  <bb 9> [local count: 289456755]:
+  if (mode_11(D) != 0)
+    goto <bb 10>; [33.00%]
+  else
+    goto <bb 11>; [67.00%]
+
+  <bb 10> [local count: 95520729]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 6, 19);
+  goto <bb 18>; [100.00%]
+
+  <bb 11> [local count: 470709229]:
+  # DEBUG BEGIN_STMT
+  EcuM_EnterExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  if (target_9(D) == 80)
+    goto <bb 12>; [20.24%]
+  else
+    goto <bb 13>; [79.76%]
+
+  <bb 12> [local count: 95271548]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = 80;
+  # DEBUG BEGIN_STMT
+  _3 = EcuM_GetCoreInstance ();
+  _3->SleepMode = mode_11(D);
+  goto <bb 17>; [100.00%]
+
+  <bb 13> [local count: 375437682]:
+  # DEBUG BEGIN_STMT
+  if (target_9(D) == 144)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 14> [local count: 127648812]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = 144;
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode = mode_11(D);
+  goto <bb 17>; [100.00%]
+
+  <bb 15> [local count: 247788870]:
+  # DEBUG BEGIN_STMT
+  if (target_9(D) == 128)
+    goto <bb 16>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 16> [local count: 84248216]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = 128;
+
+  <bb 17> [local count: 470709230]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuM_ExitExclusiveArea ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+
+  <bb 18> [local count: 1073741824]:
+  # ret_4 = PHI <1(3), 1(7), 1(10), 0(17)>
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_4;
+
+}
+
+
+EcuM_Shutdown ()
+{
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+  unsigned char EcuM_ShutdownTarget.28_3;
+  unsigned char EcuM_ResetMode.30_4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetMasterCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 2, 16);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_OnGoOffTwo ();
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget.28_3 = EcuM_ShutdownTarget;
+  EcuM_LastShutdownTarget = EcuM_ShutdownTarget.28_3;
+  # DEBUG BEGIN_STMT
+  if (EcuM_ShutdownTarget.28_3 == 144)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 182536110]:
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.30_4 = EcuM_ResetMode;
+  EcuM_AL_Reset (EcuM_ResetMode.30_4);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  EcuM_AL_SwitchOff ();
+
+  <bb 7> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_StartupTwo ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_5 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_5->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 26, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_5->State = 18;
+  # DEBUG BEGIN_STMT
+  EcuM_SchM_Init ();
+  # DEBUG BEGIN_STMT
+  BswM_Init (0B);
+  # DEBUG BEGIN_STMT
+  CoreInstance_5->State = 48;
+  # DEBUG BEGIN_STMT
+  BswM_EcuM_CurrentState (48);
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_Init ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  const struct EcuM_ConfigType * _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_6 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *CoreInstance_6 = EcuM_InitialContext;
+  # DEBUG BEGIN_STMT
+  CoreInstance_6->State = 17;
+  # DEBUG BEGIN_STMT
+  EcuM_AL_DriverInitZero ();
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_DeterminePbConfiguration ();
+  EcuM_ConfigPtr = _1;
+  # DEBUG BEGIN_STMT
+  if (_1 == 0B)
+    goto <bb 3>; [30.00%]
+  else
+    goto <bb 4>; [70.00%]
+
+  <bb 3> [local count: 322122547]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 1, 18);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 751619277]:
+  # DEBUG BEGIN_STMT
+  _2 = EcuM_IsValidConfig (_1);
+  if (_2 != 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 375809638]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 1, 27);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 375809638]:
+  # DEBUG BEGIN_STMT
+  EcuM_Init_SingleCore ();
+
+  <bb 7> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_Init_SingleCore ()
+{
+  const struct EcuM_ConfigType * EcuM_ConfigPtr.21_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_StartPreOS ();
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.21_1 = EcuM_ConfigPtr;
+  _2 = EcuM_ConfigPtr.21_1->DefaultAppMode;
+  OS_UserStartOs (_2);
+  return;
+
+}
+
+
+EcuM_StartPreOS ()
+{
+  const struct EcuM_ConfigType * EcuM_ConfigPtr.22_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_AL_SetProgrammableInterrupts ();
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.22_1 = EcuM_ConfigPtr;
+  EcuM_AL_DriverInitOne (EcuM_ConfigPtr.22_1);
+  # DEBUG BEGIN_STMT
+  EcuM_BootTarget[0] = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_BootTarget[1] = 0;
+  # DEBUG BEGIN_STMT
+  EcuM_SearchResetReason ();
+  # DEBUG BEGIN_STMT
+  EcuM_SetSleepOrResetMode ();
+  return;
+
+}
+
+
+EcuM_SearchResetReason ()
+{
+  boolean reasonFound;
+  Mcu_ResetType mcuResetReason;
+  uint8_least wks;
+  <unnamed type> _1;
+  unsigned char _2;
+  int _3;
+  long unsigned int _4;
+
+  <bb 2> [local count: 204054434]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG reasonFound => 0
+  # DEBUG BEGIN_STMT
+  mcuResetReason_12 = Mcu_GetResetReason ();
+  # DEBUG mcuResetReason => mcuResetReason_12
+  # DEBUG BEGIN_STMT
+  # DEBUG wks => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 869687391]:
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => &EcuM_WksConfigList[wks_5]
+  # DEBUG wksPtr => D#1
+  # DEBUG BEGIN_STMT
+  _1 = MEM[(const struct EcuM_WksConfigType *)&EcuM_WksConfigList][wks_5].ResetReason;
+  if (_1 != 27)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 4> [local count: 573993678]:
+  if (_1 == mcuResetReason_12)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 116176320]:
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(const struct EcuM_WksConfigType *)&EcuM_WksConfigList][wks_5].WksId;
+  _3 = (int) _2;
+  _4 = 1 << _3;
+  EcuM_SetWakeupEvent (_4);
+  # DEBUG BEGIN_STMT
+  # DEBUG reasonFound => 1
+
+  <bb 6> [local count: 869687391]:
+  # reasonFound_6 = PHI <reasonFound_7(3), reasonFound_7(4), 1(5)>
+  # DEBUG reasonFound => reasonFound_6
+  # DEBUG BEGIN_STMT
+  wks_14 = wks_5 + 1;
+  # DEBUG wks => wks_14
+
+  <bb 7> [local count: 1073741824]:
+  # wks_5 = PHI <0(2), wks_14(6)>
+  # reasonFound_7 = PHI <0(2), reasonFound_6(6)>
+  # DEBUG reasonFound => reasonFound_7
+  # DEBUG wks => wks_5
+  # DEBUG BEGIN_STMT
+  if (wks_5 != 6)
+    goto <bb 8>; [85.71%]
+  else
+    goto <bb 9>; [14.29%]
+
+  <bb 8> [local count: 920304117]:
+  if (reasonFound_7 != 1)
+    goto <bb 3>; [94.50%]
+  else
+    goto <bb 9>; [5.50%]
+
+  <bb 9> [local count: 204054433]:
+  return;
+
+}
+
+
+EcuM_SetSleepOrResetMode ()
+{
+  const struct EcuM_ConfigType * EcuM_ConfigPtr.23_1;
+  unsigned char _2;
+  struct EcuM_CoreContextType * _3;
+  unsigned char _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_ConfigPtr.23_1 = EcuM_ConfigPtr;
+  _2 = EcuM_ConfigPtr.23_1->DefaultShutdownTarget;
+  EcuM_ShutdownTarget = _2;
+  # DEBUG BEGIN_STMT
+  if (_2 == 80)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  _3 = EcuM_GetCoreInstance ();
+  _4 = EcuM_ConfigPtr.23_1->DefaultMode;
+  _3->SleepMode = _4;
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 856416480]:
+  # DEBUG BEGIN_STMT
+  if (_2 == 144)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 291181603]:
+  # DEBUG BEGIN_STMT
+  _5 = EcuM_ConfigPtr.23_1->DefaultMode;
+  EcuM_ResetMode = _5;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+EcuM_GoPoll ()
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * CoreInstance;
+  unsigned char _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  unsigned char _6;
+  int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+
+  <bb 2> [local count: 229727064]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_17 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_17
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_17->State;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 33, 16);
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  EcuM_GoSleep ();
+  # DEBUG BEGIN_STMT
+  _2 = CoreInstance_17->SleepMode;
+  _3 = (int) _2;
+  _4 = EcuM_SleepModeConfigList[_3].mcuMode;
+  _5 = (long unsigned int) _4;
+  Mcu_SetMode (_5);
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 958878293]:
+  # DEBUG BEGIN_STMT
+  EcuM_SleepActivity ();
+  # DEBUG BEGIN_STMT
+  _6 = CoreInstance_17->SleepMode;
+  _7 = (int) _6;
+  _8 = EcuM_SleepModeConfigList[_7].wakeupSource;
+  _9 = _8 & 63;
+  EcuM_CheckWakeup (_9);
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _10 = CoreInstance_17->WakeupStatus.Pending;
+  if (_10 == 0)
+    goto <bb 7>; [94.50%]
+  else
+    goto <bb 8>; [5.50%]
+
+  <bb 7> [local count: 1014686025]:
+  _11 = CoreInstance_17->WakeupStatus.Validated;
+  if (_11 == 0)
+    goto <bb 5>; [94.50%]
+  else
+    goto <bb 8>; [5.50%]
+
+  <bb 8> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  EcuM_WakeupRestart ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+
+  <bb 9> [local count: 229727064]:
+  # ret_12 = PHI <1(3), 0(8)>
+  # DEBUG ret => ret_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_12;
+
+}
+
+
+EcuM_HaltSequence ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  long unsigned int _1;
+  long unsigned int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned char _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CoreInstance_12 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_12
+  # DEBUG BEGIN_STMT
+  EcuM_PreHalt ();
+  # DEBUG BEGIN_STMT
+  EcuM_GenerateRamHash ();
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_12->WakeupStatus.Pending;
+  if (_1 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  _2 = CoreInstance_12->WakeupStatus.Validated;
+  if (_2 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  _3 = CoreInstance_12->SleepMode;
+  _4 = (int) _3;
+  _5 = EcuM_SleepModeConfigList[_4].mcuMode;
+  _6 = (long unsigned int) _5;
+  Mcu_SetMode (_6);
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_PostHalt ();
+  # DEBUG BEGIN_STMT
+  _7 = EcuM_CheckRamHash ();
+  if (_7 == 0)
+    goto <bb 6>; [33.00%]
+  else
+    goto <bb 7>; [67.00%]
+
+  <bb 6> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 2;
+  # DEBUG BEGIN_STMT
+  EcuM_ErrorHook (2);
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  EcuM_RamCheckStatus = 1;
+
+  <bb 8> [local count: 1073741824]:
+  return;
+
+}
+
+
+EcuM_GoHalt ()
+{
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 32, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  EcuM_GoSleep ();
+  # DEBUG BEGIN_STMT
+  EcuM_HaltSequence ();
+  # DEBUG BEGIN_STMT
+  EcuM_WakeupRestart ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+EcuM_GoDownMaster ()
+{
+  struct EcuM_CoreContextType * CoreInstance;
+  long unsigned int _1;
+  long unsigned int _2;
+  unsigned char EcuM_ShutdownInfoCurrentIdx.0_3;
+  int _4;
+  unsigned char EcuM_ShutdownTarget.1_5;
+  unsigned char EcuM_ResetMode.4_6;
+  unsigned char EcuM_ShutdownCause.7_7;
+  unsigned char _8;
+  unsigned char EcuM_ShutdownInfoCurrentIdx.12_9;
+  unsigned char EcuM_ShutdownInfoStartIdx.13_10;
+  unsigned char _11;
+  struct EcuM_CoreContextType * _12;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  CoreInstance_19 = EcuM_GetCoreInstance ();
+  # DEBUG CoreInstance => CoreInstance_19
+  # DEBUG BEGIN_STMT
+  EcuM_OnGoOffOne ();
+  # DEBUG BEGIN_STMT
+  BswM_Deinit ();
+  # DEBUG BEGIN_STMT
+  EcuM_SchM_Deinit ();
+  # DEBUG BEGIN_STMT
+  _1 = CoreInstance_19->WakeupStatus.Pending;
+  if (_1 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  _2 = CoreInstance_19->WakeupStatus.Validated;
+  if (_2 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 805306369]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownTarget = 144;
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.0_3 = EcuM_ShutdownInfoCurrentIdx;
+  _4 = (int) EcuM_ShutdownInfoCurrentIdx.0_3;
+  EcuM_ShutdownTarget.1_5 = EcuM_ShutdownTarget;
+  EcuM_ShutdownInfo[_4].target = EcuM_ShutdownTarget.1_5;
+  # DEBUG BEGIN_STMT
+  if (EcuM_ShutdownTarget.1_5 == 144)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 6> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  EcuM_ResetMode.4_6 = EcuM_ResetMode;
+  EcuM_ShutdownInfo[_4].mode = EcuM_ResetMode.4_6;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfo[_4].mode = 0;
+
+  <bb 8> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownCause.7_7 = EcuM_ShutdownCause;
+  EcuM_ShutdownInfo[_4].cause = EcuM_ShutdownCause.7_7;
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfo[_4].sdTime = 0;
+  # DEBUG BEGIN_STMT
+  _8 = EcuM_ShutdownInfoCurrentIdx.0_3 + 1;
+  EcuM_ShutdownInfoCurrentIdx = _8;
+  # DEBUG BEGIN_STMT
+  if (_8 == 1)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 9> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx = 0;
+
+  <bb 10> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoCurrentIdx.12_9 = EcuM_ShutdownInfoCurrentIdx;
+  EcuM_ShutdownInfoStartIdx.13_10 = EcuM_ShutdownInfoStartIdx;
+  if (EcuM_ShutdownInfoCurrentIdx.12_9 == EcuM_ShutdownInfoStartIdx.13_10)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 11> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  _11 = EcuM_ShutdownInfoStartIdx.13_10 + 1;
+  EcuM_ShutdownInfoStartIdx = _11;
+  # DEBUG BEGIN_STMT
+  if (_11 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 124124555]:
+  # DEBUG BEGIN_STMT
+  EcuM_ShutdownInfoStartIdx = 0;
+
+  <bb 13> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _12 = EcuM_GetMasterCoreInstance ();
+  _12->State = 128;
+  # DEBUG BEGIN_STMT
+  OS_UserShutdownOs (0);
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+EcuM_GoDown (uint16 caller)
+{
+  Std_ReturnType ret;
+  struct EcuM_CoreContextType * _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = EcuM_GetCoreInstance ();
+  _2 = _1->State;
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (10, 0, 31, 16);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_8 = EcuM_GoDownMaster ();
+  # DEBUG ret => ret_8
+
+  <bb 5> [local count: 1073741824]:
+  # ret_3 = PHI <0(3), ret_8(4)>
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_3;
+
+}
+
+

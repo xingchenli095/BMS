@@ -1,0 +1,606 @@
+E2EXf_Inv_SMCheck (E2E_PCheckStatusType RetValMapStatusToSM, const struct E2E_SMConfigType * SMConfigPtr, struct E2E_SMCheckStateType * SMCheckStatePtr)
+{
+  uint8 NibbleProfileStatus;
+  uint8 NibbleSMState;
+  Std_ReturnType RetValSMCheck;
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  int _2;
+  int _3;
+  uint8 _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_5 = 255;
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetValSMCheck_11 = E2E_SMCheck (RetValMapStatusToSM_7(D), SMConfigPtr_8(D), SMCheckStatePtr_9(D));
+  # DEBUG RetValSMCheck => RetValSMCheck_11
+  # DEBUG BEGIN_STMT
+  if (RetValSMCheck_11 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = SMCheckStatePtr_9(D)->SMState;
+  _2 = (int) _1;
+  _3 = _2 << 4;
+  NibbleSMState_13 = (uint8) _3;
+  # DEBUG NibbleSMState => NibbleSMState_13
+  # DEBUG BEGIN_STMT
+  NibbleProfileStatus_14 = RetValMapStatusToSM_7(D) & 15;
+  # DEBUG NibbleProfileStatus => NibbleProfileStatus_14
+  # DEBUG BEGIN_STMT
+  RetVal_15 = NibbleSMState_13 | NibbleProfileStatus_14;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 119;
+  # DEBUG RetVal => RetVal_12
+
+  <bb 5> :
+  # RetVal_4 = PHI <RetVal_15(3), RetVal_12(4)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  _16 = RetVal_4;
+  return _16;
+
+}
+
+
+E2EXf_Inv_OutOfPlaceTransPreCondCheck (uint8 * BufferPtr, uint16 * BufferLengthPtr, const uint8 * InputBufferPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 OverallHeaderLengthBytes;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  int _5;
+  unsigned int _6;
+  unsigned int _7;
+  uint8 _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_10(D)->UpperHeaderBitsToShift;
+  _2 = (int) _1;
+  _3 = PXXConfigPtr_10(D)->HeaderLength;
+  _4 = (int) _3;
+  _5 = _2 + _4;
+  _6 = (unsigned int) _5;
+  _7 = _6 / 8;
+  OverallHeaderLengthBytes_11 = (const uint16) _7;
+  # DEBUG OverallHeaderLengthBytes => OverallHeaderLengthBytes_11
+  # DEBUG BEGIN_STMT
+  if (InputBufferPtr_12(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (InputBufferLength_13(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 255;
+  # DEBUG RetVal => RetVal_14
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (InputBufferPtr_12(D) != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (InputBufferLength_13(D) < OverallHeaderLengthBytes_11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 255;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (BufferLengthPtr_16(D) == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  if (BufferPtr_17(D) == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_19 = 255;
+  # DEBUG RetVal => RetVal_19
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 0;
+  # DEBUG RetVal => RetVal_18
+
+  <bb 12> :
+  # RetVal_8 = PHI <RetVal_14(4), RetVal_15(7), RetVal_19(10), RetVal_18(11)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _20 = RetVal_8;
+  return _20;
+
+}
+
+
+E2EXf_Inv_InPlaceTransPreCondCheck (uint8 * BufferPtr, uint16 * BufferLengthPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 OverallHeaderLengthBytes;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  int _5;
+  unsigned int _6;
+  unsigned int _7;
+  uint8 _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_10(D)->UpperHeaderBitsToShift;
+  _2 = (int) _1;
+  _3 = PXXConfigPtr_10(D)->HeaderLength;
+  _4 = (int) _3;
+  _5 = _2 + _4;
+  _6 = (unsigned int) _5;
+  _7 = _6 / 8;
+  OverallHeaderLengthBytes_11 = (const uint16) _7;
+  # DEBUG OverallHeaderLengthBytes => OverallHeaderLengthBytes_11
+  # DEBUG BEGIN_STMT
+  if (BufferPtr_12(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (InputBufferLength_13(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 255;
+  # DEBUG RetVal => RetVal_14
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (BufferPtr_12(D) != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (InputBufferLength_13(D) < OverallHeaderLengthBytes_11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 255;
+  # DEBUG RetVal => RetVal_15
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (BufferLengthPtr_16(D) == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_18 = 255;
+  # DEBUG RetVal => RetVal_18
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_17 = 0;
+  # DEBUG RetVal => RetVal_17
+
+  <bb 11> :
+  # RetVal_8 = PHI <RetVal_14(4), RetVal_15(7), RetVal_18(9), RetVal_17(10)>
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  _19 = RetVal_8;
+  return _19;
+
+}
+
+
+E2EXf_Inv_CopyOutOfPlaceBuffer (uint8 * BufferPtr, const uint8 * InputBufferPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 E2EHeaderLengthBytes;
+  const uint16 UpperHeaderBytesToShift;
+  short unsigned int _1;
+  short unsigned int _2;
+  long unsigned int _3;
+  sizetype _4;
+  uint8 * _5;
+  int _6;
+  int _7;
+  int _8;
+  sizetype _9;
+  const uint8 * _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  long unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_17(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_18 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_18
+  # DEBUG BEGIN_STMT
+  _2 = PXXConfigPtr_17(D)->HeaderLength;
+  E2EHeaderLengthBytes_19 = _2 / 8;
+  # DEBUG E2EHeaderLengthBytes => E2EHeaderLengthBytes_19
+  # DEBUG BEGIN_STMT
+  if (InputBufferPtr_20(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (UpperHeaderBytesToShift_18 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (long unsigned int) UpperHeaderBytesToShift_18;
+  E2E_MemCpy32 (BufferPtr_21(D), InputBufferPtr_20(D), _3);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = (sizetype) UpperHeaderBytesToShift_18;
+  _5 = BufferPtr_21(D) + _4;
+  _6 = (int) UpperHeaderBytesToShift_18;
+  _7 = (int) E2EHeaderLengthBytes_19;
+  _8 = _6 + _7;
+  _9 = (sizetype) _8;
+  _10 = InputBufferPtr_20(D) + _9;
+  _11 = InputBufferLength_23(D) - UpperHeaderBytesToShift_18;
+  _12 = _11 - E2EHeaderLengthBytes_19;
+  _13 = (long unsigned int) _12;
+  E2E_MemCpy32 (_5, _10, _13);
+
+  <bb 6> :
+  return;
+
+}
+
+
+E2EXf_Inv_InPlaceShiftUpperHeaderToRight (uint8 * BufferPtr, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  uint16 Offset;
+  uint16 Idx;
+  const uint16 E2EHeaderLengthBytes;
+  const uint16 UpperHeaderBytesToShift;
+  short unsigned int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  sizetype _4;
+  uint8 * _5;
+  short unsigned int _6;
+  sizetype _7;
+  uint8 * _8;
+  unsigned char _9;
+  short unsigned int Idx.0_10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_15(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_16 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_16
+  # DEBUG BEGIN_STMT
+  _2 = PXXConfigPtr_15(D)->HeaderLength;
+  E2EHeaderLengthBytes_17 = _2 / 8;
+  # DEBUG E2EHeaderLengthBytes => E2EHeaderLengthBytes_17
+  # DEBUG BEGIN_STMT
+  if (BufferPtr_18(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  if (UpperHeaderBytesToShift_16 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Idx_19 = 0;
+  # DEBUG Idx => Idx_19
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = UpperHeaderBytesToShift_16 - Idx_11;
+  Offset_20 = _3 + 65535;
+  # DEBUG Offset => Offset_20
+  # DEBUG BEGIN_STMT
+  _4 = (sizetype) Offset_20;
+  _5 = BufferPtr_18(D) + _4;
+  _6 = Offset_20 + E2EHeaderLengthBytes_17;
+  _7 = (sizetype) _6;
+  _8 = BufferPtr_18(D) + _7;
+  _9 = *_5;
+  *_8 = _9;
+  # DEBUG BEGIN_STMT
+  Idx.0_10 = Idx_11;
+  Idx_22 = Idx.0_10 + 1;
+  # DEBUG Idx => Idx_22
+
+  <bb 6> :
+  # Idx_11 = PHI <Idx_19(4), Idx_22(5)>
+  # DEBUG Idx => Idx_11
+  # DEBUG BEGIN_STMT
+  if (Idx_11 < UpperHeaderBytesToShift_16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+E2EXf_CopyOutOfPlaceBuffer (uint8 * BufferPtr, const uint8 * InputBufferPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 E2EHeaderLengthBytes;
+  const uint16 UpperHeaderBytesToShift;
+  short unsigned int _1;
+  short unsigned int _2;
+  long unsigned int _3;
+  int _4;
+  int _5;
+  int _6;
+  sizetype _7;
+  uint8 * _8;
+  sizetype _9;
+  const uint8 * _10;
+  short unsigned int _11;
+  long unsigned int _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_14(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_15 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_15
+  # DEBUG BEGIN_STMT
+  _2 = PXXConfigPtr_14(D)->HeaderLength;
+  E2EHeaderLengthBytes_16 = _2 / 8;
+  # DEBUG E2EHeaderLengthBytes => E2EHeaderLengthBytes_16
+  # DEBUG BEGIN_STMT
+  _3 = (long unsigned int) UpperHeaderBytesToShift_15;
+  E2E_MemCpy32 (BufferPtr_17(D), InputBufferPtr_18(D), _3);
+  # DEBUG BEGIN_STMT
+  _4 = (int) UpperHeaderBytesToShift_15;
+  _5 = (int) E2EHeaderLengthBytes_16;
+  _6 = _4 + _5;
+  _7 = (sizetype) _6;
+  _8 = BufferPtr_17(D) + _7;
+  _9 = (sizetype) UpperHeaderBytesToShift_15;
+  _10 = InputBufferPtr_18(D) + _9;
+  _11 = InputBufferLength_20(D) - UpperHeaderBytesToShift_15;
+  _12 = (long unsigned int) _11;
+  E2E_MemCpy32 (_8, _10, _12);
+  return;
+
+}
+
+
+E2EXf_InPlaceShiftUpperHeaderToLeft (uint8 * BufferPtr, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 E2EHeaderLengthBytes;
+  const uint16 UpperHeaderBytesToShift;
+  short unsigned int _1;
+  short unsigned int _2;
+  sizetype _3;
+  uint8 * _4;
+  long unsigned int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_8(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_9 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_9
+  # DEBUG BEGIN_STMT
+  _2 = PXXConfigPtr_8(D)->HeaderLength;
+  E2EHeaderLengthBytes_10 = _2 / 8;
+  # DEBUG E2EHeaderLengthBytes => E2EHeaderLengthBytes_10
+  # DEBUG BEGIN_STMT
+  if (UpperHeaderBytesToShift_9 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (sizetype) E2EHeaderLengthBytes_10;
+  _4 = BufferPtr_11(D) + _3;
+  _5 = (long unsigned int) UpperHeaderBytesToShift_9;
+  E2E_MemCpy32 (BufferPtr_11(D), _4, _5);
+
+  <bb 4> :
+  return;
+
+}
+
+
+E2EXf_OutOfPlaceTransPreCondCheck (uint8 * BufferPtr, uint16 * BufferLengthPtr, const uint8 * InputBufferPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 UpperHeaderBytesToShift;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  uint8 _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_4(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_5 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_5
+  # DEBUG BEGIN_STMT
+  if (InputBufferPtr_6(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 255;
+  # DEBUG RetVal => RetVal_13
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (InputBufferLength_7(D) < UpperHeaderBytesToShift_5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 255;
+  # DEBUG RetVal => RetVal_12
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BufferLengthPtr_8(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (BufferPtr_9(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 255;
+  # DEBUG RetVal => RetVal_11
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 0;
+  # DEBUG RetVal => RetVal_10
+
+  <bb 10> :
+  # RetVal_2 = PHI <RetVal_13(3), RetVal_12(5), RetVal_11(8), RetVal_10(9)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  _14 = RetVal_2;
+  return _14;
+
+}
+
+
+E2EXf_InPlaceTransPreCondCheck (uint8 * BufferPtr, uint16 * BufferLengthPtr, uint16 InputBufferLength, const struct E2EXf_PXXConfigType * PXXConfigPtr)
+{
+  const uint16 UpperHeaderBytesToShift;
+  Std_ReturnType RetVal;
+  short unsigned int _1;
+  uint8 _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = PXXConfigPtr_4(D)->UpperHeaderBitsToShift;
+  UpperHeaderBytesToShift_5 = _1 / 8;
+  # DEBUG UpperHeaderBytesToShift => UpperHeaderBytesToShift_5
+  # DEBUG BEGIN_STMT
+  if (BufferPtr_6(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = 255;
+  # DEBUG RetVal => RetVal_12
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (InputBufferLength_7(D) < UpperHeaderBytesToShift_5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_11 = 255;
+  # DEBUG RetVal => RetVal_11
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (BufferLengthPtr_8(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_10 = 255;
+  # DEBUG RetVal => RetVal_10
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 0;
+  # DEBUG RetVal => RetVal_9
+
+  <bb 9> :
+  # RetVal_2 = PHI <RetVal_12(3), RetVal_11(5), RetVal_10(7), RetVal_9(8)>
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  _13 = RetVal_2;
+  return _13;
+
+}
+
+

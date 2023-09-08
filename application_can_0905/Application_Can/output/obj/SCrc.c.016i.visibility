@@ -1,0 +1,289 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: SCrc_CalculateCRC32P4 SCrc_CalculateCRC16 SCrc_CalculateCRC8H2F SCrc_CalculateCRC8
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+SCrc_CalculateCRC32P4/7 (SCrc_CalculateCRC32P4) @06ac18c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: SCrc_Table32P4/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+SCrc_CalculateCRC16/6 (SCrc_CalculateCRC16) @06ac1700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: SCrc_Table16/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+SCrc_CalculateCRC8H2F/5 (SCrc_CalculateCRC8H2F) @06ac1540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: SCrc_Table8H2F/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+SCrc_CalculateCRC8/4 (SCrc_CalculateCRC8) @06ac1380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: SCrc_Table8/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+SCrc_Table32P4/3 (SCrc_Table32P4) @0683f708
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: SCrc_CalculateCRC32P4/7 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+SCrc_Table16/2 (SCrc_Table16) @0683f678
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: SCrc_CalculateCRC16/6 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+SCrc_Table8H2F/1 (SCrc_Table8H2F) @0683f5e8
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: SCrc_CalculateCRC8H2F/5 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+SCrc_Table8/0 (SCrc_Table8) @0683f558
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: SCrc_CalculateCRC8/4 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+SCrc_CalculateCRC32P4 (const uint8 * SCrc_DataPtr, uint32 SCrc_Length, uint32 SCrc_StartValue32P4, boolean SCrc_IsFirstCall)
+{
+  uint32 Idx;
+  uint32 D.5453;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SCrc_IsFirstCall == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue32P4 = ~SCrc_StartValue32P4;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue32P4 = 4294967295;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Idx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) SCrc_StartValue32P4;
+  _2 = SCrc_DataPtr + Idx;
+  _3 = *_2;
+  _4 = _1 ^ _3;
+  _5 = (int) _4;
+  _6 = SCrc_Table32P4[_5];
+  _7 = SCrc_StartValue32P4 >> 8;
+  SCrc_StartValue32P4 = _6 ^ _7;
+  # DEBUG BEGIN_STMT
+  Idx = Idx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Idx < SCrc_Length)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.5453 = ~SCrc_StartValue32P4;
+  return D.5453;
+
+}
+
+
+SCrc_CalculateCRC16 (const uint8 * SCrc_DataPtr, uint32 SCrc_Length, uint16 SCrc_StartValue16, boolean SCrc_IsFirstCall)
+{
+  uint32 Idx;
+  uint16 D.5448;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SCrc_IsFirstCall == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue16 = 65535;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Idx = 0;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = SCrc_StartValue16 >> 8;
+  _2 = (unsigned char) _1;
+  _3 = SCrc_DataPtr + Idx;
+  _4 = *_3;
+  _5 = _2 ^ _4;
+  _6 = (int) _5;
+  _7 = SCrc_Table16[_6];
+  _8 = SCrc_StartValue16 << 8;
+  SCrc_StartValue16 = _7 ^ _8;
+  # DEBUG BEGIN_STMT
+  Idx = Idx + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Idx < SCrc_Length)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.5448 = SCrc_StartValue16;
+  return D.5448;
+
+}
+
+
+SCrc_CalculateCRC8H2F (const uint8 * SCrc_DataPtr, uint32 SCrc_Length, uint8 SCrc_StartValue8H2F, boolean SCrc_IsFirstCall)
+{
+  uint32 Idx;
+  uint8 D.5444;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SCrc_IsFirstCall == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue8H2F = ~SCrc_StartValue8H2F;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue8H2F = 255;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Idx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = SCrc_DataPtr + Idx;
+  _2 = *_1;
+  _3 = SCrc_StartValue8H2F ^ _2;
+  _4 = (int) _3;
+  SCrc_StartValue8H2F = SCrc_Table8H2F[_4];
+  # DEBUG BEGIN_STMT
+  Idx = Idx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Idx < SCrc_Length)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.5444 = ~SCrc_StartValue8H2F;
+  return D.5444;
+
+}
+
+
+SCrc_CalculateCRC8 (const uint8 * SCrc_DataPtr, uint32 SCrc_Length, uint8 SCrc_StartValue8, boolean SCrc_IsFirstCall)
+{
+  uint32 Idx;
+  uint8 D.5439;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (SCrc_IsFirstCall == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue8 = ~SCrc_StartValue8;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SCrc_StartValue8 = 255;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Idx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = SCrc_DataPtr + Idx;
+  _2 = *_1;
+  _3 = SCrc_StartValue8 ^ _2;
+  _4 = (int) _3;
+  SCrc_StartValue8 = SCrc_Table8[_4];
+  # DEBUG BEGIN_STMT
+  Idx = Idx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Idx < SCrc_Length)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.5439 = ~SCrc_StartValue8;
+  return D.5439;
+
+}
+
+

@@ -1,0 +1,104 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_Timer_PitInit
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_pit_debugmode/2 (OS_pit_debugmode) @06c89750
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Timer_PitInit/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_pitBase/1 (OS_pitBase) @06c89708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_Timer_PitInit/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Timer_PitInit/0 (OS_Timer_PitInit) @06ca9a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_pitBase/1 (read)OS_pit_debugmode/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_Timer_PitInit (os_uint32_t major, os_uint32_t minor, os_uint32_t ticks)
+{
+  struct os_pitchannel_t * chan;
+  struct os_pit_t * pit;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pit = OS_pitBase[major];
+  # DEBUG BEGIN_STMT
+  chan = &pit->pit_chan[minor];
+  # DEBUG BEGIN_STMT
+  _1 = pit->mcr;
+  _2 = _1 & 2;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_pit_debugmode.0_3 = OS_pit_debugmode;
+  if (OS_pit_debugmode.0_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = pit->mcr;
+  _5 = _4 | 1;
+  pit->mcr = _5;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = pit->mcr;
+  _7 = _6 & 4294967293;
+  pit->mcr = _7;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = chan->tctrl;
+  _9 = _8 & 4294967294;
+  chan->tctrl = _9;
+  # DEBUG BEGIN_STMT
+  _10 = ticks + 4294967295;
+  chan->ldval = _10;
+  # DEBUG BEGIN_STMT
+  _11 = chan->tctrl;
+  _12 = _11 & 4294967291;
+  chan->tctrl = _12;
+  # DEBUG BEGIN_STMT
+  _13 = chan->tctrl;
+  _14 = _13 | 2;
+  chan->tctrl = _14;
+  # DEBUG BEGIN_STMT
+  _15 = chan->tctrl;
+  _16 = _15 | 1;
+  chan->tctrl = _16;
+  return;
+
+}
+
+

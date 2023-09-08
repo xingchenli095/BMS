@@ -1,0 +1,280 @@
+__attribute__((target ("general-regs-only")))
+OS_KernEnableInterruptSource (os_isrid_t i, os_boolean_t clearPending)
+{
+  os_errorresult_t e;
+  const struct os_appcontext_t * const app;
+  const struct os_isr_t * isr;
+  os_paramtype_t p[3];
+  os_result_t r;
+  unsigned int _1;
+  unsigned char _2;
+  const os_callermask_t * OS_permittedContext.2_3;
+  const os_callermask_t * _4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  const os_callermask_t * OS_permittedContext.3_8;
+  const os_callermask_t * _9;
+  short unsigned int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  const os_callermask_t * OS_permittedContext.4_16;
+  const os_callermask_t * _17;
+  short unsigned int _18;
+  unsigned char _19;
+  int _20;
+  int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  short unsigned int OS_nInterrupts.5_24;
+  const struct os_isr_t * OS_isrTableBase.6_25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned char _28;
+  const struct os_task_t * _29;
+  unsigned char _30;
+  const struct os_isr_t * OS_isrTableBase.9_31;
+  short unsigned int _32;
+  unsigned int _33;
+  unsigned int _34;
+  const struct os_isr_t * _35;
+  unsigned char _36;
+  unsigned char _37;
+  unsigned char _38;
+  unsigned int _39;
+  unsigned int _40;
+  unsigned int _41;
+  _Bool iftmp.0_43;
+  int iftmp.1_44;
+  const struct os_appcontext_t * iftmp.7_45;
+  const struct os_appcontext_t * iftmp.8_46;
+  const struct os_appcontext_t * iftmp.10_47;
+  _Bool iftmp.0_53;
+  int iftmp.1_54;
+  int iftmp.1_55;
+  _Bool iftmp.0_56;
+  const struct os_appcontext_t * iftmp.10_58;
+  const struct os_appcontext_t * iftmp.10_59;
+  const struct os_appcontext_t * iftmp.8_60;
+  const struct os_appcontext_t * iftmp.8_61;
+  const struct os_appcontext_t * iftmp.7_62;
+  const struct os_appcontext_t * iftmp.7_63;
+  os_result_t _76;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r_49 = 0;
+  # DEBUG r => r_49
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) i_50(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.inFunction;
+  if (_2 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  OS_permittedContext.2_3 = OS_permittedContext;
+  _4 = OS_permittedContext.2_3 + 92;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 1024;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  OS_permittedContext.3_8 = OS_permittedContext;
+  _9 = OS_permittedContext.3_8 + 92;
+  _10 = *_9;
+  _11 = OS_kernelData.errorStatus.calledFrom;
+  _12 = (int) _11;
+  _13 = 1 << _12;
+  _14 = (short unsigned int) _13;
+  _15 = _10 & _14;
+  if (_15 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1_54 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.1_55 = 0;
+
+  <bb 7> :
+  # iftmp.1_44 = PHI <iftmp.1_54(5), iftmp.1_55(6)>
+  iftmp.0_56 = iftmp.1_44 == 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  OS_permittedContext.4_16 = OS_permittedContext;
+  _17 = OS_permittedContext.4_16 + 92;
+  _18 = *_17;
+  _19 = OS_kernelData.inFunction;
+  _20 = (int) _19;
+  _21 = 1 << _20;
+  _22 = (short unsigned int) _21;
+  _23 = _18 & _22;
+  iftmp.0_53 = _23 == 0;
+
+  <bb 9> :
+  # iftmp.0_43 = PHI <iftmp.0_56(7), iftmp.0_53(8)>
+  if (iftmp.0_43 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  r_75 = OS_Error (&OS_svc_EnableInterruptSource, 12, &p);
+  # DEBUG r => r_75
+  goto <bb 29>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.5_24 = OS_nInterrupts;
+  if (i_50(D) >= OS_nInterrupts.5_24)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  r_73 = OS_Error (&OS_svc_EnableInterruptSource, 47, &p);
+  # DEBUG r => r_73
+  goto <bb 29>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.6_25 = OS_isrTableBase;
+  _26 = (unsigned int) i_50(D);
+  _27 = _26 * 68;
+  isr_57 = OS_isrTableBase.6_25 + _27;
+  # DEBUG isr => isr_57
+  # DEBUG BEGIN_STMT
+  _28 = OS_kernelData.inFunction;
+  if (_28 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  _29 = OS_kernelData.taskCurrent;
+  iftmp.7_63 = _29->app;
+  goto <bb 24>; [INV]
+
+  <bb 15> :
+  _30 = OS_kernelData.inFunction;
+  if (_30 == 3)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  OS_isrTableBase.9_31 = OS_isrTableBase;
+  _32 = OS_kernelData.isrCurrent;
+  _33 = (unsigned int) _32;
+  _34 = _33 * 68;
+  _35 = OS_isrTableBase.9_31 + _34;
+  iftmp.8_61 = _35->app;
+  goto <bb 23>; [INV]
+
+  <bb 17> :
+  _36 = OS_kernelData.inFunction;
+  if (_36 == 10)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  _37 = OS_kernelData.inFunction;
+  if (_37 == 8)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  _38 = OS_kernelData.inFunction;
+  if (_38 == 9)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  iftmp.10_59 = OS_kernelData.hookApp;
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  iftmp.10_58 = 0B;
+
+  <bb 22> :
+  # iftmp.10_47 = PHI <iftmp.10_59(20), iftmp.10_58(21)>
+  iftmp.8_60 = iftmp.10_47;
+
+  <bb 23> :
+  # iftmp.8_46 = PHI <iftmp.8_61(16), iftmp.8_60(22)>
+  iftmp.7_62 = iftmp.8_46;
+
+  <bb 24> :
+  # iftmp.7_45 = PHI <iftmp.7_63(14), iftmp.7_62(23)>
+  app_64 = iftmp.7_45;
+  # DEBUG app => app_64
+  # DEBUG BEGIN_STMT
+  if (app_64 != 0B)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  _39 = app_64->permissionBit;
+  _40 = isr_57->permissions;
+  _41 = _39 & _40;
+  if (_41 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  r_66 = OS_Error (&OS_svc_EnableInterruptSource, 37, &p);
+  # DEBUG r => r_66
+  goto <bb 29>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  e_69 = OS_LocalEnableInterruptSource (isr_57, clearPending_67(D));
+  # DEBUG e => e_69
+  # DEBUG BEGIN_STMT
+  if (e_69 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  r_71 = OS_Error (&OS_svc_EnableInterruptSource, e_69, &p);
+  # DEBUG r => r_71
+
+  <bb 29> :
+  # r_42 = PHI <r_75(10), r_73(12), r_66(26), r_49(27), r_71(28)>
+  # DEBUG r => r_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _76 = r_42;
+  p ={v} {CLOBBER};
+  return _76;
+
+}
+
+

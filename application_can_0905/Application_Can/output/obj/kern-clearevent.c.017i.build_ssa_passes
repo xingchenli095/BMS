@@ -1,0 +1,97 @@
+__attribute__((target ("general-regs-only")))
+OS_KernClearEvent (os_eventmask_t e)
+{
+  os_paramtype_t p[3];
+  os_result_t r;
+  struct os_taskdynamic_t * td;
+  const struct os_task_t * ts;
+  os_intstatus_t is;
+  struct os_kerneldata_t * const kernel_data;
+  os_result_t D.7426;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p[0] = e;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ts = OS_kernelData.taskCurrent;
+  # DEBUG BEGIN_STMT
+  td = ts->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_2 = OS_iecMode;
+  if (OS_iecMode.0_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = BIT_FIELD_REF <MEM[(void *)td], 16, 160>;
+  _4 = _3;
+  if (_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ClearEvent, 55, 0B);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = ts->flags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 2;
+  if (_7 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_8 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_8);
+  # DEBUG BEGIN_STMT
+  _9 = td->pEvents;
+  _10 = ~e;
+  _11 = _9 & _10;
+  td->pEvents = _11;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ClearEvent, 15, &p);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  r = OS_Error (&OS_svc_ClearEvent, 12, &p);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7426 = r;
+  p = {CLOBBER};
+  return D.7426;
+
+}
+
+

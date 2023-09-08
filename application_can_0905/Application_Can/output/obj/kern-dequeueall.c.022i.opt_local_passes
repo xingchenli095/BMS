@@ -1,0 +1,135 @@
+__attribute__((target ("general-regs-only")))
+OS_DequeueAll (const struct os_task_t * tp)
+{
+  os_unsigned_t nAct;
+  os_tasklink_t max;
+  os_tasklink_t min;
+  os_tasklink_t curr;
+  os_tasklink_t prev;
+  os_tasklink_t next;
+  struct os_taskdynamic_t * td;
+  os_tasklink_t * const taskActivations;
+  unsigned char _1;
+  short unsigned int _2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  os_tasklink_t * _7;
+  unsigned int _8;
+  unsigned int _9;
+  os_tasklink_t * _10;
+  unsigned int _11;
+  unsigned int _12;
+  os_tasklink_t * _13;
+  short unsigned int _14;
+  int _15;
+  const struct os_task_t * _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations_21 = &OS_taskActivations;
+  # DEBUG taskActivations => taskActivations_21
+  # DEBUG BEGIN_STMT
+  td_24 = tp_23(D)->dynamic;
+  # DEBUG td => td_24
+  # DEBUG BEGIN_STMT
+  next_25 = OS_taskActivations[0];
+  # DEBUG next => next_25
+  # DEBUG BEGIN_STMT
+  prev_26 = 0;
+  # DEBUG prev => prev_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  min_27 = tp_23(D)->linkBase;
+  # DEBUG min => min_27
+  # DEBUG BEGIN_STMT
+  _1 = tp_23(D)->maxAct;
+  _2 = (short unsigned int) _1;
+  max_28 = min_27 + _2;
+  # DEBUG max => max_28
+  # DEBUG BEGIN_STMT
+  _3 = td_24->nAct;
+  _4 = (unsigned int) _3;
+  nAct_29 = _4 + 1;
+  # DEBUG nAct => nAct_29
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curr_30 = next_17;
+  # DEBUG curr => curr_30
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) next_17;
+  _6 = _5 * 2;
+  _7 = &OS_taskActivations + _6;
+  next_31 = *_7;
+  # DEBUG next => next_31
+  # DEBUG BEGIN_STMT
+  if (curr_30 >= min_27)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (curr_30 <= max_28)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) prev_18;
+  _9 = _8 * 2;
+  _10 = &OS_taskActivations + _9;
+  *_10 = next_31;
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) curr_30;
+  _12 = _11 * 2;
+  _13 = &OS_taskActivations + _12;
+  *_13 = 0;
+  # DEBUG BEGIN_STMT
+  nAct_34 = nAct_19 + 4294967295;
+  # DEBUG nAct => nAct_34
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  prev_35 = curr_30;
+  # DEBUG prev => prev_35
+
+  <bb 7> :
+  # next_17 = PHI <next_25(2), next_31(5), next_31(6)>
+  # prev_18 = PHI <prev_26(2), prev_18(5), prev_35(6)>
+  # nAct_19 = PHI <nAct_29(2), nAct_34(5), nAct_19(6)>
+  # DEBUG nAct => nAct_19
+  # DEBUG prev => prev_18
+  # DEBUG next => next_17
+  # DEBUG BEGIN_STMT
+  if (nAct_19 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (next_17 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  td_24->nAct = 0;
+  # DEBUG BEGIN_STMT
+  td_24->cAct = 0;
+  # DEBUG BEGIN_STMT
+  _14 = OS_taskActivations[0];
+  _15 = (int) _14;
+  _16 = OS_taskPtrs[_15];
+  OS_kernelData.taskQueueHead = _16;
+  return;
+
+}
+
+

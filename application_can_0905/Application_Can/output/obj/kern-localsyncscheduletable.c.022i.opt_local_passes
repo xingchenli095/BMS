@@ -1,0 +1,823 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalSyncScheduleTable (const struct os_schedule_t * ss, os_tick_t globalTime)
+{
+  os_schedulestatus_t state;
+  os_intstatus_t is;
+  os_errorresult_t e;
+  struct os_scheduledynamic_t * sd;
+  short unsigned int OS_kernDisableLevel.0_1;
+  unsigned char _2;
+  const struct os_appcontext_t * _3;
+  int _4;
+  os_errorresult_t _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd_9 = ss_8(D)->dynamic;
+  # DEBUG sd => sd_9
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is_11 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG is => is_11
+  # DEBUG BEGIN_STMT
+  _2 = sd_9->status;
+  state_12 = _2 & 7;
+  # DEBUG state => state_12
+  # DEBUG BEGIN_STMT
+  _3 = ss_8(D)->app;
+  _4 = OS_AppIsAccessible (_3);
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_11);
+  # DEBUG BEGIN_STMT
+  e_22 = 154;
+  # DEBUG e => e_22
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (state_12 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  e_20 = OS_DoSyncRunningScheduleTable (ss_8(D), sd_9, globalTime_16(D), is_11);
+  # DEBUG e => e_20
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (state_12 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  e_18 = OS_DoSyncWaitingScheduleTable (ss_8(D), sd_9, globalTime_16(D), is_11);
+  # DEBUG e => e_18
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_11);
+  # DEBUG BEGIN_STMT
+  e_15 = 41;
+  # DEBUG e => e_15
+
+  <bb 9> :
+  # e_5 = PHI <e_22(3), e_20(5), e_18(7), e_15(8)>
+  # DEBUG e => e_5
+  # DEBUG BEGIN_STMT
+  _23 = e_5;
+  return _23;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DoSyncWaitingScheduleTable (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, os_tick_t globalTime, os_intstatus_t is)
+{
+  os_errorresult_t e;
+  os_tick_t maxallowedvalue;
+  os_tick_t offset;
+  struct os_counterdynamic_t * cd;
+  const struct os_counter_t * cs;
+  struct os_alarmdynamic_t * ad;
+  const struct os_alarm_t * as;
+  const struct os_alarm_t * OS_alarmTableBase.10_1;
+  short unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_counter_t * OS_counterTableBase.11_5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct os_scheduleentry_t * _9;
+  unsigned int _10;
+  const struct os_scheduleentry_t * _11;
+  unsigned int _12;
+  const struct os_scheduleentry_t * _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  const struct os_hwt_t * _18;
+  unsigned char _19;
+  void (*<T540>) (const struct os_counter_t *) _20;
+  short unsigned int OS_kernDisableLevel.12_21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned int _24;
+  unsigned int _25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  short unsigned int _30;
+  const struct os_hwt_t * _31;
+  unsigned char _32;
+  short unsigned int _33;
+  short unsigned int _34;
+  void (*<T540>) (const struct os_counter_t *) _35;
+  os_tick_t iftmp.13_39;
+  os_tick_t iftmp.13_68;
+  os_tick_t iftmp.13_69;
+  os_errorresult_t _74;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.10_1 = OS_alarmTableBase;
+  _2 = ss_44(D)->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  as_45 = OS_alarmTableBase.10_1 + _4;
+  # DEBUG as => as_45
+  # DEBUG BEGIN_STMT
+  ad_46 = as_45->dynamic;
+  # DEBUG ad => ad_46
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.11_5 = OS_counterTableBase;
+  _6 = as_45->counter;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 32;
+  cs_47 = OS_counterTableBase.11_5 + _8;
+  # DEBUG cs => cs_47
+  # DEBUG BEGIN_STMT
+  cd_48 = cs_47->dynamic;
+  # DEBUG cd => cd_48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e_49 = 0;
+  # DEBUG e => e_49
+  # DEBUG BEGIN_STMT
+  _9 = ss_44(D)->table;
+  _10 = _9->offset;
+  if (globalTime_50(D) < _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _11 = ss_44(D)->table;
+  _12 = _11->offset;
+  offset_52 = _12 - globalTime_50(D);
+  # DEBUG offset => offset_52
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _13 = ss_44(D)->table;
+  _14 = _13->offset;
+  _15 = _14 - globalTime_50(D);
+  _16 = ss_44(D)->period;
+  offset_51 = _15 + _16;
+  # DEBUG offset => offset_51
+
+  <bb 5> :
+  # offset_37 = PHI <offset_52(3), offset_51(4)>
+  # DEBUG offset => offset_37
+  # DEBUG BEGIN_STMT
+  maxallowedvalue_53 = cs_47->maxallowedvalue;
+  # DEBUG maxallowedvalue => maxallowedvalue_53
+  # DEBUG BEGIN_STMT
+  if (offset_37 > maxallowedvalue_53)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _17 = offset_37 - maxallowedvalue_53;
+  sd_54(D)->adjRemaining = _17;
+  # DEBUG BEGIN_STMT
+  offset_58 = maxallowedvalue_53;
+  # DEBUG offset => offset_58
+  # DEBUG BEGIN_STMT
+  sd_54(D)->status = 9;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  sd_54(D)->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd_54(D)->status = 11;
+
+  <bb 8> :
+  # offset_38 = PHI <offset_58(6), offset_37(7)>
+  # DEBUG offset => offset_38
+  # DEBUG BEGIN_STMT
+  ad_46->inUse = 1;
+  # DEBUG BEGIN_STMT
+  ad_46->period = 0;
+  # DEBUG BEGIN_STMT
+  _18 = cs_47->hwt;
+  if (_18 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _19 = cd_48->lock;
+  if (_19 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_62(D));
+  # DEBUG BEGIN_STMT
+  _20 = cs_47->updFunc;
+  _20 (cs_47);
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.12_21 = OS_kernDisableLevel;
+  is_66 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.12_21);
+  # DEBUG is => is_66
+
+  <bb 11> :
+  # is_36 = PHI <is_62(D)(8), is_62(D)(9), is_66(10)>
+  # DEBUG is => is_36
+  # DEBUG BEGIN_STMT
+  ad_46->delta = offset_38;
+  # DEBUG BEGIN_STMT
+  _22 = cs_47->maxallowedvalue;
+  _23 = cd_48->current;
+  _24 = _22 - _23;
+  if (offset_38 > _24)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  _25 = cd_48->current;
+  _26 = offset_38 + _25;
+  _27 = cs_47->maxallowedvalue;
+  _28 = _26 - _27;
+  iftmp.13_69 = _28 + 4294967295;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  _29 = cd_48->current;
+  iftmp.13_68 = offset_38 + _29;
+
+  <bb 14> :
+  # iftmp.13_39 = PHI <iftmp.13_69(12), iftmp.13_68(13)>
+  sd_54(D)->ctrAbs = iftmp.13_39;
+  # DEBUG BEGIN_STMT
+  _30 = ss_44(D)->alarm;
+  OS_EnqueueAlarm (cs_47, cd_48, _30, ad_46);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_36);
+  # DEBUG BEGIN_STMT
+  _31 = cs_47->hwt;
+  if (_31 != 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _32 = cd_48->lock;
+  if (_32 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  _33 = cd_48->head;
+  _34 = ss_44(D)->alarm;
+  if (_33 == _34)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _35 = cs_47->updFunc;
+  _35 (cs_47);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _74 = e_49;
+  return _74;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_DoSyncRunningScheduleTable (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, os_tick_t globalTime, os_intstatus_t is)
+{
+  os_tick_t err;
+  os_counterid_t counter;
+  const struct os_scheduleentry_t * currp;
+  os_errorresult_t e;
+  os_int_t gadRes;
+  os_tick_t delta;
+  os_tick_t local;
+  os_tick_t lengthen;
+  os_tick_t shorten;
+  short unsigned int _1;
+  const struct os_alarm_t * OS_alarmTableBase.1_2;
+  short unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  const struct os_alarm_t * _6;
+  const struct os_alarm_t * OS_alarmTableBase.2_7;
+  short unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct os_alarm_t * _11;
+  struct os_alarmdynamic_t * _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int delta.3_17;
+  unsigned int delta.4_18;
+  unsigned int _19;
+  unsigned int _20;
+  unsigned char _21;
+  unsigned char _22;
+  const struct os_scheduleentry_t * _23;
+  short unsigned int _24;
+  unsigned int _25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned int delta.5_28;
+  unsigned int _29;
+  unsigned int delta.6_30;
+  unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  unsigned int delta.7_34;
+  const struct os_alarm_t * OS_alarmTableBase.8_35;
+  short unsigned int _36;
+  unsigned int _37;
+  unsigned int _38;
+  const struct os_alarm_t * _39;
+  const struct os_counter_t * OS_counterTableBase.9_40;
+  unsigned int _41;
+  unsigned int _42;
+  const struct os_counter_t * _43;
+  struct os_counterdynamic_t * _44;
+  unsigned int _45;
+  unsigned int _46;
+  unsigned char _47;
+  unsigned char _48;
+  unsigned int _49;
+  unsigned int _50;
+  unsigned int _51;
+  unsigned int _52;
+  unsigned int _53;
+  unsigned char _54;
+  unsigned char _55;
+  unsigned char _56;
+  unsigned int _57;
+  unsigned int _58;
+  unsigned char _59;
+  signed char _60;
+  unsigned int _61;
+  unsigned char _62;
+  unsigned char _63;
+  unsigned char _64;
+  signed char _65;
+  unsigned int _66;
+  unsigned int _67;
+  unsigned char _68;
+  unsigned char _69;
+  unsigned char _70;
+  unsigned char _71;
+  unsigned char _72;
+  unsigned char _73;
+  unsigned int _74;
+  unsigned char _75;
+  unsigned char _76;
+  unsigned char _77;
+  signed char _78;
+  unsigned char _79;
+  unsigned char _80;
+  unsigned int _81;
+  unsigned char _82;
+  unsigned char _83;
+  unsigned char _84;
+  unsigned char _85;
+  os_errorresult_t _145;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e_95 = 0;
+  # DEBUG e => e_95
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ss_97(D)->alarm;
+  OS_alarmTableBase.1_2 = OS_alarmTableBase;
+  _3 = ss_97(D)->alarm;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 28;
+  _6 = OS_alarmTableBase.1_2 + _5;
+  OS_alarmTableBase.2_7 = OS_alarmTableBase;
+  _8 = ss_97(D)->alarm;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 28;
+  _11 = OS_alarmTableBase.2_7 + _10;
+  _12 = _11->dynamic;
+  gadRes_99 = OS_GetAlarmDelta (_1, _6, _12, &delta);
+  # DEBUG gadRes => gadRes_99
+  # DEBUG BEGIN_STMT
+  if (gadRes_99 < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  e_108 = OS_Panic (10);
+  # DEBUG e => e_108
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_102(D));
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (gadRes_99 > 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _13 = sd_101(D)->status;
+  _14 = (unsigned int) _13;
+  _15 = _14 & 7;
+  if (_15 == 3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  gadRes_105 = 0;
+  # DEBUG gadRes => gadRes_105
+  # DEBUG BEGIN_STMT
+  delta = 0;
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_102(D));
+  # DEBUG BEGIN_STMT
+  e_104 = 41;
+  # DEBUG e => e_104
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _16 = ss_97(D)->period;
+  delta.3_17 = delta;
+  if (_16 <= delta.3_17)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  delta.4_18 = delta;
+  _19 = ss_97(D)->period;
+  _20 = delta.4_18 % _19;
+  delta = _20;
+
+  <bb 10> :
+  # gadRes_90 = PHI <gadRes_99(3), gadRes_99(7), gadRes_99(8), gadRes_99(9), gadRes_105(6)>
+  # e_91 = PHI <e_108(3), e_104(7), e_95(8), e_95(9), e_95(6)>
+  # DEBUG e => e_91
+  # DEBUG gadRes => gadRes_90
+  # DEBUG BEGIN_STMT
+  if (gadRes_90 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 41>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _21 = sd_101(D)->status;
+  _22 = _21 & 199;
+  sd_101(D)->status = _22;
+  # DEBUG BEGIN_STMT
+  _23 = ss_97(D)->table;
+  _24 = sd_101(D)->next;
+  _25 = (unsigned int) _24;
+  _26 = _25 * 20;
+  currp_111 = _23 + _26;
+  # DEBUG currp => currp_111
+  # DEBUG BEGIN_STMT
+  _27 = currp_111->offset;
+  delta.5_28 = delta;
+  if (_27 < delta.5_28)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _29 = currp_111->offset;
+  delta.6_30 = delta;
+  _31 = _29 - delta.6_30;
+  _32 = ss_97(D)->period;
+  local_113 = _31 + _32;
+  # DEBUG local => local_113
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _33 = currp_111->offset;
+  delta.7_34 = delta;
+  local_112 = _33 - delta.7_34;
+  # DEBUG local => local_112
+
+  <bb 14> :
+  # local_88 = PHI <local_113(12), local_112(13)>
+  # DEBUG local => local_88
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.8_35 = OS_alarmTableBase;
+  _36 = ss_97(D)->alarm;
+  _37 = (unsigned int) _36;
+  _38 = _37 * 28;
+  _39 = OS_alarmTableBase.8_35 + _38;
+  counter_114 = _39->counter;
+  # DEBUG counter => counter_114
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.9_40 = OS_counterTableBase;
+  _41 = (unsigned int) counter_114;
+  _42 = _41 * 32;
+  _43 = OS_counterTableBase.9_40 + _42;
+  _44 = _43->dynamic;
+  err_115 = _44->error;
+  # DEBUG err => err_115
+  # DEBUG BEGIN_STMT
+  if (local_88 >= err_115)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  local_117 = local_88 - err_115;
+  # DEBUG local => local_117
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _45 = ss_97(D)->period;
+  _46 = local_88 + _45;
+  local_116 = _46 - err_115;
+  # DEBUG local => local_116
+
+  <bb 17> :
+  # local_89 = PHI <local_117(15), local_116(16)>
+  # DEBUG local => local_89
+  # DEBUG BEGIN_STMT
+  if (globalTime_118(D) == local_89)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  _47 = sd_101(D)->status;
+  _48 = _47 | 8;
+  sd_101(D)->status = _48;
+  goto <bb 40>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (globalTime_118(D) > local_89)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  shorten_122 = globalTime_118(D) - local_89;
+  # DEBUG shorten => shorten_122
+  # DEBUG BEGIN_STMT
+  _49 = ss_97(D)->period;
+  shorten_123 = shorten_122 % _49;
+  # DEBUG shorten => shorten_123
+  # DEBUG BEGIN_STMT
+  _50 = ss_97(D)->period;
+  lengthen_124 = _50 - shorten_123;
+  # DEBUG lengthen => lengthen_124
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  lengthen_119 = local_89 - globalTime_118(D);
+  # DEBUG lengthen => lengthen_119
+  # DEBUG BEGIN_STMT
+  _51 = ss_97(D)->period;
+  lengthen_120 = lengthen_119 % _51;
+  # DEBUG lengthen => lengthen_120
+  # DEBUG BEGIN_STMT
+  _52 = ss_97(D)->period;
+  shorten_121 = _52 - lengthen_120;
+  # DEBUG shorten => shorten_121
+
+  <bb 22> :
+  # shorten_86 = PHI <shorten_123(20), shorten_121(21)>
+  # lengthen_87 = PHI <lengthen_124(20), lengthen_120(21)>
+  # DEBUG lengthen => lengthen_87
+  # DEBUG shorten => shorten_86
+  # DEBUG BEGIN_STMT
+  _53 = ss_97(D)->tolerance;
+  if (lengthen_87 <= _53)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _54 = sd_101(D)->status;
+  _55 = _54 | 8;
+  sd_101(D)->status = _55;
+  # DEBUG BEGIN_STMT
+  _56 = ss_97(D)->flags;
+  _57 = (unsigned int) _56;
+  _58 = _57 & 64;
+  if (_58 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _59 = ss_97(D)->flags;
+  _60 = (signed char) _59;
+  if (_60 < 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  _61 = ss_97(D)->tolerance;
+  if (shorten_86 <= _61)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _62 = sd_101(D)->status;
+  _63 = _62 | 16;
+  sd_101(D)->status = _63;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = shorten_86;
+  goto <bb 40>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = lengthen_87;
+  goto <bb 40>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _64 = ss_97(D)->flags;
+  _65 = (signed char) _64;
+  if (_65 < 0)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 29> :
+  _66 = ss_97(D)->tolerance;
+  if (shorten_86 <= _66)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _67 = ss_97(D)->dirCutoff;
+  if (shorten_86 < _67)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _68 = sd_101(D)->status;
+  _69 = _68 | 16;
+  sd_101(D)->status = _69;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = shorten_86;
+  goto <bb 40>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _70 = sd_101(D)->status;
+  _71 = _70 | 32;
+  sd_101(D)->status = _71;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = lengthen_87;
+  goto <bb 40>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _72 = sd_101(D)->status;
+  _73 = _72 | 32;
+  sd_101(D)->status = _73;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = lengthen_87;
+  goto <bb 40>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _74 = ss_97(D)->tolerance;
+  if (shorten_86 <= _74)
+    goto <bb 35>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _75 = sd_101(D)->status;
+  _76 = _75 | 8;
+  sd_101(D)->status = _76;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = shorten_86;
+  # DEBUG BEGIN_STMT
+  _77 = ss_97(D)->flags;
+  _78 = (signed char) _77;
+  if (_78 < 0)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  _79 = sd_101(D)->status;
+  _80 = _79 | 16;
+  sd_101(D)->status = _80;
+  goto <bb 40>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  _81 = ss_97(D)->dirCutoff;
+  if (shorten_86 < _81)
+    goto <bb 38>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  _82 = sd_101(D)->status;
+  _83 = _82 | 16;
+  sd_101(D)->status = _83;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = shorten_86;
+  goto <bb 40>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  _84 = sd_101(D)->status;
+  _85 = _84 | 32;
+  sd_101(D)->status = _85;
+  # DEBUG BEGIN_STMT
+  sd_101(D)->adjRemaining = lengthen_87;
+
+  <bb 40> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_102(D));
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  _145 = e_91;
+  delta ={v} {CLOBBER};
+  return _145;
+
+}
+
+

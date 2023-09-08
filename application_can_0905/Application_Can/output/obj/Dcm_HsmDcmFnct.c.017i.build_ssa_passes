@@ -1,0 +1,1955 @@
+Dcm_Roe_CheckForTxEnable ()
+{
+  Dcm_ComMChannelOperationStateType ComMChnTxState;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  boolean retValTxEnabled;
+  Std_ReturnType GetRxPduIdResult;
+  PduIdType RxPduId;
+  boolean D.8344;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RxPduId = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retValTxEnabled = 0;
+  # DEBUG BEGIN_STMT
+  GetRxPduIdResult = Dcm_Dsl_RoeServices_GetRxPduId (&RxPduId);
+  # DEBUG BEGIN_STMT
+  if (GetRxPduIdResult == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMChnTxState = 0;
+  # DEBUG BEGIN_STMT
+  RxPduId.0_1 = RxPduId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxPduId.0_1, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _2 = RxPduIdInfo.ComMChannelId;
+  ComMChnTxState = Dcm_Dsl_ComMChannelStateManager_GetTxState (_2);
+  # DEBUG BEGIN_STMT
+  if (ComMChnTxState == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  retValTxEnabled = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  retValTxEnabled = 0;
+
+  <bb 6> :
+  RxPduIdInfo = {CLOBBER};
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  retValTxEnabled = 0;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.8344 = retValTxEnabled;
+  RxPduId = {CLOBBER};
+  return D.8344;
+
+}
+
+
+Dcm_BootloaderResponseRequired (const uint8 instIdx)
+{
+  boolean ConditionResult;
+  boolean D.8316;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ConditionResult = 1;
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].NextJob.JobRequestType;
+  if (_2 == 9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ConditionResult = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.8316 = ConditionResult;
+  return D.8316;
+
+}
+
+
+Dcm_CheckForGeneralRejectConditions (const uint8 instIdx)
+{
+  uint16 MaxNumRP;
+  boolean GeneralRejectConditionFulfill;
+  boolean D.8404;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  GeneralRejectConditionFulfill = 0;
+  # DEBUG BEGIN_STMT
+  MaxNumRP = Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (instIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].rpCntr;
+  if (MaxNumRP == _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (MaxNumRP != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  GeneralRejectConditionFulfill = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.8404 = GeneralRejectConditionFulfill;
+  return D.8404;
+
+}
+
+
+RespPendInFirstCycle (const uint8 instIdx)
+{
+  Dcm_TimerValueType P2ServerAdjustTime;
+  Dcm_TimerValueType P2MaxTime;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  P2MaxTime = Dcm_Dsl_DiagnosticSessionHandler_GetP2MaxTime (instIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_ProtocolConfig[_1].P2ServerAdjustTime;
+  P2ServerAdjustTime = (Dcm_TimerValueType) _2;
+  # DEBUG BEGIN_STMT
+  _3 = P2ServerAdjustTime + 1;
+  if (P2MaxTime == _3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = (int) instIdx;
+  _5 = Dcm_HsmInfo[_4].requestValidationStatus;
+  if (_5 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) instIdx;
+  _7 = _6 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (_7, instIdx, 0);
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_SuppressResponse (const uint8 instIdx)
+{
+  const Dcm_NegativeResponseCodeType nrc;
+  boolean retVal;
+  boolean D.8440;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  nrc = Dcm_HsmInfo[_1].negativeResponseCode;
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  _3 = Dcm_HsmInfo[_2].rpCntr;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = (int) instIdx;
+  _5 = Dcm_HsmInfo[_4].serviceId;
+  if (_5 > 15)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  goto <bb 21>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) instIdx;
+  _7 = Dcm_HsmInfo[_6].RequestType;
+  if (_7 == 14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  goto <bb 21>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (nrc != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx;
+  _9 = Dcm_HsmInfo[_8].msgContext.msgAddInfo.reqType;
+  if (_9 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  _10 = nrc + 239;
+  if (_10 <= 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  if (nrc == 49)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  if (nrc == 126)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  if (nrc == 127)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  _11 = (int) instIdx;
+  _12 = Dcm_HsmInfo[_11].serviceId;
+  if (_12 <= 15)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  _13 = (int) instIdx;
+  _14 = Dcm_HsmInfo[_13].msgContext.msgAddInfo.suppressPosResponse;
+  if (_14 == 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  if (nrc == 17)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  goto <bb 21>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) instIdx;
+  _16 = Dcm_HsmInfo[_15].msgContext.msgAddInfo.suppressPosResponse;
+  if (_16 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  retVal = 1;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  D.8440 = retVal;
+  return D.8440;
+
+}
+
+
+Dcm_HsmDcmSfPgBufDataRequestedAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].TxConnectionId;
+  _5 = (int) instIdx;
+  _6 = Dcm_HsmInfo[_5].TxBuffer.BufferId;
+  Dcm_Dsl_BufferGive (_2, _4, _6);
+  # DEBUG BEGIN_STMT
+  _7 = (int) instIdx;
+  _8 = Dcm_HsmInfo[_7].TxConnectionId;
+  _9 = (int) instIdx;
+  Dcm_Dsl_TxConnectionProcessNextTxBuffer (_8, Dcm_HsmInfo[_9].TxBuffer);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPgBufDataAvailableAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].dspService;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  Dcm_HsmInfo[_3].TxBuffer.FilledLength = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx;
+  _5 = Dcm_HsmInfo[_4].TxBuffer.BufferPtr;
+  _6 = (int) instIdx;
+  _7 = Dcm_HsmInfo[_6].TxBuffer.Size;
+  Dcm_DspInternal_UpdatePage (_5, _7);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPgBufSendingCancellingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (2, instIdx);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolCancelProcessing (instIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].TxConnectionId;
+  Dcm_Dsl_TxConnectionCancelTransmit (_2);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfNormalSendingCancellingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (1, instIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].TxConnectionId;
+  Dcm_Dsl_TxConnectionCancelTransmit (_2);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfSendingEntry (const uint8 instIdx)
+{
+  Dcm_TransmissionTimeoutType TransmissionTimeout;
+  boolean SimulateTransmission;
+  struct Dcm_HsmInfoType * curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SimulateTransmission = Dcm_SuppressResponse (instIdx);
+  # DEBUG BEGIN_STMT
+  TransmissionTimeout = Dcm_Dsl_DiagnosticSessionHandler_GetTimerValue (instIdx, 2);
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo->negativeResponseCode;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo->NRCBuffer.BufferPtr;
+  *_3 = 127;
+  # DEBUG BEGIN_STMT
+  _4 = curHsmInfo->NRCBuffer.BufferPtr;
+  _5 = _4 + 1;
+  _6 = curHsmInfo->serviceId;
+  *_5 = _6;
+  # DEBUG BEGIN_STMT
+  _7 = curHsmInfo->NRCBuffer.BufferPtr;
+  _8 = _7 + 2;
+  _9 = curHsmInfo->negativeResponseCode;
+  *_8 = _9;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->NRCBuffer.FilledLength = 3;
+  # DEBUG BEGIN_STMT
+  _10 = (short unsigned int) instIdx;
+  _11 = _10 + 12;
+  _12 = curHsmInfo->TxConnectionId;
+  _13 = curHsmInfo->NRCBuffer.BufferId;
+  Dcm_Dsl_BufferGive (_11, _12, _13);
+  # DEBUG BEGIN_STMT
+  _14 = curHsmInfo->TxConnectionId;
+  _15 = curHsmInfo->ComMChannelId;
+  _16 = (short unsigned int) instIdx;
+  _17 = _16 + 12;
+  Dcm_Dsl_TxConnectionTransmit (_14, _15, _17, SimulateTransmission, 3, TransmissionTimeout, curHsmInfo->NRCBuffer);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _18 = (short unsigned int) instIdx;
+  _19 = _18 + 12;
+  _20 = curHsmInfo->TxConnectionId;
+  _21 = curHsmInfo->TxBuffer.BufferId;
+  Dcm_Dsl_BufferGive (_19, _20, _21);
+  # DEBUG BEGIN_STMT
+  _22 = curHsmInfo->TxConnectionId;
+  _23 = curHsmInfo->ComMChannelId;
+  _24 = (short unsigned int) instIdx;
+  _25 = _24 + 12;
+  _26 = curHsmInfo->msgContext.resDataLen;
+  _27 = _26 + 1;
+  Dcm_Dsl_TxConnectionTransmit (_22, _23, _25, SimulateTransmission, _27, TransmissionTimeout, curHsmInfo->TxBuffer);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _28 = (int) instIdx;
+  _29 = Dcm_HsmInfo[_28].RequestType;
+  _30 = _29 + 255;
+  if (_30 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _31 = (short unsigned int) instIdx;
+  _32 = _31 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (_32, instIdx, 2);
+  # DEBUG BEGIN_STMT
+  _33 = (short unsigned int) instIdx;
+  _34 = _33 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (_34, instIdx);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForApplGuard5 (const uint8 instIdx)
+{
+  boolean SendResponse;
+  boolean D.8410;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CheckForGeneralRejectConditions (instIdx);
+  _2 = _1 == 0;
+  SendResponse = (boolean) _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8410 = SendResponse;
+  return D.8410;
+
+}
+
+
+Dcm_HsmDcmSfWaitForApplGuard4 (const uint8 instIdx)
+{
+  boolean SendGeneralReject;
+  boolean D.8408;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SendGeneralReject = Dcm_CheckForGeneralRejectConditions (instIdx);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8408 = SendGeneralReject;
+  return D.8408;
+
+}
+
+
+Dcm_HsmDcmSfWaitForApplGuard3 (const uint8 instIdx)
+{
+  boolean SendResponsePending;
+  boolean D.8406;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CheckForGeneralRejectConditions (instIdx);
+  _2 = _1 == 0;
+  SendResponsePending = (boolean) _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8406 = SendResponsePending;
+  return D.8406;
+
+}
+
+
+Dcm_HsmDcmSfWaitForApplGuard2 (const uint8 instIdx)
+{
+  boolean SendGeneralReject;
+  boolean D.8398;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SendGeneralReject = Dcm_CheckForGeneralRejectConditions (instIdx);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8398 = SendGeneralReject;
+  return D.8398;
+
+}
+
+
+Dcm_HsmDcmSfSendRpForcedAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (instIdx, 3);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfSendRpExit (const uint8 instIdx)
+{
+  Dcm_TimerValueType P2StarServerAdjustTime;
+  Dcm_TimerValueType P2StarMaxTime;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  P2StarMaxTime = Dcm_Dsl_DiagnosticSessionHandler_GetP2StarMaxTime (instIdx);
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  _3 = Dcm_ProtocolConfig[_2].P2StarServerAdjustTime;
+  P2StarServerAdjustTime = (Dcm_TimerValueType) _3;
+  # DEBUG BEGIN_STMT
+  if (P2StarMaxTime > P2StarServerAdjustTime)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) instIdx;
+  _5 = _4 + 12;
+  _6 = P2StarMaxTime - P2StarServerAdjustTime;
+  Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (_5, instIdx, _6);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) instIdx;
+  _8 = _7 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StartP2Timer (_8, instIdx, 0);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo->responsePendingTxStatus = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfSendRpEntry (const uint8 instIdx)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  boolean SendRCRRP;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SendRCRRP = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curHsmInfo->msgContext.msgAddInfo.suppressPosResponse = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo->rpCntr;
+  _3 = curHsmInfo->rpCntrConfirmed;
+  if (_2 == _3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = curHsmInfo->responsePendingTxStatus;
+  if (_4 != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SendRCRRP = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (SendRCRRP == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo->responsePendingTxStatus = 1;
+  # DEBUG BEGIN_STMT
+  _5 = curHsmInfo->rpCntr;
+  _6 = _5;
+  _7 = _6 + 1;
+  curHsmInfo->rpCntr = _7;
+  # DEBUG BEGIN_STMT
+  _8 = curHsmInfo->NRCBuffer.BufferPtr;
+  *_8 = 127;
+  # DEBUG BEGIN_STMT
+  _9 = curHsmInfo->NRCBuffer.BufferPtr;
+  _10 = _9 + 1;
+  _11 = curHsmInfo->serviceId;
+  *_10 = _11;
+  # DEBUG BEGIN_STMT
+  _12 = curHsmInfo->NRCBuffer.BufferPtr;
+  _13 = _12 + 2;
+  *_13 = 120;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->NRCBuffer.FilledLength = 3;
+  # DEBUG BEGIN_STMT
+  _14 = (short unsigned int) instIdx;
+  _15 = _14 + 12;
+  _16 = curHsmInfo->TxConnectionId;
+  _17 = curHsmInfo->NRCBuffer.BufferId;
+  Dcm_Dsl_BufferGive (_15, _16, _17);
+  # DEBUG BEGIN_STMT
+  _18 = curHsmInfo->TxConnectionId;
+  _19 = curHsmInfo->ComMChannelId;
+  _20 = (short unsigned int) instIdx;
+  _21 = _20 + 12;
+  Dcm_Dsl_TxConnectionTransmit (_18, _19, _21, 0, 3, 0, curHsmInfo->NRCBuffer);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = (short unsigned int) instIdx;
+  _23 = _22 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (_23, instIdx, 2);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfCancelWithGeneralRejectAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].CancellationConditions.FinalTransmissionDone;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].TxConnectionId;
+  Dcm_Dsl_TxConnectionCancelTransmit (_4);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfCancelWithGeneralRejectEntry (const uint8 instIdx)
+{
+  struct Dcm_HsmInfoType * const curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo->serviceId;
+  if (_2 == 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _3 = curHsmInfo->serviceId;
+  if (_3 == 9)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo->negativeResponseCode = 34;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  curHsmInfo->negativeResponseCode = 16;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (5, instIdx);
+  # DEBUG BEGIN_STMT
+  _4 = curHsmInfo->NRCBuffer.BufferPtr;
+  *_4 = 127;
+  # DEBUG BEGIN_STMT
+  _5 = curHsmInfo->NRCBuffer.BufferPtr;
+  _6 = _5 + 1;
+  _7 = curHsmInfo->serviceId;
+  *_6 = _7;
+  # DEBUG BEGIN_STMT
+  _8 = curHsmInfo->NRCBuffer.BufferPtr;
+  _9 = _8 + 2;
+  _10 = curHsmInfo->negativeResponseCode;
+  *_9 = _10;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->NRCBuffer.FilledLength = 3;
+  # DEBUG BEGIN_STMT
+  _11 = (short unsigned int) instIdx;
+  _12 = _11 + 12;
+  _13 = curHsmInfo->TxConnectionId;
+  _14 = curHsmInfo->NRCBuffer.BufferId;
+  Dcm_Dsl_BufferGive (_12, _13, _14);
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo->TxConnectionId;
+  _16 = curHsmInfo->ComMChannelId;
+  _17 = (short unsigned int) instIdx;
+  _18 = _17 + 12;
+  Dcm_Dsl_TxConnectionTransmit (_15, _16, _18, 0, 3, 0, curHsmInfo->NRCBuffer);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolCancelProcessing (instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForTxAndProtocolEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (5, instIdx);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolCancelProcessing (instIdx);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].TxConnectionId;
+  Dcm_Dsl_TxConnectionCancelTransmit (_2);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForProtocolEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (4, instIdx);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolCancelProcessing (instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfRequestCancellingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (_2, instIdx, 2);
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) instIdx;
+  _4 = _3 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (_4, instIdx);
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx;
+  Dcm_HsmInfo[_5].retryTimer = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfRequestProcessingAction3 (const uint8 instIdx)
+{
+  Dcm_ProtocolIndexType protocolIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  protocolIndex = instIdx;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) protocolIndex;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].RxBuffer.BufferId;
+  _5 = (int) instIdx;
+  _6 = Dcm_HsmInfo[_5].TxBuffer.BufferId;
+  _7 = (int) instIdx;
+  _8 = Dcm_HsmInfo[_7].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFreeRxTxNRC (_2, _4, _6, _8);
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) protocolIndex;
+  _10 = _9 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (_10, protocolIndex, 2);
+  # DEBUG BEGIN_STMT
+  _11 = (short unsigned int) protocolIndex;
+  _12 = _11 + 12;
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (_12, protocolIndex);
+  # DEBUG BEGIN_STMT
+  _13 = (short unsigned int) instIdx;
+  _14 = _13 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_14);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfRequestProcessingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  Dcm_HsmInfo[_1].SetProgConditionsFinished = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_DsdInternal_DispatchSvcReq (instIdx);
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  _3 = Dcm_HsmInfo[_2].rpCntr;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _4 = (int) instIdx;
+  _5 = Dcm_HsmInfo[_4].rpCntrConfirmed;
+  if (_5 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RespPendInFirstCycle (instIdx);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForRoeProcessingCancellationEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolSetUpCancellation (4, instIdx);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolCancelProcessing (instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfROEResponseProcessingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DsdInternal_DispatchSvcReq (instIdx);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfROEProcessingAction3 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].RxBuffer.BufferId;
+  _5 = (int) instIdx;
+  _6 = Dcm_HsmInfo[_5].TxBuffer.BufferId;
+  _7 = (int) instIdx;
+  _8 = Dcm_HsmInfo[_7].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFreeRxTxNRC (_2, _4, _6, _8);
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) instIdx;
+  _10 = _9 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_10);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicSendingUUDTFinishingAction2 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicSendingUUDTFinishingAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicSendingUUDTAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicSendingUUDTEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicProcessingUUDTAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicResponseProcessingEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfPeriodicProcessingAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].RxBuffer.BufferId;
+  _5 = (int) instIdx;
+  _6 = Dcm_HsmInfo[_5].TxBuffer.BufferId;
+  _7 = (int) instIdx;
+  _8 = Dcm_HsmInfo[_7].NRCBuffer.BufferId;
+  Dcm_Dsl_BufferFreeRxTxNRC (_2, _4, _6, _8);
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) instIdx;
+  _10 = _9 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_10);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfConfirmingOkEntry (const uint8 instIdx)
+{
+  Dcm_ConfirmationStatusType status;
+  const struct Dcm_HsmInfoType * curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo->negativeResponseCode;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  status = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  status = 2;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo->RequestType;
+  if (_3 != 14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_DcmConfirmation (instIdx, status);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx, 6);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfConfirmingNOkEntry (const uint8 instIdx)
+{
+  Dcm_ConfirmationStatusType status;
+  const struct Dcm_HsmInfoType * curHsmInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_1];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = curHsmInfo->negativeResponseCode;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  status = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  status = 3;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo->RequestType;
+  if (_3 != 14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_DcmConfirmation (instIdx, status);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx, 6);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfInServiceAction1 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_SvcFunc (instIdx, 1);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfInServiceEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  Dcm_HsmInfo[_1].CancellationConditions.CancellationType = 0;
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  Dcm_HsmInfo[_2].CancellationConditions.FinalTransmissionDone = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  Dcm_HsmInfo[_3].negativeResponseCode = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx;
+  Dcm_HsmInfo[_4].msgContext.msgAddInfo.suppressPosResponse = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx;
+  _6 = (int) instIdx;
+  _7 = Dcm_HsmInfo[_5].NextJob.JobRxConnectionId;
+  Dcm_HsmInfo[_6].RxConnectionId = _7;
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx;
+  _9 = (int) instIdx;
+  _10 = Dcm_HsmInfo[_8].NextJob.JobComMChannelId;
+  Dcm_HsmInfo[_9].ComMChannelId = _10;
+  # DEBUG BEGIN_STMT
+  _11 = (int) instIdx;
+  _12 = (int) instIdx;
+  _13 = Dcm_HsmInfo[_11].NextJob.JobTxConnectionId;
+  Dcm_HsmInfo[_12].TxConnectionId = _13;
+  # DEBUG BEGIN_STMT
+  _14 = (int) instIdx;
+  _15 = (int) instIdx;
+  _16 = Dcm_HsmInfo[_14].NextJob.JobTesterSourceAddress;
+  Dcm_HsmInfo[_15].TesterSourceAddress = _16;
+  # DEBUG BEGIN_STMT
+  _17 = (int) instIdx;
+  _18 = (int) instIdx;
+  Dcm_HsmInfo[_18].RxBuffer = Dcm_HsmInfo[_17].NextJob.JobRxBuffer;
+  # DEBUG BEGIN_STMT
+  _19 = (int) instIdx;
+  _20 = (int) instIdx;
+  _21 = Dcm_HsmInfo[_19].NextJob.JobRequestType;
+  Dcm_HsmInfo[_20].RequestType = _21;
+  # DEBUG BEGIN_STMT
+  _22 = (int) instIdx;
+  _23 = (int) instIdx;
+  _24 = Dcm_HsmInfo[_22].NextJob.JobRpCntr;
+  Dcm_HsmInfo[_23].rpCntr = _24;
+  # DEBUG BEGIN_STMT
+  _25 = (int) instIdx;
+  _26 = (int) instIdx;
+  _27 = Dcm_HsmInfo[_25].NextJob.JobRpCntrConfirmed;
+  Dcm_HsmInfo[_26].rpCntrConfirmed = _27;
+  # DEBUG BEGIN_STMT
+  _28 = (int) instIdx;
+  _29 = (int) instIdx;
+  _30 = Dcm_HsmInfo[_28].NextJob.JobResponsePendingTxStatus;
+  Dcm_HsmInfo[_29].responsePendingTxStatus = _30;
+  # DEBUG BEGIN_STMT
+  _31 = (int) instIdx;
+  Dcm_HsmInfo[_31].NextJob.JobRxConnectionId = 6;
+  # DEBUG BEGIN_STMT
+  _32 = (int) instIdx;
+  Dcm_HsmInfo[_32].NextJob.JobComMChannelId = 1;
+  # DEBUG BEGIN_STMT
+  _33 = (int) instIdx;
+  Dcm_HsmInfo[_33].NextJob.JobTxConnectionId = 6;
+  # DEBUG BEGIN_STMT
+  _34 = (int) instIdx;
+  Dcm_HsmInfo[_34].NextJob.JobTesterSourceAddress = 0;
+  # DEBUG BEGIN_STMT
+  _35 = (int) instIdx;
+  Dcm_HsmInfo[_35].NextJob.JobRequestType = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOosNotifiedEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].RequestType;
+  _3 = _2 + 255;
+  if (_3 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = (int) instIdx;
+  _5 = Dcm_HsmInfo[_4].RequestType;
+  if (_5 == 8)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _6 = (int) instIdx;
+  _7 = Dcm_HsmInfo[_6].RequestType;
+  if (_7 == 9)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _8 = (int) instIdx;
+  _9 = Dcm_HsmInfo[_8].RxConnectionId;
+  if (_9 != 15)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) instIdx;
+  _11 = Dcm_HsmInfo[_10].RxConnectionId;
+  Dcm_Dsl_Supervisor_ProcessingEnd (_11);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _12 = (int) instIdx;
+  Dcm_HsmInfo[_12].requestValidationStatus = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOosInitAction1 (const uint8 instIdx)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  const uint8 currentServiceID;
+  uint8_least j;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  j = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].NextJob.JobRxBuffer.BufferPtr;
+  currentServiceID = *_2;
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  sesTabConfig = &Dcm_SesTabConfig[_3];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (currentServiceID == 16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  j = 0;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = sesTabConfig->SessionEntries;
+  _5 = j * 12;
+  _6 = _4 + _5;
+  _7 = _6->SesCtrl;
+  _8 = (int) instIdx;
+  _9 = Dcm_HsmInfo[_8].NextJob.JobRxBuffer.BufferPtr;
+  _10 = _9 + 1;
+  _11 = *_10;
+  if (_7 == _11)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  j = j + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = sesTabConfig->NumEntries;
+  _13 = (long unsigned int) _12;
+  if (j < _13)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _14 = sesTabConfig->NumEntries;
+  _15 = (long unsigned int) _14;
+  if (j >= _15)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (currentServiceID == 16)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) instIdx;
+  Dcm_HsmInfo[_16].NextJob.JobRequestType = 9;
+  # DEBUG BEGIN_STMT
+  _17 = (int) instIdx;
+  Dcm_HsmInfo[_17].retryTimer = 1;
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 75, 6);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = (int) instIdx;
+  _19 = Dcm_HsmInfo[_18].NextJob.JobRxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_19, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _20 = (int) instIdx;
+  Dcm_HsmInfo[_20].retryTimer = 1;
+  RxPduIdInfo = {CLOBBER};
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceAction8 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].NextJob.JobRxBuffer.BufferId;
+  Dcm_Dsl_BufferFree (_2, _4);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = (short unsigned int) instIdx;
+  _6 = _5 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_6);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard8 (const uint8 instIdx)
+{
+  boolean retVal;
+  boolean D.8347;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Roe_CheckForTxEnable ();
+  _2 = _1 == 0;
+  retVal = (boolean) _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8347 = retVal;
+  return D.8347;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceAction7 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard7 (const uint8 instIdx)
+{
+  boolean retVal;
+  boolean D.8336;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal = Dcm_Roe_CheckForTxEnable ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8336 = retVal;
+  return D.8336;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceAction4 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].NextJob.JobRxBuffer.BufferId;
+  Dcm_Dsl_BufferFree (_2, _4);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = (short unsigned int) instIdx;
+  _6 = _5 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_6);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard4 (const uint8 instIdx)
+{
+  boolean guardResult;
+  boolean D.8334;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  guardResult = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8334 = guardResult;
+  return D.8334;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard3 (const uint8 instIdx)
+{
+  boolean guardResult;
+  boolean D.8332;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  guardResult = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8332 = guardResult;
+  return D.8332;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceAction2 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) instIdx;
+  _2 = _1 + 12;
+  _3 = (int) instIdx;
+  _4 = Dcm_HsmInfo[_3].NextJob.JobRxBuffer.BufferId;
+  Dcm_Dsl_BufferFree (_2, _4);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = (short unsigned int) instIdx;
+  _6 = _5 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_6);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard2 (const uint8 instIdx)
+{
+  boolean guardResult;
+  boolean D.8330;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  guardResult = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8330 = guardResult;
+  return D.8330;
+
+}
+
+
+Dcm_HsmDcmSfOutOfServiceGuard1 (const uint8 instIdx)
+{
+  boolean guardResult;
+  boolean D.8328;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  guardResult = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8328 = guardResult;
+  return D.8328;
+
+}
+
+
+Dcm_HsmDcmSfWaitForFullComAction3 (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = (int) instIdx;
+  _3 = Dcm_HsmInfo[_1].NextJob.JobTxConnectionId;
+  Dcm_HsmInfo[_2].TxConnectionId = _3;
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx;
+  _5 = (int) instIdx;
+  _6 = Dcm_HsmInfo[_4].NextJob.JobRxConnectionId;
+  Dcm_HsmInfo[_5].RxConnectionId = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) instIdx;
+  _8 = _7 + 12;
+  Dcm_Dsl_Supervisor_ProtocolFree (_8);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForFullComGuard3 (const uint8 instIdx)
+{
+  boolean ResponseNotRequired;
+  boolean D.8326;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_BootloaderResponseRequired (instIdx);
+  _2 = _1 == 0;
+  ResponseNotRequired = (boolean) _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8326 = ResponseNotRequired;
+  return D.8326;
+
+}
+
+
+Dcm_HsmDcmSfWaitForFullComAction2 (const uint8 instIdx)
+{
+  const uint8 currentServiceID;
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  const struct Dcm_SesTabConfigType * sesTabConfig;
+  uint8 sesTabIdxNew;
+  uint8_least SessionIndex;
+  boolean SessionIndexFound;
+  uint16 P2StarTime;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SessionIndexFound = 0;
+  # DEBUG BEGIN_STMT
+  SessionIndex = 0;
+  # DEBUG BEGIN_STMT
+  sesTabIdxNew = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  sesTabConfig = &Dcm_SesTabConfig[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  curHsmInfo = &Dcm_HsmInfo[_2];
+  # DEBUG BEGIN_STMT
+  _3 = curHsmInfo->NextJob.JobRxBuffer.BufferPtr;
+  currentServiceID = *_3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (currentServiceID == 16)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = sesTabConfig->SessionEntries;
+  _5 = SessionIndex * 12;
+  _6 = _4 + _5;
+  _7 = _6->SesCtrl;
+  _8 = curHsmInfo->NextJob.JobRxBuffer.BufferPtr;
+  _9 = _8 + 1;
+  _10 = *_9;
+  if (_7 == _10)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SessionIndexFound = 1;
+  # DEBUG BEGIN_STMT
+  sesTabIdxNew = (uint8) SessionIndex;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SessionIndex = SessionIndex + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (SessionIndexFound == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = (short unsigned int) instIdx;
+  _12 = _11 + 12;
+  _13 = &curHsmInfo->TxBuffer;
+  Dcm_Dsl_BufferAllocate (_12, 4, 0, _13);
+  # DEBUG BEGIN_STMT
+  _14 = curHsmInfo->NextJob.JobRxBuffer.BufferPtr;
+  _15 = *_14;
+  _16 = curHsmInfo->TxBuffer.BufferPtr;
+  _17 = _15 | 64;
+  *_16 = _17;
+  # DEBUG BEGIN_STMT
+  _18 = curHsmInfo->NextJob.JobRxBuffer.BufferPtr;
+  _19 = curHsmInfo->TxBuffer.BufferPtr;
+  _20 = _19 + 1;
+  _21 = MEM[(Dcm_MsgItemType *)_18 + 1B];
+  *_20 = _21;
+  # DEBUG BEGIN_STMT
+  if (currentServiceID == 16)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = sesTabConfig->SessionEntries;
+  _23 = (unsigned int) sesTabIdxNew;
+  _24 = _23 * 12;
+  _25 = _22 + _24;
+  _26 = _25->P2StarMaxTime;
+  _27 = _26 * 5;
+  _28 = _27 / 10;
+  P2StarTime = (uint16) _28;
+  # DEBUG BEGIN_STMT
+  _29 = sesTabConfig->SessionEntries;
+  _30 = (unsigned int) sesTabIdxNew;
+  _31 = _30 * 12;
+  _32 = _29 + _31;
+  _33 = _32->P2MaxTime;
+  _34 = (unsigned int) _33;
+  _35 = _34 * 5;
+  _36 = _35 >> 8;
+  _37 = curHsmInfo->TxBuffer.BufferPtr;
+  _38 = _37 + 2;
+  _39 = (unsigned char) _36;
+  *_38 = _39;
+  # DEBUG BEGIN_STMT
+  _40 = sesTabConfig->SessionEntries;
+  _41 = (unsigned int) sesTabIdxNew;
+  _42 = _41 * 12;
+  _43 = _40 + _42;
+  _44 = _43->P2MaxTime;
+  _45 = (unsigned char) _44;
+  _46 = curHsmInfo->TxBuffer.BufferPtr;
+  _47 = _46 + 3;
+  _48 = _45 * 5;
+  *_47 = _48;
+  # DEBUG BEGIN_STMT
+  _49 = P2StarTime >> 8;
+  _50 = curHsmInfo->TxBuffer.BufferPtr;
+  _51 = _50 + 4;
+  _52 = (unsigned char) _49;
+  *_51 = _52;
+  # DEBUG BEGIN_STMT
+  _53 = curHsmInfo->TxBuffer.BufferPtr;
+  _54 = _53 + 5;
+  _55 = (unsigned char) P2StarTime;
+  *_54 = _55;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->msgContext.resDataLen = 5;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->TxBuffer.FilledLength = 6;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  curHsmInfo->msgContext.resDataLen = 1;
+  # DEBUG BEGIN_STMT
+  curHsmInfo->TxBuffer.FilledLength = 2;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _56 = curHsmInfo->NextJob.JobRxBuffer.BufferPtr;
+  _57 = *_56;
+  curHsmInfo->msgContext.idContext = _57;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDcmSfWaitForFullComGuard2 (const uint8 instIdx)
+{
+  boolean ResponseRequired;
+  boolean D.8312;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ResponseRequired = Dcm_BootloaderResponseRequired (instIdx);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8312 = ResponseRequired;
+  return D.8312;
+
+}
+
+
+Dcm_HsmDcmSfWaitForFullComAction1 (const uint8 instIdx)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  Dcm_ComMChannelOperationStateType ComMChnTxState;
+  Dcm_ComMChannelOperationStateType ComMChnRxState;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComMChnRxState = 0;
+  # DEBUG BEGIN_STMT
+  ComMChnTxState = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  _2 = Dcm_HsmInfo[_1].NextJob.JobRxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_2, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = RxPduIdInfo.ComMChannelId;
+  ComMChnRxState = Dcm_Dsl_ComMChannelStateManager_GetRxState (_3);
+  # DEBUG BEGIN_STMT
+  _4 = RxPduIdInfo.ComMChannelId;
+  ComMChnTxState = Dcm_Dsl_ComMChannelStateManager_GetTxState (_4);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ComMChnRxState == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (ComMChnTxState == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx;
+  Dcm_HsmInfo[_5].retryTimer = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitToSelfInst (&Dcm_HsmScDcm, instIdx, 20);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) instIdx;
+  Dcm_HsmInfo[_6].retryTimer = 1;
+
+  <bb 6> :
+  RxPduIdInfo = {CLOBBER};
+  return;
+
+}
+
+
+Dcm_HsmDcmSfTopEntry (const uint8 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx;
+  Dcm_HsmInfo[_1].CancellationConditions.ServiceProcessingDone = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) instIdx;
+  Dcm_HsmInfo[_2].retryTimer = 0;
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx;
+  Dcm_HsmInfo[_3].jumpToBLSupport = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx;
+  Dcm_HsmInfo[_4].jumpToBLExecution = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx;
+  Dcm_HsmInfo[_5].msgContext.msgAddInfo.requestOrigin = 0;
+  # DEBUG BEGIN_STMT
+  _6 = (int) instIdx;
+  Dcm_HsmInfo[_6].responsePendingTxStatus = 0;
+  # DEBUG BEGIN_STMT
+  _7 = (int) instIdx;
+  Dcm_HsmInfo[_7].requestValidationStatus = 0;
+  # DEBUG BEGIN_STMT
+  _8 = (int) instIdx;
+  Dcm_HsmInfo[_8].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

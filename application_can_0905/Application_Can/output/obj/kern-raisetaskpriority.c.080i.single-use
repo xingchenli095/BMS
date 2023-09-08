@@ -1,0 +1,45 @@
+__attribute__((target ("general-regs-only")))
+OS_RaiseTaskPriority (struct os_taskdynamic_t * td, os_prio_t reqPrio)
+{
+  os_tasklink_t link;
+  const struct os_task_t * _1;
+  const struct os_task_t * _2;
+  short unsigned int _3;
+  unsigned char _4;
+  short unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.taskQueueHead;
+  _2 = OS_kernelData.taskCurrent;
+  if (_1 == _2)
+    goto <bb 3>; [46.53%]
+  else
+    goto <bb 4>; [53.47%]
+
+  <bb 3> [local count: 499612071]:
+  # DEBUG BEGIN_STMT
+  td_8(D)->prio = reqPrio_10(D);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 574129754]:
+  # DEBUG BEGIN_STMT
+  _3 = _2->linkBase;
+  _4 = td_8(D)->cAct;
+  _5 = (short unsigned int) _4;
+  link_9 = _3 + _5;
+  # DEBUG link => link_9
+  # DEBUG BEGIN_STMT
+  td_8(D)->prio = reqPrio_10(D);
+  # DEBUG BEGIN_STMT
+  OS_RequeueUp (link_9, reqPrio_10(D));
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+

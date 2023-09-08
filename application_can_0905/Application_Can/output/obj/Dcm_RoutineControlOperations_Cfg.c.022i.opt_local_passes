@@ -1,0 +1,333 @@
+Dcm_Dsp_RoutineControl_ClearInternalArrays ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TS_MemSet32 (&Uint8Array, 0, 2);
+  return;
+
+}
+
+
+Dcm_DIAGNOSTIC_TRIGGER_DTC_Start (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, Dcm_NegativeResponseCodeType * ErrorCode)
+{
+  Dcm_MsgLenType InDataLength;
+  Std_ReturnType ServiceProcessStatus;
+  long unsigned int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  Dcm_MsgItemType * _6;
+  Dcm_MsgItemType * _7;
+  Std_ReturnType _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_12 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_14(D)->reqDataLen;
+  InDataLength_15 = _1 + 4294967294;
+  # DEBUG InDataLength => InDataLength_15
+  # DEBUG BEGIN_STMT
+  if (OpStatus_16(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (InDataLength_15 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_RoutineControl_ClearInternalArrays ();
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_14(D)->reqData;
+  _3 = _2 + 2;
+  Dcm_DspInternal_CopySignalData (_3, &Uint8Array[0], 0, 0, 8, 6, 1);
+  # DEBUG BEGIN_STMT
+  _4 = Uint8Array[0];
+  ServiceProcessStatus_25 = Rte_Call_Dcm_RoutineServices_DIAGNOSTIC_TRIGGER_DTC_Start (_4, 0, &Uint8Array[1], ErrorCode_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_25
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *ErrorCode_17(D) = 19;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_21 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_21
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = Uint8Array[0];
+  ServiceProcessStatus_19 = Rte_Call_Dcm_RoutineServices_DIAGNOSTIC_TRIGGER_DTC_Start (_5, OpStatus_16(D), &Uint8Array[1], ErrorCode_17(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+
+  <bb 7> :
+  # ServiceProcessStatus_8 = PHI <ServiceProcessStatus_21(5), ServiceProcessStatus_19(6), ServiceProcessStatus_25(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_8 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_14(D)->resDataLen = 4;
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_14(D)->resData;
+  _7 = _6 + 3;
+  Dcm_DspInternal_CopySignalData (&Uint8Array[1], _7, 0, 0, 8, 3, 1);
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_29 = 0;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_29
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_8 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_26 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_26
+
+  <bb 11> :
+  # ServiceProcessStatus_9 = PHI <ServiceProcessStatus_29(8), ServiceProcessStatus_8(9), ServiceProcessStatus_26(10)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _30 = ServiceProcessStatus_9;
+  return _30;
+
+}
+
+
+Dcm_DIAGNOSTIC_LOOPBACK_Start (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, Dcm_NegativeResponseCodeType * ErrorCode)
+{
+  Dcm_MsgLenType InDataLength;
+  uint16 CurrentDataLength;
+  Std_ReturnType ServiceProcessStatus;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  Dcm_MsgItemType * _6;
+  Dcm_MsgItemType * _7;
+  Dcm_MsgItemType * _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  Dcm_MsgItemType * _11;
+  Dcm_MsgItemType * _12;
+  Dcm_MsgItemType * _13;
+  short unsigned int CurrentDataLength.0_14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  Std_ReturnType _41;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_23 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  CurrentDataLength = 0;
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_26(D)->reqDataLen;
+  InDataLength_27 = _1 + 4294967294;
+  # DEBUG InDataLength => InDataLength_27
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_26(D)->reqDataLen;
+  _3 = _2 + 4294967294;
+  _4 = (short unsigned int) _3;
+  _5 = _4 * 8;
+  CurrentDataLength = _5;
+  # DEBUG BEGIN_STMT
+  if (OpStatus_29(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (InDataLength_27 <= 1024)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_RoutineControl_ClearInternalArrays ();
+  # DEBUG BEGIN_STMT
+  _6 = pMsgContext_26(D)->reqData;
+  _7 = _6 + 2;
+  _8 = pMsgContext_26(D)->resData;
+  _9 = _8 + 3;
+  ServiceProcessStatus_37 = Rte_Call_Dcm_RoutineServices_DIAGNOSTIC_LOOPBACK_Start (_7, 0, _9, &CurrentDataLength, ErrorCode_30(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_37
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *ErrorCode_30(D) = 19;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_34 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_34
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = pMsgContext_26(D)->reqData;
+  _11 = _10 + 2;
+  _12 = pMsgContext_26(D)->resData;
+  _13 = _12 + 3;
+  ServiceProcessStatus_32 = Rte_Call_Dcm_RoutineServices_DIAGNOSTIC_LOOPBACK_Start (_11, OpStatus_29(D), _13, &CurrentDataLength, ErrorCode_30(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_32
+
+  <bb 7> :
+  # ServiceProcessStatus_19 = PHI <ServiceProcessStatus_34(5), ServiceProcessStatus_32(6), ServiceProcessStatus_37(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_19 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CurrentDataLength.0_14 = CurrentDataLength;
+  _15 = (long unsigned int) CurrentDataLength.0_14;
+  _16 = _15 + 7;
+  _17 = _16 / 8;
+  _18 = _17 + 3;
+  pMsgContext_26(D)->resDataLen = _18;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_40 = 0;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_40
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_19 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_38 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_38
+
+  <bb 11> :
+  # ServiceProcessStatus_20 = PHI <ServiceProcessStatus_40(8), ServiceProcessStatus_19(9), ServiceProcessStatus_38(10)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _41 = ServiceProcessStatus_20;
+  CurrentDataLength ={v} {CLOBBER};
+  return _41;
+
+}
+
+
+Dcm_DIAGNOSTIC_CHECK_PRECOND_Start (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext, Dcm_NegativeResponseCodeType * ErrorCode)
+{
+  Dcm_MsgLenType InDataLength;
+  Std_ReturnType ServiceProcessStatus;
+  long unsigned int _1;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_6 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_8(D)->reqDataLen;
+  InDataLength_9 = _1 + 4294967294;
+  # DEBUG InDataLength => InDataLength_9
+  # DEBUG BEGIN_STMT
+  if (OpStatus_10(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (InDataLength_9 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_RoutineControl_ClearInternalArrays ();
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_18 = PROG_ReqCheckProgPreCondition (0, ErrorCode_11(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *ErrorCode_11(D) = 19;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_15 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_15
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_13 = PROG_ReqCheckProgPreCondition (OpStatus_10(D), ErrorCode_11(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_13
+
+  <bb 7> :
+  # ServiceProcessStatus_2 = PHI <ServiceProcessStatus_15(5), ServiceProcessStatus_13(6), ServiceProcessStatus_18(4)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_2 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pMsgContext_8(D)->resDataLen = 3;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_21 = 0;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_21
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_2 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_19 = 1;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_19
+
+  <bb 11> :
+  # ServiceProcessStatus_3 = PHI <ServiceProcessStatus_21(8), ServiceProcessStatus_2(9), ServiceProcessStatus_19(10)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _22 = ServiceProcessStatus_3;
+  return _22;
+
+}
+
+

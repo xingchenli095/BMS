@@ -1,0 +1,165 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksIsr ()
+{
+  const struct os_appcontext_t * const app;
+  const struct os_isr_t * const isr;
+  os_unsigned_t i;
+  os_result_t result;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned char _3;
+  struct os_israccounting_t * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  const os_tick_t * _8;
+  struct os_israccounting_t * _9;
+  unsigned int _10;
+  unsigned int _11;
+  short unsigned int OS_nInterrupts.1_12;
+  unsigned int _13;
+  unsigned char _25;
+
+  <bb 2> [local count: 118111598]:
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 17>; [100.00%]
+
+  <bb 3> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = i_19 * 68;
+  isr_28 = OS_isrTableBase.0_1 + _2;
+  # DEBUG isr => isr_28
+  # DEBUG BEGIN_STMT
+  app_29 = isr_28->app;
+  # DEBUG app => app_29
+  # DEBUG BEGIN_STMT
+  if (app_29 == 0B)
+    goto <bb 4>; [17.43%]
+  else
+    goto <bb 5>; [82.57%]
+
+  <bb 4> [local count: 166566348]:
+  # DEBUG BEGIN_STMT
+  result_31 = OS_Panic (51);
+  # DEBUG result => result_31
+
+  <bb 5> [local count: 955630224]:
+  # result_14 = PHI <result_31(4), result_18(3)>
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = isr_28->flags;
+  _25 = _3 & 64;
+  if (_25 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 6> [local count: 477815112]:
+  _4 = isr_28->accounting;
+  if (_4 == 0B)
+    goto <bb 7>; [17.43%]
+  else
+    goto <bb 8>; [82.57%]
+
+  <bb 7> [local count: 83283174]:
+  # DEBUG BEGIN_STMT
+  result_33 = OS_Panic (52);
+  # DEBUG result => result_33
+
+  <bb 8> [local count: 955630224]:
+  # result_15 = PHI <result_14(5), result_14(6), result_33(7)>
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  _5 = isr_28->execBudget;
+  if (_5 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 9> [local count: 477815112]:
+  _6 = isr_28->osLockTime;
+  if (_6 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 10> [local count: 238907556]:
+  _7 = isr_28->allLockTime;
+  if (_7 != 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 11> [local count: 119453778]:
+  _8 = isr_28->resourceLockTime;
+  if (_8 != 0B)
+    goto <bb 12>; [70.00%]
+  else
+    goto <bb 16>; [30.00%]
+
+  <bb 12> [local count: 919794091]:
+  # DEBUG BEGIN_STMT
+  _9 = isr_28->accounting;
+  if (_9 == 0B)
+    goto <bb 13>; [17.43%]
+  else
+    goto <bb 14>; [82.57%]
+
+  <bb 13> [local count: 160320110]:
+  # DEBUG BEGIN_STMT
+  result_35 = OS_Panic (53);
+  # DEBUG result => result_35
+
+  <bb 14> [local count: 919794091]:
+  # result_16 = PHI <result_15(12), result_35(13)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  _10 = isr_28->osLockTime;
+  _11 = isr_28->allLockTime;
+  if (_10 < _11)
+    goto <bb 15>; [33.00%]
+  else
+    goto <bb 16>; [67.00%]
+
+  <bb 15> [local count: 303532050]:
+  # DEBUG BEGIN_STMT
+  result_37 = OS_Panic (54);
+  # DEBUG result => result_37
+
+  <bb 16> [local count: 955630225]:
+  # result_17 = PHI <result_37(15), result_15(11), result_16(14)>
+  # DEBUG result => result_17
+  # DEBUG BEGIN_STMT
+  i_38 = i_19 + 1;
+  # DEBUG i => i_38
+
+  <bb 17> [local count: 1073741824]:
+  # result_18 = PHI <0(2), result_17(16)>
+  # i_19 = PHI <0(2), i_38(16)>
+  # DEBUG i => i_19
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.1_12 = OS_nInterrupts;
+  _13 = (unsigned int) OS_nInterrupts.1_12;
+  if (_13 > i_19)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 18>; [11.00%]
+
+  <bb 18> [local count: 118111601]:
+  # result_27 = PHI <result_18(17)>
+  # DEBUG BEGIN_STMT
+  return result_27;
+
+}
+
+

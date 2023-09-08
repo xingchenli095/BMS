@@ -1,0 +1,302 @@
+Histogram:
+1 indirect calls trained.
+0 (0.00%) have common target.
+0 (0.00%) targets was not found.
+0 (0.00%) targets had parameter count mismatch.
+0 (0.00%) targets was not in polymorphic call target list.
+0 (0.00%) speculations seems useless.
+0 (0.00%) speculations produced.
+ComM_Rte_GetCurrentPNCComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentPNCComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetCurrentComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetRequestedComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetRequestedComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_GetMaxComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetMaxComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_Rte_RequestComMode (ComM_UserHandleType pdav0, ComM_ModeType ComMode)
+{
+  Std_ReturnType ret;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_RequestComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ret_5;
+
+}
+
+
+ComM_RteNotify (uint8 User, ComM_ASR40_ModeType CurComMMode)
+{
+  const Std_ReturnType rteReturnVal;
+  const Rte_ModeType_ComMMode newRteMode;
+  int _1;
+  int _2;
+  unsigned char _3;
+  Std_ReturnType (*<T699>) (Rte_ModeType_ComMMode) _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) CurComMMode_6(D);
+  newRteMode_8 = ComM_ComModeToRteMode[_1];
+  # DEBUG newRteMode => newRteMode_8
+  # DEBUG BEGIN_STMT
+  _2 = (int) User_9(D);
+  ComM_RteNotificationSuccessful[_2] = 1;
+  # DEBUG BEGIN_STMT
+  _3 = ComM_RteModeUser[_2];
+  if (_3 != CurComMMode_6(D))
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  _4 = ComM_RteSwitchCbk[_2];
+  rteReturnVal_12 = _4 (newRteMode_8);
+  # DEBUG rteReturnVal => rteReturnVal_12
+  # DEBUG BEGIN_STMT
+  if (rteReturnVal_12 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  ComM_RteModeUser[_2] = CurComMMode_6(D);
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  ComM_RteNotificationSuccessful[_2] = 0;
+
+  <bb 6> [local count: 1073741824]:
+  return;
+
+}
+
+
+ComM_EvaluateChannel (uint8 Channel)
+{
+  const ComM_ASR40_ModeType PncReqMode;
+  const ComM_ASR40_ModeType UserReqMode;
+  const uint8 UserOfChannel;
+  ComM_ASR40_ModeType ComMode;
+  PNCHandleType ElementPos;
+  const PNCHandleType NumPncs;
+  const struct ComM_ConfigType * ComM_ConfigPtr.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  int _6;
+  short unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  short unsigned int _11;
+  short unsigned int _12;
+  const struct ComM_ConfigType * ComM_ConfigPtr.4_13;
+  long unsigned int _14;
+  short unsigned int _15;
+  int _16;
+  int _17;
+  int _18;
+  sizetype _19;
+  sizetype _20;
+  const uint8 * _21;
+  short unsigned int _33;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.0_1 = ComM_ConfigPtr;
+  _2 = (unsigned int) Channel_30(D);
+  _3 = _2 + 1;
+  _4 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_3];
+  _5 = (unsigned char) _4;
+  _6 = (int) Channel_30(D);
+  _7 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_6];
+  _8 = (unsigned char) _7;
+  _9 = _5 - _8;
+  # DEBUG NumUser => (const uint8_least) _9
+  # DEBUG BEGIN_STMT
+  _11 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_3];
+  _12 = ComM_ConfigPtr.0_1->NumPncOfAllCh[_6];
+  NumPncs_32 = _11 - _12;
+  # DEBUG NumPncs => NumPncs_32
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ComMode => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG INLINE_ENTRY ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ElementPos => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630220]:
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_13 = ComM_ConfigPtr;
+  _14 = ComM_ConfigPtr.4_13->pUsersOfAllChannel;
+  _15 = ComM_ConfigPtr.4_13->NumUsersOfAllChannel[_6];
+  _16 = (int) _15;
+  _17 = (int) ElementPos_23;
+  _18 = _16 + _17;
+  _19 = (sizetype) _18;
+  _20 = _14 + _19;
+  _21 = ComM_ConfigPtr.4_13 + _20;
+  UserOfChannel_38 = *_21;
+  # DEBUG UserOfChannel => UserOfChannel_38
+  # DEBUG BEGIN_STMT
+  UserReqMode_40 = ComM_EB_GetUserRequestedComMode (UserOfChannel_38);
+  # DEBUG UserReqMode => UserReqMode_40
+  # DEBUG BEGIN_STMT
+  ComMode_22 = MAX_EXPR <UserReqMode_40, ComMode_25>;
+  # DEBUG ComMode => ComMode_22
+  # DEBUG BEGIN_STMT
+  ElementPos_41 = ElementPos_23 + 1;
+  # DEBUG ElementPos => ElementPos_41
+
+  <bb 4> [local count: 1073741821]:
+  # ElementPos_23 = PHI <0(2), ElementPos_41(3)>
+  # ComMode_25 = PHI <0(2), ComMode_22(3)>
+  # DEBUG ComMode => ComMode_25
+  # DEBUG ElementPos => ElementPos_23
+  # DEBUG BEGIN_STMT
+  _33 = (short unsigned int) _9;
+  if (ElementPos_23 < _33)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 118111600]:
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  PncReqMode_36 = ComM_EB_GetPncRequestedComMode (Channel_30(D), ElementPos_24);
+  # DEBUG PncReqMode => PncReqMode_36
+  # DEBUG BEGIN_STMT
+  ComMode_31 = MAX_EXPR <PncReqMode_36, ComMode_26>;
+  # DEBUG ComMode => ComMode_31
+  # DEBUG BEGIN_STMT
+  ElementPos_37 = ElementPos_24 + 1;
+  # DEBUG ElementPos => ElementPos_37
+
+  <bb 6> [local count: 1073741824]:
+  # ElementPos_24 = PHI <ElementPos_37(5), 0(8)>
+  # ComMode_26 = PHI <ComMode_31(5), ComMode_25(8)>
+  # DEBUG ComMode => ComMode_26
+  # DEBUG ElementPos => ElementPos_24
+  # DEBUG BEGIN_STMT
+  if (ElementPos_24 < NumPncs_32)
+    goto <bb 5>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+  # ComMode_10 = PHI <ComMode_26(6)>
+  # DEBUG BEGIN_STMT
+  ComM_EB_SetRequestedComMode (Channel_30(D), ComMode_10);
+  # DEBUG BEGIN_STMT
+  # DEBUG INLINE_ENTRY ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

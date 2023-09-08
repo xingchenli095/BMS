@@ -1,0 +1,119 @@
+__attribute__((target ("general-regs-only")))
+OS_ActivateAutoSchedules ()
+{
+  const os_coreid_t myCoreId;
+  const struct os_schedule_t * ss;
+  os_scheduleid_t s;
+  const struct os_autoschedule_t * as;
+  os_uint16_t idx;
+  unsigned char OS_appMode.0_1;
+  int _2;
+  int _3;
+  const struct os_schedule_t * OS_scheduleTableBase.1_4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  const struct os_alarm_t * OS_alarmTableBase.2_8;
+  short unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct os_alarm_t * _12;
+  unsigned char _13;
+  unsigned int _14;
+  unsigned char _15;
+  _Bool _16;
+  int _17;
+  short unsigned int idx.3_18;
+  int _19;
+  unsigned char OS_nSchedules.4_20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_26 = 0;
+  # DEBUG myCoreId => myCoreId_26
+  # DEBUG BEGIN_STMT
+  OS_appMode.0_1 = OS_appMode;
+  _2 = (int) OS_appMode.0_1;
+  idx_28 = OS_startModeSchedules[_2];
+  # DEBUG idx => idx_28
+  # DEBUG BEGIN_STMT
+  _3 = (int) idx_28;
+  as_29 = &OS_autoStartSchedules[_3];
+  # DEBUG as => as_29
+  # DEBUG BEGIN_STMT
+  s_30 = as_29->schedule;
+  # DEBUG s => s_30
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.1_4 = OS_scheduleTableBase;
+  _5 = (unsigned int) s_23;
+  _6 = _5 * 36;
+  ss_31 = OS_scheduleTableBase.1_4 + _6;
+  # DEBUG ss => ss_31
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = as_22->method;
+  if (_7 == 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_LocalStartScheduleTableSynchron (ss_31);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.2_8 = OS_alarmTableBase;
+  _9 = ss_31->alarm;
+  _10 = (unsigned int) _9;
+  _11 = _10 * 28;
+  _12 = OS_alarmTableBase.2_8 + _11;
+  _13 = _12->counter;
+  _14 = as_22->offset;
+  _15 = as_22->method;
+  _16 = _15 != 1;
+  _17 = (int) _16;
+  OS_LocalStartScheduleTable (ss_31, _13, _14, _17);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  idx.3_18 = idx_21;
+  idx_34 = idx.3_18 + 1;
+  # DEBUG idx => idx_34
+  # DEBUG BEGIN_STMT
+  _19 = (int) idx_34;
+  as_35 = &OS_autoStartSchedules[_19];
+  # DEBUG as => as_35
+  # DEBUG BEGIN_STMT
+  s_36 = as_35->schedule;
+  # DEBUG s => s_36
+
+  <bb 7> :
+  # idx_21 = PHI <idx_28(2), idx_34(6)>
+  # as_22 = PHI <as_29(2), as_35(6)>
+  # s_23 = PHI <s_30(2), s_36(6)>
+  # DEBUG s => s_23
+  # DEBUG as => as_22
+  # DEBUG idx => idx_21
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.4_20 = OS_nSchedules;
+  if (s_23 < OS_nSchedules.4_20)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

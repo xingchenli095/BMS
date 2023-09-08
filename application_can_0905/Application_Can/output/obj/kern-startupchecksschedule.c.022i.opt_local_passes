@@ -1,0 +1,399 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksSchedule ()
+{
+  const struct os_appcontext_t * app;
+  os_permission_t perms;
+  os_boolean_t syncable;
+  os_tick_t delay;
+  os_tick_t lastOffset;
+  os_tick_t extraDelay;
+  os_tick_t counterMax;
+  os_eventmask_t foundevents;
+  const struct os_scheduleentry_t * evt;
+  const struct os_schedule_t * schedule;
+  os_unsigned_t j;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_counter_t * OS_counterTableBase.1_5;
+  const struct os_alarm_t * OS_alarmTableBase.2_6;
+  short unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct os_alarm_t * _10;
+  unsigned char _11;
+  unsigned int _12;
+  unsigned int _13;
+  const struct os_counter_t * _14;
+  unsigned char _15;
+  unsigned int _16;
+  unsigned int _17;
+  _Bool _18;
+  unsigned int _19;
+  const struct os_scheduleentry_t * _20;
+  short unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  sizetype _24;
+  const struct os_scheduleentry_t * _25;
+  unsigned int _26;
+  const struct os_scheduleentry_t * _27;
+  unsigned int _28;
+  unsigned int _29;
+  unsigned int _30;
+  unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  unsigned int _34;
+  unsigned int _35;
+  unsigned int _36;
+  unsigned int _37;
+  unsigned int _38;
+  unsigned int _39;
+  unsigned int _40;
+  unsigned int _41;
+  unsigned int _42;
+  short unsigned int _43;
+  unsigned int _44;
+  unsigned char OS_nSchedules.3_45;
+  unsigned int _46;
+  os_result_t _77;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_73 = 0;
+  # DEBUG myCoreId => myCoreId_73
+  # DEBUG BEGIN_STMT
+  result_74 = 0;
+  # DEBUG result => result_74
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_75 = 0;
+  # DEBUG i => i_75
+  goto <bb 33>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = i_57 * 36;
+  schedule_78 = OS_scheduleTableBase.0_1 + _2;
+  # DEBUG schedule => schedule_78
+  # DEBUG BEGIN_STMT
+  app_79 = schedule_78->app;
+  # DEBUG app => app_79
+  # DEBUG BEGIN_STMT
+  if (app_79 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_81 = OS_Panic (51);
+  # DEBUG result => result_81
+
+  <bb 5> :
+  # result_47 = PHI <result_81(4), result_56(3)>
+  # DEBUG result => result_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms_82 = schedule_78->permissions;
+  # DEBUG perms => perms_82
+  # DEBUG BEGIN_STMT
+  if (app_79 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _3 = app_79->permissionBit;
+  _4 = perms_82 & _3;
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_84 = OS_Panic (50);
+  # DEBUG result => result_84
+
+  <bb 8> :
+  # result_48 = PHI <result_47(5), result_47(6), result_84(7)>
+  # DEBUG result => result_48
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.1_5 = OS_counterTableBase;
+  OS_alarmTableBase.2_6 = OS_alarmTableBase;
+  _7 = schedule_78->alarm;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 28;
+  _10 = OS_alarmTableBase.2_6 + _9;
+  _11 = _10->counter;
+  _12 = (unsigned int) _11;
+  _13 = _12 * 32;
+  _14 = OS_counterTableBase.1_5 + _13;
+  counterMax_85 = _14->maxallowedvalue;
+  # DEBUG counterMax => counterMax_85
+  # DEBUG BEGIN_STMT
+  _15 = schedule_78->flags;
+  _16 = (unsigned int) _15;
+  _17 = _16 & 2;
+  _18 = _17 != 0;
+  syncable_86 = (os_boolean_t) _18;
+  # DEBUG syncable => syncable_86
+  # DEBUG BEGIN_STMT
+  foundevents_87 = 0;
+  # DEBUG foundevents => foundevents_87
+  # DEBUG BEGIN_STMT
+  lastOffset_88 = 0;
+  # DEBUG lastOffset => lastOffset_88
+  # DEBUG BEGIN_STMT
+  _19 = schedule_78->period;
+  _20 = schedule_78->table;
+  _21 = schedule_78->nEntries;
+  _22 = (unsigned int) _21;
+  _23 = _22 * 20;
+  _24 = _23 + 4294967276;
+  _25 = _20 + _24;
+  _26 = _25->offset;
+  extraDelay_89 = _19 - _26;
+  # DEBUG extraDelay => extraDelay_89
+  # DEBUG BEGIN_STMT
+  j_90 = 0;
+  # DEBUG j => j_90
+  goto <bb 31>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _27 = schedule_78->table;
+  _28 = j_58 * 20;
+  evt_92 = _27 + _28;
+  # DEBUG evt => evt_92
+  # DEBUG BEGIN_STMT
+  _29 = evt_92->offset;
+  if (lastOffset_62 == _29)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _30 = evt_92->event;
+  foundevents_94 = foundevents_60 | _30;
+  # DEBUG foundevents => foundevents_94
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  foundevents_93 = evt_92->event;
+  # DEBUG foundevents => foundevents_93
+
+  <bb 12> :
+  # foundevents_59 = PHI <foundevents_94(10), foundevents_93(11)>
+  # DEBUG foundevents => foundevents_59
+  # DEBUG BEGIN_STMT
+  if (foundevents_59 != 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  _31 = evt_92->event;
+  if (_31 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  result_96 = OS_Panic (55);
+  # DEBUG result => result_96
+
+  <bb 15> :
+  # result_49 = PHI <result_55(12), result_55(13), result_96(14)>
+  # DEBUG result => result_49
+  # DEBUG BEGIN_STMT
+  _32 = evt_92->offset;
+  if (lastOffset_62 > _32)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  result_98 = OS_Panic (56);
+  # DEBUG result => result_98
+
+  <bb 17> :
+  # result_50 = PHI <result_49(15), result_98(16)>
+  # DEBUG result => result_50
+  # DEBUG BEGIN_STMT
+  if (j_58 == 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  _33 = evt_92->offset;
+  if (lastOffset_62 != _33)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _34 = evt_92->offset;
+  _35 = _34 - lastOffset_62;
+  delay_99 = extraDelay_61 + _35;
+  # DEBUG delay => delay_99
+  # DEBUG BEGIN_STMT
+  if (delay_99 > counterMax_85)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  result_101 = OS_Panic (57);
+  # DEBUG result => result_101
+
+  <bb 21> :
+  # result_51 = PHI <result_50(19), result_101(20)>
+  # DEBUG result => result_51
+  # DEBUG BEGIN_STMT
+  if (syncable_86 != 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 22> :
+  _36 = evt_92->maxIncrease;
+  _37 = delay_99 + _36;
+  if (counterMax_85 < _37)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  result_103 = OS_Panic (58);
+  # DEBUG result => result_103
+
+  <bb 24> :
+  # result_52 = PHI <result_51(21), result_51(22), result_103(23)>
+  # DEBUG result => result_52
+  # DEBUG BEGIN_STMT
+  if (syncable_86 != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  _38 = evt_92->maxDecrease;
+  if (delay_99 <= _38)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  result_105 = OS_Panic (59);
+  # DEBUG result => result_105
+
+  <bb 27> :
+  # result_53 = PHI <result_52(24), result_52(25), result_105(26)>
+  # DEBUG result => result_53
+  # DEBUG BEGIN_STMT
+  if (syncable_86 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 28> :
+  _39 = evt_92->maxDecrease;
+  _40 = evt_92->maxIncrease;
+  _41 = _39 + _40;
+  _42 = schedule_78->period;
+  if (_41 > _42)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  result_107 = OS_Panic (60);
+  # DEBUG result => result_107
+
+  <bb 30> :
+  # result_54 = PHI <result_50(18), result_53(27), result_53(28), result_107(29)>
+  # DEBUG result => result_54
+  # DEBUG BEGIN_STMT
+  lastOffset_108 = evt_92->offset;
+  # DEBUG lastOffset => lastOffset_108
+  # DEBUG BEGIN_STMT
+  extraDelay_109 = 0;
+  # DEBUG extraDelay => extraDelay_109
+  # DEBUG BEGIN_STMT
+  j_110 = j_58 + 1;
+  # DEBUG j => j_110
+
+  <bb 31> :
+  # result_55 = PHI <result_48(8), result_54(30)>
+  # j_58 = PHI <j_90(8), j_110(30)>
+  # foundevents_60 = PHI <foundevents_87(8), foundevents_59(30)>
+  # extraDelay_61 = PHI <extraDelay_89(8), extraDelay_109(30)>
+  # lastOffset_62 = PHI <lastOffset_88(8), lastOffset_108(30)>
+  # DEBUG lastOffset => lastOffset_62
+  # DEBUG extraDelay => extraDelay_61
+  # DEBUG foundevents => foundevents_60
+  # DEBUG j => j_58
+  # DEBUG result => result_55
+  # DEBUG BEGIN_STMT
+  _43 = schedule_78->nEntries;
+  _44 = (unsigned int) _43;
+  if (j_58 < _44)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  i_91 = i_57 + 1;
+  # DEBUG i => i_91
+
+  <bb 33> :
+  # result_56 = PHI <result_74(2), result_55(32)>
+  # i_57 = PHI <i_75(2), i_91(32)>
+  # DEBUG i => i_57
+  # DEBUG result => result_56
+  # DEBUG BEGIN_STMT
+  OS_nSchedules.3_45 = OS_nSchedules;
+  _46 = (unsigned int) OS_nSchedules.3_45;
+  if (i_57 < _46)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _77 = result_56;
+  return _77;
+
+}
+
+

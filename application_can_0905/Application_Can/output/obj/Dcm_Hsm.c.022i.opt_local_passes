@@ -1,0 +1,1289 @@
+Dcm_HsmFindEvToDispatch (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, Dcm_HsmEventType * const event, uint8 * const queueEntryNo)
+{
+  Dcm_HsmEventMaskType eventMask;
+  uint8_least entryNo;
+  Dcm_HsmEventType ev;
+  boolean foundEventToDispatch;
+  const struct Dcm_HsmStateType * const state;
+  struct Dcm_HsmInstType * const inst;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct Dcm_HsmStateType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  Dcm_HsmEventType * _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  int _15;
+  sizetype _16;
+  Dcm_HsmEventType * _17;
+  int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  unsigned char _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  unsigned char _24;
+  long unsigned int _25;
+  unsigned char _26;
+  unsigned char _27;
+  unsigned char _28;
+  long unsigned int _29;
+  unsigned char _30;
+  boolean _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc_37(D)->instances;
+  _2 = (unsigned int) instIdx_38(D);
+  _3 = _2 * 4;
+  inst_39 = _1 + _3;
+  # DEBUG inst => inst_39
+  # DEBUG BEGIN_STMT
+  _4 = sc_37(D)->states;
+  _5 = inst_39->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  state_40 = _4 + _7;
+  # DEBUG state => state_40
+  # DEBUG BEGIN_STMT
+  foundEventToDispatch_41 = 0;
+  # DEBUG foundEventToDispatch => foundEventToDispatch_41
+  # DEBUG BEGIN_STMT
+  ev_42 = 255;
+  # DEBUG ev => ev_42
+  # DEBUG BEGIN_STMT
+  entryNo_43 = 0;
+  # DEBUG entryNo => entryNo_43
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = sc_37(D)->events;
+  _9 = (int) instIdx_38(D);
+  _10 = sc_37(D)->evQueueSize;
+  _11 = (int) _10;
+  _12 = _9 * _11;
+  _13 = (unsigned char) entryNo_33;
+  _14 = (int) _13;
+  _15 = _12 + _14;
+  _16 = (sizetype) _15;
+  _17 = _8 + _16;
+  ev_45 = *_17;
+  # DEBUG ev => ev_45
+  # DEBUG BEGIN_STMT
+  _18 = (int) ev_45;
+  eventMask_46 = 1 << _18;
+  # DEBUG eventMask => eventMask_46
+  # DEBUG BEGIN_STMT
+  _19 = state_40->ignoredEventMask;
+  _20 = eventMask_46 & _19;
+  if (_20 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _21 = (unsigned char) entryNo_33;
+  Dcm_HsmDelFromQueue (sc_37(D), instIdx_38(D), _21);
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _22 = state_40->actionEventMask;
+  _23 = eventMask_46 & _22;
+  if (_23 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _24 = inst_39->evQueueInsertEvNo;
+  _25 = (long unsigned int) _24;
+  if (entryNo_33 >= _25)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned char) entryNo_33;
+  _27 = _26 + 1;
+  inst_39->evQueueInsertEvNo = _27;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  foundEventToDispatch_49 = 1;
+  # DEBUG foundEventToDispatch => foundEventToDispatch_49
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  entryNo_47 = entryNo_33 + 1;
+  # DEBUG entryNo => entryNo_47
+
+  <bb 10> :
+  # foundEventToDispatch_31 = PHI <foundEventToDispatch_41(2), foundEventToDispatch_31(4), foundEventToDispatch_49(8), foundEventToDispatch_31(9)>
+  # ev_32 = PHI <ev_42(2), ev_45(4), ev_45(8), ev_45(9)>
+  # entryNo_33 = PHI <entryNo_43(2), entryNo_33(4), entryNo_33(8), entryNo_47(9)>
+  # DEBUG entryNo => entryNo_33
+  # DEBUG ev => ev_32
+  # DEBUG foundEventToDispatch => foundEventToDispatch_31
+  # DEBUG BEGIN_STMT
+  _28 = inst_39->evQueueFill;
+  _29 = (long unsigned int) _28;
+  if (entryNo_33 < _29)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  if (foundEventToDispatch_31 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *event_52(D) = ev_32;
+  # DEBUG BEGIN_STMT
+  _30 = (unsigned char) entryNo_33;
+  *queueEntryNo_54(D) = _30;
+  # DEBUG BEGIN_STMT
+  _56 = foundEventToDispatch_31;
+  return _56;
+
+}
+
+
+Dcm_HsmInitSubstates (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  const struct Dcm_HsmStateType * state;
+  Dcm_HsmStateIdxType stateIdx;
+  struct Dcm_HsmInstType * const inst;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct Dcm_HsmStateType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct Dcm_HsmStateType * _8;
+  const struct Dcm_HsmStateType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned char _12;
+  void (*Dcm_HsmActionType) (const uint8) * _13;
+  unsigned char _14;
+  unsigned int _15;
+  unsigned int _16;
+  void (*Dcm_HsmActionType) (const uint8) * _17;
+  void (*<T746>) (const uint8) _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc_23(D)->instances;
+  _2 = (unsigned int) instIdx_24(D);
+  _3 = _2 * 4;
+  inst_25 = _1 + _3;
+  # DEBUG inst => inst_25
+  # DEBUG BEGIN_STMT
+  _4 = sc_23(D)->states;
+  _5 = inst_25->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  _8 = _4 + _7;
+  stateIdx_26 = _8->initId;
+  # DEBUG stateIdx => stateIdx_26
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _9 = sc_23(D)->states;
+  _10 = (unsigned int) stateIdx_19;
+  _11 = _10 * 20;
+  state_27 = _9 + _11;
+  # DEBUG state => state_27
+  # DEBUG BEGIN_STMT
+  inst_25->stateId = stateIdx_19;
+  # DEBUG BEGIN_STMT
+  _12 = state_27->entryFnIdx;
+  if (_12 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = sc_23(D)->actions;
+  _14 = state_27->entryFnIdx;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 4;
+  _17 = _13 + _16;
+  _18 = *_17;
+  _18 (instIdx_24(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  stateIdx_30 = state_27->initId;
+  # DEBUG stateIdx => stateIdx_30
+
+  <bb 6> :
+  # stateIdx_19 = PHI <stateIdx_26(2), stateIdx_30(5)>
+  # DEBUG stateIdx => stateIdx_19
+  # DEBUG BEGIN_STMT
+  if (stateIdx_19 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_HsmTran (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const struct Dcm_HsmTranType * const tran)
+{
+  uint8_least i;
+  struct Dcm_HsmInstType * const inst;
+  const struct Dcm_HsmStateType * state;
+  unsigned char _1;
+  unsigned char _2;
+  void (*Dcm_HsmActionType) (const uint8) * _3;
+  const Dcm_HsmActionIdxType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  void (*Dcm_HsmActionType) (const uint8) * _8;
+  void (*<T746>) (const uint8) _9;
+  struct Dcm_HsmInstType * _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct Dcm_HsmStateType * _13;
+  unsigned char _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned char _17;
+  void (*Dcm_HsmActionType) (const uint8) * _18;
+  unsigned char _19;
+  unsigned int _20;
+  unsigned int _21;
+  void (*Dcm_HsmActionType) (const uint8) * _22;
+  void (*<T746>) (const uint8) _23;
+  unsigned char _24;
+  unsigned char _25;
+  unsigned char _26;
+  void (*Dcm_HsmActionType) (const uint8) * _27;
+  const Dcm_HsmActionIdxType * _28;
+  const Dcm_HsmActionIdxType * _29;
+  unsigned char _30;
+  unsigned int _31;
+  unsigned int _32;
+  void (*Dcm_HsmActionType) (const uint8) * _33;
+  void (*<T746>) (const uint8) _34;
+  unsigned char _35;
+  long unsigned int _36;
+  unsigned char _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = tran_44(D)->target;
+  if (_1 == 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = tran_44(D)->numSteps;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = sc_45(D)->actions;
+  _4 = tran_44(D)->steps;
+  _5 = *_4;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 4;
+  _8 = _3 + _7;
+  _9 = *_8;
+  _9 (instIdx_46(D));
+  goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 = sc_45(D)->instances;
+  _11 = (unsigned int) instIdx_46(D);
+  _12 = _11 * 4;
+  inst_47 = _10 + _12;
+  # DEBUG inst => inst_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _13 = sc_45(D)->states;
+  _14 = inst_47->stateId;
+  _15 = (unsigned int) _14;
+  _16 = _15 * 20;
+  state_53 = _13 + _16;
+  # DEBUG state => state_53
+  # DEBUG BEGIN_STMT
+  _17 = state_53->exitFnIdx;
+  if (_17 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = sc_45(D)->actions;
+  _19 = state_53->exitFnIdx;
+  _20 = (unsigned int) _19;
+  _21 = _20 * 4;
+  _22 = _18 + _21;
+  _23 = *_22;
+  _23 (instIdx_46(D));
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _24 = state_53->parentId;
+  inst_47->stateId = _24;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _25 = inst_47->stateId;
+  _26 = inst_47->sourceId;
+  if (_25 != _26)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  i_48 = 0;
+  # DEBUG i => i_48
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _27 = sc_45(D)->actions;
+  _28 = tran_44(D)->steps;
+  _29 = _28 + i_38;
+  _30 = *_29;
+  _31 = (unsigned int) _30;
+  _32 = _31 * 4;
+  _33 = _27 + _32;
+  _34 = *_33;
+  _34 (instIdx_46(D));
+  # DEBUG BEGIN_STMT
+  i_52 = i_38 + 1;
+  # DEBUG i => i_52
+
+  <bb 12> :
+  # i_38 = PHI <i_48(10), i_52(11)>
+  # DEBUG i => i_38
+  # DEBUG BEGIN_STMT
+  _35 = tran_44(D)->numSteps;
+  _36 = (long unsigned int) _35;
+  if (i_38 < _36)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _37 = tran_44(D)->target;
+  inst_47->stateId = _37;
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitSubstates (sc_45(D), instIdx_46(D));
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmDelFromQueue (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const uint8 queueEntryNo)
+{
+  uint8_least j;
+  struct Dcm_HsmInstType * const inst;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  Dcm_HsmEventType * _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  unsigned char _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  sizetype _13;
+  Dcm_HsmEventType * _14;
+  Dcm_HsmEventType * _15;
+  int _16;
+  unsigned char _17;
+  int _18;
+  int _19;
+  unsigned char _20;
+  int _21;
+  int _22;
+  sizetype _23;
+  Dcm_HsmEventType * _24;
+  unsigned char _25;
+  long unsigned int _26;
+  unsigned char _27;
+  long unsigned int _28;
+  unsigned char _29;
+  unsigned char _30;
+  unsigned char _31;
+  unsigned char _32;
+  unsigned char _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc_38(D)->instances;
+  _2 = (unsigned int) instIdx_39(D);
+  _3 = _2 * 4;
+  inst_40 = _1 + _3;
+  # DEBUG inst => inst_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  j_42 = (uint8_least) queueEntryNo_41(D);
+  # DEBUG j => j_42
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = sc_38(D)->events;
+  _5 = (int) instIdx_39(D);
+  _6 = sc_38(D)->evQueueSize;
+  _7 = (int) _6;
+  _8 = _5 * _7;
+  _9 = (unsigned char) j_34;
+  _10 = _9 + 1;
+  _11 = (int) _10;
+  _12 = _8 + _11;
+  _13 = (sizetype) _12;
+  _14 = _4 + _13;
+  _15 = sc_38(D)->events;
+  _16 = (int) instIdx_39(D);
+  _17 = sc_38(D)->evQueueSize;
+  _18 = (int) _17;
+  _19 = _16 * _18;
+  _20 = (unsigned char) j_34;
+  _21 = (int) _20;
+  _22 = _19 + _21;
+  _23 = (sizetype) _22;
+  _24 = _15 + _23;
+  _25 = *_14;
+  *_24 = _25;
+  # DEBUG BEGIN_STMT
+  j_46 = j_34 + 1;
+  # DEBUG j => j_46
+
+  <bb 4> :
+  # j_34 = PHI <j_42(2), j_46(3)>
+  # DEBUG j => j_34
+  # DEBUG BEGIN_STMT
+  _26 = j_34 + 1;
+  _27 = inst_40->evQueueFill;
+  _28 = (long unsigned int) _27;
+  if (_26 < _28)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _29 = inst_40->evQueueFill;
+  _30 = _29 + 255;
+  inst_40->evQueueFill = _30;
+  # DEBUG BEGIN_STMT
+  _31 = inst_40->evQueueInsertEvNo;
+  if (queueEntryNo_41(D) < _31)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _32 = inst_40->evQueueInsertEvNo;
+  _33 = _32 + 255;
+  inst_40->evQueueInsertEvNo = _33;
+
+  <bb 7> :
+  return;
+
+}
+
+
+Dcm_HsmMainInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  boolean guardCond;
+  const struct Dcm_HsmStateType * const state;
+  uint8_least i;
+  boolean triggerFound;
+  const struct Dcm_HsmTranType * trans;
+  uint8 queueEntryNo;
+  Dcm_HsmEventType event;
+  boolean transitionFired;
+  struct Dcm_HsmInstType * const inst;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  const struct Dcm_HsmStateType * _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct Dcm_HsmTranType * _9;
+  long unsigned int _10;
+  unsigned char _11;
+  unsigned char event.1_12;
+  unsigned char _13;
+  boolean (*Dcm_HsmGuardType) (const uint8) * _14;
+  unsigned char _15;
+  unsigned int _16;
+  unsigned int _17;
+  boolean (*Dcm_HsmGuardType) (const uint8) * _18;
+  boolean (*<T74b>) (const uint8) _19;
+  unsigned char _20;
+  long unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char queueEntryNo.2_24;
+  unsigned char _25;
+  boolean _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc_45(D)->instances;
+  _2 = (unsigned int) instIdx_46(D);
+  _3 = _2 * 4;
+  inst_47 = _1 + _3;
+  # DEBUG inst => inst_47
+  # DEBUG BEGIN_STMT
+  transitionFired_48 = 0;
+  # DEBUG transitionFired => transitionFired_48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inst_47->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  trans_54 = 0B;
+  # DEBUG trans => trans_54
+  # DEBUG BEGIN_STMT
+  triggerFound_55 = 0;
+  # DEBUG triggerFound => triggerFound_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = inst_47->stateId;
+  inst_47->sourceId = _4;
+
+  <bb 4> :
+  # transitionFired_26 = PHI <transitionFired_29(3), transitionFired_28(16)>
+  # trans_30 = PHI <trans_54(3), trans_31(16)>
+  # triggerFound_32 = PHI <triggerFound_55(3), triggerFound_34(16)>
+  # DEBUG triggerFound => triggerFound_32
+  # DEBUG trans => trans_30
+  # DEBUG transitionFired => transitionFired_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = sc_45(D)->states;
+  _6 = inst_47->sourceId;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 20;
+  state_57 = _5 + _8;
+  # DEBUG state => state_57
+  # DEBUG BEGIN_STMT
+  i_58 = 0;
+  # DEBUG i => i_58
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _9 = state_57->trans;
+  _10 = i_35 * 8;
+  trans_59 = _9 + _10;
+  # DEBUG trans => trans_59
+  # DEBUG BEGIN_STMT
+  _11 = trans_59->event;
+  event.1_12 = event;
+  if (_11 == event.1_12)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  guardCond_60 = 1;
+  # DEBUG guardCond => guardCond_60
+  # DEBUG BEGIN_STMT
+  _13 = trans_59->guardFnIdx;
+  if (_13 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _14 = sc_45(D)->guards;
+  _15 = trans_59->guardFnIdx;
+  _16 = (unsigned int) _15;
+  _17 = _16 * 4;
+  _18 = _14 + _17;
+  _19 = *_18;
+  guardCond_62 = _19 (instIdx_46(D));
+  # DEBUG guardCond => guardCond_62
+
+  <bb 8> :
+  # guardCond_36 = PHI <guardCond_60(6), guardCond_62(7)>
+  # DEBUG guardCond => guardCond_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (guardCond_36 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  triggerFound_63 = 1;
+  # DEBUG triggerFound => triggerFound_63
+  # DEBUG BEGIN_STMT
+  transitionFired_64 = 1;
+  # DEBUG transitionFired => transitionFired_64
+
+  <bb 10> :
+  # transitionFired_27 = PHI <transitionFired_28(5), transitionFired_28(8), transitionFired_64(9)>
+  # triggerFound_33 = PHI <triggerFound_34(5), triggerFound_34(8), triggerFound_63(9)>
+  # DEBUG triggerFound => triggerFound_33
+  # DEBUG transitionFired => transitionFired_27
+  # DEBUG BEGIN_STMT
+  i_65 = i_35 + 1;
+  # DEBUG i => i_65
+
+  <bb 11> :
+  # transitionFired_28 = PHI <transitionFired_26(4), transitionFired_27(10)>
+  # trans_31 = PHI <trans_30(4), trans_59(10)>
+  # triggerFound_34 = PHI <triggerFound_32(4), triggerFound_33(10)>
+  # i_35 = PHI <i_58(4), i_65(10)>
+  # DEBUG i => i_35
+  # DEBUG triggerFound => triggerFound_34
+  # DEBUG trans => trans_31
+  # DEBUG transitionFired => transitionFired_28
+  # DEBUG BEGIN_STMT
+  _20 = state_57->numTrans;
+  _21 = (long unsigned int) _20;
+  if (i_35 < _21)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  if (triggerFound_34 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound_34 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _22 = state_57->parentId;
+  inst_47->sourceId = _22;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound_34 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  _23 = inst_47->sourceId;
+  if (_23 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (triggerFound_34 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmTran (sc_45(D), instIdx_46(D), trans_31);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  queueEntryNo.2_24 = queueEntryNo;
+  Dcm_HsmDelFromQueue (sc_45(D), instIdx_46(D), queueEntryNo.2_24);
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 20> :
+  # transitionFired_29 = PHI <transitionFired_48(2), transitionFired_28(19)>
+  # DEBUG transitionFired => transitionFired_29
+  # DEBUG BEGIN_STMT
+  _25 = Dcm_HsmFindEvToDispatch (sc_45(D), instIdx_46(D), &event, &queueEntryNo);
+  if (_25 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _51 = transitionFired_29;
+  event ={v} {CLOBBER};
+  queueEntryNo ={v} {CLOBBER};
+  return _51;
+
+}
+
+
+Dcm_HsmMain (const struct Dcm_HsmStatechartType * const sc)
+{
+  const boolean retVal;
+  uint8_least instIdx;
+  boolean transitionFired;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _3;
+  int iftmp.0_6;
+  int iftmp.0_15;
+  int iftmp.0_16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  transitionFired_10 = 0;
+  # DEBUG transitionFired => transitionFired_10
+  # DEBUG BEGIN_STMT
+  instIdx_11 = 0;
+  # DEBUG instIdx => instIdx_11
+  goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) instIdx_5;
+  retVal_14 = Dcm_HsmMainInst (sc_12(D), _1);
+  # DEBUG retVal => retVal_14
+  # DEBUG BEGIN_STMT
+  if (retVal_14 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (transitionFired_4 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0_16 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.0_15 = 0;
+
+  <bb 7> :
+  # iftmp.0_6 = PHI <iftmp.0_16(5), iftmp.0_15(6)>
+  transitionFired_17 = (boolean) iftmp.0_6;
+  # DEBUG transitionFired => transitionFired_17
+  # DEBUG BEGIN_STMT
+  instIdx_18 = instIdx_5 + 1;
+  # DEBUG instIdx => instIdx_18
+
+  <bb 8> :
+  # transitionFired_4 = PHI <transitionFired_10(2), transitionFired_17(7)>
+  # instIdx_5 = PHI <instIdx_11(2), instIdx_18(7)>
+  # DEBUG instIdx => instIdx_5
+  # DEBUG transitionFired => transitionFired_4
+  # DEBUG BEGIN_STMT
+  _2 = sc_12(D)->numInstances;
+  _3 = (long unsigned int) _2;
+  if (instIdx_5 < _3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (transitionFired_4 != 0)
+    goto <bb 2>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmEmitToSelfInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const Dcm_HsmEventType event)
+{
+  uint8_least j;
+  struct Dcm_HsmInstType * const inst;
+  Std_ReturnType RetVal;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Dcm_HsmEventType * _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  int _11;
+  unsigned char _12;
+  unsigned char _13;
+  int _14;
+  int _15;
+  sizetype _16;
+  Dcm_HsmEventType * _17;
+  Dcm_HsmEventType * _18;
+  int _19;
+  unsigned char _20;
+  int _21;
+  int _22;
+  unsigned char _23;
+  int _24;
+  int _25;
+  sizetype _26;
+  Dcm_HsmEventType * _27;
+  unsigned char _28;
+  unsigned char _29;
+  long unsigned int _30;
+  unsigned char _31;
+  unsigned char _32;
+  Dcm_HsmEventType * _33;
+  int _34;
+  unsigned char _35;
+  int _36;
+  int _37;
+  unsigned char _38;
+  int _39;
+  int _40;
+  sizetype _41;
+  Dcm_HsmEventType * _42;
+  unsigned char _43;
+  unsigned char _44;
+  unsigned char _45;
+  Std_ReturnType _65;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_50 = 1;
+  # DEBUG RetVal => RetVal_50
+  # DEBUG BEGIN_STMT
+  _1 = sc_52(D)->instances;
+  _2 = (unsigned int) instIdx_53(D);
+  _3 = _2 * 4;
+  inst_54 = _1 + _3;
+  # DEBUG inst => inst_54
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = inst_54->evQueueFill;
+  _5 = sc_52(D)->evQueueSize;
+  if (_4 < _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = inst_54->evQueueFill;
+  j_56 = (uint8_least) _6;
+  # DEBUG j => j_56
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = sc_52(D)->events;
+  _8 = (int) instIdx_53(D);
+  _9 = sc_52(D)->evQueueSize;
+  _10 = (int) _9;
+  _11 = _8 * _10;
+  _12 = (unsigned char) j_47;
+  _13 = _12 + 255;
+  _14 = (int) _13;
+  _15 = _11 + _14;
+  _16 = (sizetype) _15;
+  _17 = _7 + _16;
+  _18 = sc_52(D)->events;
+  _19 = (int) instIdx_53(D);
+  _20 = sc_52(D)->evQueueSize;
+  _21 = (int) _20;
+  _22 = _19 * _21;
+  _23 = (unsigned char) j_47;
+  _24 = (int) _23;
+  _25 = _22 + _24;
+  _26 = (sizetype) _25;
+  _27 = _18 + _26;
+  _28 = *_17;
+  *_27 = _28;
+  # DEBUG BEGIN_STMT
+  j_63 = j_47 + 4294967295;
+  # DEBUG j => j_63
+
+  <bb 5> :
+  # j_47 = PHI <j_56(3), j_63(4)>
+  # DEBUG j => j_47
+  # DEBUG BEGIN_STMT
+  _29 = inst_54->evQueueInsertEvNo;
+  _30 = (long unsigned int) _29;
+  if (j_47 > _30)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _31 = inst_54->evQueueFill;
+  _32 = _31 + 1;
+  inst_54->evQueueFill = _32;
+  # DEBUG BEGIN_STMT
+  _33 = sc_52(D)->events;
+  _34 = (int) instIdx_53(D);
+  _35 = sc_52(D)->evQueueSize;
+  _36 = (int) _35;
+  _37 = _34 * _36;
+  _38 = inst_54->evQueueInsertEvNo;
+  _39 = (int) _38;
+  _40 = _37 + _39;
+  _41 = (sizetype) _40;
+  _42 = _33 + _41;
+  *_42 = event_58(D);
+  # DEBUG BEGIN_STMT
+  _43 = inst_54->evQueueInsertEvNo;
+  _44 = _43;
+  _45 = _44 + 1;
+  inst_54->evQueueInsertEvNo = _45;
+  # DEBUG BEGIN_STMT
+  RetVal_61 = 0;
+  # DEBUG RetVal => RetVal_61
+
+  <bb 7> :
+  # RetVal_46 = PHI <RetVal_50(2), RetVal_61(6)>
+  # DEBUG RetVal => RetVal_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _65 = RetVal_46;
+  return _65;
+
+}
+
+
+Dcm_HsmEmitInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx, const Dcm_HsmEventType event)
+{
+  struct Dcm_HsmInstType * const inst;
+  Std_ReturnType RetVal;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned char _5;
+  Dcm_HsmEventType * _6;
+  int _7;
+  unsigned char _8;
+  int _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  int _13;
+  sizetype _14;
+  Dcm_HsmEventType * _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  Std_ReturnType _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 1;
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  _1 = sc_23(D)->instances;
+  _2 = (unsigned int) instIdx_24(D);
+  _3 = _2 * 4;
+  inst_25 = _1 + _3;
+  # DEBUG inst => inst_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = inst_25->evQueueFill;
+  _5 = sc_23(D)->evQueueSize;
+  if (_4 < _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _6 = sc_23(D)->events;
+  _7 = (int) instIdx_24(D);
+  _8 = sc_23(D)->evQueueSize;
+  _9 = (int) _8;
+  _10 = _7 * _9;
+  _11 = inst_25->evQueueFill;
+  _12 = (int) _11;
+  _13 = _10 + _12;
+  _14 = (sizetype) _13;
+  _15 = _6 + _14;
+  *_15 = event_27(D);
+  # DEBUG BEGIN_STMT
+  _16 = inst_25->evQueueFill;
+  _17 = _16;
+  _18 = _17 + 1;
+  inst_25->evQueueFill = _18;
+  # DEBUG BEGIN_STMT
+  RetVal_30 = 0;
+  # DEBUG RetVal => RetVal_30
+
+  <bb 4> :
+  # RetVal_19 = PHI <RetVal_21(2), RetVal_30(3)>
+  # DEBUG RetVal => RetVal_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _32 = RetVal_19;
+  return _32;
+
+}
+
+
+Dcm_HsmInitInst (const struct Dcm_HsmStatechartType * const sc, const uint8 instIdx)
+{
+  uint8_least i;
+  struct Dcm_HsmInstType * const inst;
+  struct Dcm_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  Dcm_HsmEventType * _5;
+  int _6;
+  unsigned char _7;
+  int _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  sizetype _13;
+  Dcm_HsmEventType * _14;
+  unsigned char _15;
+  long unsigned int _16;
+  const struct Dcm_HsmStateType * _17;
+  unsigned char _18;
+  unsigned int _19;
+  unsigned int _20;
+  const struct Dcm_HsmStateType * _21;
+  unsigned char _22;
+  void (*Dcm_HsmActionType) (const uint8) * _23;
+  const struct Dcm_HsmStateType * _24;
+  unsigned char _25;
+  unsigned int _26;
+  unsigned int _27;
+  const struct Dcm_HsmStateType * _28;
+  unsigned char _29;
+  unsigned int _30;
+  unsigned int _31;
+  void (*Dcm_HsmActionType) (const uint8) * _32;
+  void (*<T746>) (const uint8) _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = sc_38(D)->instances;
+  _2 = (unsigned int) instIdx_39(D);
+  _3 = _2 * 4;
+  inst_40 = _1 + _3;
+  # DEBUG inst => inst_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = sc_38(D)->topStateId;
+  inst_40->stateId = _4;
+  # DEBUG BEGIN_STMT
+  inst_40->sourceId = 255;
+  # DEBUG BEGIN_STMT
+  i_43 = 0;
+  # DEBUG i => i_43
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = sc_38(D)->events;
+  _6 = (int) instIdx_39(D);
+  _7 = sc_38(D)->evQueueSize;
+  _8 = (int) _7;
+  _9 = _6 * _8;
+  _10 = (unsigned char) i_34;
+  _11 = (int) _10;
+  _12 = _9 + _11;
+  _13 = (sizetype) _12;
+  _14 = _5 + _13;
+  *_14 = 0;
+  # DEBUG BEGIN_STMT
+  i_49 = i_34 + 1;
+  # DEBUG i => i_49
+
+  <bb 4> :
+  # i_34 = PHI <i_43(2), i_49(3)>
+  # DEBUG i => i_34
+  # DEBUG BEGIN_STMT
+  _15 = sc_38(D)->evQueueSize;
+  _16 = (long unsigned int) _15;
+  if (i_34 < _16)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  inst_40->evQueueFill = 0;
+  # DEBUG BEGIN_STMT
+  inst_40->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  _17 = sc_38(D)->states;
+  _18 = inst_40->stateId;
+  _19 = (unsigned int) _18;
+  _20 = _19 * 20;
+  _21 = _17 + _20;
+  _22 = _21->entryFnIdx;
+  if (_22 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _23 = sc_38(D)->actions;
+  _24 = sc_38(D)->states;
+  _25 = inst_40->stateId;
+  _26 = (unsigned int) _25;
+  _27 = _26 * 20;
+  _28 = _24 + _27;
+  _29 = _28->entryFnIdx;
+  _30 = (unsigned int) _29;
+  _31 = _30 * 4;
+  _32 = _23 + _31;
+  _33 = *_32;
+  _33 (instIdx_39(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitSubstates (sc_38(D), instIdx_39(D));
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_HsmInit (const struct Dcm_HsmStatechartType * const sc)
+{
+  uint8 instIdx;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  instIdx_4 = 0;
+  # DEBUG instIdx => instIdx_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInitInst (sc_6(D), instIdx_2);
+  # DEBUG BEGIN_STMT
+  instIdx_8 = instIdx_2 + 1;
+  # DEBUG instIdx => instIdx_8
+
+  <bb 4> :
+  # instIdx_2 = PHI <instIdx_4(2), instIdx_8(3)>
+  # DEBUG instIdx => instIdx_2
+  # DEBUG BEGIN_STMT
+  _1 = sc_6(D)->numInstances;
+  if (instIdx_2 < _1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

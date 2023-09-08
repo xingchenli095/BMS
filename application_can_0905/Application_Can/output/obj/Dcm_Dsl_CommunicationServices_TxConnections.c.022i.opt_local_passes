@@ -1,0 +1,1923 @@
+Dcm_Dsl_ProcessRetryInformation (struct RetryInfoType * RetryInfoPtr, PduLengthType * BufferDataMark, PduLengthType * BufferConfirmedDataMark)
+{
+  PduLengthType LocalBufferConfirmedDataMark;
+  PduLengthType LocalBufferDataMark;
+  Std_ReturnType RetryInformationProcessing;
+  <unnamed type> _1;
+  short unsigned int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  short unsigned int _7;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_14 = 1;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_14
+  # DEBUG BEGIN_STMT
+  LocalBufferDataMark_17 = *BufferDataMark_16(D);
+  # DEBUG LocalBufferDataMark => LocalBufferDataMark_17
+  # DEBUG BEGIN_STMT
+  LocalBufferConfirmedDataMark_19 = *BufferConfirmedDataMark_18(D);
+  # DEBUG LocalBufferConfirmedDataMark => LocalBufferConfirmedDataMark_19
+  # DEBUG BEGIN_STMT
+  if (RetryInfoPtr_20(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = RetryInfoPtr_20(D)->TpDataState;
+  switch (_1) <default: <L12> [INV], case 0: <L5> [INV], case 1: <L1> [INV], case 2: <L6> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _2 = RetryInfoPtr_20(D)->TxTpDataCnt;
+  _3 = (int) _2;
+  _4 = (int) LocalBufferDataMark_17;
+  _5 = (int) LocalBufferConfirmedDataMark_19;
+  _6 = _4 - _5;
+  if (_3 > _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_27 = 1;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_27
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 6);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = RetryInfoPtr_20(D)->TxTpDataCnt;
+  LocalBufferDataMark_24 = LocalBufferDataMark_17 - _7;
+  # DEBUG LocalBufferDataMark => LocalBufferDataMark_24
+  # DEBUG BEGIN_STMT
+  LocalBufferConfirmedDataMark_25 = LocalBufferDataMark_24;
+  # DEBUG LocalBufferConfirmedDataMark => LocalBufferConfirmedDataMark_25
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_26 = 0;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_26
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  LocalBufferConfirmedDataMark_29 = LocalBufferDataMark_17;
+  # DEBUG LocalBufferConfirmedDataMark => LocalBufferConfirmedDataMark_29
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_30 = 0;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_30
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_23 = 0;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_23
+  # DEBUG BEGIN_STMT
+
+  <bb 9> :
+  # RetryInformationProcessing_8 = PHI <RetryInformationProcessing_26(6), RetryInformationProcessing_30(7), RetryInformationProcessing_23(8), RetryInformationProcessing_14(3), RetryInformationProcessing_27(5)>
+  # LocalBufferDataMark_10 = PHI <LocalBufferDataMark_24(6), LocalBufferDataMark_17(7), LocalBufferDataMark_17(8), LocalBufferDataMark_17(3), LocalBufferDataMark_17(5)>
+  # LocalBufferConfirmedDataMark_11 = PHI <LocalBufferConfirmedDataMark_25(6), LocalBufferConfirmedDataMark_29(7), LocalBufferConfirmedDataMark_19(8), LocalBufferConfirmedDataMark_19(3), LocalBufferConfirmedDataMark_19(5)>
+<L12>:
+  # DEBUG LocalBufferConfirmedDataMark => LocalBufferConfirmedDataMark_11
+  # DEBUG LocalBufferDataMark => LocalBufferDataMark_10
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_8
+  # DEBUG BEGIN_STMT
+  *BufferDataMark_16(D) = LocalBufferDataMark_10;
+  # DEBUG BEGIN_STMT
+  *BufferConfirmedDataMark_18(D) = LocalBufferConfirmedDataMark_11;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *BufferConfirmedDataMark_18(D) = LocalBufferDataMark_17;
+  # DEBUG BEGIN_STMT
+  RetryInformationProcessing_22 = 0;
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_22
+
+  <bb 11> :
+  # RetryInformationProcessing_9 = PHI <RetryInformationProcessing_8(9), RetryInformationProcessing_22(10)>
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_9
+  # DEBUG BEGIN_STMT
+  _33 = RetryInformationProcessing_9;
+  return _33;
+
+}
+
+
+Dcm_Dsl_TxConnectionInitSingleTxConnection (Dcm_TxConnectionIndexType TxConnectionIndex)
+{
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+  int _8;
+  int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_1].Buffer.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  _2 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_2].Buffer.BufferPtr = 0B;
+  # DEBUG BEGIN_STMT
+  _3 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_3].Buffer.FilledLength = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_4].Requester = 15;
+  # DEBUG BEGIN_STMT
+  _5 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_5].AmountLeftToCopy = 0;
+  # DEBUG BEGIN_STMT
+  _6 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_6].BufferDataMark = 0;
+  # DEBUG BEGIN_STMT
+  _7 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_7].BufferConfirmedDataMark = 0;
+  # DEBUG BEGIN_STMT
+  _8 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_8].SimulateTransmission = 0;
+  # DEBUG BEGIN_STMT
+  _9 = (int) TxConnectionIndex_10(D);
+  Dcm_TxConnections[_9].Status = 0;
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionInit ()
+{
+  uint16_least TxConnectionIndex;
+  short unsigned int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_4 = 0;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) TxConnectionIndex_2;
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (_1);
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_7 = TxConnectionIndex_2 + 1;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_7
+
+  <bb 4> :
+  # TxConnectionIndex_2 = PHI <TxConnectionIndex_4(2), TxConnectionIndex_7(3)>
+  # DEBUG TxConnectionIndex => TxConnectionIndex_2
+  # DEBUG BEGIN_STMT
+  if (TxConnectionIndex_2 <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_NotifyTransmissionTimeoutToRequester (Dcm_BufferUserType Requester, Dcm_BufferUserType TxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolTransmissionTimedOutWaitingForData (Requester_2(D), TxConnectionId_3(D));
+  return;
+
+}
+
+
+Dcm_Dsl_ConfirmTransmissionToRequester (Dcm_BufferUserType Requester, NotifResultType Result, Dcm_BufferUserType TxConnectionId)
+{
+  short unsigned int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Requester_3(D) + 65524;
+  if (_1 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolTransmissionFinished (Requester_3(D), Result_6(D), TxConnectionId_5(D));
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_TransmissionFinished (TxConnectionId_5(D), Result_6(D));
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_ProvideNextTxBuffer (Dcm_BufferUserType Requester, Dcm_BufferUserType TxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ProtocolProvideNextTxBuffer (Requester_2(D), TxConnectionId_3(D));
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionStart (Dcm_TxConnectionIndexType TxConnectionIndex)
+{
+  Std_ReturnType PduRTransmitResult;
+  PduIdType TxPduId;
+  Dcm_ComMChannelOperationStateType ComMChnTxState;
+  NetworkHandleType ComMChannelId;
+  Dcm_TxResultType TransmissionStartStatus;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  int _5;
+  struct PduInfoType * _6;
+  short unsigned int _7;
+  int _8;
+  short unsigned int _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  int _15;
+  long unsigned int _16;
+  short unsigned int _17;
+  int _18;
+  short unsigned int _19;
+  int _20;
+  short unsigned int _21;
+  int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  Dcm_TxResultType _53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_30 = 0;
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_30
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_31(D);
+  _2 = Dcm_TxConnections[_1].ContextComMChannelIdIndex;
+  _3 = (int) _2;
+  ComMChannelId_33 = Dcm_RxComMChannelIDs[_3];
+  # DEBUG ComMChannelId => ComMChannelId_33
+  # DEBUG BEGIN_STMT
+  ComMChnTxState_35 = Dcm_Dsl_ComMChannelStateManager_GetTxState (ComMChannelId_33);
+  # DEBUG ComMChnTxState => ComMChnTxState_35
+  # DEBUG BEGIN_STMT
+  if (ComMChnTxState_35 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxPduId_43 = Dcm_Dsl_GetTxPduIdFromTxConnectionIndex (TxConnectionIndex_31(D));
+  # DEBUG TxPduId => TxPduId_43
+  # DEBUG BEGIN_STMT
+  _4 = (int) TxConnectionIndex_31(D);
+  Dcm_TxConnections[_4].Status = 3;
+  # DEBUG BEGIN_STMT
+  _5 = (int) TxConnectionIndex_31(D);
+  _6 = &Dcm_TxConnections[_5].TxPduInfo;
+  PduRTransmitResult_46 = PduR_DcmTransmit (TxPduId_43, _6);
+  # DEBUG PduRTransmitResult => PduRTransmitResult_46
+  # DEBUG BEGIN_STMT
+  if (PduRTransmitResult_46 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_48 = 0;
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_48
+  # DEBUG BEGIN_STMT
+  _7 = TxConnectionIndex_31(D) + 6;
+  _8 = (int) TxConnectionIndex_31(D);
+  _9 = Dcm_TxConnections[_8].Requester;
+  _10 = (int) TxConnectionIndex_31(D);
+  _11 = Dcm_TxConnections[_10].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_7, _9, _11);
+  # DEBUG BEGIN_STMT
+  _12 = (int) TxConnectionIndex_31(D);
+  _13 = Dcm_TxConnections[_12].Requester;
+  _14 = TxConnectionIndex_31(D) + 6;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_13, 0, _14);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (TxConnectionIndex_31(D));
+  # DEBUG BEGIN_STMT
+  if (PduRTransmitResult_46 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 165, 2);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_47 = 1;
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_47
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _15 = (int) TxConnectionIndex_31(D);
+  _16 = Dcm_TxConnections[_15].TransmissionTimeout;
+  if (_16 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_38 = 0;
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_38
+  # DEBUG BEGIN_STMT
+  _17 = TxConnectionIndex_31(D) + 6;
+  _18 = (int) TxConnectionIndex_31(D);
+  _19 = Dcm_TxConnections[_18].Requester;
+  _20 = (int) TxConnectionIndex_31(D);
+  _21 = Dcm_TxConnections[_20].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_17, _19, _21);
+  # DEBUG BEGIN_STMT
+  _22 = (int) TxConnectionIndex_31(D);
+  _23 = Dcm_TxConnections[_22].Requester;
+  _24 = TxConnectionIndex_31(D) + 6;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_23, 0, _24);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (TxConnectionIndex_31(D));
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _25 = (int) TxConnectionIndex_31(D);
+  _26 = Dcm_TxConnections[_25].TransmissionTimeout;
+  _27 = _26 + 4294967295;
+  Dcm_TxConnections[_25].TransmissionTimeout = _27;
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_37 = 2;
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_37
+
+  <bb 10> :
+  # TransmissionStartStatus_28 = PHI <TransmissionStartStatus_47(6), TransmissionStartStatus_38(8), TransmissionStartStatus_37(9), TransmissionStartStatus_48(5), TransmissionStartStatus_48(4)>
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_28
+  # DEBUG BEGIN_STMT
+  _53 = TransmissionStartStatus_28;
+  return _53;
+
+}
+
+
+Dcm_Dsl_SetupTxConnection (Dcm_TxConnectionIndexType TxConnectionIndex, Dcm_RxComMChannelIDsIndexType ContextComMChannelIdIndex, Dcm_BufferUserType Requester, boolean SimulateTransmission, Dcm_MsgLenType AmountToTransmit, Dcm_TransmissionTimeoutType TransmissionTimeout, struct Dcm_BufferType Buffer)
+{
+  short unsigned int _1;
+  short unsigned int _2;
+  int _3;
+  short unsigned int _4;
+  int _5;
+  Dcm_MsgItemType * _6;
+  int _7;
+  long unsigned int _8;
+  int _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  int _13;
+  int _14;
+  int _15;
+  int _16;
+  int _17;
+  int _18;
+  short unsigned int _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = TxConnectionIndex_20(D) + 6;
+  _2 = Buffer.BufferId;
+  Dcm_Dsl_BufferChangeState (_1, 19, _2);
+  # DEBUG BEGIN_STMT
+  _3 = (int) TxConnectionIndex_20(D);
+  _4 = Buffer.BufferId;
+  Dcm_TxConnections[_3].Buffer.BufferId = _4;
+  # DEBUG BEGIN_STMT
+  _5 = (int) TxConnectionIndex_20(D);
+  _6 = Buffer.BufferPtr;
+  Dcm_TxConnections[_5].Buffer.BufferPtr = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (int) TxConnectionIndex_20(D);
+  _8 = Buffer.FilledLength;
+  Dcm_TxConnections[_7].Buffer.FilledLength = _8;
+  # DEBUG BEGIN_STMT
+  _9 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_9].Requester = Requester_26(D);
+  # DEBUG BEGIN_STMT
+  _10 = (int) TxConnectionIndex_20(D);
+  _11 = (short unsigned int) AmountToTransmit_28(D);
+  Dcm_TxConnections[_10].AmountLeftToCopy = _11;
+  # DEBUG BEGIN_STMT
+  _12 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_12].BufferDataMark = 0;
+  # DEBUG BEGIN_STMT
+  _13 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_13].BufferConfirmedDataMark = 0;
+  # DEBUG BEGIN_STMT
+  _14 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_14].Status = 1;
+  # DEBUG BEGIN_STMT
+  _15 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_15].SimulateTransmission = SimulateTransmission_33(D);
+  # DEBUG BEGIN_STMT
+  _16 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_16].TransmissionTimeout = TransmissionTimeout_35(D);
+  # DEBUG BEGIN_STMT
+  _17 = (int) TxConnectionIndex_20(D);
+  Dcm_TxConnections[_17].ContextComMChannelIdIndex = ContextComMChannelIdIndex_37(D);
+  # DEBUG BEGIN_STMT
+  _18 = (int) TxConnectionIndex_20(D);
+  _19 = (short unsigned int) AmountToTransmit_28(D);
+  Dcm_TxConnections[_18].TxPduInfo.SduLength = _19;
+  return;
+
+}
+
+
+Dcm_Dsl_GetTxPduIdFromTxConnectionIndex (Dcm_TxConnectionIndexType TxConnectionIndex)
+{
+  PduIdType TxPduId;
+  uint16_least ConnectionIndex;
+  short unsigned int _1;
+  PduIdType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxPduId_4 = 0;
+  # DEBUG TxPduId => TxPduId_4
+  # DEBUG BEGIN_STMT
+  ConnectionIndex_5 = 0;
+  # DEBUG ConnectionIndex => ConnectionIndex_5
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_MainConnectionConfig[ConnectionIndex_2].ConfirmationTxPduId;
+  if (TxConnectionIndex_7(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  TxPduId_9 = Dcm_MainConnectionConfig[ConnectionIndex_2].TxPduId;
+  # DEBUG TxPduId => TxPduId_9
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ConnectionIndex_8 = ConnectionIndex_2 + 1;
+  # DEBUG ConnectionIndex => ConnectionIndex_8
+
+  <bb 6> :
+  # ConnectionIndex_2 = PHI <ConnectionIndex_5(2), ConnectionIndex_8(5)>
+  # DEBUG ConnectionIndex => ConnectionIndex_2
+  # DEBUG BEGIN_STMT
+  if (ConnectionIndex_2 <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # TxPduId_3 = PHI <TxPduId_9(4), TxPduId_4(6)>
+  # DEBUG TxPduId => TxPduId_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = TxPduId_3;
+  return _10;
+
+}
+
+
+Dcm_Dsl_TxConnectionProcessNextTxBuffer (Dcm_BufferUserType TxConnectionId, struct Dcm_BufferType Buffer)
+{
+  Dcm_TxConnectionIndexType TxConnectionIndex;
+  int _1;
+  unsigned char _2;
+  int _3;
+  int _4;
+  long unsigned int _5;
+  int _6;
+  short unsigned int _7;
+  int _8;
+  unsigned char _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  int _12;
+  int _13;
+  long unsigned int _14;
+  int _15;
+  short unsigned int _16;
+  int _17;
+  Dcm_MsgItemType * _18;
+  int _19;
+  int _20;
+  int _21;
+  unsigned char _22;
+  short unsigned int _23;
+  int _24;
+  short unsigned int _25;
+  int _26;
+  short unsigned int _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_31 = TxConnectionId_30(D) + 65530;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_31
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_31;
+  _2 = Dcm_TxConnections[_1].SimulateTransmission;
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) TxConnectionIndex_31;
+  Dcm_TxConnections[_3].Status = 4;
+  # DEBUG BEGIN_STMT
+  _4 = (int) TxConnectionIndex_31;
+  _5 = Buffer.FilledLength;
+  Dcm_TxConnections[_4].Buffer.FilledLength = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) TxConnectionIndex_31;
+  _7 = Buffer.BufferId;
+  Dcm_TxConnections[_6].Buffer.BufferId = _7;
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 1;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _8 = (int) TxConnectionIndex_31;
+  _9 = Dcm_TxConnections[_8].Status;
+  if (_9 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 = TxConnectionIndex_31 + 6;
+  _11 = Buffer.BufferId;
+  Dcm_Dsl_BufferChangeState (_10, 19, _11);
+  # DEBUG BEGIN_STMT
+  _12 = (int) TxConnectionIndex_31;
+  Dcm_TxConnections[_12].Status = 3;
+  # DEBUG BEGIN_STMT
+  _13 = (int) TxConnectionIndex_31;
+  _14 = Buffer.FilledLength;
+  Dcm_TxConnections[_13].Buffer.FilledLength = _14;
+  # DEBUG BEGIN_STMT
+  _15 = (int) TxConnectionIndex_31;
+  _16 = Buffer.BufferId;
+  Dcm_TxConnections[_15].Buffer.BufferId = _16;
+  # DEBUG BEGIN_STMT
+  _17 = (int) TxConnectionIndex_31;
+  _18 = Buffer.BufferPtr;
+  Dcm_TxConnections[_17].Buffer.BufferPtr = _18;
+  # DEBUG BEGIN_STMT
+  _19 = (int) TxConnectionIndex_31;
+  Dcm_TxConnections[_19].BufferDataMark = 0;
+  # DEBUG BEGIN_STMT
+  _20 = (int) TxConnectionIndex_31;
+  Dcm_TxConnections[_20].BufferConfirmedDataMark = 0;
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _21 = (int) TxConnectionIndex_31;
+  _22 = Dcm_TxConnections[_21].Status;
+  if (_22 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _23 = TxConnectionIndex_31 + 6;
+  _24 = (int) TxConnectionIndex_31;
+  _25 = Dcm_TxConnections[_24].Requester;
+  _26 = (int) TxConnectionIndex_31;
+  _27 = Dcm_TxConnections[_26].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_23, _25, _27);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionGive (Dcm_BufferUserType Provider, Dcm_BufferUserType Receiver, Dcm_BufferUserType TxConnectionId)
+{
+  Dcm_TxConnectionIndexType TxConnectionIndex;
+  Std_ReturnType OwnerTransferResult;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_6 = 1;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_8 = TxConnectionId_7(D) + 65530;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_8;
+  _2 = Dcm_TxConnections[_1].Requester;
+  if (Provider_10(D) == _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) TxConnectionIndex_8;
+  Dcm_TxConnections[_3].Requester = Receiver_12(D);
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_14 = 0;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_14
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OwnerTransferResult_11 = 1;
+  # DEBUG OwnerTransferResult => OwnerTransferResult_11
+
+  <bb 5> :
+  # OwnerTransferResult_4 = PHI <OwnerTransferResult_14(3), OwnerTransferResult_11(4)>
+  # DEBUG OwnerTransferResult => OwnerTransferResult_4
+  # DEBUG BEGIN_STMT
+  _15 = OwnerTransferResult_4;
+  return _15;
+
+}
+
+
+Dcm_Dsl_TxConnectionProcessTxConnections ()
+{
+  PduIdType CurrentTxPduId;
+  Dcm_TxResultType TransmissionStartStatus;
+  boolean WaitingConnectionsPresent;
+  uint16_least TxConnectionIndex;
+  unsigned char Dcm_ProcessTxConnectionsOnMainFunction.4_1;
+  unsigned char _2;
+  int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  short unsigned int _15;
+  long unsigned int _16;
+  short unsigned int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  short unsigned int _24;
+  short unsigned int _25;
+  short unsigned int _26;
+  short unsigned int _27;
+  short unsigned int _28;
+  short unsigned int _29;
+  short unsigned int _30;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WaitingConnectionsPresent_41 = 0;
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_41
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction.4_1 = Dcm_ProcessTxConnectionsOnMainFunction;
+  if (Dcm_ProcessTxConnectionsOnMainFunction.4_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 0;
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_44 = 0;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_44
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_TxConnections[TxConnectionIndex_31].Status;
+  _3 = (int) _2;
+  switch (_3) <default: <L22> [INV], case 1: <L2> [INV], case 2: <L5> [INV], case 4: <L11> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) TxConnectionIndex_31;
+  TransmissionStartStatus_63 = Dcm_Dsl_TxConnectionStart (_4);
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_63
+  # DEBUG BEGIN_STMT
+  if (TransmissionStartStatus_63 == 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  WaitingConnectionsPresent_64 = 1;
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_64
+  goto <bb 15>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_TxConnections[TxConnectionIndex_31].Status;
+  if (_5 == 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_TxConnections[TxConnectionIndex_31].TransmissionTimeout;
+  if (_6 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) TxConnectionIndex_31;
+  CurrentTxPduId_57 = Dcm_Dsl_GetTxPduIdFromTxConnectionIndex (_7);
+  # DEBUG CurrentTxPduId => CurrentTxPduId_57
+  # DEBUG BEGIN_STMT
+  Dcm_TxConnections[TxConnectionIndex_31].Status = 7;
+  # DEBUG BEGIN_STMT
+  _8 = (short unsigned int) TxConnectionIndex_31;
+  _9 = _8 + 6;
+  _10 = Dcm_TxConnections[TxConnectionIndex_31].Requester;
+  _11 = Dcm_TxConnections[TxConnectionIndex_31].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_9, _10, _11);
+  # DEBUG BEGIN_STMT
+  _12 = Dcm_TxConnections[TxConnectionIndex_31].Requester;
+  Dcm_Dsl_NotifyTransmissionTimeoutToRequester (_12, CurrentTxPduId_57);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_TxConnections[TxConnectionIndex_31].TransmissionTimeout;
+  _14 = _13 + 4294967295;
+  Dcm_TxConnections[TxConnectionIndex_31].TransmissionTimeout = _14;
+  # DEBUG BEGIN_STMT
+  WaitingConnectionsPresent_55 = 1;
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_55
+
+  <bb 11> :
+  # WaitingConnectionsPresent_32 = PHI <WaitingConnectionsPresent_34(7), WaitingConnectionsPresent_34(9), WaitingConnectionsPresent_55(10)>
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_32
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  _15 = Dcm_TxConnections[TxConnectionIndex_31].AmountLeftToCopy;
+  _16 = Dcm_TxConnections[TxConnectionIndex_31].Buffer.FilledLength;
+  _17 = (short unsigned int) _16;
+  _18 = _15 - _17;
+  Dcm_TxConnections[TxConnectionIndex_31].AmountLeftToCopy = _18;
+  # DEBUG BEGIN_STMT
+  _19 = (short unsigned int) TxConnectionIndex_31;
+  _20 = _19 + 6;
+  _21 = Dcm_TxConnections[TxConnectionIndex_31].Requester;
+  _22 = Dcm_TxConnections[TxConnectionIndex_31].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_20, _21, _22);
+  # DEBUG BEGIN_STMT
+  _23 = Dcm_TxConnections[TxConnectionIndex_31].AmountLeftToCopy;
+  if (_23 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _24 = Dcm_TxConnections[TxConnectionIndex_31].Requester;
+  _25 = (short unsigned int) TxConnectionIndex_31;
+  _26 = _25 + 6;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_24, 1, _26);
+  # DEBUG BEGIN_STMT
+  _27 = (short unsigned int) TxConnectionIndex_31;
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (_27);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _28 = Dcm_TxConnections[TxConnectionIndex_31].Requester;
+  _29 = (short unsigned int) TxConnectionIndex_31;
+  _30 = _29 + 6;
+  Dcm_Dsl_ProvideNextTxBuffer (_28, _30);
+  # DEBUG BEGIN_STMT
+  Dcm_TxConnections[TxConnectionIndex_31].Status = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_TxConnections[TxConnectionIndex_31].TransmissionTimeout = 0;
+  # DEBUG BEGIN_STMT
+  WaitingConnectionsPresent_50 = 1;
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_50
+
+  <bb 15> :
+  # WaitingConnectionsPresent_33 = PHI <WaitingConnectionsPresent_64(6), WaitingConnectionsPresent_32(11), WaitingConnectionsPresent_50(14), WaitingConnectionsPresent_34(4), WaitingConnectionsPresent_34(5), WaitingConnectionsPresent_34(13)>
+<L22>:
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_33
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_65 = TxConnectionIndex_31 + 1;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_65
+
+  <bb 16> :
+  # TxConnectionIndex_31 = PHI <TxConnectionIndex_44(3), TxConnectionIndex_65(15)>
+  # WaitingConnectionsPresent_34 = PHI <WaitingConnectionsPresent_41(3), WaitingConnectionsPresent_33(15)>
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_34
+  # DEBUG TxConnectionIndex => TxConnectionIndex_31
+  # DEBUG BEGIN_STMT
+  if (TxConnectionIndex_31 <= 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # WaitingConnectionsPresent_35 = PHI <WaitingConnectionsPresent_41(2), WaitingConnectionsPresent_34(16)>
+  # DEBUG WaitingConnectionsPresent => WaitingConnectionsPresent_35
+  # DEBUG BEGIN_STMT
+  if (WaitingConnectionsPresent_35 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 1;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionTransmit (Dcm_BufferUserType TxConnectionId, NetworkHandleType ContextComMChannelId, Dcm_BufferUserType Requester, boolean SuppressTransmission, Dcm_MsgLenType AmountToTransmit, Dcm_TransmissionTimeoutType TransmissionTimeout, struct Dcm_BufferType Buffer)
+{
+  Dcm_TxResultType TransmissionStartStatus;
+  boolean ComMChannelFound;
+  Dcm_RxComMChannelIDsIndexType ContextComMChannelIdIndex;
+  boolean isSuppressTransmission;
+  boolean TransmissionIsVirtual;
+  Dcm_TxConnectionIndexType TxConnectionIndex;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  long unsigned int _4;
+  short unsigned int _5;
+  int _6;
+  unsigned char _7;
+  unsigned char ContextComMChannelIdIndex.3_8;
+  int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isSuppressTransmission_15 = SuppressTransmission_14(D);
+  # DEBUG isSuppressTransmission => isSuppressTransmission_15
+  # DEBUG BEGIN_STMT
+  TransmissionIsVirtual_16 = 0;
+  # DEBUG TransmissionIsVirtual => TransmissionIsVirtual_16
+  # DEBUG BEGIN_STMT
+  if (TransmissionIsVirtual_16 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  isSuppressTransmission_17 = 1;
+  # DEBUG isSuppressTransmission => isSuppressTransmission_17
+
+  <bb 4> :
+  # isSuppressTransmission_10 = PHI <isSuppressTransmission_15(2), isSuppressTransmission_17(3)>
+  # DEBUG isSuppressTransmission => isSuppressTransmission_10
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_19 = TxConnectionId_18(D) + 65530;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_19
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_19;
+  _2 = Dcm_TxConnections[_1].Status;
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Buffer.BufferId;
+  Dcm_Dsl_BufferGive (TxConnectionId_18(D), Requester_22(D), _3);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ConfirmTransmissionToRequester (Requester_22(D), 0, TxConnectionId_18(D));
+  goto <bb 19>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (isSuppressTransmission_10 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _4 = Buffer.FilledLength;
+  if (AmountToTransmit_21(D) == _4)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = Buffer.BufferId;
+  Dcm_Dsl_BufferGive (TxConnectionId_18(D), Requester_22(D), _5);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ConfirmTransmissionToRequester (Requester_22(D), 1, TxConnectionId_18(D));
+  goto <bb 19>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMChannelFound_25 = 0;
+  # DEBUG ComMChannelFound => ComMChannelFound_25
+  # DEBUG BEGIN_STMT
+  ContextComMChannelIdIndex_26 = 0;
+  # DEBUG ContextComMChannelIdIndex => ContextComMChannelIdIndex_26
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) ContextComMChannelIdIndex_11;
+  _7 = Dcm_RxComMChannelIDs[_6];
+  if (ContextComMChannelId_27(D) == _7)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ComMChannelFound_29 = 1;
+  # DEBUG ComMChannelFound => ComMChannelFound_29
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ContextComMChannelIdIndex.3_8 = ContextComMChannelIdIndex_11;
+  ContextComMChannelIdIndex_28 = ContextComMChannelIdIndex.3_8 + 1;
+  # DEBUG ContextComMChannelIdIndex => ContextComMChannelIdIndex_28
+
+  <bb 13> :
+  # ContextComMChannelIdIndex_11 = PHI <ContextComMChannelIdIndex_26(9), ContextComMChannelIdIndex_11(11), ContextComMChannelIdIndex_28(12)>
+  # ComMChannelFound_12 = PHI <ComMChannelFound_25(9), ComMChannelFound_29(11), ComMChannelFound_12(12)>
+  # DEBUG ComMChannelFound => ComMChannelFound_12
+  # DEBUG ContextComMChannelIdIndex => ContextComMChannelIdIndex_11
+  # DEBUG BEGIN_STMT
+  if (ContextComMChannelIdIndex_11 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  if (ComMChannelFound_12 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SetupTxConnection (TxConnectionIndex_19, ContextComMChannelIdIndex_11, Requester_22(D), isSuppressTransmission_10, AmountToTransmit_21(D), TransmissionTimeout_30(D), Buffer);
+  # DEBUG BEGIN_STMT
+  if (isSuppressTransmission_10 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TransmissionStartStatus_35 = Dcm_Dsl_TxConnectionStart (TxConnectionIndex_19);
+  # DEBUG TransmissionStartStatus => TransmissionStartStatus_35
+  # DEBUG BEGIN_STMT
+  if (TransmissionStartStatus_35 == 2)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 1;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) TxConnectionIndex_19;
+  Dcm_TxConnections[_9].Status = 4;
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 1;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionCancelTransmit (Dcm_BufferUserType TxConnectionId)
+{
+  boolean PduRCancelTransmitCallNecessary;
+  PduIdType TxPduId;
+  Dcm_TxConnectionIndexType TxConnectionIndex;
+  int _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  short unsigned int _9;
+  int _10;
+  short unsigned int _11;
+  int _12;
+  short unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_18 = TxConnectionId_17(D) + 65530;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_18
+  # DEBUG BEGIN_STMT
+  TxPduId_21 = Dcm_Dsl_GetTxPduIdFromTxConnectionIndex (TxConnectionIndex_18);
+  # DEBUG TxPduId => TxPduId_21
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_18;
+  _2 = Dcm_TxConnections[_1].Status;
+  if (_2 > 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  _3 = (int) TxConnectionIndex_18;
+  _4 = Dcm_TxConnections[_3].Status;
+  if (_4 != 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _5 = (int) TxConnectionIndex_18;
+  _6 = Dcm_TxConnections[_5].SimulateTransmission;
+  if (_6 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) TxConnectionIndex_18;
+  Dcm_TxConnections[_7].Status = 5;
+  # DEBUG BEGIN_STMT
+  PduRCancelTransmitCallNecessary_24 = 1;
+  # DEBUG PduRCancelTransmitCallNecessary => PduRCancelTransmitCallNecessary_24
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  PduRCancelTransmitCallNecessary_25 = 0;
+  # DEBUG PduRCancelTransmitCallNecessary => PduRCancelTransmitCallNecessary_25
+
+  <bb 7> :
+  # PduRCancelTransmitCallNecessary_14 = PHI <PduRCancelTransmitCallNecessary_24(5), PduRCancelTransmitCallNecessary_25(6)>
+  # DEBUG PduRCancelTransmitCallNecessary => PduRCancelTransmitCallNecessary_14
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PduRCancelTransmitCallNecessary_14 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PduR_DcmCancelTransmit (TxPduId_21);
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) TxConnectionIndex_18;
+  _9 = Dcm_TxConnections[_8].Requester;
+  _10 = (int) TxConnectionIndex_18;
+  _11 = Dcm_TxConnections[_10].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (TxConnectionId_17(D), _9, _11);
+  # DEBUG BEGIN_STMT
+  _12 = (int) TxConnectionIndex_18;
+  _13 = Dcm_TxConnections[_12].Requester;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_13, 0, TxConnectionId_17(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (TxConnectionIndex_18);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_TxConnectionGetState (Dcm_BufferUserType TxConnectionId)
+{
+  Dcm_TxConnectionStatusType TxConnectionStatus;
+  Dcm_TxConnectionIndexType TxConnectionIndex;
+  int _1;
+  Dcm_TxConnectionStatusType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TxConnectionIndex_3 = TxConnectionId_2(D) + 65530;
+  # DEBUG TxConnectionIndex => TxConnectionIndex_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) TxConnectionIndex_3;
+  TxConnectionStatus_5 = Dcm_TxConnections[_1].Status;
+  # DEBUG TxConnectionStatus => TxConnectionStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = TxConnectionStatus_5;
+  return _6;
+
+}
+
+
+Dcm_TxConfirmation (PduIdType DcmTxPduId)
+{
+  unsigned char Dcm_Initialized.2_1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+  int _5;
+  short unsigned int _6;
+  int _7;
+  short unsigned int _8;
+  int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.2_1 = Dcm_Initialized;
+  if (Dcm_Initialized.2_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 64, 5);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmTxPduId_14(D) > 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 64, 6);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) DcmTxPduId_14(D);
+  _3 = Dcm_TxConnections[_2].Status;
+  if (_3 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 64, 6);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = DcmTxPduId_14(D) + 6;
+  _5 = (int) DcmTxPduId_14(D);
+  _6 = Dcm_TxConnections[_5].Requester;
+  _7 = (int) DcmTxPduId_14(D);
+  _8 = Dcm_TxConnections[_7].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_4, _6, _8);
+  # DEBUG BEGIN_STMT
+  _9 = (int) DcmTxPduId_14(D);
+  _10 = Dcm_TxConnections[_9].Requester;
+  _11 = DcmTxPduId_14(D) + 6;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_10, 1, _11);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (DcmTxPduId_14(D));
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_TpTxConfirmation (PduIdType DcmTxPduId, NotifResultType Result)
+{
+  Dcm_TxResultType TransmissionResult;
+  unsigned char Dcm_Initialized.1_1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+  int _5;
+  short unsigned int _6;
+  int _7;
+  short unsigned int _8;
+  int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.1_1 = Dcm_Initialized;
+  if (Dcm_Initialized.1_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 5, 5);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmTxPduId_15(D) > 5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Result_16(D) > 120)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 5, 6);
+  goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) DcmTxPduId_15(D);
+  _3 = Dcm_TxConnections[_2].Status;
+  if (_3 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 5, 6);
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = DcmTxPduId_15(D) + 6;
+  _5 = (int) DcmTxPduId_15(D);
+  _6 = Dcm_TxConnections[_5].Requester;
+  _7 = (int) DcmTxPduId_15(D);
+  _8 = Dcm_TxConnections[_7].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_4, _6, _8);
+  # DEBUG BEGIN_STMT
+  if (Result_16(D) == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  TransmissionResult_20 = 1;
+  # DEBUG TransmissionResult => TransmissionResult_20
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  TransmissionResult_19 = 0;
+  # DEBUG TransmissionResult => TransmissionResult_19
+
+  <bb 12> :
+  # TransmissionResult_12 = PHI <TransmissionResult_20(10), TransmissionResult_19(11)>
+  # DEBUG TransmissionResult => TransmissionResult_12
+  # DEBUG BEGIN_STMT
+  _9 = (int) DcmTxPduId_15(D);
+  _10 = Dcm_TxConnections[_9].Requester;
+  _11 = DcmTxPduId_15(D) + 6;
+  Dcm_Dsl_ConfirmTransmissionToRequester (_10, TransmissionResult_12, _11);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionInitSingleTxConnection (DcmTxPduId_15(D));
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_CopyTxData (PduIdType DcmTxPduId, struct PduInfoType * PduInfoPtr, struct RetryInfoType * RetryInfoPtr, PduLengthType * TxDataCntPtr)
+{
+  uint8 * SourcePtr;
+  PduLengthType SourceIndex;
+  PduLengthType PreviousBufferConfirmedDataMark;
+  Std_ReturnType RetryInformationProcessing;
+  BufReq_ReturnType DataCopyResult;
+  unsigned char Dcm_Initialized.0_1;
+  uint8 * _2;
+  short unsigned int _3;
+  <unnamed type> _4;
+  <unnamed type> _5;
+  <unnamed type> _6;
+  int _7;
+  unsigned char _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  int _15;
+  PduLengthType * _16;
+  int _17;
+  PduLengthType * _18;
+  int _19;
+  short unsigned int _20;
+  int _21;
+  short unsigned int _22;
+  short unsigned int _23;
+  int _24;
+  short unsigned int _25;
+  int _26;
+  short unsigned int _27;
+  int _28;
+  int _29;
+  short unsigned int _30;
+  int _31;
+  int _32;
+  short unsigned int _33;
+  int _34;
+  int _35;
+  int _36;
+  short unsigned int _37;
+  int _38;
+  int _39;
+  unsigned char _40;
+  int _41;
+  short unsigned int _42;
+  int _43;
+  long unsigned int _44;
+  int _45;
+  short unsigned int _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  short unsigned int _49;
+  long unsigned int _50;
+  int _51;
+  int _52;
+  Dcm_MsgItemType * _53;
+  sizetype _54;
+  short unsigned int _55;
+  uint8 * _56;
+  short unsigned int _57;
+  long unsigned int _58;
+  int _59;
+  short unsigned int _60;
+  short unsigned int _61;
+  int _62;
+  short unsigned int _63;
+  int _64;
+  long unsigned int _65;
+  short unsigned int _66;
+  int _67;
+  short unsigned int _68;
+  short unsigned int _69;
+  int _70;
+  short unsigned int _71;
+  long unsigned int _72;
+  int _73;
+  long unsigned int _74;
+  int _75;
+  short unsigned int _76;
+  short unsigned int _77;
+  int _78;
+  short unsigned int _79;
+  int _80;
+  short unsigned int _81;
+  int _82;
+  short unsigned int _83;
+  short unsigned int _84;
+  int _85;
+  int _86;
+  short unsigned int _87;
+  int _88;
+  BufReq_ReturnType _139;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_99 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_99
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.0_1 = Dcm_Initialized;
+  if (Dcm_Initialized.0_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 5);
+  goto <bb 43>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmTxPduId_101(D) > 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 6);
+  goto <bb 43>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_102(D) == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (TxDataCntPtr_103(D) == 0B)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _2 = PduInfoPtr_102(D)->SduDataPtr;
+  if (_2 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _3 = PduInfoPtr_102(D)->SduLength;
+  if (_3 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 7);
+  goto <bb 43>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (RetryInfoPtr_104(D) != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  _4 = RetryInfoPtr_104(D)->TpDataState;
+  if (_4 != 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  _5 = RetryInfoPtr_104(D)->TpDataState;
+  if (_5 != 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _6 = RetryInfoPtr_104(D)->TpDataState;
+  if (_6 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 6);
+  goto <bb 43>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _7 = (int) DcmTxPduId_101(D);
+  _8 = Dcm_TxConnections[_7].Status;
+  _9 = _8 + 254;
+  if (_9 > 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) DcmTxPduId_101(D);
+  _11 = Dcm_TxConnections[_10].Status;
+  if (_11 <= 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  _12 = (int) DcmTxPduId_101(D);
+  _13 = Dcm_TxConnections[_12].Status;
+  if (_13 == 4)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 6);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_134 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_134
+  goto <bb 42>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = (int) DcmTxPduId_101(D);
+  PreviousBufferConfirmedDataMark_107 = Dcm_TxConnections[_14].BufferConfirmedDataMark;
+  # DEBUG PreviousBufferConfirmedDataMark => PreviousBufferConfirmedDataMark_107
+  # DEBUG BEGIN_STMT
+  _15 = (int) DcmTxPduId_101(D);
+  _16 = &Dcm_TxConnections[_15].BufferDataMark;
+  _17 = (int) DcmTxPduId_101(D);
+  _18 = &Dcm_TxConnections[_17].BufferConfirmedDataMark;
+  RetryInformationProcessing_109 = Dcm_Dsl_ProcessRetryInformation (RetryInfoPtr_104(D), _16, _18);
+  # DEBUG RetryInformationProcessing => RetryInformationProcessing_109
+  # DEBUG BEGIN_STMT
+  if (RetryInformationProcessing_109 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 39>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _19 = (int) DcmTxPduId_101(D);
+  _20 = Dcm_TxConnections[_19].AmountLeftToCopy;
+  _21 = (int) DcmTxPduId_101(D);
+  _22 = Dcm_TxConnections[_21].BufferConfirmedDataMark;
+  _23 = PreviousBufferConfirmedDataMark_107 - _22;
+  _24 = (int) DcmTxPduId_101(D);
+  _25 = _20 + _23;
+  Dcm_TxConnections[_24].AmountLeftToCopy = _25;
+  # DEBUG BEGIN_STMT
+  _26 = (int) DcmTxPduId_101(D);
+  _27 = Dcm_TxConnections[_26].BufferDataMark;
+  _28 = (int) _27;
+  _29 = (int) DcmTxPduId_101(D);
+  _30 = Dcm_TxConnections[_29].BufferConfirmedDataMark;
+  _31 = (int) _30;
+  _32 = _28 - _31;
+  _33 = PduInfoPtr_102(D)->SduLength;
+  _34 = (int) _33;
+  _35 = _32 + _34;
+  _36 = (int) DcmTxPduId_101(D);
+  _37 = Dcm_TxConnections[_36].AmountLeftToCopy;
+  _38 = (int) _37;
+  if (_35 <= _38)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 38>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _39 = (int) DcmTxPduId_101(D);
+  _40 = Dcm_TxConnections[_39].Status;
+  _41 = (int) _40;
+  switch (_41) <default: <L55> [INV], case 2: <L21> [INV], case 3: <L25> [INV]>
+
+  <bb 24> :
+<L21>:
+  # DEBUG BEGIN_STMT
+  *TxDataCntPtr_103(D) = 0;
+  # DEBUG BEGIN_STMT
+  _42 = PduInfoPtr_102(D)->SduLength;
+  if (_42 != 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_131 = 2;
+  # DEBUG DataCopyResult => DataCopyResult_131
+  goto <bb 40>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_130 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_130
+  goto <bb 40>; [INV]
+
+  <bb 27> :
+<L25>:
+  # DEBUG BEGIN_STMT
+  _43 = (int) DcmTxPduId_101(D);
+  _44 = Dcm_TxConnections[_43].Buffer.FilledLength;
+  _45 = (int) DcmTxPduId_101(D);
+  _46 = Dcm_TxConnections[_45].BufferDataMark;
+  _47 = (long unsigned int) _46;
+  _48 = _44 - _47;
+  _49 = PduInfoPtr_102(D)->SduLength;
+  _50 = (long unsigned int) _49;
+  if (_48 < _50)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_119 = 2;
+  # DEBUG DataCopyResult => DataCopyResult_119
+  goto <bb 32>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _51 = (int) DcmTxPduId_101(D);
+  SourceIndex_114 = Dcm_TxConnections[_51].BufferDataMark;
+  # DEBUG SourceIndex => SourceIndex_114
+  # DEBUG BEGIN_STMT
+  _52 = (int) DcmTxPduId_101(D);
+  _53 = Dcm_TxConnections[_52].Buffer.BufferPtr;
+  _54 = (sizetype) SourceIndex_114;
+  SourcePtr_115 = _53 + _54;
+  # DEBUG SourcePtr => SourcePtr_115
+  # DEBUG BEGIN_STMT
+  _55 = PduInfoPtr_102(D)->SduLength;
+  if (_55 != 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _56 = PduInfoPtr_102(D)->SduDataPtr;
+  _57 = PduInfoPtr_102(D)->SduLength;
+  _58 = (long unsigned int) _57;
+  TS_MemCpy32 (_56, SourcePtr_115, _58);
+  # DEBUG BEGIN_STMT
+  _59 = (int) DcmTxPduId_101(D);
+  _60 = Dcm_TxConnections[_59].BufferDataMark;
+  _61 = PduInfoPtr_102(D)->SduLength;
+  _62 = (int) DcmTxPduId_101(D);
+  _63 = _60 + _61;
+  Dcm_TxConnections[_62].BufferDataMark = _63;
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_118 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_118
+
+  <bb 32> :
+  # DataCopyResult_89 = PHI <DataCopyResult_119(28), DataCopyResult_118(31)>
+  # DEBUG DataCopyResult => DataCopyResult_89
+  # DEBUG BEGIN_STMT
+  _64 = (int) DcmTxPduId_101(D);
+  _65 = Dcm_TxConnections[_64].Buffer.FilledLength;
+  _66 = (short unsigned int) _65;
+  _67 = (int) DcmTxPduId_101(D);
+  _68 = Dcm_TxConnections[_67].BufferDataMark;
+  _69 = _66 - _68;
+  *TxDataCntPtr_103(D) = _69;
+  # DEBUG BEGIN_STMT
+  _70 = (int) DcmTxPduId_101(D);
+  _71 = Dcm_TxConnections[_70].BufferConfirmedDataMark;
+  _72 = (long unsigned int) _71;
+  _73 = (int) DcmTxPduId_101(D);
+  _74 = Dcm_TxConnections[_73].Buffer.FilledLength;
+  if (_72 == _74)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _75 = (int) DcmTxPduId_101(D);
+  _76 = Dcm_TxConnections[_75].AmountLeftToCopy;
+  if (_76 == 0)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_128 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_128
+  goto <bb 40>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _77 = DcmTxPduId_101(D) + 6;
+  _78 = (int) DcmTxPduId_101(D);
+  _79 = Dcm_TxConnections[_78].Requester;
+  _80 = (int) DcmTxPduId_101(D);
+  _81 = Dcm_TxConnections[_80].Buffer.BufferId;
+  Dcm_Dsl_BufferGive (_77, _79, _81);
+  # DEBUG BEGIN_STMT
+  _82 = (int) DcmTxPduId_101(D);
+  _83 = Dcm_TxConnections[_82].Requester;
+  _84 = DcmTxPduId_101(D) + 6;
+  Dcm_Dsl_ProvideNextTxBuffer (_83, _84);
+  # DEBUG BEGIN_STMT
+  _85 = (int) DcmTxPduId_101(D);
+  Dcm_TxConnections[_85].Status = 2;
+  # DEBUG BEGIN_STMT
+  _86 = (int) DcmTxPduId_101(D);
+  Dcm_TxConnections[_86].TransmissionTimeout = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProcessTxConnectionsOnMainFunction = 1;
+  # DEBUG BEGIN_STMT
+  _87 = PduInfoPtr_102(D)->SduLength;
+  if (_87 != 0)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_127 = 2;
+  # DEBUG DataCopyResult => DataCopyResult_127
+  goto <bb 40>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_126 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_126
+  goto <bb 40>; [INV]
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 4, 6);
+  # DEBUG BEGIN_STMT
+  DataCopyResult_113 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_113
+  goto <bb 40>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_110 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_110
+
+  <bb 40> :
+  # DataCopyResult_90 = PHI <DataCopyResult_113(38), DataCopyResult_110(39), DataCopyResult_128(34), DataCopyResult_99(23), DataCopyResult_131(25), DataCopyResult_89(32), DataCopyResult_126(37), DataCopyResult_127(36), DataCopyResult_130(26)>
+<L55>:
+  # DEBUG DataCopyResult => DataCopyResult_90
+  # DEBUG BEGIN_STMT
+  if (DataCopyResult_90 == 1)
+    goto <bb 41>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  _88 = (int) DcmTxPduId_101(D);
+  Dcm_TxConnections[_88].Status = 6;
+
+  <bb 42> :
+  # DataCopyResult_91 = PHI <DataCopyResult_134(20), DataCopyResult_90(40), DataCopyResult_90(41)>
+  # DEBUG DataCopyResult => DataCopyResult_91
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 43> :
+  # DataCopyResult_92 = PHI <DataCopyResult_99(3), DataCopyResult_99(5), DataCopyResult_99(10), DataCopyResult_99(15), DataCopyResult_91(42)>
+  # DEBUG DataCopyResult => DataCopyResult_92
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _139 = DataCopyResult_92;
+  return _139;
+
+}
+
+

@@ -1,0 +1,56 @@
+__attribute__((target ("general-regs-only")))
+GetSystemStackUsage ()
+{
+  struct os_stackinfo_t info;
+  os_uint8_t answer;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  os_uint8_t _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  answer_12 = 255;
+  # DEBUG answer => answer_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  info.stackPointer = 0;
+  # DEBUG BEGIN_STMT
+  _1 = OS_UserGetStackInfo (4351, &info);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = info.stackLen;
+  _3 = info.stackClean;
+  _4 = _2 - _3;
+  _5 = _4 * 100;
+  _6 = info.stackLen;
+  _7 = _6 / 2;
+  _8 = _5 + _7;
+  _9 = info.stackLen;
+  _10 = _8 / _9;
+  answer_16 = (os_uint8_t) _10;
+  # DEBUG answer => answer_16
+
+  <bb 4> :
+  # answer_11 = PHI <answer_12(2), answer_16(3)>
+  # DEBUG answer => answer_11
+  # DEBUG BEGIN_STMT
+  _17 = answer_11;
+  info ={v} {CLOBBER};
+  return _17;
+
+}
+
+

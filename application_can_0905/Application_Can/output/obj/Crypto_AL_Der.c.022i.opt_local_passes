@@ -1,0 +1,2070 @@
+Crypto_AL_DerCheckValidDate (uint8 Year, uint8 Month, uint8 Day)
+{
+  uint8 DaysInMonth;
+  boolean DateValid;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned char DaysInMonth.6_5;
+  boolean _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DateValid_8 = 0;
+  # DEBUG DateValid => DateValid_8
+  # DEBUG BEGIN_STMT
+  _1 = Month_9(D) + 255;
+  if (_1 <= 11)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) Month_9(D);
+  _3 = _2 + 4294967295;
+  DaysInMonth_11 = Crypto_DaysPerMonth[_3];
+  # DEBUG DaysInMonth => DaysInMonth_11
+  # DEBUG BEGIN_STMT
+  _4 = Year_12(D) & 3;
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (Month_9(D) == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  DaysInMonth.6_5 = DaysInMonth_11;
+  DaysInMonth_13 = DaysInMonth.6_5 + 1;
+  # DEBUG DaysInMonth => DaysInMonth_13
+
+  <bb 6> :
+  # DaysInMonth_7 = PHI <DaysInMonth_11(3), DaysInMonth_11(4), DaysInMonth_13(5)>
+  # DEBUG DaysInMonth => DaysInMonth_7
+  # DEBUG BEGIN_STMT
+  if (Day_14(D) != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (Day_14(D) <= DaysInMonth_7)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DateValid_15 = 1;
+  # DEBUG DateValid => DateValid_15
+
+  <bb 9> :
+  # DateValid_6 = PHI <DateValid_8(2), DateValid_8(6), DateValid_8(7), DateValid_15(8)>
+  # DEBUG DateValid => DateValid_6
+  # DEBUG BEGIN_STMT
+  _16 = DateValid_6;
+  return _16;
+
+}
+
+
+Crypto_AL_DerCheckRanges (uint32 Value, boolean Overflow, uint32 NrOfRanges, const struct Crypto_DerRangeType * Ranges)
+{
+  boolean Valid;
+  uint32 i;
+  long unsigned int _1;
+  const struct Crypto_DerRangeType * _2;
+  unsigned char _3;
+  long unsigned int _4;
+  const struct Crypto_DerRangeType * _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  const struct Crypto_DerRangeType * _8;
+  unsigned char _9;
+  long unsigned int _10;
+  const struct Crypto_DerRangeType * _11;
+  long unsigned int _12;
+  boolean _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_16 = 0;
+  # DEBUG Valid => Valid_16
+  # DEBUG BEGIN_STMT
+  i_17 = 0;
+  # DEBUG i => i_17
+  goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (Overflow_21(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = i_13 * 12;
+  _2 = Ranges_22(D) + _1;
+  _3 = _2->Unbounded;
+  if (_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Valid_25 = 1;
+  # DEBUG Valid => Valid_25
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = i_13 * 12;
+  _5 = Ranges_22(D) + _4;
+  _6 = _5->Min;
+  if (Value_23(D) >= _6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  _7 = i_13 * 12;
+  _8 = Ranges_22(D) + _7;
+  _9 = _8->Unbounded;
+  if (_9 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _10 = i_13 * 12;
+  _11 = Ranges_22(D) + _10;
+  _12 = _11->Max;
+  if (Value_23(D) <= _12)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Valid_24 = 1;
+  # DEBUG Valid => Valid_24
+
+  <bb 10> :
+  # Valid_14 = PHI <Valid_25(5), Valid_15(6), Valid_15(8), Valid_24(9), Valid_15(4)>
+  # DEBUG Valid => Valid_14
+  # DEBUG BEGIN_STMT
+  i_26 = i_13 + 1;
+  # DEBUG i => i_26
+
+  <bb 11> :
+  # i_13 = PHI <i_17(2), i_26(10)>
+  # Valid_15 = PHI <Valid_16(2), Valid_14(10)>
+  # DEBUG Valid => Valid_15
+  # DEBUG i => i_13
+  # DEBUG BEGIN_STMT
+  if (i_13 < NrOfRanges_18(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _19 = Valid_15;
+  return _19;
+
+}
+
+
+Crypto_AL_DerCheckDate (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  uint8 Day;
+  uint8 Month;
+  uint8 Year;
+  boolean Valid;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  const uint8 * _6;
+  unsigned char _7;
+  unsigned char _8;
+  sizetype _9;
+  const uint8 * _10;
+  unsigned char _11;
+  sizetype _12;
+  const uint8 * _13;
+  unsigned char _14;
+  unsigned char _15;
+  sizetype _16;
+  const uint8 * _17;
+  unsigned char _18;
+  sizetype _19;
+  const uint8 * _20;
+  unsigned char _21;
+  unsigned char _22;
+  sizetype _23;
+  const uint8 * _24;
+  unsigned char _25;
+  unsigned char _26;
+  boolean _44;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_29 = 1;
+  # DEBUG Valid => Valid_29
+  # DEBUG BEGIN_STMT
+  Position_33 = Crypto_AL_DerEncGetContentsStart (Encoding_31(D));
+  # DEBUG Position => Position_33
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_31(D));
+  _2 = Position_33 + _1;
+  *LengthPtr_35(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_35(D);
+  if (MaxLength_37(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = *LengthPtr_35(D);
+  _5 = Position_33 + 6;
+  if (_4 != _5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_43 = 0;
+  # DEBUG Valid => Valid_43
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = Encoding_31(D) + Position_33;
+  _7 = *_6;
+  _8 = _7 * 10;
+  _9 = Position_33 + 1;
+  _10 = Encoding_31(D) + _9;
+  _11 = *_10;
+  Year_38 = _8 + _11;
+  # DEBUG Year => Year_38
+  # DEBUG BEGIN_STMT
+  _12 = Position_33 + 2;
+  _13 = Encoding_31(D) + _12;
+  _14 = *_13;
+  _15 = _14 * 10;
+  _16 = Position_33 + 3;
+  _17 = Encoding_31(D) + _16;
+  _18 = *_17;
+  Month_39 = _15 + _18;
+  # DEBUG Month => Month_39
+  # DEBUG BEGIN_STMT
+  _19 = Position_33 + 4;
+  _20 = Encoding_31(D) + _19;
+  _21 = *_20;
+  _22 = _21 * 10;
+  _23 = Position_33 + 5;
+  _24 = Encoding_31(D) + _23;
+  _25 = *_24;
+  Day_40 = _22 + _25;
+  # DEBUG Day => Day_40
+  # DEBUG BEGIN_STMT
+  _26 = Crypto_AL_DerCheckValidDate (Year_38, Month_39, Day_40);
+  if (_26 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Valid_42 = 0;
+  # DEBUG Valid => Valid_42
+
+  <bb 7> :
+  # Valid_27 = PHI <Valid_43(4), Valid_29(5), Valid_42(6)>
+  # DEBUG Valid => Valid_27
+  # DEBUG BEGIN_STMT
+  _44 = Valid_27;
+  return _44;
+
+}
+
+
+Crypto_AL_DerCheckInteger (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 Position;
+  boolean Overflow;
+  uint32 Value;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  const uint8 * _7;
+  unsigned char _8;
+  sizetype _9;
+  const uint8 * _10;
+  unsigned char _11;
+  signed char _12;
+  const uint8 * _13;
+  unsigned char _14;
+  sizetype _15;
+  const uint8 * _16;
+  unsigned char _17;
+  signed char _18;
+  const struct Crypto_DerRangeType * _19;
+  const uint8 * _20;
+  unsigned char _21;
+  signed char _22;
+  const uint8 * _23;
+  unsigned char _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  const uint8 * _28;
+  unsigned char _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  const struct Crypto_DerRangeType * _33;
+  unsigned char _34;
+  boolean _67;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_44 = 1;
+  # DEBUG Valid => Valid_44
+  # DEBUG BEGIN_STMT
+  Position_48 = Crypto_AL_DerEncGetContentsStart (Encoding_46(D));
+  # DEBUG Position => Position_48
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_46(D));
+  _2 = Position_48 + _1;
+  *LengthPtr_50(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_50(D);
+  if (MaxLength_52(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = *LengthPtr_50(D);
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_66 = 0;
+  # DEBUG Valid => Valid_66
+  goto <bb 25>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = *LengthPtr_50(D);
+  _6 = _5 - Position_48;
+  if (_6 > 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _7 = Encoding_46(D) + Position_48;
+  _8 = *_7;
+  if (_8 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _9 = Position_48 + 1;
+  _10 = Encoding_46(D) + _9;
+  _11 = *_10;
+  _12 = (signed char) _11;
+  if (_12 >= 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Valid_53 = 0;
+  # DEBUG Valid => Valid_53
+
+  <bb 9> :
+  # Valid_40 = PHI <Valid_44(6), Valid_44(7), Valid_53(8)>
+  # DEBUG Valid => Valid_40
+  # DEBUG BEGIN_STMT
+  _13 = Encoding_46(D) + Position_48;
+  _14 = *_13;
+  if (_14 == 255)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _15 = Position_48 + 1;
+  _16 = Encoding_46(D) + _15;
+  _17 = *_16;
+  _18 = (signed char) _17;
+  if (_18 < 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Valid_54 = 0;
+  # DEBUG Valid => Valid_54
+
+  <bb 12> :
+  # Valid_41 = PHI <Valid_44(5), Valid_40(9), Valid_40(10), Valid_54(11)>
+  # DEBUG Valid => Valid_41
+  # DEBUG BEGIN_STMT
+  if (Valid_41 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 13> :
+  _19 = ComponentPtr_55(D)->Ranges;
+  if (_19 != 0B)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _20 = Encoding_46(D) + Position_48;
+  _21 = *_20;
+  _22 = (signed char) _21;
+  if (_22 < 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Valid_65 = 0;
+  # DEBUG Valid => Valid_65
+  goto <bb 25>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _23 = Encoding_46(D) + Position_48;
+  _24 = *_23;
+  if (_24 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Position_56 = Position_48 + 1;
+  # DEBUG Position => Position_56
+
+  <bb 18> :
+  # Position_38 = PHI <Position_48(16), Position_56(17)>
+  # DEBUG Position => Position_38
+  # DEBUG BEGIN_STMT
+  _25 = *LengthPtr_50(D);
+  _26 = _25 - Position_38;
+  if (_26 > 4)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Overflow_61 = 1;
+  # DEBUG Overflow => Overflow_61
+  # DEBUG BEGIN_STMT
+  Value_62 = 0;
+  # DEBUG Value => Value_62
+  goto <bb 23>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Overflow_57 = 0;
+  # DEBUG Overflow => Overflow_57
+  # DEBUG BEGIN_STMT
+  Value_58 = 0;
+  # DEBUG Value => Value_58
+  # DEBUG BEGIN_STMT
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _27 = Value_35 << 8;
+  _28 = Encoding_46(D) + Position_39;
+  _29 = *_28;
+  _30 = (long unsigned int) _29;
+  Value_59 = _27 + _30;
+  # DEBUG Value => Value_59
+  # DEBUG BEGIN_STMT
+  Position_60 = Position_39 + 1;
+  # DEBUG Position => Position_60
+
+  <bb 22> :
+  # Value_35 = PHI <Value_58(20), Value_59(21)>
+  # Position_39 = PHI <Position_38(20), Position_60(21)>
+  # DEBUG Position => Position_39
+  # DEBUG Value => Value_35
+  # DEBUG BEGIN_STMT
+  _31 = *LengthPtr_50(D);
+  if (Position_39 < _31)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  # Value_36 = PHI <Value_62(19), Value_35(22)>
+  # Overflow_37 = PHI <Overflow_61(19), Overflow_57(22)>
+  # DEBUG Overflow => Overflow_37
+  # DEBUG Value => Value_36
+  # DEBUG BEGIN_STMT
+  _32 = ComponentPtr_55(D)->NrOfRanges;
+  _33 = ComponentPtr_55(D)->Ranges;
+  _34 = Crypto_AL_DerCheckRanges (Value_36, Overflow_37, _32, _33);
+  if (_34 == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Valid_64 = 0;
+  # DEBUG Valid => Valid_64
+
+  <bb 25> :
+  # Valid_42 = PHI <Valid_66(4), Valid_41(12), Valid_41(13), Valid_65(15), Valid_41(23), Valid_64(24)>
+  # DEBUG Valid => Valid_42
+  # DEBUG BEGIN_STMT
+  _67 = Valid_42;
+  return _67;
+
+}
+
+
+Crypto_AL_DerCheckCharacterString (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint8 CurrentByte;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  const uint8 * _5;
+  unsigned char _6;
+  long unsigned int _7;
+  boolean _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_12 = 1;
+  # DEBUG Valid => Valid_12
+  # DEBUG BEGIN_STMT
+  Position_16 = Crypto_AL_DerEncGetContentsStart (Encoding_14(D));
+  # DEBUG Position => Position_16
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_14(D));
+  _2 = Position_16 + _1;
+  *LengthPtr_18(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_18(D);
+  if (MaxLength_20(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = *LengthPtr_18(D);
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_24 = 0;
+  # DEBUG Valid => Valid_24
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = Encoding_14(D) + Position_8;
+  CurrentByte_21 = *_5;
+  # DEBUG CurrentByte => CurrentByte_21
+  # DEBUG BEGIN_STMT
+  if (CurrentByte_21 <= 31)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _6 = CurrentByte_21 + 129;
+  if (_6 <= 32)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Valid_22 = 0;
+  # DEBUG Valid => Valid_22
+
+  <bb 8> :
+  # Valid_9 = PHI <Valid_10(6), Valid_22(7)>
+  # DEBUG Valid => Valid_9
+  # DEBUG BEGIN_STMT
+  Position_23 = Position_8 + 1;
+  # DEBUG Position => Position_23
+
+  <bb 9> :
+  # Position_8 = PHI <Position_16(3), Position_23(8)>
+  # Valid_10 = PHI <Valid_12(3), Valid_9(8)>
+  # DEBUG Valid => Valid_10
+  # DEBUG Position => Position_8
+  # DEBUG BEGIN_STMT
+  _7 = *LengthPtr_18(D);
+  if (Position_8 < _7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # Valid_11 = PHI <Valid_24(4), Valid_10(9)>
+  # DEBUG Valid => Valid_11
+  # DEBUG BEGIN_STMT
+  _25 = Valid_11;
+  return _25;
+
+}
+
+
+Crypto_AL_DerCheckObjectIdentifier (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  boolean _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_6 = 1;
+  # DEBUG Valid => Valid_6
+  # DEBUG BEGIN_STMT
+  Position_10 = Crypto_AL_DerEncGetContentsStart (Encoding_8(D));
+  # DEBUG Position => Position_10
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_8(D));
+  _2 = Position_10 + _1;
+  *LengthPtr_12(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_12(D);
+  if (MaxLength_14(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = *LengthPtr_12(D);
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_15 = 0;
+  # DEBUG Valid => Valid_15
+
+  <bb 5> :
+  # Valid_5 = PHI <Valid_6(3), Valid_15(4)>
+  # DEBUG Valid => Valid_5
+  # DEBUG BEGIN_STMT
+  _16 = Valid_5;
+  return _16;
+
+}
+
+
+Crypto_AL_DerCheckOctetstring (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 Position;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  boolean _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_6 = 1;
+  # DEBUG Valid => Valid_6
+  # DEBUG BEGIN_STMT
+  Position_10 = Crypto_AL_DerEncGetContentsStart (Encoding_8(D));
+  # DEBUG Position => Position_10
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_8(D));
+  _2 = Position_10 + _1;
+  *LengthPtr_12(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_12(D);
+  if (MaxLength_14(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _4 = *LengthPtr_12(D);
+  if (_4 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_15 = 0;
+  # DEBUG Valid => Valid_15
+
+  <bb 5> :
+  # Valid_5 = PHI <Valid_6(3), Valid_15(4)>
+  # DEBUG Valid => Valid_5
+  # DEBUG BEGIN_STMT
+  _16 = Valid_5;
+  return _16;
+
+}
+
+
+Crypto_AL_DerCheckPublicKey (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Found;
+  uint32 SubComponentLength;
+  uint32 Position;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  const struct Crypto_DerSubComponentStruct * _4;
+  long unsigned int _5;
+  const struct Crypto_DerSubComponentStruct * _6;
+  const uint8 * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int SubComponentLength.5_11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  boolean _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Found_21 = 0;
+  # DEBUG Found => Found_21
+  # DEBUG BEGIN_STMT
+  i_22 = 0;
+  # DEBUG i => i_22
+  # DEBUG BEGIN_STMT
+  Position_26 = Crypto_AL_DerEncGetContentsStart (Encoding_24(D));
+  # DEBUG Position => Position_26
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_24(D));
+  _2 = Position_26 + _1;
+  *LengthPtr_28(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_28(D);
+  if (MaxLength_30(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (Position_26 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Found_38 = 0;
+  # DEBUG Found => Found_38
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Position_32 = 0;
+  # DEBUG Position => Position_32
+  # DEBUG BEGIN_STMT
+  _4 = ComponentPtr_31(D)->SubComponents;
+  _5 = i_15 * 12;
+  _6 = _4 + _5;
+  _7 = Encoding_24(D) + Position_32;
+  _8 = *LengthPtr_28(D);
+  _9 = _8 - Position_32;
+  _10 = Crypto_AL_DerCheckSubComponent (_6, _7, _9, &SubComponentLength);
+  if (_10 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Found_35 = 1;
+  # DEBUG Found => Found_35
+  # DEBUG BEGIN_STMT
+  SubComponentLength.5_11 = SubComponentLength;
+  Position_36 = Position_32 + SubComponentLength.5_11;
+  # DEBUG Position => Position_36
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  i_34 = i_15 + 1;
+  # DEBUG i => i_34
+
+  <bb 8> :
+  # i_15 = PHI <i_22(3), i_15(6), i_34(7)>
+  # Position_16 = PHI <Position_26(3), Position_36(6), Position_32(7)>
+  # Found_17 = PHI <Found_21(3), Found_35(6), Found_17(7)>
+  # DEBUG Found => Found_17
+  # DEBUG Position => Position_16
+  # DEBUG i => i_15
+  # DEBUG BEGIN_STMT
+  if (Found_17 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _12 = ComponentPtr_31(D)->NrOfSubComponents;
+  if (i_15 < _12)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  _13 = *LengthPtr_28(D);
+  if (Position_16 <= _13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _14 = *LengthPtr_28(D);
+  if (Position_16 != _14)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Found_37 = 0;
+  # DEBUG Found => Found_37
+
+  <bb 13> :
+  # Found_18 = PHI <Found_38(4), Found_17(11), Found_37(12)>
+  # DEBUG Found => Found_18
+  # DEBUG BEGIN_STMT
+  _39 = Found_18;
+  SubComponentLength ={v} {CLOBBER};
+  return _39;
+
+}
+
+
+Crypto_AL_DerCheckSequence (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Valid;
+  uint32 SubComponentLength;
+  uint32 Position;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  const struct Crypto_DerSubComponentStruct * _4;
+  long unsigned int _5;
+  const struct Crypto_DerSubComponentStruct * _6;
+  const uint8 * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int SubComponentLength.2_11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  boolean _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Valid_22 = 1;
+  # DEBUG Valid => Valid_22
+  # DEBUG BEGIN_STMT
+  i_23 = 0;
+  # DEBUG i => i_23
+  # DEBUG BEGIN_STMT
+  Position_27 = Crypto_AL_DerEncGetContentsStart (Encoding_25(D));
+  # DEBUG Position => Position_27
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsLength (Encoding_25(D));
+  _2 = Position_27 + _1;
+  *LengthPtr_29(D) = _2;
+  # DEBUG BEGIN_STMT
+  _3 = *LengthPtr_29(D);
+  if (MaxLength_31(D) < _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (Position_27 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Valid_38 = 0;
+  # DEBUG Valid => Valid_38
+  goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = ComponentPtr_32(D)->SubComponents;
+  _5 = i_16 * 12;
+  _6 = _4 + _5;
+  _7 = Encoding_25(D) + Position_17;
+  _8 = *LengthPtr_29(D);
+  _9 = _8 - Position_17;
+  _10 = Crypto_AL_DerCheckSubComponent (_6, _7, _9, &SubComponentLength);
+  if (_10 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SubComponentLength.2_11 = SubComponentLength;
+  Position_35 = Position_17 + SubComponentLength.2_11;
+  # DEBUG Position => Position_35
+  # DEBUG BEGIN_STMT
+  i_36 = i_16 + 1;
+  # DEBUG i => i_36
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Valid_34 = 0;
+  # DEBUG Valid => Valid_34
+
+  <bb 8> :
+  # i_16 = PHI <i_23(3), i_36(6), i_16(7)>
+  # Position_17 = PHI <Position_27(3), Position_35(6), Position_17(7)>
+  # Valid_18 = PHI <Valid_22(3), Valid_18(6), Valid_34(7)>
+  # DEBUG Valid => Valid_18
+  # DEBUG Position => Position_17
+  # DEBUG i => i_16
+  # DEBUG BEGIN_STMT
+  if (Valid_18 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _12 = ComponentPtr_32(D)->NrOfSubComponents;
+  if (i_16 < _12)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  _13 = *LengthPtr_29(D);
+  if (Position_17 <= _13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _14 = *LengthPtr_29(D);
+  if (Position_17 != _14)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _15 = ComponentPtr_32(D)->NrOfSubComponents;
+  if (i_16 != _15)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Valid_37 = 0;
+  # DEBUG Valid => Valid_37
+
+  <bb 14> :
+  # Valid_19 = PHI <Valid_38(4), Valid_18(12), Valid_37(13)>
+  # DEBUG Valid => Valid_19
+  # DEBUG BEGIN_STMT
+  _39 = Valid_19;
+  SubComponentLength ={v} {CLOBBER};
+  return _39;
+
+}
+
+
+Crypto_AL_DerCheckSubComponent (const struct Crypto_DerSubComponentType * SubComponentPtr, const uint8 * Encoding, uint32 MaxLength, uint32 * LengthPtr)
+{
+  boolean Identifier;
+  boolean Valid;
+  long unsigned int _1;
+  const struct Crypto_DerComponentStruct * _2;
+  const struct Crypto_DerParseFunctionsType * _3;
+  boolean (*<T48a>) (const struct Crypto_DerComponentStruct *, const uint8 *, uint32, uint32 *) _4;
+  const struct Crypto_DerComponentStruct * _5;
+  boolean _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Identifier_12 = Crypto_AL_DerCheckIdentifier (Encoding_9(D), SubComponentPtr_10(D));
+  # DEBUG Identifier => Identifier_12
+  # DEBUG BEGIN_STMT
+  _1 = SubComponentPtr_10(D)->Tag;
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (Identifier_12 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *LengthPtr_13(D) = 0;
+  # DEBUG BEGIN_STMT
+  Valid_15 = SubComponentPtr_10(D)->IsOptional;
+  # DEBUG Valid => Valid_15
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = SubComponentPtr_10(D)->ComponentPtr;
+  _3 = _2->ParseFunctionsPtr;
+  _4 = _3->CheckFunction;
+  _5 = SubComponentPtr_10(D)->ComponentPtr;
+  Valid_18 = _4 (_5, Encoding_9(D), MaxLength_16(D), LengthPtr_13(D));
+  # DEBUG Valid => Valid_18
+
+  <bb 6> :
+  # Valid_6 = PHI <Valid_15(4), Valid_18(5)>
+  # DEBUG Valid => Valid_6
+  # DEBUG BEGIN_STMT
+  _19 = Valid_6;
+  return _19;
+
+}
+
+
+Crypto_AL_DerFindInSequence (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  boolean Identifier;
+  uint32 TempPositionVal;
+  uint32 EncodingLength;
+  boolean Found;
+  uint32 FoundPos;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  const struct Crypto_DerSubComponentStruct * _5;
+  long unsigned int _6;
+  const struct Crypto_DerSubComponentStruct * _7;
+  long unsigned int _8;
+  const struct Crypto_DerSubComponentStruct * _9;
+  long unsigned int _10;
+  const struct Crypto_DerSubComponentStruct * _11;
+  const struct Crypto_DerComponentStruct * _12;
+  const struct Crypto_DerParseFunctionsType * _13;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _14;
+  const struct Crypto_DerSubComponentStruct * _15;
+  long unsigned int _16;
+  const struct Crypto_DerSubComponentStruct * _17;
+  const struct Crypto_DerComponentStruct * _18;
+  const uint8 * _19;
+  unsigned char _20;
+  long unsigned int _21;
+  long unsigned int FoundPos.1_22;
+  long unsigned int _23;
+  long unsigned int _24;
+  const uint8 * _25;
+  const struct Crypto_DerSubComponentStruct * _26;
+  long unsigned int _27;
+  const struct Crypto_DerSubComponentStruct * _28;
+  const struct Crypto_DerSubComponentStruct * _29;
+  long unsigned int _30;
+  const struct Crypto_DerSubComponentStruct * _31;
+  unsigned char _32;
+  long unsigned int _33;
+  const uint8 * _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  const uint8 * _37;
+  long unsigned int _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  long unsigned int _42;
+  long unsigned int iftmp.0_47;
+  long unsigned int iftmp.0_68;
+  long unsigned int iftmp.0_69;
+  long unsigned int _75;
+  boolean _80;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_51 = 0;
+  # DEBUG i => i_51
+  # DEBUG BEGIN_STMT
+  FoundPos = 0;
+  # DEBUG BEGIN_STMT
+  Found_54 = 0;
+  # DEBUG Found => Found_54
+  # DEBUG BEGIN_STMT
+  EncodingLength_55 = 0;
+  # DEBUG EncodingLength => EncodingLength_55
+  # DEBUG BEGIN_STMT
+  TempPositionVal_56 = 0;
+  # DEBUG TempPositionVal => TempPositionVal_56
+  # DEBUG BEGIN_STMT
+  _1 = Crypto_AL_DerEncGetContentsStart (Encoding_57(D));
+  *PositionPtr_59(D) = _1;
+  # DEBUG BEGIN_STMT
+  _2 = *PositionPtr_59(D);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = *PositionPtr_59(D);
+  _4 = Crypto_AL_DerEncGetContentsLength (Encoding_57(D));
+  EncodingLength_62 = _3 + _4;
+  # DEBUG EncodingLength => EncodingLength_62
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = ComponentPtr_63(D)->SubComponents;
+  _6 = i_43 * 12;
+  _7 = _5 + _6;
+  if (SubComponentToFindPtr_64(D) == _7)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _8 = *PositionPtr_59(D);
+  if (StartSearch_65(D) <= _8)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Found_66 = 1;
+  # DEBUG Found => Found_66
+  goto <bb 15>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  TempPositionVal_67 = *PositionPtr_59(D);
+  # DEBUG TempPositionVal => TempPositionVal_67
+  # DEBUG BEGIN_STMT
+  _9 = ComponentPtr_63(D)->SubComponents;
+  _10 = i_43 * 12;
+  _11 = _9 + _10;
+  _12 = _11->ComponentPtr;
+  _13 = _12->ParseFunctionsPtr;
+  _14 = _13->FindFunction;
+  _15 = ComponentPtr_63(D)->SubComponents;
+  _16 = i_43 * 12;
+  _17 = _15 + _16;
+  _18 = _17->ComponentPtr;
+  _19 = Encoding_57(D) + TempPositionVal_67;
+  if (StartSearch_65(D) >= TempPositionVal_67)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.0_69 = StartSearch_65(D) - TempPositionVal_67;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.0_68 = 0;
+
+  <bb 10> :
+  # iftmp.0_47 = PHI <iftmp.0_69(8), iftmp.0_68(9)>
+  _20 = _14 (_18, _19, SubComponentToFindPtr_64(D), &FoundPos, iftmp.0_47);
+  if (_20 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _21 = *PositionPtr_59(D);
+  FoundPos.1_22 = FoundPos;
+  _23 = _21 + FoundPos.1_22;
+  *PositionPtr_59(D) = _23;
+  # DEBUG BEGIN_STMT
+  Found_78 = 1;
+  # DEBUG Found => Found_78
+  # DEBUG BEGIN_STMT
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _24 = *PositionPtr_59(D);
+  _25 = Encoding_57(D) + _24;
+  _26 = ComponentPtr_63(D)->SubComponents;
+  _27 = i_43 * 12;
+  _28 = _26 + _27;
+  Identifier_72 = Crypto_AL_DerCheckIdentifier (_25, _28);
+  # DEBUG Identifier => Identifier_72
+  # DEBUG BEGIN_STMT
+  _29 = ComponentPtr_63(D)->SubComponents;
+  _30 = i_43 * 12;
+  _31 = _29 + _30;
+  _32 = _31->IsOptional;
+  if (_32 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  if (Identifier_72 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _33 = *PositionPtr_59(D);
+  _34 = Encoding_57(D) + _33;
+  _35 = Crypto_AL_DerEncGetContentsStart (_34);
+  _36 = *PositionPtr_59(D);
+  _37 = Encoding_57(D) + _36;
+  _38 = Crypto_AL_DerEncGetContentsLength (_37);
+  _75 = _35 + _38;
+  _39 = *PositionPtr_59(D);
+  _40 = _75 + _39;
+  *PositionPtr_59(D) = _40;
+
+  <bb 15> :
+  # Found_44 = PHI <Found_66(6), Found_45(13), Found_45(14)>
+  # DEBUG Found => Found_44
+  # DEBUG BEGIN_STMT
+  i_79 = i_43 + 1;
+  # DEBUG i => i_79
+
+  <bb 16> :
+  # i_43 = PHI <i_51(3), i_79(15)>
+  # Found_45 = PHI <Found_54(3), Found_44(15)>
+  # DEBUG Found => Found_45
+  # DEBUG i => i_43
+  # DEBUG BEGIN_STMT
+  if (Found_45 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  _41 = ComponentPtr_63(D)->NrOfSubComponents;
+  if (i_43 < _41)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  _42 = *PositionPtr_59(D);
+  if (EncodingLength_62 > _42)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  # Found_46 = PHI <Found_54(2), Found_78(11), Found_45(16), Found_45(17), Found_45(18)>
+  # DEBUG Found => Found_46
+  # DEBUG BEGIN_STMT
+  _80 = Found_46;
+  FoundPos ={v} {CLOBBER};
+  return _80;
+
+}
+
+
+Crypto_AL_DerFindInSequenceIgnoreTag (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  boolean Identifier;
+  boolean Found;
+  uint32 TempPositionVal;
+  uint32 FoundPos;
+  uint32 i;
+  const struct Crypto_DerSubComponentStruct * _1;
+  long unsigned int _2;
+  const struct Crypto_DerSubComponentStruct * _3;
+  long unsigned int _4;
+  const struct Crypto_DerSubComponentStruct * _5;
+  long unsigned int _6;
+  const struct Crypto_DerSubComponentStruct * _7;
+  const struct Crypto_DerComponentStruct * _8;
+  const struct Crypto_DerParseFunctionsType * _9;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _10;
+  const struct Crypto_DerSubComponentStruct * _11;
+  long unsigned int _12;
+  const struct Crypto_DerSubComponentStruct * _13;
+  const struct Crypto_DerComponentStruct * _14;
+  const uint8 * _15;
+  unsigned char _16;
+  long unsigned int _17;
+  long unsigned int FoundPos.4_18;
+  long unsigned int _19;
+  long unsigned int _20;
+  const uint8 * _21;
+  const struct Crypto_DerSubComponentStruct * _22;
+  long unsigned int _23;
+  const struct Crypto_DerSubComponentStruct * _24;
+  const struct Crypto_DerSubComponentStruct * _25;
+  long unsigned int _26;
+  const struct Crypto_DerSubComponentStruct * _27;
+  unsigned char _28;
+  long unsigned int _29;
+  const uint8 * _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  const uint8 * _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  long unsigned int _37;
+  long unsigned int iftmp.3_41;
+  long unsigned int iftmp.3_57;
+  long unsigned int iftmp.3_58;
+  long unsigned int _64;
+  boolean _69;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempPositionVal_45 = 0;
+  # DEBUG TempPositionVal => TempPositionVal_45
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Found_46 = 0;
+  # DEBUG Found => Found_46
+  # DEBUG BEGIN_STMT
+  i_47 = 0;
+  # DEBUG i => i_47
+  # DEBUG BEGIN_STMT
+  *PositionPtr_49(D) = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = ComponentPtr_51(D)->SubComponents;
+  _2 = i_38 * 12;
+  _3 = _1 + _2;
+  if (SubComponentToFindPtr_52(D) == _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _4 = *PositionPtr_49(D);
+  if (StartSearch_53(D) <= _4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Found_54 = 1;
+  # DEBUG Found => Found_54
+  goto <bb 15>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  TempPositionVal_55 = *PositionPtr_49(D);
+  # DEBUG TempPositionVal => TempPositionVal_55
+  # DEBUG BEGIN_STMT
+  _5 = ComponentPtr_51(D)->SubComponents;
+  _6 = i_38 * 12;
+  _7 = _5 + _6;
+  _8 = _7->ComponentPtr;
+  _9 = _8->ParseFunctionsPtr;
+  _10 = _9->FindFunction;
+  _11 = ComponentPtr_51(D)->SubComponents;
+  _12 = i_38 * 12;
+  _13 = _11 + _12;
+  _14 = _13->ComponentPtr;
+  _15 = Encoding_56(D) + TempPositionVal_55;
+  if (StartSearch_53(D) >= TempPositionVal_55)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.3_58 = StartSearch_53(D) - TempPositionVal_55;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.3_57 = 0;
+
+  <bb 9> :
+  # iftmp.3_41 = PHI <iftmp.3_58(7), iftmp.3_57(8)>
+  _16 = _10 (_14, _15, SubComponentToFindPtr_52(D), &FoundPos, iftmp.3_41);
+  if (_16 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _17 = *PositionPtr_49(D);
+  FoundPos.4_18 = FoundPos;
+  _19 = _17 + FoundPos.4_18;
+  *PositionPtr_49(D) = _19;
+  # DEBUG BEGIN_STMT
+  Found_68 = 1;
+  # DEBUG Found => Found_68
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = *PositionPtr_49(D);
+  _21 = Encoding_56(D) + _20;
+  _22 = ComponentPtr_51(D)->SubComponents;
+  _23 = i_38 * 12;
+  _24 = _22 + _23;
+  Identifier_61 = Crypto_AL_DerCheckIdentifier (_21, _24);
+  # DEBUG Identifier => Identifier_61
+  # DEBUG BEGIN_STMT
+  _25 = ComponentPtr_51(D)->SubComponents;
+  _26 = i_38 * 12;
+  _27 = _25 + _26;
+  _28 = _27->IsOptional;
+  if (_28 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  if (Identifier_61 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _29 = *PositionPtr_49(D);
+  _30 = Encoding_56(D) + _29;
+  _31 = Crypto_AL_DerEncGetContentsStart (_30);
+  _32 = *PositionPtr_49(D);
+  _33 = Encoding_56(D) + _32;
+  _34 = Crypto_AL_DerEncGetContentsLength (_33);
+  _64 = _31 + _34;
+  _35 = *PositionPtr_49(D);
+  _36 = _64 + _35;
+  *PositionPtr_49(D) = _36;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  i_66 = i_38 + 1;
+  # DEBUG i => i_66
+
+  <bb 15> :
+  # i_38 = PHI <i_47(2), i_38(5), i_66(14)>
+  # Found_39 = PHI <Found_46(2), Found_54(5), Found_39(14)>
+  # DEBUG Found => Found_39
+  # DEBUG i => i_38
+  # DEBUG BEGIN_STMT
+  if (Found_39 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  _37 = ComponentPtr_51(D)->NrOfSubComponents;
+  if (i_38 < _37)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # Found_40 = PHI <Found_68(10), Found_39(15), Found_39(16)>
+  # DEBUG Found => Found_40
+  # DEBUG BEGIN_STMT
+  _69 = Found_40;
+  FoundPos ={v} {CLOBBER};
+  return _69;
+
+}
+
+
+Crypto_AL_DerFindNothing (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * PositionPtr, uint32 StartSearch)
+{
+  boolean _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *PositionPtr_2(D) = 0;
+  # DEBUG BEGIN_STMT
+  _4 = 0;
+  return _4;
+
+}
+
+
+Crypto_AL_DerSkipIdentifier (const uint8 * EncodingPtr)
+{
+  uint32 NumOctets;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  const uint8 * _4;
+  unsigned char _5;
+  signed char _6;
+  uint32 _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NumOctets_10 = 1;
+  # DEBUG NumOctets => NumOctets_10
+  # DEBUG BEGIN_STMT
+  _1 = *EncodingPtr_12(D);
+  _2 = (unsigned int) _1;
+  _3 = _2 & 31;
+  if (_3 == 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NumOctets_13 = 1;
+  # DEBUG NumOctets => NumOctets_13
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = EncodingPtr_12(D) + NumOctets_7;
+  _5 = *_4;
+  _6 = (signed char) _5;
+  if (_6 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NumOctets_14 = NumOctets_7 + 1;
+  # DEBUG NumOctets => NumOctets_14
+
+  <bb 6> :
+  # NumOctets_7 = PHI <NumOctets_13(3), NumOctets_14(5)>
+  # DEBUG NumOctets => NumOctets_7
+  # DEBUG BEGIN_STMT
+  if (NumOctets_7 <= 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  NumOctets_15 = NumOctets_7 + 1;
+  # DEBUG NumOctets => NumOctets_15
+
+  <bb 8> :
+  # NumOctets_8 = PHI <NumOctets_10(2), NumOctets_15(7)>
+  # DEBUG NumOctets => NumOctets_8
+  # DEBUG BEGIN_STMT
+  if (NumOctets_8 > 4)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  NumOctets_16 = 0;
+  # DEBUG NumOctets => NumOctets_16
+
+  <bb 10> :
+  # NumOctets_9 = PHI <NumOctets_8(8), NumOctets_16(9)>
+  # DEBUG NumOctets => NumOctets_9
+  # DEBUG BEGIN_STMT
+  _17 = NumOctets_9;
+  return _17;
+
+}
+
+
+Crypto_AL_DerCheckIdentifier (const uint8 * EncodingPtr, const struct Crypto_DerSubComponentType * SubComponentPtr)
+{
+  uint32 OctetIndex;
+  uint32 TagValue;
+  boolean RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  const uint8 * _5;
+  unsigned char _6;
+  long unsigned int _7;
+  const uint8 * _8;
+  unsigned char _9;
+  signed char _10;
+  long unsigned int _11;
+  boolean _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_17 = 0;
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  _1 = *EncodingPtr_19(D);
+  TagValue_20 = (uint32) _1;
+  # DEBUG TagValue => TagValue_20
+  # DEBUG BEGIN_STMT
+  OctetIndex_21 = 1;
+  # DEBUG OctetIndex => OctetIndex_21
+  # DEBUG BEGIN_STMT
+  _2 = *EncodingPtr_19(D);
+  _3 = (unsigned int) _2;
+  _4 = _3 & 31;
+  if (_4 == 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OctetIndex_22 = 1;
+  # DEBUG OctetIndex => OctetIndex_22
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  TagValue_23 = TagValue_13 << 8;
+  # DEBUG TagValue => TagValue_23
+  # DEBUG BEGIN_STMT
+  _5 = EncodingPtr_19(D) + OctetIndex_15;
+  _6 = *_5;
+  _7 = (long unsigned int) _6;
+  TagValue_24 = TagValue_23 | _7;
+  # DEBUG TagValue => TagValue_24
+  # DEBUG BEGIN_STMT
+  _8 = EncodingPtr_19(D) + OctetIndex_15;
+  _9 = *_8;
+  _10 = (signed char) _9;
+  if (_10 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OctetIndex_25 = OctetIndex_15 + 1;
+  # DEBUG OctetIndex => OctetIndex_25
+
+  <bb 6> :
+  # TagValue_13 = PHI <TagValue_20(3), TagValue_24(5)>
+  # OctetIndex_15 = PHI <OctetIndex_22(3), OctetIndex_25(5)>
+  # DEBUG OctetIndex => OctetIndex_15
+  # DEBUG TagValue => TagValue_13
+  # DEBUG BEGIN_STMT
+  if (OctetIndex_15 <= 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # TagValue_14 = PHI <TagValue_20(2), TagValue_24(4), TagValue_13(6)>
+  # OctetIndex_16 = PHI <OctetIndex_21(2), OctetIndex_15(4), OctetIndex_15(6)>
+  # DEBUG OctetIndex => OctetIndex_16
+  # DEBUG TagValue => TagValue_14
+  # DEBUG BEGIN_STMT
+  if (OctetIndex_16 <= 3)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _11 = SubComponentPtr_26(D)->Tag;
+  if (TagValue_14 == _11)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  RetVal_27 = 1;
+  # DEBUG RetVal => RetVal_27
+
+  <bb 10> :
+  # RetVal_12 = PHI <RetVal_17(7), RetVal_17(8), RetVal_27(9)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  _28 = RetVal_12;
+  return _28;
+
+}
+
+
+Crypto_AL_DerEncGetContentsLength (const uint8 * Encoding)
+{
+  uint32 Position;
+  uint8 LengthLength;
+  uint32 Length;
+  uint8 i;
+  const uint8 * _1;
+  unsigned char _2;
+  signed char _3;
+  const uint8 * _4;
+  unsigned char _5;
+  const uint8 * _6;
+  unsigned char _7;
+  unsigned char LengthLength.10_8;
+  const uint8 * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  const uint8 * _14;
+  unsigned char _15;
+  long unsigned int _16;
+  unsigned char i.11_17;
+  uint32 _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Length_23 = 0;
+  # DEBUG Length => Length_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position_27 = Crypto_AL_DerSkipIdentifier (Encoding_25(D));
+  # DEBUG Position => Position_27
+  # DEBUG BEGIN_STMT
+  if (Position_27 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Encoding_25(D) + Position_27;
+  _2 = *_1;
+  _3 = (signed char) _2;
+  if (_3 >= 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = Encoding_25(D) + Position_27;
+  _5 = *_4;
+  Length_37 = (uint32) _5;
+  # DEBUG Length => Length_37
+  goto <bb 14>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = Encoding_25(D) + Position_27;
+  _7 = *_6;
+  LengthLength_28 = _7 & 127;
+  # DEBUG LengthLength => LengthLength_28
+  # DEBUG BEGIN_STMT
+  Position_29 = Position_27 + 1;
+  # DEBUG Position => Position_29
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Position_30 = Position_22 + 1;
+  # DEBUG Position => Position_30
+  # DEBUG BEGIN_STMT
+  LengthLength.10_8 = LengthLength_21;
+  LengthLength_31 = LengthLength.10_8 + 255;
+  # DEBUG LengthLength => LengthLength_31
+
+  <bb 7> :
+  # LengthLength_21 = PHI <LengthLength_28(5), LengthLength_31(6)>
+  # Position_22 = PHI <Position_29(5), Position_30(6)>
+  # DEBUG Position => Position_22
+  # DEBUG LengthLength => LengthLength_21
+  # DEBUG BEGIN_STMT
+  _9 = Encoding_25(D) + Position_22;
+  _10 = *_9;
+  if (_10 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (LengthLength_21 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (LengthLength_21 > 4)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Length_36 = 0;
+  # DEBUG Length => Length_36
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Length_32 = 0;
+  # DEBUG Length => Length_32
+  # DEBUG BEGIN_STMT
+  i_33 = 0;
+  # DEBUG i => i_33
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _11 = Length_19 << 8;
+  _12 = (long unsigned int) i_18;
+  _13 = Position_22 + _12;
+  _14 = Encoding_25(D) + _13;
+  _15 = *_14;
+  _16 = (long unsigned int) _15;
+  Length_34 = _11 + _16;
+  # DEBUG Length => Length_34
+  # DEBUG BEGIN_STMT
+  i.11_17 = i_18;
+  i_35 = i.11_17 + 1;
+  # DEBUG i => i_35
+
+  <bb 13> :
+  # i_18 = PHI <i_33(11), i_35(12)>
+  # Length_19 = PHI <Length_32(11), Length_34(12)>
+  # DEBUG Length => Length_19
+  # DEBUG i => i_18
+  # DEBUG BEGIN_STMT
+  if (i_18 < LengthLength_21)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # Length_20 = PHI <Length_23(2), Length_37(4), Length_36(10), Length_19(13)>
+  # DEBUG Length => Length_20
+  # DEBUG BEGIN_STMT
+  _38 = Length_20;
+  return _38;
+
+}
+
+
+Crypto_AL_DerEncGetContentsStart (const uint8 * Encoding)
+{
+  uint32 Position;
+  const uint8 * _1;
+  unsigned char _2;
+  signed char _3;
+  const uint8 * _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  uint32 _16;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Position_13 = Crypto_AL_DerSkipIdentifier (Encoding_11(D));
+  # DEBUG Position => Position_13
+  # DEBUG BEGIN_STMT
+  if (Position_13 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Encoding_11(D) + Position_13;
+  _2 = *_1;
+  _3 = (signed char) _2;
+  if (_3 >= 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Position_15 = Position_13 + 1;
+  # DEBUG Position => Position_15
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = Encoding_11(D) + Position_13;
+  _5 = *_4;
+  _6 = (long unsigned int) _5;
+  _7 = _6 & 127;
+  _8 = Position_13 + _7;
+  Position_14 = _8 + 1;
+  # DEBUG Position => Position_14
+
+  <bb 6> :
+  # Position_9 = PHI <Position_13(2), Position_15(4), Position_14(5)>
+  # DEBUG Position => Position_9
+  # DEBUG BEGIN_STMT
+  _16 = Position_9;
+  return _16;
+
+}
+
+
+Crypto_AL_DerSubComponentContents (const struct Crypto_DerComponentType * ComponentPtr, const uint8 * Encoding, const struct Crypto_DerSubComponentType * SubComponentToFindPtr, uint32 * ContentsLengthPtr, uint32 StartSearch)
+{
+  uint32 CurrentPos;
+  const struct Crypto_DerParseFunctionsType * _1;
+  boolean (*<T485>) (const struct Crypto_DerComponentStruct *, const uint8 *, const struct Crypto_DerSubComponentStruct *, uint32 *, uint32) _2;
+  unsigned char _3;
+  long unsigned int CurrentPos.7_4;
+  const uint8 * _5;
+  long unsigned int _6;
+  long unsigned int CurrentPos.8_7;
+  const uint8 * _8;
+  long unsigned int CurrentPos.9_9;
+  long unsigned int _10;
+  long unsigned int _24;
+  uint32 _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ComponentPtr_13(D)->ParseFunctionsPtr;
+  _2 = _1->FindFunction;
+  _3 = _2 (ComponentPtr_13(D), Encoding_14(D), SubComponentToFindPtr_15(D), &CurrentPos, StartSearch_16(D));
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CurrentPos.7_4 = CurrentPos;
+  _5 = Encoding_14(D) + CurrentPos.7_4;
+  _6 = Crypto_AL_DerEncGetContentsLength (_5);
+  *ContentsLengthPtr_18(D) = _6;
+  # DEBUG BEGIN_STMT
+  CurrentPos.8_7 = CurrentPos;
+  _8 = Encoding_14(D) + CurrentPos.8_7;
+  _24 = Crypto_AL_DerEncGetContentsStart (_8);
+  CurrentPos.9_9 = CurrentPos;
+  _10 = _24 + CurrentPos.9_9;
+  CurrentPos = _10;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *ContentsLengthPtr_18(D) = 0;
+  # DEBUG BEGIN_STMT
+  CurrentPos = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _26 = CurrentPos;
+  CurrentPos ={v} {CLOBBER};
+  return _26;
+
+}
+
+

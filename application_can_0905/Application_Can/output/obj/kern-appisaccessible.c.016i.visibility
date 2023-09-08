@@ -1,0 +1,170 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_AppIsAccessible
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_isrTableBase/2 (OS_isrTableBase) @06c54cf0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_AppIsAccessible/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06c54ca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)OS_AppIsAccessible/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_AppIsAccessible/0 (OS_AppIsAccessible) @06c79a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_isrTableBase/2 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_AppIsAccessible (const struct os_appcontext_t * app)
+{
+  os_boolean_t result;
+  os_boolean_t D.7436;
+  const struct os_appcontext_t * iftmp.3;
+  const struct os_appcontext_t * iftmp.1;
+  const struct os_appcontext_t * iftmp.0;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 1;
+  goto <bb 21>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = app->dynamic;
+  _2 = _1->appstate;
+  _3 = (int) _2;
+  switch (_3) <default: <L18> [INV], case 1: <L3> [INV], case 2: <L2> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  result = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.inFunction;
+  if (_4 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  _5 = OS_kernelData.taskCurrent;
+  iftmp.0 = _5->app;
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  _6 = OS_kernelData.inFunction;
+  if (_6 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  OS_isrTableBase.2_7 = OS_isrTableBase;
+  _8 = OS_kernelData.isrCurrent;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 68;
+  _11 = OS_isrTableBase.2_7 + _10;
+  iftmp.1 = _11->app;
+  goto <bb 16>; [INV]
+
+  <bb 10> :
+  _12 = OS_kernelData.inFunction;
+  if (_12 == 10)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _13 = OS_kernelData.inFunction;
+  if (_13 == 8)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _14 = OS_kernelData.inFunction;
+  if (_14 == 9)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  iftmp.3 = OS_kernelData.hookApp;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  iftmp.3 = 0B;
+
+  <bb 15> :
+  iftmp.1 = iftmp.3;
+
+  <bb 16> :
+  iftmp.0 = iftmp.1;
+
+  <bb 17> :
+  if (iftmp.0 == app)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  result = 1;
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  D.7436 = result;
+  return D.7436;
+
+}
+
+

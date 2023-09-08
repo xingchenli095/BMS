@@ -1,0 +1,237 @@
+__attribute__((target ("general-regs-only")))
+OS_KernSchedule ()
+{
+  os_tasklink_t * const taskActivations;
+  os_tasklink_t next;
+  os_tasklink_t link;
+  struct os_taskdynamic_t * td;
+  os_result_t r;
+  os_intstatus_t is;
+  struct os_kerneldata_t * const kernel_data;
+  unsigned char _1;
+  const struct os_task_t * _2;
+  unsigned char OS_iecMode.0_3;
+  short unsigned int _4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  short unsigned int OS_kernDisableLevel.1_9;
+  const struct os_task_t * _10;
+  short unsigned int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  os_tasklink_t * _16;
+  unsigned char _17;
+  const struct os_task_t * _18;
+  unsigned char _19;
+  int _20;
+  int _21;
+  int _22;
+  const struct os_task_t * _23;
+  short unsigned int _24;
+  int _25;
+  int _26;
+  const struct os_task_t * _27;
+  struct os_taskdynamic_t * _28;
+  unsigned char _29;
+  int _30;
+  int _31;
+  int _32;
+  const struct os_task_t * _33;
+  struct os_taskdynamic_t * _34;
+  short unsigned int _35;
+  int _36;
+  const struct os_task_t * _37;
+  unsigned char _38;
+  const struct os_task_t * _39;
+  unsigned char _40;
+  short unsigned int _41;
+  short unsigned int _42;
+  int iftmp.2_44;
+  int iftmp.2_60;
+  int iftmp.2_61;
+  os_result_t _69;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_47 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r_48 = 0;
+  # DEBUG r => r_48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.taskCurrent;
+  td_52 = _2->dynamic;
+  # DEBUG td => td_52
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_3 = OS_iecMode;
+  if (OS_iecMode.0_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _4 = BIT_FIELD_REF <MEM[(void *)td_52], 16, 160>;
+  _5 = _4;
+  if (_5 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  r_54 = OS_Error (&OS_svc_Schedule, 55, 0B);
+  # DEBUG r => r_54
+  goto <bb 19>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = td_52->lastLock;
+  if (_6 != 4294967295)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = td_52->lastLock;
+  _8 = _7 >> 24;
+  if (_8 == 9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  r_68 = OS_Error (&OS_svc_Schedule, 156, 0B);
+  # DEBUG r => r_68
+  goto <bb 19>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  r_66 = OS_Error (&OS_svc_Schedule, 13, 0B);
+  # DEBUG r => r_66
+  goto <bb 19>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  taskActivations_55 = &OS_taskActivations;
+  # DEBUG taskActivations => taskActivations_55
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_9 = OS_kernDisableLevel;
+  is_57 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_9);
+  # DEBUG is => is_57
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.taskCurrent;
+  _11 = _10->linkBase;
+  _12 = td_52->cAct;
+  _13 = (short unsigned int) _12;
+  link_58 = _11 + _13;
+  # DEBUG link => link_58
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) link_58;
+  _15 = _14 * 2;
+  _16 = &OS_taskActivations + _15;
+  next_59 = *_16;
+  # DEBUG next => next_59
+  # DEBUG BEGIN_STMT
+  _17 = td_52->state;
+  if (_17 == 5)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 11> :
+  if (next_59 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  _18 = OS_kernelData.taskCurrent;
+  _19 = _18->queuePrio;
+  _20 = (int) _19;
+  _21 = (int) next_59;
+  _22 = (int) next_59;
+  _23 = OS_taskPtrs[_22];
+  _24 = _23->linkBase;
+  _25 = (int) _24;
+  _26 = (int) next_59;
+  _27 = OS_taskPtrs[_26];
+  _28 = _27->dynamic;
+  _29 = _28->cAct;
+  _30 = (int) _29;
+  _31 = _25 + _30;
+  if (_21 == _31)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _32 = (int) next_59;
+  _33 = OS_taskPtrs[_32];
+  _34 = _33->dynamic;
+  _35 = _34->prio;
+  iftmp.2_61 = (int) _35;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  _36 = (int) next_59;
+  _37 = OS_taskPtrs[_36];
+  _38 = _37->queuePrio;
+  iftmp.2_60 = (int) _38;
+
+  <bb 15> :
+  # iftmp.2_44 = PHI <iftmp.2_61(13), iftmp.2_60(14)>
+  if (iftmp.2_44 > _20)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _39 = OS_kernelData.taskCurrent;
+  _40 = _39->queuePrio;
+  _41 = (short unsigned int) _40;
+  td_52->prio = _41;
+  # DEBUG BEGIN_STMT
+  _42 = td_52->prio;
+  OS_RequeueDown (link_58, _42);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_57);
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  r_51 = OS_Error (&OS_svc_Schedule, 12, 0B);
+  # DEBUG r => r_51
+
+  <bb 19> :
+  # r_43 = PHI <r_66(9), r_51(18), r_54(5), r_68(8), r_48(17)>
+  # DEBUG r => r_43
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _69 = r_43;
+  return _69;
+
+}
+
+

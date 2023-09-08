@@ -1,0 +1,34 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_LocalClearPendingInterrupt (const struct os_isr_t * isr)
+{
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  const struct os_archisr_t * _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  _1 = isr_7(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 4>; [52.23%]
+  else
+    goto <bb 3>; [47.77%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  _3 = &isr_7(D)->arch;
+  OS_CORTEXM_IntClearIsr (_3);
+
+  <bb 4> [local count: 1073741824]:
+  # result_4 = PHI <154(2), 0(3)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+

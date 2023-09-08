@@ -1,0 +1,99 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalEnableInterruptSource (const struct os_isr_t * isr, os_boolean_t clearPending)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  short unsigned int OS_kernDisableLevel.0_3;
+  struct os_isrdynamic_t * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  struct os_isrdynamic_t * _8;
+  unsigned char _9;
+  struct os_isrdynamic_t * _10;
+  unsigned char _11;
+  const struct os_archisr_t * _12;
+  const struct os_archisr_t * _13;
+  os_errorresult_t _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_19 = 0;
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = isr_21(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_31 = 154;
+  # DEBUG result => result_31
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_3 = OS_kernDisableLevel;
+  is_24 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_3);
+  # DEBUG is => is_24
+  # DEBUG BEGIN_STMT
+  _4 = isr_21(D)->dynamic;
+  _5 = _4->statusflags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 32;
+  if (_7 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = isr_21(D)->dynamic;
+  _9 = _8->statusflags;
+  _10 = isr_21(D)->dynamic;
+  _11 = _9 & 223;
+  _10->statusflags = _11;
+  # DEBUG BEGIN_STMT
+  if (clearPending_27(D) != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = &isr_21(D)->arch;
+  OS_CORTEXM_IntClearIsr (_12);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = &isr_21(D)->arch;
+  OS_CORTEXM_IntEnableIsr (_13);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  result_25 = 174;
+  # DEBUG result => result_25
+
+  <bb 9> :
+  # result_14 = PHI <result_19(7), result_25(8)>
+  # DEBUG result => result_14
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_24);
+
+  <bb 10> :
+  # result_15 = PHI <result_31(3), result_14(9)>
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  _32 = result_15;
+  return _32;
+
+}
+
+

@@ -1,0 +1,197 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalSetEvent
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_EnqueueLink/5 (OS_EnqueueLink) @06c0a000
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 
+  Calls: 
+OS_rateMonitorFunc/4 (OS_rateMonitorFunc) @06be3d80
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetEvent/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_AppIsAccessible/3 (OS_AppIsAccessible) @06c0aee0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c0ae00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetEvent/0 OS_LocalSetEvent/0 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06be3ca8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetEvent/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalSetEvent/0 (OS_LocalSetEvent) @06c0ac40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)OS_rateMonitorFunc/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 OS_EnqueueLink/5 OS_AppIsAccessible/3 OS_CORTEXM_IntSetDisablingLevel/2 
+   Indirect call
+__attribute__((target ("general-regs-only")))
+OS_LocalSetEvent (const struct os_task_t * ts, os_eventmask_t e)
+{
+  os_intstatus_t is;
+  struct os_taskdynamic_t * td;
+  os_errorresult_t result;
+  os_errorresult_t D.7431;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  td = ts->dynamic;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  _2 = ts->app;
+  _3 = OS_AppIsAccessible (_2);
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = td->state;
+  if (_4 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result = 28;
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = td->pEvents;
+  _6 = e | _5;
+  td->pEvents = _6;
+  # DEBUG BEGIN_STMT
+  _7 = td->state;
+  if (_7 == 6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 7> :
+  _8 = td->pEvents;
+  _9 = td->wEvents;
+  _10 = _8 & _9;
+  if (_10 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = ts->rateMonitor;
+  if (_11 != 65535)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  OS_rateMonitorFunc.1_12 = OS_rateMonitorFunc;
+  _13 = ts->rateMonitor;
+  _14 = OS_rateMonitorFunc.1_12 (_13);
+  if (_14 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result = 54;
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td->state = 3;
+  # DEBUG BEGIN_STMT
+  _15 = ts->queuePrio;
+  _16 = (short unsigned int) _15;
+  td->prio = _16;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = ts->accounting;
+  if (_17 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _18 = ts->accounting;
+  _18->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _19 = ts->accounting;
+  _19->etType = 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = ts->linkBase;
+  _21 = ts->queuePrio;
+  _22 = (short unsigned int) _21;
+  OS_EnqueueLink (_20, _22);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7431 = result;
+  return D.7431;
+
+}
+
+

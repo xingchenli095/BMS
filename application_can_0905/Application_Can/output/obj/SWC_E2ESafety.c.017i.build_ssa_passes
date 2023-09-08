@@ -1,0 +1,57 @@
+SWC_E2EProtSafe_Data_Cyclic ()
+{
+  struct E2EProt_Data arg_Send_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.2_1 = E2E_Data_Safety;
+  _2 = E2E_Data_Safety.2_1 + 1;
+  E2E_Data_Safety = _2;
+  E2E_Data_Safety.3_3 = E2E_Data_Safety;
+  arg_Send_data.SafetyE2E_Data = E2E_Data_Safety.3_3;
+  arg_Send_data.SafetyE2E_Data_CRC = 0;
+  arg_Send_data.SafetyE2E_Data_SQC_Counter = 0;
+  # DEBUG BEGIN_STMT
+  Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data (&arg_Send_data);
+  arg_Send_data = {CLOBBER};
+  return;
+
+}
+
+
+SWC_E2EProtSafe_Data_Received ()
+{
+  struct E2EProt_Data arg_IWrite_data;
+  struct E2EProt_Data arg_Receive_data;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.0_1 = E2E_Data_Safety;
+  arg_IWrite_data.SafetyE2E_Data = E2E_Data_Safety.0_1;
+  arg_IWrite_data.SafetyE2E_Data_CRC = 0;
+  arg_IWrite_data.SafetyE2E_Data_SQC_Counter = 0;
+  # DEBUG BEGIN_STMT
+  _2 = Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data (&arg_Receive_data);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = arg_Receive_data.SafetyE2E_Data;
+  E2E_Data_Safety = _3;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Rte_Inst_SWC_E2ESafety.1_4 = Rte_Inst_SWC_E2ESafety;
+  _5 = Rte_Inst_SWC_E2ESafety.1_4->UpdateE2EProtSafeData_P_E2E_SafeData_E2EProt_Data;
+  _5->value = arg_IWrite_data;
+  arg_Receive_data = {CLOBBER};
+  arg_IWrite_data = {CLOBBER};
+  return;
+
+}
+
+

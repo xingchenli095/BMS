@@ -1,0 +1,138 @@
+__attribute__((target ("general-regs-only")))
+OS_TimerSTMRead (const struct os_hwt_t * td)
+{
+  struct os_stm_t * stm;
+  os_timervalue_t D.7457;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td->major;
+  _2 = (int) _1;
+  stm = OS_stmBase[_2];
+  # DEBUG BEGIN_STMT
+  D.7457 = stm->stm_cnt;
+  return D.7457;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_TimerSTMStop (const struct os_hwt_t * td)
+{
+  struct os_stmchannel_t * chan;
+  struct os_stm_t * stm;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td->major;
+  _2 = (int) _1;
+  stm = OS_stmBase[_2];
+  # DEBUG BEGIN_STMT
+  _3 = td->minor;
+  _4 = (int) _3;
+  chan = &stm->stm_chan[_4];
+  # DEBUG BEGIN_STMT
+  _5 = chan->stm_ccr;
+  _6 = _5 & 4294967294;
+  chan->stm_ccr = _6;
+  # DEBUG BEGIN_STMT
+  chan->stm_cir = 1;
+  return;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_TimerSTMStart (const struct os_hwt_t * td, os_timervalue_t old, os_tick_t delta)
+{
+  os_timervalue_t newValue;
+  struct os_stmchannel_t * chan;
+  struct os_stm_t * stm;
+  os_boolean_t D.7455;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td->major;
+  _2 = (int) _1;
+  stm = OS_stmBase[_2];
+  # DEBUG BEGIN_STMT
+  _3 = td->minor;
+  _4 = (int) _3;
+  chan = &stm->stm_chan[_4];
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = stm->stm_cnt;
+  _6 = _5 + 4294967295;
+  chan->stm_cmp = _6;
+  # DEBUG BEGIN_STMT
+  newValue = old + delta;
+  # DEBUG BEGIN_STMT
+  _7 = chan->stm_ccr;
+  _8 = _7 | 1;
+  chan->stm_ccr = _8;
+  # DEBUG BEGIN_STMT
+  chan->stm_cmp = newValue;
+  # DEBUG BEGIN_STMT
+  _9 = stm->stm_cnt;
+  _10 = _9 - old;
+  _11 = delta <= _10;
+  D.7455 = (os_boolean_t) _11;
+  return D.7455;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_TimerSTMInit (const struct os_hwt_t * td)
+{
+  struct os_stm_t * stm;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = td->major;
+  _2 = (int) _1;
+  stm = OS_stmBase[_2];
+  # DEBUG BEGIN_STMT
+  _3 = stm->stm_cr;
+  _4 = _3 & 1;
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = td->major;
+  _6 = (int) _5;
+  _7 = OS_stm_prescaler[_6];
+  _8 = (unsigned int) _7;
+  _9 = _8 + 4294967295;
+  _10 = _9 << 8;
+  stm->stm_cr = _10;
+  # DEBUG BEGIN_STMT
+  OS_stm_debugmode.0_11 = OS_stm_debugmode;
+  if (OS_stm_debugmode.0_11 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = stm->stm_cr;
+  _13 = _12 | 2;
+  stm->stm_cr = _13;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  stm->stm_cnt = 0;
+  # DEBUG BEGIN_STMT
+  _14 = stm->stm_cr;
+  _15 = _14 | 1;
+  stm->stm_cr = _15;
+
+  <bb 6> :
+  return;
+
+}
+
+

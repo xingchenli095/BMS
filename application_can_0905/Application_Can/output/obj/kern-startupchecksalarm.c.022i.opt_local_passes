@@ -1,0 +1,104 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksAlarm ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_alarm_t * const alarm;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  const struct os_alarm_t * OS_alarmTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  short unsigned int OS_nAlarms.1_5;
+  unsigned int _6;
+  os_result_t _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_14 = 0;
+  # DEBUG myCoreId => myCoreId_14
+  # DEBUG BEGIN_STMT
+  result_15 = 0;
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_16 = 0;
+  # DEBUG i => i_16
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.0_1 = OS_alarmTableBase;
+  _2 = i_10 * 28;
+  alarm_19 = OS_alarmTableBase.0_1 + _2;
+  # DEBUG alarm => alarm_19
+  # DEBUG BEGIN_STMT
+  app_20 = alarm_19->app;
+  # DEBUG app => app_20
+  # DEBUG BEGIN_STMT
+  if (app_20 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_22 = OS_Panic (51);
+  # DEBUG result => result_22
+
+  <bb 5> :
+  # result_7 = PHI <result_22(4), result_9(3)>
+  # DEBUG result => result_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms_23 = alarm_19->permissions;
+  # DEBUG perms => perms_23
+  # DEBUG BEGIN_STMT
+  if (app_20 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _3 = app_20->permissionBit;
+  _4 = perms_23 & _3;
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_25 = OS_Panic (50);
+  # DEBUG result => result_25
+
+  <bb 8> :
+  # result_8 = PHI <result_25(7), result_7(5), result_7(6)>
+  # DEBUG result => result_8
+  # DEBUG BEGIN_STMT
+  i_26 = i_10 + 1;
+  # DEBUG i => i_26
+
+  <bb 9> :
+  # result_9 = PHI <result_15(2), result_8(8)>
+  # i_10 = PHI <i_16(2), i_26(8)>
+  # DEBUG i => i_10
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.1_5 = OS_nAlarms;
+  _6 = (unsigned int) OS_nAlarms.1_5;
+  if (i_10 < _6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _18 = result_9;
+  return _18;
+
+}
+
+

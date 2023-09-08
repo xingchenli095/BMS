@@ -1,0 +1,631 @@
+__attribute__((target ("general-regs-only")))
+OS_Cat2Entry (os_isrid_t iid)
+{
+  struct os_kerneldata_t * const kd;
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  register os_stackelement_t * OS_getSpResult;
+  os_intstatus_t level;
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  struct os_kerneldata_t * const kd;
+  struct os_kerneldata_t * const kd;
+  struct os_accounting_t * const acc;
+  struct os_accountingsave_t accSave;
+  os_objectid_t oldLastLock;
+  os_uint8_t nestAll;
+  os_uint8_t nestOs;
+  os_isrid_t oldIsr;
+  os_uint8_t inFunction;
+  os_uint8_t inKernel;
+  struct os_isrdynamic_t * id;
+  const struct os_isr_t * isr;
+  struct os_kerneldata_t * const kernel_data;
+  os_uint8_t D.7501;
+  int iftmp.18;
+  os_uint8_t iftmp.7;
+  unsigned int iftmp.6;
+  os_stackelement_t * D.7439;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  acc = &OS_kernelData.accounting;
+  # DEBUG BEGIN_STMT
+  accSave.inFunction = 255;
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.accounting.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_preemptTaskExecTimingFp.0_2 = OS_preemptTaskExecTimingFp;
+  _3 = OS_kernelData.taskCurrent;
+  OS_preemptTaskExecTimingFp.0_2 (_3);
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.accounting.inFunction;
+  accSave.inFunction = _4;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.inFunction;
+  if (_5 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_preemptIsrExecTimingFp.1_6 = OS_preemptIsrExecTimingFp;
+  OS_preemptIsrExecTimingFp.1_6 (&accSave);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.2_7 = OS_isrTableBase;
+  _8 = (unsigned int) iid;
+  _9 = _8 * 68;
+  isr = OS_isrTableBase.2_7 + _9;
+  # DEBUG BEGIN_STMT
+  id = isr->dynamic;
+  # DEBUG BEGIN_STMT
+  inKernel = OS_kernelData.inKernel;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inFunction = OS_kernelData.inFunction;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 3;
+  # DEBUG BEGIN_STMT
+  oldIsr = OS_kernelData.isrCurrent;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.isrCurrent = iid;
+  # DEBUG BEGIN_STMT
+  _10 = OS_IsrErrorChecksOk (isr, id);
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _11 = OS_kernelData.isrLastLock;
+  oldLastLock = _11;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.isrLastLock = 4294967295;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  _12 = OS_kernelData.nestSuspendOs;
+  nestOs = _12;
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.nestSuspendAll;
+  nestAll = _13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp = OS_kernelData.inFunction;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 13;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPreIsrHook.3_14 = OS_ptrPreIsrHook;
+  OS_ptrPreIsrHook.3_14 (iid);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_startIsrExecTimingFp.4_15 = OS_startIsrExecTimingFp;
+  _16 = isr->execBudget;
+  OS_startIsrExecTimingFp.4_15 (_16);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = id->statusflags;
+  _18 = _17 & 191;
+  id->statusflags = _18;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_configMode.5_19 = OS_configMode;
+  _20 = OS_configMode.5_19 & 2048;
+  if (_20 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  id->c.sp = 0B;
+  # DEBUG BEGIN_STMT
+  _21 = isr->arch.priority;
+  level = OS_CORTEXM_IntSetDisablingLevel (_21);
+  # DEBUG BEGIN_STMT
+  _22 = isr->func;
+  _22 ();
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (level);
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult);
+  # DEBUG BEGIN_STMT
+  D.7439 = OS_getSpResult;
+  _23 = (unsigned int) D.7439;
+  _24 = _23 + 4294967232;
+  _25 = isr->arch.mpuSizeStack;
+  if (_25 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  _26 = isr->arch.mpuSizeStack;
+  _27 = (unsigned int) _26;
+  _28 = _27 >> 1;
+  _29 = _28 + 1;
+  _30 = 1 << _29;
+  iftmp.6 = -_30;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.6 = 4294967288;
+
+  <bb 12> :
+  _31 = iftmp.6 & _24;
+  _32 = (os_stackelement_t *) _31;
+  id->c.stackLimit = _32;
+  # DEBUG BEGIN_STMT
+  OS_SetIsrProtection (isr, id);
+  # DEBUG BEGIN_STMT
+  _33 = isr->arch.priority;
+  _34 = isr->func;
+  _35 = &id->c.sp;
+  _36 = id->c.stackLimit;
+  _37 = isr->app;
+  if (_37 != 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  _38 = isr->app;
+  iftmp.7 = _38->flags;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  iftmp.7 = 1;
+
+  <bb 15> :
+  OS_CORTEXM_Call (_33, _34, _35, _36, iftmp.7, 0);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_ResetKernStackRw (isr);
+  # DEBUG BEGIN_STMT
+  id->c.sp = 0B;
+  # DEBUG BEGIN_STMT
+  id->c.stackLimit = 0B;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_stopIsrExecTimingFp.8_39 = OS_stopIsrExecTimingFp;
+  OS_stopIsrExecTimingFp.8_39 (isr);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp = OS_kernelData.inFunction;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 14;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPostIsrHook.9_40 = OS_ptrPostIsrHook;
+  OS_ptrPostIsrHook.9_40 (iid);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.10_41 = OS_nInterrupts;
+  if (oldIsr < OS_nInterrupts.10_41)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.11_42 = OS_isrTableBase;
+  _43 = (unsigned int) oldIsr;
+  _44 = _43 * 68;
+  _45 = OS_isrTableBase.11_42 + _44;
+  OS_isrTableBase.12_46 = OS_isrTableBase;
+  _47 = (unsigned int) oldIsr;
+  _48 = _47 * 68;
+  _49 = OS_isrTableBase.12_46 + _48;
+  _50 = _49->dynamic;
+  OS_SetIsrProtection (_45, _50);
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _51 = OS_kernelData.taskCurrent;
+  if (_51 != 0B)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _52 = OS_kernelData.taskCurrent;
+  OS_SetProtection (_52);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _53 = OS_kernelData.isrLastLock;
+  if (_53 != 4294967295)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  OS_CleanUpISRResources (id);
+  goto <bb 26>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _54 = OS_kernelData.nestSuspendOs;
+  nestOs.13_55 = nestOs;
+  if (_54 != nestOs.13_55)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  _56 = OS_kernelData.nestSuspendAll;
+  nestAll.14_57 = nestAll;
+  if (_56 != nestAll.14_57)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _58 = id->statusflags;
+  _59 = (unsigned int) _58;
+  _60 = _59 & 64;
+  if (_60 == 0)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 55, 0B);
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  oldLastLock.15_61 = oldLastLock;
+  OS_kernelData.isrLastLock = oldLastLock.15_61;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  kd = &OS_kernelData;
+  # DEBUG BEGIN_STMT
+  nestOs.16_62 = nestOs;
+  OS_kernelData.nestSuspendOs = nestOs.16_62;
+  # DEBUG BEGIN_STMT
+  nestAll.17_63 = nestAll;
+  OS_kernelData.nestSuspendAll = nestAll.17_63;
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_configMode.19_64 = OS_configMode;
+  _65 = OS_configMode.19_64 & 64;
+  if (_65 != 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 28> :
+  _66 = OS_kernelData.iStackBase;
+  _67 = *_66;
+  if (_67 != 3958107115)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  iftmp.18 = 1;
+  goto <bb 31>; [INV]
+
+  <bb 30> :
+  iftmp.18 = 0;
+
+  <bb 31> :
+  if (iftmp.18 != 0)
+    goto <bb 32>; [INV]
+  else
+    goto <bb 33>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 73, 0B);
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.isrCurrent = oldIsr;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = inFunction;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _68 = OS_kernelData.inFunction;
+  if (_68 == 3)
+    goto <bb 34>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 34> :
+  OS_isrTableBase.20_69 = OS_isrTableBase;
+  _70 = OS_kernelData.isrCurrent;
+  _71 = (unsigned int) _70;
+  _72 = _71 * 68;
+  _73 = OS_isrTableBase.20_69 + _72;
+  _74 = _73->dynamic;
+  _75 = _74->statusflags;
+  _76 = (unsigned int) _75;
+  _77 = _76 & 64;
+  if (_77 != 0)
+    goto <bb 35>; [INV]
+  else
+    goto <bb 36>; [INV]
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_KillIsr (oldIsr);
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _78 = accSave.inFunction;
+  if (_78 == 1)
+    goto <bb 37>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  _79 = OS_kernelData.taskCurrent;
+  if (_79 != 0B)
+    goto <bb 38>; [INV]
+  else
+    goto <bb 43>; [INV]
+
+  <bb 38> :
+  _80 = OS_kernelData.taskCurrent;
+  _81 = _80->dynamic;
+  _82 = _81->state;
+  if (_82 > 2)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 43>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  OS_startTaskExecTimingFp.21_83 = OS_startTaskExecTimingFp;
+  _84 = OS_kernelData.taskCurrent;
+  OS_startTaskExecTimingFp.21_83 (_84);
+  goto <bb 43>; [INV]
+
+  <bb 40> :
+  # DEBUG BEGIN_STMT
+  _85 = accSave.inFunction;
+  if (_85 == 3)
+    goto <bb 41>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  OS_resumeIsrExecTimingFp.22_86 = OS_resumeIsrExecTimingFp;
+  OS_resumeIsrExecTimingFp.22_86 (&accSave);
+  goto <bb 43>; [INV]
+
+  <bb 42> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.inFunction = 255;
+
+  <bb 43> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7501 = inKernel;
+  nestOs = {CLOBBER};
+  nestAll = {CLOBBER};
+  oldLastLock = {CLOBBER};
+  accSave = {CLOBBER};
+  return D.7501;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_IsrErrorChecksOk (const struct os_isr_t * isr, struct os_isrdynamic_t * id)
+{
+  register os_stackelement_t * OS_getSpResult;
+  os_boolean_t allok;
+  os_boolean_t D.7516;
+  os_stackelement_t * D.7418;
+  int iftmp.23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  allok = 0;
+  # DEBUG BEGIN_STMT
+  OS_configMode.24_1 = OS_configMode;
+  _2 = OS_configMode.24_1 & 64;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult);
+  # DEBUG BEGIN_STMT
+  D.7418 = OS_getSpResult;
+  _3 = OS_kernelData.iStackBase;
+  _4 = D.7418 - _3;
+  _5 = isr->stackLen;
+  _6 = (int) _5;
+  if (_4 <= _6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.23 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.23 = 0;
+
+  <bb 6> :
+  if (iftmp.23 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 57, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = isr->rateMonitor;
+  if (_7 != 65535)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  OS_rateMonitorFunc.25_8 = OS_rateMonitorFunc;
+  _9 = isr->rateMonitor;
+  _10 = OS_rateMonitorFunc.25_8 (_9);
+  if (_10 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _11 = id->statusflags;
+  _12 = _11 | 16;
+  id->statusflags = _12;
+  # DEBUG BEGIN_STMT
+  _13 = &isr->arch;
+  OS_CORTEXM_IntClearIsr (_13);
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 54, 0B);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  allok = 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.7516 = allok;
+  return D.7516;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_CleanUpISRResources (struct os_isrdynamic_t * id)
+{
+  os_objectid_t lock;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  lock = OS_kernelData.isrLastLock;
+  # DEBUG BEGIN_STMT
+  _1 = id->statusflags;
+  _2 = (unsigned int) _1;
+  _3 = _2 & 64;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = lock >> 24;
+  if (_4 == 9)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 156, 0B);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_IsrHandler, 13, 0B);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_ReleaseLocks (lock);
+  return;
+
+}
+
+

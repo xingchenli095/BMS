@@ -1,0 +1,643 @@
+No TLS variables found.
+Dcm_GetSesCtrlTypeExt.part.0 ()
+{
+  Std_ReturnType retVal;
+  Dcm_SesCtrlType * SesCtrlType;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#3 s=> SesCtrlType
+  # DEBUG SesCtrlType => D#3
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 6, 7);
+
+  <bb 3> [local count: 1073741824]:
+  # retVal_1 = PHI <1(2)>
+  # DEBUG retVal => retVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_1;
+
+}
+
+
+Dcm_MainFunction_Part2 ()
+{
+  uint8_least i;
+  unsigned char _1;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) i_2;
+  Dcm_Internal_ProcessRetryTimer (_1);
+  # DEBUG BEGIN_STMT
+  i_12 = i_2 + 1;
+  # DEBUG i => i_12
+
+  <bb 4> [local count: 1073741824]:
+  # i_2 = PHI <0(2), i_12(3)>
+  # DEBUG i => i_2
+  # DEBUG BEGIN_STMT
+  if (i_2 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 5>; [33.33%]
+
+  <bb 5> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_SignalBufferOperationsPoll ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_TxConnectionProcessTxConnections ();
+  # DEBUG BEGIN_STMT
+  Dcm_HsmMain (&Dcm_HsmScDcm);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_P2TimerHandlingMainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_PostProcessingMainFunction ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_MainFunction_Part1 ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSetting_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_PostBootOperationsHandler_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_PreProcessingMainFunction ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_S3TimerHandlingMainFunction ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_Init ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidServices_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_HsmInit (&Dcm_HsmScDcm);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ServiceProcessorInit ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_CommunicationControl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_SecurityAccess_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_RoutineControl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_DIDInit ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DemFacade_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ControlDTCSettingState_Init ();
+  return;
+
+}
+
+
+Dcm_Internal_ProcessRetryTimer (const uint8 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_6(D);
+  # DEBUG D#1 => &Dcm_HsmInfo[_1]
+  # DEBUG curHsmInfo => D#1
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+  if (_2 != 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_HsmEmitInst (&Dcm_HsmScDcm, instIdx_6(D), 19);
+  # DEBUG BEGIN_STMT
+  _3 = MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer;
+  _4 = _3 + 65535;
+  MEM[(struct Dcm_HsmInfoType *)&Dcm_HsmInfo][_1].retryTimer = _4;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+Dcm_Init (const Dcm_ConfigType * ConfigPtr)
+{
+  unsigned char Dcm_Initialized.7_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.7_1 = Dcm_Initialized;
+  if (Dcm_Initialized.7_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 1, 34);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_PostBootOperationsHandler_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized = 1;
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_DIDInit ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_ReadDataByIdentifier_Init ();
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_WriteDataByIdentifier_Init ();
+  return;
+
+}
+
+
+Dcm_GetSesCtrlTypeExt (Dcm_SesCtrlType * SesCtrlType)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.6_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.6_1 = Dcm_Initialized;
+  if (Dcm_Initialized.6_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 6, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (SesCtrlType_6(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669045]:
+  # DEBUG D#2 => SesCtrlType_6(D)
+  retVal_13 = Dcm_GetSesCtrlTypeExt.part.0 ();
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  *SesCtrlType_6(D) = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 7> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), retVal_13(5), 0(6)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+
+Dcm_DemTriggerOnDTCStatus (uint32 DTC, uint8 DTCStatusOld, uint8 DTCStatusNew)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.5_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.5_1 = Dcm_Initialized;
+  if (Dcm_Initialized.5_1 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 43, 5);
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RoeServices_TriggerOnDTCStatus (DTCStatusOld_5(D), DTCStatusNew_6(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 5> [local count: 1073741824]:
+  # retVal_2 = PHI <1(3), 0(4)>
+  # DEBUG retVal => retVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_2;
+
+}
+
+
+Dcm_MainFunction ()
+{
+  unsigned char Dcm_Initialized.4_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.4_1 = Dcm_Initialized;
+  if (Dcm_Initialized.4_1 == 1)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Dcm_MainFunction_Part1 ();
+  # DEBUG BEGIN_STMT
+  Dcm_MainFunction_Part2 ();
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Internal_ReleaseLock (Dcm_MutexType * MutexPtr)
+{
+  Dcm_MutexType PreviousMutexState;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PreviousMutexState => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  PreviousMutexState_5 = *MutexPtr_4(D);
+  # DEBUG PreviousMutexState => PreviousMutexState_5
+  # DEBUG BEGIN_STMT
+  *MutexPtr_4(D) = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PreviousMutexState_5 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 255, 18);
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Internal_GetLock (Dcm_MutexType * MutexPtr)
+{
+  Dcm_MutexType PreviousMutexState;
+  Std_ReturnType RetVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 31
+  # DEBUG BEGIN_STMT
+  # DEBUG PreviousMutexState => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  PreviousMutexState_5 = *MutexPtr_4(D);
+  # DEBUG PreviousMutexState => PreviousMutexState_5
+  # DEBUG BEGIN_STMT
+  *MutexPtr_4(D) = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PreviousMutexState_5 == 1)
+    goto <bb 4>; [21.72%]
+  else
+    goto <bb 3>; [78.28%]
+
+  <bb 3> [local count: 840525101]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 4> [local count: 1073741824]:
+  # RetVal_1 = PHI <31(2), 0(3)>
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return RetVal_1;
+
+}
+
+
+Dcm_TriggerOnEvent (uint8 RoeEventId)
+{
+  Std_ReturnType apiRetVal;
+  unsigned char Dcm_Initialized.3_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG apiRetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.3_1 = Dcm_Initialized;
+  if (Dcm_Initialized.3_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 45, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (RoeEventId_5(D) == 255)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 186624919]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 45, 6);
+  # DEBUG BEGIN_STMT
+  # DEBUG apiRetVal => 1
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 362271901]:
+  # DEBUG BEGIN_STMT
+  apiRetVal_7 = Dcm_Dsl_RoeServices_TriggerOnEvent (RoeEventId_5(D));
+  # DEBUG apiRetVal => apiRetVal_7
+
+  <bb 7> [local count: 1073741824]:
+  # apiRetVal_2 = PHI <1(3), 1(5), apiRetVal_7(6)>
+  # DEBUG apiRetVal => apiRetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return apiRetVal_2;
+
+}
+
+
+Dcm_ResetToDefaultSession ()
+{
+  Std_ReturnType Retval;
+  unsigned char Dcm_Initialized.2_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG Retval => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.2_1 = Dcm_Initialized;
+  if (Dcm_Initialized.2_1 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 42, 5);
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession (2);
+  # DEBUG BEGIN_STMT
+  # DEBUG Retval => 0
+
+  <bb 5> [local count: 1073741824]:
+  # Retval_2 = PHI <1(3), 0(4)>
+  # DEBUG Retval => Retval_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return Retval_2;
+
+}
+
+
+Dcm_GetActiveProtocol (Dcm_ProtocolType * ActiveProtocol)
+{
+  struct Dcm_ProtocolConfigType CurProtocolConfig;
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.1_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.1_1 = Dcm_Initialized;
+  if (Dcm_Initialized.1_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 15, 5);
+  goto <bb 10>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (ActiveProtocol_7(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669046]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 15, 7);
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_10 = Dcm_Dsl_Supervisor_GetLatestExternalUDSProtocolConfig (&CurProtocolConfig);
+  # DEBUG retVal => retVal_10
+  # DEBUG BEGIN_STMT
+  if (retVal_10 == 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 7> [local count: 192113887]:
+  # DEBUG BEGIN_STMT
+  _2 = CurProtocolConfig.Type;
+  *ActiveProtocol_7(D) = _2;
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 192113887]:
+  # DEBUG BEGIN_STMT
+  *ActiveProtocol_7(D) = 12;
+
+  <bb 9> [local count: 384227774]:
+  CurProtocolConfig ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 10> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), 1(5), 0(9)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+
+Dcm_GetSesCtrlType (Dcm_SesCtrlType * SesCtrlType)
+{
+  Std_ReturnType retVal;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  retVal_4 = Dcm_GetSesCtrlTypeExt (SesCtrlType_2(D));
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_4;
+
+}
+
+
+Dcm_GetSecurityLevel (Dcm_SecLevelType * SecLevel)
+{
+  Std_ReturnType retVal;
+  unsigned char Dcm_Initialized.0_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.0_1 = Dcm_Initialized;
+  if (Dcm_Initialized.0_1 != 1)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 13, 5);
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  if (SecLevel_6(D) == 0B)
+    goto <bb 5>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 5> [local count: 164669046]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 13, 7);
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 384227774]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ();
+  *SecLevel_6(D) = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG retVal => 0
+
+  <bb 7> [local count: 1073741824]:
+  # retVal_3 = PHI <1(3), 1(5), 0(6)>
+  # DEBUG retVal => retVal_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return retVal_3;
+
+}
+
+

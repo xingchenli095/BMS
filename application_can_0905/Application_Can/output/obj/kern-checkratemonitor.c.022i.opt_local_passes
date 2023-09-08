@@ -1,0 +1,223 @@
+__attribute__((target ("general-regs-only")))
+OS_CheckRateMonitor (os_ratemonitorid_t rmi)
+{
+  os_rateindex_t i;
+  os_boolean_t result;
+  struct os_timestamp_t frameEnd;
+  struct os_timestamp_t now;
+  os_rateindex_t * ri;
+  const struct os_ratemonitor_t * rm;
+  int _1;
+  int _2;
+  struct os_timestamp_t * _3;
+  unsigned int _4;
+  unsigned int _5;
+  struct os_timestamp_t * _6;
+  unsigned int _7;
+  struct os_timestamp_t * _8;
+  unsigned int _9;
+  unsigned int _10;
+  struct os_timestamp_t * _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  struct os_timestamp_t * _17;
+  unsigned int _18;
+  unsigned int _19;
+  struct os_timestamp_t * _20;
+  unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned int _24;
+  unsigned int _25;
+  unsigned int _26;
+  unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  struct os_timestamp_t * _30;
+  unsigned int _31;
+  unsigned int _32;
+  struct os_timestamp_t * _33;
+  unsigned int _34;
+  struct os_timestamp_t * _35;
+  unsigned int _36;
+  unsigned int _37;
+  struct os_timestamp_t * _38;
+  unsigned int _39;
+  struct os_timestamp_t * _40;
+  unsigned int _41;
+  unsigned int _42;
+  struct os_timestamp_t * _43;
+  unsigned int _44;
+  struct os_timestamp_t * _45;
+  unsigned int _46;
+  unsigned int _47;
+  struct os_timestamp_t * _48;
+  unsigned int _49;
+  unsigned char i.0_50;
+  unsigned char _51;
+  os_boolean_t _71;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_55 = 0;
+  # DEBUG result => result_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) rmi_56(D);
+  rm_57 = &OS_rateMonitor[_1];
+  # DEBUG rm => rm_57
+  # DEBUG BEGIN_STMT
+  _2 = (int) rmi_56(D);
+  ri_58 = &OS_rateIndex[_2];
+  # DEBUG ri => ri_58
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&now);
+  # DEBUG BEGIN_STMT
+  i_61 = *ri_58;
+  # DEBUG i => i_61
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = rm_57->ringBuffer;
+  _4 = (unsigned int) i_61;
+  _5 = _4 * 8;
+  _6 = _3 + _5;
+  _7 = _6->tsHi;
+  frameEnd.tsHi = _7;
+  # DEBUG BEGIN_STMT
+  _8 = rm_57->ringBuffer;
+  _9 = (unsigned int) i_61;
+  _10 = _9 * 8;
+  _11 = _8 + _10;
+  _12 = _11->tsLo;
+  _13 = rm_57->timeLimit;
+  _14 = ~_13;
+  if (_12 > _14)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _15 = frameEnd.tsHi;
+  _16 = _15 + 1;
+  frameEnd.tsHi = _16;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _17 = rm_57->ringBuffer;
+  _18 = (unsigned int) i_61;
+  _19 = _18 * 8;
+  _20 = _17 + _19;
+  _21 = _20->tsLo;
+  _22 = rm_57->timeLimit;
+  _23 = _21 + _22;
+  frameEnd.tsLo = _23;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _24 = now.tsHi;
+  _25 = frameEnd.tsHi;
+  if (_24 < _25)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _26 = now.tsHi;
+  _27 = frameEnd.tsHi;
+  if (_26 == _27)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  _28 = now.tsLo;
+  _29 = frameEnd.tsLo;
+  if (_28 < _29)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  _30 = rm_57->ringBuffer;
+  _31 = (unsigned int) i_61;
+  _32 = _31 * 8;
+  _33 = _30 + _32;
+  _34 = _33->tsHi;
+  if (_34 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _35 = rm_57->ringBuffer;
+  _36 = (unsigned int) i_61;
+  _37 = _36 * 8;
+  _38 = _35 + _37;
+  _39 = _38->tsLo;
+  if (_39 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result_65 = 1;
+  # DEBUG result => result_65
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _40 = rm_57->ringBuffer;
+  _41 = (unsigned int) i_61;
+  _42 = _41 * 8;
+  _43 = _40 + _42;
+  _44 = now.tsLo;
+  _43->tsLo = _44;
+  # DEBUG BEGIN_STMT
+  _45 = rm_57->ringBuffer;
+  _46 = (unsigned int) i_61;
+  _47 = _46 * 8;
+  _48 = _45 + _47;
+  _49 = now.tsHi;
+  _48->tsHi = _49;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.0_50 = i_61;
+  i_68 = i.0_50 + 1;
+  # DEBUG i => i_68
+  # DEBUG BEGIN_STMT
+  _51 = rm_57->countLimit;
+  if (i_68 >= _51)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  *ri_58 = 0;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *ri_58 = i_68;
+
+  <bb 13> :
+  # result_52 = PHI <result_65(9), result_55(11), result_55(12)>
+  # DEBUG result => result_52
+  # DEBUG BEGIN_STMT
+  _71 = result_52;
+  now ={v} {CLOBBER};
+  frameEnd ={v} {CLOBBER};
+  return _71;
+
+}
+
+

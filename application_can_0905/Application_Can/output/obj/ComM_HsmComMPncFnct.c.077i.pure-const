@@ -1,0 +1,2294 @@
+
+
+ local analysis of ComM_PncProcessTimers
+   scanning: ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: _1 = (int) PncIdx_4;
+  scanning: _2 = ComM_PncTimer[_1];
+  scanning: if (_2 != 0)
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: _3 = _2 + 65535;
+  scanning: ComM_PncTimer[_1] = _3;
+  scanning: if (_3 == 0)
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_4, 1);
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: PncIdx_12 = PncIdx_4 + 1;
+  scanning: if (PncIdx_4 != 2)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7 8 9 10
+;;
+;; Loop 1
+;;  header 9, latch 8
+;;  depth 1, outer 0
+;;  nodes: 9 8 7 6 4 3 5
+;; 2 succs { 9 }
+;; 3 succs { 5 4 }
+;; 4 succs { 8 }
+;; 5 succs { 6 7 }
+;; 6 succs { 8 }
+;; 7 succs { 8 }
+;; 8 succs { 9 }
+;; 9 succs { 3 10 }
+;; 10 succs { 1 }
+Function is locally const.
+
+
+ local analysis of ComM_PncSendSignal
+   scanning: _1 = ComM_PncTxSignalMap[_15].TxSignalList;
+  scanning: _2 = (sizetype) i_17;
+  scanning: _3 = _1 + _2;
+  scanning: SigIndex_25 = *_3;
+    Indirect ref read is not const
+  scanning: _4 = (int) SigIndex_25;
+  scanning: _5 = ComM_TxComSignalCfg[_4].TxSignalKind;
+  scanning: if (_5 == signalKind_26(D))
+  scanning: _6 = (sizetype) j_18;
+  scanning: _7 = &ComM_TxEiraEraActive + _6;
+  scanning: _8 = *_7;
+    Indirect ref read is not const
+  scanning: _9 = ComM_PncTxMask[_4];
+  scanning: _10 = _9 + _6;
+  scanning: _11 = *_10;
+    Indirect ref read is not const
+  scanning: _12 = (int) j_18;
+  scanning: _13 = _8 & _11;
+  scanning: TxEiraEra[_12] = _13;
+  scanning: j_29 = j_18 + 1;
+  scanning: if (j_18 != 6)
+  scanning: _14 = ComM_TxComSignalCfg[_4].ComHandleId;
+  scanning: Com_SendSignal (_14, &TxEiraEra);
+  scanning: i_30 = i_17 + 1;
+  scanning: _15 = (int) instIdx_23(D);
+  scanning: _16 = ComM_PncTxSignalMap[_15].NumTxSignal;
+  scanning: if (_16 > i_17)
+  scanning: return;
+;; 3 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 10 4 5 6 7 8 9
+;;
+;; Loop 1
+;;  header 8, latch 7
+;;  depth 1, outer 0
+;;  nodes: 8 7 3 6 5 4 10
+;;
+;; Loop 2
+;;  header 5, latch 4
+;;  depth 2, outer 1
+;;  nodes: 5 4
+;; 2 succs { 8 }
+;; 3 succs { 10 7 }
+;; 10 succs { 5 }
+;; 4 succs { 5 }
+;; 5 succs { 4 6 }
+;; 6 succs { 7 }
+;; 7 succs { 8 }
+;; 8 succs { 3 9 }
+;; 9 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+
+
+ local analysis of ComM_PncGetEIRA
+   scanning: _1 = (int) instIdx_9(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: _3 = _2 >> 3;
+  scanning: _4 = (unsigned char) _3;
+  scanning: Index_11 = _4 + 254;
+  scanning: _14 = _2 & 7;
+  scanning: _5 = (unsigned int) _14;
+  scanning: _6 = 1 << _5;
+  scanning: EiraMask_12 = (const uint8) _6;
+  scanning: _7 = (int) Index_11;
+  scanning: _8 = ComM_RxEira[_7];
+  scanning: ret_13 = _8 & EiraMask_12;
+  scanning: return ret_13;
+Function is locally const.
+
+
+ local analysis of ComM_PNC_RequestComMode
+   scanning: _1 = (int) pncIdx_19(D);
+  scanning: ComM_PNCRequestedComMode[_1] = Mode_21(D);
+  scanning: _2 = ComM_ConfigPtr.4_8->pChannelsOfAllPnc;
+    Indirect ref read is not const
+  scanning: _3 = (long unsigned int) _13;
+  scanning: _4 = _3 + chIdx_17;
+  scanning: _5 = _2 + _4;
+  scanning: _6 = ComM_ConfigPtr.4_8 + _5;
+  scanning: Channel_23 = *_6;
+    Indirect ref read is not const
+  scanning: ComM_EvaluateChannel (Channel_23);
+  scanning: _7 = (short unsigned int) Channel_23;
+  scanning: ComM_HsmEmitInst (&ComM_HsmScComM, _7, 9);
+  scanning: chIdx_26 = chIdx_17 + 1;
+  scanning: ComM_ConfigPtr.4_8 = ComM_ConfigPtr;
+  scanning: _9 = (unsigned int) pncIdx_19(D);
+  scanning: _10 = _9 + 1;
+  scanning: _11 = ComM_ConfigPtr.4_8->NumChannelsOfAllPnc[_10];
+    Indirect ref read is not const
+  scanning: _12 = (unsigned char) _11;
+  scanning: _13 = ComM_ConfigPtr.4_8->NumChannelsOfAllPnc[_1];
+    Indirect ref read is not const
+  scanning: _14 = (unsigned char) _13;
+  scanning: _15 = _12 - _14;
+  scanning: _16 = (long unsigned int) _15;
+  scanning: if (_16 > chIdx_17)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+
+
+ local analysis of ComM_NmNwReqAllChOfPnc
+   scanning: _1 = ComM_ConfigPtr.12_9->pChannelsOfAllPnc;
+    Indirect ref read is not const
+  scanning: _2 = (long unsigned int) _15;
+  scanning: _3 = _2 + chIdx_19;
+  scanning: _4 = _1 + _3;
+  scanning: _5 = ComM_ConfigPtr.12_9 + _4;
+  scanning: Channel_24 = *_5;
+    Indirect ref read is not const
+  scanning: _6 = (int) Channel_24;
+  scanning: _7 = ComM_PncNmRequest[_6];
+  scanning: if (_7 == 1)
+  scanning: _8 = (short unsigned int) Channel_24;
+  scanning: ComM_HsmEmitInst (&ComM_HsmScComM, _8, 2);
+  scanning: chIdx_26 = chIdx_19 + 1;
+  scanning: ComM_ConfigPtr.12_9 = ComM_ConfigPtr;
+  scanning: _10 = (unsigned int) pncIdx_23(D);
+  scanning: _11 = _10 + 1;
+  scanning: _12 = ComM_ConfigPtr.12_9->NumChannelsOfAllPnc[_11];
+    Indirect ref read is not const
+  scanning: _13 = (unsigned char) _12;
+  scanning: _14 = (int) pncIdx_23(D);
+  scanning: _15 = ComM_ConfigPtr.12_9->NumChannelsOfAllPnc[_14];
+    Indirect ref read is not const
+  scanning: _16 = (unsigned char) _15;
+  scanning: _17 = _13 - _16;
+  scanning: _18 = (long unsigned int) _17;
+  scanning: if (_18 > chIdx_19)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5 6 7
+;;
+;; Loop 1
+;;  header 6, latch 5
+;;  depth 1, outer 0
+;;  nodes: 6 5 3 4
+;; 2 succs { 6 }
+;; 3 succs { 4 5 }
+;; 4 succs { 5 }
+;; 5 succs { 6 }
+;; 6 succs { 3 7 }
+;; 7 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComNotifyEntry
+   scanning: _1 = (int) instIdx_3(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 3);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComAction4
+   scanning: _1 = (int) instIdx_3(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 4);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComAction3
+   scanning: _1 = (int) instIdx_3(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 4);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComGuard3
+   scanning: return 0;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComAction1
+   scanning: _1 = (int) instIdx_3(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 4);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComGuard1
+   scanning: _1 = ComM_PncGetEIRA (instIdx_4(D));
+  scanning: if (_1 != 0)
+  scanning: return iftmp.14_2;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncNoComEntry
+   scanning: _1 = (int) instIdx_2(D);
+  scanning: ComM_PNCMode[_1] = 0;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncRequestedAction1
+   scanning: _1 = (int) instIdx_9(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: _3 = _2 >> 3;
+  scanning: _4 = (unsigned char) _3;
+  scanning: Index_11 = _4 + 254;
+  scanning: _5 = (int) Index_11;
+  scanning: _6 = &ComM_TxEiraEraActive[_5];
+  scanning: _7 = (unsigned char) _2;
+  scanning: _14 = _7 & 7;
+  scanning: _8 = (long unsigned int) _14;
+  scanning: TS_AtomicClearBit_8 (_6, _8);
+  scanning: ComM_PncSendSignal (instIdx_9(D), 0);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncRequestedGuard1
+   scanning: return 1;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncRequestedEntry
+   scanning: _1 = (int) instIdx_9(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: _3 = _2 >> 3;
+  scanning: _4 = (unsigned char) _3;
+  scanning: Index_11 = _4 + 254;
+  scanning: BswM_ComM_CurrentPNCMode (_2, 0);
+  scanning: ComM_PNC_RequestComMode (instIdx_9(D), 2);
+  scanning: _5 = (int) Index_11;
+  scanning: _6 = &ComM_TxEiraEraActive[_5];
+  scanning: _7 = (unsigned char) _2;
+  scanning: _17 = _7 & 7;
+  scanning: _8 = (long unsigned int) _17;
+  scanning: TS_AtomicSetBit_8 (_6, _8);
+  scanning: ComM_PncSendSignal (instIdx_9(D), 0);
+  scanning: ComM_NmNwReqAllChOfPnc (instIdx_9(D));
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncReadySleepGuard1
+   scanning: _1 = ComM_PncGetEIRA (instIdx_4(D));
+  scanning: if (_1 == 0)
+  scanning: return iftmp.6_2;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncReadySleepEntry
+   scanning: ComM_HsmEmitInst (&ComM_HsmScComMPnc, instIdx_4(D), 3);
+  scanning: _1 = (int) instIdx_4(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 1);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncPrepareSleepAction3
+   scanning: ComM_PNC_RequestComMode (instIdx_2(D), 0);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncPrepareSleepAction2
+   scanning: _1 = (int) instIdx_2(D);
+  scanning: ComM_PncTimer[_1] = 0;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncPrepareSleepAction1
+   scanning: _1 = (int) instIdx_2(D);
+  scanning: ComM_PncTimer[_1] = 0;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncPrepareSleepGuard1
+   scanning: _1 = ComM_PncGetEIRA (instIdx_4(D));
+  scanning: if (_1 != 0)
+  scanning: return iftmp.0_2;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncPrepareSleepEntry
+   scanning: _1 = (int) instIdx_3(D);
+  scanning: _2 = ComM_PncID[_1];
+  scanning: BswM_ComM_CurrentPNCMode (_2, 2);
+  scanning: ComM_PncTimer[_1] = 32;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncFullComEntry
+   scanning: _1 = (int) instIdx_2(D);
+  scanning: ComM_PNCMode[_1] = 2;
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of ComM_HsmComMPncSfPncTopAction1
+   scanning: return;
+Function is locally const.
+callgraph:
+
+ComM_PncGetEIRA/47 (ComM_PncGetEIRA) @06d70540
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 22
+  Aux: @06cbc870
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/47 is inline copy in ComM_HsmComMPncSfPncReadySleepGuard1/9
+  Clone of ComM_PncGetEIRA/22
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncReadySleepGuard1/9 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction1/46 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06d30c40
+  Type: function definition analyzed
+  Visibility: public
+  next sharing asm name: 5
+  Aux: @06cbc6f0
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Function ComM_HsmComMPncSfPncPrepareSleepAction1/46 is inline copy in ComM_HsmComMPncSfPncPrepareSleepAction2/6
+  Clone of ComM_HsmComMPncSfPncPrepareSleepAction1/5
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepAction2/6 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PncSendSignal.constprop.0/45 (ComM_PncSendSignal.constprop) @06e59700
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06cbc950
+  References: ComM_PncTxSignalMap/37 (read)ComM_TxComSignalCfg/38 (read)ComM_TxEiraEraActive/35 (addr)ComM_PncTxMask/39 (read)ComM_TxComSignalCfg/38 (read)ComM_PncTxSignalMap/37 (read)
+  Referring: 
+  Clone of ComM_PncSendSignal/23
+  Availability: local
+  Function flags: count:118111600 (estimated locally) local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: Com_SendSignal/40 (152900836 (estimated locally),1.29 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06d3b9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_PncProcessTimers/24 (236235013 (estimated locally),0.66 per call) 
+  Calls: 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06d3b8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (715863676 (estimated locally),2.00 per call) 
+  Calls: 
+TS_AtomicClearBit_8/42 (TS_AtomicClearBit_8) @06d3b0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Com_SendSignal/40 (Com_SendSignal) @06d30b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncSendSignal.constprop/45 (152900836 (estimated locally),1.29 per call) 
+  Calls: 
+TS_AtomicSetBit_8/36 (TS_AtomicSetBit_8) @06d309a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmEmitInst/32 (ComM_HsmEmitInst) @06d30540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_HsmComMPncSfPncReadySleepEntry/8 (1073741824 (estimated locally),1.00 per call) ComM_NmNwReqAllChOfPnc/20 (1758359619 (estimated locally),1.64 per call) ComM_PNC_RequestComMode/21 (955630223 (estimated locally),8.09 per call) 
+  Calls: 
+ComM_EvaluateChannel/31 (ComM_EvaluateChannel) @06d30460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PNC_RequestComMode/21 (955630223 (estimated locally),8.09 per call) 
+  Calls: 
+BswM_ComM_CurrentPNCMode/27 (BswM_ComM_CurrentPNCMode) @06cf5e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComNotifyEntry/19 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncReadySleepEntry/8 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepEntry/3 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PncProcessTimers/24 (ComM_PncProcessTimers) @06cf5a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc9f0
+  References: ComM_PncTimer/0 (read)ComM_PncTimer/0 (write)ComM_HsmScComMPnc/34 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:357878150 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_HsmEmitInst/32 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (236235013 (estimated locally),0.66 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (715863676 (estimated locally),2.00 per call) 
+ComM_PncSendSignal/23 (ComM_PncSendSignal) @06cf57e0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_PncGetEIRA/22 (ComM_PncGetEIRA) @06cf5620
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 47
+  Aux: @06cbca50
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/22 is inline copy in ComM_HsmComMPncSfPncPrepareSleepGuard1/4
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PNC_RequestComMode/21 (ComM_PNC_RequestComMode) @06cf5460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cbc970
+  References: ComM_PNCRequestedComMode/29 (write)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepAction3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (955630223 (estimated locally),8.09 per call) ComM_EvaluateChannel/31 (955630223 (estimated locally),8.09 per call) 
+ComM_NmNwReqAllChOfPnc/20 (ComM_NmNwReqAllChOfPnc) @06cf50e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cbca70
+  References: ComM_PncNmRequest/41 (read)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Function ComM_NmNwReqAllChOfPnc/20 is inline copy in ComM_HsmComMPncSfPncRequestedEntry/10
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (1758359619 (estimated locally),1.64 per call) 
+ComM_HsmComMPncSfPncNoComNotifyEntry/19 (ComM_HsmComMPncSfPncNoComNotifyEntry) @06cf0d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc730
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction4/18 (ComM_HsmComMPncSfPncNoComAction4) @06cf0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc830
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction3/17 (ComM_HsmComMPncSfPncNoComAction3) @06cf09a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard3/16 (ComM_HsmComMPncSfPncNoComGuard3) @06cf07e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbca90
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction1/15 (ComM_HsmComMPncSfPncNoComAction1) @06cf0620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc790
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComAction4/18 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction3/17 (1073741824 (estimated locally),1.00 per call) 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard1/14 (ComM_HsmComMPncSfPncNoComGuard1) @06cf0460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc990
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComEntry/13 (ComM_HsmComMPncSfPncNoComEntry) @06cf02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc7f0
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedAction1/12 (ComM_HsmComMPncSfPncRequestedAction1) @06cf0000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc810
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicClearBit_8/42 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncRequestedGuard1/11 (ComM_HsmComMPncSfPncRequestedGuard1) @06cdbe00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc850
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedEntry/10 (ComM_HsmComMPncSfPncRequestedEntry) @06cdbc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc890
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_NmNwReqAllChOfPnc/20 (inlined) (1073741824 (estimated locally),1.00 per call) ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicSetBit_8/36 (1073741824 (estimated locally),1.00 per call) ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepGuard1/9 (ComM_HsmComMPncSfPncReadySleepGuard1) @06cdba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbca30
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncGetEIRA/47 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepEntry/8 (ComM_HsmComMPncSfPncReadySleepEntry) @06cdb8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8b0
+  References: ComM_HsmScComMPnc/34 (addr)ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) ComM_HsmEmitInst/32 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction3/7 (ComM_HsmComMPncSfPncPrepareSleepAction3) @06cdb620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction2/6 (ComM_HsmComMPncSfPncPrepareSleepAction2) @06cdb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc930
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepAction1/46 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction1/5 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06cdb1c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  previous sharing asm name: 46
+  Aux: @06cbca10
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (ComM_HsmComMPncSfPncPrepareSleepGuard1) @06cd02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc450
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComGuard1/14 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_PncGetEIRA/22 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepEntry/3 (ComM_HsmComMPncSfPncPrepareSleepEntry) @06cd0e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9158
+  References: ComM_PncID/26 (read)ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncFullComEntry/2 (ComM_HsmComMPncSfPncFullComEntry) @06cd0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9178
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncTopAction1/1 (ComM_HsmComMPncSfPncTopAction1) @06cd08c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb91b8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced for nothrow
+ComM_PncGetEIRA/47 (ComM_PncGetEIRA) @06d70540
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 22
+  Aux: @06cbc870
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/47 is inline copy in ComM_HsmComMPncSfPncReadySleepGuard1/9
+  Clone of ComM_PncGetEIRA/22
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncReadySleepGuard1/9 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction1/46 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06d30c40
+  Type: function definition analyzed
+  Visibility: public
+  next sharing asm name: 5
+  Aux: @06cbc6f0
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Function ComM_HsmComMPncSfPncPrepareSleepAction1/46 is inline copy in ComM_HsmComMPncSfPncPrepareSleepAction2/6
+  Clone of ComM_HsmComMPncSfPncPrepareSleepAction1/5
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepAction2/6 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PncSendSignal.constprop.0/45 (ComM_PncSendSignal.constprop) @06e59700
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06cbc950
+  References: ComM_PncTxSignalMap/37 (read)ComM_TxComSignalCfg/38 (read)ComM_TxEiraEraActive/35 (addr)ComM_PncTxMask/39 (read)ComM_TxComSignalCfg/38 (read)ComM_PncTxSignalMap/37 (read)
+  Referring: 
+  Clone of ComM_PncSendSignal/23
+  Availability: local
+  Function flags: count:118111600 (estimated locally) local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: Com_SendSignal/40 (152900836 (estimated locally),1.29 per call) 
+ComM_PncProcessTimers/24 (ComM_PncProcessTimers) @06cf5a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc9f0
+  References: ComM_PncTimer/0 (read)ComM_PncTimer/0 (write)ComM_HsmScComMPnc/34 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:357878150 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_HsmEmitInst/32 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (236235013 (estimated locally),0.66 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (715863676 (estimated locally),2.00 per call) 
+ComM_PncGetEIRA/22 (ComM_PncGetEIRA) @06cf5620
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 47
+  Aux: @06cbca50
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/22 is inline copy in ComM_HsmComMPncSfPncPrepareSleepGuard1/4
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PNC_RequestComMode/21 (ComM_PNC_RequestComMode) @06cf5460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cbc970
+  References: ComM_PNCRequestedComMode/29 (write)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepAction3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (955630223 (estimated locally),8.09 per call) ComM_EvaluateChannel/31 (955630223 (estimated locally),8.09 per call) 
+ComM_NmNwReqAllChOfPnc/20 (ComM_NmNwReqAllChOfPnc) @06cf50e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cbca70
+  References: ComM_PncNmRequest/41 (read)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Function ComM_NmNwReqAllChOfPnc/20 is inline copy in ComM_HsmComMPncSfPncRequestedEntry/10
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (1758359619 (estimated locally),1.64 per call) 
+ComM_HsmComMPncSfPncNoComNotifyEntry/19 (ComM_HsmComMPncSfPncNoComNotifyEntry) @06cf0d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc730
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction4/18 (ComM_HsmComMPncSfPncNoComAction4) @06cf0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc830
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction3/17 (ComM_HsmComMPncSfPncNoComAction3) @06cf09a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8d0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard3/16 (ComM_HsmComMPncSfPncNoComGuard3) @06cf07e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbca90
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction1/15 (ComM_HsmComMPncSfPncNoComAction1) @06cf0620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc790
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComAction4/18 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction3/17 (1073741824 (estimated locally),1.00 per call) 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard1/14 (ComM_HsmComMPncSfPncNoComGuard1) @06cf0460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc990
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComEntry/13 (ComM_HsmComMPncSfPncNoComEntry) @06cf02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc7f0
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedAction1/12 (ComM_HsmComMPncSfPncRequestedAction1) @06cf0000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc810
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicClearBit_8/42 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncRequestedGuard1/11 (ComM_HsmComMPncSfPncRequestedGuard1) @06cdbe00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc850
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedEntry/10 (ComM_HsmComMPncSfPncRequestedEntry) @06cdbc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc890
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_NmNwReqAllChOfPnc/20 (inlined) (1073741824 (estimated locally),1.00 per call) ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicSetBit_8/36 (1073741824 (estimated locally),1.00 per call) ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepGuard1/9 (ComM_HsmComMPncSfPncReadySleepGuard1) @06cdba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbca30
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncGetEIRA/47 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepEntry/8 (ComM_HsmComMPncSfPncReadySleepEntry) @06cdb8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8b0
+  References: ComM_HsmScComMPnc/34 (addr)ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) ComM_HsmEmitInst/32 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction3/7 (ComM_HsmComMPncSfPncPrepareSleepAction3) @06cdb620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc8f0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction2/6 (ComM_HsmComMPncSfPncPrepareSleepAction2) @06cdb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc930
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepAction1/46 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction1/5 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06cdb1c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  previous sharing asm name: 46
+  Aux: @06cbca10
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (ComM_HsmComMPncSfPncPrepareSleepGuard1) @06cd02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cbc450
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComGuard1/14 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_PncGetEIRA/22 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepEntry/3 (ComM_HsmComMPncSfPncPrepareSleepEntry) @06cd0e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9158
+  References: ComM_PncID/26 (read)ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncFullComEntry/2 (ComM_HsmComMPncSfPncFullComEntry) @06cd0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9178
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncTopAction1/1 (ComM_HsmComMPncSfPncTopAction1) @06cd08c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb91b8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+
+MALLOC LATTICE Initial:
+ComM_PncGetEIRA: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction1: malloc_bottom
+ComM_PncSendSignal.constprop: malloc_bottom
+ComM_PncProcessTimers: malloc_bottom
+ComM_PncSendSignal: malloc_bottom
+ComM_PncGetEIRA: malloc_bottom
+ComM_PNC_RequestComMode: malloc_bottom
+ComM_NmNwReqAllChOfPnc: malloc_bottom
+ComM_HsmComMPncSfPncNoComNotifyEntry: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction4: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction3: malloc_bottom
+ComM_HsmComMPncSfPncNoComGuard3: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction1: malloc_bottom
+ComM_HsmComMPncSfPncNoComGuard1: malloc_bottom
+ComM_HsmComMPncSfPncNoComEntry: malloc_bottom
+ComM_HsmComMPncSfPncRequestedAction1: malloc_bottom
+ComM_HsmComMPncSfPncRequestedGuard1: malloc_bottom
+ComM_HsmComMPncSfPncRequestedEntry: malloc_bottom
+ComM_HsmComMPncSfPncReadySleepGuard1: malloc_bottom
+ComM_HsmComMPncSfPncReadySleepEntry: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction3: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction2: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction1: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepGuard1: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepEntry: malloc_bottom
+ComM_HsmComMPncSfPncFullComEntry: malloc_bottom
+ComM_HsmComMPncSfPncTopAction1: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+ComM_PncGetEIRA: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction1: malloc_bottom
+ComM_PncSendSignal.constprop: malloc_bottom
+ComM_PncProcessTimers: malloc_bottom
+ComM_PncSendSignal: malloc_bottom
+ComM_PncGetEIRA: malloc_bottom
+ComM_PNC_RequestComMode: malloc_bottom
+ComM_NmNwReqAllChOfPnc: malloc_bottom
+ComM_HsmComMPncSfPncNoComNotifyEntry: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction4: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction3: malloc_bottom
+ComM_HsmComMPncSfPncNoComGuard3: malloc_bottom
+ComM_HsmComMPncSfPncNoComAction1: malloc_bottom
+ComM_HsmComMPncSfPncNoComGuard1: malloc_bottom
+ComM_HsmComMPncSfPncNoComEntry: malloc_bottom
+ComM_HsmComMPncSfPncRequestedAction1: malloc_bottom
+ComM_HsmComMPncSfPncRequestedGuard1: malloc_bottom
+ComM_HsmComMPncSfPncRequestedEntry: malloc_bottom
+ComM_HsmComMPncSfPncReadySleepGuard1: malloc_bottom
+ComM_HsmComMPncSfPncReadySleepEntry: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction3: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction2: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepAction1: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepGuard1: malloc_bottom
+ComM_HsmComMPncSfPncPrepareSleepEntry: malloc_bottom
+ComM_HsmComMPncSfPncFullComEntry: malloc_bottom
+ComM_HsmComMPncSfPncTopAction1: malloc_bottom
+callgraph:
+
+ComM_PncGetEIRA/47 (ComM_PncGetEIRA) @06d70540
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 22
+  Aux: @06cb8f78
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/47 is inline copy in ComM_HsmComMPncSfPncReadySleepGuard1/9
+  Clone of ComM_PncGetEIRA/22
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncReadySleepGuard1/9 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction1/46 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06d30c40
+  Type: function definition analyzed
+  Visibility: public
+  next sharing asm name: 5
+  Aux: @06cb8f18
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Function ComM_HsmComMPncSfPncPrepareSleepAction1/46 is inline copy in ComM_HsmComMPncSfPncPrepareSleepAction2/6
+  Clone of ComM_HsmComMPncSfPncPrepareSleepAction1/5
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepAction2/6 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PncSendSignal.constprop.0/45 (ComM_PncSendSignal.constprop) @06e59700
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06cb8fb8
+  References: ComM_PncTxSignalMap/37 (read)ComM_TxComSignalCfg/38 (read)ComM_TxEiraEraActive/35 (addr)ComM_PncTxMask/39 (read)ComM_TxComSignalCfg/38 (read)ComM_PncTxSignalMap/37 (read)
+  Referring: 
+  Clone of ComM_PncSendSignal/23
+  Availability: local
+  Function flags: count:118111600 (estimated locally) local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: Com_SendSignal/40 (152900836 (estimated locally),1.29 per call) 
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06d3b9a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_PncProcessTimers/24 (236235013 (estimated locally),0.66 per call) 
+  Calls: 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06d3b8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (715863676 (estimated locally),2.00 per call) 
+  Calls: 
+TS_AtomicClearBit_8/42 (TS_AtomicClearBit_8) @06d3b0e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Com_SendSignal/40 (Com_SendSignal) @06d30b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncSendSignal.constprop/45 (152900836 (estimated locally),1.29 per call) 
+  Calls: 
+TS_AtomicSetBit_8/36 (TS_AtomicSetBit_8) @06d309a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmEmitInst/32 (ComM_HsmEmitInst) @06d30540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PncProcessTimers/24 (239814331 (estimated locally),0.67 per call) ComM_HsmComMPncSfPncReadySleepEntry/8 (1073741824 (estimated locally),1.00 per call) ComM_NmNwReqAllChOfPnc/20 (1758359619 (estimated locally),1.64 per call) ComM_PNC_RequestComMode/21 (955630223 (estimated locally),8.09 per call) 
+  Calls: 
+ComM_EvaluateChannel/31 (ComM_EvaluateChannel) @06d30460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_PNC_RequestComMode/21 (955630223 (estimated locally),8.09 per call) 
+  Calls: 
+BswM_ComM_CurrentPNCMode/27 (BswM_ComM_CurrentPNCMode) @06cf5e00
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComNotifyEntry/19 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncReadySleepEntry/8 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepEntry/3 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PncProcessTimers/24 (ComM_PncProcessTimers) @06cf5a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9158
+  References: ComM_PncTimer/0 (read)ComM_PncTimer/0 (write)ComM_HsmScComMPnc/34 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:357878150 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_HsmEmitInst/32 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (236235013 (estimated locally),0.66 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (715863676 (estimated locally),2.00 per call) 
+ComM_PncSendSignal/23 (ComM_PncSendSignal) @06cf57e0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_PncGetEIRA/22 (ComM_PncGetEIRA) @06cf5620
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 47
+  Aux: @06cb8fd8
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/22 is inline copy in ComM_HsmComMPncSfPncPrepareSleepGuard1/4
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_PNC_RequestComMode/21 (ComM_PNC_RequestComMode) @06cf5460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cb9178
+  References: ComM_PNCRequestedComMode/29 (write)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepAction3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (955630223 (estimated locally),8.09 per call) ComM_EvaluateChannel/31 (955630223 (estimated locally),8.09 per call) 
+ComM_NmNwReqAllChOfPnc/20 (ComM_NmNwReqAllChOfPnc) @06cf50e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cb8ff8
+  References: ComM_PncNmRequest/41 (read)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Function ComM_NmNwReqAllChOfPnc/20 is inline copy in ComM_HsmComMPncSfPncRequestedEntry/10
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (1758359619 (estimated locally),1.64 per call) 
+ComM_HsmComMPncSfPncNoComNotifyEntry/19 (ComM_HsmComMPncSfPncNoComNotifyEntry) @06cf0d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb91b8
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction4/18 (ComM_HsmComMPncSfPncNoComAction4) @06cf0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9058
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction3/17 (ComM_HsmComMPncSfPncNoComAction3) @06cf09a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard3/16 (ComM_HsmComMPncSfPncNoComGuard3) @06cf07e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8af8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction1/15 (ComM_HsmComMPncSfPncNoComAction1) @06cf0620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8ad8
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComAction4/18 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction3/17 (1073741824 (estimated locally),1.00 per call) 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard1/14 (ComM_HsmComMPncSfPncNoComGuard1) @06cf0460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8c58
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComEntry/13 (ComM_HsmComMPncSfPncNoComEntry) @06cf02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8d18
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedAction1/12 (ComM_HsmComMPncSfPncRequestedAction1) @06cf0000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b78
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicClearBit_8/42 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncRequestedGuard1/11 (ComM_HsmComMPncSfPncRequestedGuard1) @06cdbe00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e18
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedEntry/10 (ComM_HsmComMPncSfPncRequestedEntry) @06cdbc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b18
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_NmNwReqAllChOfPnc/20 (inlined) (1073741824 (estimated locally),1.00 per call) ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicSetBit_8/36 (1073741824 (estimated locally),1.00 per call) ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepGuard1/9 (ComM_HsmComMPncSfPncReadySleepGuard1) @06cdba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncGetEIRA/47 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncReadySleepEntry/8 (ComM_HsmComMPncSfPncReadySleepEntry) @06cdb8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8d38
+  References: ComM_HsmScComMPnc/34 (addr)ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) ComM_HsmEmitInst/32 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction3/7 (ComM_HsmComMPncSfPncPrepareSleepAction3) @06cdb620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8eb8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction2/6 (ComM_HsmComMPncSfPncPrepareSleepAction2) @06cdb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b38
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepAction1/46 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction1/5 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06cdb1c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  previous sharing asm name: 46
+  Aux: @06cb8bb8
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (ComM_HsmComMPncSfPncPrepareSleepGuard1) @06cd02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e38
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComGuard1/14 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_PncGetEIRA/22 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepEntry/3 (ComM_HsmComMPncSfPncPrepareSleepEntry) @06cd0e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8cb8
+  References: ComM_PncID/26 (read)ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncFullComEntry/2 (ComM_HsmComMPncSfPncFullComEntry) @06cd0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8c18
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncTopAction1/1 (ComM_HsmComMPncSfPncTopAction1) @06cd08c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e58
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+
+ ordered call graph: reduced
+ComM_PncProcessTimers/24 (ComM_PncProcessTimers) @06cf5a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9158
+  References: ComM_PncTimer/0 (read)ComM_PncTimer/0 (write)ComM_HsmScComMPnc/34 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:357878150 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_HsmEmitInst/32 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (239814331 (estimated locally),0.67 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/44 (236235013 (estimated locally),0.66 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/43 (715863676 (estimated locally),2.00 per call) 
+ComM_HsmComMPncSfPncNoComNotifyEntry/19 (ComM_HsmComMPncSfPncNoComNotifyEntry) @06cf0d20
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb91b8
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction4/18 (ComM_HsmComMPncSfPncNoComAction4) @06cf0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb9058
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComAction3/17 (ComM_HsmComMPncSfPncNoComAction3) @06cf09a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncNoComAction1/15 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard3/16 (ComM_HsmComMPncSfPncNoComGuard3) @06cf07e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8af8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncNoComAction1/15 (ComM_HsmComMPncSfPncNoComAction1) @06cf0620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8ad8
+  References: ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComAction4/18 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncNoComAction3/17 (1073741824 (estimated locally),1.00 per call) 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComGuard1/14 (ComM_HsmComMPncSfPncNoComGuard1) @06cf0460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8c58
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncNoComEntry/13 (ComM_HsmComMPncSfPncNoComEntry) @06cf02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8d18
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedAction1/12 (ComM_HsmComMPncSfPncRequestedAction1) @06cf0000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b78
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicClearBit_8/42 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncRequestedGuard1/11 (ComM_HsmComMPncSfPncRequestedGuard1) @06cdbe00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e18
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncRequestedEntry/10 (ComM_HsmComMPncSfPncRequestedEntry) @06cdbc40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b18
+  References: ComM_PncID/26 (read)ComM_TxEiraEraActive/35 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_NmNwReqAllChOfPnc/20 (inlined) (1073741824 (estimated locally),1.00 per call) ComM_PncSendSignal.constprop/45 (1073741824 (estimated locally),1.00 per call) TS_AtomicSetBit_8/36 (1073741824 (estimated locally),1.00 per call) ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_PncSendSignal.constprop.0/45 (ComM_PncSendSignal.constprop) @06e59700
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06cb8fb8
+  References: ComM_PncTxSignalMap/37 (read)ComM_TxComSignalCfg/38 (read)ComM_TxEiraEraActive/35 (addr)ComM_PncTxMask/39 (read)ComM_TxComSignalCfg/38 (read)ComM_PncTxSignalMap/37 (read)
+  Referring: 
+  Clone of ComM_PncSendSignal/23
+  Availability: local
+  Function flags: count:118111600 (estimated locally) local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncRequestedAction1/12 (1073741824 (estimated locally),1.00 per call) 
+  Calls: Com_SendSignal/40 (152900836 (estimated locally),1.29 per call) 
+ComM_NmNwReqAllChOfPnc/20 (ComM_NmNwReqAllChOfPnc) @06cf50e0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cb8ff8
+  References: ComM_PncNmRequest/41 (read)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Function ComM_NmNwReqAllChOfPnc/20 is inline copy in ComM_HsmComMPncSfPncRequestedEntry/10
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (1758359619 (estimated locally),1.64 per call) 
+ComM_HsmComMPncSfPncReadySleepGuard1/9 (ComM_HsmComMPncSfPncReadySleepGuard1) @06cdba80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PncGetEIRA/47 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_PncGetEIRA/47 (ComM_PncGetEIRA) @06d70540
+  Type: function definition analyzed
+  Visibility:
+  next sharing asm name: 22
+  Aux: @06cb8f78
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/47 is inline copy in ComM_HsmComMPncSfPncReadySleepGuard1/9
+  Clone of ComM_PncGetEIRA/22
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncReadySleepGuard1/9 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncReadySleepEntry/8 (ComM_HsmComMPncSfPncReadySleepEntry) @06cdb8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8d38
+  References: ComM_HsmScComMPnc/34 (addr)ComM_PncID/26 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) ComM_HsmEmitInst/32 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction3/7 (ComM_HsmComMPncSfPncPrepareSleepAction3) @06cdb620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8eb8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_PNC_RequestComMode/21 (1073741824 (estimated locally),1.00 per call) 
+ComM_PNC_RequestComMode/21 (ComM_PNC_RequestComMode) @06cf5460
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06cb9178
+  References: ComM_PNCRequestedComMode/29 (write)ComM_HsmScComM/33 (addr)ComM_ConfigPtr/30 (read)
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncRequestedEntry/10 (1073741824 (estimated locally),1.00 per call) ComM_HsmComMPncSfPncPrepareSleepAction3/7 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_HsmEmitInst/32 (955630223 (estimated locally),8.09 per call) ComM_EvaluateChannel/31 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction2/6 (ComM_HsmComMPncSfPncPrepareSleepAction2) @06cdb460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8b38
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: ComM_HsmComMPncSfPncPrepareSleepAction1/46 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncPrepareSleepAction1/46 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06d30c40
+  Type: function definition analyzed
+  Visibility: public
+  next sharing asm name: 5
+  Aux: @06cb8f18
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Function ComM_HsmComMPncSfPncPrepareSleepAction1/46 is inline copy in ComM_HsmComMPncSfPncPrepareSleepAction2/6
+  Clone of ComM_HsmComMPncSfPncPrepareSleepAction1/5
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepAction2/6 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepAction1/5 (ComM_HsmComMPncSfPncPrepareSleepAction1) @06cdb1c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  previous sharing asm name: 46
+  Aux: @06cb8bb8
+  References: ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (ComM_HsmComMPncSfPncPrepareSleepGuard1) @06cd02a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e38
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body icf_merged optimize_size
+  Called by: ComM_HsmComMPncSfPncNoComGuard1/14 (1073741824 (estimated locally),1.00 per call) 
+  Calls: ComM_PncGetEIRA/22 (inlined) (1073741824 (estimated locally),1.00 per call) 
+ComM_PncGetEIRA/22 (ComM_PncGetEIRA) @06cf5620
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  previous sharing asm name: 47
+  Aux: @06cb8fd8
+  References: ComM_PncID/26 (read)ComM_RxEira/28 (read)
+  Referring: 
+  Function ComM_PncGetEIRA/22 is inline copy in ComM_HsmComMPncSfPncPrepareSleepGuard1/4
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) body local optimize_size
+  Called by: ComM_HsmComMPncSfPncPrepareSleepGuard1/4 (inlined) (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmComMPncSfPncPrepareSleepEntry/3 (ComM_HsmComMPncSfPncPrepareSleepEntry) @06cd0e00
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8cb8
+  References: ComM_PncID/26 (read)ComM_PncTimer/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: BswM_ComM_CurrentPNCMode/27 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmComMPncSfPncFullComEntry/2 (ComM_HsmComMPncSfPncFullComEntry) @06cd0b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8c18
+  References: ComM_PNCMode/25 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+ComM_HsmComMPncSfPncTopAction1/1 (ComM_HsmComMPncSfPncTopAction1) @06cd08c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06cb8e58
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+
+Function found not to call free: ComM_HsmComMPncSfPncTopAction1
+Function found not to call free: ComM_HsmComMPncSfPncFullComEntry
+Function found not to call free: ComM_PncGetEIRA
+Function found not to call free: ComM_HsmComMPncSfPncPrepareSleepGuard1
+Function found not to call free: ComM_HsmComMPncSfPncPrepareSleepAction1
+Function found not to call free: ComM_HsmComMPncSfPncPrepareSleepAction1
+Function found not to call free: ComM_HsmComMPncSfPncPrepareSleepAction2
+Function found not to call free: ComM_PncGetEIRA
+Function found not to call free: ComM_HsmComMPncSfPncReadySleepGuard1
+Function found not to call free: ComM_HsmComMPncSfPncRequestedGuard1
+Function found not to call free: ComM_HsmComMPncSfPncNoComEntry
+Function found not to call free: ComM_HsmComMPncSfPncNoComGuard1
+Function found not to call free: ComM_HsmComMPncSfPncNoComGuard3
+ComM_PncProcessTimers ()
+{
+  uint16 PncIdx;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG emitEvent => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG PncIdx => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  # DEBUG emitEvent => 0
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) PncIdx_4;
+  _2 = ComM_PncTimer[_1];
+  if (_2 != 0)
+    goto <bb 5>; [67.00%]
+  else
+    goto <bb 4>; [33.00%]
+
+  <bb 4> [local count: 236235013]:
+  # DEBUG emitEvent => 0
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 479628662]:
+  # DEBUG BEGIN_STMT
+  _3 = _2 + 65535;
+  ComM_PncTimer[_1] = _3;
+  # DEBUG BEGIN_STMT
+  if (_3 == 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 239814331]:
+  # DEBUG BEGIN_STMT
+  # DEBUG emitEvent => 1
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_4, 1);
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 239814331]:
+  # DEBUG emitEvent => 0
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 8> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  PncIdx_12 = PncIdx_4 + 1;
+  # DEBUG PncIdx => PncIdx_12
+
+  <bb 9> [local count: 1073741824]:
+  # PncIdx_4 = PHI <0(2), PncIdx_12(8)>
+  # DEBUG PncIdx => PncIdx_4
+  # DEBUG BEGIN_STMT
+  if (PncIdx_4 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 10>; [33.33%]
+
+  <bb 10> [local count: 357878150]:
+  return;
+
+}
+
+
+ComM_PncGetEIRA (uint16 instIdx)
+{
+  boolean ret;
+  const uint8 EiraMask;
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  int _7;
+  unsigned char _8;
+  short unsigned int _14;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_9(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_11 = _4 + 254;
+  # DEBUG Index => Index_11
+  # DEBUG BEGIN_STMT
+  _14 = _2 & 7;
+  _5 = (unsigned int) _14;
+  _6 = 1 << _5;
+  EiraMask_12 = (const uint8) _6;
+  # DEBUG EiraMask => EiraMask_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = (int) Index_11;
+  _8 = ComM_RxEira[_7];
+  ret_13 = _8 & EiraMask_12;
+  # DEBUG ret => ret_13
+  # DEBUG BEGIN_STMT
+  return ret_13;
+
+}
+
+
+ComM_PNC_RequestComMode (uint16 pncIdx, ComM_ModeType Mode)
+{
+  const uint8 Channel;
+  uint8_least chIdx;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  sizetype _5;
+  const uint8 * _6;
+  short unsigned int _7;
+  const struct ComM_ConfigType * ComM_ConfigPtr.4_8;
+  unsigned int _9;
+  unsigned int _10;
+  short unsigned int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  long unsigned int _16;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) pncIdx_19(D);
+  ComM_PNCRequestedComMode[_1] = Mode_21(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG chIdx => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _2 = ComM_ConfigPtr.4_8->pChannelsOfAllPnc;
+  _3 = (long unsigned int) _13;
+  _4 = _3 + chIdx_17;
+  _5 = _2 + _4;
+  _6 = ComM_ConfigPtr.4_8 + _5;
+  Channel_23 = *_6;
+  # DEBUG Channel => Channel_23
+  # DEBUG BEGIN_STMT
+  ComM_EvaluateChannel (Channel_23);
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) Channel_23;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _7, 9);
+  # DEBUG BEGIN_STMT
+  chIdx_26 = chIdx_17 + 1;
+  # DEBUG chIdx => chIdx_26
+
+  <bb 4> [local count: 1073741824]:
+  # chIdx_17 = PHI <0(2), chIdx_26(3)>
+  # DEBUG chIdx => chIdx_17
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_8 = ComM_ConfigPtr;
+  _9 = (unsigned int) pncIdx_19(D);
+  _10 = _9 + 1;
+  _11 = ComM_ConfigPtr.4_8->NumChannelsOfAllPnc[_10];
+  _12 = (unsigned char) _11;
+  _13 = ComM_ConfigPtr.4_8->NumChannelsOfAllPnc[_1];
+  _14 = (unsigned char) _13;
+  _15 = _12 - _14;
+  _16 = (long unsigned int) _15;
+  if (_16 > chIdx_17)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+
+ComM_NmNwReqAllChOfPnc (uint16 pncIdx)
+{
+  const uint8 Channel;
+  uint8_least chIdx;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  sizetype _4;
+  const uint8 * _5;
+  int _6;
+  unsigned char _7;
+  short unsigned int _8;
+  const struct ComM_ConfigType * ComM_ConfigPtr.12_9;
+  unsigned int _10;
+  unsigned int _11;
+  short unsigned int _12;
+  unsigned char _13;
+  int _14;
+  short unsigned int _15;
+  unsigned char _16;
+  unsigned char _17;
+  long unsigned int _18;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG chIdx => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _1 = ComM_ConfigPtr.12_9->pChannelsOfAllPnc;
+  _2 = (long unsigned int) _15;
+  _3 = _2 + chIdx_19;
+  _4 = _1 + _3;
+  _5 = ComM_ConfigPtr.12_9 + _4;
+  Channel_24 = *_5;
+  # DEBUG Channel => Channel_24
+  # DEBUG BEGIN_STMT
+  _6 = (int) Channel_24;
+  _7 = ComM_PncNmRequest[_6];
+  if (_7 == 1)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 193419557]:
+  # DEBUG BEGIN_STMT
+  _8 = (short unsigned int) Channel_24;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _8, 2);
+
+  <bb 5> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  chIdx_26 = chIdx_19 + 1;
+  # DEBUG chIdx => chIdx_26
+
+  <bb 6> [local count: 1073741824]:
+  # chIdx_19 = PHI <0(2), chIdx_26(5)>
+  # DEBUG chIdx => chIdx_19
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.12_9 = ComM_ConfigPtr;
+  _10 = (unsigned int) pncIdx_23(D);
+  _11 = _10 + 1;
+  _12 = ComM_ConfigPtr.12_9->NumChannelsOfAllPnc[_11];
+  _13 = (unsigned char) _12;
+  _14 = (int) pncIdx_23(D);
+  _15 = ComM_ConfigPtr.12_9->NumChannelsOfAllPnc[_14];
+  _16 = (unsigned char) _15;
+  _17 = _13 - _16;
+  _18 = (long unsigned int) _17;
+  if (_18 > chIdx_19)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComNotifyEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 3);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction4 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  ComM_HsmComMPncSfPncNoComAction1 (instIdx_2(D)); [tail call]
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction3 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  ComM_HsmComMPncSfPncNoComAction1 (instIdx_2(D)); [tail call]
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComGuard3 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return 0;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction1 (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 4);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComGuard1 (const uint16 instIdx)
+{
+  boolean retval.40;
+
+  <bb 2> [local count: 1073741824]:
+  retval.40_3 = ComM_HsmComMPncSfPncPrepareSleepGuard1 (instIdx_2(D)); [tail call]
+  return retval.40_3;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComEntry (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PNCMode[_1] = 0;
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedAction1 (const uint16 instIdx)
+{
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  uint8 * _6;
+  unsigned char _7;
+  long unsigned int _8;
+  unsigned char _14;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_9(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_11 = _4 + 254;
+  # DEBUG Index => Index_11
+  # DEBUG BEGIN_STMT
+  _5 = (int) Index_11;
+  _6 = &ComM_TxEiraEraActive[_5];
+  _7 = (unsigned char) _2;
+  _14 = _7 & 7;
+  _8 = (long unsigned int) _14;
+  TS_AtomicClearBit_8 (_6, _8);
+  # DEBUG BEGIN_STMT
+  ComM_PncSendSignal (instIdx_9(D), 0);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedGuard1 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return 1;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedEntry (const uint16 instIdx)
+{
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  uint8 * _6;
+  unsigned char _7;
+  long unsigned int _8;
+  unsigned char _17;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_9(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_11 = _4 + 254;
+  # DEBUG Index => Index_11
+  # DEBUG BEGIN_STMT
+  BswM_ComM_CurrentPNCMode (_2, 0);
+  # DEBUG BEGIN_STMT
+  ComM_PNC_RequestComMode (instIdx_9(D), 2);
+  # DEBUG BEGIN_STMT
+  _5 = (int) Index_11;
+  _6 = &ComM_TxEiraEraActive[_5];
+  _7 = (unsigned char) _2;
+  _17 = _7 & 7;
+  _8 = (long unsigned int) _17;
+  TS_AtomicSetBit_8 (_6, _8);
+  # DEBUG BEGIN_STMT
+  ComM_PncSendSignal (instIdx_9(D), 0);
+  # DEBUG BEGIN_STMT
+  ComM_NmNwReqAllChOfPnc (instIdx_9(D));
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncReadySleepGuard1 (const uint16 instIdx)
+{
+  unsigned char _1;
+  boolean iftmp.6_2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  _1 = ComM_PncGetEIRA (instIdx_4(D));
+  if (_1 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+
+  <bb 4> [local count: 1073741824]:
+  # iftmp.6_2 = PHI <1(2), 0(3)>
+  # DEBUG ret => iftmp.6_2
+  # DEBUG BEGIN_STMT
+  return iftmp.6_2;
+
+}
+
+
+ComM_HsmComMPncSfPncReadySleepEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, instIdx_4(D), 3);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_4(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 1);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction3 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ComM_PNC_RequestComMode (instIdx_2(D), 0);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction2 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  ComM_HsmComMPncSfPncPrepareSleepAction1 (instIdx_2(D)); [tail call]
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction1 (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PncTimer[_1] = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepGuard1 (const uint16 instIdx)
+{
+  unsigned char _1;
+  boolean iftmp.0_2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ret => 0
+  # DEBUG BEGIN_STMT
+  _1 = ComM_PncGetEIRA (instIdx_4(D));
+  if (_1 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+
+  <bb 4> [local count: 1073741824]:
+  # iftmp.0_2 = PHI <1(2), 0(3)>
+  # DEBUG ret => iftmp.0_2
+  # DEBUG BEGIN_STMT
+  return iftmp.0_2;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 2);
+  # DEBUG BEGIN_STMT
+  ComM_PncTimer[_1] = 32;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncFullComEntry (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PNCMode[_1] = 2;
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncTopAction1 (const uint16 instIdx)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

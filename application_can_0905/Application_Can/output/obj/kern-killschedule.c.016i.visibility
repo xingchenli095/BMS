@@ -1,0 +1,124 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_KillSchedule
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_KillAlarm/4 (OS_KillAlarm) @06c7cd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KillSchedule/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c7cc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KillSchedule/0 OS_KillSchedule/0 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06c54828
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KillSchedule/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_scheduleTableBase/1 (OS_scheduleTableBase) @06c547e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KillSchedule/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_KillSchedule/0 (OS_KillSchedule) @06c7ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_scheduleTableBase/1 (read)OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_KillAlarm/4 OS_CORTEXM_IntSetDisablingLevel/3 
+__attribute__((target ("general-regs-only")))
+OS_KillSchedule (os_scheduleid_t sid, os_schedulestatus_t state)
+{
+  os_intstatus_t is;
+  os_result_t r;
+  os_scheduleid_t s;
+  struct os_scheduledynamic_t * sd;
+  const struct os_schedule_t * ss;
+  os_result_t D.7419;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  s = sid;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s;
+  _3 = _2 * 36;
+  ss = OS_scheduleTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_4 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_4);
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd->next = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = state;
+  # DEBUG BEGIN_STMT
+  _5 = ss->alarm;
+  OS_KillAlarm (_5, 0);
+  # DEBUG BEGIN_STMT
+  s = sd->chain;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  state = 0;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (s != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.7419 = r;
+  return D.7419;
+
+}
+
+

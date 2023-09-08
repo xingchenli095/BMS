@@ -1,0 +1,2213 @@
+
+
+ local analysis of Crypto_ProcessJob_Dispatch.part.0
+   scanning: <L0>:
+  scanning: Det_ASR40_ReportError (114, 0, 3, 4);
+  scanning: return RetVal_1;
+Function is locally const.
+
+
+ local analysis of Crypto_HandleQueuingAndCancellation.part.0
+   scanning: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_1(D)].DriverObjectState = 0;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_1(D)].CurrentJob = 0B;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_1(D)].SkipPeriodicMainFunction = 1;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: Job_2(D)->jobState = 0;
+    Indirect ref write is not const/pure
+  scanning: _3 = Job_2(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->processingType;
+    Indirect ref read is not const
+  scanning: if (_4 == 0)
+  scanning: CryIf_CallbackNotification (Job_2(D), 12);
+  scanning: return RetVal_5;
+
+
+ local analysis of Crypto_HandleQueuingAndCancellation
+   scanning: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: _1 = MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_4(D)].CurrentJob;
+    Indirect ref read is not const
+  scanning: if (_1 == Job_8(D))
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: RetVal_14 = CancelFunction_12(D) (ObjectId_4(D), Job_8(D));
+  scanning: if (RetVal_14 == 0)
+  scanning: RetVal_5 = Crypto_HandleQueuingAndCancellation.part.0 (ObjectId_4(D), Job_8(D));
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: return RetVal_2;
+Function is locally pure.
+
+
+ local analysis of Crypto_HandleQueuingAndProcessing
+   scanning: _1 = Job_19(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _2 = _1->primitiveInfo;
+    Indirect ref read is not const
+  scanning: Service_20 = _2->service;
+    Indirect ref read is not const
+  scanning: if (Service_20 != 0)
+  scanning: if (Service_20 != 10)
+  scanning: if (Service_20 != 9)
+  scanning: if (Service_20 != 11)
+  scanning: KeyNeeded_21 = (boolean) iftmp.2_15;
+  scanning: if (KeyNeeded_21 == 1)
+  scanning: _3 = Job_19(D)->cryptoKeyId;
+    Indirect ref read is not const
+  scanning: if (_3 > 1)
+  scanning: if (KeyNeeded_21 == 1)
+  scanning: _4 = Job_19(D)->cryptoKeyId;
+    Indirect ref read is not const
+  scanning: _5 = Crypto_Keys[_4].KeyState;
+  scanning: if (_5 == 0)
+  scanning: _6 = Job_19(D)->jobState;
+    Indirect ref read is not const
+  scanning: if (_6 == 0)
+  scanning: _7 = Job_19(D)->jobPrimitiveInputOutput.mode;
+    Indirect ref read is not const
+  scanning: _8 = _7 & 1;
+  scanning: if (_8 == 0)
+  scanning: _9 = _1->processingType;
+    Indirect ref read is not const
+  scanning: if (_9 == 0)
+  scanning: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: _10 = MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].CurrentJob;
+    Indirect ref read is not const
+  scanning: if (_10 == Job_19(D))
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: RetVal_46 = ProcessFunction_28(D) (ObjectId_17(D), Job_19(D));
+  scanning: _11 = MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].DriverObjectState;
+    Indirect ref read is not const
+  scanning: if (_11 == 1)
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].DriverObjectState = 1;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].CurrentJob = Job_19(D);
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].SkipPeriodicMainFunction = 0;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: Job_19(D)->jobState = 1;
+    Indirect ref write is not const/pure
+  scanning: RetVal_42 = ProcessFunction_28(D) (ObjectId_17(D), Job_19(D));
+  scanning: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: _12 = MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].CurrentJob;
+    Indirect ref read is not const
+  scanning: if (_12 == Job_19(D))
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: RetVal_34 = ProcessFunction_28(D) (ObjectId_17(D), Job_19(D));
+  scanning: _13 = MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].DriverObjectState;
+    Indirect ref read is not const
+  scanning: if (_13 == 1)
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].DriverObjectState = 1;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].CurrentJob = Job_19(D);
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Crypto_DriverObject *)&Crypto_DriverObjects][ObjectId_17(D)].SkipPeriodicMainFunction = 1;
+    Indirect ref write is not const/pure
+  scanning: SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT ();
+  scanning: Job_19(D)->jobState = 1;
+    Indirect ref write is not const/pure
+  scanning: RetVal_30 = ProcessFunction_28(D) (ObjectId_17(D), Job_19(D));
+  scanning: return RetVal_14;
+
+
+ local analysis of Crypto_CheckBufferLen
+   scanning: _1 = Job_17(D)->jobPrimitiveInputOutput.mode;
+    Indirect ref read is not const
+  scanning: _2 = _1 & 2;
+  scanning: if (_2 != 0)
+  scanning: _3 = Job_17(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _5 = _4->service;
+    Indirect ref read is not const
+  scanning: if (_5 <= 8)
+  scanning: <L1>:
+  scanning: _6 = Job_17(D)->jobPrimitiveInputOutput.inputLength;
+    Indirect ref read is not const
+  scanning: if (_6 == 0)
+  scanning: _7 = _1 & 4;
+  scanning: if (_7 != 0)
+  scanning: _8 = Job_17(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _9 = _8->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _10 = _9->service;
+    Indirect ref read is not const
+  scanning: switch (_10) <default: <L30> [50.00%], case 2: <L16> [50.00%], case 5 ... 6: <L16> [50.00%], case 8: <L16> [50.00%]>
+  scanning: <L16>:
+  scanning: _11 = Job_17(D)->jobPrimitiveInputOutput.secondaryInputLength;
+    Indirect ref read is not const
+  scanning: if (_11 == 0)
+  scanning: if (_10 == 6)
+  scanning: _12 = Job_17(D)->jobPrimitiveInputOutput.tertiaryInputLength;
+    Indirect ref read is not const
+  scanning: if (_12 == 0)
+  scanning: <L30>:
+  scanning: return RetVal_15;
+Function is locally pure.
+
+
+ local analysis of Crypto_CheckBufferPtrs
+   scanning: _1 = Job_26(D)->jobPrimitiveInputOutput.mode;
+    Indirect ref read is not const
+  scanning: _2 = _1 & 2;
+  scanning: if (_2 != 0)
+  scanning: _3 = Job_26(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _5 = _4->service;
+    Indirect ref read is not const
+  scanning: switch (_5) <default: <L47> [33.33%], case 0 ... 2: <L6> [33.33%], case 3 ... 6: <L1> [33.33%], case 7 ... 8: <L6> [33.33%]>
+  scanning: <L1>:
+  scanning: _6 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+    Indirect ref read is not const
+  scanning: if (_6 == 0B)
+  scanning: _7 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+    Indirect ref read is not const
+  scanning: if (_7 == 0B)
+  scanning: <L6>:
+  scanning: _8 = Job_26(D)->jobPrimitiveInputOutput.inputPtr;
+    Indirect ref read is not const
+  scanning: if (_8 != 0B)
+  scanning: <L47>:
+  scanning: _9 = _1 & 4;
+  scanning: if (_9 != 0)
+  scanning: _10 = Job_26(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _11 = _10->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _12 = _11->service;
+    Indirect ref read is not const
+  scanning: switch (_12) <default: <L48> [20.00%], case 0 ... 1: <L22> [20.00%], case 2: <L36> [20.00%], case 3 ... 4: <L22> [20.00%], case 5: <L19> [20.00%], case 6: <L33> [20.00%], case 7: <L22> [20.00%], case 8: <L36> [20.00%], case 11: <L22> [20.00%]>
+  scanning: <L19>:
+  scanning: _13 = Job_26(D)->jobPrimitiveInputOutput.secondaryOutputPtr;
+    Indirect ref read is not const
+  scanning: if (_13 == 0B)
+  scanning: _14 = Job_26(D)->jobPrimitiveInputOutput.secondaryOutputLengthPtr;
+    Indirect ref read is not const
+  scanning: if (_14 == 0B)
+  scanning: _15 = Job_26(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+    Indirect ref read is not const
+  scanning: if (_15 == 0B)
+  scanning: <L22>:
+  scanning: _16 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+    Indirect ref read is not const
+  scanning: if (_16 != 0B)
+  scanning: _17 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+    Indirect ref read is not const
+  scanning: if (_17 != 0B)
+  scanning: <L33>:
+  scanning: _18 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+    Indirect ref read is not const
+  scanning: if (_18 == 0B)
+  scanning: _19 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+    Indirect ref read is not const
+  scanning: if (_19 == 0B)
+  scanning: _20 = Job_26(D)->jobPrimitiveInputOutput.tertiaryInputPtr;
+    Indirect ref read is not const
+  scanning: if (_20 == 0B)
+  scanning: <L36>:
+  scanning: _21 = Job_26(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+    Indirect ref read is not const
+  scanning: if (_21 != 0B)
+  scanning: _22 = Job_26(D)->jobPrimitiveInputOutput.verifyPtr;
+    Indirect ref read is not const
+  scanning: if (_22 != 0B)
+  scanning: <L48>:
+  scanning: return RetVal_24;
+Function is locally pure.
+
+
+ local analysis of Crypto_CheckBufferPtrsVal
+   scanning: _1 = Job_20(D)->jobPrimitiveInputOutput.mode;
+    Indirect ref read is not const
+  scanning: _2 = _1 & 2;
+  scanning: if (_2 != 0)
+  scanning: _3 = Job_20(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _5 = _4->service;
+    Indirect ref read is not const
+  scanning: _21 = (unsigned int) _5;
+  scanning: _22 = _21 + 4294967293;
+  scanning: if (_22 <= 3)
+  scanning: <L1>:
+  scanning: _6 = Job_20(D)->jobPrimitiveInputOutput.outputLengthPtr;
+    Indirect ref read is not const
+  scanning: _7 = *_6;
+    Indirect ref read is not const
+  scanning: if (_7 == 0)
+  scanning: _8 = _1 & 4;
+  scanning: if (_8 != 0)
+  scanning: _9 = Job_20(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _10 = _9->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _11 = _10->service;
+    Indirect ref read is not const
+  scanning: switch (_11) <default: <L29> [50.00%], case 0 ... 1: <L11> [50.00%], case 3 ... 7: <L11> [50.00%], case 11: <L11> [50.00%]>
+  scanning: <L11>:
+  scanning: _12 = Job_20(D)->jobPrimitiveInputOutput.outputLengthPtr;
+    Indirect ref read is not const
+  scanning: _13 = *_12;
+    Indirect ref read is not const
+  scanning: if (_13 == 0)
+  scanning: if (_11 == 5)
+  scanning: _14 = Job_20(D)->jobPrimitiveInputOutput.secondaryOutputLengthPtr;
+    Indirect ref read is not const
+  scanning: _15 = *_14;
+    Indirect ref read is not const
+  scanning: if (_15 == 0)
+  scanning: <L29>:
+  scanning: return RetVal_18;
+Function is locally pure.
+
+
+ local analysis of Crypto_CheckMode
+   scanning: _1 = Job_7(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _2 = _1->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _3 = _2->service;
+    Indirect ref read is not const
+  scanning: if (_3 == 9)
+  scanning: <L1>:
+  scanning: _4 = Job_7(D)->jobPrimitiveInputOutput.mode;
+    Indirect ref read is not const
+  scanning: if (_4 != 0)
+  scanning: if (_4 <= 4)
+  scanning: if (_4 == 7)
+  scanning: return RetVal_5;
+Function is locally pure.
+
+
+ local analysis of Crypto_MainFunction
+   scanning: Crypto_PL_MainFunction ();
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of Crypto_CancelJob
+   scanning: Crypto_Initialized.3_1 = Crypto_Initialized;
+  scanning: if (Crypto_Initialized.3_1 == 0)
+  scanning: Det_ASR40_ReportError (114, 0, 14, 0);
+  scanning: if (job_12(D) == 0B)
+  scanning: Det_ASR40_ReportError (114, 0, 14, 2);
+  scanning: if (objectId_13(D) == 0)
+  scanning: <L4>:
+  scanning: _2 = job_12(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _3 = _2->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->service;
+    Indirect ref read is not const
+  scanning: if (_4 == 1)
+  scanning: _5 = _3->algorithm.family;
+    Indirect ref read is not const
+  scanning: if (_5 == 20)
+  scanning: _6 = _3->algorithm.mode;
+    Indirect ref read is not const
+  scanning: if (_6 == 16)
+  scanning: RetVal_15 = Crypto_HandleQueuingAndCancellation (0, job_12(D), Crypto_PL_MACGENERATE_AES_CMAC_Cancel);
+  scanning: if (_4 == 2)
+  scanning: _7 = _3->algorithm.family;
+    Indirect ref read is not const
+  scanning: if (_7 == 20)
+  scanning: _8 = _3->algorithm.mode;
+    Indirect ref read is not const
+  scanning: if (_8 == 16)
+  scanning: RetVal_17 = Crypto_HandleQueuingAndCancellation (0, job_12(D), Crypto_PL_MACVERIFY_AES_CMAC_Cancel);
+  scanning: Det_ASR40_ReportError (114, 0, 3, 4);
+  scanning: <L15>:
+  scanning: Det_ASR40_ReportError (114, 0, 14, 4);
+  scanning: return RetVal_9;
+Function is locally pure.
+
+
+ local analysis of Crypto_ProcessJob_Dispatch
+   scanning: if (objectId_13(D) == 0)
+  scanning: <L0>:
+  scanning: _1 = job_15(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _2 = _1->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _3 = _2->service;
+    Indirect ref read is not const
+  scanning: if (_3 == 1)
+  scanning: _6 = _2->algorithm.family;
+    Indirect ref read is not const
+  scanning: if (_6 == 20)
+  scanning: _9 = _2->algorithm.mode;
+    Indirect ref read is not const
+  scanning: if (_9 == 16)
+  scanning: RetVal_17 = Crypto_HandleQueuingAndProcessing (0, job_15(D), Crypto_PL_MACGENERATE_AES_CMAC_Process);
+  scanning: if (_3 == 2)
+  scanning: _10 = _2->algorithm.family;
+    Indirect ref read is not const
+  scanning: if (_10 == 20)
+  scanning: _11 = _2->algorithm.mode;
+    Indirect ref read is not const
+  scanning: if (_11 == 16)
+  scanning: RetVal_19 = Crypto_HandleQueuingAndProcessing (0, job_15(D), Crypto_PL_MACVERIFY_AES_CMAC_Process);
+  scanning: Det_ASR40_ReportError (114, 0, 3, 4);
+  scanning: <L11>:
+  scanning: RetVal_5 = Crypto_ProcessJob_Dispatch.part.0 ();
+  scanning: return RetVal_12;
+Function is locally pure.
+
+
+ local analysis of Crypto_ProcessJob
+   scanning: Crypto_Initialized.1_1 = Crypto_Initialized;
+  scanning: if (Crypto_Initialized.1_1 == 0)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 0);
+  scanning: if (job_11(D) == 0B)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 2);
+  scanning: _2 = Crypto_CheckMode (job_11(D));
+  scanning: if (_2 == 1)
+  scanning: _3 = job_11(D)->jobPrimitiveInfo;
+    Indirect ref read is not const
+  scanning: _4 = _3->primitiveInfo;
+    Indirect ref read is not const
+  scanning: _5 = _4->service;
+    Indirect ref read is not const
+  scanning: if (_5 > 11)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 4);
+  scanning: _6 = Crypto_CheckBufferPtrs (job_11(D));
+  scanning: if (_6 == 1)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 2);
+  scanning: _7 = Crypto_CheckBufferLen (job_11(D));
+  scanning: if (_7 == 1)
+  scanning: _8 = Crypto_CheckBufferPtrsVal (job_11(D));
+  scanning: if (_8 == 1)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 5);
+  scanning: RetVal_15 = Crypto_ProcessJob_Dispatch (objectId_13(D), 1, job_11(D));
+  scanning: if (RetVal_15 == 11)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 4);
+  scanning: if (RetVal_12 == 4)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 3);
+  scanning: if (RetVal_12 == 3)
+  scanning: Det_ASR40_ReportError (114, 0, 3, 0);
+  scanning: return RetVal_24;
+Function is locally pure.
+
+
+ local analysis of Crypto_Init
+   scanning: Crypto_Initialized.0_1 = Crypto_Initialized;
+  scanning: if (Crypto_Initialized.0_1 == 0)
+  scanning: Crypto_PL_Init ();
+  scanning: Crypto_Initialized = 1;
+  scanning: return;
+Function is locally const.
+callgraph:
+
+Crypto_HandleQueuingAndProcessing.constprop.0/28 (Crypto_HandleQueuingAndProcessing.constprop) @06d569a0
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93860
+  References: Crypto_Keys/17 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndProcessing/10
+  Availability: local
+  Function flags: count:1073741823 (estimated locally) local optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (16832283 (estimated locally),0.02 per call) Crypto_ProcessJob_Dispatch/3 (24715694 (estimated locally),0.02 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) 
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+Crypto_HandleQueuingAndCancellation.part.0.constprop.0/27 (Crypto_HandleQueuingAndCancellation.part.0.constprop) @06d56700
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06a93460
+  References: Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Function Crypto_HandleQueuingAndCancellation.part.0.constprop/27 is inline copy in Crypto_HandleQueuingAndCancellation.constprop/26
+  Clone of Crypto_HandleQueuingAndCancellation.part.0/24
+  Availability: local
+  Function flags: count:106300440 (estimated locally) first_run:1 local split_part optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.constprop/26 (inlined) (106300440 (estimated locally),0.10 per call) 
+  Calls: CryIf_CallbackNotification/22 (35079145 (estimated locally),0.03 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (106300440 (estimated locally),0.10 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (106300440 (estimated locally),0.10 per call) 
+Crypto_HandleQueuingAndCancellation.constprop.0/26 (Crypto_HandleQueuingAndCancellation.constprop) @06d56380
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93580
+  References: Crypto_DriverObjects/16 (read)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndCancellation/11
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) local optimize_size
+  Called by: Crypto_CancelJob/4 (9311939 (estimated locally),0.01 per call) Crypto_CancelJob/4 (13673191 (estimated locally),0.01 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (1073741824 (estimated locally),1.00 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (inlined) (106300440 (estimated locally),0.10 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (751619278 (estimated locally),0.70 per call) 
+   Indirect call(322122547 (estimated locally),0.30 per call)  of param:2 (vptr maybe changed)
+Crypto_ProcessJob_Dispatch.part.0/25 (Crypto_ProcessJob_Dispatch.part.0) @06c66c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06a93340
+  References: 
+  Referring: 
+  Function Crypto_ProcessJob_Dispatch.part.0/25 is inline copy in Crypto_ProcessJob_Dispatch/3
+  Availability: local
+  Function flags: count:354334800 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (inlined) (354334800 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/13 (354334800 (estimated locally),0.33 per call) 
+Crypto_HandleQueuingAndCancellation.part.0/24 (Crypto_HandleQueuingAndCancellation.part.0) @06c668c0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly artificial
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) first_run:1 body split_part optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MainFunction/23 (Crypto_PL_MainFunction) @06c52b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_MainFunction/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+CryIf_CallbackNotification/22 (CryIf_CallbackNotification) @06c529a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (35079145 (estimated locally),0.03 per call) 
+  Calls: 
+Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (Crypto_PL_MACVERIFY_AES_CMAC_Cancel) @06c527e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_CancelJob/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (Crypto_PL_MACGENERATE_AES_CMAC_Cancel) @06c52700
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_CancelJob/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT) @06c52540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndProcessing.constprop/28 (49427492 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (50857300 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (183292330 (estimated locally),0.17 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (49427492 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (50857300 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (183292330 (estimated locally),0.17 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (106300440 (estimated locally),0.10 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (751619278 (estimated locally),0.70 per call) 
+  Calls: 
+SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT) @06c52460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndProcessing.constprop/28 (283577122 (estimated locally),0.26 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (283577122 (estimated locally),0.26 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (106300440 (estimated locally),0.10 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (Crypto_PL_MACVERIFY_AES_CMAC_Process) @06c520e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_ProcessJob_Dispatch/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (Crypto_PL_MACGENERATE_AES_CMAC_Process) @06c52000
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_ProcessJob_Dispatch/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Det_ASR40_ReportError/13 (Det_ASR40_ReportError) @06c00700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_CancelJob/4 (196024745 (estimated locally),0.18 per call) Crypto_CancelJob/4 (375004503 (estimated locally),0.35 per call) Crypto_CancelJob/4 (125392644 (estimated locally),0.12 per call) Crypto_CancelJob/4 (354334802 (estimated locally),0.33 per call) Crypto_ProcessJob/2 (112613934 (estimated locally),0.10 per call) Crypto_ProcessJob/2 (127999471 (estimated locally),0.12 per call) Crypto_ProcessJob/2 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob/2 (115282093 (estimated locally),0.11 per call) Crypto_ProcessJob/2 (47947130 (estimated locally),0.04 per call) Crypto_ProcessJob/2 (357121444 (estimated locally),0.33 per call) Crypto_ProcessJob/2 (125392644 (estimated locally),0.12 per call) Crypto_ProcessJob/2 (354334802 (estimated locally),0.33 per call) Crypto_ProcessJob_Dispatch/3 (677859047 (estimated locally),0.63 per call) Crypto_ProcessJob_Dispatch.part.0/25 (354334800 (estimated locally),0.33 per call) 
+  Calls: 
+Crypto_PL_Init/12 (Crypto_PL_Init) @06c00460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_Init/1 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Crypto_HandleQueuingAndCancellation/11 (Crypto_HandleQueuingAndCancellation) @06c002a0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Crypto_HandleQueuingAndProcessing/10 (Crypto_HandleQueuingAndProcessing) @06c000e0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Crypto_CheckBufferLen/9 (Crypto_CheckBufferLen) @06bcdee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93600
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferLen/9 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:188945804 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (188945804 (estimated locally),0.18 per call) 
+  Calls: 
+Crypto_CheckBufferPtrs/8 (Crypto_CheckBufferPtrs) @06bcdd20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a934c0
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrs/8 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:236892934 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (236892934 (estimated locally),0.22 per call) 
+  Calls: 
+Crypto_CheckBufferPtrsVal/7 (Crypto_CheckBufferPtrsVal) @06bcdb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93500
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrsVal/7 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:150703173 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (150703173 (estimated locally),0.14 per call) 
+  Calls: 
+Crypto_CheckMode/6 (Crypto_CheckMode) @06bcd9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93620
+  References: 
+  Referring: 
+  Function Crypto_CheckMode/6 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:594014378 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (594014378 (estimated locally),0.55 per call) 
+  Calls: 
+Crypto_MainFunction/5 (Crypto_MainFunction) @06bcd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93560
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_MainFunction/23 (1073741824 (estimated locally),1.00 per call) 
+Crypto_CancelJob/4 (Crypto_CancelJob) @06bcd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a932a0
+  References: Crypto_Initialized/0 (read)Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (196024745 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (375004503 (estimated locally),0.35 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (13673191 (estimated locally),0.01 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (9311939 (estimated locally),0.01 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_ProcessJob_Dispatch/3 (Crypto_ProcessJob_Dispatch) @06bcd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93300
+  References: Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Crypto_ProcessJob/2 (73663711 (estimated locally),0.07 per call) 
+  Calls: Crypto_ProcessJob_Dispatch.part.0/25 (inlined) (354334800 (estimated locally),0.33 per call) Det_ASR40_ReportError/13 (677859047 (estimated locally),0.63 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (24715694 (estimated locally),0.02 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (16832283 (estimated locally),0.02 per call) 
+Crypto_ProcessJob/2 (Crypto_ProcessJob) @06bcd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93320
+  References: Crypto_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (112613934 (estimated locally),0.10 per call) Det_ASR40_ReportError/13 (127999471 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob_Dispatch/3 (73663711 (estimated locally),0.07 per call) Det_ASR40_ReportError/13 (115282093 (estimated locally),0.11 per call) Crypto_CheckBufferPtrsVal/7 (inlined) (150703173 (estimated locally),0.14 per call) Crypto_CheckBufferLen/9 (inlined) (188945804 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (47947130 (estimated locally),0.04 per call) Crypto_CheckBufferPtrs/8 (inlined) (236892934 (estimated locally),0.22 per call) Det_ASR40_ReportError/13 (357121444 (estimated locally),0.33 per call) Crypto_CheckMode/6 (inlined) (594014378 (estimated locally),0.55 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_Init/1 (Crypto_Init) @06bcd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a935e0
+  References: Crypto_Initialized/0 (read)Crypto_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_Init/12 (354334802 (estimated locally),0.33 per call) 
+
+
+ ordered call graph: reduced for nothrow
+Crypto_HandleQueuingAndProcessing.constprop.0/28 (Crypto_HandleQueuingAndProcessing.constprop) @06d569a0
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93860
+  References: Crypto_Keys/17 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndProcessing/10
+  Availability: local
+  Function flags: count:1073741823 (estimated locally) local optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (16832283 (estimated locally),0.02 per call) Crypto_ProcessJob_Dispatch/3 (24715694 (estimated locally),0.02 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) 
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+Crypto_HandleQueuingAndCancellation.part.0.constprop.0/27 (Crypto_HandleQueuingAndCancellation.part.0.constprop) @06d56700
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06a93460
+  References: Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Function Crypto_HandleQueuingAndCancellation.part.0.constprop/27 is inline copy in Crypto_HandleQueuingAndCancellation.constprop/26
+  Clone of Crypto_HandleQueuingAndCancellation.part.0/24
+  Availability: local
+  Function flags: count:106300440 (estimated locally) first_run:1 local split_part optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.constprop/26 (inlined) (106300440 (estimated locally),0.10 per call) 
+  Calls: CryIf_CallbackNotification/22 (35079145 (estimated locally),0.03 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (106300440 (estimated locally),0.10 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (106300440 (estimated locally),0.10 per call) 
+Crypto_HandleQueuingAndCancellation.constprop.0/26 (Crypto_HandleQueuingAndCancellation.constprop) @06d56380
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93580
+  References: Crypto_DriverObjects/16 (read)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndCancellation/11
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) local optimize_size
+  Called by: Crypto_CancelJob/4 (9311939 (estimated locally),0.01 per call) Crypto_CancelJob/4 (13673191 (estimated locally),0.01 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (1073741824 (estimated locally),1.00 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (inlined) (106300440 (estimated locally),0.10 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (751619278 (estimated locally),0.70 per call) 
+   Indirect call(322122547 (estimated locally),0.30 per call)  of param:2 (vptr maybe changed)
+Crypto_ProcessJob_Dispatch.part.0/25 (Crypto_ProcessJob_Dispatch.part.0) @06c66c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06a93340
+  References: 
+  Referring: 
+  Function Crypto_ProcessJob_Dispatch.part.0/25 is inline copy in Crypto_ProcessJob_Dispatch/3
+  Availability: local
+  Function flags: count:354334800 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (inlined) (354334800 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/13 (354334800 (estimated locally),0.33 per call) 
+Crypto_CheckBufferLen/9 (Crypto_CheckBufferLen) @06bcdee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93600
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferLen/9 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:188945804 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (188945804 (estimated locally),0.18 per call) 
+  Calls: 
+Crypto_CheckBufferPtrs/8 (Crypto_CheckBufferPtrs) @06bcdd20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a934c0
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrs/8 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:236892934 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (236892934 (estimated locally),0.22 per call) 
+  Calls: 
+Crypto_CheckBufferPtrsVal/7 (Crypto_CheckBufferPtrsVal) @06bcdb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93500
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrsVal/7 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:150703173 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (150703173 (estimated locally),0.14 per call) 
+  Calls: 
+Crypto_CheckMode/6 (Crypto_CheckMode) @06bcd9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93620
+  References: 
+  Referring: 
+  Function Crypto_CheckMode/6 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:594014378 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (594014378 (estimated locally),0.55 per call) 
+  Calls: 
+Crypto_MainFunction/5 (Crypto_MainFunction) @06bcd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93560
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_MainFunction/23 (1073741824 (estimated locally),1.00 per call) 
+Crypto_CancelJob/4 (Crypto_CancelJob) @06bcd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a932a0
+  References: Crypto_Initialized/0 (read)Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (196024745 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (375004503 (estimated locally),0.35 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (13673191 (estimated locally),0.01 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (9311939 (estimated locally),0.01 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_ProcessJob_Dispatch/3 (Crypto_ProcessJob_Dispatch) @06bcd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93300
+  References: Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Crypto_ProcessJob/2 (73663711 (estimated locally),0.07 per call) 
+  Calls: Crypto_ProcessJob_Dispatch.part.0/25 (inlined) (354334800 (estimated locally),0.33 per call) Det_ASR40_ReportError/13 (677859047 (estimated locally),0.63 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (24715694 (estimated locally),0.02 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (16832283 (estimated locally),0.02 per call) 
+Crypto_ProcessJob/2 (Crypto_ProcessJob) @06bcd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93320
+  References: Crypto_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (112613934 (estimated locally),0.10 per call) Det_ASR40_ReportError/13 (127999471 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob_Dispatch/3 (73663711 (estimated locally),0.07 per call) Det_ASR40_ReportError/13 (115282093 (estimated locally),0.11 per call) Crypto_CheckBufferPtrsVal/7 (inlined) (150703173 (estimated locally),0.14 per call) Crypto_CheckBufferLen/9 (inlined) (188945804 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (47947130 (estimated locally),0.04 per call) Crypto_CheckBufferPtrs/8 (inlined) (236892934 (estimated locally),0.22 per call) Det_ASR40_ReportError/13 (357121444 (estimated locally),0.33 per call) Crypto_CheckMode/6 (inlined) (594014378 (estimated locally),0.55 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_Init/1 (Crypto_Init) @06bcd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a935e0
+  References: Crypto_Initialized/0 (read)Crypto_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_Init/12 (354334802 (estimated locally),0.33 per call) 
+
+
+
+MALLOC LATTICE Initial:
+Crypto_HandleQueuingAndProcessing.constprop: malloc_bottom
+Crypto_HandleQueuingAndCancellation.part.0.constprop: malloc_bottom
+Crypto_HandleQueuingAndCancellation.constprop: malloc_bottom
+Crypto_ProcessJob_Dispatch.part.0: malloc_bottom
+Crypto_HandleQueuingAndCancellation.part.0: malloc_bottom
+Crypto_HandleQueuingAndCancellation: malloc_bottom
+Crypto_HandleQueuingAndProcessing: malloc_bottom
+Crypto_CheckBufferLen: malloc_bottom
+Crypto_CheckBufferPtrs: malloc_bottom
+Crypto_CheckBufferPtrsVal: malloc_bottom
+Crypto_CheckMode: malloc_bottom
+Crypto_MainFunction: malloc_bottom
+Crypto_CancelJob: malloc_bottom
+Crypto_ProcessJob_Dispatch: malloc_bottom
+Crypto_ProcessJob: malloc_bottom
+Crypto_Init: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+Crypto_HandleQueuingAndProcessing.constprop: malloc_bottom
+Crypto_HandleQueuingAndCancellation.part.0.constprop: malloc_bottom
+Crypto_HandleQueuingAndCancellation.constprop: malloc_bottom
+Crypto_ProcessJob_Dispatch.part.0: malloc_bottom
+Crypto_HandleQueuingAndCancellation.part.0: malloc_bottom
+Crypto_HandleQueuingAndCancellation: malloc_bottom
+Crypto_HandleQueuingAndProcessing: malloc_bottom
+Crypto_CheckBufferLen: malloc_bottom
+Crypto_CheckBufferPtrs: malloc_bottom
+Crypto_CheckBufferPtrsVal: malloc_bottom
+Crypto_CheckMode: malloc_bottom
+Crypto_MainFunction: malloc_bottom
+Crypto_CancelJob: malloc_bottom
+Crypto_ProcessJob_Dispatch: malloc_bottom
+Crypto_ProcessJob: malloc_bottom
+Crypto_Init: malloc_bottom
+callgraph:
+
+Crypto_HandleQueuingAndProcessing.constprop.0/28 (Crypto_HandleQueuingAndProcessing.constprop) @06d569a0
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a932a0
+  References: Crypto_Keys/17 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndProcessing/10
+  Availability: local
+  Function flags: count:1073741823 (estimated locally) local optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (16832283 (estimated locally),0.02 per call) Crypto_ProcessJob_Dispatch/3 (24715694 (estimated locally),0.02 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) 
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+Crypto_HandleQueuingAndCancellation.part.0.constprop.0/27 (Crypto_HandleQueuingAndCancellation.part.0.constprop) @06d56700
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06a93520
+  References: Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Function Crypto_HandleQueuingAndCancellation.part.0.constprop/27 is inline copy in Crypto_HandleQueuingAndCancellation.constprop/26
+  Clone of Crypto_HandleQueuingAndCancellation.part.0/24
+  Availability: local
+  Function flags: count:106300440 (estimated locally) first_run:1 local split_part optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.constprop/26 (inlined) (106300440 (estimated locally),0.10 per call) 
+  Calls: CryIf_CallbackNotification/22 (35079145 (estimated locally),0.03 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (106300440 (estimated locally),0.10 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (106300440 (estimated locally),0.10 per call) 
+Crypto_HandleQueuingAndCancellation.constprop.0/26 (Crypto_HandleQueuingAndCancellation.constprop) @06d56380
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93380
+  References: Crypto_DriverObjects/16 (read)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndCancellation/11
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) local optimize_size
+  Called by: Crypto_CancelJob/4 (9311939 (estimated locally),0.01 per call) Crypto_CancelJob/4 (13673191 (estimated locally),0.01 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (1073741824 (estimated locally),1.00 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (inlined) (106300440 (estimated locally),0.10 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (751619278 (estimated locally),0.70 per call) 
+   Indirect call(322122547 (estimated locally),0.30 per call)  of param:2 (vptr maybe changed)
+Crypto_ProcessJob_Dispatch.part.0/25 (Crypto_ProcessJob_Dispatch.part.0) @06c66c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06a93500
+  References: 
+  Referring: 
+  Function Crypto_ProcessJob_Dispatch.part.0/25 is inline copy in Crypto_ProcessJob_Dispatch/3
+  Availability: local
+  Function flags: count:354334800 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (inlined) (354334800 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/13 (354334800 (estimated locally),0.33 per call) 
+Crypto_HandleQueuingAndCancellation.part.0/24 (Crypto_HandleQueuingAndCancellation.part.0) @06c668c0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly artificial
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) first_run:1 body split_part optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MainFunction/23 (Crypto_PL_MainFunction) @06c52b60
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_MainFunction/5 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+CryIf_CallbackNotification/22 (CryIf_CallbackNotification) @06c529a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (35079145 (estimated locally),0.03 per call) 
+  Calls: 
+Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (Crypto_PL_MACVERIFY_AES_CMAC_Cancel) @06c527e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_CancelJob/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (Crypto_PL_MACGENERATE_AES_CMAC_Cancel) @06c52700
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_CancelJob/4 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT) @06c52540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndProcessing.constprop/28 (49427492 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (50857300 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (183292330 (estimated locally),0.17 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (49427492 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (50857300 (estimated locally),0.05 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (183292330 (estimated locally),0.17 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (106300440 (estimated locally),0.10 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (751619278 (estimated locally),0.70 per call) 
+  Calls: 
+SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT) @06c52460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_HandleQueuingAndProcessing.constprop/28 (283577122 (estimated locally),0.26 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (283577122 (estimated locally),0.26 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (106300440 (estimated locally),0.10 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (Crypto_PL_MACVERIFY_AES_CMAC_Process) @06c520e0
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_ProcessJob_Dispatch/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (Crypto_PL_MACGENERATE_AES_CMAC_Process) @06c52000
+  Type: function
+  Visibility: external public
+  Address is taken.
+  References: 
+  Referring: Crypto_ProcessJob_Dispatch/3 (addr)
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: 
+  Calls: 
+Det_ASR40_ReportError/13 (Det_ASR40_ReportError) @06c00700
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_CancelJob/4 (196024745 (estimated locally),0.18 per call) Crypto_CancelJob/4 (375004503 (estimated locally),0.35 per call) Crypto_CancelJob/4 (125392644 (estimated locally),0.12 per call) Crypto_CancelJob/4 (354334802 (estimated locally),0.33 per call) Crypto_ProcessJob/2 (112613934 (estimated locally),0.10 per call) Crypto_ProcessJob/2 (127999471 (estimated locally),0.12 per call) Crypto_ProcessJob/2 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob/2 (115282093 (estimated locally),0.11 per call) Crypto_ProcessJob/2 (47947130 (estimated locally),0.04 per call) Crypto_ProcessJob/2 (357121444 (estimated locally),0.33 per call) Crypto_ProcessJob/2 (125392644 (estimated locally),0.12 per call) Crypto_ProcessJob/2 (354334802 (estimated locally),0.33 per call) Crypto_ProcessJob_Dispatch/3 (677859047 (estimated locally),0.63 per call) Crypto_ProcessJob_Dispatch.part.0/25 (354334800 (estimated locally),0.33 per call) 
+  Calls: 
+Crypto_PL_Init/12 (Crypto_PL_Init) @06c00460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Crypto_Init/1 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+Crypto_HandleQueuingAndCancellation/11 (Crypto_HandleQueuingAndCancellation) @06c002a0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Crypto_HandleQueuingAndProcessing/10 (Crypto_HandleQueuingAndProcessing) @06c000e0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+Crypto_CheckBufferLen/9 (Crypto_CheckBufferLen) @06bcdee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93620
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferLen/9 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:188945804 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (188945804 (estimated locally),0.18 per call) 
+  Calls: 
+Crypto_CheckBufferPtrs/8 (Crypto_CheckBufferPtrs) @06bcdd20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93580
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrs/8 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:236892934 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (236892934 (estimated locally),0.22 per call) 
+  Calls: 
+Crypto_CheckBufferPtrsVal/7 (Crypto_CheckBufferPtrsVal) @06bcdb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a935c0
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrsVal/7 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:150703173 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (150703173 (estimated locally),0.14 per call) 
+  Calls: 
+Crypto_CheckMode/6 (Crypto_CheckMode) @06bcd9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93560
+  References: 
+  Referring: 
+  Function Crypto_CheckMode/6 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:594014378 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (594014378 (estimated locally),0.55 per call) 
+  Calls: 
+Crypto_MainFunction/5 (Crypto_MainFunction) @06bcd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93540
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_MainFunction/23 (1073741824 (estimated locally),1.00 per call) 
+Crypto_CancelJob/4 (Crypto_CancelJob) @06bcd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93300
+  References: Crypto_Initialized/0 (read)Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (196024745 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (375004503 (estimated locally),0.35 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (13673191 (estimated locally),0.01 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (9311939 (estimated locally),0.01 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_ProcessJob_Dispatch/3 (Crypto_ProcessJob_Dispatch) @06bcd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a935e0
+  References: Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Crypto_ProcessJob/2 (73663711 (estimated locally),0.07 per call) 
+  Calls: Crypto_ProcessJob_Dispatch.part.0/25 (inlined) (354334800 (estimated locally),0.33 per call) Det_ASR40_ReportError/13 (677859047 (estimated locally),0.63 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (24715694 (estimated locally),0.02 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (16832283 (estimated locally),0.02 per call) 
+Crypto_ProcessJob/2 (Crypto_ProcessJob) @06bcd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93600
+  References: Crypto_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (112613934 (estimated locally),0.10 per call) Det_ASR40_ReportError/13 (127999471 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob_Dispatch/3 (73663711 (estimated locally),0.07 per call) Det_ASR40_ReportError/13 (115282093 (estimated locally),0.11 per call) Crypto_CheckBufferPtrsVal/7 (inlined) (150703173 (estimated locally),0.14 per call) Crypto_CheckBufferLen/9 (inlined) (188945804 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (47947130 (estimated locally),0.04 per call) Crypto_CheckBufferPtrs/8 (inlined) (236892934 (estimated locally),0.22 per call) Det_ASR40_ReportError/13 (357121444 (estimated locally),0.33 per call) Crypto_CheckMode/6 (inlined) (594014378 (estimated locally),0.55 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_Init/1 (Crypto_Init) @06bcd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93640
+  References: Crypto_Initialized/0 (read)Crypto_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_Init/12 (354334802 (estimated locally),0.33 per call) 
+
+
+ ordered call graph: reduced
+Crypto_MainFunction/5 (Crypto_MainFunction) @06bcd7e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93540
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_MainFunction/23 (1073741824 (estimated locally),1.00 per call) 
+Crypto_CancelJob/4 (Crypto_CancelJob) @06bcd620
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93300
+  References: Crypto_Initialized/0 (read)Crypto_PL_MACGENERATE_AES_CMAC_Cancel/20 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Cancel/21 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (196024745 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (375004503 (estimated locally),0.35 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (13673191 (estimated locally),0.01 per call) Crypto_HandleQueuingAndCancellation.constprop/26 (9311939 (estimated locally),0.01 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_HandleQueuingAndCancellation.constprop.0/26 (Crypto_HandleQueuingAndCancellation.constprop) @06d56380
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a93380
+  References: Crypto_DriverObjects/16 (read)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndCancellation/11
+  Availability: local
+  Function flags: count:1073741824 (estimated locally) local optimize_size
+  Called by: Crypto_CancelJob/4 (9311939 (estimated locally),0.01 per call) Crypto_CancelJob/4 (13673191 (estimated locally),0.01 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (1073741824 (estimated locally),1.00 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (322122547 (estimated locally),0.30 per call) Crypto_HandleQueuingAndCancellation.part.0.constprop/27 (inlined) (106300440 (estimated locally),0.10 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (751619278 (estimated locally),0.70 per call) 
+   Indirect call(322122547 (estimated locally),0.30 per call)  of param:2 (vptr maybe changed)
+Crypto_HandleQueuingAndCancellation.part.0.constprop.0/27 (Crypto_HandleQueuingAndCancellation.part.0.constprop) @06d56700
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06a93520
+  References: Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Function Crypto_HandleQueuingAndCancellation.part.0.constprop/27 is inline copy in Crypto_HandleQueuingAndCancellation.constprop/26
+  Clone of Crypto_HandleQueuingAndCancellation.part.0/24
+  Availability: local
+  Function flags: count:106300440 (estimated locally) first_run:1 local split_part optimize_size
+  Called by: Crypto_HandleQueuingAndCancellation.constprop/26 (inlined) (106300440 (estimated locally),0.10 per call) 
+  Calls: CryIf_CallbackNotification/22 (35079145 (estimated locally),0.03 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (106300440 (estimated locally),0.10 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (106300440 (estimated locally),0.10 per call) 
+Crypto_ProcessJob/2 (Crypto_ProcessJob) @06bcd2a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93600
+  References: Crypto_Initialized/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Det_ASR40_ReportError/13 (112613934 (estimated locally),0.10 per call) Det_ASR40_ReportError/13 (127999471 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (8854378 (estimated locally),0.01 per call) Crypto_ProcessJob_Dispatch/3 (73663711 (estimated locally),0.07 per call) Det_ASR40_ReportError/13 (115282093 (estimated locally),0.11 per call) Crypto_CheckBufferPtrsVal/7 (inlined) (150703173 (estimated locally),0.14 per call) Crypto_CheckBufferLen/9 (inlined) (188945804 (estimated locally),0.18 per call) Det_ASR40_ReportError/13 (47947130 (estimated locally),0.04 per call) Crypto_CheckBufferPtrs/8 (inlined) (236892934 (estimated locally),0.22 per call) Det_ASR40_ReportError/13 (357121444 (estimated locally),0.33 per call) Crypto_CheckMode/6 (inlined) (594014378 (estimated locally),0.55 per call) Det_ASR40_ReportError/13 (125392644 (estimated locally),0.12 per call) Det_ASR40_ReportError/13 (354334802 (estimated locally),0.33 per call) 
+Crypto_CheckMode/6 (Crypto_CheckMode) @06bcd9a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93560
+  References: 
+  Referring: 
+  Function Crypto_CheckMode/6 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:594014378 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (594014378 (estimated locally),0.55 per call) 
+  Calls: 
+Crypto_CheckBufferPtrs/8 (Crypto_CheckBufferPtrs) @06bcdd20
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93580
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrs/8 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:236892934 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (236892934 (estimated locally),0.22 per call) 
+  Calls: 
+Crypto_CheckBufferLen/9 (Crypto_CheckBufferLen) @06bcdee0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93620
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferLen/9 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:188945804 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (188945804 (estimated locally),0.18 per call) 
+  Calls: 
+Crypto_CheckBufferPtrsVal/7 (Crypto_CheckBufferPtrsVal) @06bcdb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a935c0
+  References: 
+  Referring: 
+  Function Crypto_CheckBufferPtrsVal/7 is inline copy in Crypto_ProcessJob/2
+  Availability: local
+  Function flags: count:150703173 (estimated locally) body local optimize_size
+  Called by: Crypto_ProcessJob/2 (inlined) (150703173 (estimated locally),0.14 per call) 
+  Calls: 
+Crypto_ProcessJob_Dispatch/3 (Crypto_ProcessJob_Dispatch) @06bcd460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a935e0
+  References: Crypto_PL_MACGENERATE_AES_CMAC_Process/14 (addr)Crypto_PL_MACVERIFY_AES_CMAC_Process/15 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: Crypto_ProcessJob/2 (73663711 (estimated locally),0.07 per call) 
+  Calls: Crypto_ProcessJob_Dispatch.part.0/25 (inlined) (354334800 (estimated locally),0.33 per call) Det_ASR40_ReportError/13 (677859047 (estimated locally),0.63 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (24715694 (estimated locally),0.02 per call) Crypto_HandleQueuingAndProcessing.constprop/28 (16832283 (estimated locally),0.02 per call) 
+Crypto_HandleQueuingAndProcessing.constprop.0/28 (Crypto_HandleQueuingAndProcessing.constprop) @06d569a0
+  Type: function definition analyzed
+  Visibility:
+  Aux: @06a932a0
+  References: Crypto_Keys/17 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (read)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)Crypto_DriverObjects/16 (write)
+  Referring: 
+  Clone of Crypto_HandleQueuingAndProcessing/10
+  Availability: local
+  Function flags: count:1073741823 (estimated locally) local optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (16832283 (estimated locally),0.02 per call) Crypto_ProcessJob_Dispatch/3 (24715694 (estimated locally),0.02 per call) 
+  Calls: SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) SchM_Enter_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/18 (283577122 (estimated locally),0.26 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (49427492 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (50857300 (estimated locally),0.05 per call) SchM_Exit_Crypto_SCHM_CRYPTO_EXCLUSIVE_AREA_DRIVEROBJECT/19 (183292330 (estimated locally),0.17 per call) 
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+   Indirect call(49427492 (estimated locally),0.05 per call)  of param:2 (vptr maybe changed)
+   Indirect call(183292330 (estimated locally),0.17 per call)  of param:2 (vptr maybe changed)
+Crypto_ProcessJob_Dispatch.part.0/25 (Crypto_ProcessJob_Dispatch.part.0) @06c66c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly artificial
+  Aux: @06a93500
+  References: 
+  Referring: 
+  Function Crypto_ProcessJob_Dispatch.part.0/25 is inline copy in Crypto_ProcessJob_Dispatch/3
+  Availability: local
+  Function flags: count:354334800 (estimated locally) first_run:1 body local split_part optimize_size
+  Called by: Crypto_ProcessJob_Dispatch/3 (inlined) (354334800 (estimated locally),0.33 per call) 
+  Calls: Det_ASR40_ReportError/13 (354334800 (estimated locally),0.33 per call) 
+Crypto_Init/1 (Crypto_Init) @06bcd0e0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93640
+  References: Crypto_Initialized/0 (read)Crypto_Initialized/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Crypto_PL_Init/12 (354334802 (estimated locally),0.33 per call) 
+
+Function found not to call free: Crypto_CheckBufferPtrsVal
+Function found not to call free: Crypto_CheckBufferLen
+Function found not to call free: Crypto_CheckBufferPtrs
+Function found not to call free: Crypto_CheckMode
+Crypto_ProcessJob_Dispatch.part.0 ()
+{
+  uint32 objectId;
+  Std_ReturnType RetVal;
+  struct Crypto_JobType * job;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#10 s=> objectId
+  # DEBUG objectId => D#10
+  # DEBUG D#9 s=> RetVal
+  # DEBUG RetVal => D#9
+  # DEBUG D#8 s=> job
+  # DEBUG job => D#8
+
+  <bb 2> [local count: 1073741824]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+
+  <bb 3> [local count: 1073741824]:
+  # RetVal_1 = PHI <1(2)>
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  return RetVal_1;
+
+}
+
+
+Crypto_CheckBufferLen (struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  const struct Crypto_PrimitiveInfoType * _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned char _7;
+  const struct Crypto_JobPrimitiveInfoType * _8;
+  const struct Crypto_PrimitiveInfoType * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int _12;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = Job_17(D)->jobPrimitiveInputOutput.mode;
+  _2 = _1 & 2;
+  if (_2 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  _3 = Job_17(D)->jobPrimitiveInfo;
+  _4 = _3->primitiveInfo;
+  _5 = _4->service;
+  if (_5 <= 8)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _6 = Job_17(D)->jobPrimitiveInputOutput.inputLength;
+  if (_6 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 6> [local count: 1073741823]:
+  # RetVal_13 = PHI <0(2), 1(5), 0(3), 0(4)>
+  # DEBUG RetVal => RetVal_13
+  # DEBUG BEGIN_STMT
+  _7 = _1 & 4;
+  if (_7 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 7> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  _8 = Job_17(D)->jobPrimitiveInfo;
+  _9 = _8->primitiveInfo;
+  _10 = _9->service;
+  switch (_10) <default: <L30> [50.00%], case 2: <L16> [50.00%], case 5 ... 6: <L16> [50.00%], case 8: <L16> [50.00%]>
+
+  <bb 8> [local count: 268435456]:
+<L16>:
+  # DEBUG BEGIN_STMT
+  _11 = Job_17(D)->jobPrimitiveInputOutput.secondaryInputLength;
+  if (_11 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 10> [local count: 268435456]:
+  # RetVal_14 = PHI <RetVal_13(8), 1(9)>
+  # DEBUG RetVal => RetVal_14
+  # DEBUG BEGIN_STMT
+  if (_10 == 6)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 11> [local count: 91268055]:
+  _12 = Job_17(D)->jobPrimitiveInputOutput.tertiaryInputLength;
+  if (_12 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 45634027]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 13> [local count: 1073741824]:
+  # RetVal_15 = PHI <RetVal_13(6), RetVal_14(11), RetVal_13(7), RetVal_14(10), 1(12)>
+<L30>:
+  # DEBUG RetVal => RetVal_15
+  # DEBUG BEGIN_STMT
+  return RetVal_15;
+
+}
+
+
+Crypto_CheckBufferPtrs (struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  const struct Crypto_PrimitiveInfoType * _4;
+  unsigned char _5;
+  uint8 * _6;
+  uint32 * _7;
+  const uint8 * _8;
+  unsigned char _9;
+  const struct Crypto_JobPrimitiveInfoType * _10;
+  const struct Crypto_PrimitiveInfoType * _11;
+  unsigned char _12;
+  uint8 * _13;
+  uint32 * _14;
+  const uint8 * _15;
+  uint8 * _16;
+  uint32 * _17;
+  uint8 * _18;
+  uint32 * _19;
+  const uint8 * _20;
+  const uint8 * _21;
+  Crypto_VerifyResultType * _22;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = Job_26(D)->jobPrimitiveInputOutput.mode;
+  _2 = _1 & 2;
+  if (_2 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  _3 = Job_26(D)->jobPrimitiveInfo;
+  _4 = _3->primitiveInfo;
+  _5 = _4->service;
+  switch (_5) <default: <L47> [33.33%], case 0 ... 2: <L6> [33.33%], case 3 ... 6: <L1> [33.33%], case 7 ... 8: <L6> [33.33%]>
+
+  <bb 4> [local count: 178939075]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _6 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+  if (_6 == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 5>; [70.00%]
+
+  <bb 5> [local count: 125257353]:
+  _7 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  if (_7 == 0B)
+    goto <bb 8>; [30.00%]
+  else
+    goto <bb 6>; [70.00%]
+
+  <bb 6> [local count: 266619222]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  _8 = Job_26(D)->jobPrimitiveInputOutput.inputPtr;
+  if (_8 != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 7>; [30.00%]
+
+  <bb 7> [local count: 79985767]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 8> [local count: 1073688139]:
+  # RetVal_23 = PHI <0(2), 1(4), 1(5), 1(7), 0(3), 0(6)>
+<L47>:
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  _9 = _1 & 4;
+  if (_9 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 22>; [50.00%]
+
+  <bb 9> [local count: 536844069]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  _10 = Job_26(D)->jobPrimitiveInfo;
+  _11 = _10->primitiveInfo;
+  _12 = _11->service;
+  switch (_12) <default: <L48> [20.00%], case 0 ... 1: <L22> [20.00%], case 2: <L36> [20.00%], case 3 ... 4: <L22> [20.00%], case 5: <L19> [20.00%], case 6: <L33> [20.00%], case 7: <L22> [20.00%], case 8: <L36> [20.00%], case 11: <L22> [20.00%]>
+
+  <bb 10> [local count: 107368814]:
+<L19>:
+  # DEBUG BEGIN_STMT
+  _13 = Job_26(D)->jobPrimitiveInputOutput.secondaryOutputPtr;
+  if (_13 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 11>; [70.00%]
+
+  <bb 11> [local count: 75158170]:
+  _14 = Job_26(D)->jobPrimitiveInputOutput.secondaryOutputLengthPtr;
+  if (_14 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 12>; [70.00%]
+
+  <bb 12> [local count: 52610719]:
+  _15 = Job_26(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+  if (_15 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 13>; [70.00%]
+
+  <bb 13> [local count: 144196317]:
+<L22>:
+  # DEBUG BEGIN_STMT
+  _16 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+  if (_16 != 0B)
+    goto <bb 14>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 14> [local count: 100937422]:
+  _17 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  if (_17 != 0B)
+    goto <bb 22>; [70.00%]
+  else
+    goto <bb 15>; [30.00%]
+
+  <bb 15> [local count: 73540122]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 22>; [100.00%]
+
+  <bb 16> [local count: 107368814]:
+<L33>:
+  # DEBUG BEGIN_STMT
+  _18 = Job_26(D)->jobPrimitiveInputOutput.outputPtr;
+  if (_18 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 17>; [70.00%]
+
+  <bb 17> [local count: 75158170]:
+  _19 = Job_26(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  if (_19 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 18>; [70.00%]
+
+  <bb 18> [local count: 52610719]:
+  _20 = Job_26(D)->jobPrimitiveInputOutput.tertiaryInputPtr;
+  if (_20 == 0B)
+    goto <bb 22>; [30.00%]
+  else
+    goto <bb 19>; [70.00%]
+
+  <bb 19> [local count: 144196317]:
+<L36>:
+  # DEBUG BEGIN_STMT
+  _21 = Job_26(D)->jobPrimitiveInputOutput.secondaryInputPtr;
+  if (_21 != 0B)
+    goto <bb 20>; [70.00%]
+  else
+    goto <bb 21>; [30.00%]
+
+  <bb 20> [local count: 100937422]:
+  _22 = Job_26(D)->jobPrimitiveInputOutput.verifyPtr;
+  if (_22 != 0B)
+    goto <bb 22>; [70.00%]
+  else
+    goto <bb 21>; [30.00%]
+
+  <bb 21> [local count: 73540122]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 22> [local count: 1073688140]:
+  # RetVal_24 = PHI <RetVal_23(8), 1(10), 1(11), 1(12), 1(15), 1(16), 1(17), 1(18), 1(21), 0(9), 0(14), 0(20)>
+<L48>:
+  # DEBUG RetVal => RetVal_24
+  # DEBUG BEGIN_STMT
+  return RetVal_24;
+
+}
+
+
+Crypto_CheckBufferPtrsVal (struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  const struct Crypto_PrimitiveInfoType * _4;
+  unsigned char _5;
+  uint32 * _6;
+  long unsigned int _7;
+  unsigned char _8;
+  const struct Crypto_JobPrimitiveInfoType * _9;
+  const struct Crypto_PrimitiveInfoType * _10;
+  unsigned char _11;
+  uint32 * _12;
+  long unsigned int _13;
+  uint32 * _14;
+  long unsigned int _15;
+  unsigned int _21;
+  unsigned int _22;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+  # DEBUG BEGIN_STMT
+  _1 = Job_20(D)->jobPrimitiveInputOutput.mode;
+  _2 = _1 & 2;
+  if (_2 != 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  _3 = Job_20(D)->jobPrimitiveInfo;
+  _4 = _3->primitiveInfo;
+  _5 = _4->service;
+  _21 = (unsigned int) _5;
+  _22 = _21 + 4294967293;
+  if (_22 <= 3)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 268435456]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _6 = Job_20(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  _7 = *_6;
+  if (_7 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 6> [local count: 1073741823]:
+  # RetVal_16 = PHI <0(2), 1(5), 0(3), 0(4)>
+  # DEBUG RetVal => RetVal_16
+  # DEBUG BEGIN_STMT
+  _8 = _1 & 4;
+  if (_8 != 0)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 7> [local count: 536870911]:
+  # DEBUG BEGIN_STMT
+  _9 = Job_20(D)->jobPrimitiveInfo;
+  _10 = _9->primitiveInfo;
+  _11 = _10->service;
+  switch (_11) <default: <L29> [50.00%], case 0 ... 1: <L11> [50.00%], case 3 ... 7: <L11> [50.00%], case 11: <L11> [50.00%]>
+
+  <bb 8> [local count: 268435456]:
+<L11>:
+  # DEBUG BEGIN_STMT
+  _12 = Job_20(D)->jobPrimitiveInputOutput.outputLengthPtr;
+  _13 = *_12;
+  if (_13 == 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 10> [local count: 268435456]:
+  # RetVal_17 = PHI <RetVal_16(8), 1(9)>
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  if (_11 == 5)
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 11> [local count: 91268055]:
+  _14 = Job_20(D)->jobPrimitiveInputOutput.secondaryOutputLengthPtr;
+  _15 = *_14;
+  if (_15 == 0)
+    goto <bb 12>; [50.00%]
+  else
+    goto <bb 13>; [50.00%]
+
+  <bb 12> [local count: 45634027]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+
+  <bb 13> [local count: 1073741824]:
+  # RetVal_18 = PHI <RetVal_16(6), RetVal_17(11), RetVal_16(7), RetVal_17(10), 1(12)>
+<L29>:
+  # DEBUG RetVal => RetVal_18
+  # DEBUG BEGIN_STMT
+  return RetVal_18;
+
+}
+
+
+Crypto_CheckMode (struct Crypto_JobType * Job)
+{
+  Std_ReturnType RetVal;
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  const struct Crypto_PrimitiveInfoType * _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  _1 = Job_7(D)->jobPrimitiveInfo;
+  _2 = _1->primitiveInfo;
+  _3 = _2->service;
+  if (_3 == 9)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+
+  <bb 3> [local count: 708669605]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _4 = Job_7(D)->jobPrimitiveInputOutput.mode;
+  if (_4 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 4> [local count: 354334802]:
+  if (_4 <= 4)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 177167401]:
+  if (_4 == 7)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 6> [local count: 237404317]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 0
+
+  <bb 7> [local count: 1073741824]:
+  # RetVal_5 = PHI <0(2), 1(5), 1(3), 0(6)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  return RetVal_5;
+
+}
+
+
+Crypto_MainFunction ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Crypto_PL_MainFunction ();
+  return;
+
+}
+
+
+Crypto_CancelJob (uint32 objectId, struct Crypto_JobType * job)
+{
+  Std_ReturnType RetVal;
+  unsigned char Crypto_Initialized.3_1;
+  const struct Crypto_JobPrimitiveInfoType * _2;
+  const struct Crypto_PrimitiveInfoType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Crypto_Initialized.3_1 = Crypto_Initialized;
+  if (Crypto_Initialized.3_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 14, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 17>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (job_12(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 14, 2);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 17>; [100.00%]
+
+  <bb 6> [local count: 594014378]:
+  # DEBUG BEGIN_STMT
+  if (objectId_13(D) == 0)
+    goto <bb 7>; [67.00%]
+  else
+    goto <bb 16>; [33.00%]
+
+  <bb 7> [local count: 397989633]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  _2 = job_12(D)->jobPrimitiveInfo;
+  _3 = _2->primitiveInfo;
+  _4 = _3->service;
+  if (_4 == 1)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 8> [local count: 135316475]:
+  _5 = _3->algorithm.family;
+  if (_5 == 20)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 9> [local count: 46007602]:
+  _6 = _3->algorithm.mode;
+  if (_6 == 16)
+    goto <bb 10>; [20.24%]
+  else
+    goto <bb 11>; [79.76%]
+
+  <bb 10> [local count: 9311939]:
+  # DEBUG BEGIN_STMT
+  RetVal_15 = Crypto_HandleQueuingAndCancellation (0, job_12(D), Crypto_PL_MACGENERATE_AES_CMAC_Cancel);
+  # DEBUG RetVal => RetVal_15
+  goto <bb 17>; [100.00%]
+
+  <bb 11> [local count: 388677694]:
+  # DEBUG BEGIN_STMT
+  if (_4 == 2)
+    goto <bb 12>; [51.12%]
+  else
+    goto <bb 15>; [48.88%]
+
+  <bb 12> [local count: 198692037]:
+  _7 = _3->algorithm.family;
+  if (_7 == 20)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 13> [local count: 67555293]:
+  _8 = _3->algorithm.mode;
+  if (_8 == 16)
+    goto <bb 14>; [20.24%]
+  else
+    goto <bb 15>; [79.76%]
+
+  <bb 14> [local count: 13673191]:
+  # DEBUG BEGIN_STMT
+  RetVal_17 = Crypto_HandleQueuingAndCancellation (0, job_12(D), Crypto_PL_MACVERIFY_AES_CMAC_Cancel);
+  # DEBUG RetVal => RetVal_17
+  goto <bb 17>; [100.00%]
+
+  <bb 15> [local count: 375004503]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 17>; [100.00%]
+
+  <bb 16> [local count: 196024745]:
+<L15>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 14, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+
+  <bb 17> [local count: 1073741824]:
+  # RetVal_9 = PHI <1(3), 1(5), RetVal_17(14), 1(16), RetVal_15(10), 1(15)>
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  return RetVal_9;
+
+}
+
+
+Crypto_ProcessJob_Dispatch (uint32 objectId, Std_ReturnType RetVal, struct Crypto_JobType * job)
+{
+  const struct Crypto_JobPrimitiveInfoType * _1;
+  const struct Crypto_PrimitiveInfoType * _2;
+  unsigned char _3;
+  unsigned char _6;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  if (objectId_13(D) == 0)
+    goto <bb 3>; [67.00%]
+  else
+    goto <bb 12>; [33.00%]
+
+  <bb 3> [local count: 719407022]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 = job_15(D)->jobPrimitiveInfo;
+  _2 = _1->primitiveInfo;
+  _3 = _2->service;
+  if (_3 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 4> [local count: 244598387]:
+  _6 = _2->algorithm.family;
+  if (_6 == 20)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 5> [local count: 83163452]:
+  _9 = _2->algorithm.mode;
+  if (_9 == 16)
+    goto <bb 6>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 6> [local count: 16832283]:
+  # DEBUG BEGIN_STMT
+  RetVal_17 = Crypto_HandleQueuingAndProcessing (0, job_15(D), Crypto_PL_MACGENERATE_AES_CMAC_Process);
+  # DEBUG RetVal => RetVal_17
+  goto <bb 13>; [100.00%]
+
+  <bb 7> [local count: 702574740]:
+  # DEBUG BEGIN_STMT
+  if (_3 == 2)
+    goto <bb 8>; [51.12%]
+  else
+    goto <bb 11>; [48.88%]
+
+  <bb 8> [local count: 359156207]:
+  _10 = _2->algorithm.family;
+  if (_10 == 20)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 9> [local count: 122113110]:
+  _11 = _2->algorithm.mode;
+  if (_11 == 16)
+    goto <bb 10>; [20.24%]
+  else
+    goto <bb 11>; [79.76%]
+
+  <bb 10> [local count: 24715694]:
+  # DEBUG BEGIN_STMT
+  RetVal_19 = Crypto_HandleQueuingAndProcessing (0, job_15(D), Crypto_PL_MACVERIFY_AES_CMAC_Process);
+  # DEBUG RetVal => RetVal_19
+  goto <bb 13>; [100.00%]
+
+  <bb 11> [local count: 677859047]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 354334800]:
+<L11>:
+  # DEBUG D#5 => objectId_13(D)
+  # DEBUG D#6 => RetVal_4(D)
+  # DEBUG D#7 => job_15(D)
+  RetVal_5 = Crypto_ProcessJob_Dispatch.part.0 ();
+
+  <bb 13> [local count: 1073741824]:
+  # RetVal_12 = PHI <RetVal_19(10), RetVal_5(12), RetVal_17(6), 1(11)>
+  # DEBUG RetVal => RetVal_12
+  # DEBUG BEGIN_STMT
+  return RetVal_12;
+
+}
+
+
+Crypto_ProcessJob (uint32 objectId, struct Crypto_JobType * job)
+{
+  Std_ReturnType RetVal;
+  unsigned char Crypto_Initialized.1_1;
+  unsigned char _2;
+  const struct Crypto_JobPrimitiveInfoType * _3;
+  const struct Crypto_PrimitiveInfoType * _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  Crypto_Initialized.1_1 = Crypto_Initialized;
+  if (Crypto_Initialized.1_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 4> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  if (job_11(D) == 0B)
+    goto <bb 5>; [17.43%]
+  else
+    goto <bb 6>; [82.57%]
+
+  <bb 5> [local count: 125392644]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 2);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 6> [local count: 594014378]:
+  # DEBUG BEGIN_STMT
+  _2 = Crypto_CheckMode (job_11(D));
+  if (_2 == 1)
+    goto <bb 8>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 7> [local count: 473785867]:
+  _3 = job_11(D)->jobPrimitiveInfo;
+  _4 = _3->primitiveInfo;
+  _5 = _4->service;
+  if (_5 > 11)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 357121444]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 9> [local count: 236892934]:
+  # DEBUG BEGIN_STMT
+  _6 = Crypto_CheckBufferPtrs (job_11(D));
+  if (_6 == 1)
+    goto <bb 10>; [20.24%]
+  else
+    goto <bb 11>; [79.76%]
+
+  <bb 10> [local count: 47947130]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 2);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 11> [local count: 188945804]:
+  # DEBUG BEGIN_STMT
+  _7 = Crypto_CheckBufferLen (job_11(D));
+  if (_7 == 1)
+    goto <bb 13>; [20.24%]
+  else
+    goto <bb 12>; [79.76%]
+
+  <bb 12> [local count: 150703173]:
+  _8 = Crypto_CheckBufferPtrsVal (job_11(D));
+  if (_8 == 1)
+    goto <bb 13>; [51.12%]
+  else
+    goto <bb 14>; [48.88%]
+
+  <bb 13> [local count: 115282093]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 5);
+  # DEBUG BEGIN_STMT
+  # DEBUG RetVal => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 14> [local count: 73663711]:
+  # DEBUG BEGIN_STMT
+  RetVal_15 = Crypto_ProcessJob_Dispatch (objectId_13(D), 1, job_11(D));
+  # DEBUG RetVal => RetVal_15
+  # DEBUG BEGIN_STMT
+  if (RetVal_15 == 11)
+    goto <bb 15>; [12.02%]
+  else
+    goto <bb 16>; [87.98%]
+
+  <bb 15> [local count: 8854378]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 4);
+  goto <bb 20>; [100.00%]
+
+  <bb 16> [local count: 1064887446]:
+  # RetVal_12 = PHI <RetVal_15(14), 1(3), 1(13), 1(10), 1(8), 1(5)>
+  # DEBUG BEGIN_STMT
+  if (RetVal_12 == 4)
+    goto <bb 17>; [12.02%]
+  else
+    goto <bb 18>; [87.98%]
+
+  <bb 17> [local count: 127999471]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 3);
+  goto <bb 20>; [100.00%]
+
+  <bb 18> [local count: 936887975]:
+  # DEBUG BEGIN_STMT
+  if (RetVal_12 == 3)
+    goto <bb 19>; [12.02%]
+  else
+    goto <bb 20>; [87.98%]
+
+  <bb 19> [local count: 112613934]:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (114, 0, 3, 0);
+
+  <bb 20> [local count: 1073741824]:
+  # RetVal_24 = PHI <11(15), 4(17), RetVal_12(18), 3(19)>
+  # DEBUG BEGIN_STMT
+  return RetVal_24;
+
+}
+
+
+Crypto_Init ()
+{
+  unsigned char Crypto_Initialized.0_1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Crypto_Initialized.0_1 = Crypto_Initialized;
+  if (Crypto_Initialized.0_1 == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  Crypto_PL_Init ();
+  # DEBUG BEGIN_STMT
+  Crypto_Initialized = 1;
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+

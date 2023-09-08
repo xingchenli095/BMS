@@ -1,0 +1,55 @@
+__attribute__((target ("general-regs-only")))
+OS_InitTasks ()
+{
+  const struct os_task_t * const tp;
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+  const struct os_task_t * OS_taskTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  struct os_taskdynamic_t * _4;
+  unsigned char tid.1_5;
+  unsigned char OS_nTasks.2_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_9 = 0;
+  # DEBUG myCoreId => myCoreId_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  tid_10 = 0;
+  # DEBUG tid => tid_10
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_1 = OS_taskTableBase;
+  _2 = (unsigned int) tid_7;
+  _3 = _2 * 76;
+  tp_12 = OS_taskTableBase.0_1 + _3;
+  # DEBUG tp => tp_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = tp_12->dynamic;
+  _4->lastLock = 4294967295;
+  # DEBUG BEGIN_STMT
+  tid.1_5 = tid_7;
+  tid_14 = tid.1_5 + 1;
+  # DEBUG tid => tid_14
+
+  <bb 4> :
+  # tid_7 = PHI <tid_10(2), tid_14(3)>
+  # DEBUG tid => tid_7
+  # DEBUG BEGIN_STMT
+  OS_nTasks.2_6 = OS_nTasks;
+  if (tid_7 < OS_nTasks.2_6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

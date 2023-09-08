@@ -1,0 +1,519 @@
+Histogram:
+Dcm_Dsp_ReadDataByIdentifier_SvcContinue.part.0 (struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  struct Dcm_DspMsgBufferCfgType * const BufferCfg;
+  Std_ReturnType D.7499;
+  Std_ReturnType result;
+  Dcm_OpStatusType OpStatus;
+  unsigned char _1;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#3 s=> OpStatus
+  # DEBUG OpStatus => D#3
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ReadDidListContext.BaseContext.nrc;
+  Dcm_ExternalSetNegResponse (pMsgContext_2(D), _1);
+
+  <bb 3> [local count: 1073741824]:
+  # serviceProcessStatus_3 = PHI <1(2)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return serviceProcessStatus_3;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_ServiceExecution (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+  unsigned char _14;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceProcessStatus => 30
+  # DEBUG BEGIN_STMT
+  switch (OpStatus_4(D)) <default: <L14> [20.00%], case 0: <L0> [20.00%], case 1: <L1> [20.00%], case 2: <L11> [20.00%], case 3: <L2> [20.00%]>
+
+  <bb 3> [local count: 214748364]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_12 = Dcm_Dsp_ReadDataByIdentifier_SvcStart (pMsgContext_6(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_12
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 214748364]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = Dcm_Dsp_ReadDataByIdentifier_SvcContinue (OpStatus_4(D), pMsgContext_6(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 214748364]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_8 = Dcm_Dsp_ReadDataByIdentifier_SvcContinue (OpStatus_4(D), pMsgContext_6(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 214748364]:
+<L11>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ReadDidListContext => &Dcm_ReadDidListContext
+  # DEBUG INLINE_ENTRY Dcm_Dsp_ReadDataByIdentifier_ReadDidList_Cancel
+  # DEBUG BEGIN_STMT
+  _14 = Dcm_Dsp_Context_Cancel (&Dcm_ReadDidListContext.BaseContext);
+  # DEBUG ReadDidListContext => NULL
+  # DEBUG ServiceProcessStatus => _14
+  # DEBUG BEGIN_STMT
+
+  <bb 7> [local count: 858993459]:
+  # ServiceProcessStatus_1 = PHI <ServiceProcessStatus_12(3), ServiceProcessStatus_10(4), ServiceProcessStatus_8(5), _14(6)>
+<L12>:
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  if (ServiceProcessStatus_1 == 31)
+    goto <bb 8>; [21.72%]
+  else
+    goto <bb 9>; [78.28%]
+
+  <bb 8> [local count: 186573379]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceProcessStatus => 10
+
+  <bb 9> [local count: 1073741824]:
+  # ServiceProcessStatus_2 = PHI <ServiceProcessStatus_1(7), 10(8), 26(2)>
+<L14>:
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  return ServiceProcessStatus_2;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_ReadDidList_DidRead (struct Dcm_Dsp_ContextBaseType * context)
+{
+  Std_ReturnType result;
+  struct Dcm_ReadDidContextType * ReadDidContextPtr;
+  void * _1;
+  unsigned char _2;
+  void * _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  struct Dcm_DspMsgBufferCfgType * _8;
+  long unsigned int _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  void * _14;
+  short unsigned int _15;
+  short unsigned int _16;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = context_20(D)->SpecialPtr;
+  ReadDidContextPtr_21 = &MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.ReadDidContext;
+  # DEBUG ReadDidContextPtr => ReadDidContextPtr_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = context_20(D)->opstatus;
+  if (_2 == 2)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  result_32 = Dcm_Dsp_DidServices_ReadDid_Cancel (ReadDidContextPtr_21);
+  # DEBUG result => result_32
+  goto <bb 12>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  result_23 = Dcm_Dsp_DidServices_ReadDid_Execute (ReadDidContextPtr_21);
+  # DEBUG result => result_23
+  # DEBUG BEGIN_STMT
+  if (result_23 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _3 = context_20(D)->SpecialPtr;
+  _4 = MEM[(struct Dcm_ReadDidListContextType *)_3].ReadDidListContext.DidsRead;
+  _5 = _4 + 1;
+  MEM[(struct Dcm_ReadDidListContextType *)_3].ReadDidListContext.DidsRead = _5;
+  # DEBUG BEGIN_STMT
+  _6 = MEM[(struct Dcm_ReadDidListContextType *)_3].ReadDidListContext.DidIdx;
+  _7 = _6 + 1;
+  MEM[(struct Dcm_ReadDidListContextType *)_3].ReadDidListContext.DidIdx = _7;
+  # DEBUG BEGIN_STMT
+  _8 = MEM[(struct Dcm_ReadDidContextType *)_1 + 16B].ReadDidContext.DidBufferCfgPtr;
+  _9 = _8->Occupied;
+  MEM[(struct Dcm_ReadDidListContextType *)_3].ReadDidListContext.BufferCfg.Occupied = _9;
+  # DEBUG BEGIN_STMT
+  context_20(D)->next_state = 0;
+  goto <bb 12>; [100.00%]
+
+  <bb 6> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  if (result_23 == 1)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 7> [local count: 120473833]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ForceStopProcessing => 0
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_ReadDidListContext.ReadDidListContext.ReadDidContext.ReadDidContext.ReadStaticDidContext.ReadStaticDidContext.ReadSingleStaticDidContext.ReadSingleStaticDidContext.ReadSignalContext.SignalReadContext.ConditionCheckFailed;
+  if (_10 == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 8> [local count: 79512730]:
+  _11 = Dcm_ReadDidListContext.ReadDidListContext.ReadDidContext.ReadDidContext.DidInfoContext.DidInfoContext.ModeRuleFailed;
+  if (_11 == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 9> [local count: 52478402]:
+  # DEBUG ForceStopProcessing => 0
+  # DEBUG BEGIN_STMT
+  _12 = MEM[(struct Dcm_ReadDidContextType *)_1 + 16B].BaseContext.nrc;
+  if (_12 != 49)
+    goto <bb 10>; [66.00%]
+  else
+    goto <bb 11>; [34.00%]
+
+  <bb 10> [local count: 102631176]:
+  # DEBUG ForceStopProcessing => NULL
+  # DEBUG BEGIN_STMT
+  _13 = MEM[(struct Dcm_ReadDidContextType *)_1 + 16B].BaseContext.nrc;
+  context_20(D)->nrc = _13;
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 17842657]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = context_20(D)->SpecialPtr;
+  _15 = MEM[(struct Dcm_ReadDidListContextType *)_14].ReadDidListContext.DidIdx;
+  _16 = _15 + 1;
+  MEM[(struct Dcm_ReadDidListContextType *)_14].ReadDidListContext.DidIdx = _16;
+  # DEBUG BEGIN_STMT
+  context_20(D)->next_state = 0;
+
+  <bb 12> [local count: 1073741824]:
+  # result_17 = PHI <result_32(3), 0(5), result_23(6), 1(11), 1(10)>
+  # DEBUG result => result_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  context_20(D)->result = result_17;
+  return;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_ReadDidList_DidSelect (struct Dcm_Dsp_ContextBaseType * context)
+{
+  const uint16 Did;
+  uint8 LowByte;
+  uint8 HighByte;
+  const uint16 DidPos;
+  void * _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  uint8 * _4;
+  sizetype _5;
+  uint8 * _6;
+  sizetype _7;
+  uint8 * _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+  struct Dcm_ReadDidContextType * _12;
+  struct Dcm_DspMsgBufferCfgType * _13;
+  short unsigned int _14;
+  short unsigned int _15;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = context_18(D)->SpecialPtr;
+  _2 = MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.DidIdx;
+  _3 = MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.DidCount;
+  if (_2 < _3)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 4>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  DidPos_22 = _2 * 2;
+  # DEBUG DidPos => DidPos_22
+  # DEBUG BEGIN_STMT
+  _4 = MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.DidList;
+  _5 = (sizetype) DidPos_22;
+  _6 = _4 + _5;
+  HighByte_23 = *_6;
+  # DEBUG HighByte => HighByte_23
+  # DEBUG BEGIN_STMT
+  _7 = _5 + 1;
+  _8 = _4 + _7;
+  LowByte_24 = *_8;
+  # DEBUG LowByte => LowByte_24
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) HighByte_23;
+  _10 = _9 << 8;
+  _11 = (short unsigned int) LowByte_24;
+  Did_25 = _10 | _11;
+  # DEBUG Did => Did_25
+  # DEBUG BEGIN_STMT
+  _12 = &MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.ReadDidContext;
+  _13 = &MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.BufferCfg;
+  _14 = MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.RxPduId;
+  Dcm_Dsp_DidServices_ReadDid_Init (_12, Did_25, 0, 1, _13, 1, _14);
+  # DEBUG BEGIN_STMT
+  context_18(D)->next_state = 1;
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  _15 = MEM[(struct Dcm_ReadDidListContextType *)_1].ReadDidListContext.DidsRead;
+  if (_15 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 359703511]:
+  # DEBUG BEGIN_STMT
+  context_18(D)->nrc = 49;
+  # DEBUG BEGIN_STMT
+  context_18(D)->result = 1;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 359703511]:
+  # DEBUG BEGIN_STMT
+  context_18(D)->result = 0;
+
+  <bb 7> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_SvcContinue (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType result;
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG serviceProcessStatus => 30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_ReadDidListContext.BaseContext.opstatus = OpStatus_5(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG ReadDidListContext => &Dcm_ReadDidListContext
+  # DEBUG INLINE_ENTRY Dcm_Dsp_ReadDataByIdentifier_ReadDidList_Execute
+  # DEBUG BEGIN_STMT
+  result_10 = Dcm_Dsp_Context_Execute (&Dcm_ReadDidListContext.BaseContext);
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  # DEBUG ReadDidListContext => NULL
+  # DEBUG result => NULL
+  # DEBUG serviceProcessStatus => result_10
+  # DEBUG BEGIN_STMT
+  if (result_10 == 0)
+    goto <bb 3>; [35.00%]
+  else
+    goto <bb 4>; [65.00%]
+
+  <bb 3> [local count: 375809639]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BufferCfg => &Dcm_ReadDidListContext.ReadDidListContext.BufferCfg
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ReadDidListContext.ReadDidListContext.BufferCfg.Occupied;
+  pMsgContext_7(D)->resDataLen = _1;
+  # DEBUG BEGIN_STMT
+  # DEBUG serviceProcessStatus => 26
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 697932186]:
+  # DEBUG BEGIN_STMT
+  if (result_10 == 1)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 6>; [79.76%]
+
+  <bb 5> [local count: 141261474]:
+  # DEBUG D#2 => OpStatus_5(D)
+  serviceProcessStatus_3 = Dcm_Dsp_ReadDataByIdentifier_SvcContinue.part.0 (pMsgContext_7(D));
+
+  <bb 6> [local count: 1073741824]:
+  # serviceProcessStatus_2 = PHI <26(3), result_10(4), serviceProcessStatus_3(5)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return serviceProcessStatus_2;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_SvcStart (struct Dcm_MsgContextType * pMsgContext)
+{
+  uint8 * didList;
+  const uint16 didCount;
+  Std_ReturnType serviceProcessStatus;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  Dcm_MsgItemType * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  short unsigned int _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG serviceProcessStatus => 30
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_11(D)->reqDataLen;
+  _2 = _1 >> 1;
+  didCount_12 = (const uint16) _2;
+  # DEBUG didCount => didCount_12
+  # DEBUG BEGIN_STMT
+  if (_1 <= 1)
+    goto <bb 4>; [15.56%]
+  else
+    goto <bb 3>; [84.44%]
+
+  <bb 3> [local count: 906667597]:
+  _3 = _1 & 1;
+  if (_3 != 0)
+    goto <bb 4>; [35.00%]
+  else
+    goto <bb 5>; [65.00%]
+
+  <bb 4> [local count: 484407887]:
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_11(D), 19);
+  # DEBUG BEGIN_STMT
+  # DEBUG serviceProcessStatus => 26
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 589333938]:
+  # DEBUG BEGIN_STMT
+  if (didCount_12 > 1)
+    goto <bb 6>; [43.66%]
+  else
+    goto <bb 7>; [56.34%]
+
+  <bb 6> [local count: 257303197]:
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_11(D), 19);
+  # DEBUG BEGIN_STMT
+  # DEBUG serviceProcessStatus => 26
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 332030740]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  didList_13 = pMsgContext_11(D)->reqData;
+  # DEBUG didList => didList_13
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_11(D)->resData;
+  _5 = pMsgContext_11(D)->resMaxDataLen;
+  _6 = pMsgContext_11(D)->resDataLen;
+  _7 = pMsgContext_11(D)->dcmRxPduId;
+  # DEBUG ReadDidListContext => &Dcm_ReadDidListContext
+  # DEBUG DidList => didList_13
+  # DEBUG DidCount => didCount_12
+  # DEBUG OutputBuffer => _4
+  # DEBUG BufferSize => _5
+  # DEBUG AmountOfBufferOccupied => _6
+  # DEBUG RxPduId => _7
+  # DEBUG INLINE_ENTRY Dcm_Dsp_ReadDataByIdentifier_ReadDidList_Init
+  # DEBUG BEGIN_STMT
+  # DEBUG D#1 => &Dcm_ReadDidListContext.ReadDidListContext
+  # DEBUG ReadDidList => D#1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_Context_Init (&Dcm_ReadDidListContext.BaseContext, &Dcm_ReadDidListContext, &Dcm_ReadDidListStateConfig);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].DidList = didList_13;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].DidCount = didCount_12;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].DidsRead = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].DidIdx = 0;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].RxPduId = _7;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].BufferCfg.BufferPtr = _4;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].BufferCfg.Size = _5;
+  # DEBUG BEGIN_STMT
+  MEM[(struct Dcm_ReadDidListContextExtType *)&Dcm_ReadDidListContext + 16B].BufferCfg.Occupied = _6;
+  # DEBUG ReadDidListContext => NULL
+  # DEBUG DidList => NULL
+  # DEBUG DidCount => NULL
+  # DEBUG OutputBuffer => NULL
+  # DEBUG BufferSize => NULL
+  # DEBUG AmountOfBufferOccupied => NULL
+  # DEBUG RxPduId => NULL
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_15 = Dcm_Dsp_ReadDataByIdentifier_SvcContinue (0, pMsgContext_11(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_15
+
+  <bb 8> [local count: 1073741824]:
+  # serviceProcessStatus_8 = PHI <26(4), 26(6), serviceProcessStatus_15(7)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  return serviceProcessStatus_8;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType ServiceProcessStatus;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ServiceProcessStatus => 30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_5 = Dcm_Dsp_ReadDataByIdentifier_ServiceExecution (OpStatus_2(D), pMsgContext_3(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return ServiceProcessStatus_5;
+
+}
+
+
+Dcm_Dsp_ReadDataByIdentifier_Init ()
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

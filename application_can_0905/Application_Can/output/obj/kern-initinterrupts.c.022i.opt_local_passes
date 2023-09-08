@@ -1,0 +1,81 @@
+__attribute__((target ("general-regs-only")))
+OS_InitInterrupts ()
+{
+  struct os_isrdynamic_t * const isrd;
+  const struct os_isr_t * const isr;
+  const os_coreid_t myCoreId;
+  os_isrid_t i;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_archisr_t * _4;
+  unsigned char _5;
+  signed char _6;
+  const struct os_archisr_t * _7;
+  short unsigned int i.1_8;
+  short unsigned int OS_nInterrupts.2_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_13 = 0;
+  # DEBUG myCoreId => myCoreId_13
+  # DEBUG BEGIN_STMT
+  i_14 = 0;
+  # DEBUG i => i_14
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) i_10;
+  _3 = _2 * 68;
+  isr_16 = OS_isrTableBase.0_1 + _3;
+  # DEBUG isr => isr_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isrd_17 = isr_16->dynamic;
+  # DEBUG isrd => isrd_17
+  # DEBUG BEGIN_STMT
+  _4 = &isr_16->arch;
+  OS_CORTEXM_IntSetupIsr (_4);
+  # DEBUG BEGIN_STMT
+  _5 = isr_16->flags;
+  _6 = (signed char) _5;
+  if (_6 < 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = &isr_16->arch;
+  OS_CORTEXM_IntEnableIsr (_7);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  isrd_17->statusflags = 32;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.1_8 = i_10;
+  i_21 = i.1_8 + 1;
+  # DEBUG i => i_21
+
+  <bb 7> :
+  # i_10 = PHI <i_14(2), i_21(6)>
+  # DEBUG i => i_10
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.2_9 = OS_nInterrupts;
+  if (i_10 < OS_nInterrupts.2_9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

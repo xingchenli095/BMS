@@ -1,0 +1,159 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalSetEvent (const struct os_task_t * ts, os_eventmask_t e)
+{
+  os_intstatus_t is;
+  struct os_taskdynamic_t * td;
+  os_errorresult_t result;
+  short unsigned int OS_kernDisableLevel.0_1;
+  const struct os_appcontext_t * _2;
+  int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  short unsigned int _11;
+  os_boolean_t (*<T68c>) (os_ratemonitorid_t) OS_rateMonitorFunc.1_12;
+  short unsigned int _13;
+  int _14;
+  unsigned char _15;
+  short unsigned int _16;
+  struct os_taskaccounting_t * _17;
+  struct os_taskaccounting_t * _18;
+  struct os_taskaccounting_t * _19;
+  short unsigned int _20;
+  unsigned char _21;
+  short unsigned int _22;
+  os_errorresult_t _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_27 = 0;
+  # DEBUG result => result_27
+  # DEBUG BEGIN_STMT
+  td_30 = ts_29(D)->dynamic;
+  # DEBUG td => td_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is_32 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG is => is_32
+  # DEBUG BEGIN_STMT
+  _2 = ts_29(D)->app;
+  _3 = OS_AppIsAccessible (_2);
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_44 = 154;
+  # DEBUG result => result_44
+  goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = td_30->state;
+  if (_4 <= 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result_43 = 28;
+  # DEBUG result => result_43
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _5 = td_30->pEvents;
+  _6 = e_34(D) | _5;
+  td_30->pEvents = _6;
+  # DEBUG BEGIN_STMT
+  _7 = td_30->state;
+  if (_7 == 6)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 7> :
+  _8 = td_30->pEvents;
+  _9 = td_30->wEvents;
+  _10 = _8 & _9;
+  if (_10 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = ts_29(D)->rateMonitor;
+  if (_11 != 65535)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  OS_rateMonitorFunc.1_12 = OS_rateMonitorFunc;
+  _13 = ts_29(D)->rateMonitor;
+  _14 = OS_rateMonitorFunc.1_12 (_13);
+  if (_14 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result_37 = 54;
+  # DEBUG result => result_37
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_30->state = 3;
+  # DEBUG BEGIN_STMT
+  _15 = ts_29(D)->queuePrio;
+  _16 = (short unsigned int) _15;
+  td_30->prio = _16;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = ts_29(D)->accounting;
+  if (_17 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _18 = ts_29(D)->accounting;
+  _18->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _19 = ts_29(D)->accounting;
+  _19->etType = 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _20 = ts_29(D)->linkBase;
+  _21 = ts_29(D)->queuePrio;
+  _22 = (short unsigned int) _21;
+  OS_EnqueueLink (_20, _22);
+
+  <bb 14> :
+  # result_23 = PHI <result_44(3), result_43(5), result_27(6), result_27(7), result_27(13), result_37(10)>
+  # DEBUG result => result_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_32);
+  # DEBUG BEGIN_STMT
+  _46 = result_23;
+  return _46;
+
+}
+
+

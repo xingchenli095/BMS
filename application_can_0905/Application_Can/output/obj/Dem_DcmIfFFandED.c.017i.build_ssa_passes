@@ -1,0 +1,2264 @@
+Dem_FindNextEDRecForReporting (const struct Dem_EDClassType * EDClass, uint8 RecordNumberToSearch, const struct Dem_EDSegmentType * * FoundEDSegment, Dem_EDStartByteType * EDStartByte)
+{
+  uint8 EDSegRecNum;
+  uint8 NextAvailableRecNum;
+  Dem_EDSegIdxType FoundSegIndex;
+  Dem_EDSegIdxType SegIndex;
+  boolean Result;
+  boolean D.7469;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FoundSegIndex = 0;
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum = 240;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SegIndex = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = EDClass->EDSegIdx;
+  _2 = (sizetype) SegIndex;
+  _3 = _1 + _2;
+  _4 = *_3;
+  _5 = (int) _4;
+  EDSegRecNum = Dem_EDSegment[_5].RecNum;
+  # DEBUG BEGIN_STMT
+  if (EDSegRecNum >= RecordNumberToSearch)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (EDSegRecNum < NextAvailableRecNum)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum = EDSegRecNum;
+  # DEBUG BEGIN_STMT
+  FoundSegIndex = SegIndex;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SegIndex = SegIndex + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = EDClass->NumEDSegs;
+  if (SegIndex < _6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (NextAvailableRecNum <= 239)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _7 = EDClass->StartByte;
+  _8 = (unsigned int) FoundSegIndex;
+  _9 = _8 * 2;
+  _10 = _7 + _9;
+  _11 = *_10;
+  *EDStartByte = _11;
+  # DEBUG BEGIN_STMT
+  _12 = EDClass->EDSegIdx;
+  _13 = (sizetype) FoundSegIndex;
+  _14 = _12 + _13;
+  _15 = *_14;
+  _16 = (int) _15;
+  _17 = &Dem_EDSegment[_16];
+  *FoundEDSegment = _17;
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7469 = Result;
+  return D.7469;
+
+}
+
+
+Dem_CopyOBDFreezeFrameInfo (uint8 * DestBuffer, uint16 * BufSize, Dem_SizeEvMemEntryType SelectedEntryIdx)
+{
+  Dem_EntryDataType * const OBDFFStoredData;
+  Dem_SizeEntryDataType StartByte;
+  uint8 ObdFFPidIterator;
+  uint8 NumberOfPids;
+  uint16 Offset;
+  uint8 D.7351;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Offset = 0;
+  # DEBUG BEGIN_STMT
+  NumberOfPids = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  StartByte = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) SelectedEntryIdx;
+  OBDFFStoredData = &Dem_EntryOBDFF[_1].OBDFFData;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ObdFFPidIterator = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (sizetype) Offset;
+  _3 = DestBuffer + _2;
+  *_3 = 244;
+  # DEBUG BEGIN_STMT
+  _4 = (int) ObdFFPidIterator;
+  _5 = (sizetype) Offset;
+  _6 = _5 + 1;
+  _7 = DestBuffer + _6;
+  _8 = Dem_PidClass[_4].ParameterId;
+  *_7 = _8;
+  # DEBUG BEGIN_STMT
+  _9 = (sizetype) Offset;
+  _10 = _9 + 2;
+  _11 = DestBuffer + _10;
+  _12 = (sizetype) StartByte;
+  _13 = OBDFFStoredData + _12;
+  _14 = (int) ObdFFPidIterator;
+  _15 = Dem_PidClass[_14].Size;
+  _16 = (long unsigned int) _15;
+  TS_MemCpy32 (_11, _13, _16);
+  # DEBUG BEGIN_STMT
+  _17 = (int) ObdFFPidIterator;
+  _18 = Dem_PidClass[_17].Size;
+  _19 = (short unsigned int) _18;
+  _20 = Offset + _19;
+  Offset = _20 + 2;
+  # DEBUG BEGIN_STMT
+  NumberOfPids.24_21 = NumberOfPids;
+  NumberOfPids = NumberOfPids.24_21 + 1;
+  # DEBUG BEGIN_STMT
+  _22 = (int) ObdFFPidIterator;
+  _23 = Dem_PidClass[_22].Size;
+  _24 = (short unsigned int) _23;
+  StartByte = StartByte + _24;
+  # DEBUG BEGIN_STMT
+  ObdFFPidIterator.25_25 = ObdFFPidIterator;
+  ObdFFPidIterator = ObdFFPidIterator.25_25 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ObdFFPidIterator <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *BufSize = Offset;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7351 = NumberOfPids;
+  return D.7351;
+
+}
+
+
+Dem_SizeOfOBDFreezeFrameInfo (Dem_EventIdType EventId)
+{
+  Dem_EventIdType StoredOBDFFEventId;
+  boolean EntryExists;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  uint16 ObdFFSize;
+  uint16 D.7407;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ObdFFSize = 0;
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  EntryExists = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 0);
+  # DEBUG BEGIN_STMT
+  _1 = Dem_EventMem[0];
+  SelectedEntryIdx.31_2 = SelectedEntryIdx;
+  _3 = (unsigned int) SelectedEntryIdx.31_2;
+  _4 = _3 * 16;
+  _5 = _1 + _4;
+  StoredOBDFFEventId = _5->EventId;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (EntryExists == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (EventId == StoredOBDFFEventId)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ObdFFSize = 41;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7407 = ObdFFSize;
+  SelectedEntryIdx = {CLOBBER};
+  return D.7407;
+
+}
+
+
+Dem_CollectOBDFreezeFrameInfo (Dem_EventIdType EventId, uint8 RecordNumber, uint16 * BufSize, uint8 * DestBuffer)
+{
+  uint16 OdbFFSize;
+  Dem_SizeEvMemEntryType SelectedEntryIdx;
+  boolean EntryExists;
+  Std_ReturnType Result;
+  Dem_EventIdType StoredOBDFFEventId;
+  Std_ReturnType D.7348;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SelectedEntryIdx = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists = Dem_SelectEntryOfOBDFreezeFrameEvent (&SelectedEntryIdx, 0);
+  # DEBUG BEGIN_STMT
+  _1 = Dem_EventMem[0];
+  SelectedEntryIdx.21_2 = SelectedEntryIdx;
+  _3 = (unsigned int) SelectedEntryIdx.21_2;
+  _4 = _3 * 16;
+  _5 = _1 + _4;
+  StoredOBDFFEventId = _5->EventId;
+  # DEBUG BEGIN_STMT
+  if (EntryExists == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  if (EventId == StoredOBDFFEventId)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = *BufSize;
+  if (_6 > 40)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OdbFFSize = 0;
+  # DEBUG BEGIN_STMT
+  *DestBuffer = RecordNumber;
+  # DEBUG BEGIN_STMT
+  _7 = DestBuffer + 2;
+  SelectedEntryIdx.22_8 = SelectedEntryIdx;
+  _9 = DestBuffer + 1;
+  _10 = Dem_CopyOBDFreezeFrameInfo (_7, &OdbFFSize, SelectedEntryIdx.22_8);
+  *_9 = _10;
+  # DEBUG BEGIN_STMT
+  OdbFFSize.23_11 = OdbFFSize;
+  _12 = OdbFFSize.23_11 + 2;
+  *BufSize = _12;
+  OdbFFSize = {CLOBBER};
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Result = 21;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *BufSize = 0;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7348 = Result;
+  SelectedEntryIdx = {CLOBBER};
+  return D.7348;
+
+}
+
+
+Dem_CopyFFInfo (Dem_FFKindType FFKind, const struct Dem_FFClassType * IndividPartFFClass, const Dem_EntryDataType * FFEntryData, uint8 * DestBuffer)
+{
+  const Dem_SizeFFType FFSegSize;
+  const Dem_FFSegIdxType FFSegIdx;
+  const struct Dem_FFClassType * FFPartClass[1];
+  uint8_least FFPartIdx;
+  Dem_SizeEntryDataType StartByte;
+  Dem_SizeEntryDataType Offset;
+  Dem_NumFFSegsType SegIdx;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Offset = 0;
+  # DEBUG BEGIN_STMT
+  StartByte = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartClass[0] = IndividPartFFClass;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FFPartIdx = 0;
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SegIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = FFPartClass[FFPartIdx];
+  _2 = _1->FFSegIdx;
+  _3 = (unsigned int) SegIdx;
+  _4 = _3 * 2;
+  _5 = _2 + _4;
+  FFSegIdx = *_5;
+  # DEBUG BEGIN_STMT
+  if (FFSegIdx != 65535)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) FFSegIdx;
+  _7 = &Dem_FFSegment[_6];
+  FFSegSize = Dem_SizeOfFFSegment (_7);
+  # DEBUG BEGIN_STMT
+  _8 = (int) FFSegIdx;
+  _9 = Dem_FFSegment[_8].DataId;
+  _10 = _9 >> 8;
+  _11 = (sizetype) Offset;
+  _12 = DestBuffer + _11;
+  _13 = (unsigned char) _10;
+  *_12 = _13;
+  # DEBUG BEGIN_STMT
+  _14 = (int) FFSegIdx;
+  _15 = Dem_FFSegment[_14].DataId;
+  _16 = (sizetype) Offset;
+  _17 = _16 + 1;
+  _18 = DestBuffer + _17;
+  _19 = (unsigned char) _15;
+  *_18 = _19;
+  # DEBUG BEGIN_STMT
+  Offset = Offset + 2;
+  # DEBUG BEGIN_STMT
+  _20 = (sizetype) Offset;
+  _21 = DestBuffer + _20;
+  _22 = (sizetype) StartByte;
+  _23 = FFEntryData + _22;
+  _24 = (long unsigned int) FFSegSize;
+  TS_MemCpy32 (_21, _23, _24);
+  # DEBUG BEGIN_STMT
+  StartByte = StartByte + FFSegSize;
+  # DEBUG BEGIN_STMT
+  Offset = Offset + FFSegSize;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SegIdx = SegIdx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _25 = FFPartClass[FFPartIdx];
+  _26 = _25->NumFFSegs;
+  if (SegIdx < _26)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  FFPartIdx = FFPartIdx + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (FFPartIdx == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  FFPartClass = {CLOBBER};
+  return;
+
+}
+
+
+Dem_SizeOfFFInfo (Dem_EventIdType EventId, Dem_FFKindType FFKind, uint8 RecordNumber)
+{
+  const struct Dem_FFClassType * FFIndClass;
+  Dem_FFIdxType NumFF;
+  boolean FFIdxValid;
+  const Dem_FFIdxType MaxNumFF;
+  Dem_FFIdxType FFIndex;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  boolean EntryExists;
+  uint16 SizeOfFFKind;
+  uint16 D.7424;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SizeOfFFKind = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists = Dem_SearchForEntry (EventId, &EvMemEntry, 0B);
+  # DEBUG BEGIN_STMT
+  if (EntryExists == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxNumFF = Dem_GbiMaxNumFFRecs (EventId);
+  # DEBUG BEGIN_STMT
+  FFIdxValid = 0;
+  # DEBUG BEGIN_STMT
+  EvMemEntry.32_1 = EvMemEntry;
+  _2 = EvMemEntry.32_1->OccCtr;
+  NumFF = MIN_EXPR <MaxNumFF, _2>;
+  # DEBUG BEGIN_STMT
+  if (FFKind == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  EvMemEntry.33_3 = EvMemEntry;
+  FFIndex = Dem_CheckFFRecNumStored (EvMemEntry.33_3, RecordNumber);
+  # DEBUG BEGIN_STMT
+  if (RecordNumber == 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (FFIndex < NumFF)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FFIdxValid = 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (FFIdxValid == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  FFIndClass = 0B;
+  # DEBUG BEGIN_STMT
+  _4 = Dem_GbiFFClassIdx (EventId);
+  _5 = (int) _4;
+  FFIndClass = &Dem_FFClass[_5];
+  # DEBUG BEGIN_STMT
+  _6 = Dem_SizeOfFF (FFKind, FFIndClass);
+  _7 = Dem_GetNumFFSegs (FFKind, FFIndClass);
+  _8 = (short unsigned int) _7;
+  _9 = _8 * 2;
+  _10 = _6 + _9;
+  SizeOfFFKind = _10 + 2;
+  # DEBUG BEGIN_STMT
+  if (RecordNumber == 255)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  if (FFKind == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _11 = (short unsigned int) NumFF;
+  SizeOfFFKind = SizeOfFFKind * _11;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7424 = SizeOfFFKind;
+  EvMemEntry = {CLOBBER};
+  return D.7424;
+
+}
+
+
+Dem_CollectFFInfo (Dem_EventIdType EventId, Dem_FFKindType FFKind, uint8 RecordNumber, uint16 * BufSize, uint8 * DestBuffer)
+{
+  Dem_NumFFSegsType NumFFSegs;
+  Dem_SizeEntryDataType NeededFFSize;
+  const Dem_EntryDataType * FFEntryData;
+  const struct Dem_FFClassType * FFIndClass;
+  boolean isDevFFIdxValid;
+  const Dem_FFIdxType MaxNumFF;
+  Dem_FFIdxType FFIndex;
+  boolean EntryExists;
+  Std_ReturnType Result;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  Std_ReturnType D.7370;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EntryExists = Dem_SearchForEntry (EventId, &EvMemEntry, 0B);
+  # DEBUG BEGIN_STMT
+  if (EntryExists == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MaxNumFF = Dem_GbiMaxNumFFRecs (EventId);
+  # DEBUG BEGIN_STMT
+  isDevFFIdxValid = 0;
+  # DEBUG BEGIN_STMT
+  EvMemEntry.27_1 = EvMemEntry;
+  FFIndex = Dem_CheckFFRecNumStored (EvMemEntry.27_1, RecordNumber);
+  # DEBUG BEGIN_STMT
+  EvMemEntry.28_2 = EvMemEntry;
+  _3 = EvMemEntry.28_2->OccCtr;
+  _4 = MIN_EXPR <MaxNumFF, _3>;
+  if (FFIndex < _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  if (FFKind == 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (isDevFFIdxValid == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FFIndClass = 0B;
+  # DEBUG BEGIN_STMT
+  FFEntryData = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiFFClassIdx (EventId);
+  _6 = (int) _5;
+  FFIndClass = &Dem_FFClass[_6];
+  # DEBUG BEGIN_STMT
+  EvMemEntry.29_7 = EvMemEntry;
+  FFEntryData = Dem_FFEntryData (EvMemEntry.29_7, FFIndClass, FFIndex);
+  # DEBUG BEGIN_STMT
+  NumFFSegs = Dem_GetNumFFSegs (FFKind, FFIndClass);
+  # DEBUG BEGIN_STMT
+  _8 = Dem_SizeOfFF (FFKind, FFIndClass);
+  _9 = (short unsigned int) NumFFSegs;
+  _10 = _9 * 2;
+  _11 = _8 + _10;
+  NeededFFSize = _11 + 2;
+  # DEBUG BEGIN_STMT
+  _12 = *BufSize;
+  if (NeededFFSize <= _12)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *DestBuffer = RecordNumber;
+  # DEBUG BEGIN_STMT
+  _13 = DestBuffer + 1;
+  *_13 = NumFFSegs;
+  # DEBUG BEGIN_STMT
+  _14 = DestBuffer + 2;
+  Dem_CopyFFInfo (FFKind, FFIndClass, FFEntryData, _14);
+  # DEBUG BEGIN_STMT
+  *BufSize = NeededFFSize;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Result = 21;
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  *BufSize = 0;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *BufSize = 0;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7370 = Result;
+  EvMemEntry = {CLOBBER};
+  return D.7370;
+
+}
+
+
+Dem_FindNextFFRecForReporting (Dem_EventIdType EventId, uint8 RecordNumberToSearch, uint8 * FoundRecordNumber, Dem_FFKindType * FFKind)
+{
+  uint8 RecNum;
+  boolean Result;
+  uint8 FFRecNumIdx;
+  Dem_FFIdxType NumFF;
+  Dem_FFRecNumClassIdxType FFRecNumClassIdx;
+  const Dem_FFIdxType * FFRecNumClass;
+  boolean D.7357;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *FoundRecordNumber = 255;
+  # DEBUG BEGIN_STMT
+  FFRecNumClassIdx = Dem_GbiFFRecNumClassIdx (EventId);
+  # DEBUG BEGIN_STMT
+  _1 = (int) FFRecNumClassIdx;
+  NumFF = Dem_FFRecNumerationClass[_1].NumFFRecs;
+  # DEBUG BEGIN_STMT
+  _2 = (int) FFRecNumClassIdx;
+  FFRecNumClass = Dem_FFRecNumerationClass[_2].Dem_FFRecNumClassIdx;
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (sizetype) FFRecNumIdx;
+  _4 = FFRecNumClass + _3;
+  RecNum = *_4;
+  # DEBUG BEGIN_STMT
+  if (RecNum >= RecordNumberToSearch)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _5 = *FoundRecordNumber;
+  if (RecNum < _5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *FoundRecordNumber = RecNum;
+  # DEBUG BEGIN_STMT
+  *FFKind = 2;
+  # DEBUG BEGIN_STMT
+  Result = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FFRecNumIdx.26_6 = FFRecNumIdx;
+  FFRecNumIdx = FFRecNumIdx.26_6 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (FFRecNumIdx < NumFF)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7357 = Result;
+  return D.7357;
+
+}
+
+
+Dem_GetSizeOfExtendedDataRecordSelection (uint8 ClientId, uint16 * SizeOfExtendedDataRecord)
+{
+  const struct Dem_EDSegmentType * const EDSegment;
+  boolean EventMemEntryAvail;
+  Dem_EDSegIdxType SegIndex;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  const struct Dem_EDClassType * EDClass;
+  uint8 SelectedRecNum;
+  Dem_SizeEDType SizeOfEDR;
+  Std_ReturnType Result;
+  Std_ReturnType D.7498;
+  short unsigned int D.7496;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.41_1 = Dem_InitializationState;
+  if (Dem_InitializationState.41_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 32);
+  goto <bb 27>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 16);
+  goto <bb 27>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (SizeOfExtendedDataRecord == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 17);
+  goto <bb 27>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId;
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SizeOfEDR = 0;
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId;
+  SelectedRecNum = Dem_RecordSelection[_4].SelectedRecNum;
+  # DEBUG BEGIN_STMT
+  Result = 48;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SegIndex = 255;
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId = DTCSelection.DTCInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiEDClassIdx (EventId);
+  _6 = (int) _5;
+  EDClass = &Dem_EDClass[_6];
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum <= 239)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SegIndex = Dem_FindEDNumIndex (EDClass, SelectedRecNum);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _7 = EDClass->NumEDSegs;
+  if (SegIndex < _7)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  if (SelectedRecNum == 254)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  if (SelectedRecNum == 255)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EventMemEntryAvail = Dem_SearchForEntry (EventId, 0B, 0B);
+  # DEBUG BEGIN_STMT
+  SegIndex = 0;
+  goto <bb 23>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _8 = EDClass->EDSegIdx;
+  _9 = (sizetype) SegIndex;
+  _10 = _8 + _9;
+  _11 = *_10;
+  _12 = (int) _11;
+  EDSegment = &Dem_EDSegment[_12];
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum == 255)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  if (SelectedRecNum == 254)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  _13 = EDSegment->RecNum;
+  if (_13 > 143)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  _14 = EDSegment->RecNum;
+  if (SelectedRecNum == _14)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (EventMemEntryAvail == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 20> :
+  _15 = EDSegment->AlwaysAvailable;
+  if (_15 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  SizeOfEDR = SizeOfEDR + 1;
+  # DEBUG BEGIN_STMT
+  D.7496 = Dem_SizeOfEDSegment (EDSegment);
+  SizeOfEDR = D.7496 + SizeOfEDR;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  SegIndex = SegIndex + 1;
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _16 = EDClass->NumEDSegs;
+  if (SegIndex < _16)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  *SizeOfExtendedDataRecord = SizeOfEDR;
+  DTCSelection = {CLOBBER};
+  goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 33, 64);
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7498 = Result;
+  return D.7498;
+
+}
+
+
+Dem_GetNextExtendedDataRecord (uint8 ClientId, uint8 * DestBuffer, uint16 * BufSize)
+{
+  Dem_SizeEDType NeededSize;
+  boolean EventMemEntryAvail;
+  uint8 NextAvailableRecNum;
+  Dem_EDStartByteType EDStartByte;
+  const struct Dem_EDSegmentType * EDSegment;
+  const uint8 SelectedRecNum;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  const struct Dem_EDClassType * EDClass;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  Std_ReturnType Result;
+  Std_ReturnType D.7461;
+  short unsigned int D.7450;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.34_1 = Dem_InitializationState;
+  if (Dem_InitializationState.34_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 32);
+  goto <bb 29>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 16);
+  goto <bb 29>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DestBuffer == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (BufSize == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 17);
+  goto <bb 29>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId;
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId;
+  SelectedRecNum = Dem_RecordSelection[_4].SelectedRecNum;
+  # DEBUG BEGIN_STMT
+  Result = 48;
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId = DTCSelection.DTCInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiEDClassIdx (EventId);
+  _6 = (int) _5;
+  EDClass = &Dem_EDClass[_6];
+  # DEBUG BEGIN_STMT
+  _7 = (int) ClientId;
+  _8 = Dem_RecordSelection[_7].NextRecNum;
+  if (_8 != 255)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = (int) ClientId;
+  _10 = Dem_RecordSelection[_9].NextRecNum;
+  _11 = Dem_FindNextEDRecForReporting (EDClass, _10, &EDSegment, &EDStartByte);
+  if (_11 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  EDSegment.35_12 = EDSegment;
+  NextAvailableRecNum = EDSegment.35_12->RecNum;
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum > 253)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  if (SelectedRecNum == NextAvailableRecNum)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  EventMemEntryAvail = Dem_SearchForEntry (EventId, &EvMemEntry, 0B);
+  # DEBUG BEGIN_STMT
+  if (EventMemEntryAvail != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  EDSegment.36_13 = EDSegment;
+  _14 = EDSegment.36_13->AlwaysAvailable;
+  if (_14 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  NeededSize = 1;
+  # DEBUG BEGIN_STMT
+  EDSegment.37_15 = EDSegment;
+  D.7450 = Dem_SizeOfEDSegment (EDSegment.37_15);
+  NeededSize = D.7450 + NeededSize;
+  # DEBUG BEGIN_STMT
+  _16 = *BufSize;
+  if (NeededSize > _16)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Result = 21;
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  *DestBuffer = NextAvailableRecNum;
+  # DEBUG BEGIN_STMT
+  EDSegment.38_17 = EDSegment;
+  EDStartByte.39_18 = EDStartByte;
+  _19 = DestBuffer + 1;
+  EvMemEntry.40_20 = EvMemEntry;
+  Dem_AssembleExtendedDataSeg (EventId, EDSegment.38_17, EDStartByte.39_18, _19, EvMemEntry.40_20);
+  # DEBUG BEGIN_STMT
+  *BufSize = NeededSize;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  *BufSize = 0;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum <= 239)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _21 = (int) ClientId;
+  Dem_RecordSelection[_21].NextRecNum = 255;
+  goto <bb 26>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _22 = (int) ClientId;
+  _23 = NextAvailableRecNum + 1;
+  Dem_RecordSelection[_22].NextRecNum = _23;
+  goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _24 = (int) ClientId;
+  Dem_RecordSelection[_24].NextRecNum = 255;
+
+  <bb 26> :
+  EDSegment = {CLOBBER};
+  EDStartByte = {CLOBBER};
+
+  <bb 27> :
+  EvMemEntry = {CLOBBER};
+  DTCSelection = {CLOBBER};
+  goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 32, 64);
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7461 = Result;
+  return D.7461;
+
+}
+
+
+Dem_GetSizeOfFreezeFrameSelection (uint8 ClientId, uint16 * SizeOfFreezeFrame)
+{
+  uint8 SelectedRecNum;
+  uint16 SizeOfFF;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7401;
+  short unsigned int D.7398;
+  short unsigned int D.7397;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.30_1 = Dem_InitializationState;
+  if (Dem_InitializationState.30_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 32);
+  goto <bb 21>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 16);
+  goto <bb 21>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (SizeOfFreezeFrame == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 17);
+  goto <bb 21>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId;
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SizeOfFF = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId = DTCSelection.DTCInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId;
+  SelectedRecNum = Dem_RecordSelection[_4].SelectedRecNum;
+  # DEBUG BEGIN_STMT
+  _5 = Dem_GbiDTCKind (EventId);
+  if (_5 == 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  if (SelectedRecNum == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SizeOfFF = Dem_SizeOfOBDFreezeFrameInfo (EventId);
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _6 = Dem_CheckFFRecNumValid (EventId, SelectedRecNum);
+  if (_6 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SizeOfFF = Dem_SizeOfFFInfo (EventId, 2, SelectedRecNum);
+  goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum == 255)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _7 = Dem_GbiDTCKind (EventId);
+  if (_7 == 2)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  D.7397 = Dem_SizeOfOBDFreezeFrameInfo (EventId);
+  SizeOfFF = D.7397 + SizeOfFF;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  D.7398 = Dem_SizeOfFFInfo (EventId, 2, SelectedRecNum);
+  SizeOfFF = D.7398 + SizeOfFF;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Result = 48;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  *SizeOfFreezeFrame = SizeOfFF;
+  DTCSelection = {CLOBBER};
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 31, 64);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7401 = Result;
+  return D.7401;
+
+}
+
+
+Dem_GetNextFreezeFrameData (uint8 ClientId, uint8 * DestBuffer, uint16 * BufSize)
+{
+  Dem_FFKindType FFKind;
+  uint8 NextRecNum;
+  uint8 NextAvailableRecNum;
+  uint8 SelectedRecNum;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7337;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.15_1 = Dem_InitializationState;
+  if (Dem_InitializationState.15_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 32);
+  goto <bb 31>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 16);
+  goto <bb 31>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (DestBuffer == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (BufSize == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 17);
+  goto <bb 31>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) ClientId;
+  _3 = Dem_RecordSelection[_2].Status;
+  if (_3 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum = 0;
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  EventId = DTCSelection.DTCInfo.EventId;
+  # DEBUG BEGIN_STMT
+  _4 = (int) ClientId;
+  SelectedRecNum = Dem_RecordSelection[_4].SelectedRecNum;
+  # DEBUG BEGIN_STMT
+  Result = 48;
+  # DEBUG BEGIN_STMT
+  goto <bb 28>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClientId;
+  NextRecNum = Dem_RecordSelection[_5].NextRecNum;
+  # DEBUG BEGIN_STMT
+  if (NextRecNum == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _6 = Dem_GbiDTCKind (EventId);
+  if (_6 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Result = Dem_CollectOBDFreezeFrameInfo (EventId, NextRecNum, BufSize, DestBuffer);
+  goto <bb 22>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  FFKind = 0;
+  # DEBUG BEGIN_STMT
+  _7 = Dem_FindNextFFRecForReporting (EventId, NextRecNum, &NextAvailableRecNum, &FFKind);
+  if (_7 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum == 255)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  NextAvailableRecNum.16_8 = NextAvailableRecNum;
+  if (SelectedRecNum == NextAvailableRecNum.16_8)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  FFKind.17_9 = FFKind;
+  if (FFKind.17_9 == 2)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 18> :
+  _10 = Dem_GbiFFClassIdx (EventId);
+  if (_10 != 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  FFKind.18_11 = FFKind;
+  NextAvailableRecNum.19_12 = NextAvailableRecNum;
+  Result = Dem_CollectFFInfo (EventId, FFKind.18_11, NextAvailableRecNum.19_12, BufSize, DestBuffer);
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) ClientId;
+  Dem_RecordSelection[_13].NextRecNum = 255;
+  # DEBUG BEGIN_STMT
+  // predicted unlikely by continue predictor.
+  FFKind = {CLOBBER};
+  goto <bb 28>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  FFKind = {CLOBBER};
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (SelectedRecNum != 255)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) ClientId;
+  Dem_RecordSelection[_14].NextRecNum = 255;
+  goto <bb 28>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  if (Result == 48)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  NextAvailableRecNum.20_15 = NextAvailableRecNum;
+  _16 = (int) ClientId;
+  _17 = NextAvailableRecNum.20_15 + 1;
+  Dem_RecordSelection[_16].NextRecNum = _17;
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  if (Result != 48)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) ClientId;
+  _19 = Dem_RecordSelection[_18].NextRecNum;
+  if (_19 != 255)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 29> :
+  DTCSelection = {CLOBBER};
+  NextAvailableRecNum = {CLOBBER};
+  goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 29, 64);
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7337 = Result;
+  return D.7337;
+
+}
+
+
+Dem_SelectExtendedDataRecord (uint8 ClientId, uint8 ExtendedDataNumber)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7298;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.14_1 = Dem_InitializationState;
+  if (Dem_InitializationState.14_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 32);
+  goto <bb 22>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 16);
+  goto <bb 22>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _2 = ExtendedDataNumber + 16;
+  if (_2 <= 13)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 18);
+  goto <bb 22>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _3 = DTCSelection.SelectorStatus;
+  if (_3 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 186, 64);
+  goto <bb 21>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Dem_DoDTCSelection (ClientId, &EventId);
+  _5 = (int) _4;
+  switch (_5) <default: <L26> [INV], case 2: <L16> [INV], case 3: <L18> [INV], case 4: <L16> [INV], case 5: <L9> [INV]>
+
+  <bb 12> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  _6 = (int) ClientId;
+  Dem_RecordSelection[_6].SelectedRecNum = ExtendedDataNumber;
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber == 255)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) ClientId;
+  Dem_RecordSelection[_7].NextRecNum = 1;
+  goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (ExtendedDataNumber == 254)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) ClientId;
+  Dem_RecordSelection[_8].NextRecNum = 144;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) ClientId;
+  Dem_RecordSelection[_9].NextRecNum = ExtendedDataNumber;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) ClientId;
+  Dem_RecordSelection[_10].Status = 2;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  Result = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [INV]
+
+  <bb 19> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  Result = 9;
+  # DEBUG BEGIN_STMT
+
+  <bb 20> :
+<L26>:
+  EventId = {CLOBBER};
+
+  <bb 21> :
+  DTCSelection = {CLOBBER};
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7298 = Result;
+  return D.7298;
+
+}
+
+
+Dem_SelectFreezeFrameData (uint8 ClientId, uint8 RecordNumber)
+{
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7277;
+  uint8 iftmp.13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.12_1 = Dem_InitializationState;
+  if (Dem_InitializationState.12_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 32);
+  goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 16);
+  goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 185, 64);
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId, &EventId);
+  _4 = (int) _3;
+  switch (_4) <default: <L13> [INV], case 2: <L10> [INV], case 3: <L12> [INV], case 4: <L10> [INV], case 5: <L6> [INV]>
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _5 = (int) ClientId;
+  Dem_RecordSelection[_5].SelectedRecNum = RecordNumber;
+  # DEBUG BEGIN_STMT
+  if (RecordNumber != 255)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.13 = RecordNumber;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.13 = 0;
+
+  <bb 12> :
+  _6 = (int) ClientId;
+  Dem_RecordSelection[_6].NextRecNum = iftmp.13;
+  # DEBUG BEGIN_STMT
+  _7 = (int) ClientId;
+  Dem_RecordSelection[_7].Status = 1;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 13> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  Result = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 14> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  Result = 9;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Result = 8;
+  # DEBUG BEGIN_STMT
+
+  <bb 16> :
+  EventId = {CLOBBER};
+
+  <bb 17> :
+  DTCSelection = {CLOBBER};
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7277 = Result;
+  return D.7277;
+
+}
+
+
+Dem_ResetDataRecordSelector (uint8 ClientId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClientId;
+  Dem_RecordSelection[_1].Status = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_InitDataRecordSelector ()
+{
+  uint8 ClientId;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ClientId = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ClientId;
+  Dem_RecordSelection[_1].Status = 0;
+  # DEBUG BEGIN_STMT
+  ClientId.11_2 = ClientId;
+  ClientId = ClientId.11_2 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId <= 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dem_EnableDTCRecordUpdate (uint8 ClientId)
+{
+  Dem_EntryDataType * const AgingCounter;
+  Dem_SizeEvMemEntryType EvMemEntryIdx;
+  boolean AgedEventFlag;
+  struct Dem_EventMemoryEntryType * EvMemEntry;
+  Dem_EventIdType LockedEvId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7262;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.5_1 = Dem_InitializationState;
+  if (Dem_InitializationState.5_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 32);
+  goto <bb 23>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 16);
+  goto <bb 23>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 64);
+  goto <bb 22>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  AgedEventFlag = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  LockedEvId = Dem_EvIdOfLockedMemoryEntry;
+  # DEBUG BEGIN_STMT
+  if (LockedEvId == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+  goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate.6_3 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (ClientId != Dem_ClientIdLockingDTCRecordUpdate.6_3)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = 0;
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = 4;
+  # DEBUG BEGIN_STMT
+  _4 = Dem_GbiNumAgingCycles (LockedEvId);
+  if (_4 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _5 = Dem_SearchForEntry (LockedEvId, &EvMemEntry, &EvMemEntryIdx);
+  if (_5 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  EvMemEntry.7_6 = EvMemEntry;
+  AgingCounter = Dem_IntValEntryData (EvMemEntry.7_6);
+  # DEBUG BEGIN_STMT
+  _7 = *AgingCounter;
+  if (_7 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  AgedEventFlag = 1;
+  # DEBUG BEGIN_STMT
+  EvMemEntry.8_8 = EvMemEntry;
+  Dem_ClearAgedEventEntry (LockedEvId, EvMemEntry.8_8);
+  # DEBUG BEGIN_STMT
+  EvMemEntry.9_9 = EvMemEntry;
+  EvMemEntryIdx.10_10 = EvMemEntryIdx;
+  Dem_CheckForImmediateEntryStorage (LockedEvId, EvMemEntry.9_9, EvMemEntryIdx.10_10, 0);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Result == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (AgedEventFlag == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dem_CheckForTriggerNvmWriteGateEntry ();
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (Result == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 27, 64);
+
+  <bb 21> :
+  EvMemEntry = {CLOBBER};
+  EvMemEntryIdx = {CLOBBER};
+
+  <bb 22> :
+  DTCSelection = {CLOBBER};
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7262 = Result;
+  return D.7262;
+
+}
+
+
+Dem_DisableDTCRecordUpdate (uint8 ClientId)
+{
+  const Dem_EventIdType MasterEventId;
+  Dem_EventIdType EventId;
+  struct Dem_DTCSelectionType DTCSelection;
+  Std_ReturnType Result;
+  Std_ReturnType D.7232;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Result = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.0_1 = Dem_InitializationState;
+  if (Dem_InitializationState.0_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 32);
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (ClientId > 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 16);
+  goto <bb 20>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_GetDTCSelection (ClientId, &DTCSelection);
+  # DEBUG BEGIN_STMT
+  _2 = DTCSelection.SelectorStatus;
+  if (_2 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 64);
+  goto <bb 19>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dem_DoDTCSelection (ClientId, &EventId);
+  _4 = (int) _3;
+  switch (_4) <default: <L26> [INV], case 2: <L6> [INV], case 3: <L8> [INV], case 4: <L6> [INV], case 5: <L9> [INV]>
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  Result = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [INV]
+
+  <bb 10> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  Result = 9;
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [INV]
+
+  <bb 11> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  MasterEventId = EventId;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry.1_5 = Dem_EvIdOfLockedMemoryEntry;
+  if (Dem_EvIdOfLockedMemoryEntry.1_5 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  Dem_ClientIdLockingDTCRecordUpdate.2_6 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (ClientId != Dem_ClientIdLockingDTCRecordUpdate.2_6)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry.3_7 = Dem_EvIdOfLockedMemoryEntry;
+  if (MasterEventId != Dem_EvIdOfLockedMemoryEntry.3_7)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  Dem_ClientIdLockingDTCRecordUpdate.4_8 = Dem_ClientIdLockingDTCRecordUpdate;
+  if (ClientId == Dem_ClientIdLockingDTCRecordUpdate.4_8)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = ClientId;
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = MasterEventId;
+  # DEBUG BEGIN_STMT
+  Result = 0;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dem_SCHM_DEM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Result == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (54, 0, 26, 64);
+
+  <bb 18> :
+<L26>:
+  EventId = {CLOBBER};
+
+  <bb 19> :
+  DTCSelection = {CLOBBER};
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.7232 = Result;
+  return D.7232;
+
+}
+
+
+Dem_InitEventMemoryProcessor ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_ClientIdLockingDTCRecordUpdate = 4;
+  # DEBUG BEGIN_STMT
+  Dem_EvIdOfLockedMemoryEntry = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

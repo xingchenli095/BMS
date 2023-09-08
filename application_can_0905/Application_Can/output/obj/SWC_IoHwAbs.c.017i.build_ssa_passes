@@ -1,0 +1,57 @@
+SWC_IoHwAbs_SetDiscreteValue (uint32 pdav0, uint32 value)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+LedControl_IO ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_ASR40_RequestComMode (0, 2);
+  # DEBUG BEGIN_STMT
+  Count.0_1 = Count;
+  _2 = Count.0_1 + 1;
+  Count = _2;
+  # DEBUG BEGIN_STMT
+  flag.1_3 = flag;
+  if (flag.1_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dio_WriteChannel (8, 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dio_WriteChannel (8, 0);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Count.2_4 = Count;
+  if (Count.2_4 == 50)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  flag.3_5 = flag;
+  _6 = ~flag.3_5;
+  flag = _6;
+  # DEBUG BEGIN_STMT
+  Count = 0;
+
+  <bb 7> :
+  return;
+
+}
+
+

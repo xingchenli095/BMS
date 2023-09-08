@@ -1,0 +1,99 @@
+Power_Ip_DCM_GPR_GlobalPadkeepingConfig (uint8 Config)
+{
+  uint32 TempValue;
+  struct DCM_GPR_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  struct DCM_GPR_Type * _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TempValue_6 = 0;
+  # DEBUG TempValue => TempValue_6
+  # DEBUG BEGIN_STMT
+  _1 = 1076543488B;
+  TempValue_8 ={v} _1->DCMRWF1;
+  # DEBUG TempValue => TempValue_8
+  # DEBUG BEGIN_STMT
+  TempValue_9 = TempValue_8 & 4294901759;
+  # DEBUG TempValue => TempValue_9
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) Config_10(D);
+  _3 = _2 << 16;
+  _4 = _3 & 65536;
+  TempValue_11 = TempValue_9 | _4;
+  # DEBUG TempValue => TempValue_11
+  # DEBUG BEGIN_STMT
+  _5 = 1076543488B;
+  _5->DCMRWF1 ={v} TempValue_11;
+  return;
+
+}
+
+
+Power_Ip_DCM_GPR_Config (const struct Power_Ip_DCM_GPR_ConfigType * ConfigPtr)
+{
+  uint32 TempValue;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  struct DCM_GPR_Type * _6;
+  long unsigned int _7;
+  struct DCM_GPR_Type * _8;
+  long unsigned int _9;
+  struct DCM_GPR_Type * _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TempValue_13 = 0;
+  # DEBUG TempValue => TempValue_13
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_15(D)->DcmGprUnderMcuControl;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = ConfigPtr_15(D)->BootMode;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr_15(D)->BootAddress;
+  _4 = ConfigPtr_15(D)->BootMode;
+  _5 = (long unsigned int) _4;
+  _6 = 1076543488B;
+  _7 = _3 | _5;
+  _6->DCMRWF5 ={v} _7;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = 1076543488B;
+  TempValue_17 ={v} _8->DCMRWF2;
+  # DEBUG TempValue => TempValue_17
+  # DEBUG BEGIN_STMT
+  TempValue_18 = TempValue_17 & 4294967175;
+  # DEBUG TempValue => TempValue_18
+  # DEBUG BEGIN_STMT
+  _9 = ConfigPtr_15(D)->ConfigRegister;
+  TempValue_19 = TempValue_18 | _9;
+  # DEBUG TempValue => TempValue_19
+  # DEBUG BEGIN_STMT
+  _10 = 1076543488B;
+  _10->DCMRWF2 ={v} TempValue_19;
+
+  <bb 6> :
+  return;
+
+}
+
+

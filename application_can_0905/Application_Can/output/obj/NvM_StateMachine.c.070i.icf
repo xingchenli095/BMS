@@ -1,0 +1,406 @@
+Parsed function:NvM_StateMachine_SetNextRequest.part.0
+Parsed function:NvM_ProcessStandardPriorityJob
+Parsed function:NvM_StateMachine_SetNextRequest
+Parsed function:NvM_StateMachine_ProcessJobResult
+Parsed function:NvM_StateMachine_TerminateSubLevel
+Parsed function:NvM_StateMachine_TerminateCurrentLevel
+Parsed function:NvM_StateMachine_RedundantBlockError
+Parsed function:NvM_StateMachine_ProcessRedundantBlock
+Dump after hash based groups
+Congruence classes: 8 (unique hash values: 8), with total: 8 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 8 classes
+
+
+Dump after WPA based types groups
+Congruence classes: 8 (unique hash values: 8), with total: 8 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 8 classes
+
+
+Worklist has been filled with: 4
+Address reference subdivision created: 0 new classes.
+Dump after callgraph-based congruence reduction
+Congruence classes: 8 (unique hash values: 8), with total: 8 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 8 classes
+
+
+Init called for 0 items (0.00%).
+Dump after full equality comparison of groups
+Congruence classes: 8 (unique hash values: 8), with total: 8 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 8 classes
+
+
+Worklist has been filled with: 4
+Address reference subdivision created: 0 new classes.
+Congruence classes: 8 (unique hash values: 8), with total: 8 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 8 classes
+
+
+
+Item count: 8
+Congruent classes before: 8, after: 8
+Average class size before: 1.00, after: 1.00
+Average non-singular class size: 0.00, count: 0
+Equal symbols: 0
+Fraction of visited symbols: 0.00%
+
+NvM_StateMachine_SetNextRequest.part.0 ()
+{
+  boolean IsQueueEmpty;
+  short unsigned int _1;
+  short unsigned int NvM_GlobalBlockNumber.18_2;
+  int _3;
+
+  <bb 4> [local count: 1073741824]:
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = NvM_CalcCrc_PeekElement ();
+  NvM_GlobalBlockNumber = _1;
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel = 1;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentFunctionPtr[1] = NvM_SetRamBlockStatus_Async_CalcCrc_Start;
+  # DEBUG BEGIN_STMT
+  NvM_MirrorRetryCount = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.18_2 = NvM_GlobalBlockNumber;
+  _3 = (int) NvM_GlobalBlockNumber.18_2;
+  NvM_AdminBlockTable[_3].NvMResult = 2;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+
+  <bb 3> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_ProcessStandardPriorityJob ()
+{
+  short unsigned int NvM_GlobalBlockNumber.19_1;
+  int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.19_1 = NvM_GlobalBlockNumber;
+  _2 = (int) NvM_GlobalBlockNumber.19_1;
+  NvM_AdminBlockTable[_2].NvMResult = 0;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_SetNextRequest ();
+  # DEBUG BEGIN_STMT
+  NvM_PreService_Function ();
+  return;
+
+}
+
+
+NvM_StateMachine_SetNextRequest ()
+{
+  boolean IsQueueEmpty;
+  short unsigned int NvM_Queue_IndexStandard.11_1;
+  int _3;
+  short unsigned int _4;
+  void (*<T59e>) (void) _6;
+  unsigned char _7;
+  unsigned char _8;
+  uint8 * _9;
+  short unsigned int NvM_RamBlockCrcCalcCount.16_10;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG IsQueueEmpty => 1
+  # DEBUG BEGIN_STMT
+  SchM_Enter_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_Queue_IndexStandard.11_1 = NvM_Queue_IndexStandard;
+  if (NvM_Queue_IndexStandard.11_1 != 65535)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 3> [local count: 708669604]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel = 1;
+  # DEBUG BEGIN_STMT
+  _3 = (int) NvM_Queue_IndexStandard.11_1;
+  _4 = NvM_Queue_Standard[_3].NvMBlockDescriptorIndex;
+  NvM_GlobalBlockNumber = _4;
+  # DEBUG BEGIN_STMT
+  _6 = NvM_Queue_Standard[_3].NvMRequestAsyncPtr;
+  NvM_CurrentFunctionPtr[1] = _6;
+  # DEBUG BEGIN_STMT
+  _7 = NvM_AdminBlockTable[0].NvMCurrentServiceId;
+  _8 = _7 + 244;
+  if (_8 <= 1)
+    goto <bb 5>; [41.00%]
+  else
+    goto <bb 4>; [59.00%]
+
+  <bb 4> [local count: 418115065]:
+  if (_7 == 25)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 432713659]:
+  # DEBUG BEGIN_STMT
+  NvM_CurrentServiceId = _7;
+
+  <bb 6> [local count: 708669604]:
+  # DEBUG BEGIN_STMT
+  _9 = NvM_Queue_Standard[_3].NvMTempRamBlockDataAddress;
+  NvM_TempRamBlockAddress = _9;
+  # DEBUG BEGIN_STMT
+  # DEBUG IsQueueEmpty => 0
+
+  <bb 7> [local count: 1073741823]:
+  # IsQueueEmpty_11 = PHI <1(2), 0(6)>
+  # DEBUG IsQueueEmpty => IsQueueEmpty_11
+  # DEBUG BEGIN_STMT
+  SchM_Exit_NvM_SCHM_NVM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  NvM_RamBlockCrcCalcCount.16_10 = NvM_RamBlockCrcCalcCount;
+  if (NvM_RamBlockCrcCalcCount.16_10 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 8> [local count: 536870911]:
+  if (IsQueueEmpty_11 == 1)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 10>; [79.76%]
+
+  <bb 9> [local count: 108662672]:
+  NvM_StateMachine_SetNextRequest.part.0 ();
+
+  <bb 10> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_StateMachine_ProcessJobResult ()
+{
+  const MemIf_JobResultType Result;
+  unsigned char _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Result_5 = Fee_GetJobResult ();
+  # DEBUG Result => Result_5
+  # DEBUG BEGIN_STMT
+  if (Result_5 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  _1 = NvM_AdminBlockTable[0].NvMValid;
+  if (_1 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 0;
+  # DEBUG BEGIN_STMT
+  NvM_ResetRedundantBlockDataIndex ();
+  # DEBUG BEGIN_STMT
+  NvM_SetPermanentRamBlockUnchanged ();
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+  goto <bb 10>; [100.00%]
+
+  <bb 5> [local count: 896574424]:
+  # DEBUG BEGIN_STMT
+  if (Result_5 == 3)
+    goto <bb 6>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 6> [local count: 181466663]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel = 0;
+  # DEBUG BEGIN_STMT
+  NvM_ResetRedundantBlockDataIndex ();
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 715107761]:
+  # DEBUG BEGIN_STMT
+  if (Result_5 == 2)
+    goto <bb 8>; [51.12%]
+  else
+    goto <bb 9>; [48.88%]
+
+  <bb 8> [local count: 365563087]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 2;
+  goto <bb 10>; [100.00%]
+
+  <bb 9> [local count: 349544673]:
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_RedundantBlockError ();
+
+  <bb 10> [local count: 1073741824]:
+  return;
+
+}
+
+
+NvM_StateMachine_TerminateSubLevel ()
+{
+  unsigned char NvM_GlobalCallLevel.10_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.10_1 = NvM_GlobalCallLevel;
+  _2 = NvM_GlobalCallLevel.10_1 + 254;
+  NvM_GlobalCallLevel = _2;
+  return;
+
+}
+
+
+NvM_StateMachine_TerminateCurrentLevel ()
+{
+  unsigned char NvM_GlobalCallLevel.8_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.8_1 = NvM_GlobalCallLevel;
+  _2 = NvM_GlobalCallLevel.8_1 + 255;
+  NvM_GlobalCallLevel = _2;
+  return;
+
+}
+
+
+NvM_StateMachine_RedundantBlockError ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.6_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  unsigned int _6;
+  short unsigned int NvM_GlobalBlockNumber.7_7;
+  int _8;
+  unsigned char _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = NvM_AdminBlockTable[0].NvMValid;
+  _2 = _1 + 1;
+  NvM_AdminBlockTable[0].NvMValid = _2;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.6_3 = NvM_CurrentBlockDescriptorPtr;
+  _4 = NvM_CurrentBlockDescriptorPtr.6_3->blockDesc;
+  _5 = _4 >> 7;
+  _6 = _5 & 3;
+  if (_6 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  NvM_GlobalBlockNumber.7_7 = NvM_GlobalBlockNumber;
+  _8 = (int) NvM_GlobalBlockNumber.7_7;
+  _9 = NvM_AdminBlockTable[_8].NvMDatasetBlockIndex;
+  if (_9 == 1)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 73890617]:
+  # DEBUG BEGIN_STMT
+  NvM_ResetRedundantBlockDataIndex ();
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 999851208]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvM_GlobalErrorStatus = 1;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_StateMachine_TerminateCurrentLevel ();
+  return;
+
+}
+
+
+NvM_StateMachine_ProcessRedundantBlock (void (*NvM_CurrentFunctionPtrType) (void) NextState)
+{
+  unsigned char NvM_GlobalCallLevel.0_1;
+  int _2;
+  const struct NvM_BlockDescriptorType * NvM_CurrentBlockDescriptorPtr.1_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  unsigned int _6;
+  short unsigned int NvM_GlobalBlockNumber.2_7;
+  int _8;
+  unsigned char _9;
+  int _10;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalCallLevel.0_1 = NvM_GlobalCallLevel;
+  _2 = (int) NvM_GlobalCallLevel.0_1;
+  NvM_CurrentFunctionPtr[_2] = NextState_13(D);
+  # DEBUG BEGIN_STMT
+  NvM_AdminBlockTable[0].NvMValid = 0;
+  # DEBUG BEGIN_STMT
+  NvM_CurrentBlockDescriptorPtr.1_3 = NvM_CurrentBlockDescriptorPtr;
+  _4 = NvM_CurrentBlockDescriptorPtr.1_3->blockDesc;
+  _5 = _4 >> 7;
+  _6 = _5 & 3;
+  if (_6 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  NvM_GlobalBlockNumber.2_7 = NvM_GlobalBlockNumber;
+  _8 = (int) NvM_GlobalBlockNumber.2_7;
+  NvM_AdminBlockTable[_8].NvMDatasetBlockIndex = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = NvM_GlobalCallLevel.0_1 + 1;
+  NvM_GlobalCallLevel = _9;
+  # DEBUG BEGIN_STMT
+  _10 = (int) _9;
+  NvM_CurrentFunctionPtr[_10] = NextState_13(D);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+

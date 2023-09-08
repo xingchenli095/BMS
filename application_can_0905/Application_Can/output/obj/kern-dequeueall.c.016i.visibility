@@ -1,0 +1,150 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_DequeueAll
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_kernelData/3 (OS_kernelData) @06c63900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DequeueAll/0 (write)
+  Availability: not_available
+  Varpool flags:
+OS_taskPtrs/2 (OS_taskPtrs) @06c638b8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DequeueAll/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_taskActivations/1 (OS_taskActivations) @06c63870
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_DequeueAll/0 (addr)OS_DequeueAll/0 (read)OS_DequeueAll/0 (addr)OS_DequeueAll/0 (addr)OS_DequeueAll/0 (addr)OS_DequeueAll/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_DequeueAll/0 (OS_DequeueAll) @06c88a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_taskActivations/1 (addr)OS_taskActivations/1 (read)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)OS_taskActivations/1 (addr)OS_taskActivations/1 (read)OS_taskPtrs/2 (read)OS_kernelData/3 (write)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+__attribute__((target ("general-regs-only")))
+OS_DequeueAll (const struct os_task_t * tp)
+{
+  os_unsigned_t nAct;
+  os_tasklink_t max;
+  os_tasklink_t min;
+  os_tasklink_t curr;
+  os_tasklink_t prev;
+  os_tasklink_t next;
+  struct os_taskdynamic_t * td;
+  os_tasklink_t * const taskActivations;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations = &OS_taskActivations;
+  # DEBUG BEGIN_STMT
+  td = tp->dynamic;
+  # DEBUG BEGIN_STMT
+  next = OS_taskActivations[0];
+  # DEBUG BEGIN_STMT
+  prev = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  min = tp->linkBase;
+  # DEBUG BEGIN_STMT
+  _1 = tp->maxAct;
+  _2 = (short unsigned int) _1;
+  max = min + _2;
+  # DEBUG BEGIN_STMT
+  _3 = td->nAct;
+  _4 = (unsigned int) _3;
+  nAct = _4 + 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  curr = next;
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) next;
+  _6 = _5 * 2;
+  _7 = &OS_taskActivations + _6;
+  next = *_7;
+  # DEBUG BEGIN_STMT
+  if (curr >= min)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (curr <= max)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned int) prev;
+  _9 = _8 * 2;
+  _10 = &OS_taskActivations + _9;
+  *_10 = next;
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) curr;
+  _12 = _11 * 2;
+  _13 = &OS_taskActivations + _12;
+  *_13 = 0;
+  # DEBUG BEGIN_STMT
+  nAct = nAct + 4294967295;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  prev = curr;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (nAct != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (next != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  td->nAct = 0;
+  # DEBUG BEGIN_STMT
+  td->cAct = 0;
+  # DEBUG BEGIN_STMT
+  _14 = OS_taskActivations[0];
+  _15 = (int) _14;
+  _16 = OS_taskPtrs[_15];
+  OS_kernelData.taskQueueHead = _16;
+  return;
+
+}
+
+

@@ -1,0 +1,144 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalStartScheduleTableSynchron
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_AppIsAccessible/4 (OS_AppIsAccessible) @06c0ad20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalStartScheduleTableSynchron/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c0ac40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalStartScheduleTableSynchron/0 OS_LocalStartScheduleTableSynchron/0 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06be9900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalStartScheduleTableSynchron/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_alarmTableBase/1 (OS_alarmTableBase) @06be98b8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalStartScheduleTableSynchron/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalStartScheduleTableSynchron/0 (OS_LocalStartScheduleTableSynchron) @06c0aa80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_alarmTableBase/1 (read)OS_kernDisableLevel/2 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_AppIsAccessible/4 OS_CORTEXM_IntSetDisablingLevel/3 
+__attribute__((target ("general-regs-only")))
+OS_LocalStartScheduleTableSynchron (const struct os_schedule_t * ss)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  struct os_alarmdynamic_t * ad;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t D.7423;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.0_1 = OS_alarmTableBase;
+  _2 = ss->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  _5 = OS_alarmTableBase.0_1 + _4;
+  ad = _5->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_6 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_6);
+  # DEBUG BEGIN_STMT
+  _7 = ss->app;
+  _8 = OS_AppIsAccessible (_7);
+  if (_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = sd->status;
+  if (_9 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result = 69;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = ad->inUse;
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = 20;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 4294967295;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd->next = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7423 = result;
+  return D.7423;
+
+}
+
+

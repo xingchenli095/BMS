@@ -1,0 +1,52 @@
+__attribute__((target ("general-regs-only")))
+OS_GetTaskMaxRuntime (os_taskid_t t, os_tick_t * out)
+{
+  struct os_taskaccounting_t * ta;
+  const struct os_task_t * ts;
+  os_result_t r;
+  os_result_t D.7424;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  r = 3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_nTasks.0_1 = OS_nTasks;
+  if (t < OS_nTasks.0_1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.1_2 = OS_taskTableBase;
+  _3 = (unsigned int) t;
+  _4 = _3 * 76;
+  ts = OS_taskTableBase.1_2 + _4;
+  # DEBUG BEGIN_STMT
+  ta = ts->accounting;
+  # DEBUG BEGIN_STMT
+  _5 = ts->flags;
+  _6 = (unsigned int) _5;
+  _7 = _6 & 64;
+  if (_7 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = ta->etMax;
+  *out = _8;
+  # DEBUG BEGIN_STMT
+  r = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.7424 = r;
+  return D.7424;
+
+}
+
+

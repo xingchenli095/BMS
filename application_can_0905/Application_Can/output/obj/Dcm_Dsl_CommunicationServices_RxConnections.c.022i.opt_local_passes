@@ -1,0 +1,1137 @@
+Dcm_Dsl_RxConnectionInit ()
+{
+  uint16_least RxConnectionIndex;
+  short unsigned int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_4 = 0;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RxConnectionIndex_2;
+  Dcm_Dsl_RxConnectionInitSingleRxConnection (_1);
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_7 = RxConnectionIndex_2 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_7
+
+  <bb 4> :
+  # RxConnectionIndex_2 = PHI <RxConnectionIndex_4(2), RxConnectionIndex_7(3)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_2
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_2 <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_RxConnectionInitSingleRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex)
+{
+  int _1;
+  int _2;
+  int _3;
+  int _4;
+  int _5;
+  int _6;
+  int _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_1].RequestType = 0;
+  # DEBUG BEGIN_STMT
+  _2 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_2].Buffer.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  _3 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_3].Buffer.BufferPtr = 0B;
+  # DEBUG BEGIN_STMT
+  _4 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_4].ExpectedRxLength = 0;
+  # DEBUG BEGIN_STMT
+  _5 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_5].Buffer.Size = 0;
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_6].Buffer.FilledLength = 0;
+  # DEBUG BEGIN_STMT
+  _7 = (int) RxConnectionIndex_8(D);
+  Dcm_RxConnections[_7].Status = 0;
+  return;
+
+}
+
+
+Dcm_Dsl_AllocateRxBuffer (Dcm_BufferUserType RxConnectionId, PduLengthType RequestedSize, Dcm_RequestTypeType * RequestType, struct Dcm_BufferType * Buffer)
+{
+  Dcm_RequestTypeType LocalRequestType;
+  BufReq_ReturnType BufferAllocationResult;
+  int _1;
+  long unsigned int _2;
+  BufReq_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_6 = 1;
+  # DEBUG BufferAllocationResult => BufferAllocationResult_6
+  # DEBUG BEGIN_STMT
+  LocalRequestType_9 = *RequestType_8(D);
+  # DEBUG LocalRequestType => LocalRequestType_9
+  # DEBUG BEGIN_STMT
+  _1 = (int) LocalRequestType_9;
+  switch (_1) <default: <L13> [INV], case 1 ... 2: <L0> [INV], case 6 ... 7: <L8> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) RequestedSize_14(D);
+  BufferAllocationResult_16 = Dcm_Dsl_BufferAllocate (RxConnectionId_10(D), 1, _2, Buffer_11(D));
+  # DEBUG BufferAllocationResult => BufferAllocationResult_16
+  # DEBUG BEGIN_STMT
+  if (BufferAllocationResult_16 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BufferAllocationResult_16 == 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_19 = Dcm_Dsl_BufferAllocate (RxConnectionId_10(D), 3, 2, Buffer_11(D));
+  # DEBUG BufferAllocationResult => BufferAllocationResult_19
+  # DEBUG BEGIN_STMT
+  LocalRequestType_20 = 6;
+  # DEBUG LocalRequestType => LocalRequestType_20
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  LocalRequestType_17 = 17;
+  # DEBUG LocalRequestType => LocalRequestType_17
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_13 = Dcm_Dsl_BufferAllocate (RxConnectionId_10(D), 3, 2, Buffer_11(D));
+  # DEBUG BufferAllocationResult => BufferAllocationResult_13
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # BufferAllocationResult_3 = PHI <BufferAllocationResult_19(5), BufferAllocationResult_13(7), BufferAllocationResult_6(2), BufferAllocationResult_16(3), BufferAllocationResult_16(6)>
+  # LocalRequestType_4 = PHI <LocalRequestType_20(5), LocalRequestType_9(7), LocalRequestType_9(2), LocalRequestType_9(3), LocalRequestType_17(6)>
+<L13>:
+  # DEBUG LocalRequestType => LocalRequestType_4
+  # DEBUG BufferAllocationResult => BufferAllocationResult_3
+  # DEBUG BEGIN_STMT
+  *RequestType_8(D) = LocalRequestType_4;
+  # DEBUG BEGIN_STMT
+  _22 = BufferAllocationResult_3;
+  return _22;
+
+}
+
+
+Dcm_Dsl_SetupRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex, Dcm_RequestTypeType RequestType, struct Dcm_BufferType Buffer, PduLengthType ExpectedRxLength)
+{
+  int _1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  Dcm_MsgItemType * _5;
+  int _6;
+  int _7;
+  long unsigned int _8;
+  int _9;
+  int _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex_11(D);
+  Dcm_RxConnections[_1].RequestType = RequestType_13(D);
+  # DEBUG BEGIN_STMT
+  _2 = (int) RxConnectionIndex_11(D);
+  _3 = Buffer.BufferId;
+  Dcm_RxConnections[_2].Buffer.BufferId = _3;
+  # DEBUG BEGIN_STMT
+  _4 = (int) RxConnectionIndex_11(D);
+  _5 = Buffer.BufferPtr;
+  Dcm_RxConnections[_4].Buffer.BufferPtr = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionIndex_11(D);
+  Dcm_RxConnections[_6].ExpectedRxLength = ExpectedRxLength_17(D);
+  # DEBUG BEGIN_STMT
+  _7 = (int) RxConnectionIndex_11(D);
+  _8 = Buffer.Size;
+  Dcm_RxConnections[_7].Buffer.Size = _8;
+  # DEBUG BEGIN_STMT
+  _9 = (int) RxConnectionIndex_11(D);
+  Dcm_RxConnections[_9].Buffer.FilledLength = 0;
+  # DEBUG BEGIN_STMT
+  _10 = (int) RxConnectionIndex_11(D);
+  Dcm_RxConnections[_10].Status = 1;
+  return;
+
+}
+
+
+Dcm_Dsl_RxConnectionCancelReceive (Dcm_BufferUserType RxConnectionId)
+{
+  boolean PduRCancelReceiveCallNecessary;
+  int _1;
+  unsigned char _2;
+  int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  PduRCancelReceiveCallNecessary_7 = 0;
+  # DEBUG PduRCancelReceiveCallNecessary => PduRCancelReceiveCallNecessary_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_10(D);
+  _2 = Dcm_RxConnections[_1].Status;
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) RxConnectionId_10(D);
+  Dcm_RxConnections[_3].Status = 2;
+  # DEBUG BEGIN_STMT
+  PduRCancelReceiveCallNecessary_12 = 1;
+  # DEBUG PduRCancelReceiveCallNecessary => PduRCancelReceiveCallNecessary_12
+
+  <bb 4> :
+  # PduRCancelReceiveCallNecessary_4 = PHI <PduRCancelReceiveCallNecessary_7(2), PduRCancelReceiveCallNecessary_12(3)>
+  # DEBUG PduRCancelReceiveCallNecessary => PduRCancelReceiveCallNecessary_4
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (PduRCancelReceiveCallNecessary_4 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  PduR_DcmCancelReceive (RxConnectionId_10(D));
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RxConnectionRxIndication (Dcm_BufferUserType RxConnectionId, Dcm_RequestTypeType RequestType, struct Dcm_BufferType RequestBuffer)
+{
+  short unsigned int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = RequestBuffer.BufferId;
+  Dcm_Dsl_BufferGive (RxConnectionId_3(D), 14, _1);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProcessRequest (RxConnectionId_3(D), RequestType_5(D), RequestBuffer);
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RxConnectionGetRxPduIdInformation (PduIdType RxPduId, struct Dcm_RxPduIdInfoType * RxPduIdInfo)
+{
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  int _9;
+  unsigned char _10;
+  short unsigned int _11;
+  short unsigned int _12;
+  int _13;
+  unsigned char _14;
+  int _15;
+  unsigned char _16;
+  int _17;
+  unsigned char _18;
+  int _19;
+  long unsigned int _20;
+  int _21;
+  unsigned char _22;
+  int _23;
+  unsigned char _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxPduIdInfo_26(D)->RxConnectionIndex = RxPduId_27(D);
+  # DEBUG BEGIN_STMT
+  RxPduIdInfo_26(D)->RxConnectionId = RxPduId_27(D);
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxPduId_27(D);
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  RxPduIdInfo_26(D)->MainConnectionIndex = _2;
+  # DEBUG BEGIN_STMT
+  _3 = RxPduIdInfo_26(D)->MainConnectionIndex;
+  _4 = (int) _3;
+  _5 = Dcm_MainConnectionConfig[_4].ProtocolIndex;
+  RxPduIdInfo_26(D)->ProtocolIndex = _5;
+  # DEBUG BEGIN_STMT
+  _6 = RxPduIdInfo_26(D)->ProtocolIndex;
+  _7 = (short unsigned int) _6;
+  _8 = _7 + 12;
+  RxPduIdInfo_26(D)->ProtocolId = _8;
+  # DEBUG BEGIN_STMT
+  _9 = (int) RxPduId_27(D);
+  _10 = Dcm_RxPduIdConfig[_9].BufferIndex;
+  _11 = (short unsigned int) _10;
+  RxPduIdInfo_26(D)->RxBufferId = _11;
+  # DEBUG BEGIN_STMT
+  _12 = RxPduId_27(D) + 6;
+  RxPduIdInfo_26(D)->DefaultRxBufferId = _12;
+  # DEBUG BEGIN_STMT
+  _13 = (int) RxPduId_27(D);
+  _14 = Dcm_RxPduIdConfig[_13].AddressingType;
+  RxPduIdInfo_26(D)->AddressingType = _14;
+  # DEBUG BEGIN_STMT
+  _15 = (int) RxPduId_27(D);
+  _16 = Dcm_RxPduIdConfig[_15].ChannelIdIndex;
+  RxPduIdInfo_26(D)->ChannelIdIndex = _16;
+  # DEBUG BEGIN_STMT
+  _17 = (int) RxPduId_27(D);
+  _18 = Dcm_RxPduIdConfig[_17].BufferIndex;
+  _19 = (int) _18;
+  _20 = Dcm_BufferConfig[_19].Size;
+  RxPduIdInfo_26(D)->RxBufferSize = _20;
+  # DEBUG BEGIN_STMT
+  _21 = (int) RxPduId_27(D);
+  _22 = Dcm_RxPduIdConfig[_21].ChannelIdIndex;
+  _23 = (int) _22;
+  _24 = Dcm_RxComMChannelIDs[_23];
+  RxPduIdInfo_26(D)->ComMChannelId = _24;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_RxConnectionGetState (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_RxConnectionStatusType RxConnectionStatus;
+  Dcm_RxConnectionIndexType RxConnectionIndex;
+  int _1;
+  Dcm_RxConnectionStatusType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_3 = RxConnectionId_2(D);
+  # DEBUG RxConnectionIndex => RxConnectionIndex_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex_3;
+  RxConnectionStatus_5 = Dcm_RxConnections[_1].Status;
+  # DEBUG RxConnectionStatus => RxConnectionStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = RxConnectionStatus_5;
+  return _6;
+
+}
+
+
+Dcm_TpRxIndication (PduIdType DcmRxPduId, NotifResultType Result)
+{
+  struct Dcm_BufferType ReceivedBuffer;
+  unsigned char Dcm_Initialized.4_1;
+  int _2;
+  short unsigned int _3;
+  long unsigned int _4;
+  int _5;
+  long unsigned int _6;
+  int _7;
+  short unsigned int _8;
+  int _9;
+  unsigned char _10;
+  unsigned char _11;
+  int _12;
+  unsigned char _13;
+  int _14;
+  unsigned char _15;
+  int _16;
+  unsigned char _17;
+  int _18;
+  unsigned char _19;
+  unsigned char _20;
+  int _21;
+  long unsigned int _22;
+  int _23;
+  long unsigned int _24;
+  int _25;
+  long unsigned int _26;
+  int _27;
+  long unsigned int _28;
+  int _29;
+  Dcm_MsgItemType * _30;
+  int _31;
+  short unsigned int _32;
+  short unsigned int _33;
+  short unsigned int _34;
+  int _35;
+  unsigned char _36;
+  int _37;
+  short unsigned int _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.4_1 = Dcm_Initialized;
+  if (Dcm_Initialized.4_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 3, 5);
+  goto <bb 26>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmRxPduId_44(D) > 5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Result_45(D) > 120)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 3, 6);
+  goto <bb 26>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (Result_45(D) == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _2 = (int) DcmRxPduId_44(D);
+  _3 = Dcm_RxConnections[_2].ExpectedRxLength;
+  _4 = (long unsigned int) _3;
+  _5 = (int) DcmRxPduId_44(D);
+  _6 = Dcm_RxConnections[_5].Buffer.FilledLength;
+  if (_4 != _6)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _7 = (int) DcmRxPduId_44(D);
+  _8 = Dcm_RxConnections[_7].Buffer.BufferId;
+  Dcm_Dsl_BufferInitializeSingleBuffer (DcmRxPduId_44(D), _8);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_IncomingReceptionFinished (DcmRxPduId_44(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionInitSingleRxConnection (DcmRxPduId_44(D));
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 3, 10);
+  goto <bb 26>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) DcmRxPduId_44(D);
+  _10 = Dcm_RxConnections[_9].RequestType;
+  _11 = _10 + 255;
+  if (_11 > 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  _12 = (int) DcmRxPduId_44(D);
+  _13 = Dcm_RxConnections[_12].RequestType;
+  if (_13 != 6)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _14 = (int) DcmRxPduId_44(D);
+  _15 = Dcm_RxConnections[_14].RequestType;
+  if (_15 != 7)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 3, 6);
+  goto <bb 26>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Result_45(D) == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 15> :
+  _16 = (int) DcmRxPduId_44(D);
+  _17 = Dcm_RxConnections[_16].Status;
+  if (_17 != 2)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = (int) DcmRxPduId_44(D);
+  _19 = Dcm_RxConnections[_18].RequestType;
+  _20 = _19 + 250;
+  if (_20 <= 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  ReceivedBuffer.Size = 2;
+  # DEBUG BEGIN_STMT
+  _21 = (int) DcmRxPduId_44(D);
+  _22 = Dcm_RxConnections[_21].Buffer.FilledLength;
+  if (_22 > 2)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  ReceivedBuffer.FilledLength = 2;
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _23 = (int) DcmRxPduId_44(D);
+  _24 = Dcm_RxConnections[_23].Buffer.FilledLength;
+  ReceivedBuffer.FilledLength = _24;
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _25 = (int) DcmRxPduId_44(D);
+  _26 = Dcm_RxConnections[_25].Buffer.Size;
+  ReceivedBuffer.Size = _26;
+  # DEBUG BEGIN_STMT
+  _27 = (int) DcmRxPduId_44(D);
+  _28 = Dcm_RxConnections[_27].Buffer.FilledLength;
+  ReceivedBuffer.FilledLength = _28;
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _29 = (int) DcmRxPduId_44(D);
+  _30 = Dcm_RxConnections[_29].Buffer.BufferPtr;
+  ReceivedBuffer.BufferPtr = _30;
+  # DEBUG BEGIN_STMT
+  _31 = (int) DcmRxPduId_44(D);
+  _32 = Dcm_RxConnections[_31].Buffer.BufferId;
+  ReceivedBuffer.BufferId = _32;
+  # DEBUG BEGIN_STMT
+  _33 = ReceivedBuffer.BufferId;
+  if (_33 <= 5)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _34 = ReceivedBuffer.BufferId;
+  Dcm_Dsl_BufferChangeState (DcmRxPduId_44(D), 2, _34);
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _35 = (int) DcmRxPduId_44(D);
+  _36 = Dcm_RxConnections[_35].RequestType;
+  Dcm_Dsl_RxConnectionRxIndication (DcmRxPduId_44(D), _36, ReceivedBuffer);
+  ReceivedBuffer ={v} {CLOBBER};
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  _37 = (int) DcmRxPduId_44(D);
+  _38 = Dcm_RxConnections[_37].Buffer.BufferId;
+  Dcm_Dsl_BufferInitializeSingleBuffer (DcmRxPduId_44(D), _38);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_IncomingReceptionFinished (DcmRxPduId_44(D));
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionInitSingleRxConnection (DcmRxPduId_44(D));
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_RxIndication (PduIdType DcmRxPduId, struct PduInfoType * PduInfoPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_CopyRxData (PduIdType DcmRxPduId, const struct PduInfoType * PduInfoPtr, PduLengthType * RxBufferSizePtr)
+{
+  PduLengthType AmountToCopy;
+  BufReq_ReturnType DataCopyResult;
+  unsigned char Dcm_Initialized.3_1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  unsigned char _8;
+  int _9;
+  unsigned char _10;
+  short unsigned int _11;
+  uint8 * _12;
+  int _13;
+  long unsigned int _14;
+  short unsigned int _15;
+  int _16;
+  long unsigned int _17;
+  short unsigned int _18;
+  short unsigned int _19;
+  int _20;
+  long unsigned int _21;
+  short unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  int _25;
+  short unsigned int _26;
+  long unsigned int _27;
+  int _28;
+  unsigned char _29;
+  unsigned char _30;
+  int _31;
+  long unsigned int _32;
+  int _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  short unsigned int _36;
+  long unsigned int _37;
+  int _38;
+  long unsigned int _39;
+  short unsigned int _40;
+  int _41;
+  unsigned char _42;
+  unsigned char _43;
+  int _44;
+  Dcm_MsgItemType * _45;
+  int _46;
+  long unsigned int _47;
+  Dcm_MsgItemType * _48;
+  uint8 * _49;
+  long unsigned int _50;
+  int _51;
+  long unsigned int _52;
+  short unsigned int _53;
+  long unsigned int _54;
+  int _55;
+  long unsigned int _56;
+  int _57;
+  long unsigned int _58;
+  short unsigned int _59;
+  int _60;
+  long unsigned int _61;
+  short unsigned int _62;
+  short unsigned int _63;
+  int _64;
+  BufReq_ReturnType _95;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_72 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_72
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.3_1 = Dcm_Initialized;
+  if (Dcm_Initialized.3_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 2, 5);
+  goto <bb 33>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmRxPduId_74(D) > 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 2, 6);
+  goto <bb 33>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_75(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (RxBufferSizePtr_76(D) == 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 2, 7);
+  goto <bb 33>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) DcmRxPduId_74(D);
+  _3 = Dcm_RxConnections[_2].Status;
+  if (_3 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 10> :
+  _4 = (int) DcmRxPduId_74(D);
+  _5 = Dcm_RxConnections[_4].RequestType;
+  _6 = _5 + 255;
+  if (_6 <= 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _7 = (int) DcmRxPduId_74(D);
+  _8 = Dcm_RxConnections[_7].RequestType;
+  if (_8 == 6)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _9 = (int) DcmRxPduId_74(D);
+  _10 = Dcm_RxConnections[_9].RequestType;
+  if (_10 == 7)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _11 = PduInfoPtr_75(D)->SduLength;
+  if (_11 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  _12 = PduInfoPtr_75(D)->SduDataPtr;
+  if (_12 == 0B)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_87 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_87
+  # DEBUG BEGIN_STMT
+  _13 = (int) DcmRxPduId_74(D);
+  _14 = Dcm_RxConnections[_13].Buffer.Size;
+  _15 = (short unsigned int) _14;
+  _16 = (int) DcmRxPduId_74(D);
+  _17 = Dcm_RxConnections[_16].Buffer.FilledLength;
+  _18 = (short unsigned int) _17;
+  _19 = _15 - _18;
+  *RxBufferSizePtr_76(D) = _19;
+  goto <bb 30>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _20 = (int) DcmRxPduId_74(D);
+  _21 = Dcm_RxConnections[_20].Buffer.FilledLength;
+  _22 = PduInfoPtr_75(D)->SduLength;
+  _23 = (long unsigned int) _22;
+  _24 = _21 + _23;
+  _25 = (int) DcmRxPduId_74(D);
+  _26 = Dcm_RxConnections[_25].ExpectedRxLength;
+  _27 = (long unsigned int) _26;
+  if (_24 <= _27)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = (int) DcmRxPduId_74(D);
+  _29 = Dcm_RxConnections[_28].RequestType;
+  _30 = _29 + 250;
+  if (_30 <= 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _31 = (int) DcmRxPduId_74(D);
+  _32 = Dcm_RxConnections[_31].Buffer.FilledLength;
+  if (_32 <= 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _33 = (int) DcmRxPduId_74(D);
+  _34 = Dcm_RxConnections[_33].Buffer.FilledLength;
+  _35 = 2 - _34;
+  _36 = PduInfoPtr_75(D)->SduLength;
+  _37 = (long unsigned int) _36;
+  if (_35 < _37)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _38 = (int) DcmRxPduId_74(D);
+  _39 = Dcm_RxConnections[_38].Buffer.FilledLength;
+  _40 = (short unsigned int) _39;
+  AmountToCopy_82 = 2 - _40;
+  # DEBUG AmountToCopy => AmountToCopy_82
+  goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  AmountToCopy_81 = PduInfoPtr_75(D)->SduLength;
+  # DEBUG AmountToCopy => AmountToCopy_81
+  goto <bb 24>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  AmountToCopy_80 = 0;
+  # DEBUG AmountToCopy => AmountToCopy_80
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  AmountToCopy_79 = PduInfoPtr_75(D)->SduLength;
+  # DEBUG AmountToCopy => AmountToCopy_79
+
+  <bb 24> :
+  # AmountToCopy_67 = PHI <AmountToCopy_80(22), AmountToCopy_79(23), AmountToCopy_81(21), AmountToCopy_82(20)>
+  # DEBUG AmountToCopy => AmountToCopy_67
+  # DEBUG BEGIN_STMT
+  _41 = (int) DcmRxPduId_74(D);
+  _42 = Dcm_RxConnections[_41].RequestType;
+  _43 = _42 + 250;
+  if (_43 > 1)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 25> :
+  if (AmountToCopy_67 != 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  _44 = (int) DcmRxPduId_74(D);
+  _45 = Dcm_RxConnections[_44].Buffer.BufferPtr;
+  _46 = (int) DcmRxPduId_74(D);
+  _47 = Dcm_RxConnections[_46].Buffer.FilledLength;
+  _48 = _45 + _47;
+  _49 = PduInfoPtr_75(D)->SduDataPtr;
+  _50 = (long unsigned int) AmountToCopy_67;
+  TS_MemCpy32 (_48, _49, _50);
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  _51 = (int) DcmRxPduId_74(D);
+  _52 = Dcm_RxConnections[_51].Buffer.FilledLength;
+  _53 = PduInfoPtr_75(D)->SduLength;
+  _54 = (long unsigned int) _53;
+  _55 = (int) DcmRxPduId_74(D);
+  _56 = _52 + _54;
+  Dcm_RxConnections[_55].Buffer.FilledLength = _56;
+  # DEBUG BEGIN_STMT
+  _57 = (int) DcmRxPduId_74(D);
+  _58 = Dcm_RxConnections[_57].Buffer.Size;
+  _59 = (short unsigned int) _58;
+  _60 = (int) DcmRxPduId_74(D);
+  _61 = Dcm_RxConnections[_60].Buffer.FilledLength;
+  _62 = (short unsigned int) _61;
+  _63 = _59 - _62;
+  *RxBufferSizePtr_76(D) = _63;
+  # DEBUG BEGIN_STMT
+  DataCopyResult_86 = 0;
+  # DEBUG DataCopyResult => DataCopyResult_86
+  goto <bb 30>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  DataCopyResult_78 = 1;
+  # DEBUG DataCopyResult => DataCopyResult_78
+  goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  *RxBufferSizePtr_76(D) = 0;
+
+  <bb 30> :
+  # DataCopyResult_65 = PHI <DataCopyResult_86(27), DataCopyResult_72(29), DataCopyResult_87(15), DataCopyResult_78(28)>
+  # DEBUG DataCopyResult => DataCopyResult_65
+  # DEBUG BEGIN_STMT
+  if (DataCopyResult_65 != 0)
+    goto <bb 31>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _64 = (int) DcmRxPduId_74(D);
+  Dcm_RxConnections[_64].Status = 2;
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 33> :
+  # DataCopyResult_66 = PHI <DataCopyResult_72(3), DataCopyResult_72(5), DataCopyResult_72(8), DataCopyResult_65(32)>
+  # DEBUG DataCopyResult => DataCopyResult_66
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _95 = DataCopyResult_66;
+  return _95;
+
+}
+
+
+Dcm_StartOfReception (PduIdType DcmRxPduId, PduLengthType TpSduLength, PduLengthType * RxBufferSizePtr)
+{
+  Dcm_RequestTypeType AcceptAs;
+  struct Dcm_BufferType RxBuffer;
+  BufReq_ReturnType BufferAllocationResult;
+  unsigned char Dcm_Initialized.0_1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char AcceptAs.1_5;
+  unsigned char AcceptAs.2_6;
+  int _7;
+  unsigned char _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  long unsigned int _11;
+  short unsigned int _12;
+  BufReq_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_19 = 1;
+  # DEBUG BufferAllocationResult => BufferAllocationResult_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Initialized.0_1 = Dcm_Initialized;
+  if (Dcm_Initialized.0_1 != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 0, 5);
+  goto <bb 18>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (DcmRxPduId_21(D) > 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 0, 6);
+  goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (RxBufferSizePtr_22(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 0, 7);
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) DcmRxPduId_21(D);
+  _3 = Dcm_RxConnections[_2].Status;
+  if (_3 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 0, 6);
+  goto <bb 18>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (TpSduLength_23(D) != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_Dsl_Supervisor_RequestRxPermission (DcmRxPduId_21(D), TpSduLength_23(D), 1);
+  AcceptAs = _4;
+  # DEBUG BEGIN_STMT
+  AcceptAs.1_5 = AcceptAs;
+  if (AcceptAs.1_5 != 17)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_32 = Dcm_Dsl_AllocateRxBuffer (DcmRxPduId_21(D), TpSduLength_23(D), &AcceptAs, &RxBuffer);
+  # DEBUG BufferAllocationResult => BufferAllocationResult_32
+  # DEBUG BEGIN_STMT
+  if (BufferAllocationResult_32 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  AcceptAs.2_6 = AcceptAs;
+  Dcm_Dsl_SetupRxConnection (DcmRxPduId_21(D), AcceptAs.2_6, RxBuffer, TpSduLength_23(D));
+  # DEBUG BEGIN_STMT
+  _7 = (int) DcmRxPduId_21(D);
+  _8 = Dcm_RxConnections[_7].RequestType;
+  Dcm_Dsl_Supervisor_IncomingReception (DcmRxPduId_21(D), _8);
+  # DEBUG BEGIN_STMT
+  _9 = RxBuffer.Size;
+  _10 = (short unsigned int) _9;
+  *RxBufferSizePtr_22(D) = _10;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_30 = 1;
+  # DEBUG BufferAllocationResult => BufferAllocationResult_30
+
+  <bb 15> :
+  # BufferAllocationResult_13 = PHI <BufferAllocationResult_32(13), BufferAllocationResult_30(14), BufferAllocationResult_32(12)>
+  # DEBUG BufferAllocationResult => BufferAllocationResult_13
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  AcceptAs ={v} {CLOBBER};
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  BufferAllocationResult_24 = 0;
+  # DEBUG BufferAllocationResult => BufferAllocationResult_24
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferGetInfo (DcmRxPduId_21(D), 1, &RxBuffer);
+  # DEBUG BEGIN_STMT
+  _11 = RxBuffer.Size;
+  _12 = (short unsigned int) _11;
+  *RxBufferSizePtr_22(D) = _12;
+
+  <bb 17> :
+  # BufferAllocationResult_14 = PHI <BufferAllocationResult_13(15), BufferAllocationResult_24(16)>
+  # DEBUG BufferAllocationResult => BufferAllocationResult_14
+  RxBuffer ={v} {CLOBBER};
+
+  <bb 18> :
+  # BufferAllocationResult_15 = PHI <BufferAllocationResult_19(3), BufferAllocationResult_19(5), BufferAllocationResult_19(7), BufferAllocationResult_19(9), BufferAllocationResult_14(17)>
+  # DEBUG BufferAllocationResult => BufferAllocationResult_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _43 = BufferAllocationResult_15;
+  return _43;
+
+}
+
+

@@ -1,0 +1,333 @@
+Eb_Intgr_CanTrcv_Device_Init ()
+{
+  struct SIUL2_Type * _1;
+  struct SIUL2_Type * _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076428800B;
+  _1->GPDO84 ={v} 0;
+  # DEBUG BEGIN_STMT
+  TJA1153_EnterConfigurationMode ();
+  # DEBUG BEGIN_STMT
+  TJA1153_ConfigureStandardFilterAndMask (0, 2047);
+  # DEBUG BEGIN_STMT
+  TJA1153_ConfigureExtendedFilterAndMask (0, 536870911);
+  # DEBUG BEGIN_STMT
+  TJA1153_ExitConfigurationlMode ();
+  # DEBUG BEGIN_STMT
+  _2 = 1076428800B;
+  _2->GPDO84 ={v} 1;
+  return;
+
+}
+
+
+TJA1153_ExitConfigurationlMode ()
+{
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Can_au8SduLeavingConfigurationCommand[0] = 113;
+  # DEBUG BEGIN_STMT
+  Can_au8SduLeavingConfigurationCommand[1] = 2;
+  # DEBUG BEGIN_STMT
+  Can_PduInfo = Can_CreatePduInfo (2564423921, 0, 8, &Can_au8SduLeavingConfigurationCommand);
+  # DEBUG BEGIN_STMT
+  _6 = Can_SendFrameAndWaitACK ();
+  return _6;
+
+}
+
+
+TJA1153_ConfigureExtendedFilterAndMask (uint32 ExtendedFilter, uint32 ExtendedMask)
+{
+  Std_ReturnType eStatus;
+  long unsigned int _1;
+  unsigned char _2;
+  unsigned char _3;
+  long unsigned int _4;
+  unsigned char _5;
+  long unsigned int _6;
+  unsigned char _7;
+  unsigned char _8;
+  long unsigned int _9;
+  unsigned char _10;
+  unsigned char _11;
+  long unsigned int _12;
+  unsigned char _13;
+  long unsigned int _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _37;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[0] = 16;
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[1] = 1;
+  # DEBUG BEGIN_STMT
+  _1 = ExtendedMask_20(D) >> 24;
+  _2 = (unsigned char) _1;
+  _3 = _2 | 128;
+  Can_au8SduSpoofingCommand[2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = ExtendedMask_20(D) >> 16;
+  _5 = (unsigned char) _4;
+  Can_au8SduSpoofingCommand[3] = _5;
+  # DEBUG BEGIN_STMT
+  _6 = ExtendedMask_20(D) >> 8;
+  _7 = (unsigned char) _6;
+  Can_au8SduSpoofingCommand[4] = _7;
+  # DEBUG BEGIN_STMT
+  _8 = (unsigned char) ExtendedMask_20(D);
+  Can_au8SduSpoofingCommand[5] = _8;
+  # DEBUG BEGIN_STMT
+  Can_PduInfo = Can_CreatePduInfo (2564423921, 0, 6, &Can_au8SduSpoofingCommand);
+  # DEBUG BEGIN_STMT
+  eStatus_27 = Can_SendFrameAndWaitACK ();
+  # DEBUG eStatus => eStatus_27
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[0] = 16;
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[1] = 2;
+  # DEBUG BEGIN_STMT
+  _9 = ExtendedFilter_30(D) >> 24;
+  _10 = (unsigned char) _9;
+  _11 = _10 | 192;
+  Can_au8SduSpoofingCommand[2] = _11;
+  # DEBUG BEGIN_STMT
+  _12 = ExtendedFilter_30(D) >> 16;
+  _13 = (unsigned char) _12;
+  Can_au8SduSpoofingCommand[3] = _13;
+  # DEBUG BEGIN_STMT
+  _14 = ExtendedFilter_30(D) >> 8;
+  _15 = (unsigned char) _14;
+  Can_au8SduSpoofingCommand[4] = _15;
+  # DEBUG BEGIN_STMT
+  _16 = (unsigned char) ExtendedFilter_30(D);
+  Can_au8SduSpoofingCommand[5] = _16;
+  # DEBUG BEGIN_STMT
+  Can_PduInfo = Can_CreatePduInfo (2564423921, 0, 6, &Can_au8SduSpoofingCommand);
+  # DEBUG BEGIN_STMT
+  _37 = Can_SendFrameAndWaitACK ();
+  eStatus_38 = _37 | eStatus_27;
+  # DEBUG eStatus => eStatus_38
+  # DEBUG BEGIN_STMT
+  _39 = eStatus_38;
+  return _39;
+
+}
+
+
+TJA1153_ConfigureStandardFilterAndMask (uint32 StandardFilter, uint32 StandardMask)
+{
+  long unsigned int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  long unsigned int _5;
+  unsigned char _6;
+  unsigned char _7;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[0] = 16;
+  # DEBUG BEGIN_STMT
+  Can_au8SduSpoofingCommand[1] = 0;
+  # DEBUG BEGIN_STMT
+  _1 = StandardFilter_11(D) >> 8;
+  _2 = (unsigned char) _1;
+  _3 = _2 | 80;
+  Can_au8SduSpoofingCommand[2] = _3;
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned char) StandardFilter_11(D);
+  Can_au8SduSpoofingCommand[3] = _4;
+  # DEBUG BEGIN_STMT
+  _5 = StandardMask_14(D) >> 8;
+  _6 = (unsigned char) _5;
+  Can_au8SduSpoofingCommand[4] = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned char) StandardMask_14(D);
+  Can_au8SduSpoofingCommand[5] = _7;
+  # DEBUG BEGIN_STMT
+  Can_PduInfo = Can_CreatePduInfo (2564423921, 0, 6, &Can_au8SduSpoofingCommand);
+  # DEBUG BEGIN_STMT
+  _19 = Can_SendFrameAndWaitACK ();
+  return _19;
+
+}
+
+
+TJA1153_EnterConfigurationMode ()
+{
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Can_PduInfo = Can_CreatePduInfo (1365, 0, 8, &Can_au8Sdu8bytes);
+  # DEBUG BEGIN_STMT
+  _4 = Can_SendFrameAndWaitACK ();
+  return _4;
+
+}
+
+
+Can_SendFrameAndWaitACK ()
+{
+  unsigned char _1;
+  unsigned char u8TimeOut.7_2;
+  unsigned char u8TimeOut.8_3;
+  unsigned char _4;
+  unsigned char u8TimeOut.9_5;
+  Std_ReturnType _6;
+  Std_ReturnType _12;
+  Std_ReturnType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  u8TimeOut = 9;
+  # DEBUG BEGIN_STMT
+  _1 = Can_Write (14, &Can_PduInfo);
+  if (_1 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Can_DummyDelay (10);
+  # DEBUG BEGIN_STMT
+  u8TimeOut.7_2 = u8TimeOut;
+  u8TimeOut.8_3 = u8TimeOut.7_2;
+  _4 = u8TimeOut.8_3 + 255;
+  u8TimeOut = _4;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  u8TimeOut.9_5 = u8TimeOut;
+  if (u8TimeOut.9_5 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _13 = 0;
+  // predicted unlikely by early return (on trees) predictor.
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = 1;
+  // predicted unlikely by early return (on trees) predictor.
+
+  <bb 7> :
+  # _6 = PHI <_13(5), _12(6)>
+  return _6;
+
+}
+
+
+Can_CreatePduInfo (Can_IdType id, PduIdType swPduHandle, uint8 length, uint8 * sdu)
+{
+  struct Can_PduType PduInfo;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PduInfo.id = id_2(D);
+  # DEBUG BEGIN_STMT
+  PduInfo.swPduHandle = swPduHandle_4(D);
+  # DEBUG BEGIN_STMT
+  PduInfo.length = length_6(D);
+  # DEBUG BEGIN_STMT
+  PduInfo.sdu = sdu_8(D);
+  # DEBUG BEGIN_STMT
+  <retval> = PduInfo;
+  PduInfo ={v} {CLOBBER};
+  return <retval>;
+
+}
+
+
+Can_DummyDelay (uint32 loops)
+{
+  volatile uint32 contor2;
+  volatile uint32 contor1;
+  volatile uint32 data;
+  long unsigned int contor1.0_1;
+  int _2;
+  long unsigned int _3;
+  long unsigned int contor2.1_4;
+  long unsigned int _5;
+  long unsigned int data.2_6;
+  long unsigned int _7;
+  long unsigned int contor1.3_8;
+  long unsigned int _9;
+  long unsigned int contor1.4_10;
+  long unsigned int contor2.5_11;
+  long unsigned int _12;
+  long unsigned int contor2.6_13;
+  long unsigned int _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  data ={v} 2857740885;
+  # DEBUG BEGIN_STMT
+  contor1 ={v} 0;
+  # DEBUG BEGIN_STMT
+  contor2 ={v} loops_19(D);
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  contor1 ={v} 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  contor1.0_1 ={v} contor1;
+  _2 = 1 << contor1.0_1;
+  _3 = (long unsigned int) _2;
+  contor2.1_4 ={v} contor2;
+  _5 = _3 | contor2.1_4;
+  _23 = _5 | 11184810;
+  data.2_6 ={v} data;
+  _7 = _23 ^ data.2_6;
+  data ={v} _7;
+  # DEBUG BEGIN_STMT
+  contor1.3_8 ={v} contor1;
+  _9 = contor1.3_8 + 1;
+  contor1 ={v} _9;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  contor1.4_10 ={v} contor1;
+  if (contor1.4_10 <= 766)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  contor2.5_11 ={v} contor2;
+  _12 = contor2.5_11 + 4294967295;
+  contor2 ={v} _12;
+  # DEBUG BEGIN_STMT
+  contor2.6_13 ={v} contor2;
+  if (contor2.6_13 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+

@@ -1,0 +1,499 @@
+
+IPA constant propagation start:
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_LocalGetAlarm/10:
+  Jump functions of caller  OS_CanWrite/6:
+  Jump functions of caller  OS_Error/3:
+  Jump functions of caller  OS_KernGetAlarm/0:
+
+ Propagating constants:
+
+Not considering OS_KernGetAlarm for cloning; -fipa-cp-clone disabled.
+
+overall_size: 138, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_KernGetAlarm/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [1]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_LocalGetAlarm/10 (OS_LocalGetAlarm) @06ca9a80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetAlarm/0 (161660755 (estimated locally),0.15 per call) 
+  Calls: 
+OS_isrTableBase/9 (OS_isrTableBase) @06cdb9d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_alarmTableBase/8 (OS_alarmTableBase) @06cdb990
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_nAlarms/7 (OS_nAlarms) @06cdb900
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_CanWrite/6 (OS_CanWrite) @06ca99a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetAlarm/0 (451427907 (estimated locally),0.42 per call) 
+  Calls: 
+OS_iecMode/5 (OS_iecMode) @06cdb7e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_svc_GetAlarm/4 (OS_svc_GetAlarm) @06cdb798
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (addr)OS_KernGetAlarm/0 (addr)OS_KernGetAlarm/0 (addr)OS_KernGetAlarm/0 (addr)OS_KernGetAlarm/0 (addr)OS_KernGetAlarm/0 (addr)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Error/3 (OS_Error) @06ca98c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_KernGetAlarm/0 (53348049 (estimated locally),0.05 per call) OS_KernGetAlarm/0 (40985232 (estimated locally),0.04 per call) OS_KernGetAlarm/0 (99810710 (estimated locally),0.09 per call) OS_KernGetAlarm/0 (148971209 (estimated locally),0.14 per call) OS_KernGetAlarm/0 (267979116 (estimated locally),0.25 per call) OS_KernGetAlarm/0 (354334802 (estimated locally),0.33 per call) 
+  Calls: 
+OS_permittedContext/2 (OS_permittedContext) @06cdb708
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_kernelData/1 (OS_kernelData) @06cdb6c0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)OS_KernGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags:
+OS_KernGetAlarm/0 (OS_KernGetAlarm) @06ca9460
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_kernelData/1 (read)OS_permittedContext/2 (read)OS_svc_GetAlarm/4 (addr)OS_iecMode/5 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetAlarm/4 (addr)OS_svc_GetAlarm/4 (addr)OS_nAlarms/7 (read)OS_svc_GetAlarm/4 (addr)OS_alarmTableBase/8 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_isrTableBase/9 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_isrTableBase/9 (read)OS_kernelData/1 (read)OS_kernelData/1 (read)OS_svc_GetAlarm/4 (addr)OS_svc_GetAlarm/4 (addr)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_Error/3 (53348049 (estimated locally),0.05 per call) OS_LocalGetAlarm/10 (161660755 (estimated locally),0.15 per call) OS_Error/3 (40985232 (estimated locally),0.04 per call) OS_Error/3 (99810710 (estimated locally),0.09 per call) OS_Error/3 (148971209 (estimated locally),0.14 per call) OS_CanWrite/6 (451427907 (estimated locally),0.42 per call) OS_Error/3 (267979116 (estimated locally),0.25 per call) OS_Error/3 (354334802 (estimated locally),0.33 per call) 
+
+;; Function OS_KernGetAlarm (OS_KernGetAlarm, funcdef_no=0, decl_uid=7275, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_KernGetAlarm/0
+__attribute__((target ("general-regs-only")))
+OS_KernGetAlarm (os_alarmid_t a, os_tick_t * out)
+{
+  os_errorresult_t e;
+  os_paramtype_t p[3];
+  const struct os_alarm_t * as;
+  os_result_t r;
+  unsigned int _1;
+  unsigned int out.0_2;
+  unsigned char _3;
+  const os_callermask_t * OS_permittedContext.3_4;
+  short unsigned int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  const os_callermask_t * OS_permittedContext.5_11;
+  short unsigned int _12;
+  int _13;
+  int _14;
+  int _15;
+  short unsigned int _16;
+  short unsigned int _17;
+  unsigned char OS_iecMode.6_18;
+  const struct os_task_t * _19;
+  struct os_taskdynamic_t * _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  int _23;
+  short unsigned int OS_nAlarms.7_24;
+  const struct os_alarm_t * OS_alarmTableBase.8_25;
+  unsigned int _26;
+  unsigned char _27;
+  const struct os_task_t * _28;
+  const struct os_appcontext_t * _29;
+  const struct os_isr_t * OS_isrTableBase.9_30;
+  short unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  const struct os_isr_t * _34;
+  const struct os_appcontext_t * _35;
+  const struct os_appcontext_t * _36;
+  _Bool _37;
+  const struct os_task_t * _38;
+  const struct os_isr_t * OS_isrTableBase.13_39;
+  short unsigned int _40;
+  unsigned int _41;
+  unsigned int _42;
+  const struct os_isr_t * _43;
+  unsigned int _44;
+  unsigned int _45;
+  unsigned int _46;
+  _Bool iftmp.1_48;
+  int iftmp.2_49;
+  int iftmp.10_50;
+  const struct os_appcontext_t * iftmp.11_51;
+  short unsigned int _53;
+  _Bool iftmp.1_59;
+  _Bool iftmp.1_60;
+  const struct os_appcontext_t * iftmp.14_65;
+  const struct os_appcontext_t * iftmp.12_66;
+  const struct os_appcontext_t * iftmp.11_67;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) a_54(D);
+  p[0] = _1;
+  # DEBUG BEGIN_STMT
+  out.0_2 = (unsigned int) out_57(D);
+  p[1] = out.0_2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.inFunction;
+  if (_3 == 10)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  OS_permittedContext.3_4 = OS_permittedContext;
+  _5 = MEM[(const os_callermask_t *)OS_permittedContext.3_4 + 74B];
+  _53 = _5 & 1024;
+  if (_53 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 182536110]:
+  _6 = OS_kernelData.errorStatus.calledFrom;
+  _7 = (int) _6;
+  _8 = 1 << _7;
+  _9 = (short unsigned int) _8;
+  _10 = _5 & _9;
+  if (_10 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 273804165]:
+
+  <bb 6> [local count: 365072220]:
+  # iftmp.2_49 = PHI <1(4), 0(5)>
+  _13 = iftmp.2_49 ^ 1;
+  iftmp.1_60 = (_Bool) _13;
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 708669605]:
+  OS_permittedContext.5_11 = OS_permittedContext;
+  _12 = MEM[(const os_callermask_t *)OS_permittedContext.5_11 + 74B];
+  _14 = (int) _3;
+  _15 = 1 << _14;
+  _16 = (short unsigned int) _15;
+  _17 = _12 & _16;
+  iftmp.1_59 = _17 == 0;
+
+  <bb 8> [local count: 1073741824]:
+  # iftmp.1_48 = PHI <iftmp.1_60(6), iftmp.1_59(7)>
+  if (iftmp.1_48 != 0)
+    goto <bb 9>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 9> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  r_79 = OS_Error (&OS_svc_GetAlarm, 12, &p);
+  # DEBUG r => r_79
+  goto <bb 41>; [100.00%]
+
+  <bb 10> [local count: 719407023]:
+  # DEBUG BEGIN_STMT
+  OS_iecMode.6_18 = OS_iecMode;
+  if (OS_iecMode.6_18 > 1)
+    goto <bb 11>; [74.50%]
+  else
+    goto <bb 15>; [25.50%]
+
+  <bb 11> [local count: 535958232]:
+  if (_3 == 1)
+    goto <bb 12>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 12> [local count: 182225799]:
+  _19 = OS_kernelData.taskCurrent;
+  _20 = _19->dynamic;
+  _21 = BIT_FIELD_REF <MEM[(void *)_20], 16, 160>;
+  if (_21 != 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 13> [local count: 353732433]:
+  _22 = BIT_FIELD_REF <MEM[(void *)&OS_kernelData], 16, 320>;
+  if (_22 != 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 14> [local count: 267979116]:
+  # DEBUG BEGIN_STMT
+  r_62 = OS_Error (&OS_svc_GetAlarm, 55, &p);
+  # DEBUG r => r_62
+  goto <bb 41>; [100.00%]
+
+  <bb 15> [local count: 451427907]:
+  # DEBUG BEGIN_STMT
+  _23 = OS_CanWrite (out_57(D), 4);
+  if (_23 == 0)
+    goto <bb 16>; [33.00%]
+  else
+    goto <bb 17>; [67.00%]
+
+  <bb 16> [local count: 148971209]:
+  # DEBUG BEGIN_STMT
+  r_77 = OS_Error (&OS_svc_GetAlarm, 6, &p);
+  # DEBUG r => r_77
+  goto <bb 41>; [100.00%]
+
+  <bb 17> [local count: 302456697]:
+  # DEBUG BEGIN_STMT
+  OS_nAlarms.7_24 = OS_nAlarms;
+  if (OS_nAlarms.7_24 <= a_54(D))
+    goto <bb 18>; [33.00%]
+  else
+    goto <bb 19>; [67.00%]
+
+  <bb 18> [local count: 99810710]:
+  # DEBUG BEGIN_STMT
+  r_75 = OS_Error (&OS_svc_GetAlarm, 9, &p);
+  # DEBUG r => r_75
+  goto <bb 41>; [100.00%]
+
+  <bb 19> [local count: 202645987]:
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.8_25 = OS_alarmTableBase;
+  _26 = _1 * 28;
+  as_64 = OS_alarmTableBase.8_25 + _26;
+  # DEBUG as => as_64
+  # DEBUG BEGIN_STMT
+  _27 = OS_kernelData.inFunction;
+  if (_27 == 1)
+    goto <bb 20>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 20> [local count: 68899636]:
+  _28 = OS_kernelData.taskCurrent;
+  _29 = _28->app;
+  if (_29 != 0B)
+    goto <bb 29>; [70.00%]
+  else
+    goto <bb 39>; [30.00%]
+
+  <bb 21> [local count: 133746351]:
+  if (_27 == 3)
+    goto <bb 22>; [34.00%]
+  else
+    goto <bb 23>; [66.00%]
+
+  <bb 22> [local count: 45473759]:
+  OS_isrTableBase.9_30 = OS_isrTableBase;
+  _31 = OS_kernelData.isrCurrent;
+  _32 = (unsigned int) _31;
+  _33 = _32 * 68;
+  _34 = OS_isrTableBase.9_30 + _33;
+  _35 = _34->app;
+  if (_35 != 0B)
+    goto <bb 29>; [70.00%]
+  else
+    goto <bb 39>; [30.00%]
+
+  <bb 23> [local count: 88272592]:
+  if (_27 == 10)
+    goto <bb 26>; [34.00%]
+  else
+    goto <bb 24>; [66.00%]
+
+  <bb 24> [local count: 58259911]:
+  if (_27 == 8)
+    goto <bb 26>; [34.00%]
+  else
+    goto <bb 25>; [66.00%]
+
+  <bb 25> [local count: 38451541]:
+  if (_27 == 9)
+    goto <bb 26>; [34.00%]
+  else
+    goto <bb 27>; [66.00%]
+
+  <bb 26> [local count: 62894575]:
+  _36 = OS_kernelData.hookApp;
+  if (_36 != 0B)
+    goto <bb 28>; [70.00%]
+  else
+    goto <bb 27>; [30.00%]
+
+  <bb 27> [local count: 44246390]:
+
+  <bb 28> [local count: 88272592]:
+  # iftmp.10_50 = PHI <1(26), 0(27)>
+  _37 = (_Bool) iftmp.10_50;
+  if (_37 != 0)
+    goto <bb 29>; [50.00%]
+  else
+    goto <bb 39>; [50.00%]
+
+  <bb 29> [local count: 124197673]:
+  if (_27 == 1)
+    goto <bb 30>; [34.00%]
+  else
+    goto <bb 31>; [66.00%]
+
+  <bb 30> [local count: 42227209]:
+  _38 = OS_kernelData.taskCurrent;
+  iftmp.11_67 = _38->app;
+  goto <bb 37>; [100.00%]
+
+  <bb 31> [local count: 81970464]:
+  if (_27 == 3)
+    goto <bb 32>; [34.00%]
+  else
+    goto <bb 33>; [66.00%]
+
+  <bb 32> [local count: 27869958]:
+  OS_isrTableBase.13_39 = OS_isrTableBase;
+  _40 = OS_kernelData.isrCurrent;
+  _41 = (unsigned int) _40;
+  _42 = _41 * 68;
+  _43 = OS_isrTableBase.13_39 + _42;
+  iftmp.12_66 = _43->app;
+  goto <bb 37>; [100.00%]
+
+  <bb 33> [local count: 54100506]:
+  if (_27 == 10)
+    goto <bb 36>; [34.00%]
+  else
+    goto <bb 34>; [66.00%]
+
+  <bb 34> [local count: 35706334]:
+  if (_27 == 8)
+    goto <bb 36>; [34.00%]
+  else
+    goto <bb 35>; [66.00%]
+
+  <bb 35> [local count: 23566180]:
+  if (_27 == 9)
+    goto <bb 36>; [34.00%]
+  else
+    goto <bb 37>; [66.00%]
+
+  <bb 36> [local count: 38546827]:
+  iftmp.14_65 = OS_kernelData.hookApp;
+
+  <bb 37> [local count: 124197673]:
+  # iftmp.11_51 = PHI <iftmp.11_67(30), 0B(35), iftmp.12_66(32), iftmp.14_65(36)>
+  _44 = iftmp.11_51->permissionBit;
+  _45 = as_64->permissions;
+  _46 = _44 & _45;
+  if (_46 == 0)
+    goto <bb 38>; [33.00%]
+  else
+    goto <bb 39>; [67.00%]
+
+  <bb 38> [local count: 40985232]:
+  # DEBUG BEGIN_STMT
+  r_69 = OS_Error (&OS_svc_GetAlarm, 37, &p);
+  # DEBUG r => r_69
+  goto <bb 41>; [100.00%]
+
+  <bb 39> [local count: 161660755]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  e_71 = OS_LocalGetAlarm (a_54(D), as_64, out_57(D));
+  # DEBUG e => e_71
+  # DEBUG BEGIN_STMT
+  if (e_71 != 0)
+    goto <bb 40>; [33.00%]
+  else
+    goto <bb 41>; [67.00%]
+
+  <bb 40> [local count: 53348049]:
+  # DEBUG BEGIN_STMT
+  r_73 = OS_Error (&OS_svc_GetAlarm, e_71, &p);
+  # DEBUG r => r_73
+
+  <bb 41> [local count: 1073741824]:
+  # r_47 = PHI <r_79(9), r_62(14), r_77(16), r_75(18), r_69(38), 0(39), r_73(40)>
+  # DEBUG r => r_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p ={v} {CLOBBER};
+  return r_47;
+
+}
+
+

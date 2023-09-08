@@ -1,0 +1,62 @@
+__attribute__((target ("general-regs-only")))
+OS_KernIocCheckMemoryAccess (const void * data, os_size_t len)
+{
+  const os_isrid_t current_isr;
+  const struct os_task_t * const current_task;
+  const os_uint8_t inFunction;
+  os_memoryaccess_t access;
+  unsigned char _1;
+  os_memoryaccess_t _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inFunction_5 = OS_kernelData.inFunction;
+  # DEBUG inFunction => inFunction_5
+  # DEBUG BEGIN_STMT
+  if (inFunction_5 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  current_task_12 = OS_kernelData.taskCurrent;
+  # DEBUG current_task => current_task_12
+  # DEBUG BEGIN_STMT
+  _1 = current_task_12->taskId;
+  access_14 = OS_KernCheckTaskMemoryAccess (_1, data_8(D), len_9(D));
+  # DEBUG access => access_14
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (inFunction_5 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  current_isr_7 = OS_kernelData.isrCurrent;
+  # DEBUG current_isr => current_isr_7
+  # DEBUG BEGIN_STMT
+  access_11 = OS_KernCheckIsrMemoryAccess (current_isr_7, data_8(D), len_9(D));
+  # DEBUG access => access_11
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  access_6 = 0;
+  # DEBUG access => access_6
+
+  <bb 7> :
+  # access_2 = PHI <access_14(3), access_11(5), access_6(6)>
+  # DEBUG access => access_2
+  # DEBUG BEGIN_STMT
+  _15 = access_2;
+  return _15;
+
+}
+
+

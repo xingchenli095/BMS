@@ -1,0 +1,56 @@
+__attribute__((target ("general-regs-only")))
+OS_InitIsrStacks ()
+{
+  os_stackelement_t * const p;
+  const struct os_isr_t * const is;
+  os_isrid_t isrId;
+  const os_coreid_t myCoreId;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int isrId.1_8;
+  short unsigned int OS_nInterrupts.2_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_7 = 0;
+  # DEBUG myCoreId => myCoreId_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isrId_4 = 0;
+  # DEBUG isrId => isrId_4
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) isrId_6;
+  _3 = _2 * 68;
+  is_10 = OS_isrTableBase.0_1 + _3;
+  # DEBUG is => is_10
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p_11 = 0B;
+  # DEBUG p => p_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isrId.1_8 = isrId_6;
+  isrId_12 = isrId.1_8 + 1;
+  # DEBUG isrId => isrId_12
+
+  <bb 4> :
+  # isrId_6 = PHI <isrId_4(2), isrId_12(3)>
+  # DEBUG isrId => isrId_6
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.2_9 = OS_nInterrupts;
+  if (isrId_6 < OS_nInterrupts.2_9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

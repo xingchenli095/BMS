@@ -1,0 +1,128 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalSetScheduleTableAsync
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_AppIsAccessible/4 (OS_AppIsAccessible) @06c1ad20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetScheduleTableAsync/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/3 (OS_CORTEXM_IntSetDisablingLevel) @06c1ac40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalSetScheduleTableAsync/0 OS_LocalSetScheduleTableAsync/0 
+  Calls: 
+OS_kernDisableLevel/2 (OS_kernDisableLevel) @06bf9828
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetScheduleTableAsync/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_scheduleTableBase/1 (OS_scheduleTableBase) @06bf97e0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalSetScheduleTableAsync/0 (read)OS_LocalSetScheduleTableAsync/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalSetScheduleTableAsync/0 (OS_LocalSetScheduleTableAsync) @06c1aa80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_scheduleTableBase/1 (read)OS_kernDisableLevel/2 (read)OS_scheduleTableBase/1 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/3 OS_AppIsAccessible/4 OS_CORTEXM_IntSetDisablingLevel/3 
+__attribute__((target ("general-regs-only")))
+OS_LocalSetScheduleTableAsync (os_scheduleid_t s)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t D.7419;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s;
+  _3 = _2 * 36;
+  _4 = OS_scheduleTableBase.0_1 + _3;
+  sd = _4->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_5 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_5);
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.2_6 = OS_scheduleTableBase;
+  _7 = (unsigned int) s;
+  _8 = _7 * 36;
+  _9 = OS_scheduleTableBase.2_6 + _8;
+  _10 = _9->app;
+  _11 = OS_AppIsAccessible (_10);
+  if (_11 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 = sd->status;
+  _13 = (unsigned int) _12;
+  _14 = _13 & 7;
+  if (_14 == 3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _15 = sd->status;
+  _16 = _15 & 199;
+  sd->status = _16;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result = 41;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7419 = result;
+  return D.7419;
+
+}
+
+

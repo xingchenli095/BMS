@@ -1,0 +1,3226 @@
+BswM_HandleStaticRequest (uint32 channel, uint16 mode, uint8 source, uint8 sid)
+{
+  boolean eval;
+  uint16 i;
+  struct BswMModeRequestPortType * arrPtr;
+  unsigned char _1;
+  int _2;
+  int _3;
+  unsigned int _4;
+  unsigned int _5;
+  struct BswMModeRequestPortType * _6;
+  unsigned char _7;
+  int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  _Bool _11;
+  unsigned int _12;
+  unsigned int _13;
+  struct BswMModeRequestPortType * _14;
+  unsigned char _15;
+  long unsigned int _16;
+  _Bool _17;
+  unsigned int _18;
+  unsigned int _19;
+  struct BswMModeRequestPortType * _20;
+  long unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  struct BswMModeRequestPortType * _24;
+  unsigned char _25;
+  short unsigned int i.50_26;
+  int _27;
+  short unsigned int _28;
+  Std_ReturnType _45;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) source_35(D);
+  arrPtr_36 = BswM_PtrModeRequestPortsTable[_2];
+  # DEBUG arrPtr => arrPtr_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_37 = 0;
+  # DEBUG i => i_37
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) source_35(D);
+  if (_3 == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned int) i_29;
+  _5 = _4 * 6;
+  _6 = arrPtr_36 + _5;
+  _7 = _6->channel;
+  _8 = (int) _7;
+  _9 = channel_38(D) >> _8;
+  _10 = _9 & 1;
+  _11 = _10 != 0;
+  eval_39 = (boolean) _11;
+  # DEBUG eval => eval_39
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _12 = (unsigned int) i_29;
+  _13 = _12 * 6;
+  _14 = arrPtr_36 + _13;
+  _15 = _14->channel;
+  _16 = (long unsigned int) _15;
+  _17 = channel_38(D) == _16;
+  eval_40 = (boolean) _17;
+  # DEBUG eval => eval_40
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+  # eval_30 = PHI <eval_39(5), eval_40(6)>
+  # DEBUG eval => eval_30
+  # DEBUG BEGIN_STMT
+  if (eval_30 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) i_29;
+  _19 = _18 * 6;
+  _20 = arrPtr_36 + _19;
+  _21 = (long unsigned int) mode_41(D);
+  _22 = (unsigned int) i_29;
+  _23 = _22 * 6;
+  _24 = arrPtr_36 + _23;
+  _25 = _24->base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, _20, _21, 0, sid_42(D), _25);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  i.50_26 = i_29;
+  i_44 = i.50_26 + 1;
+  # DEBUG i => i_44
+
+  <bb 10> :
+  # i_29 = PHI <i_37(3), i_44(9)>
+  # DEBUG i => i_29
+  # DEBUG BEGIN_STMT
+  _27 = (int) source_35(D);
+  _28 = BswM_NumModeRequestPortsTable[_27];
+  if (i_29 < _28)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _45 = 0;
+  return _45;
+
+}
+
+
+BswM_ExecuteAction (uint16 actionIndex)
+{
+  int _1;
+  Std_ReturnType (*<Tb32>) (void) _2;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) actionIndex_3(D);
+  _2 = BswM_ActionTable[_1];
+  _6 = _2 ();
+  return _6;
+
+}
+
+
+BswM_ExprGetResult (uint16 exprIndex)
+{
+  int _1;
+  BswMResultType (*<Tc35>) (void) _2;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) exprIndex_3(D);
+  _2 = BswM_LogicalExprTable[_1].GetResult;
+  _6 = _2 ();
+  return _6;
+
+}
+
+
+BswM_ExprGetState (uint16 exprIndex)
+{
+  int _1;
+  boolean (*<Tc38>) (void) _2;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) exprIndex_3(D);
+  _2 = BswM_LogicalExprTable[_1].GetState;
+  _6 = _2 ();
+  return _6;
+
+}
+
+
+BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (1, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StopDemOpCycleState_POWER ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (2, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (0, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (1, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (0, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetCycleQualified (1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StartInternalPDUs ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 7);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_StartDemOpCycleState_POWER ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_SetOperationCycleState (2, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_Sleep ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = EcuM_ASR40_SelectShutdownTarget (80, 0);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RunTwo ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_RunTwo ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_RteSwitch_Startup ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Switch_BswM_BswM_ModeSwitchPort_BswM_SwitchPort_Rte_CurrentMode (7);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteSwitch_Run ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Switch_BswM_BswM_ModeSwitchPort_BswM_SwitchPort_Rte_CurrentMode (4);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteSwitch_PrpShutdown ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Switch_BswM_BswM_ModeSwitchPort_BswM_SwitchPort_Rte_CurrentMode (3);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteSwitch_GoOffOneB ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Switch_BswM_BswM_ModeSwitchPort_BswM_SwitchPort_Rte_CurrentMode (1);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteSwitch_GoOffOneA ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Switch_BswM_BswM_ModeSwitchPort_BswM_SwitchPort_Rte_CurrentMode (0);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteStart ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Rte_Start ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_RteModeReq_AppStartup ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Write_BswM_BswM_ModeRequestPort_BswMRteModeRequestPort_AppStateMode_If_AppStateRequestMode (1);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteModeReq_AppInactive ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Write_BswM_BswM_ModeRequestPort_BswMRteModeRequestPort_AppStateMode_If_AppStateRequestMode (3);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_RteModeReq_AppActive ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = Rte_Write_BswM_BswM_ModeRequestPort_BswMRteModeRequestPort_AppStateMode_If_AppStateRequestMode (2);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_Reset ()
+{
+  Std_ReturnType result;
+  Std_ReturnType _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result_3 = EcuM_ASR40_SelectShutdownTarget (144, 0);
+  # DEBUG result => result_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = result_3;
+  return _4;
+
+}
+
+
+BswM_Action_BswM_Act_ReqStartupTwoB ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 7);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_ReqRunTwo ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_ReqPrpShutDown ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 3);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_ReqPostRun ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 2);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_ReqGoOffOneA ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_PncCan_Enable ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 6);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_PncCan_Disable ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 5);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_PncCanFD_Enable ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 4);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_PncCanFD_Disable ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 3);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_NvMReadAll ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_InitNvMReadAll ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_InitDriverInitThree ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_DriverInitThree ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnStartupTwoB ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnStartupTwoB ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnStartupTwoA ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnStartupTwoA ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnRunTwo ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnRunTwo ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnPrpShutdown ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnPrpShutdown ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnPostRun ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnPostRun ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnGoOffOneB ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnGoOffOneB ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_HookOnGoOffOneA ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_Hook_OnGoOffOneA ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_GoOffOneB ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_GoOffOneB ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_GoOffOneA ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_GoOffOneA ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_Enable_Rx_Enable_Tx_Can ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 2);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_Enable_Rx_Disable_Tx_Can ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_Disable_Rx_Disable_Tx_Can ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_ExecutePduGroupSwitchAction (&BswM_Context, 0);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_DemDeinit ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dem_Shutdown ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_Action_BswM_Act_AllowCom ()
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_CommunicationAllowed (0, 1);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 0;
+  return _3;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_StartupTwoB ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  boolean iftmp.1_3;
+  boolean iftmp.1_5;
+  boolean iftmp.1_6;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswM_UInt8RteRequestPortTable[0].base.isDefined;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.1_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.1_6 = 0;
+
+  <bb 6> :
+  # iftmp.1_3 = PHI <iftmp.1_5(4), iftmp.1_6(5)>
+  _7 = iftmp.1_3;
+  return _7;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_StartupTwoA ()
+{
+  unsigned char _1;
+  boolean iftmp.3_2;
+  boolean iftmp.3_4;
+  boolean iftmp.3_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.3_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.3_4 = 0;
+
+  <bb 5> :
+  # iftmp.3_2 = PHI <iftmp.3_5(3), iftmp.3_4(4)>
+  _6 = iftmp.3_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_RunTwoToPostRun ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  boolean iftmp.5_3;
+  boolean iftmp.5_5;
+  boolean iftmp.5_6;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.5_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.5_6 = 0;
+
+  <bb 6> :
+  # iftmp.5_3 = PHI <iftmp.5_5(4), iftmp.5_6(5)>
+  _7 = iftmp.5_3;
+  return _7;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_RunTwo ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  boolean iftmp.7_3;
+  boolean iftmp.7_5;
+  boolean iftmp.7_6;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswM_UInt8RteRequestPortTable[0].base.isDefined;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.7_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.7_6 = 0;
+
+  <bb 6> :
+  # iftmp.7_3 = PHI <iftmp.7_5(4), iftmp.7_6(5)>
+  _7 = iftmp.7_3;
+  return _7;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PrpShutdown_Transition ()
+{
+  unsigned char _1;
+  boolean iftmp.9_2;
+  boolean iftmp.9_4;
+  boolean iftmp.9_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.9_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.9_4 = 0;
+
+  <bb 5> :
+  # iftmp.9_2 = PHI <iftmp.9_5(3), iftmp.9_4(4)>
+  _6 = iftmp.9_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PrpShutdown ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  boolean iftmp.11_3;
+  boolean iftmp.11_5;
+  boolean iftmp.11_6;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_UInt8RteRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.11_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.11_6 = 0;
+
+  <bb 6> :
+  # iftmp.11_3 = PHI <iftmp.11_5(4), iftmp.11_6(5)>
+  _7 = iftmp.11_3;
+  return _7;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PostRunToRunTwo ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  boolean iftmp.13_3;
+  boolean iftmp.13_5;
+  boolean iftmp.13_6;
+  boolean _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.13_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.13_6 = 0;
+
+  <bb 6> :
+  # iftmp.13_3 = PHI <iftmp.13_5(4), iftmp.13_6(5)>
+  _7 = iftmp.13_3;
+  return _7;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PostRun ()
+{
+  unsigned char _1;
+  boolean iftmp.15_2;
+  boolean iftmp.15_4;
+  boolean iftmp.15_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.15_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.15_4 = 0;
+
+  <bb 5> :
+  # iftmp.15_2 = PHI <iftmp.15_5(3), iftmp.15_4(4)>
+  _6 = iftmp.15_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PncCanStop ()
+{
+  unsigned char _1;
+  boolean iftmp.17_2;
+  boolean iftmp.17_4;
+  boolean iftmp.17_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.17_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.17_4 = 0;
+
+  <bb 5> :
+  # iftmp.17_2 = PHI <iftmp.17_5(3), iftmp.17_4(4)>
+  _6 = iftmp.17_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PncCanStart ()
+{
+  unsigned char _1;
+  boolean iftmp.19_2;
+  boolean iftmp.19_4;
+  boolean iftmp.19_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.19_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.19_4 = 0;
+
+  <bb 5> :
+  # iftmp.19_2 = PHI <iftmp.19_5(3), iftmp.19_4(4)>
+  _6 = iftmp.19_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PncCanFDStop ()
+{
+  unsigned char _1;
+  boolean iftmp.21_2;
+  boolean iftmp.21_4;
+  boolean iftmp.21_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[1].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.21_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.21_4 = 0;
+
+  <bb 5> :
+  # iftmp.21_2 = PHI <iftmp.21_5(3), iftmp.21_4(4)>
+  _6 = iftmp.21_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_PncCanFDStart ()
+{
+  unsigned char _1;
+  boolean iftmp.23_2;
+  boolean iftmp.23_4;
+  boolean iftmp.23_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[1].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.23_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.23_4 = 0;
+
+  <bb 5> :
+  # iftmp.23_2 = PHI <iftmp.23_5(3), iftmp.23_4(4)>
+  _6 = iftmp.23_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_GoOffOneB ()
+{
+  unsigned char _1;
+  boolean iftmp.25_2;
+  boolean iftmp.25_4;
+  boolean iftmp.25_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.25_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.25_4 = 0;
+
+  <bb 5> :
+  # iftmp.25_2 = PHI <iftmp.25_5(3), iftmp.25_4(4)>
+  _6 = iftmp.25_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_GoOffOneA ()
+{
+  unsigned char _1;
+  boolean iftmp.27_2;
+  boolean iftmp.27_4;
+  boolean iftmp.27_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.27_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.27_4 = 0;
+
+  <bb 5> :
+  # iftmp.27_2 = PHI <iftmp.27_5(3), iftmp.27_4(4)>
+  _6 = iftmp.27_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_Dcm_Reset ()
+{
+  unsigned char _1;
+  boolean iftmp.29_2;
+  boolean iftmp.29_4;
+  boolean iftmp.29_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_UInt8RteRequestPortTable[4].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.29_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.29_4 = 0;
+
+  <bb 5> :
+  # iftmp.29_2 = PHI <iftmp.29_5(3), iftmp.29_4(4)>
+  _6 = iftmp.29_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_ComMSilentCom ()
+{
+  unsigned char _1;
+  boolean iftmp.31_2;
+  boolean iftmp.31_4;
+  boolean iftmp.31_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.31_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.31_4 = 0;
+
+  <bb 5> :
+  # iftmp.31_2 = PHI <iftmp.31_5(3), iftmp.31_4(4)>
+  _6 = iftmp.31_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_ComMNoCom ()
+{
+  unsigned char _1;
+  boolean iftmp.33_2;
+  boolean iftmp.33_4;
+  boolean iftmp.33_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.33_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.33_4 = 0;
+
+  <bb 5> :
+  # iftmp.33_2 = PHI <iftmp.33_5(3), iftmp.33_4(4)>
+  _6 = iftmp.33_2;
+  return _6;
+
+}
+
+
+BswM_ExprState_BswM_LogEx_ComMFullCom ()
+{
+  unsigned char _1;
+  boolean iftmp.35_2;
+  boolean iftmp.35_4;
+  boolean iftmp.35_5;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].base.isDefined;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.35_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.35_4 = 0;
+
+  <bb 5> :
+  # iftmp.35_2 = PHI <iftmp.35_5(3), iftmp.35_4(4)>
+  _6 = iftmp.35_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_StartupTwoB ()
+{
+  short unsigned int _1;
+  unsigned char _2;
+  BswMResultType iftmp.0_3;
+  BswMResultType iftmp.0_5;
+  BswMResultType iftmp.0_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswM_UInt8RteRequestPortTable[0].mode;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0_6 = 0;
+
+  <bb 6> :
+  # iftmp.0_3 = PHI <iftmp.0_5(4), iftmp.0_6(5)>
+  _7 = iftmp.0_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_StartupTwoA ()
+{
+  short unsigned int _1;
+  BswMResultType iftmp.2_2;
+  BswMResultType iftmp.2_4;
+  BswMResultType iftmp.2_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.2_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.2_4 = 0;
+
+  <bb 5> :
+  # iftmp.2_2 = PHI <iftmp.2_5(3), iftmp.2_4(4)>
+  _6 = iftmp.2_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_RunTwoToPostRun ()
+{
+  unsigned char _1;
+  short unsigned int _2;
+  BswMResultType iftmp.4_3;
+  BswMResultType iftmp.4_5;
+  BswMResultType iftmp.4_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].mode;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].mode;
+  if (_2 == 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.4_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.4_6 = 0;
+
+  <bb 6> :
+  # iftmp.4_3 = PHI <iftmp.4_5(4), iftmp.4_6(5)>
+  _7 = iftmp.4_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_RunTwo ()
+{
+  short unsigned int _1;
+  unsigned char _2;
+  BswMResultType iftmp.6_3;
+  BswMResultType iftmp.6_5;
+  BswMResultType iftmp.6_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswM_UInt8RteRequestPortTable[0].mode;
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.6_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.6_6 = 0;
+
+  <bb 6> :
+  # iftmp.6_3 = PHI <iftmp.6_5(4), iftmp.6_6(5)>
+  _7 = iftmp.6_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PrpShutdown_Transition ()
+{
+  short unsigned int _1;
+  short unsigned int _2;
+  BswMResultType iftmp.8_3;
+  BswMResultType iftmp.8_5;
+  BswMResultType iftmp.8_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  _2 = _1 + 65534;
+  if (_2 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.8_6 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.8_5 = 0;
+
+  <bb 5> :
+  # iftmp.8_3 = PHI <iftmp.8_6(3), iftmp.8_5(4)>
+  _7 = iftmp.8_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PrpShutdown ()
+{
+  unsigned char _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  BswMResultType iftmp.10_4;
+  BswMResultType iftmp.10_6;
+  BswMResultType iftmp.10_7;
+  BswMResultType _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_UInt8RteRequestPortTable[0].mode;
+  if (_1 == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].mode;
+  _3 = _2 + 65534;
+  if (_3 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.10_6 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.10_7 = 0;
+
+  <bb 6> :
+  # iftmp.10_4 = PHI <iftmp.10_6(4), iftmp.10_7(5)>
+  _8 = iftmp.10_4;
+  return _8;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PostRunToRunTwo ()
+{
+  unsigned char _1;
+  short unsigned int _2;
+  BswMResultType iftmp.12_3;
+  BswMResultType iftmp.12_5;
+  BswMResultType iftmp.12_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].mode;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _2 = BswMGenericRequestPortTable[0].mode;
+  if (_2 == 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.12_5 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.12_6 = 0;
+
+  <bb 6> :
+  # iftmp.12_3 = PHI <iftmp.12_5(4), iftmp.12_6(5)>
+  _7 = iftmp.12_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PostRun ()
+{
+  short unsigned int _1;
+  BswMResultType iftmp.14_2;
+  BswMResultType iftmp.14_4;
+  BswMResultType iftmp.14_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.14_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.14_4 = 0;
+
+  <bb 5> :
+  # iftmp.14_2 = PHI <iftmp.14_5(3), iftmp.14_4(4)>
+  _6 = iftmp.14_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PncCanStop ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.16_2;
+  BswMResultType iftmp.16_4;
+  BswMResultType iftmp.16_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[0].mode;
+  if (_1 == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.16_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.16_4 = 0;
+
+  <bb 5> :
+  # iftmp.16_2 = PHI <iftmp.16_5(3), iftmp.16_4(4)>
+  _6 = iftmp.16_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PncCanStart ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  BswMResultType iftmp.18_3;
+  BswMResultType iftmp.18_5;
+  BswMResultType iftmp.18_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[0].mode;
+  if (_1 == 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = BswMComMPncRequestPortTable[0].mode;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.18_6 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.18_5 = 0;
+
+  <bb 6> :
+  # iftmp.18_3 = PHI <iftmp.18_6(4), iftmp.18_5(5)>
+  _7 = iftmp.18_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PncCanFDStop ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.20_2;
+  BswMResultType iftmp.20_4;
+  BswMResultType iftmp.20_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[1].mode;
+  if (_1 == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.20_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.20_4 = 0;
+
+  <bb 5> :
+  # iftmp.20_2 = PHI <iftmp.20_5(3), iftmp.20_4(4)>
+  _6 = iftmp.20_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_PncCanFDStart ()
+{
+  unsigned char _1;
+  unsigned char _2;
+  BswMResultType iftmp.22_3;
+  BswMResultType iftmp.22_5;
+  BswMResultType iftmp.22_6;
+  BswMResultType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMPncRequestPortTable[1].mode;
+  if (_1 == 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = BswMComMPncRequestPortTable[1].mode;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.22_6 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.22_5 = 0;
+
+  <bb 6> :
+  # iftmp.22_3 = PHI <iftmp.22_6(4), iftmp.22_5(5)>
+  _7 = iftmp.22_3;
+  return _7;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_GoOffOneB ()
+{
+  short unsigned int _1;
+  BswMResultType iftmp.24_2;
+  BswMResultType iftmp.24_4;
+  BswMResultType iftmp.24_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.24_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.24_4 = 0;
+
+  <bb 5> :
+  # iftmp.24_2 = PHI <iftmp.24_5(3), iftmp.24_4(4)>
+  _6 = iftmp.24_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_GoOffOneA ()
+{
+  short unsigned int _1;
+  BswMResultType iftmp.26_2;
+  BswMResultType iftmp.26_4;
+  BswMResultType iftmp.26_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMGenericRequestPortTable[0].mode;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.26_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.26_4 = 0;
+
+  <bb 5> :
+  # iftmp.26_2 = PHI <iftmp.26_5(3), iftmp.26_4(4)>
+  _6 = iftmp.26_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_Dcm_Reset ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.28_2;
+  BswMResultType iftmp.28_4;
+  BswMResultType iftmp.28_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_UInt8RteRequestPortTable[4].mode;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.28_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.28_4 = 0;
+
+  <bb 5> :
+  # iftmp.28_2 = PHI <iftmp.28_5(3), iftmp.28_4(4)>
+  _6 = iftmp.28_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_ComMSilentCom ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.30_2;
+  BswMResultType iftmp.30_4;
+  BswMResultType iftmp.30_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].mode;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.30_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.30_4 = 0;
+
+  <bb 5> :
+  # iftmp.30_2 = PHI <iftmp.30_5(3), iftmp.30_4(4)>
+  _6 = iftmp.30_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_ComMNoCom ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.32_2;
+  BswMResultType iftmp.32_4;
+  BswMResultType iftmp.32_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].mode;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.32_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.32_4 = 0;
+
+  <bb 5> :
+  # iftmp.32_2 = PHI <iftmp.32_5(3), iftmp.32_4(4)>
+  _6 = iftmp.32_2;
+  return _6;
+
+}
+
+
+BswM_ExprResult_BswM_LogEx_ComMFullCom ()
+{
+  unsigned char _1;
+  BswMResultType iftmp.34_2;
+  BswMResultType iftmp.34_4;
+  BswMResultType iftmp.34_5;
+  BswMResultType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswMComMIndicationPortTable[0].mode;
+  if (_1 == 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.34_5 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.34_4 = 0;
+
+  <bb 5> :
+  # iftmp.34_2 = PHI <iftmp.34_5(3), iftmp.34_4(4)>
+  _6 = iftmp.34_2;
+  return _6;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_EXECUTE ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 0, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_JUMPTOSYSSUPPLIERBOOTLOADER ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 3, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_JUMPTOBOOTLOADER ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 2, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_SOFT ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 6, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_KEYONOFF ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 4, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_HARD ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 1, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_NONE ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[4].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[4], 5, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_CLEARED ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[3].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[3], 0, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_STOPPED ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[3].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[3], 1, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_STARTED ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[3].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[3], 2, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Extended ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[2].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[2], 3, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Programming ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[2].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[2], 2, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Default ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[2].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[2], 1, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 11, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 10, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 9, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 8, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 7, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 6, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 5, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 4, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 3, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 2, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 1, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM ()
+{
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = BswM_UInt8RteRequestPortTable[1].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[1], 0, 128, 255, _2);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_LT_Init ()
+{
+  uint16 table_index;
+  BswM_IndexType i;
+  uint16 table_index;
+  BswM_IndexType i;
+  uint16 table_index;
+  struct BswMModeRequestPortType * arrPtr;
+  BswM_IndexType j;
+  BswM_IndexType i;
+  int _1;
+  unsigned int _2;
+  unsigned int _3;
+  struct BswMModeRequestPortType * _4;
+  short unsigned int _5;
+  int _6;
+  unsigned char _7;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.37_8;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.38_9;
+  unsigned char _10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct BswM_ConfigType * _13;
+  long unsigned int _14;
+  sizetype _15;
+  sizetype _16;
+  const uint8 * _17;
+  unsigned int _18;
+  unsigned int _19;
+  struct BswMModeRequestPortType * _20;
+  unsigned char _21;
+  unsigned int _22;
+  unsigned int _23;
+  struct BswMModeRequestPortType * _24;
+  unsigned int _25;
+  unsigned int _26;
+  struct BswMModeRequestPortType * _27;
+  short unsigned int j.39_28;
+  int _29;
+  short unsigned int _30;
+  short unsigned int i.40_31;
+  int _32;
+  short unsigned int _33;
+  int _34;
+  unsigned char _35;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.41_36;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.42_37;
+  unsigned char _38;
+  unsigned int _39;
+  unsigned int _40;
+  const struct BswM_ConfigType * _41;
+  long unsigned int _42;
+  unsigned int _43;
+  unsigned int _44;
+  sizetype _45;
+  const uint16 * _46;
+  int _47;
+  short unsigned int _48;
+  int _49;
+  int _50;
+  short unsigned int i.43_51;
+  short unsigned int _52;
+  int _53;
+  short unsigned int _54;
+  int _55;
+  unsigned char _56;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.44_57;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.45_58;
+  unsigned char _59;
+  unsigned int _60;
+  unsigned int _61;
+  const struct BswM_ConfigType * _62;
+  long unsigned int _63;
+  sizetype _64;
+  sizetype _65;
+  const uint8 * _66;
+  int _67;
+  unsigned char _68;
+  int _69;
+  int _70;
+  short unsigned int i.46_71;
+  short unsigned int _72;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  BswM_InitRteModeRequestPorts ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_87 = 0;
+  # DEBUG i => i_87
+  goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_73;
+  arrPtr_100 = BswM_PtrModeRequestPortsTable[_1];
+  # DEBUG arrPtr => arrPtr_100
+  # DEBUG BEGIN_STMT
+  if (arrPtr_100 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  j_101 = 0;
+  # DEBUG j => j_101
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) j_74;
+  _3 = _2 * 6;
+  _4 = arrPtr_100 + _3;
+  _5 = _4->base.id;
+  _6 = (int) _5;
+  _7 = BswM_InitialValueMappings[_6];
+  table_index_102 = (uint16) _7;
+  # DEBUG table_index => table_index_102
+  # DEBUG BEGIN_STMT
+  if (table_index_102 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.37_8 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.38_9 = BswM_PostBuildConfig;
+  _10 = BswM_Context.ID;
+  _11 = (unsigned int) _10;
+  _12 = _11 * 60;
+  _13 = BswM_PostBuildConfig.38_9 + _12;
+  _14 = _13->UInt8InitialValuesTable;
+  _15 = (sizetype) table_index_102;
+  _16 = _14 + _15;
+  _17 = BswM_PostBuildConfig.37_8 + _16;
+  _18 = (unsigned int) j_74;
+  _19 = _18 * 6;
+  _20 = arrPtr_100 + _19;
+  _21 = *_17;
+  _20->mode = _21;
+  # DEBUG BEGIN_STMT
+  _22 = (unsigned int) j_74;
+  _23 = _22 * 6;
+  _24 = arrPtr_100 + _23;
+  _24->base.isDefined = 1;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _25 = (unsigned int) j_74;
+  _26 = _25 * 6;
+  _27 = arrPtr_100 + _26;
+  _27->base.isDefined = 0;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  j.39_28 = j_74;
+  j_106 = j.39_28 + 1;
+  # DEBUG j => j_106
+
+  <bb 9> :
+  # j_74 = PHI <j_101(4), j_106(8)>
+  # DEBUG j => j_74
+  # DEBUG BEGIN_STMT
+  _29 = (int) i_73;
+  _30 = BswM_NumModeRequestPortsTable[_29];
+  if (j_74 < _30)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  i.40_31 = i_73;
+  i_107 = i.40_31 + 1;
+  # DEBUG i => i_107
+
+  <bb 11> :
+  # i_73 = PHI <i_87(2), i_107(10)>
+  # DEBUG i => i_73
+  # DEBUG BEGIN_STMT
+  if (i_73 <= 14)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_88 = 0;
+  # DEBUG i => i_88
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _32 = (int) i_75;
+  _33 = BswMGenericRequestPortTable[_32].base.id;
+  _34 = (int) _33;
+  _35 = BswM_InitialValueMappings[_34];
+  table_index_95 = (uint16) _35;
+  # DEBUG table_index => table_index_95
+  # DEBUG BEGIN_STMT
+  if (table_index_95 != 255)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.41_36 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.42_37 = BswM_PostBuildConfig;
+  _38 = BswM_Context.ID;
+  _39 = (unsigned int) _38;
+  _40 = _39 * 60;
+  _41 = BswM_PostBuildConfig.42_37 + _40;
+  _42 = _41->UInt16InitialValuesTable;
+  _43 = (unsigned int) table_index_95;
+  _44 = _43 * 2;
+  _45 = _42 + _44;
+  _46 = BswM_PostBuildConfig.41_36 + _45;
+  _47 = (int) i_75;
+  _48 = *_46;
+  BswMGenericRequestPortTable[_47].mode = _48;
+  # DEBUG BEGIN_STMT
+  _49 = (int) i_75;
+  BswMGenericRequestPortTable[_49].base.isDefined = 1;
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _50 = (int) i_75;
+  BswMGenericRequestPortTable[_50].base.isDefined = 0;
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  i.43_51 = i_75;
+  i_99 = i.43_51 + 1;
+  # DEBUG i => i_99
+
+  <bb 17> :
+  # i_75 = PHI <i_88(12), i_99(16)>
+  # DEBUG i => i_75
+  # DEBUG BEGIN_STMT
+  _52 = 1;
+  if (i_75 < _52)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_89 = 0;
+  # DEBUG i => i_89
+  goto <bb 23>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  _53 = (int) i_76;
+  _54 = BswMComMPncRequestPortTable[_53].base.id;
+  _55 = (int) _54;
+  _56 = BswM_InitialValueMappings[_55];
+  table_index_90 = (uint16) _56;
+  # DEBUG table_index => table_index_90
+  # DEBUG BEGIN_STMT
+  if (table_index_90 != 255)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.44_57 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.45_58 = BswM_PostBuildConfig;
+  _59 = BswM_Context.ID;
+  _60 = (unsigned int) _59;
+  _61 = _60 * 60;
+  _62 = BswM_PostBuildConfig.45_58 + _61;
+  _63 = _62->UInt8InitialValuesTable;
+  _64 = (sizetype) table_index_90;
+  _65 = _63 + _64;
+  _66 = BswM_PostBuildConfig.44_57 + _65;
+  _67 = (int) i_76;
+  _68 = *_66;
+  BswMComMPncRequestPortTable[_67].mode = _68;
+  # DEBUG BEGIN_STMT
+  _69 = (int) i_76;
+  BswMComMPncRequestPortTable[_69].base.isDefined = 1;
+  goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _70 = (int) i_76;
+  BswMComMPncRequestPortTable[_70].base.isDefined = 0;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  i.46_71 = i_76;
+  i_94 = i.46_71 + 1;
+  # DEBUG i => i_94
+
+  <bb 23> :
+  # i_76 = PHI <i_89(18), i_94(22)>
+  # DEBUG i => i_76
+  # DEBUG BEGIN_STMT
+  _72 = 2;
+  if (i_76 < _72)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+BswM_InitRteModeRequestPorts ()
+{
+  uint16 table_index;
+  BswM_IndexType i;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  unsigned char _4;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.47_5;
+  const struct BswM_ConfigType * BswM_PostBuildConfig.48_6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct BswM_ConfigType * _10;
+  long unsigned int _11;
+  sizetype _12;
+  sizetype _13;
+  const uint8 * _14;
+  int _15;
+  unsigned char _16;
+  int _17;
+  int _18;
+  short unsigned int i.49_19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_23 = 0;
+  # DEBUG i => i_23
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) i_20;
+  _2 = BswM_UInt8RteRequestPortTable[_1].base.id;
+  _3 = (int) _2;
+  _4 = BswM_InitialValueMappings[_3];
+  table_index_25 = (uint16) _4;
+  # DEBUG table_index => table_index_25
+  # DEBUG BEGIN_STMT
+  if (table_index_25 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  BswM_PostBuildConfig.47_5 = BswM_PostBuildConfig;
+  BswM_PostBuildConfig.48_6 = BswM_PostBuildConfig;
+  _7 = BswM_Context.ID;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 60;
+  _10 = BswM_PostBuildConfig.48_6 + _9;
+  _11 = _10->UInt8InitialValuesTable;
+  _12 = (sizetype) table_index_25;
+  _13 = _11 + _12;
+  _14 = BswM_PostBuildConfig.47_5 + _13;
+  _15 = (int) i_20;
+  _16 = *_14;
+  BswM_UInt8RteRequestPortTable[_15].mode = _16;
+  # DEBUG BEGIN_STMT
+  _17 = (int) i_20;
+  BswM_UInt8RteRequestPortTable[_17].base.isDefined = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) i_20;
+  BswM_UInt8RteRequestPortTable[_18].base.isDefined = 0;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.49_19 = i_20;
+  i_29 = i.49_19 + 1;
+  # DEBUG i => i_29
+
+  <bb 7> :
+  # i_20 = PHI <i_23(2), i_29(6)>
+  # DEBUG i => i_20
+  # DEBUG BEGIN_STMT
+  if (i_20 <= 4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+
+BswM_MRPFunc_BswM_ModeReqPort_AppState ()
+{
+  uint8 nextMode;
+  uint8 prevMode;
+  unsigned char _1;
+  unsigned char nextMode.36_2;
+  long unsigned int _3;
+  unsigned char _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = BswM_Context.RunTimeContext.IsInitialized;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Rte_Mode_BswM_ModeNotificationPort_BswM_ModeReqPort_AppState_AppStateMode (&prevMode, &nextMode);
+  # DEBUG BEGIN_STMT
+  nextMode.36_2 = nextMode;
+  _3 = (long unsigned int) nextMode.36_2;
+  _4 = BswM_UInt8RteRequestPortTable[0].base.isImmediate;
+  BswM_HandleRequest (&BswM_Context, &BswM_UInt8RteRequestPortTable[0], _3, 128, 255, _4);
+  prevMode ={v} {CLOBBER};
+  nextMode ={v} {CLOBBER};
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

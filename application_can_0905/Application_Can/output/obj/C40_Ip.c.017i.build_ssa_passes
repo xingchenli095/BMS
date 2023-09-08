@@ -1,0 +1,3894 @@
+C40_Ip_ValidRangeAddress (uint32 StartAddress, uint32 Length)
+{
+  uint32 EndAddress;
+  boolean RetVal;
+  boolean D.8733;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = StartAddress + Length;
+  EndAddress = _1 + 4294967295;
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ValidCodeAddress (StartAddress);
+  if (_2 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _3 = C40_Ip_ValidCodeAddress (EndAddress);
+  if (_3 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = C40_Ip_ValidDataAddress (StartAddress);
+  if (_4 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _5 = C40_Ip_ValidDataAddress (EndAddress);
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = C40_Ip_ValidUTestAddress (StartAddress);
+  if (_6 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _7 = C40_Ip_ValidUTestAddress (EndAddress);
+  if (_7 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.8733 = RetVal;
+  return D.8733;
+
+}
+
+
+C40_Ip_ValidAddress (uint32 Address)
+{
+  int iftmp.44;
+  boolean D.9016;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_ValidCodeAddress (Address);
+  if (_1 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = C40_Ip_ValidDataAddress (Address);
+  if (_2 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _3 = C40_Ip_ValidUTestAddress (Address);
+  if (_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.44 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.44 = 0;
+
+  <bb 7> :
+  D.9016 = (boolean) iftmp.44;
+  return D.9016;
+
+}
+
+
+C40_Ip_ValidUTestAddress (uint32 Address)
+{
+  boolean D.8739;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address + 3841982464;
+  _2 = _1 <= 8191;
+  D.8739 = (boolean) _2;
+  return D.8739;
+
+}
+
+
+C40_Ip_ValidDataAddress (uint32 Address)
+{
+  boolean D.8737;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address + 4026531840;
+  _2 = _1 <= 131071;
+  D.8737 = (boolean) _2;
+  return D.8737;
+
+}
+
+
+C40_Ip_ValidCodeAddress (uint32 Address)
+{
+  boolean D.8735;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = Address + 4290772992;
+  _2 = _1 <= 2097151;
+  D.8735 = (boolean) _2;
+  return D.8735;
+
+}
+
+
+C40_Ip_FlashAccessCalloutFinish ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.8_1 = C40_Ip_pConfigPtr;
+  _2 = C40_Ip_pConfigPtr.8_1->finishedFlashAccessNotifPtr;
+  if (_2 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.9_3 = C40_Ip_pConfigPtr;
+  _4 = C40_Ip_pConfigPtr.9_3->finishedFlashAccessNotifPtr;
+  _4 ();
+
+  <bb 4> :
+  return;
+
+}
+
+
+C40_Ip_FlashAccessCalloutStart ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.1_1 = C40_Ip_pConfigPtr;
+  _2 = C40_Ip_pConfigPtr.1_1->startFlashAccessNotifPtr;
+  if (_2 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr.2_3 = C40_Ip_pConfigPtr;
+  _4 = C40_Ip_pConfigPtr.2_3->startFlashAccessNotifPtr;
+  _4 ();
+
+  <bb 4> :
+  return;
+
+}
+
+
+C40_Ip_SetAsyncMode (const boolean Async)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync = Async;
+  return;
+
+}
+
+
+C40_Ip_GetFailedAddress ()
+{
+  uint32 TempADR;
+  uint32 Temp;
+  uint32 AddrOffset;
+  uint32 CheckRegionBlockError;
+  uint32 Addr;
+  uint32 D.9166;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Addr = 4294967295;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  TempADR = _1->ADR;
+  # DEBUG BEGIN_STMT
+  _2 = TempADR >> 1;
+  AddrOffset = _2 & 262143;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eOpStatus.49_3 = C40_Ip_eOpStatus;
+  if (C40_Ip_eOpStatus.49_3 == 17)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32LogicalAddressCheckFail.50_4 = C40_Ip_u32LogicalAddressCheckFail;
+  Temp = C40_Ip_u32LogicalAddressCheckFail.50_4 & 127;
+  # DEBUG BEGIN_STMT
+  _5 = AddrOffset << 3;
+  AddrOffset = Temp + _5;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  AddrOffset = AddrOffset << 3;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CheckRegionBlockError = TempADR & 20447232;
+  # DEBUG BEGIN_STMT
+  switch (CheckRegionBlockError) <default: <L10> [INV], case 524288: <L3> [INV], case 1048576: <L4> [INV], case 2097152: <L5> [INV], case 16777216: <L6> [INV]>
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  Addr = AddrOffset + 4194304;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  Addr = AddrOffset + 5242880;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  Addr = AddrOffset + 268435456;
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  Addr = AddrOffset + 452984832;
+  # DEBUG BEGIN_STMT
+
+  <bb 10> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  D.9166 = Addr;
+  return D.9166;
+
+}
+
+
+C40_Ip_UserMarginReadCheck (uint32 SelectBlock, C40_Ip_FlashBreakPointsType BreakPoints, C40_Ip_MarginOptionType MarginLevel, const struct C40_Ip_MisrType * MisrSeedValues, uint8 DomainIdValue)
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9161;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_CheckSelecBlock (SelectBlock);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11700;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_UTestCheckBusy ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->UT0 = 4193884569;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->UT0;
+  _5 = (signed int) _4;
+  if (_5 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceWriteJobAddress (SelectBlock, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _6->DATA[0] = 4294967295;
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 4;
+  _9->UT0 = _10;
+  # DEBUG BEGIN_STMT
+  C40_Ip_UTestCheckBreakpoint (BreakPoints);
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 = _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 | 32;
+  _13->UT0 = _14;
+  # DEBUG BEGIN_STMT
+  if (MarginLevel == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 = _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 | 16;
+  _17->UT0 = _18;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _20 = _19->UT0;
+  _21 = 1076805632B;
+  _22 = _20 & 4294967279;
+  _21->UT0 = _22;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetSeedMisr (MisrSeedValues);
+  # DEBUG BEGIN_STMT
+  _23 = 1076805632B;
+  _24 = _23->UT0;
+  _25 = 1076805632B;
+  _26 = _24 | 2;
+  _25->UT0 = _26;
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _27 = 1076805632B;
+  _27->DATA[0] = 4294967295;
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  _29 = _28->UT0;
+  _30 = 1076805632B;
+  _31 = _29 | 2;
+  _30->UT0 = _31;
+  # DEBUG BEGIN_STMT
+  _32 = 1076805632B;
+  _33 = _32->UT0;
+  _34 = 1076805632B;
+  _35 = _33 & 4294967293;
+  _34->UT0 = _35;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _36 = 1076805632B;
+  _37 = _36->UT0;
+  _38 = _37 & 1;
+  if (_38 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (WaitCounter != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _39 = 1076805632B;
+  _40 = _39->UT0;
+  _41 = 1076805632B;
+  _42 = _40 & 2147483647;
+  _41->UT0 = _42;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.9161 = ReturnCode;
+  return D.9161;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheckResume ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9132;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 = _4->UT0;
+  _6 = _5 & 65;
+  if (_6 == 65)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_ArrayIntegrityResumeSuppened ();
+  goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = _8 & 512;
+  if (_9 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_ArrayIntegrityResumeBroken ();
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.9132 = ReturnCode;
+  return D.9132;
+
+}
+
+
+C40_Ip_ArrayIntegrityResumeBroken ()
+{
+  uint32 Temp;
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9144;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  Temp = _1->MCRS;
+  # DEBUG BEGIN_STMT
+  Temp = Temp & 216858623;
+  # DEBUG BEGIN_STMT
+  Temp = Temp | 3221225472;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->MCRS = Temp;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->UT0;
+  _5 = 1076805632B;
+  _6 = _4 & 4294966783;
+  _5->UT0 = _6;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = _8 & 1;
+  if (_9 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (WaitCounter != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 = _10->UT0;
+  _12 = _11 & 512;
+  if (_12 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _13 = 1076805632B;
+  _14 = _13->UT0;
+  _15 = _14 & 1;
+  if (_15 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.9144 = ReturnCode;
+  return D.9144;
+
+}
+
+
+C40_Ip_ArrayIntegrityResumeSuppened ()
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9138;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->UT0;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967231;
+  _3->UT0 = _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = _5->UT0;
+  _7 = _6 & 1;
+  if (_7 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (WaitCounter != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = 1076805632B;
+  _9 = _8->UT0;
+  _10 = _9 & 64;
+  if (_10 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _11 = 1076805632B;
+  _12 = _11->UT0;
+  _13 = _12 & 1;
+  if (_13 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.9138 = ReturnCode;
+  return D.9138;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheckSuspend ()
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9121;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  _4 = 1076805632B;
+  _5 = _4->UT0;
+  _6 = _5 & 65;
+  if (_6 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 64;
+  _9->UT0 = _10;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 = _11->UT0;
+  _13 = _12 & 1;
+  if (_13 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (WaitCounter != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _14 = 1076805632B;
+  _15 = _14->UT0;
+  _16 = _15 & 64;
+  if (_16 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _17 = 1076805632B;
+  _18 = _17->UT0;
+  _19 = _18 & 1;
+  if (_19 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.9121 = ReturnCode;
+  return D.9121;
+
+}
+
+
+C40_Ip_CheckUserTestStatusExecution (const struct C40_Ip_MisrType * MisrExpectedValues, C40_Ip_UtestStateType * OpStatus)
+{
+  uint8 Index;
+  uint32 Temp;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9111;
+  C40_Ip_UtestStateType iftmp.48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  *OpStatus = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Index = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Index;
+  Temp = MisrExpectedValues->arrMISRValue[_1];
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 = (int) Index;
+  _4 = _2->UM[_3];
+  if (Temp != _4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Index.47_5 = Index;
+  Index = Index.47_5 + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Index <= 8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 = _6->UM9;
+  _8 = _7 & 1;
+  _9 = MisrExpectedValues->arrMISRValue[9];
+  if (_8 != _9)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 = _10->UT0;
+  _12 = _11 & 512;
+  if (_12 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _13 = 1076805632B;
+  _14 = _13->MCRS;
+  _15 = _14 & 1073741824;
+  if (_15 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  iftmp.48 = 48;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  iftmp.48 = 49;
+
+  <bb 13> :
+  *OpStatus = iftmp.48;
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _16 = 1076805632B;
+  _17 = _16->UT0;
+  _18 = 1076805632B;
+  _19 = _17 & 4294967259;
+  _18->UT0 = _19;
+  # DEBUG BEGIN_STMT
+  _20 = 1076805632B;
+  _21 = _20->UT0;
+  _22 = 1076805632B;
+  _23 = _21 & 4294967293;
+  _22->UT0 = _23;
+  # DEBUG BEGIN_STMT
+  _24 = 1076805632B;
+  _25 = _24->UT0;
+  _26 = 1076805632B;
+  _27 = _25 & 2147483647;
+  _26->UT0 = _27;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  D.9111 = ReturnCode;
+  return D.9111;
+
+}
+
+
+C40_Ip_CheckUserTestStatus (const struct C40_Ip_MisrType * MisrExpectedValues, C40_Ip_UtestStateType * TestResult)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9098;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (MisrExpectedValues == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (TestResult == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11700;
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  *TestResult = 0;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 = _4->UT0;
+  _6 = _5 & 1;
+  if (_6 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = _8 & 64;
+  if (_9 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  *TestResult = 23;
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_CheckUserTestStatusExecution (MisrExpectedValues, TestResult);
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 59202;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11220;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.9098 = ReturnCode;
+  return D.9098;
+
+}
+
+
+C40_Ip_CheckSelecBlock (uint32 SelectBlock)
+{
+  boolean ReturnCode;
+  boolean D.9069;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 1;
+  # DEBUG BEGIN_STMT
+  if (SelectBlock == 4194304)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (SelectBlock == 5242880)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (SelectBlock == 268435456)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (SelectBlock == 452984832)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 0;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.9069 = ReturnCode;
+  return D.9069;
+
+}
+
+
+C40_Ip_ArrayIntegrityCheck (uint32 SelectBlock, C40_Ip_ArrayIntegritySequenceType AddressSequence, C40_Ip_FlashBreakPointsType BreakPoints, const struct C40_Ip_MisrType * MisrSeedValues, uint8 DomainIdValue)
+{
+  uint32 WaitCounter;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.9058;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_CheckSelecBlock (SelectBlock);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11700;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_UTestCheckBusy ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->UT0 = 4193884569;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->UT0;
+  _5 = (signed int) _4;
+  if (_5 >= 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 18>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceWriteJobAddress (SelectBlock, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _6->DATA[0] = 4294967295;
+  # DEBUG BEGIN_STMT
+  if (AddressSequence == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 | 4;
+  _9->UT0 = _10;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 = _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 & 4294967291;
+  _13->UT0 = _14;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_UTestCheckBreakpoint (BreakPoints);
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetSeedMisr (MisrSeedValues);
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 = _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 | 2;
+  _17->UT0 = _18;
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _19->DATA[0] = 4294967295;
+  # DEBUG BEGIN_STMT
+  _20 = 1076805632B;
+  _21 = _20->UT0;
+  _22 = 1076805632B;
+  _23 = _21 | 2;
+  _22->UT0 = _23;
+  # DEBUG BEGIN_STMT
+  _24 = 1076805632B;
+  _25 = _24->UT0;
+  _26 = 1076805632B;
+  _27 = _25 & 4294967293;
+  _26->UT0 = _27;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  _29 = _28->UT0;
+  _30 = _29 & 1;
+  if (_30 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (WaitCounter != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _31 = 1076805632B;
+  _32 = _31->UT0;
+  _33 = 1076805632B;
+  _34 = _32 & 2147483647;
+  _33->UT0 = _34;
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.9058 = ReturnCode;
+  return D.9058;
+
+}
+
+
+C40_Ip_UTestCheckBreakpoint (C40_Ip_FlashBreakPointsType BreakPoints)
+{
+  uint32 Temp;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  switch (BreakPoints) <default: <L2> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  Temp = _1->MCRS;
+  # DEBUG BEGIN_STMT
+  Temp = Temp & 216858623;
+  # DEBUG BEGIN_STMT
+  Temp = Temp | 3221225472;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _2->MCRS = Temp;
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->UT0;
+  _5 = 1076805632B;
+  _6 = _4 | 256;
+  _5->UT0 = _6;
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->UT0;
+  _9 = 1076805632B;
+  _10 = _8 & 3221225471;
+  _9->UT0 = _10;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  Temp = _11->MCRS;
+  # DEBUG BEGIN_STMT
+  Temp = Temp & 216858623;
+  # DEBUG BEGIN_STMT
+  Temp = Temp | 3221225472;
+  # DEBUG BEGIN_STMT
+  _12 = 1076805632B;
+  _12->MCRS = Temp;
+  # DEBUG BEGIN_STMT
+  _13 = 1076805632B;
+  _14 = _13->UT0;
+  _15 = 1076805632B;
+  _16 = _14 | 256;
+  _15->UT0 = _16;
+  # DEBUG BEGIN_STMT
+  _17 = 1076805632B;
+  _18 = _17->UT0;
+  _19 = 1076805632B;
+  _20 = _18 | 1073741824;
+  _19->UT0 = _20;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _21 = 1076805632B;
+  _22 = _21->UT0;
+  _23 = 1076805632B;
+  _24 = _22 & 4294967039;
+  _23->UT0 = _24;
+  # DEBUG BEGIN_STMT
+  _25 = 1076805632B;
+  _26 = _25->UT0;
+  _27 = 1076805632B;
+  _28 = _26 & 3221225471;
+  _27->UT0 = _28;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  return;
+
+}
+
+
+C40_Ip_UTestCheckBusy ()
+{
+  C40_Ip_StatusType ReturnCode;
+  uint32 WaitCounter;
+  C40_Ip_StatusType D.9080;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = 450;
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->UT0;
+  _3 = _2 & 2;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 = _4->UT0;
+  _6 = _5 & 512;
+  if (_6 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->MCRS;
+  _9 = 1076805632B;
+  _10 = _8 & 4077912064;
+  _9->MCRS = _10;
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 = _11->UT0;
+  _13 = 1076805632B;
+  _14 = _12 & 4294966783;
+  _13->UT0 = _14;
+  # DEBUG BEGIN_STMT
+  _15 = 1076805632B;
+  _16 = _15->UT0;
+  _17 = 1076805632B;
+  _18 = _16 & 4294967293;
+  _17->UT0 = _18;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  WaitCounter = WaitCounter + 4294967295;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076805632B;
+  _20 = _19->UT0;
+  _21 = _20 & 1;
+  if (_21 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (WaitCounter != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = 1076805632B;
+  _23 = _22->UT0;
+  _24 = 1076805632B;
+  _25 = _23 | 4;
+  _24->UT0 = _25;
+  # DEBUG BEGIN_STMT
+  _26 = 1076805632B;
+  _27 = _26->UT0;
+  _28 = 1076805632B;
+  _29 = _27 | 2147483648;
+  _28->UT0 = _29;
+  # DEBUG BEGIN_STMT
+  _30 = 1076805632B;
+  _31 = _30->UT0;
+  _32 = _31 & 512;
+  if (_32 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _33 = 1076805632B;
+  _34 = _33->UT0;
+  _35 = _34 & 1;
+  if (_35 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 59202;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  D.9080 = ReturnCode;
+  return D.9080;
+
+}
+
+
+C40_Ip_GetBlockNumberFromAddress (uint32 TargetAddress)
+{
+  C40_Ip_FlashBlocksNumberType BlockNumber;
+  C40_Ip_FlashBlocksNumberType D.9033;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = TargetAddress + 3841982464;
+  if (_1 <= 8191)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 5;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = TargetAddress + 4026531840;
+  if (_2 <= 131071)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 4;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _3 = TargetAddress + 4290772992;
+  if (_3 <= 2097151)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = C40_Ip_GetCodeBlockNumber (TargetAddress);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 255;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.9033 = BlockNumber;
+  return D.9033;
+
+}
+
+
+C40_Ip_GetCodeBlockNumber (uint32 TargetAddress)
+{
+  C40_Ip_FlashBlocksNumberType BlockNumber;
+  C40_Ip_FlashBlocksNumberType D.9041;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 255;
+  # DEBUG BEGIN_STMT
+  if (TargetAddress <= 5242879)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 0;
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (TargetAddress <= 6291455)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BlockNumber = 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.9041 = BlockNumber;
+  return D.9041;
+
+}
+
+
+C40_Ip_GetSectorNumberFromAddress (uint32 TargetAddress)
+{
+  C40_Ip_VirtualSectorsType VirtualSectors;
+  C40_Ip_VirtualSectorsType D.9014;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidAddress (TargetAddress);
+  # DEBUG BEGIN_STMT
+  _1 = TargetAddress + 3841982464;
+  if (_1 <= 8191)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  VirtualSectors = 272;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = TargetAddress + 4026531840;
+  if (_2 <= 131071)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = TargetAddress + 4026531840;
+  VirtualSectors = _3 / 8192;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = TargetAddress + 4290772992;
+  if (_4 <= 2097151)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _5 = TargetAddress + 4290772992;
+  _6 = _5 / 8192;
+  VirtualSectors = _6 + 16;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  VirtualSectors = 273;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.9014 = VirtualSectors;
+  return D.9014;
+
+}
+
+
+C40_Ip_CheckLockDomainID_CheckRegister (C40_Ip_VirtualSectorsType VirtualSector, uint32 * CheckRegister, uint32 * TempLockMasterRegister)
+{
+  uint32 SectorStep;
+  uint32 DomainStep;
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.43_1 = C40_Ip_u32SectorId;
+  SectorStep = C40_Ip_u32SectorId.43_1 & 4294967292;
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = 1076264960B;
+  _3 = _2->PFCBLK_SETSLOCK[2];
+  *CheckRegister = _3;
+  # DEBUG BEGIN_STMT
+  _4 = SectorStep + 1076265984;
+  *TempLockMasterRegister = _4;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  _6 = _5->PFCBLKU_SETSLOCK[0];
+  *CheckRegister = _6;
+  # DEBUG BEGIN_STMT
+  *TempLockMasterRegister = 1076266112;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex = VirtualSector + 4294967280;
+  # DEBUG BEGIN_STMT
+  BlockCount = SectorIndex / 128;
+  # DEBUG BEGIN_STMT
+  SectorPosition = SectorIndex & 127;
+  # DEBUG BEGIN_STMT
+  if (SectorPosition <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  _8 = _7->PFCBLK_SSETSLOCK[BlockCount];
+  *CheckRegister = _8;
+  # DEBUG BEGIN_STMT
+  DomainStep = BlockCount << 4;
+  # DEBUG BEGIN_STMT
+  _9 = DomainStep + SectorStep;
+  _10 = _9 + 1076266116;
+  *TempLockMasterRegister = _10;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076264960B;
+  _12 = _11->PFCBLK_SETSLOCK[BlockCount];
+  *CheckRegister = _12;
+  # DEBUG BEGIN_STMT
+  DomainStep = BlockCount << 5;
+  # DEBUG BEGIN_STMT
+  _13 = DomainStep + SectorStep;
+  _14 = _13 + 1076265920;
+  *TempLockMasterRegister = _14;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_GetBaseAddressOfSector (C40_Ip_VirtualSectorsType VirtualSectors)
+{
+  volatile uint32 BaseAddressofSector;
+  uint32 D.8933;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = VirtualSectors + 32768;
+  _2 = _1 * 8192;
+  BaseAddressofSector = _2;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors <= 271)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = VirtualSectors + 496;
+  _4 = _3 * 8192;
+  BaseAddressofSector = _4;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSectors == 272)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  BaseAddressofSector = 452984832;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  BaseAddressofSector = 4294967295;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.8933 = BaseAddressofSector;
+  return D.8933;
+
+}
+
+
+C40_Ip_CheckLockDomainID (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  uint32 CheckRegister;
+  uint32 ShiftValue;
+  uint32 TempLockMasterRegister;
+  uint8 LockDomainIDValue;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8801;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  LockDomainIDValue = 0;
+  # DEBUG BEGIN_STMT
+  TempLockMasterRegister = 0;
+  # DEBUG BEGIN_STMT
+  ShiftValue = 0;
+  # DEBUG BEGIN_STMT
+  CheckRegister = 0;
+  # DEBUG BEGIN_STMT
+  if (VirtualSector != 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.10_1 = C40_Ip_u32SectorId;
+  _2 = C40_Ip_u32SectorId.10_1 & 3;
+  ShiftValue = _2 * 8;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_CheckLockDomainID_CheckRegister (VirtualSector, &CheckRegister, &TempLockMasterRegister);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CheckRegister.11_3 = CheckRegister;
+  C40_Ip_u32BitPosition.12_4 = C40_Ip_u32BitPosition;
+  _5 = CheckRegister.11_3 & C40_Ip_u32BitPosition.12_4;
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  TempLockMasterRegister.13_6 = TempLockMasterRegister;
+  if (TempLockMasterRegister.13_6 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TempLockMasterRegister.14_7 = TempLockMasterRegister;
+  TempLockMasterRegister.15_8 = (volatile uint32 *) TempLockMasterRegister.14_7;
+  _9 = *TempLockMasterRegister.15_8;
+  _10 = _9 >> ShiftValue;
+  LockDomainIDValue = (uint8) _10;
+  # DEBUG BEGIN_STMT
+  if (LockDomainIDValue != DomainIdValue)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8801 = ReturnCode;
+  TempLockMasterRegister = {CLOBBER};
+  CheckRegister = {CLOBBER};
+  return D.8801;
+
+}
+
+
+C40_Ip_GetSectorID (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 SectorIndex;
+  uint32 D.8841;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId = VirtualSector;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _1 = VirtualSector + 4294967024;
+  C40_Ip_u32SectorId = _1;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex = VirtualSector + 4294967280;
+  # DEBUG BEGIN_STMT
+  SectorPosition = SectorIndex & 127;
+  # DEBUG BEGIN_STMT
+  if (SectorPosition <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = SectorPosition >> 3;
+  C40_Ip_u32SectorId = _2;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = SectorPosition + 4294967200;
+  C40_Ip_u32SectorId = _3;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.8841 = C40_Ip_u32SectorId;
+  return D.8841;
+
+}
+
+
+C40_Ip_MainInterfaceHVJobStatus ()
+{
+  uint32 ErrorFlags;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8951;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCRS;
+  _3 = _2 & 32768;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 59202;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 = _4->MCRS;
+  ErrorFlags = _5 & 212992;
+  # DEBUG BEGIN_STMT
+  if (ErrorFlags == 16384)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8951 = ReturnCode;
+  return D.8951;
+
+}
+
+
+C40_Ip_MainInterfaceWriteStatus ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8994;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceHVJobStatus ();
+  # DEBUG BEGIN_STMT
+  if (ReturnCode != 59202)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR = _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294967039;
+  _7->MCR = _8;
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedAddress.40_9 = C40_Ip_u32ProgrammedAddress;
+  C40_Ip_u32ProgrammedLength.41_10 = C40_Ip_u32ProgrammedLength;
+  C40_Ip_pProgrammedData.42_11 = C40_Ip_pProgrammedData;
+  ReturnCode = C40_Ip_Compare (C40_Ip_u32ProgrammedAddress.40_9, C40_Ip_u32ProgrammedLength.41_10, C40_Ip_pProgrammedData.42_11);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode != 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 13260;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.8994 = ReturnCode;
+  return D.8994;
+
+}
+
+
+C40_Ip_MainInterfaceWrite (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr, uint8 DomainIdValue)
+{
+  uint32 LocationWriteDataRegs;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8965;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32LogicalAddressCheckFail = LogicalAddress;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eOpStatus = 17;
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceWritePreCheck (LogicalAddress, Length, SourceAddressPtr);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_Compare (LogicalAddress, Length, 0B);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode != 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11892;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceWriteJobAddress (LogicalAddress, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 11220)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearInterlockWrite ();
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedAddress = LogicalAddress;
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ProgrammedLength = Length;
+  # DEBUG BEGIN_STMT
+  C40_Ip_pProgrammedData = SourceAddressPtr;
+  # DEBUG BEGIN_STMT
+  _1 = LogicalAddress >> 2;
+  LocationWriteDataRegs = _1 & 31;
+  # DEBUG BEGIN_STMT
+  C40_Ip_MainInterfaceFillDataBuff (LocationWriteDataRegs, SourceAddressPtr, Length);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 = _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 256;
+  _4->MCR = _5;
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync.30_6 = C40_Ip_bAsync;
+  if (C40_Ip_bAsync.30_6 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  _7 = 1076805632B;
+  _8 = _7->MCR;
+  _9 = 1076805632B;
+  _10 = _8 | 1;
+  _9->MCR = _10;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  D.8965 = ReturnCode;
+  return D.8965;
+
+}
+
+
+C40_Ip_ClearInterlockWrite ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _1->DATA[0] = 0;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 = _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 256;
+  _4->MCR = _5;
+  # DEBUG BEGIN_STMT
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 = _6->MCR;
+  _8 = _7 & 256;
+  if (_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = 1076805632B;
+  _10 = _9->MCR;
+  _11 = 1076805632B;
+  _12 = _10 & 4294967039;
+  _11->MCR = _12;
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceFillDataBuff (uint32 LocationWriteDataRegs, const uint8 * DataPtr, uint32 Size)
+{
+  volatile uint32 DataTemp32;
+  uint32 SizeLeft;
+  uint32 DataIndex;
+  const uint8 * DataPtr8;
+  const uint32 * DataPtr32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DataPtr32 = DataPtr;
+  # DEBUG BEGIN_STMT
+  DataPtr8 = DataPtr;
+  # DEBUG BEGIN_STMT
+  DataIndex = LocationWriteDataRegs;
+  # DEBUG BEGIN_STMT
+  SizeLeft = Size;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DataPtr.31_1 = (long unsigned int) DataPtr;
+  _2 = DataPtr.31_1 & 3;
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = *DataPtr32;
+  _3->DATA[DataIndex] = _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = DataIndex + 1;
+  _7 = MEM[(const uint32 *)DataPtr32 + 4B];
+  _5->DATA[_6] = _7;
+  # DEBUG BEGIN_STMT
+  DataPtr32 = DataPtr32 + 8;
+  # DEBUG BEGIN_STMT
+  DataIndex = DataIndex + 2;
+  # DEBUG BEGIN_STMT
+  SizeLeft = SizeLeft + 4294967288;
+  # DEBUG BEGIN_STMT
+  if (SizeLeft != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = *DataPtr8;
+  _9 = (long unsigned int) _8;
+  DataTemp32 = _9;
+  # DEBUG BEGIN_STMT
+  _10 = DataPtr8 + 1;
+  _11 = *_10;
+  _12 = (long unsigned int) _11;
+  _13 = _12 << 8;
+  DataTemp32.32_14 = DataTemp32;
+  _15 = _13 | DataTemp32.32_14;
+  DataTemp32 = _15;
+  # DEBUG BEGIN_STMT
+  _16 = DataPtr8 + 2;
+  _17 = *_16;
+  _18 = (long unsigned int) _17;
+  _19 = _18 << 16;
+  DataTemp32.33_20 = DataTemp32;
+  _21 = _19 | DataTemp32.33_20;
+  DataTemp32 = _21;
+  # DEBUG BEGIN_STMT
+  _22 = DataPtr8 + 3;
+  _23 = *_22;
+  _24 = (long unsigned int) _23;
+  _25 = _24 << 24;
+  DataTemp32.34_26 = DataTemp32;
+  _27 = _25 | DataTemp32.34_26;
+  DataTemp32 = _27;
+  # DEBUG BEGIN_STMT
+  _28 = 1076805632B;
+  DataTemp32.35_29 = DataTemp32;
+  _28->DATA[DataIndex] = DataTemp32.35_29;
+  # DEBUG BEGIN_STMT
+  _30 = DataPtr8 + 4;
+  _31 = *_30;
+  _32 = (long unsigned int) _31;
+  DataTemp32 = _32;
+  # DEBUG BEGIN_STMT
+  _33 = DataPtr8 + 5;
+  _34 = *_33;
+  _35 = (long unsigned int) _34;
+  _36 = _35 << 8;
+  DataTemp32.36_37 = DataTemp32;
+  _38 = _36 | DataTemp32.36_37;
+  DataTemp32 = _38;
+  # DEBUG BEGIN_STMT
+  _39 = DataPtr8 + 6;
+  _40 = *_39;
+  _41 = (long unsigned int) _40;
+  _42 = _41 << 16;
+  DataTemp32.37_43 = DataTemp32;
+  _44 = _42 | DataTemp32.37_43;
+  DataTemp32 = _44;
+  # DEBUG BEGIN_STMT
+  _45 = DataPtr8 + 7;
+  _46 = *_45;
+  _47 = (long unsigned int) _46;
+  _48 = _47 << 24;
+  DataTemp32.38_49 = DataTemp32;
+  _50 = _48 | DataTemp32.38_49;
+  DataTemp32 = _50;
+  # DEBUG BEGIN_STMT
+  _51 = 1076805632B;
+  _52 = DataIndex + 1;
+  DataTemp32.39_53 = DataTemp32;
+  _51->DATA[_52] = DataTemp32.39_53;
+  # DEBUG BEGIN_STMT
+  DataPtr8 = DataPtr8 + 8;
+  # DEBUG BEGIN_STMT
+  DataIndex = DataIndex + 2;
+  # DEBUG BEGIN_STMT
+  SizeLeft = SizeLeft + 4294967288;
+  # DEBUG BEGIN_STMT
+  if (SizeLeft != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceWritePreCheck (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr)
+{
+  C40_Ip_VirtualSectorsType VirtualSector;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8983;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress, Length);
+  # DEBUG BEGIN_STMT
+  VirtualSector = C40_Ip_GetSectorNumberFromAddress (LogicalAddress);
+  # DEBUG BEGIN_STMT
+  _1 = LogicalAddress & 7;
+  if (_1 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = Length & 7;
+  if (_2 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  if (Length > 128)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  if (Length == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (SourceAddressPtr == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11700;
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->MCR;
+  _5 = _4 & 272;
+  if (_5 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 = _6->UT0;
+  _8 = (signed int) _7;
+  if (_8 < 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _9 = C40_Ip_GetLock (VirtualSector);
+  if (_9 != 64034)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  D.8983 = ReturnCode;
+  return D.8983;
+
+}
+
+
+C40_Ip_MainInterfaceSectorEraseStatus ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8943;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceHVJobStatus ();
+  # DEBUG BEGIN_STMT
+  if (ReturnCode != 59202)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR = _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294967279;
+  _7->MCR = _8;
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ErasedSectorAddress.29_9 = C40_Ip_u32ErasedSectorAddress;
+  ReturnCode = C40_Ip_Compare (C40_Ip_u32ErasedSectorAddress.29_9, 8192, 0B);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode != 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11892;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  D.8943 = ReturnCode;
+  return D.8943;
+
+}
+
+
+C40_Ip_MainInterfaceSectorErase (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  uint32 LogicalAddress;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8908;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceSectorErasePreCheck (VirtualSector);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  LogicalAddress = C40_Ip_GetBaseAddressOfSector (VirtualSector);
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32ErasedSectorAddress = LogicalAddress;
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceWriteJobAddress (LogicalAddress, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 11220)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearInterlockWrite ();
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _1->DATA[0] = 4294967295;
+  # DEBUG BEGIN_STMT
+  _2 = 1076805632B;
+  _3 = _2->MCR;
+  _4 = 1076805632B;
+  _5 = _3 | 16;
+  _4->MCR = _5;
+  # DEBUG BEGIN_STMT
+  _6 = 1076805632B;
+  _7 = _6->MCR;
+  _8 = 1076805632B;
+  _9 = _7 & 4294967263;
+  _8->MCR = _9;
+  # DEBUG BEGIN_STMT
+  C40_Ip_bAsync.28_10 = C40_Ip_bAsync;
+  if (C40_Ip_bAsync.28_10 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  _11 = 1076805632B;
+  _12 = _11->MCR;
+  _13 = 1076805632B;
+  _14 = _12 | 1;
+  _13->MCR = _14;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  D.8908 = ReturnCode;
+  return D.8908;
+
+}
+
+
+C40_Ip_MainInterfaceSectorErasePreCheck (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8922;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector > 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 11700;
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = _2 & 272;
+  if (_3 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _5 = _4->UT0;
+  _6 = (signed int) _5;
+  if (_6 < 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_GetLock (VirtualSector);
+  if (_7 != 64034)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  D.8922 = ReturnCode;
+  return D.8922;
+
+}
+
+
+C40_Ip_ClearAllErrorFlagsMainInterface ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCRS;
+  _3 = 1076805632B;
+  _4 = _2 & 4078108672;
+  _3->MCRS = _4;
+  return;
+
+}
+
+
+C40_Ip_MainInterfaceAbort ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8708;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294967294;
+  _3->MCR = _4;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = _5->MCRS;
+  _7 = _6 & 32768;
+  if (_7 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _8 = 1076805632B;
+  _9 = _8->MCR;
+  _10 = 1076805632B;
+  _11 = _9 & 4294966991;
+  _10->MCR = _11;
+  # DEBUG BEGIN_STMT
+  D.8708 = ReturnCode;
+  return D.8708;
+
+}
+
+
+C40_Ip_InitMainInterface ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8706;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceAbort ();
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = 1076805632B;
+  _4 = _2 & 4294963199;
+  _3->MCR = _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076805632B;
+  _6 = _5->MCR;
+  _7 = 1076805632B;
+  _8 = _6 & 4294934527;
+  _7->MCR = _8;
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  D.8706 = ReturnCode;
+  return D.8706;
+
+}
+
+
+C40_Ip_MainInterfaceWriteJobAddress (uint32 PhysicalAddress, uint8 DomainIdValue)
+{
+  uint8 ActualDomainIDs;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8935;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_MainInterfaceWriteLogicalAddress (PhysicalAddress);
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCR;
+  _3 = _2 >> 16;
+  ActualDomainIDs = (uint8) _3;
+  # DEBUG BEGIN_STMT
+  if (ActualDomainIDs != DomainIdValue)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.8935 = ReturnCode;
+  return D.8935;
+
+}
+
+
+C40_Ip_MainInterfaceWriteLogicalAddress (uint32 Address)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _1->PFCPGM_PEADR_L = Address;
+  return;
+
+}
+
+
+C40_Ip_EraseVerify (uint32 Address, uint32 Size)
+{
+  boolean CompareResult;
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint32 ReadAddress;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = Address;
+  # DEBUG BEGIN_STMT
+  SizeLeft = Size;
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = C40_Ip_ClearPreviousRead (ReadAddress);
+  # DEBUG BEGIN_STMT
+  if (Status == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize = C40_Ip_CompareBlank (ReadAddress, SizeLeft, &CompareResult);
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  CompareResult.27_1 = CompareResult;
+  Status = C40_Ip_CheckReadCompareStatus (ReadAddress, CompareResult.27_1);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (Status != 23205)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = ReadAddress + ReadSize;
+  # DEBUG BEGIN_STMT
+  SizeLeft = SizeLeft - ReadSize;
+  # DEBUG BEGIN_STMT
+  if (SizeLeft != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (SizeLeft == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 9> :
+  CompareResult = {CLOBBER};
+  return;
+
+}
+
+
+C40_Ip_CompareBlank (uint32 ReadAddress, uint32 SizeLeft, boolean * CompareResult)
+{
+  uint32 ReadSize;
+  uint32 D.8898;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = ReadAddress & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 4;
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ReadData32 (ReadAddress);
+  _3 = _2 == 4294967295;
+  _4 = (unsigned char) _3;
+  *CompareResult = _4;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = ReadAddress & 1;
+  if (_5 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 2;
+  # DEBUG BEGIN_STMT
+  _6 = C40_Ip_ReadData16 (ReadAddress);
+  _7 = _6 == 65535;
+  _8 = (unsigned char) _7;
+  *CompareResult = _8;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 1;
+  # DEBUG BEGIN_STMT
+  _9 = C40_Ip_ReadData8 (ReadAddress);
+  _10 = _9 == 255;
+  _11 = (unsigned char) _10;
+  *CompareResult = _11;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.8898 = ReadSize;
+  return D.8898;
+
+}
+
+
+C40_Ip_ProgramVerify (uint32 Address, const uint8 * Data, uint32 Size)
+{
+  boolean CompareResult;
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint32 DataAddress;
+  uint32 ReadAddress;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = Address;
+  # DEBUG BEGIN_STMT
+  DataAddress = (uint32) Data;
+  # DEBUG BEGIN_STMT
+  SizeLeft = Size;
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = C40_Ip_ClearPreviousRead (ReadAddress);
+  # DEBUG BEGIN_STMT
+  if (Status == 23205)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize = C40_Ip_CompareData (ReadAddress, DataAddress, SizeLeft, &CompareResult);
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  CompareResult.26_1 = CompareResult;
+  Status = C40_Ip_CheckReadCompareStatus (ReadAddress, CompareResult.26_1);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (Status != 23205)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = ReadAddress + ReadSize;
+  # DEBUG BEGIN_STMT
+  DataAddress = DataAddress + ReadSize;
+  # DEBUG BEGIN_STMT
+  SizeLeft = SizeLeft - ReadSize;
+  # DEBUG BEGIN_STMT
+  if (SizeLeft != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (SizeLeft == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 9> :
+  CompareResult = {CLOBBER};
+  return;
+
+}
+
+
+C40_Ip_CompareData (uint32 ReadAddress, uint32 DataAddress, uint32 SizeLeft, boolean * CompareResult)
+{
+  uint32 CombinedAddress;
+  uint32 ReadSize;
+  uint32 D.8883;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CombinedAddress = ReadAddress | DataAddress;
+  # DEBUG BEGIN_STMT
+  _1 = CombinedAddress & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 4;
+  # DEBUG BEGIN_STMT
+  _2 = C40_Ip_ReadData32 (ReadAddress);
+  _3 = C40_Ip_ReadData32 (DataAddress);
+  _4 = _2 == _3;
+  _5 = (unsigned char) _4;
+  *CompareResult = _5;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = CombinedAddress & 1;
+  if (_6 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 2;
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_ReadData16 (ReadAddress);
+  _8 = C40_Ip_ReadData16 (DataAddress);
+  _9 = _7 == _8;
+  _10 = (unsigned char) _9;
+  *CompareResult = _10;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 1;
+  # DEBUG BEGIN_STMT
+  _11 = C40_Ip_ReadData8 (ReadAddress);
+  _12 = C40_Ip_ReadData8 (DataAddress);
+  _13 = _11 == _12;
+  _14 = (unsigned char) _13;
+  *CompareResult = _14;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.8883 = ReadSize;
+  return D.8883;
+
+}
+
+
+C40_Ip_Compare (uint32 LogicalAddress, uint32 Length, const uint8 * SourceAddressPtr)
+{
+  C40_Ip_StatusType D.8868;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress, Length);
+  # DEBUG BEGIN_STMT
+  if (Length == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 11700;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 59202;
+  # DEBUG BEGIN_STMT
+  if (SourceAddressPtr != 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ProgramVerify (LogicalAddress, SourceAddressPtr, Length);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_EraseVerify (LogicalAddress, Length);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8868 = C40_Ip_eReadStatus;
+  return D.8868;
+
+}
+
+
+C40_Ip_ClearLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 = _1->PFCBLK_SPELOCK[2];
+  C40_Ip_u32BitPosition.22_3 = C40_Ip_u32BitPosition;
+  _4 = ~C40_Ip_u32BitPosition.22_3;
+  _5 = 1076264960B;
+  _6 = _2 & _4;
+  _5->PFCBLK_SPELOCK[2] = _6;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  _8 = _7->PFCBLKU_SPELOCK[0];
+  C40_Ip_u32BitPosition.23_9 = C40_Ip_u32BitPosition;
+  _10 = ~C40_Ip_u32BitPosition.23_9;
+  _11 = 1076264960B;
+  _12 = _8 & _10;
+  _11->PFCBLKU_SPELOCK[0] = _12;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex = VirtualSector + 4294967280;
+  # DEBUG BEGIN_STMT
+  BlockCount = SectorIndex / 128;
+  # DEBUG BEGIN_STMT
+  SectorPosition = SectorIndex & 127;
+  # DEBUG BEGIN_STMT
+  if (SectorPosition <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = 1076264960B;
+  _14 = _13->PFCBLK_SSPELOCK[BlockCount];
+  C40_Ip_u32BitPosition.24_15 = C40_Ip_u32BitPosition;
+  _16 = ~C40_Ip_u32BitPosition.24_15;
+  _17 = 1076264960B;
+  _18 = _14 & _16;
+  _17->PFCBLK_SSPELOCK[BlockCount] = _18;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076264960B;
+  _20 = _19->PFCBLK_SPELOCK[BlockCount];
+  C40_Ip_u32BitPosition.25_21 = C40_Ip_u32BitPosition;
+  _22 = ~C40_Ip_u32BitPosition.25_21;
+  _23 = 1076264960B;
+  _24 = _20 & _22;
+  _23->PFCBLK_SPELOCK[BlockCount] = _24;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_ClearLock (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8851;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_GetLock (VirtualSector);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 10212)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 64034)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_CheckLockDomainID (VirtualSector, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearLockProtect (VirtualSector);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8851 = ReturnCode;
+  return D.8851;
+
+}
+
+
+C40_Ip_GetLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 CheckRegister;
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+  uint32 D.8830;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_GetSectorID (VirtualSector);
+  C40_Ip_u32SectorId = _1;
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32SectorId.20_2 = C40_Ip_u32SectorId;
+  _3 = 1 << C40_Ip_u32SectorId.20_2;
+  C40_Ip_u32BitPosition = _3;
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076264960B;
+  CheckRegister = _4->PFCBLK_SPELOCK[2];
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  CheckRegister = _5->PFCBLKU_SPELOCK[0];
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex = VirtualSector + 4294967280;
+  # DEBUG BEGIN_STMT
+  BlockCount = SectorIndex / 128;
+  # DEBUG BEGIN_STMT
+  SectorPosition = SectorIndex & 127;
+  # DEBUG BEGIN_STMT
+  if (SectorPosition <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076264960B;
+  CheckRegister = _6->PFCBLK_SSPELOCK[BlockCount];
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _7 = 1076264960B;
+  CheckRegister = _7->PFCBLK_SPELOCK[BlockCount];
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_u32BitPosition.21_8 = C40_Ip_u32BitPosition;
+  D.8830 = CheckRegister & C40_Ip_u32BitPosition.21_8;
+  return D.8830;
+
+}
+
+
+C40_Ip_GetLock (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 CheckRegister;
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8819;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector > 272)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CheckRegister = C40_Ip_GetLockProtect (VirtualSector);
+  # DEBUG BEGIN_STMT
+  if (CheckRegister == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 64034;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 59576;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8819 = ReturnCode;
+  return D.8819;
+
+}
+
+
+C40_Ip_SetLockProtect (C40_Ip_VirtualSectorsType VirtualSector)
+{
+  uint32 SectorPosition;
+  uint32 BlockCount;
+  uint32 SectorIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VirtualSector <= 15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 = _1->PFCBLK_SPELOCK[2];
+  C40_Ip_u32BitPosition.16_3 = C40_Ip_u32BitPosition;
+  _4 = 1076264960B;
+  _5 = _2 | C40_Ip_u32BitPosition.16_3;
+  _4->PFCBLK_SPELOCK[2] = _5;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (VirtualSector == 272)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = 1076264960B;
+  _7 = _6->PFCBLKU_SPELOCK[0];
+  C40_Ip_u32BitPosition.17_8 = C40_Ip_u32BitPosition;
+  _9 = 1076264960B;
+  _10 = _7 | C40_Ip_u32BitPosition.17_8;
+  _9->PFCBLKU_SPELOCK[0] = _10;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SectorIndex = VirtualSector + 4294967280;
+  # DEBUG BEGIN_STMT
+  BlockCount = SectorIndex / 128;
+  # DEBUG BEGIN_STMT
+  SectorPosition = SectorIndex & 127;
+  # DEBUG BEGIN_STMT
+  if (SectorPosition <= 95)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = 1076264960B;
+  _12 = _11->PFCBLK_SSPELOCK[BlockCount];
+  C40_Ip_u32BitPosition.18_13 = C40_Ip_u32BitPosition;
+  _14 = 1076264960B;
+  _15 = _12 | C40_Ip_u32BitPosition.18_13;
+  _14->PFCBLK_SSPELOCK[BlockCount] = _15;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _16 = 1076264960B;
+  _17 = _16->PFCBLK_SPELOCK[BlockCount];
+  C40_Ip_u32BitPosition.19_18 = C40_Ip_u32BitPosition;
+  _19 = 1076264960B;
+  _20 = _17 | C40_Ip_u32BitPosition.19_18;
+  _19->PFCBLK_SPELOCK[BlockCount] = _20;
+
+  <bb 9> :
+  return;
+
+}
+
+
+C40_Ip_SetLock (C40_Ip_VirtualSectorsType VirtualSector, uint8 DomainIdValue)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8787;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_GetLock (VirtualSector);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 10212)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 59576)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 23205;
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_CheckLockDomainID (VirtualSector, DomainIdValue);
+  # DEBUG BEGIN_STMT
+  if (ReturnCode == 23205)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_SetLockProtect (VirtualSector);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8787 = ReturnCode;
+  return D.8787;
+
+}
+
+
+C40_Ip_Read (uint32 LogicalAddress, uint32 Length, uint8 * DestAddressPtr)
+{
+  C40_Ip_StatusType Status;
+  uint32 ReadSize;
+  uint32 SizeLeft;
+  uint8 * DesAddressPtr;
+  uint32 ReadAddress;
+  C40_Ip_StatusType D.8719;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = LogicalAddress;
+  # DEBUG BEGIN_STMT
+  DesAddressPtr = DestAddressPtr;
+  # DEBUG BEGIN_STMT
+  SizeLeft = Length;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_ValidRangeAddress (LogicalAddress, Length);
+  # DEBUG BEGIN_STMT
+  _1 = C40_Ip_ReadCheckInputParams (Length, DestAddressPtr);
+  C40_Ip_eReadStatus = _1;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus.0_2 = C40_Ip_eReadStatus;
+  if (C40_Ip_eReadStatus.0_2 == 23205)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 59202;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = C40_Ip_ClearPreviousRead (ReadAddress);
+  # DEBUG BEGIN_STMT
+  if (Status == 23205)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutStart ();
+  # DEBUG BEGIN_STMT
+  ReadSize = C40_Ip_ReadData (ReadAddress, DesAddressPtr, SizeLeft);
+  # DEBUG BEGIN_STMT
+  C40_Ip_FlashAccessCalloutFinish ();
+  # DEBUG BEGIN_STMT
+  Status = C40_Ip_CheckReadCompareStatus (ReadAddress, 1);
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (Status != 23205)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadAddress = ReadAddress + ReadSize;
+  # DEBUG BEGIN_STMT
+  DesAddressPtr = DesAddressPtr + ReadSize;
+  # DEBUG BEGIN_STMT
+  SizeLeft = SizeLeft - ReadSize;
+  # DEBUG BEGIN_STMT
+  if (SizeLeft != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (SizeLeft == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 23205;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.8719 = C40_Ip_eReadStatus;
+  return D.8719;
+
+}
+
+
+C40_Ip_ClearPreviousRead (uint32 ReadAddress)
+{
+  C40_Ip_StatusType Status;
+  C40_Ip_StatusType D.8749;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Status = 23205;
+  # DEBUG BEGIN_STMT
+  C40_Ip_ClearAllErrorFlagsMainInterface ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.8749 = Status;
+  return D.8749;
+
+}
+
+
+C40_Ip_ReadCheckInputParams (uint32 Length, const uint8 * DestAddressPtr)
+{
+  C40_Ip_StatusType Status;
+  C40_Ip_StatusType D.8747;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Status = 11700;
+  # DEBUG BEGIN_STMT
+  if (DestAddressPtr == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (Length == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Status = 23205;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  D.8747 = Status;
+  return D.8747;
+
+}
+
+
+C40_Ip_ReadData (uint32 ReadAddress, uint8 * DesAddressPtr, uint32 SizeLeft)
+{
+  uint32 CombinedAddress;
+  uint32 DesAddress;
+  uint32 ReadSize;
+  uint32 D.8761;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  DesAddress = (uint32) DesAddressPtr;
+  # DEBUG BEGIN_STMT
+  CombinedAddress = ReadAddress | DesAddress;
+  # DEBUG BEGIN_STMT
+  _1 = CombinedAddress & 3;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (SizeLeft > 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 4;
+  # DEBUG BEGIN_STMT
+  DesAddress.3_2 = (uint32 *) DesAddress;
+  _3 = C40_Ip_ReadData32 (ReadAddress);
+  *DesAddress.3_2 = _3;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = CombinedAddress & 1;
+  if (_4 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  if (SizeLeft > 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 2;
+  # DEBUG BEGIN_STMT
+  DesAddress.4_5 = (uint16 *) DesAddress;
+  _6 = C40_Ip_ReadData16 (ReadAddress);
+  *DesAddress.4_5 = _6;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ReadSize = 1;
+  # DEBUG BEGIN_STMT
+  _7 = C40_Ip_ReadData8 (ReadAddress);
+  *DesAddressPtr = _7;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  D.8761 = ReadSize;
+  return D.8761;
+
+}
+
+
+C40_Ip_SetSeedMisr (const struct C40_Ip_MisrType * MisrSeedValues)
+{
+  uint8 Counter;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (MisrSeedValues == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Counter = 0;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = (int) Counter;
+  _1->UM[_2] = 0;
+  # DEBUG BEGIN_STMT
+  Counter.45_3 = Counter;
+  Counter = Counter.45_3 + 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (Counter <= 8)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076805632B;
+  _4->UM9 = 0;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Counter = 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) Counter;
+  _6 = 1076805632B;
+  _7 = (int) Counter;
+  _8 = MisrSeedValues->arrMISRValue[_5];
+  _6->UM[_7] = _8;
+  # DEBUG BEGIN_STMT
+  Counter.46_9 = Counter;
+  Counter = Counter.46_9 + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (Counter <= 8)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _10 = 1076805632B;
+  _11 = MisrSeedValues->arrMISRValue[9];
+  _10->UM9 = _11;
+
+  <bb 11> :
+  return;
+
+}
+
+
+C40_Ip_ReadData8 (uint32 Address)
+{
+  uint8 D.8767;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.7_1 = (uint8 *) Address;
+  D.8767 = *Address.7_1;
+  return D.8767;
+
+}
+
+
+C40_Ip_ReadData16 (uint32 Address)
+{
+  uint16 D.8765;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.6_1 = (uint16 *) Address;
+  D.8765 = *Address.6_1;
+  return D.8765;
+
+}
+
+
+C40_Ip_ReadData32 (uint32 Address)
+{
+  uint32 D.8763;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Address.5_1 = (uint32 *) Address;
+  D.8763 = *Address.5_1;
+  return D.8763;
+
+}
+
+
+C40_Ip_CheckReadCompareStatus (uint32 ReadAddress, boolean CompareResult)
+{
+  uint32 ErrorFlags;
+  C40_Ip_StatusType Status;
+  C40_Ip_StatusType D.8777;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Status = 10212;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076805632B;
+  _2 = _1->MCRS;
+  ErrorFlags = _2 & 856686592;
+  # DEBUG BEGIN_STMT
+  if (ErrorFlags != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = 1076805632B;
+  _4 = _3->MCRS;
+  _5 = 1076805632B;
+  _6 = ErrorFlags & _4;
+  _5->MCRS = _6;
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 10212;
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (CompareResult != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  C40_Ip_eReadStatus = 13260;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Status = 23205;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  D.8777 = Status;
+  return D.8777;
+
+}
+
+
+C40_Ip_Abort ()
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8710;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_MainInterfaceAbort ();
+  # DEBUG BEGIN_STMT
+  D.8710 = ReturnCode;
+  return D.8710;
+
+}
+
+
+C40_Ip_Block4PipeSelect ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 = _1->PFCR4;
+  _3 = 1076264960B;
+  _4 = _2 & 4294967281;
+  _3->PFCR4 = _4;
+  # DEBUG BEGIN_STMT
+  _5 = 1076264960B;
+  _6 = 1076264960B;
+  _7 = _5->PFCR4;
+  _6->PFCR4 = _7;
+  return;
+
+}
+
+
+C40_Ip_DataErrorSuppression ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076264960B;
+  _2 = _1->PFCR4;
+  _3 = 1076264960B;
+  _4 = _2 & 4294967294;
+  _3->PFCR4 = _4;
+  return;
+
+}
+
+
+C40_Ip_Init (const struct C40_ConfigType * InitConfig)
+{
+  C40_Ip_StatusType ReturnCode;
+  C40_Ip_StatusType D.8704;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnCode = 10212;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  C40_Ip_DataErrorSuppression ();
+  # DEBUG BEGIN_STMT
+  C40_Ip_Block4PipeSelect ();
+  # DEBUG BEGIN_STMT
+  ReturnCode = C40_Ip_InitMainInterface ();
+  # DEBUG BEGIN_STMT
+  C40_Ip_pConfigPtr = InitConfig;
+  # DEBUG BEGIN_STMT
+  D.8704 = ReturnCode;
+  return D.8704;
+
+}
+
+

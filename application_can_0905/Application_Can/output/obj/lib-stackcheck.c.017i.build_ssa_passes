@@ -1,0 +1,41 @@
+__attribute__((target ("general-regs-only")))
+OS_StackCheck ()
+{
+  register os_stackelement_t * OS_getSpResult;
+  struct os_stackinfo_t info;
+  os_int_t answer;
+  os_int_t D.7651;
+  os_stackelement_t * D.7644;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  answer = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult);
+  # DEBUG BEGIN_STMT
+  D.7644 = OS_getSpResult;
+  _1 = (unsigned int) D.7644;
+  info.stackPointer = _1;
+  # DEBUG BEGIN_STMT
+  _2 = OS_UserGetStackInfo (65535, &info);
+  if (_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  answer = info.stackStatus;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  D.7651 = answer;
+  info = {CLOBBER};
+  return D.7651;
+
+}
+
+

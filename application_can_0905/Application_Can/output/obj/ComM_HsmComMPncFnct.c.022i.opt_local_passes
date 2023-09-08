@@ -1,0 +1,850 @@
+ComM_PncProcessTimers ()
+{
+  boolean emitEvent;
+  uint16 PncIdx;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  int _6;
+  short unsigned int _7;
+  short unsigned int PncIdx.15_8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  emitEvent_14 = 0;
+  # DEBUG emitEvent => emitEvent_14
+  # DEBUG BEGIN_STMT
+  PncIdx_15 = 0;
+  # DEBUG PncIdx => PncIdx_15
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  emitEvent_17 = 0;
+  # DEBUG emitEvent => emitEvent_17
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) PncIdx_9;
+  _2 = ComM_PncTimer[_1];
+  if (_2 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) PncIdx_9;
+  _4 = ComM_PncTimer[_3];
+  _5 = _4 + 65535;
+  ComM_PncTimer[_3] = _5;
+  # DEBUG BEGIN_STMT
+  _6 = (int) PncIdx_9;
+  _7 = ComM_PncTimer[_6];
+  if (_7 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  emitEvent_20 = 1;
+  # DEBUG emitEvent => emitEvent_20
+
+  <bb 6> :
+  # emitEvent_10 = PHI <emitEvent_17(3), emitEvent_17(4), emitEvent_20(5)>
+  # DEBUG emitEvent => emitEvent_10
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (emitEvent_10 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, PncIdx_9, 1);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PncIdx.15_8 = PncIdx_9;
+  PncIdx_23 = PncIdx.15_8 + 1;
+  # DEBUG PncIdx => PncIdx_23
+
+  <bb 9> :
+  # PncIdx_9 = PHI <PncIdx_15(2), PncIdx_23(8)>
+  # DEBUG PncIdx => PncIdx_9
+  # DEBUG BEGIN_STMT
+  if (PncIdx_9 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  return;
+
+}
+
+
+ComM_PncSendSignal (uint16 instIdx, uint8 signalKind)
+{
+  uint8 j;
+  const uint8 SigIndex;
+  uint8 * TxBufferPtr;
+  uint8 TxEiraEra[6];
+  uint8 i;
+  int _1;
+  const uint8 * _2;
+  sizetype _3;
+  const uint8 * _4;
+  int _5;
+  unsigned char _6;
+  sizetype _7;
+  uint8 * _8;
+  unsigned char _9;
+  int _10;
+  const uint8 * _11;
+  sizetype _12;
+  const uint8 * _13;
+  unsigned char _14;
+  int _15;
+  unsigned char _16;
+  unsigned char j.7_17;
+  int _18;
+  short unsigned int _19;
+  unsigned char i.8_20;
+  int _21;
+  unsigned char _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TxBufferPtr_28 = &ComM_TxEiraEraActive;
+  # DEBUG TxBufferPtr => TxBufferPtr_28
+  # DEBUG BEGIN_STMT
+  i_29 = 0;
+  # DEBUG i => i_29
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_31(D);
+  _2 = ComM_PncTxSignalMap[_1].TxSignalList;
+  _3 = (sizetype) i_23;
+  _4 = _2 + _3;
+  SigIndex_33 = *_4;
+  # DEBUG SigIndex => SigIndex_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = (int) SigIndex_33;
+  _6 = ComM_TxComSignalCfg[_5].TxSignalKind;
+  if (signalKind_34(D) == _6)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  j_35 = 0;
+  # DEBUG j => j_35
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (sizetype) j_24;
+  _8 = TxBufferPtr_28 + _7;
+  _9 = *_8;
+  _10 = (int) SigIndex_33;
+  _11 = ComM_PncTxMask[_10];
+  _12 = (sizetype) j_24;
+  _13 = _11 + _12;
+  _14 = *_13;
+  _15 = (int) j_24;
+  _16 = _9 & _14;
+  TxEiraEra[_15] = _16;
+  # DEBUG BEGIN_STMT
+  j.7_17 = j_24;
+  j_38 = j.7_17 + 1;
+  # DEBUG j => j_38
+
+  <bb 6> :
+  # j_24 = PHI <j_35(4), j_38(5)>
+  # DEBUG j => j_24
+  # DEBUG BEGIN_STMT
+  if (j_24 <= 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _18 = (int) SigIndex_33;
+  _19 = ComM_TxComSignalCfg[_18].ComHandleId;
+  Com_SendSignal (_19, &TxEiraEra);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  i.8_20 = i_23;
+  i_39 = i.8_20 + 1;
+  # DEBUG i => i_39
+
+  <bb 9> :
+  # i_23 = PHI <i_29(2), i_39(8)>
+  # DEBUG i => i_23
+  # DEBUG BEGIN_STMT
+  _21 = (int) instIdx_31(D);
+  _22 = ComM_PncTxSignalMap[_21].NumTxSignal;
+  if (i_23 < _22)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  TxEiraEra ={v} {CLOBBER};
+  return;
+
+}
+
+
+ComM_PncGetEIRA (uint16 instIdx)
+{
+  boolean ret;
+  const uint8 EiraMask;
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  int _10;
+  unsigned char _11;
+  uint8 _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_12(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_14 = _4 + 254;
+  # DEBUG Index => Index_14
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx_12(D);
+  _6 = ComM_PncID[_5];
+  _7 = (unsigned int) _6;
+  _8 = _7 & 7;
+  _9 = 1 << _8;
+  EiraMask_15 = (const uint8) _9;
+  # DEBUG EiraMask => EiraMask_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = (int) Index_14;
+  _11 = ComM_RxEira[_10];
+  ret_16 = EiraMask_15 & _11;
+  # DEBUG ret => ret_16
+  # DEBUG BEGIN_STMT
+  _17 = ret_16;
+  return _17;
+
+}
+
+
+ComM_PNC_RequestComMode (uint16 pncIdx, ComM_ModeType Mode)
+{
+  const uint8 Channel;
+  uint8_least chIdx;
+  int _1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.1_2;
+  const struct ComM_ConfigType * ComM_ConfigPtr.2_3;
+  long unsigned int _4;
+  const struct ComM_ConfigType * ComM_ConfigPtr.3_5;
+  int _6;
+  short unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  sizetype _10;
+  const uint8 * _11;
+  short unsigned int _12;
+  const struct ComM_ConfigType * ComM_ConfigPtr.4_13;
+  unsigned int _14;
+  unsigned int _15;
+  short unsigned int _16;
+  unsigned char _17;
+  const struct ComM_ConfigType * ComM_ConfigPtr.5_18;
+  int _19;
+  short unsigned int _20;
+  unsigned char _21;
+  unsigned char _22;
+  long unsigned int _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) pncIdx_26(D);
+  ComM_PNCRequestedComMode[_1] = Mode_28(D);
+  # DEBUG BEGIN_STMT
+  chIdx_30 = 0;
+  # DEBUG chIdx => chIdx_30
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.1_2 = ComM_ConfigPtr;
+  ComM_ConfigPtr.2_3 = ComM_ConfigPtr;
+  _4 = ComM_ConfigPtr.2_3->pChannelsOfAllPnc;
+  ComM_ConfigPtr.3_5 = ComM_ConfigPtr;
+  _6 = (int) pncIdx_26(D);
+  _7 = ComM_ConfigPtr.3_5->NumChannelsOfAllPnc[_6];
+  _8 = (long unsigned int) _7;
+  _9 = chIdx_24 + _8;
+  _10 = _4 + _9;
+  _11 = ComM_ConfigPtr.1_2 + _10;
+  Channel_31 = *_11;
+  # DEBUG Channel => Channel_31
+  # DEBUG BEGIN_STMT
+  ComM_EvaluateChannel (Channel_31);
+  # DEBUG BEGIN_STMT
+  _12 = (short unsigned int) Channel_31;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _12, 9);
+  # DEBUG BEGIN_STMT
+  chIdx_34 = chIdx_24 + 1;
+  # DEBUG chIdx => chIdx_34
+
+  <bb 4> :
+  # chIdx_24 = PHI <chIdx_30(2), chIdx_34(3)>
+  # DEBUG chIdx => chIdx_24
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_13 = ComM_ConfigPtr;
+  _14 = (unsigned int) pncIdx_26(D);
+  _15 = _14 + 1;
+  _16 = ComM_ConfigPtr.4_13->NumChannelsOfAllPnc[_15];
+  _17 = (unsigned char) _16;
+  ComM_ConfigPtr.5_18 = ComM_ConfigPtr;
+  _19 = (int) pncIdx_26(D);
+  _20 = ComM_ConfigPtr.5_18->NumChannelsOfAllPnc[_19];
+  _21 = (unsigned char) _20;
+  _22 = _17 - _21;
+  _23 = (long unsigned int) _22;
+  if (chIdx_24 < _23)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+ComM_NmNwReqAllChOfPnc (uint16 pncIdx)
+{
+  const uint8 Channel;
+  uint8_least chIdx;
+  const struct ComM_ConfigType * ComM_ConfigPtr.9_1;
+  const struct ComM_ConfigType * ComM_ConfigPtr.10_2;
+  long unsigned int _3;
+  const struct ComM_ConfigType * ComM_ConfigPtr.11_4;
+  int _5;
+  short unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  sizetype _9;
+  const uint8 * _10;
+  int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  const struct ComM_ConfigType * ComM_ConfigPtr.12_14;
+  unsigned int _15;
+  unsigned int _16;
+  short unsigned int _17;
+  unsigned char _18;
+  const struct ComM_ConfigType * ComM_ConfigPtr.13_19;
+  int _20;
+  short unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  long unsigned int _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  chIdx_28 = 0;
+  # DEBUG chIdx => chIdx_28
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.9_1 = ComM_ConfigPtr;
+  ComM_ConfigPtr.10_2 = ComM_ConfigPtr;
+  _3 = ComM_ConfigPtr.10_2->pChannelsOfAllPnc;
+  ComM_ConfigPtr.11_4 = ComM_ConfigPtr;
+  _5 = (int) pncIdx_30(D);
+  _6 = ComM_ConfigPtr.11_4->NumChannelsOfAllPnc[_5];
+  _7 = (long unsigned int) _6;
+  _8 = chIdx_25 + _7;
+  _9 = _3 + _8;
+  _10 = ComM_ConfigPtr.9_1 + _9;
+  Channel_31 = *_10;
+  # DEBUG Channel => Channel_31
+  # DEBUG BEGIN_STMT
+  _11 = (int) Channel_31;
+  _12 = ComM_PncNmRequest[_11];
+  if (_12 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _13 = (short unsigned int) Channel_31;
+  ComM_HsmEmitInst (&ComM_HsmScComM, _13, 2);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  chIdx_33 = chIdx_25 + 1;
+  # DEBUG chIdx => chIdx_33
+
+  <bb 6> :
+  # chIdx_25 = PHI <chIdx_28(2), chIdx_33(5)>
+  # DEBUG chIdx => chIdx_25
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.12_14 = ComM_ConfigPtr;
+  _15 = (unsigned int) pncIdx_30(D);
+  _16 = _15 + 1;
+  _17 = ComM_ConfigPtr.12_14->NumChannelsOfAllPnc[_16];
+  _18 = (unsigned char) _17;
+  ComM_ConfigPtr.13_19 = ComM_ConfigPtr;
+  _20 = (int) pncIdx_30(D);
+  _21 = ComM_ConfigPtr.13_19->NumChannelsOfAllPnc[_20];
+  _22 = (unsigned char) _21;
+  _23 = _18 - _22;
+  _24 = (long unsigned int) _23;
+  if (chIdx_25 < _24)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComNotifyEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 3);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction4 (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 4);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction3 (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 4);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComGuard3 (const uint16 instIdx)
+{
+  boolean ret;
+  boolean _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_1 = 0;
+  # DEBUG ret => ret_1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = ret_1;
+  return _2;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComAction1 (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_3(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 4);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComGuard1 (const uint16 instIdx)
+{
+  boolean ret;
+  unsigned char _1;
+  boolean iftmp.14_2;
+  boolean iftmp.14_7;
+  boolean iftmp.14_8;
+  boolean _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_3 = 0;
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  _1 = ComM_PncGetEIRA (instIdx_5(D));
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.14_8 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.14_7 = 0;
+
+  <bb 5> :
+  # iftmp.14_2 = PHI <iftmp.14_8(3), iftmp.14_7(4)>
+  ret_9 = iftmp.14_2;
+  # DEBUG ret => ret_9
+  # DEBUG BEGIN_STMT
+  _10 = ret_9;
+  return _10;
+
+}
+
+
+ComM_HsmComMPncSfPncNoComEntry (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PNCMode[_1] = 0;
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedAction1 (const uint16 instIdx)
+{
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  uint8 * _6;
+  int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  long unsigned int _10;
+  long unsigned int _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_12(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_14 = _4 + 254;
+  # DEBUG Index => Index_14
+  # DEBUG BEGIN_STMT
+  _5 = (int) Index_14;
+  _6 = &ComM_TxEiraEraActive[_5];
+  _7 = (int) instIdx_12(D);
+  _8 = ComM_PncID[_7];
+  _9 = (unsigned char) _8;
+  _10 = (long unsigned int) _9;
+  _11 = _10 & 7;
+  TS_AtomicClearBit_8 (_6, _11);
+  # DEBUG BEGIN_STMT
+  ComM_PncSendSignal (instIdx_12(D), 0);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedGuard1 (const uint16 instIdx)
+{
+  boolean RetVal;
+  boolean _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_1 = 0;
+  # DEBUG RetVal => RetVal_1
+  # DEBUG BEGIN_STMT
+  RetVal_2 = 1;
+  # DEBUG RetVal => RetVal_2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = RetVal_2;
+  return _3;
+
+}
+
+
+ComM_HsmComMPncSfPncRequestedEntry (const uint16 instIdx)
+{
+  const uint8 Index;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  short unsigned int _6;
+  int _7;
+  uint8 * _8;
+  int _9;
+  short unsigned int _10;
+  unsigned char _11;
+  long unsigned int _12;
+  long unsigned int _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_14(D);
+  _2 = ComM_PncID[_1];
+  _3 = _2 >> 3;
+  _4 = (unsigned char) _3;
+  Index_16 = _4 + 254;
+  # DEBUG Index => Index_16
+  # DEBUG BEGIN_STMT
+  _5 = (int) instIdx_14(D);
+  _6 = ComM_PncID[_5];
+  BswM_ComM_CurrentPNCMode (_6, 0);
+  # DEBUG BEGIN_STMT
+  ComM_PNC_RequestComMode (instIdx_14(D), 2);
+  # DEBUG BEGIN_STMT
+  _7 = (int) Index_16;
+  _8 = &ComM_TxEiraEraActive[_7];
+  _9 = (int) instIdx_14(D);
+  _10 = ComM_PncID[_9];
+  _11 = (unsigned char) _10;
+  _12 = (long unsigned int) _11;
+  _13 = _12 & 7;
+  TS_AtomicSetBit_8 (_8, _13);
+  # DEBUG BEGIN_STMT
+  ComM_PncSendSignal (instIdx_14(D), 0);
+  # DEBUG BEGIN_STMT
+  ComM_NmNwReqAllChOfPnc (instIdx_14(D));
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncReadySleepGuard1 (const uint16 instIdx)
+{
+  boolean ret;
+  unsigned char _1;
+  boolean iftmp.6_2;
+  boolean iftmp.6_7;
+  boolean iftmp.6_8;
+  boolean _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_3 = 0;
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  _1 = ComM_PncGetEIRA (instIdx_5(D));
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.6_8 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.6_7 = 0;
+
+  <bb 5> :
+  # iftmp.6_2 = PHI <iftmp.6_8(3), iftmp.6_7(4)>
+  ret_9 = iftmp.6_2;
+  # DEBUG ret => ret_9
+  # DEBUG BEGIN_STMT
+  _10 = ret_9;
+  return _10;
+
+}
+
+
+ComM_HsmComMPncSfPncReadySleepEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (&ComM_HsmScComMPnc, instIdx_4(D), 3);
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_4(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 1);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction3 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_PNC_RequestComMode (instIdx_2(D), 0);
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction2 (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PncTimer[_1] = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepAction1 (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PncTimer[_1] = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepGuard1 (const uint16 instIdx)
+{
+  boolean ret;
+  unsigned char _1;
+  boolean iftmp.0_2;
+  boolean iftmp.0_7;
+  boolean iftmp.0_8;
+  boolean _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_3 = 0;
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  _1 = ComM_PncGetEIRA (instIdx_5(D));
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.0_8 = 1;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0_7 = 0;
+
+  <bb 5> :
+  # iftmp.0_2 = PHI <iftmp.0_8(3), iftmp.0_7(4)>
+  ret_9 = iftmp.0_2;
+  # DEBUG ret => ret_9
+  # DEBUG BEGIN_STMT
+  _10 = ret_9;
+  return _10;
+
+}
+
+
+ComM_HsmComMPncSfPncPrepareSleepEntry (const uint16 instIdx)
+{
+  int _1;
+  short unsigned int _2;
+  int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_4(D);
+  _2 = ComM_PncID[_1];
+  BswM_ComM_CurrentPNCMode (_2, 2);
+  # DEBUG BEGIN_STMT
+  _3 = (int) instIdx_4(D);
+  ComM_PncTimer[_3] = 32;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncFullComEntry (const uint16 instIdx)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) instIdx_2(D);
+  ComM_PNCMode[_1] = 2;
+  return;
+
+}
+
+
+ComM_HsmComMPncSfPncTopAction1 (const uint16 instIdx)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

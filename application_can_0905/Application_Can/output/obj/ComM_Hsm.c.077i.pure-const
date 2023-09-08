@@ -1,0 +1,2395 @@
+
+
+ local analysis of ComM_HsmDispatchEvent
+   scanning: _1 = sc_37(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_38(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_39 = _1 + _3;
+  scanning: _4 = inst_39->stateId;
+    Indirect ref read is not const
+  scanning: inst_39->sourceId = _4;
+    Indirect ref write is not const/pure
+  scanning: _5 = sc_37(D)->states;
+    Indirect ref read is not const
+  scanning: _6 = inst_39->sourceId;
+    Indirect ref read is not const
+  scanning: _7 = (unsigned int) _6;
+  scanning: _8 = _7 * 20;
+  scanning: state_42 = _5 + _8;
+  scanning: _9 = state_42->trans;
+    Indirect ref read is not const
+  scanning: _10 = i_30 * 8;
+  scanning: trans_43 = _9 + _10;
+  scanning: _11 = trans_43->event;
+    Indirect ref read is not const
+  scanning: if (_11 == event_44(D))
+  scanning: _12 = trans_43->guardFnIdx;
+    Indirect ref read is not const
+  scanning: if (_12 != 255)
+  scanning: _13 = sc_37(D)->guards;
+    Indirect ref read is not const
+  scanning: _15 = (unsigned int) _12;
+  scanning: _16 = _15 * 4;
+  scanning: _17 = _13 + _16;
+  scanning: _18 = *_17;
+    Indirect ref read is not const
+  scanning: guardCond_46 = _18 (instIdx_38(D));
+  scanning: if (guardCond_46 == 1)
+  scanning: i_47 = i_30 + 1;
+  scanning: _19 = state_42->numTrans;
+    Indirect ref read is not const
+  scanning: _20 = (long unsigned int) _19;
+  scanning: if (_20 > i_30)
+  scanning: if (transitionFired_27 == 0)
+  scanning: if (transitionFired_40 == 0)
+  scanning: _21 = state_42->parentId;
+    Indirect ref read is not const
+  scanning: inst_39->sourceId = _21;
+    Indirect ref write is not const/pure
+  scanning: if (transitionFired_40 == 0)
+  scanning: _22 = inst_39->sourceId;
+    Indirect ref read is not const
+  scanning: if (_22 != 255)
+  scanning: if (transitionFired_14 == 1)
+  scanning: ComM_HsmTran (sc_37(D), instIdx_38(D), trans_29);
+  scanning: return transitionFired_14;
+
+
+ local analysis of ComM_HsmFindEvToDispatch
+   scanning: _1 = sc_31(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_32(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_33 = _1 + _3;
+  scanning: _4 = sc_31(D)->states;
+    Indirect ref read is not const
+  scanning: _5 = inst_33->stateId;
+    Indirect ref read is not const
+  scanning: _6 = (unsigned int) _5;
+  scanning: _7 = _6 * 20;
+  scanning: state_34 = _4 + _7;
+  scanning: ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: _8 = sc_31(D)->events;
+    Indirect ref read is not const
+  scanning: _9 = (int) instIdx_32(D);
+  scanning: _10 = sc_31(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _11 = (int) _10;
+  scanning: _12 = _9 * _11;
+  scanning: _13 = (int) entryNo_27;
+  scanning: _14 = _12 + _13;
+  scanning: _15 = (sizetype) _14;
+  scanning: _16 = _8 + _15;
+  scanning: ev_39 = *_16;
+    Indirect ref read is not const
+  scanning: _17 = (int) ev_39;
+  scanning: eventMask_40 = 1 << _17;
+  scanning: _18 = state_34->ignoredEventMask;
+    Indirect ref read is not const
+  scanning: _19 = _18 & eventMask_40;
+  scanning: if (_19 != 0)
+  scanning: ComM_HsmDelFromQueue (sc_31(D), instIdx_32(D), entryNo_27);
+  scanning: _20 = state_34->actionEventMask;
+    Indirect ref read is not const
+  scanning: _21 = _20 & eventMask_40;
+  scanning: if (_21 != 0)
+  scanning: _22 = inst_33->evQueueInsertEvNo;
+    Indirect ref read is not const
+  scanning: if (_22 <= entryNo_27)
+  scanning: _23 = entryNo_27 + 1;
+  scanning: inst_33->evQueueInsertEvNo = _23;
+    Indirect ref write is not const/pure
+  scanning: entryNo_41 = entryNo_27 + 1;
+  scanning: _24 = inst_33->evQueueFill;
+    Indirect ref read is not const
+  scanning: if (_24 > entryNo_27)
+  scanning: if (foundEventToDispatch_25 == 0)
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: *event_46(D) = ev_50;
+    Indirect ref write is not const/pure
+  scanning: *queueEntryNo_48(D) = entryNo_51;
+    Indirect ref write is not const/pure
+  scanning: return foundEventToDispatch_43;
+
+
+ local analysis of ComM_HsmInitSubstates
+   scanning: _1 = sc_22(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_23(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_24 = _1 + _3;
+  scanning: _4 = sc_22(D)->states;
+    Indirect ref read is not const
+  scanning: _5 = inst_24->stateId;
+    Indirect ref read is not const
+  scanning: _6 = (unsigned int) _5;
+  scanning: _7 = _6 * 20;
+  scanning: _8 = _4 + _7;
+  scanning: stateIdx_25 = _8->initId;
+    Indirect ref read is not const
+  scanning: _9 = sc_22(D)->states;
+    Indirect ref read is not const
+  scanning: _10 = (unsigned int) stateIdx_18;
+  scanning: _11 = _10 * 20;
+  scanning: state_26 = _9 + _11;
+  scanning: inst_24->stateId = stateIdx_18;
+    Indirect ref write is not const/pure
+  scanning: _12 = state_26->entryFnIdx;
+    Indirect ref read is not const
+  scanning: if (_12 != 255)
+  scanning: _13 = sc_22(D)->actions;
+    Indirect ref read is not const
+  scanning: _14 = (unsigned int) _12;
+  scanning: _15 = _14 * 4;
+  scanning: _16 = _13 + _15;
+  scanning: _17 = *_16;
+    Indirect ref read is not const
+  scanning: _17 (instIdx_23(D));
+  scanning: stateIdx_29 = state_26->initId;
+    Indirect ref read is not const
+  scanning: if (stateIdx_18 != 255)
+  scanning: return;
+
+
+ local analysis of ComM_HsmTran
+   scanning: _1 = sc_41(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_42(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_43 = _1 + _3;
+  scanning: _4 = tran_44(D)->target;
+    Indirect ref read is not const
+  scanning: if (_4 == 255)
+  scanning: _5 = sc_41(D)->actions;
+    Indirect ref read is not const
+  scanning: _6 = tran_44(D)->steps;
+    Indirect ref read is not const
+  scanning: _7 = *_6;
+    Indirect ref read is not const
+  scanning: _8 = (unsigned int) _7;
+  scanning: _9 = _8 * 4;
+  scanning: _10 = _5 + _9;
+  scanning: _11 = *_10;
+    Indirect ref read is not const
+  scanning: _11 (instIdx_42(D));
+  scanning: _12 = sc_41(D)->states;
+    Indirect ref read is not const
+  scanning: _13 = (unsigned int) _22;
+  scanning: _14 = _13 * 20;
+  scanning: state_49 = _12 + _14;
+  scanning: _15 = state_49->exitFnIdx;
+    Indirect ref read is not const
+  scanning: if (_15 != 255)
+  scanning: _16 = sc_41(D)->actions;
+    Indirect ref read is not const
+  scanning: _17 = (unsigned int) _15;
+  scanning: _18 = _17 * 4;
+  scanning: _19 = _16 + _18;
+  scanning: _20 = *_19;
+    Indirect ref read is not const
+  scanning: _20 (instIdx_42(D));
+  scanning: _21 = state_49->parentId;
+    Indirect ref read is not const
+  scanning: inst_43->stateId = _21;
+    Indirect ref write is not const/pure
+  scanning: _22 = inst_43->stateId;
+    Indirect ref read is not const
+  scanning: _23 = inst_43->sourceId;
+    Indirect ref read is not const
+  scanning: if (_22 != _23)
+  scanning: _24 = sc_41(D)->actions;
+    Indirect ref read is not const
+  scanning: _25 = tran_44(D)->steps;
+    Indirect ref read is not const
+  scanning: _26 = _25 + i_35;
+  scanning: _27 = *_26;
+    Indirect ref read is not const
+  scanning: _28 = (unsigned int) _27;
+  scanning: _29 = _28 * 4;
+  scanning: _30 = _24 + _29;
+  scanning: _31 = *_30;
+    Indirect ref read is not const
+  scanning: _31 (instIdx_42(D));
+  scanning: i_48 = i_35 + 1;
+  scanning: _32 = tran_44(D)->numSteps;
+    Indirect ref read is not const
+  scanning: _33 = (long unsigned int) _32;
+  scanning: if (_33 > i_35)
+  scanning: _34 = tran_44(D)->target;
+    Indirect ref read is not const
+  scanning: inst_43->stateId = _34;
+    Indirect ref write is not const/pure
+  scanning: ComM_HsmInitSubstates (sc_41(D), instIdx_42(D));
+  scanning: return;
+
+
+ local analysis of ComM_HsmDelFromQueue
+   scanning: _1 = sc_45(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_46(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_47 = _1 + _3;
+  scanning: _4 = sc_45(D)->events;
+    Indirect ref read is not const
+  scanning: _5 = (int) instIdx_46(D);
+  scanning: _6 = sc_45(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _7 = (int) _6;
+  scanning: _8 = _5 * _7;
+  scanning: _9 = (int) queueEntryNo_48(D);
+  scanning: _10 = _8 + _9;
+  scanning: _11 = (sizetype) _10;
+  scanning: _12 = _4 + _11;
+  scanning: event_49 = *_12;
+    Indirect ref read is not const
+  scanning: _13 = sc_45(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _15 = (int) event_49;
+  scanning: _16 = _8 + _15;
+  scanning: _17 = (sizetype) _16;
+  scanning: _18 = _13 + _17;
+  scanning: _19 = *_18;
+    Indirect ref read is not const
+  scanning: _20 = _19 + 255;
+  scanning: *_18 = _20;
+    Indirect ref write is not const/pure
+  scanning: j_51 = (uint16) queueEntryNo_48(D);
+  scanning: _21 = sc_45(D)->events;
+    Indirect ref read is not const
+  scanning: _22 = sc_45(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _23 = (int) _22;
+  scanning: _24 = _5 * _23;
+  scanning: _25 = (unsigned int) _24;
+  scanning: _26 = _25 + _34;
+  scanning: _27 = _26 + 1;
+  scanning: _28 = _21 + _27;
+  scanning: _29 = (int) j_41;
+  scanning: _30 = _24 + _29;
+  scanning: _31 = (sizetype) _30;
+  scanning: _32 = _21 + _31;
+  scanning: _33 = *_28;
+    Indirect ref read is not const
+  scanning: *_32 = _33;
+    Indirect ref write is not const/pure
+  scanning: j_55 = j_41 + 1;
+  scanning: _34 = (unsigned int) j_41;
+  scanning: _35 = _34 + 1;
+  scanning: _36 = inst_47->evQueueFill;
+    Indirect ref read is not const
+  scanning: _37 = (unsigned int) _36;
+  scanning: if (_35 < _37)
+  scanning: _38 = _14 + 255;
+  scanning: inst_47->evQueueFill = _38;
+    Indirect ref write is not const/pure
+  scanning: _39 = inst_47->evQueueInsertEvNo;
+    Indirect ref read is not const
+  scanning: if (_39 > queueEntryNo_48(D))
+  scanning: _40 = _39 + 255;
+  scanning: inst_47->evQueueInsertEvNo = _40;
+    Indirect ref write is not const/pure
+  scanning: return;
+
+
+ local analysis of ComM_HsmMainInst
+   scanning: _1 = sc_11(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_12(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_13 = _1 + _3;
+  scanning: inst_13->evQueueInsertEvNo = 0;
+    Indirect ref write is not const/pure
+  scanning: eventPending_16 = ComM_HsmFindEvToDispatch (sc_11(D), instIdx_12(D), &event, &queueEntryNo);
+  scanning: ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: queueEntryNo.0_4 = queueEntryNo;
+  scanning: ComM_HsmDelFromQueue (sc_11(D), instIdx_12(D), queueEntryNo.0_4);
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: event.1_5 = event;
+  scanning: retVal_24 = ComM_HsmDispatchEvent (sc_11(D), instIdx_12(D), event.1_5);
+  scanning: if (retVal_24 != 0)
+  scanning: if (transitionFired_6 != 0)
+  scanning: transitionFired_25 = (boolean) iftmp.2_8;
+  scanning: eventPending_27 = ComM_HsmFindEvToDispatch (sc_11(D), instIdx_12(D), &event, &queueEntryNo);
+  scanning: if (eventPending_7 == 1)
+  scanning: return transitionFired_17;
+
+
+ local analysis of ComM_HsmEmitToSelfInst
+   scanning: _1 = sc_57(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_58(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_59 = _1 + _3;
+  scanning: ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: _4 = sc_57(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _5 = (int) instIdx_58(D);
+  scanning: _6 = sc_57(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _7 = (int) _6;
+  scanning: _8 = _5 * _7;
+  scanning: _9 = (int) event_61(D);
+  scanning: _10 = _8 + _9;
+  scanning: _11 = (sizetype) _10;
+  scanning: _12 = _4 + _11;
+  scanning: _13 = *_12;
+    Indirect ref read is not const
+  scanning: if (_13 == 0)
+  scanning: _14 = inst_59->evQueueFill;
+    Indirect ref read is not const
+  scanning: j_62 = (uint16) _14;
+  scanning: _15 = sc_57(D)->events;
+    Indirect ref read is not const
+  scanning: _16 = sc_57(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _17 = (int) _16;
+  scanning: _18 = _5 * _17;
+  scanning: _19 = (unsigned int) _18;
+  scanning: _20 = (unsigned int) j_53;
+  scanning: _21 = _19 + _20;
+  scanning: _22 = _21 + 4294967295;
+  scanning: _23 = _15 + _22;
+  scanning: _24 = (int) j_53;
+  scanning: _25 = _18 + _24;
+  scanning: _26 = (sizetype) _25;
+  scanning: _27 = _15 + _26;
+  scanning: _28 = *_23;
+    Indirect ref read is not const
+  scanning: *_27 = _28;
+    Indirect ref write is not const/pure
+  scanning: j_68 = j_53 + 65535;
+  scanning: _29 = inst_59->evQueueInsertEvNo;
+    Indirect ref read is not const
+  scanning: _30 = (short unsigned int) _29;
+  scanning: if (_30 < j_53)
+  scanning: _31 = inst_59->evQueueFill;
+    Indirect ref read is not const
+  scanning: _32 = _31 + 1;
+  scanning: inst_59->evQueueFill = _32;
+    Indirect ref write is not const/pure
+  scanning: _33 = sc_57(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _34 = sc_57(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _35 = (int) _34;
+  scanning: _36 = _5 * _35;
+  scanning: _37 = _9 + _36;
+  scanning: _38 = (sizetype) _37;
+  scanning: _39 = _33 + _38;
+  scanning: _40 = *_39;
+    Indirect ref read is not const
+  scanning: _41 = _40 + 1;
+  scanning: *_39 = _41;
+    Indirect ref write is not const/pure
+  scanning: _42 = sc_57(D)->events;
+    Indirect ref read is not const
+  scanning: _43 = sc_57(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _44 = (int) _43;
+  scanning: _45 = _5 * _44;
+  scanning: _46 = inst_59->evQueueInsertEvNo;
+    Indirect ref read is not const
+  scanning: _47 = (int) _46;
+  scanning: _48 = _45 + _47;
+  scanning: _49 = (sizetype) _48;
+  scanning: _50 = _42 + _49;
+  scanning: *_50 = event_61(D);
+    Indirect ref write is not const/pure
+  scanning: _51 = inst_59->evQueueInsertEvNo;
+    Indirect ref read is not const
+  scanning: _52 = _51 + 1;
+  scanning: inst_59->evQueueInsertEvNo = _52;
+    Indirect ref write is not const/pure
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+
+
+ local analysis of ComM_HsmEmitInst
+   scanning: _1 = sc_33(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_34(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_35 = _1 + _3;
+  scanning: ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: _4 = sc_33(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _5 = (int) instIdx_34(D);
+  scanning: _6 = sc_33(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _7 = (int) _6;
+  scanning: _8 = _5 * _7;
+  scanning: _9 = (int) event_37(D);
+  scanning: _10 = _8 + _9;
+  scanning: _11 = (sizetype) _10;
+  scanning: _12 = _4 + _11;
+  scanning: _13 = *_12;
+    Indirect ref read is not const
+  scanning: if (_13 == 0)
+  scanning: _14 = sc_33(D)->events;
+    Indirect ref read is not const
+  scanning: _15 = inst_35->evQueueFill;
+    Indirect ref read is not const
+  scanning: _16 = (int) _15;
+  scanning: _17 = _8 + _16;
+  scanning: _18 = (sizetype) _17;
+  scanning: _19 = _14 + _18;
+  scanning: *_19 = event_37(D);
+    Indirect ref write is not const/pure
+  scanning: _20 = inst_35->evQueueFill;
+    Indirect ref read is not const
+  scanning: _21 = _20 + 1;
+  scanning: inst_35->evQueueFill = _21;
+    Indirect ref write is not const/pure
+  scanning: _22 = sc_33(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _23 = sc_33(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _24 = (int) _23;
+  scanning: _25 = _5 * _24;
+  scanning: _26 = _9 + _25;
+  scanning: _27 = (sizetype) _26;
+  scanning: _28 = _22 + _27;
+  scanning: _29 = *_28;
+    Indirect ref read is not const
+  scanning: _30 = _29 + 1;
+  scanning: *_28 = _30;
+    Indirect ref write is not const/pure
+  scanning: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  scanning: return;
+
+
+ local analysis of ComM_HsmEmit
+   scanning: ComM_HsmEmitInst (sc_5(D), instIdx_2, event_6(D));
+  scanning: instIdx_8 = instIdx_2 + 1;
+  scanning: _1 = sc_5(D)->numInstances;
+    Indirect ref read is not const
+  scanning: if (_1 > instIdx_2)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+
+
+ local analysis of ComM_HsmInitInst
+   scanning: _1 = sc_37(D)->instances;
+    Indirect ref read is not const
+  scanning: _2 = (unsigned int) instIdx_38(D);
+  scanning: _3 = _2 * 4;
+  scanning: inst_39 = _1 + _3;
+  scanning: _4 = sc_37(D)->topStateId;
+    Indirect ref read is not const
+  scanning: inst_39->stateId = _4;
+    Indirect ref write is not const/pure
+  scanning: inst_39->sourceId = 255;
+    Indirect ref write is not const/pure
+  scanning: _5 = sc_37(D)->events;
+    Indirect ref read is not const
+  scanning: _6 = (int) instIdx_38(D);
+  scanning: _7 = (int) _20;
+  scanning: _8 = _6 * _7;
+  scanning: _9 = (int) i_33;
+  scanning: _10 = _8 + _9;
+  scanning: _11 = (sizetype) _10;
+  scanning: _12 = _5 + _11;
+  scanning: *_12 = 0;
+    Indirect ref write is not const/pure
+  scanning: _13 = sc_37(D)->evCounters;
+    Indirect ref read is not const
+  scanning: _14 = sc_37(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _15 = (int) _14;
+  scanning: _16 = _6 * _15;
+  scanning: _17 = _9 + _16;
+  scanning: _18 = (sizetype) _17;
+  scanning: _19 = _13 + _18;
+  scanning: *_19 = 0;
+    Indirect ref write is not const/pure
+  scanning: i_48 = i_33 + 1;
+  scanning: _20 = sc_37(D)->numEvents;
+    Indirect ref read is not const
+  scanning: _21 = (short unsigned int) _20;
+  scanning: if (_21 > i_33)
+  scanning: inst_39->evQueueFill = 0;
+    Indirect ref write is not const/pure
+  scanning: inst_39->evQueueInsertEvNo = 0;
+    Indirect ref write is not const/pure
+  scanning: _22 = sc_37(D)->states;
+    Indirect ref read is not const
+  scanning: _23 = inst_39->stateId;
+    Indirect ref read is not const
+  scanning: _24 = (unsigned int) _23;
+  scanning: _25 = _24 * 20;
+  scanning: _26 = _22 + _25;
+  scanning: _27 = _26->entryFnIdx;
+    Indirect ref read is not const
+  scanning: if (_27 != 255)
+  scanning: _28 = sc_37(D)->actions;
+    Indirect ref read is not const
+  scanning: _29 = (unsigned int) _27;
+  scanning: _30 = _29 * 4;
+  scanning: _31 = _28 + _30;
+  scanning: _32 = *_31;
+    Indirect ref read is not const
+  scanning: _32 (instIdx_38(D));
+  scanning: ComM_HsmInitSubstates (sc_37(D), instIdx_38(D));
+  scanning: return;
+
+
+ local analysis of ComM_HsmInit
+   scanning: ComM_HsmInitInst (sc_5(D), instIdx_2);
+  scanning: instIdx_7 = instIdx_2 + 1;
+  scanning: _1 = sc_5(D)->numInstances;
+    Indirect ref read is not const
+  scanning: if (_1 > instIdx_2)
+  scanning: return;
+;; 2 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4 5
+;;
+;; Loop 1
+;;  header 4, latch 3
+;;  depth 1, outer 0
+;;  nodes: 4 3
+;; 2 succs { 4 }
+;; 3 succs { 4 }
+;; 4 succs { 3 5 }
+;; 5 succs { 1 }
+    cannot prove finiteness of loop 1
+Function is locally looping.
+Function is locally pure.
+callgraph:
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06cf01c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmEmitToSelfInst/4 (236223201 (estimated locally),1.00 per call) ComM_HsmEmitInst/3 (1073741824 (estimated locally),1.00 per call) ComM_HsmFindEvToDispatch/9 (114863532 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06cf00e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmEmitToSelfInst/4 (236223200 (estimated locally),1.00 per call) ComM_HsmEmitInst/3 (1073741824 (estimated locally),1.00 per call) ComM_HsmFindEvToDispatch/9 (114863532 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmDispatchEvent/10 (ComM_HsmDispatchEvent) @06c8eb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a939d8
+  References: 
+  Referring: 
+  Function ComM_HsmDispatchEvent/10 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:955630223 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (inlined) (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmTran/7 (inlined) (193419521 (estimated locally),1.64 per call) 
+   Indirect call(16734461094 (estimated locally),141.68 per call) 
+ComM_HsmFindEvToDispatch/9 (ComM_HsmFindEvToDispatch) @06c8e8c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93b38
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:114863532 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmMainInst/5 (118111600 (estimated locally),1.00 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (114863532 (estimated locally),1.00 per call) ComM_HsmDelFromQueue/6 (316429836 (estimated locally),2.75 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (114863532 (estimated locally),1.00 per call) 
+ComM_HsmInitSubstates/8 (ComM_HsmInitSubstates) @06c8e700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93758
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111602 (estimated locally) body local optimize_size
+  Called by: ComM_HsmInitInst/1 (118111601 (estimated locally),1.00 per call) ComM_HsmTran/7 (127656883 (estimated locally),1.08 per call) 
+  Calls: 
+   Indirect call(630715947 (estimated locally),5.34 per call) 
+ComM_HsmTran/7 (ComM_HsmTran) @06c8e540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93798
+  References: 
+  Referring: 
+  Function ComM_HsmTran/7 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:193419521 (estimated locally) body local optimize_size
+  Called by: ComM_HsmDispatchEvent/10 (inlined) (193419521 (estimated locally),1.64 per call) 
+  Calls: ComM_HsmInitSubstates/8 (127656883 (estimated locally),1.08 per call) 
+   Indirect call(1032860235 (estimated locally),8.74 per call) 
+   Indirect call(681687752 (estimated locally),5.77 per call) 
+   Indirect call(65762637 (estimated locally),0.56 per call) 
+ComM_HsmDelFromQueue/6 (ComM_HsmDelFromQueue) @06c8e2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938f8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (316429836 (estimated locally),2.75 per call) 
+  Calls: 
+ComM_HsmMainInst/5 (ComM_HsmMainInst) @06c8e000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a937d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmFindEvToDispatch/9 (955630223 (estimated locally),8.09 per call) ComM_HsmDispatchEvent/10 (inlined) (955630223 (estimated locally),8.09 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (955630223 (estimated locally),8.09 per call) ComM_HsmDelFromQueue/6 (955630223 (estimated locally),8.09 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (118111600 (estimated locally),1.00 per call) 
+ComM_HsmEmitToSelfInst/4 (ComM_HsmEmitToSelfInst) @06c83c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93918
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:236223200 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (236223201 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (236223200 (estimated locally),1.00 per call) 
+ComM_HsmEmitInst/3 (ComM_HsmEmitInst) @06c839a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ad8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: ComM_HsmEmit/2 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (1073741824 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmEmit/2 (ComM_HsmEmit) @06c83700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93998
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmEmitInst/3 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmInitInst/1 (ComM_HsmInitInst) @06c83540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93818
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: ComM_HsmInit/0 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmInitSubstates/8 (118111601 (estimated locally),1.00 per call) 
+   Indirect call(77953656 (estimated locally),0.66 per call) 
+ComM_HsmInit/0 (ComM_HsmInit) @06c83380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ab8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmInitInst/1 (955630223 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced for nothrow
+ComM_HsmDispatchEvent/10 (ComM_HsmDispatchEvent) @06c8eb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a939d8
+  References: 
+  Referring: 
+  Function ComM_HsmDispatchEvent/10 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:955630223 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (inlined) (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmTran/7 (inlined) (193419521 (estimated locally),1.64 per call) 
+   Indirect call(16734461094 (estimated locally),141.68 per call) 
+ComM_HsmFindEvToDispatch/9 (ComM_HsmFindEvToDispatch) @06c8e8c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93b38
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:114863532 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmMainInst/5 (118111600 (estimated locally),1.00 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (114863532 (estimated locally),1.00 per call) ComM_HsmDelFromQueue/6 (316429836 (estimated locally),2.75 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (114863532 (estimated locally),1.00 per call) 
+ComM_HsmInitSubstates/8 (ComM_HsmInitSubstates) @06c8e700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93758
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111602 (estimated locally) body local optimize_size
+  Called by: ComM_HsmInitInst/1 (118111601 (estimated locally),1.00 per call) ComM_HsmTran/7 (127656883 (estimated locally),1.08 per call) 
+  Calls: 
+   Indirect call(630715947 (estimated locally),5.34 per call) 
+ComM_HsmTran/7 (ComM_HsmTran) @06c8e540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93798
+  References: 
+  Referring: 
+  Function ComM_HsmTran/7 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:193419521 (estimated locally) body local optimize_size
+  Called by: ComM_HsmDispatchEvent/10 (inlined) (193419521 (estimated locally),1.64 per call) 
+  Calls: ComM_HsmInitSubstates/8 (127656883 (estimated locally),1.08 per call) 
+   Indirect call(1032860235 (estimated locally),8.74 per call) 
+   Indirect call(681687752 (estimated locally),5.77 per call) 
+   Indirect call(65762637 (estimated locally),0.56 per call) 
+ComM_HsmDelFromQueue/6 (ComM_HsmDelFromQueue) @06c8e2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938f8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (316429836 (estimated locally),2.75 per call) 
+  Calls: 
+ComM_HsmMainInst/5 (ComM_HsmMainInst) @06c8e000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a937d8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmFindEvToDispatch/9 (955630223 (estimated locally),8.09 per call) ComM_HsmDispatchEvent/10 (inlined) (955630223 (estimated locally),8.09 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (955630223 (estimated locally),8.09 per call) ComM_HsmDelFromQueue/6 (955630223 (estimated locally),8.09 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (118111600 (estimated locally),1.00 per call) 
+ComM_HsmEmitToSelfInst/4 (ComM_HsmEmitToSelfInst) @06c83c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93918
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:236223200 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (236223201 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (236223200 (estimated locally),1.00 per call) 
+ComM_HsmEmitInst/3 (ComM_HsmEmitInst) @06c839a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ad8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: ComM_HsmEmit/2 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (1073741824 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmEmit/2 (ComM_HsmEmit) @06c83700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93998
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmEmitInst/3 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmInitInst/1 (ComM_HsmInitInst) @06c83540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93818
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: ComM_HsmInit/0 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmInitSubstates/8 (118111601 (estimated locally),1.00 per call) 
+   Indirect call(77953656 (estimated locally),0.66 per call) 
+ComM_HsmInit/0 (ComM_HsmInit) @06c83380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ab8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmInitInst/1 (955630223 (estimated locally),8.09 per call) 
+
+
+
+MALLOC LATTICE Initial:
+ComM_HsmDispatchEvent: malloc_bottom
+ComM_HsmFindEvToDispatch: malloc_bottom
+ComM_HsmInitSubstates: malloc_bottom
+ComM_HsmTran: malloc_bottom
+ComM_HsmDelFromQueue: malloc_bottom
+ComM_HsmMainInst: malloc_bottom
+ComM_HsmEmitToSelfInst: malloc_bottom
+ComM_HsmEmitInst: malloc_bottom
+ComM_HsmEmit: malloc_bottom
+ComM_HsmInitInst: malloc_bottom
+ComM_HsmInit: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+ComM_HsmDispatchEvent: malloc_bottom
+ComM_HsmFindEvToDispatch: malloc_bottom
+ComM_HsmInitSubstates: malloc_bottom
+ComM_HsmTran: malloc_bottom
+ComM_HsmDelFromQueue: malloc_bottom
+ComM_HsmMainInst: malloc_bottom
+ComM_HsmEmitToSelfInst: malloc_bottom
+ComM_HsmEmitInst: malloc_bottom
+ComM_HsmEmit: malloc_bottom
+ComM_HsmInitInst: malloc_bottom
+ComM_HsmInit: malloc_bottom
+callgraph:
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0) @06cf01c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmEmitToSelfInst/4 (236223201 (estimated locally),1.00 per call) ComM_HsmEmitInst/3 (1073741824 (estimated locally),1.00 per call) ComM_HsmFindEvToDispatch/9 (114863532 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0) @06cf00e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmEmitToSelfInst/4 (236223200 (estimated locally),1.00 per call) ComM_HsmEmitInst/3 (1073741824 (estimated locally),1.00 per call) ComM_HsmFindEvToDispatch/9 (114863532 (estimated locally),1.00 per call) 
+  Calls: 
+ComM_HsmDispatchEvent/10 (ComM_HsmDispatchEvent) @06c8eb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93898
+  References: 
+  Referring: 
+  Function ComM_HsmDispatchEvent/10 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:955630223 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (inlined) (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmTran/7 (inlined) (193419521 (estimated locally),1.64 per call) 
+   Indirect call(16734461094 (estimated locally),141.68 per call) 
+ComM_HsmFindEvToDispatch/9 (ComM_HsmFindEvToDispatch) @06c8e8c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a937d8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:114863532 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmMainInst/5 (118111600 (estimated locally),1.00 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (114863532 (estimated locally),1.00 per call) ComM_HsmDelFromQueue/6 (316429836 (estimated locally),2.75 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (114863532 (estimated locally),1.00 per call) 
+ComM_HsmInitSubstates/8 (ComM_HsmInitSubstates) @06c8e700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938f8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111602 (estimated locally) body local optimize_size
+  Called by: ComM_HsmInitInst/1 (118111601 (estimated locally),1.00 per call) ComM_HsmTran/7 (127656883 (estimated locally),1.08 per call) 
+  Calls: 
+   Indirect call(630715947 (estimated locally),5.34 per call) 
+ComM_HsmTran/7 (ComM_HsmTran) @06c8e540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938b8
+  References: 
+  Referring: 
+  Function ComM_HsmTran/7 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:193419521 (estimated locally) body local optimize_size
+  Called by: ComM_HsmDispatchEvent/10 (inlined) (193419521 (estimated locally),1.64 per call) 
+  Calls: ComM_HsmInitSubstates/8 (127656883 (estimated locally),1.08 per call) 
+   Indirect call(1032860235 (estimated locally),8.74 per call) 
+   Indirect call(681687752 (estimated locally),5.77 per call) 
+   Indirect call(65762637 (estimated locally),0.56 per call) 
+ComM_HsmDelFromQueue/6 (ComM_HsmDelFromQueue) @06c8e2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93918
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (316429836 (estimated locally),2.75 per call) 
+  Calls: 
+ComM_HsmMainInst/5 (ComM_HsmMainInst) @06c8e000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93938
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmFindEvToDispatch/9 (955630223 (estimated locally),8.09 per call) ComM_HsmDispatchEvent/10 (inlined) (955630223 (estimated locally),8.09 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (955630223 (estimated locally),8.09 per call) ComM_HsmDelFromQueue/6 (955630223 (estimated locally),8.09 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (118111600 (estimated locally),1.00 per call) 
+ComM_HsmEmitToSelfInst/4 (ComM_HsmEmitToSelfInst) @06c83c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93978
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:236223200 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (236223201 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (236223200 (estimated locally),1.00 per call) 
+ComM_HsmEmitInst/3 (ComM_HsmEmitInst) @06c839a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93818
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: ComM_HsmEmit/2 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (1073741824 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmEmit/2 (ComM_HsmEmit) @06c83700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93a98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmEmitInst/3 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmInitInst/1 (ComM_HsmInitInst) @06c83540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ab8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: ComM_HsmInit/0 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmInitSubstates/8 (118111601 (estimated locally),1.00 per call) 
+   Indirect call(77953656 (estimated locally),0.66 per call) 
+ComM_HsmInit/0 (ComM_HsmInit) @06c83380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93998
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmInitInst/1 (955630223 (estimated locally),8.09 per call) 
+
+
+ ordered call graph: reduced
+ComM_HsmMainInst/5 (ComM_HsmMainInst) @06c8e000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93938
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmFindEvToDispatch/9 (955630223 (estimated locally),8.09 per call) ComM_HsmDispatchEvent/10 (inlined) (955630223 (estimated locally),8.09 per call) ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (955630223 (estimated locally),8.09 per call) ComM_HsmDelFromQueue/6 (955630223 (estimated locally),8.09 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (118111600 (estimated locally),1.00 per call) 
+ComM_HsmDispatchEvent/10 (ComM_HsmDispatchEvent) @06c8eb60
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93898
+  References: 
+  Referring: 
+  Function ComM_HsmDispatchEvent/10 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:955630223 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (inlined) (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmTran/7 (inlined) (193419521 (estimated locally),1.64 per call) 
+   Indirect call(16734461094 (estimated locally),141.68 per call) 
+ComM_HsmTran/7 (ComM_HsmTran) @06c8e540
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938b8
+  References: 
+  Referring: 
+  Function ComM_HsmTran/7 is inline copy in ComM_HsmMainInst/5
+  Availability: local
+  Function flags: count:193419521 (estimated locally) body local optimize_size
+  Called by: ComM_HsmDispatchEvent/10 (inlined) (193419521 (estimated locally),1.64 per call) 
+  Calls: ComM_HsmInitSubstates/8 (127656883 (estimated locally),1.08 per call) 
+   Indirect call(1032860235 (estimated locally),8.74 per call) 
+   Indirect call(681687752 (estimated locally),5.77 per call) 
+   Indirect call(65762637 (estimated locally),0.56 per call) 
+ComM_HsmFindEvToDispatch/9 (ComM_HsmFindEvToDispatch) @06c8e8c0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a937d8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:114863532 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmMainInst/5 (118111600 (estimated locally),1.00 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (114863532 (estimated locally),1.00 per call) ComM_HsmDelFromQueue/6 (316429836 (estimated locally),2.75 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (114863532 (estimated locally),1.00 per call) 
+ComM_HsmDelFromQueue/6 (ComM_HsmDelFromQueue) @06c8e2a0
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a93918
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111600 (estimated locally) body local optimize_size
+  Called by: ComM_HsmMainInst/5 (955630223 (estimated locally),8.09 per call) ComM_HsmFindEvToDispatch/9 (316429836 (estimated locally),2.75 per call) 
+  Calls: 
+ComM_HsmEmitToSelfInst/4 (ComM_HsmEmitToSelfInst) @06c83c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93978
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:236223200 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (236223201 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (236223200 (estimated locally),1.00 per call) 
+ComM_HsmEmit/2 (ComM_HsmEmit) @06c83700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93a98
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmEmitInst/3 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmEmitInst/3 (ComM_HsmEmitInst) @06c839a0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93818
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: ComM_HsmEmit/2 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0/12 (1073741824 (estimated locally),1.00 per call) ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0/11 (1073741824 (estimated locally),1.00 per call) 
+ComM_HsmInit/0 (ComM_HsmInit) @06c83380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93998
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: 
+  Calls: ComM_HsmInitInst/1 (955630223 (estimated locally),8.09 per call) 
+ComM_HsmInitInst/1 (ComM_HsmInitInst) @06c83540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06a93ab8
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:118111600 (estimated locally) body optimize_size
+  Called by: ComM_HsmInit/0 (955630223 (estimated locally),8.09 per call) 
+  Calls: ComM_HsmInitSubstates/8 (118111601 (estimated locally),1.00 per call) 
+   Indirect call(77953656 (estimated locally),0.66 per call) 
+ComM_HsmInitSubstates/8 (ComM_HsmInitSubstates) @06c8e700
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  Aux: @06a938f8
+  References: 
+  Referring: 
+  Availability: local
+  Function flags: count:118111602 (estimated locally) body local optimize_size
+  Called by: ComM_HsmInitInst/1 (118111601 (estimated locally),1.00 per call) ComM_HsmTran/7 (127656883 (estimated locally),1.08 per call) 
+  Calls: 
+   Indirect call(630715947 (estimated locally),5.34 per call) 
+
+Function found not to call free: ComM_HsmDelFromQueue
+ComM_HsmDispatchEvent (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, const ComM_HsmEventType event)
+{
+  boolean guardCond;
+  const struct ComM_HsmStateType * const state;
+  uint8_least i;
+  boolean transitionFired;
+  const struct ComM_HsmTranType * trans;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  const struct ComM_HsmStateType * _5;
+  unsigned char _6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct ComM_HsmTranType * _9;
+  long unsigned int _10;
+  unsigned char _11;
+  unsigned char _12;
+  boolean (*ComM_HsmGuardType) (const uint16) * _13;
+  unsigned int _15;
+  unsigned int _16;
+  boolean (*ComM_HsmGuardType) (const uint16) * _17;
+  boolean (*<T61e>) (const uint16) _18;
+  unsigned char _19;
+  long unsigned int _20;
+  unsigned char _21;
+  unsigned char _22;
+
+  <bb 2> [local count: 12287527]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_37(D)->instances;
+  _2 = (unsigned int) instIdx_38(D);
+  _3 = _2 * 4;
+  inst_39 = _1 + _3;
+  # DEBUG inst => inst_39
+  # DEBUG BEGIN_STMT
+  # DEBUG trans => 0B
+  # DEBUG BEGIN_STMT
+  # DEBUG transitionFired => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG triggerFound => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = inst_39->stateId;
+  inst_39->sourceId = _4;
+
+  <bb 3> [local count: 114863532]:
+  # trans_23 = PHI <0B(2), trans_28(20)>
+  # transitionFired_25 = PHI <0(2), 0(20)>
+  # DEBUG triggerFound => transitionFired_25
+  # DEBUG transitionFired => transitionFired_25
+  # DEBUG trans => trans_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = sc_37(D)->states;
+  _6 = inst_39->sourceId;
+  _7 = (unsigned int) _6;
+  _8 = _7 * 20;
+  state_42 = _5 + _8;
+  # DEBUG state => state_42
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 10>; [100.00%]
+
+  <bb 4> [local count: 958878293]:
+  # DEBUG BEGIN_STMT
+  _9 = state_42->trans;
+  _10 = i_30 * 8;
+  trans_43 = _9 + _10;
+  # DEBUG trans => trans_43
+  # DEBUG BEGIN_STMT
+  _11 = trans_43->event;
+  if (_11 == event_44(D))
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 5> [local count: 326018619]:
+  # DEBUG BEGIN_STMT
+  # DEBUG guardCond => 1
+  # DEBUG BEGIN_STMT
+  _12 = trans_43->guardFnIdx;
+  if (_12 != 255)
+    goto <bb 7>; [66.00%]
+  else
+    goto <bb 9>; [34.00%]
+
+  <bb 7> [local count: 215172289]:
+  # DEBUG BEGIN_STMT
+  _13 = sc_37(D)->guards;
+  _15 = (unsigned int) _12;
+  _16 = _15 * 4;
+  _17 = _13 + _16;
+  _18 = *_17;
+  guardCond_46 = _18 (instIdx_38(D));
+  # DEBUG guardCond => guardCond_46
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (guardCond_46 == 1)
+    goto <bb 19>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 19> [local count: 73158578]:
+
+  <bb 9> [local count: 958878293]:
+  # transitionFired_26 = PHI <0(4), 0(7), 1(5), 1(19)>
+  # DEBUG guardCond => NULL
+  # DEBUG triggerFound => transitionFired_26
+  # DEBUG transitionFired => transitionFired_26
+  # DEBUG BEGIN_STMT
+  i_47 = i_30 + 1;
+  # DEBUG i => i_47
+
+  <bb 10> [local count: 1073741824]:
+  # trans_24 = PHI <trans_23(3), trans_43(9)>
+  # transitionFired_27 = PHI <transitionFired_25(3), transitionFired_26(9)>
+  # i_30 = PHI <0(3), i_47(9)>
+  # DEBUG i => i_30
+  # DEBUG triggerFound => transitionFired_27
+  # DEBUG transitionFired => transitionFired_27
+  # DEBUG trans => trans_24
+  # DEBUG BEGIN_STMT
+  _19 = state_42->numTrans;
+  _20 = (long unsigned int) _19;
+  if (_20 > i_30)
+    goto <bb 11>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+
+  <bb 11> [local count: 1014686025]:
+  if (transitionFired_27 == 0)
+    goto <bb 4>; [94.50%]
+  else
+    goto <bb 12>; [5.50%]
+
+  <bb 12> [local count: 114863532]:
+  # trans_28 = PHI <trans_24(10), trans_24(11)>
+  # transitionFired_40 = PHI <transitionFired_27(10), transitionFired_27(11)>
+  # DEBUG BEGIN_STMT
+  if (transitionFired_40 == 0)
+    goto <bb 13>; [50.00%]
+  else
+    goto <bb 14>; [50.00%]
+
+  <bb 13> [local count: 57431766]:
+  # DEBUG BEGIN_STMT
+  _21 = state_42->parentId;
+  inst_39->sourceId = _21;
+
+  <bb 14> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  if (transitionFired_40 == 0)
+    goto <bb 15>; [94.50%]
+  else
+    goto <bb 16>; [5.50%]
+
+  <bb 15> [local count: 108546038]:
+  _22 = inst_39->sourceId;
+  if (_22 != 255)
+    goto <bb 20>; [94.50%]
+  else
+    goto <bb 16>; [5.50%]
+
+  <bb 20> [local count: 102576006]:
+  goto <bb 3>; [100.00%]
+
+  <bb 16> [local count: 12287526]:
+  # trans_29 = PHI <trans_28(14), trans_28(15)>
+  # transitionFired_14 = PHI <transitionFired_40(14), 0(15)>
+  # DEBUG BEGIN_STMT
+  if (transitionFired_14 == 1)
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 18>; [79.76%]
+
+  <bb 17> [local count: 2486995]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmTran (sc_37(D), instIdx_38(D), trans_29);
+
+  <bb 18> [local count: 12287526]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return transitionFired_14;
+
+}
+
+
+ComM_HsmFindEvToDispatch (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, ComM_HsmEventType * const event, uint8 * const queueEntryNo)
+{
+  ComM_HsmEventMaskType eventMask;
+  uint8 entryNo;
+  ComM_HsmEventType ev;
+  boolean foundEventToDispatch;
+  const struct ComM_HsmStateType * const state;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct ComM_HsmStateType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  ComM_HsmEventType * _8;
+  int _9;
+  unsigned char _10;
+  int _11;
+  int _12;
+  int _13;
+  int _14;
+  sizetype _15;
+  ComM_HsmEventType * _16;
+  int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+
+  <bb 2> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_31(D)->instances;
+  _2 = (unsigned int) instIdx_32(D);
+  _3 = _2 * 4;
+  inst_33 = _1 + _3;
+  # DEBUG inst => inst_33
+  # DEBUG BEGIN_STMT
+  _4 = sc_31(D)->states;
+  _5 = inst_33->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  state_34 = _4 + _7;
+  # DEBUG state => state_34
+  # DEBUG BEGIN_STMT
+  # DEBUG foundEventToDispatch => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ev => 255
+  # DEBUG BEGIN_STMT
+  # DEBUG entryNo => 0
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [100.00%]
+
+  <bb 3> [local count: 958878293]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = sc_31(D)->events;
+  _9 = (int) instIdx_32(D);
+  _10 = sc_31(D)->numEvents;
+  _11 = (int) _10;
+  _12 = _9 * _11;
+  _13 = (int) entryNo_27;
+  _14 = _12 + _13;
+  _15 = (sizetype) _14;
+  _16 = _8 + _15;
+  ev_39 = *_16;
+  # DEBUG ev => ev_39
+  # DEBUG BEGIN_STMT
+  _17 = (int) ev_39;
+  eventMask_40 = 1 << _17;
+  # DEBUG eventMask => eventMask_40
+  # DEBUG BEGIN_STMT
+  _18 = state_34->ignoredEventMask;
+  _19 = _18 & eventMask_40;
+  if (_19 != 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 316429836]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_HsmDelFromQueue (sc_31(D), instIdx_32(D), entryNo_27);
+  goto <bb 11>; [100.00%]
+
+  <bb 5> [local count: 642448456]:
+  # DEBUG BEGIN_STMT
+  _20 = state_34->actionEventMask;
+  _21 = _20 & eventMask_40;
+  if (_21 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 6> [local count: 321224227]:
+  # DEBUG BEGIN_STMT
+  _22 = inst_33->evQueueInsertEvNo;
+  if (_22 <= entryNo_27)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 11>; [50.00%]
+
+  <bb 7> [local count: 160612114]:
+  # DEBUG BEGIN_STMT
+  _23 = entryNo_27 + 1;
+  inst_33->evQueueInsertEvNo = _23;
+  goto <bb 11>; [100.00%]
+
+  <bb 9> [local count: 321224227]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  entryNo_41 = entryNo_27 + 1;
+  # DEBUG entryNo => entryNo_41
+
+  <bb 11> [local count: 958878293]:
+  # foundEventToDispatch_28 = PHI <0(4), 1(6), 0(9), 1(7)>
+  # ev_37 = PHI <ev_39(4), ev_39(6), ev_39(9), ev_39(7)>
+  # entryNo_36 = PHI <entryNo_27(4), entryNo_27(6), entryNo_41(9), entryNo_27(7)>
+
+  <bb 14> [local count: 1073741824]:
+  # foundEventToDispatch_25 = PHI <foundEventToDispatch_28(11), 0(2)>
+  # ev_26 = PHI <ev_37(11), 255(2)>
+  # entryNo_27 = PHI <entryNo_36(11), 0(2)>
+  # DEBUG entryNo => entryNo_27
+  # DEBUG ev => ev_26
+  # DEBUG foundEventToDispatch => foundEventToDispatch_25
+  # DEBUG BEGIN_STMT
+  _24 = inst_33->evQueueFill;
+  if (_24 > entryNo_27)
+    goto <bb 12>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+
+  <bb 12> [local count: 1014686025]:
+  if (foundEventToDispatch_25 == 0)
+    goto <bb 3>; [94.50%]
+  else
+    goto <bb 13>; [5.50%]
+
+  <bb 13> [local count: 114863532]:
+  # foundEventToDispatch_43 = PHI <foundEventToDispatch_25(14), foundEventToDispatch_25(12)>
+  # ev_50 = PHI <ev_26(14), ev_26(12)>
+  # entryNo_51 = PHI <entryNo_27(14), entryNo_27(12)>
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  *event_46(D) = ev_50;
+  # DEBUG BEGIN_STMT
+  *queueEntryNo_48(D) = entryNo_51;
+  # DEBUG BEGIN_STMT
+  return foundEventToDispatch_43;
+
+}
+
+
+ComM_HsmInitSubstates (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx)
+{
+  const struct ComM_HsmStateType * state;
+  ComM_HsmStateIdxType stateIdx;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct ComM_HsmStateType * _4;
+  unsigned char _5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct ComM_HsmStateType * _8;
+  const struct ComM_HsmStateType * _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned char _12;
+  void (*ComM_HsmActionType) (const uint16) * _13;
+  unsigned int _14;
+  unsigned int _15;
+  void (*ComM_HsmActionType) (const uint16) * _16;
+  void (*<T619>) (const uint16) _17;
+
+  <bb 2> [local count: 118111602]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_22(D)->instances;
+  _2 = (unsigned int) instIdx_23(D);
+  _3 = _2 * 4;
+  inst_24 = _1 + _3;
+  # DEBUG inst => inst_24
+  # DEBUG BEGIN_STMT
+  _4 = sc_22(D)->states;
+  _5 = inst_24->stateId;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 20;
+  _8 = _4 + _7;
+  stateIdx_25 = _8->initId;
+  # DEBUG stateIdx => stateIdx_25
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _9 = sc_22(D)->states;
+  _10 = (unsigned int) stateIdx_18;
+  _11 = _10 * 20;
+  state_26 = _9 + _11;
+  # DEBUG state => state_26
+  # DEBUG BEGIN_STMT
+  inst_24->stateId = stateIdx_18;
+  # DEBUG BEGIN_STMT
+  _12 = state_26->entryFnIdx;
+  if (_12 != 255)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 4> [local count: 630715947]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _13 = sc_22(D)->actions;
+  _14 = (unsigned int) _12;
+  _15 = _14 * 4;
+  _16 = _13 + _15;
+  _17 = *_16;
+  _17 (instIdx_23(D));
+
+  <bb 5> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  stateIdx_29 = state_26->initId;
+  # DEBUG stateIdx => stateIdx_29
+
+  <bb 6> [local count: 1073741824]:
+  # stateIdx_18 = PHI <stateIdx_25(2), stateIdx_29(5)>
+  # DEBUG stateIdx => stateIdx_18
+  # DEBUG BEGIN_STMT
+  if (stateIdx_18 != 255)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 7>; [11.00%]
+
+  <bb 7> [local count: 118111601]:
+  return;
+
+}
+
+
+ComM_HsmTran (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, const struct ComM_HsmTranType * const tran)
+{
+  uint8_least i;
+  struct ComM_HsmInstType * const inst;
+  const struct ComM_HsmStateType * state;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  void (*ComM_HsmActionType) (const uint16) * _5;
+  const ComM_HsmActionIdxType * _6;
+  unsigned char _7;
+  unsigned int _8;
+  unsigned int _9;
+  void (*ComM_HsmActionType) (const uint16) * _10;
+  void (*<T619>) (const uint16) _11;
+  const struct ComM_HsmStateType * _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned char _15;
+  void (*ComM_HsmActionType) (const uint16) * _16;
+  unsigned int _17;
+  unsigned int _18;
+  void (*ComM_HsmActionType) (const uint16) * _19;
+  void (*<T619>) (const uint16) _20;
+  unsigned char _21;
+  unsigned char _22;
+  unsigned char _23;
+  void (*ComM_HsmActionType) (const uint16) * _24;
+  const ComM_HsmActionIdxType * _25;
+  const ComM_HsmActionIdxType * _26;
+  unsigned char _27;
+  unsigned int _28;
+  unsigned int _29;
+  void (*ComM_HsmActionType) (const uint16) * _30;
+  void (*<T619>) (const uint16) _31;
+  unsigned char _32;
+  long unsigned int _33;
+  unsigned char _34;
+
+  <bb 2> [local count: 178956972]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = sc_41(D)->instances;
+  _2 = (unsigned int) instIdx_42(D);
+  _3 = _2 * 4;
+  inst_43 = _1 + _3;
+  # DEBUG inst => inst_43
+  # DEBUG BEGIN_STMT
+  _4 = tran_44(D)->target;
+  if (_4 == 255)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 13> [local count: 118111602]:
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 60845370]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = sc_41(D)->actions;
+  _6 = tran_44(D)->steps;
+  _7 = *_6;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 4;
+  _10 = _5 + _9;
+  _11 = *_10;
+  _11 (instIdx_42(D));
+  goto <bb 11>; [100.00%]
+
+  <bb 4> [local count: 955630220]:
+  # DEBUG BEGIN_STMT
+  _12 = sc_41(D)->states;
+  _13 = (unsigned int) _22;
+  _14 = _13 * 20;
+  state_49 = _12 + _14;
+  # DEBUG state => state_49
+  # DEBUG BEGIN_STMT
+  _15 = state_49->exitFnIdx;
+  if (_15 != 255)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 5> [local count: 630715945]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = sc_41(D)->actions;
+  _17 = (unsigned int) _15;
+  _18 = _17 * 4;
+  _19 = _16 + _18;
+  _20 = *_19;
+  _20 (instIdx_42(D));
+
+  <bb 6> [local count: 955630220]:
+  # DEBUG BEGIN_STMT
+  _21 = state_49->parentId;
+  inst_43->stateId = _21;
+
+  <bb 7> [local count: 1073741821]:
+  # DEBUG BEGIN_STMT
+  _22 = inst_43->stateId;
+  _23 = inst_43->sourceId;
+  if (_22 != _23)
+    goto <bb 4>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+
+  <bb 12> [local count: 118111600]:
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _24 = sc_41(D)->actions;
+  _25 = tran_44(D)->steps;
+  _26 = _25 + i_35;
+  _27 = *_26;
+  _28 = (unsigned int) _27;
+  _29 = _28 * 4;
+  _30 = _24 + _29;
+  _31 = *_30;
+  _31 (instIdx_42(D));
+  # DEBUG BEGIN_STMT
+  i_48 = i_35 + 1;
+  # DEBUG i => i_48
+
+  <bb 9> [local count: 1073741824]:
+  # i_35 = PHI <i_48(8), 0(12)>
+  # DEBUG i => i_35
+  # DEBUG BEGIN_STMT
+  _32 = tran_44(D)->numSteps;
+  _33 = (long unsigned int) _32;
+  if (_33 > i_35)
+    goto <bb 8>; [89.00%]
+  else
+    goto <bb 10>; [11.00%]
+
+  <bb 10> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  _34 = tran_44(D)->target;
+  inst_43->stateId = _34;
+  # DEBUG BEGIN_STMT
+  ComM_HsmInitSubstates (sc_41(D), instIdx_42(D));
+
+  <bb 11> [local count: 178956971]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmDelFromQueue (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, const uint8 queueEntryNo)
+{
+  ComM_HsmEventType event;
+  uint16 j;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  ComM_HsmEventType * _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  sizetype _11;
+  ComM_HsmEventType * _12;
+  uint8 * _13;
+  unsigned char _14;
+  int _15;
+  int _16;
+  sizetype _17;
+  uint8 * _18;
+  unsigned char _19;
+  unsigned char _20;
+  ComM_HsmEventType * _21;
+  unsigned char _22;
+  int _23;
+  int _24;
+  unsigned int _25;
+  unsigned int _26;
+  unsigned int _27;
+  ComM_HsmEventType * _28;
+  int _29;
+  int _30;
+  sizetype _31;
+  ComM_HsmEventType * _32;
+  unsigned char _33;
+  unsigned int _34;
+  unsigned int _35;
+  unsigned char _36;
+  unsigned int _37;
+  unsigned char _38;
+  unsigned char _39;
+  unsigned char _40;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_45(D)->instances;
+  _2 = (unsigned int) instIdx_46(D);
+  _3 = _2 * 4;
+  inst_47 = _1 + _3;
+  # DEBUG inst => inst_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = sc_45(D)->events;
+  _5 = (int) instIdx_46(D);
+  _6 = sc_45(D)->numEvents;
+  _7 = (int) _6;
+  _8 = _5 * _7;
+  _9 = (int) queueEntryNo_48(D);
+  _10 = _8 + _9;
+  _11 = (sizetype) _10;
+  _12 = _4 + _11;
+  event_49 = *_12;
+  # DEBUG event => event_49
+  # DEBUG BEGIN_STMT
+  _13 = sc_45(D)->evCounters;
+  _15 = (int) event_49;
+  _16 = _8 + _15;
+  _17 = (sizetype) _16;
+  _18 = _13 + _17;
+  _19 = *_18;
+  _20 = _19 + 255;
+  *_18 = _20;
+  # DEBUG BEGIN_STMT
+  j_51 = (uint16) queueEntryNo_48(D);
+  # DEBUG j => j_51
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _21 = sc_45(D)->events;
+  _22 = sc_45(D)->numEvents;
+  _23 = (int) _22;
+  _24 = _5 * _23;
+  _25 = (unsigned int) _24;
+  _26 = _25 + _34;
+  _27 = _26 + 1;
+  _28 = _21 + _27;
+  _29 = (int) j_41;
+  _30 = _24 + _29;
+  _31 = (sizetype) _30;
+  _32 = _21 + _31;
+  _33 = *_28;
+  *_32 = _33;
+  # DEBUG BEGIN_STMT
+  j_55 = j_41 + 1;
+  # DEBUG j => j_55
+
+  <bb 4> [local count: 1073741824]:
+  # j_41 = PHI <j_51(2), j_55(3)>
+  # DEBUG j => j_41
+  # DEBUG BEGIN_STMT
+  _34 = (unsigned int) j_41;
+  _35 = _34 + 1;
+  _36 = inst_47->evQueueFill;
+  _37 = (unsigned int) _36;
+  if (_35 < _37)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  # _14 = PHI <_36(4)>
+  # DEBUG BEGIN_STMT
+  _38 = _14 + 255;
+  inst_47->evQueueFill = _38;
+  # DEBUG BEGIN_STMT
+  _39 = inst_47->evQueueInsertEvNo;
+  if (_39 > queueEntryNo_48(D))
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 59055800]:
+  # DEBUG BEGIN_STMT
+  _40 = _39 + 255;
+  inst_47->evQueueInsertEvNo = _40;
+
+  <bb 7> [local count: 118111601]:
+  return;
+
+}
+
+
+ComM_HsmMainInst (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx)
+{
+  boolean retVal;
+  boolean eventPending;
+  uint8 queueEntryNo;
+  ComM_HsmEventType event;
+  boolean transitionFired;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char queueEntryNo.0_4;
+  unsigned char event.1_5;
+  int iftmp.2_8;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_11(D)->instances;
+  _2 = (unsigned int) instIdx_12(D);
+  _3 = _2 * 4;
+  inst_13 = _1 + _3;
+  # DEBUG inst => inst_13
+  # DEBUG BEGIN_STMT
+  # DEBUG transitionFired => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  inst_13->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  eventPending_16 = ComM_HsmFindEvToDispatch (sc_11(D), instIdx_12(D), &event, &queueEntryNo);
+  # DEBUG eventPending => eventPending_16
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  queueEntryNo.0_4 = queueEntryNo;
+  ComM_HsmDelFromQueue (sc_11(D), instIdx_12(D), queueEntryNo.0_4);
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  event.1_5 = event;
+  retVal_24 = ComM_HsmDispatchEvent (sc_11(D), instIdx_12(D), event.1_5);
+  # DEBUG retVal => retVal_24
+  # DEBUG BEGIN_STMT
+  if (retVal_24 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 477815111]:
+  if (transitionFired_6 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 238907556]:
+
+  <bb 6> [local count: 955630223]:
+  # iftmp.2_8 = PHI <1(4), 0(5), 1(3)>
+  transitionFired_25 = (boolean) iftmp.2_8;
+  # DEBUG transitionFired => transitionFired_25
+  # DEBUG BEGIN_STMT
+  eventPending_27 = ComM_HsmFindEvToDispatch (sc_11(D), instIdx_12(D), &event, &queueEntryNo);
+  # DEBUG eventPending => eventPending_27
+
+  <bb 7> [local count: 1073741824]:
+  # transitionFired_6 = PHI <0(2), transitionFired_25(6)>
+  # eventPending_7 = PHI <eventPending_16(2), eventPending_27(6)>
+  # DEBUG eventPending => eventPending_7
+  # DEBUG transitionFired => transitionFired_6
+  # DEBUG BEGIN_STMT
+  if (eventPending_7 == 1)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 8>; [11.00%]
+
+  <bb 8> [local count: 118111601]:
+  # transitionFired_17 = PHI <transitionFired_6(7)>
+  # DEBUG BEGIN_STMT
+  event ={v} {CLOBBER};
+  queueEntryNo ={v} {CLOBBER};
+  return transitionFired_17;
+
+}
+
+
+ComM_HsmEmitToSelfInst (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, const ComM_HsmEventType event)
+{
+  uint16 j;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  uint8 * _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  sizetype _11;
+  uint8 * _12;
+  unsigned char _13;
+  unsigned char _14;
+  ComM_HsmEventType * _15;
+  unsigned char _16;
+  int _17;
+  int _18;
+  unsigned int _19;
+  unsigned int _20;
+  unsigned int _21;
+  unsigned int _22;
+  ComM_HsmEventType * _23;
+  int _24;
+  int _25;
+  sizetype _26;
+  ComM_HsmEventType * _27;
+  unsigned char _28;
+  unsigned char _29;
+  short unsigned int _30;
+  unsigned char _31;
+  unsigned char _32;
+  uint8 * _33;
+  unsigned char _34;
+  int _35;
+  int _36;
+  int _37;
+  sizetype _38;
+  uint8 * _39;
+  unsigned char _40;
+  unsigned char _41;
+  ComM_HsmEventType * _42;
+  unsigned char _43;
+  int _44;
+  int _45;
+  unsigned char _46;
+  int _47;
+  int _48;
+  sizetype _49;
+  ComM_HsmEventType * _50;
+  unsigned char _51;
+  unsigned char _52;
+
+  <bb 2> [local count: 236223200]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_57(D)->instances;
+  _2 = (unsigned int) instIdx_58(D);
+  _3 = _2 * 4;
+  inst_59 = _1 + _3;
+  # DEBUG inst => inst_59
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = sc_57(D)->evCounters;
+  _5 = (int) instIdx_58(D);
+  _6 = sc_57(D)->numEvents;
+  _7 = (int) _6;
+  _8 = _5 * _7;
+  _9 = (int) event_61(D);
+  _10 = _8 + _9;
+  _11 = (sizetype) _10;
+  _12 = _4 + _11;
+  _13 = *_12;
+  if (_13 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 3> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = inst_59->evQueueFill;
+  j_62 = (uint16) _14;
+  # DEBUG j => j_62
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _15 = sc_57(D)->events;
+  _16 = sc_57(D)->numEvents;
+  _17 = (int) _16;
+  _18 = _5 * _17;
+  _19 = (unsigned int) _18;
+  _20 = (unsigned int) j_53;
+  _21 = _19 + _20;
+  _22 = _21 + 4294967295;
+  _23 = _15 + _22;
+  _24 = (int) j_53;
+  _25 = _18 + _24;
+  _26 = (sizetype) _25;
+  _27 = _15 + _26;
+  _28 = *_23;
+  *_27 = _28;
+  # DEBUG BEGIN_STMT
+  j_68 = j_53 + 65535;
+  # DEBUG j => j_68
+
+  <bb 5> [local count: 1073741824]:
+  # j_53 = PHI <j_62(3), j_68(4)>
+  # DEBUG j => j_53
+  # DEBUG BEGIN_STMT
+  _29 = inst_59->evQueueInsertEvNo;
+  _30 = (short unsigned int) _29;
+  if (_30 < j_53)
+    goto <bb 4>; [89.00%]
+  else
+    goto <bb 6>; [11.00%]
+
+  <bb 6> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  _31 = inst_59->evQueueFill;
+  _32 = _31 + 1;
+  inst_59->evQueueFill = _32;
+  # DEBUG BEGIN_STMT
+  _33 = sc_57(D)->evCounters;
+  _34 = sc_57(D)->numEvents;
+  _35 = (int) _34;
+  _36 = _5 * _35;
+  _37 = _9 + _36;
+  _38 = (sizetype) _37;
+  _39 = _33 + _38;
+  _40 = *_39;
+  _41 = _40 + 1;
+  *_39 = _41;
+  # DEBUG BEGIN_STMT
+  _42 = sc_57(D)->events;
+  _43 = sc_57(D)->numEvents;
+  _44 = (int) _43;
+  _45 = _5 * _44;
+  _46 = inst_59->evQueueInsertEvNo;
+  _47 = (int) _46;
+  _48 = _45 + _47;
+  _49 = (sizetype) _48;
+  _50 = _42 + _49;
+  *_50 = event_61(D);
+  # DEBUG BEGIN_STMT
+  _51 = inst_59->evQueueInsertEvNo;
+  _52 = _51 + 1;
+  inst_59->evQueueInsertEvNo = _52;
+
+  <bb 7> [local count: 236223201]:
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmEmitInst (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx, const ComM_HsmEventType event)
+{
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  uint8 * _4;
+  int _5;
+  unsigned char _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  sizetype _11;
+  uint8 * _12;
+  unsigned char _13;
+  ComM_HsmEventType * _14;
+  unsigned char _15;
+  int _16;
+  int _17;
+  sizetype _18;
+  ComM_HsmEventType * _19;
+  unsigned char _20;
+  unsigned char _21;
+  uint8 * _22;
+  unsigned char _23;
+  int _24;
+  int _25;
+  int _26;
+  sizetype _27;
+  uint8 * _28;
+  unsigned char _29;
+  unsigned char _30;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_33(D)->instances;
+  _2 = (unsigned int) instIdx_34(D);
+  _3 = _2 * 4;
+  inst_35 = _1 + _3;
+  # DEBUG inst => inst_35
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = sc_33(D)->evCounters;
+  _5 = (int) instIdx_34(D);
+  _6 = sc_33(D)->numEvents;
+  _7 = (int) _6;
+  _8 = _5 * _7;
+  _9 = (int) event_37(D);
+  _10 = _8 + _9;
+  _11 = (sizetype) _10;
+  _12 = _4 + _11;
+  _13 = *_12;
+  if (_13 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _14 = sc_33(D)->events;
+  _15 = inst_35->evQueueFill;
+  _16 = (int) _15;
+  _17 = _8 + _16;
+  _18 = (sizetype) _17;
+  _19 = _14 + _18;
+  *_19 = event_37(D);
+  # DEBUG BEGIN_STMT
+  _20 = inst_35->evQueueFill;
+  _21 = _20 + 1;
+  inst_35->evQueueFill = _21;
+  # DEBUG BEGIN_STMT
+  _22 = sc_33(D)->evCounters;
+  _23 = sc_33(D)->numEvents;
+  _24 = (int) _23;
+  _25 = _5 * _24;
+  _26 = _9 + _25;
+  _27 = (sizetype) _26;
+  _28 = _22 + _27;
+  _29 = *_28;
+  _30 = _29 + 1;
+  *_28 = _30;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_HsmEmit (const struct ComM_HsmStatechartType * const sc, const ComM_HsmEventType event)
+{
+  uint16 instIdx;
+  short unsigned int _1;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG instIdx => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmEmitInst (sc_5(D), instIdx_2, event_6(D));
+  # DEBUG BEGIN_STMT
+  instIdx_8 = instIdx_2 + 1;
+  # DEBUG instIdx => instIdx_8
+
+  <bb 4> [local count: 1073741824]:
+  # instIdx_2 = PHI <0(2), instIdx_8(3)>
+  # DEBUG instIdx => instIdx_2
+  # DEBUG BEGIN_STMT
+  _1 = sc_5(D)->numInstances;
+  if (_1 > instIdx_2)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+
+ComM_HsmInitInst (const struct ComM_HsmStatechartType * const sc, const uint16 instIdx)
+{
+  uint16 i;
+  struct ComM_HsmInstType * const inst;
+  struct ComM_HsmInstType * _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  ComM_HsmEventType * _5;
+  int _6;
+  int _7;
+  int _8;
+  int _9;
+  int _10;
+  sizetype _11;
+  ComM_HsmEventType * _12;
+  uint8 * _13;
+  unsigned char _14;
+  int _15;
+  int _16;
+  int _17;
+  sizetype _18;
+  uint8 * _19;
+  unsigned char _20;
+  short unsigned int _21;
+  const struct ComM_HsmStateType * _22;
+  unsigned char _23;
+  unsigned int _24;
+  unsigned int _25;
+  const struct ComM_HsmStateType * _26;
+  unsigned char _27;
+  void (*ComM_HsmActionType) (const uint16) * _28;
+  unsigned int _29;
+  unsigned int _30;
+  void (*ComM_HsmActionType) (const uint16) * _31;
+  void (*<T619>) (const uint16) _32;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  _1 = sc_37(D)->instances;
+  _2 = (unsigned int) instIdx_38(D);
+  _3 = _2 * 4;
+  inst_39 = _1 + _3;
+  # DEBUG inst => inst_39
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = sc_37(D)->topStateId;
+  inst_39->stateId = _4;
+  # DEBUG BEGIN_STMT
+  inst_39->sourceId = 255;
+  # DEBUG BEGIN_STMT
+  # DEBUG i => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  _5 = sc_37(D)->events;
+  _6 = (int) instIdx_38(D);
+  _7 = (int) _20;
+  _8 = _6 * _7;
+  _9 = (int) i_33;
+  _10 = _8 + _9;
+  _11 = (sizetype) _10;
+  _12 = _5 + _11;
+  *_12 = 0;
+  # DEBUG BEGIN_STMT
+  _13 = sc_37(D)->evCounters;
+  _14 = sc_37(D)->numEvents;
+  _15 = (int) _14;
+  _16 = _6 * _15;
+  _17 = _9 + _16;
+  _18 = (sizetype) _17;
+  _19 = _13 + _18;
+  *_19 = 0;
+  # DEBUG BEGIN_STMT
+  i_48 = i_33 + 1;
+  # DEBUG i => i_48
+
+  <bb 4> [local count: 1073741824]:
+  # i_33 = PHI <0(2), i_48(3)>
+  # DEBUG i => i_33
+  # DEBUG BEGIN_STMT
+  _20 = sc_37(D)->numEvents;
+  _21 = (short unsigned int) _20;
+  if (_21 > i_33)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  inst_39->evQueueFill = 0;
+  # DEBUG BEGIN_STMT
+  inst_39->evQueueInsertEvNo = 0;
+  # DEBUG BEGIN_STMT
+  _22 = sc_37(D)->states;
+  _23 = inst_39->stateId;
+  _24 = (unsigned int) _23;
+  _25 = _24 * 20;
+  _26 = _22 + _25;
+  _27 = _26->entryFnIdx;
+  if (_27 != 255)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 6> [local count: 77953656]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _28 = sc_37(D)->actions;
+  _29 = (unsigned int) _27;
+  _30 = _29 * 4;
+  _31 = _28 + _30;
+  _32 = *_31;
+  _32 (instIdx_38(D));
+
+  <bb 7> [local count: 118111601]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmInitSubstates (sc_37(D), instIdx_38(D));
+  return;
+
+}
+
+
+ComM_HsmInit (const struct ComM_HsmStatechartType * const sc)
+{
+  uint16 instIdx;
+  short unsigned int _1;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG instIdx => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 955630223]:
+  # DEBUG BEGIN_STMT
+  ComM_HsmInitInst (sc_5(D), instIdx_2);
+  # DEBUG BEGIN_STMT
+  instIdx_7 = instIdx_2 + 1;
+  # DEBUG instIdx => instIdx_7
+
+  <bb 4> [local count: 1073741824]:
+  # instIdx_2 = PHI <0(2), instIdx_7(3)>
+  # DEBUG instIdx => instIdx_2
+  # DEBUG BEGIN_STMT
+  _1 = sc_5(D)->numInstances;
+  if (_1 > instIdx_2)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 5>; [11.00%]
+
+  <bb 5> [local count: 118111601]:
+  return;
+
+}
+
+

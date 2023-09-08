@@ -1,0 +1,86 @@
+callgraph:
+
+OS_CORTEXM_IntClearIsr/2 (OS_CORTEXM_IntClearIsr) @06c99d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalClearPendingInterrupt/0 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06c99c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalClearPendingInterrupt/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_LocalClearPendingInterrupt/0 (OS_LocalClearPendingInterrupt) @06c99a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntClearIsr/2 (512926469 (estimated locally),0.48 per call) OS_AppIsAccessible/1 (1073741824 (estimated locally),1.00 per call) 
+Clearing variable flags:
+
+Function name:OS_LocalClearPendingInterrupt/0:
+  locals read: 
+  locals written: 
+
+ ordered call graph: reduced
+OS_LocalClearPendingInterrupt/0 (OS_LocalClearPendingInterrupt) @06c99a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06887518
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntClearIsr/2 (512926469 (estimated locally),0.48 per call) OS_AppIsAccessible/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+Function name:OS_LocalClearPendingInterrupt/0:
+    locals read: 
+    locals written: 
+  globals read: ALL
+  globals written: ALL
+__attribute__((target ("general-regs-only")))
+OS_LocalClearPendingInterrupt (const struct os_isr_t * isr)
+{
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  const struct os_archisr_t * _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  _1 = isr_7(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 4>; [52.23%]
+  else
+    goto <bb 3>; [47.77%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  _3 = &isr_7(D)->arch;
+  OS_CORTEXM_IntClearIsr (_3);
+
+  <bb 4> [local count: 1073741824]:
+  # result_4 = PHI <154(2), 0(3)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+

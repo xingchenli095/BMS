@@ -1,0 +1,86 @@
+__attribute__((target ("general-regs-only")))
+OS_LocalStartScheduleTableSynchron (const struct os_schedule_t * ss)
+{
+  os_intstatus_t is;
+  os_errorresult_t result;
+  struct os_alarmdynamic_t * ad;
+  struct os_scheduledynamic_t * sd;
+  os_errorresult_t D.7423;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  sd = ss->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.0_1 = OS_alarmTableBase;
+  _2 = ss->alarm;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 28;
+  _5 = OS_alarmTableBase.0_1 + _4;
+  ad = _5->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_6 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_6);
+  # DEBUG BEGIN_STMT
+  _7 = ss->app;
+  _8 = OS_AppIsAccessible (_7);
+  if (_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 154;
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = sd->status;
+  if (_9 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result = 69;
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _10 = ad->inUse;
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = 20;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  sd->adjRemaining = 4294967295;
+  # DEBUG BEGIN_STMT
+  sd->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd->next = 0;
+  # DEBUG BEGIN_STMT
+  sd->status = 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  D.7423 = result;
+  return D.7423;
+
+}
+
+

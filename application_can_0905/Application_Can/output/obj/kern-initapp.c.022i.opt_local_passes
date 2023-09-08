@@ -1,0 +1,57 @@
+__attribute__((target ("general-regs-only")))
+OS_InitApp ()
+{
+  struct os_appdynamic_t * ad;
+  const struct os_appcontext_t * ap;
+  const os_coreid_t myCoreId;
+  os_applicationid_t a;
+  const struct os_appcontext_t * OS_appTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char a.1_4;
+  unsigned char OS_nApps.2_5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_8 = 0;
+  # DEBUG myCoreId => myCoreId_8
+  # DEBUG BEGIN_STMT
+  a_9 = 0;
+  # DEBUG a => a_9
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_appTableBase.0_1 = OS_appTableBase;
+  _2 = (unsigned int) a_6;
+  _3 = _2 * 64;
+  ap_11 = OS_appTableBase.0_1 + _3;
+  # DEBUG ap => ap_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ad_12 = ap_11->dynamic;
+  # DEBUG ad => ad_12
+  # DEBUG BEGIN_STMT
+  ad_12->appstate = 2;
+  # DEBUG BEGIN_STMT
+  a.1_4 = a_6;
+  a_14 = a.1_4 + 1;
+  # DEBUG a => a_14
+
+  <bb 4> :
+  # a_6 = PHI <a_9(2), a_14(3)>
+  # DEBUG a => a_6
+  # DEBUG BEGIN_STMT
+  OS_nApps.2_5 = OS_nApps;
+  if (a_6 < OS_nApps.2_5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

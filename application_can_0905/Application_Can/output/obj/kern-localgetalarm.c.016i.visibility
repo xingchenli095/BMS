@@ -1,0 +1,146 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_LocalGetAlarm
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_counterTableBase/4 (OS_counterTableBase) @06c14ab0
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_GetAlarmDelta/3 (OS_GetAlarmDelta) @06c3cd20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalGetAlarm/0 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/2 (OS_CORTEXM_IntSetDisablingLevel) @06c3cc40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalGetAlarm/0 OS_LocalGetAlarm/0 
+  Calls: 
+OS_kernDisableLevel/1 (OS_kernDisableLevel) @06c14990
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_LocalGetAlarm/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_LocalGetAlarm/0 (OS_LocalGetAlarm) @06c3ca80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_kernDisableLevel/1 (read)OS_counterTableBase/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/2 OS_GetAlarmDelta/3 OS_CORTEXM_IntSetDisablingLevel/2 
+__attribute__((target ("general-regs-only")))
+OS_LocalGetAlarm (os_alarmid_t a, const struct os_alarm_t * as, os_tick_t * out)
+{
+  os_errorresult_t result;
+  os_int_t gadRes;
+  os_intstatus_t is;
+  struct os_counterdynamic_t * cd;
+  struct os_alarmdynamic_t * ad;
+  os_errorresult_t D.7426;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ad = as->dynamic;
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.0_1 = OS_kernDisableLevel;
+  is = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.0_1);
+  # DEBUG BEGIN_STMT
+  gadRes = OS_GetAlarmDelta (a, as, ad, out);
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is);
+  # DEBUG BEGIN_STMT
+  if (gadRes < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result = 10;
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (gadRes > 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  result = 11;
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.1_2 = OS_counterTableBase;
+  _3 = as->counter;
+  _4 = (unsigned int) _3;
+  _5 = _4 * 32;
+  _6 = OS_counterTableBase.1_2 + _5;
+  cd = _6->dynamic;
+  # DEBUG BEGIN_STMT
+  _7 = *out;
+  _8 = cd->error;
+  if (_7 <= _8)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *out = 0;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _9 = *out;
+  _10 = cd->error;
+  _11 = _9 - _10;
+  *out = _11;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  D.7426 = result;
+  return D.7426;
+
+}
+
+

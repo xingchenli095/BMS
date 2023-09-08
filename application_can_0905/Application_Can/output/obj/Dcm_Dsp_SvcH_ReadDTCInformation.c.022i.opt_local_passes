@@ -1,0 +1,1769 @@
+Dcm_DspInternal_ProcessPageFilteredDTCs (Dcm_DemClientIdType DemClientId, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_1 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_6 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_3(D), 4, pMsgContext_4(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  _7 = serviceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_DspInternal_ProcessPageDtcExtDataRecord (Dcm_DemClientIdType DemClientId, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_1 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_1
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_6 = Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (DemClientId_3(D), 4, pMsgContext_4(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_6
+  # DEBUG BEGIN_STMT
+  _7 = serviceProcessStatus_6;
+  return _7;
+
+}
+
+
+Dcm_DspInternal_UpdateResponseBuffer (struct Dcm_MsgContextType * pMsgContext)
+{
+  uint8 ProtocolIndex;
+  Dcm_BufferSizeType curTxBufferLen;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  int _5;
+  Dcm_MsgItemType * _6;
+  Dcm_MsgItemType * _7;
+  int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_12(D)->dcmRxPduId;
+  _2 = pMsgContext_12(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_14 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_14
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = (int) ProtocolIndex_14;
+  curTxBufferLen_16 = Dcm_HsmInfo[_4].TxBuffer.FilledLength;
+  # DEBUG curTxBufferLen => curTxBufferLen_16
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = (int) ProtocolIndex_14;
+  _6 = Dcm_HsmInfo[_5].TxBuffer.BufferPtr;
+  _7 = _6 + curTxBufferLen_16;
+  pMsgContext_12(D)->resData = _7;
+  # DEBUG BEGIN_STMT
+  _8 = (int) ProtocolIndex_14;
+  _9 = Dcm_HsmInfo[_8].TxBuffer.Size;
+  _10 = _9 - curTxBufferLen_16;
+  pMsgContext_12(D)->resMaxDataLen = _10;
+  return;
+
+}
+
+
+Dcm_DspInternal_ReadDTCInformation_SvcCont (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType serviceProcessStatus;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) Dcm_ReadDTCInformation_SubServiceHandler.0_1;
+  Std_ReturnType _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_3 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  Dcm_ReadDTCInformation_SubServiceHandler.0_1 = Dcm_ReadDTCInformation_SubServiceHandler;
+  serviceProcessStatus_8 = Dcm_ReadDTCInformation_SubServiceHandler.0_1 (OpStatus_5(D), pMsgContext_6(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_8
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_8 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_9 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_9
+
+  <bb 4> :
+  # serviceProcessStatus_2 = PHI <serviceProcessStatus_8(2), serviceProcessStatus_9(3)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_2
+  # DEBUG BEGIN_STMT
+  _10 = serviceProcessStatus_2;
+  return _10;
+
+}
+
+
+Dcm_DspInternal_ReadDTCInformation_SvcStart (struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_BufferSizeType * FilledLengthPtr;
+  struct Dcm_HsmInfoType * curHsmInfo;
+  Std_ReturnType serviceProcessStatus;
+  Dcm_ProtocolIndexType instIdx;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  Std_ReturnType (*<T686>) (Dcm_OpStatusType, struct Dcm_MsgContextType *) _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _10;
+  long unsigned int _11;
+  Dcm_MsgItemType * _12;
+  unsigned char _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  Dcm_MsgItemType * _16;
+  Dcm_MsgItemType * _17;
+  unsigned char _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  Dcm_MsgItemType * _22;
+  Dcm_MsgItemType * _23;
+  unsigned char _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  Dcm_MsgItemType * _27;
+  unsigned char _28;
+  Std_ReturnType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_31(D)->dcmRxPduId;
+  _2 = pMsgContext_31(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  instIdx_33 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG instIdx => instIdx_33
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_34 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_33;
+  curHsmInfo_35 = &Dcm_HsmInfo[_4];
+  # DEBUG curHsmInfo => curHsmInfo_35
+  # DEBUG BEGIN_STMT
+  FilledLengthPtr_36 = &curHsmInfo_35->TxBuffer.FilledLength;
+  # DEBUG FilledLengthPtr => FilledLengthPtr_36
+  # DEBUG BEGIN_STMT
+  DemClientId_38 = Dcm_Dsl_GetDemClientId (instIdx_33);
+  # DEBUG DemClientId => DemClientId_38
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_40 = Dcm_Dsp_DemFacade_GetClient (DemClientId_38);
+  # DEBUG ClientContextPtr => ClientContextPtr_40
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_31(D)->resData;
+  _6 = curHsmInfo_35->subServiceId;
+  *_5 = _6;
+  # DEBUG BEGIN_STMT
+  pMsgContext_31(D)->resDataLen = 1;
+  # DEBUG BEGIN_STMT
+  *FilledLengthPtr_36 = 2;
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_Dsp_ExtractSubServiceHandler (0, pMsgContext_31(D));
+  Dcm_ReadDTCInformation_SubServiceHandler = _7;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_40->ServiceID = 25;
+  # DEBUG BEGIN_STMT
+  _8 = curHsmInfo_35->subServiceId;
+  if (_8 == 4)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _9 = curHsmInfo_35->subServiceId;
+  if (_9 == 6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  _10 = curHsmInfo_35->subServiceId;
+  if (_10 == 9)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _11 = pMsgContext_31(D)->reqDataLen;
+  if (_11 > 2)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 = pMsgContext_31(D)->reqData;
+  _13 = *_12;
+  _14 = (long unsigned int) _13;
+  _15 = _14 << 16;
+  _16 = pMsgContext_31(D)->reqData;
+  _17 = _16 + 1;
+  _18 = *_17;
+  _19 = (long unsigned int) _18;
+  _20 = _19 << 8;
+  _21 = _15 | _20;
+  _22 = pMsgContext_31(D)->reqData;
+  _23 = _22 + 2;
+  _24 = *_23;
+  _25 = (long unsigned int) _24;
+  _26 = _21 | _25;
+  ClientContextPtr_40->DTCMask = _26;
+  # DEBUG BEGIN_STMT
+  _27 = pMsgContext_31(D)->reqData;
+  _28 = MEM[(Dcm_MsgItemType *)_27 + 3B];
+  ClientContextPtr_40->DataRecordNumber = _28;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_50 = Dcm_DspInternal_ReadDTCInformation_SvcCont (0, pMsgContext_31(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_50
+  # DEBUG BEGIN_STMT
+  _51 = serviceProcessStatus_50;
+  return _51;
+
+}
+
+
+Dcm_DspInternal_ReportUserDefMemoryDtcExtendedDataRecordByDtcNumber_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  Dcm_MsgItemType * _15;
+  Dcm_MsgItemType * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  Dcm_MsgItemType * _20;
+  unsigned char _21;
+  Dcm_MsgItemType * _22;
+  Dcm_MsgItemType * _23;
+  unsigned char _24;
+  short unsigned int _25;
+  short unsigned int _26;
+  unsigned char _27;
+  unsigned char _28;
+  unsigned char _29;
+  short unsigned int _30;
+  Dcm_MsgItemType * _31;
+  long unsigned int _32;
+  Dcm_MsgItemType * _33;
+  unsigned char _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  Dcm_MsgItemType * _37;
+  long unsigned int _38;
+  sizetype _39;
+  Dcm_MsgItemType * _40;
+  unsigned char _41;
+  long unsigned int _42;
+  long unsigned int _43;
+  Dcm_MsgItemType * _44;
+  long unsigned int _45;
+  sizetype _46;
+  Dcm_MsgItemType * _47;
+  unsigned char _48;
+  long unsigned int _49;
+  Dcm_MsgItemType * _50;
+  long unsigned int _51;
+  sizetype _52;
+  Dcm_MsgItemType * _53;
+  unsigned char _54;
+  long unsigned int _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  long unsigned int _58;
+  long unsigned int _59;
+  long unsigned int _60;
+  Std_ReturnType _98;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_65 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_65
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_67(D)->dcmRxPduId;
+  _2 = pMsgContext_67(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_69 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_69
+  # DEBUG BEGIN_STMT
+  DemClientId_71 = Dcm_Dsl_GetDemClientId (ProtocolIndex_69);
+  # DEBUG DemClientId => DemClientId_71
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_72(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74 = Dcm_Dsp_DemFacade_GetClient (DemClientId_71);
+  # DEBUG ClientContextPtr => ClientContextPtr_74
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_67(D)->reqDataLen;
+  if (_4 != 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->AmountOfDataWrittenOnCurrentPage = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_67(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_95 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_95
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_67(D)->reqData;
+  _6 = *_5;
+  _7 = (long unsigned int) _6;
+  _8 = _7 << 16;
+  _9 = pMsgContext_67(D)->reqData;
+  _10 = _9 + 1;
+  _11 = *_10;
+  _12 = (long unsigned int) _11;
+  _13 = _12 << 8;
+  _14 = _8 | _13;
+  _15 = pMsgContext_67(D)->reqData;
+  _16 = _15 + 2;
+  _17 = *_16;
+  _18 = (long unsigned int) _17;
+  _19 = _14 | _18;
+  ClientContextPtr_74->DTCMask = _19;
+  # DEBUG BEGIN_STMT
+  _20 = pMsgContext_67(D)->reqData;
+  _21 = MEM[(Dcm_MsgItemType *)_20 + 3B];
+  ClientContextPtr_74->DataRecordNumber = _21;
+  # DEBUG BEGIN_STMT
+  _22 = pMsgContext_67(D)->reqData;
+  _23 = _22 + 4;
+  _24 = *_23;
+  _25 = (short unsigned int) _24;
+  _26 = _25 + 256;
+  ClientContextPtr_74->MemoryOrigin = _26;
+  # DEBUG BEGIN_STMT
+  _27 = ClientContextPtr_74->DataRecordNumber;
+  _28 = _27 + 255;
+  if (_28 > 238)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _29 = ClientContextPtr_74->DataRecordNumber;
+  if (_29 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_67(D), 49);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_79 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_79
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->SubServiceID = 25;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->DataKind = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  _30 = ClientContextPtr_74->MemoryOrigin;
+  _31 = pMsgContext_67(D)->resData;
+  _32 = pMsgContext_67(D)->resDataLen;
+  _33 = _31 + _32;
+  _34 = (unsigned char) _30;
+  *_33 = _34;
+  # DEBUG BEGIN_STMT
+  _35 = ClientContextPtr_74->DTCMask;
+  _36 = _35 >> 16;
+  _37 = pMsgContext_67(D)->resData;
+  _38 = pMsgContext_67(D)->resDataLen;
+  _39 = _38 + 1;
+  _40 = _37 + _39;
+  _41 = (unsigned char) _36;
+  *_40 = _41;
+  # DEBUG BEGIN_STMT
+  _42 = ClientContextPtr_74->DTCMask;
+  _43 = _42 >> 8;
+  _44 = pMsgContext_67(D)->resData;
+  _45 = pMsgContext_67(D)->resDataLen;
+  _46 = _45 + 2;
+  _47 = _44 + _46;
+  _48 = (unsigned char) _43;
+  *_47 = _48;
+  # DEBUG BEGIN_STMT
+  _49 = ClientContextPtr_74->DTCMask;
+  _50 = pMsgContext_67(D)->resData;
+  _51 = pMsgContext_67(D)->resDataLen;
+  _52 = _51 + 3;
+  _53 = _50 + _52;
+  _54 = (unsigned char) _49;
+  *_53 = _54;
+  # DEBUG BEGIN_STMT
+  _55 = pMsgContext_67(D)->resDataLen;
+  _56 = _55 + 4;
+  pMsgContext_67(D)->resDataLen = _56;
+  # DEBUG BEGIN_STMT
+  _57 = pMsgContext_67(D)->resDataLen;
+  _58 = _57 + 1;
+  ClientContextPtr_74->AmountOfDataWrittenOnCurrentPage = _58;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->DTCStatusWrittenInResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _59 = pMsgContext_67(D)->resMaxDataLen;
+  _60 = _59 + 1;
+  ClientContextPtr_74->SizeOfOnePage = _60;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_74->FirstPageSent = 0;
+
+  <bb 9> :
+  # serviceProcessStatus_61 = PHI <serviceProcessStatus_65(2), serviceProcessStatus_95(4), serviceProcessStatus_79(7), serviceProcessStatus_65(8)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_61
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_61 != 26)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_97 = Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (DemClientId_71, OpStatus_72(D), pMsgContext_67(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_97
+
+  <bb 11> :
+  # serviceProcessStatus_62 = PHI <serviceProcessStatus_61(9), serviceProcessStatus_97(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_62
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _98 = serviceProcessStatus_62;
+  return _98;
+
+}
+
+
+Dcm_DspInternal_ReportUserDefMemoryDtcSnapshotRecordByDtcNumber_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  Dcm_MsgItemType * _15;
+  Dcm_MsgItemType * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  Dcm_MsgItemType * _20;
+  unsigned char _21;
+  Dcm_MsgItemType * _22;
+  Dcm_MsgItemType * _23;
+  unsigned char _24;
+  short unsigned int _25;
+  short unsigned int _26;
+  short unsigned int _27;
+  Dcm_MsgItemType * _28;
+  long unsigned int _29;
+  Dcm_MsgItemType * _30;
+  unsigned char _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  Dcm_MsgItemType * _34;
+  long unsigned int _35;
+  sizetype _36;
+  Dcm_MsgItemType * _37;
+  unsigned char _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  Dcm_MsgItemType * _41;
+  long unsigned int _42;
+  sizetype _43;
+  Dcm_MsgItemType * _44;
+  unsigned char _45;
+  long unsigned int _46;
+  Dcm_MsgItemType * _47;
+  long unsigned int _48;
+  sizetype _49;
+  Dcm_MsgItemType * _50;
+  unsigned char _51;
+  long unsigned int _52;
+  long unsigned int _53;
+  long unsigned int _54;
+  long unsigned int _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  Std_ReturnType _93;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_62 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_62
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_64(D)->dcmRxPduId;
+  _2 = pMsgContext_64(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_66 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_66
+  # DEBUG BEGIN_STMT
+  DemClientId_68 = Dcm_Dsl_GetDemClientId (ProtocolIndex_66);
+  # DEBUG DemClientId => DemClientId_68
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_69(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71 = Dcm_Dsp_DemFacade_GetClient (DemClientId_68);
+  # DEBUG ClientContextPtr => ClientContextPtr_71
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_64(D)->reqDataLen;
+  if (_4 != 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->AmountOfDataWrittenOnCurrentPage = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_64(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_90 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_90
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_64(D)->reqData;
+  _6 = *_5;
+  _7 = (long unsigned int) _6;
+  _8 = _7 << 16;
+  _9 = pMsgContext_64(D)->reqData;
+  _10 = _9 + 1;
+  _11 = *_10;
+  _12 = (long unsigned int) _11;
+  _13 = _12 << 8;
+  _14 = _8 | _13;
+  _15 = pMsgContext_64(D)->reqData;
+  _16 = _15 + 2;
+  _17 = *_16;
+  _18 = (long unsigned int) _17;
+  _19 = _14 | _18;
+  ClientContextPtr_71->DTCMask = _19;
+  # DEBUG BEGIN_STMT
+  _20 = pMsgContext_64(D)->reqData;
+  _21 = MEM[(Dcm_MsgItemType *)_20 + 3B];
+  ClientContextPtr_71->DataRecordNumber = _21;
+  # DEBUG BEGIN_STMT
+  _22 = pMsgContext_64(D)->reqData;
+  _23 = _22 + 4;
+  _24 = *_23;
+  _25 = (short unsigned int) _24;
+  _26 = _25 + 256;
+  ClientContextPtr_71->MemoryOrigin = _26;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->SubServiceID = 24;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->DataKind = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  _27 = ClientContextPtr_71->MemoryOrigin;
+  _28 = pMsgContext_64(D)->resData;
+  _29 = pMsgContext_64(D)->resDataLen;
+  _30 = _28 + _29;
+  _31 = (unsigned char) _27;
+  *_30 = _31;
+  # DEBUG BEGIN_STMT
+  _32 = ClientContextPtr_71->DTCMask;
+  _33 = _32 >> 16;
+  _34 = pMsgContext_64(D)->resData;
+  _35 = pMsgContext_64(D)->resDataLen;
+  _36 = _35 + 1;
+  _37 = _34 + _36;
+  _38 = (unsigned char) _33;
+  *_37 = _38;
+  # DEBUG BEGIN_STMT
+  _39 = ClientContextPtr_71->DTCMask;
+  _40 = _39 >> 8;
+  _41 = pMsgContext_64(D)->resData;
+  _42 = pMsgContext_64(D)->resDataLen;
+  _43 = _42 + 2;
+  _44 = _41 + _43;
+  _45 = (unsigned char) _40;
+  *_44 = _45;
+  # DEBUG BEGIN_STMT
+  _46 = ClientContextPtr_71->DTCMask;
+  _47 = pMsgContext_64(D)->resData;
+  _48 = pMsgContext_64(D)->resDataLen;
+  _49 = _48 + 3;
+  _50 = _47 + _49;
+  _51 = (unsigned char) _46;
+  *_50 = _51;
+  # DEBUG BEGIN_STMT
+  _52 = pMsgContext_64(D)->resDataLen;
+  _53 = _52 + 4;
+  pMsgContext_64(D)->resDataLen = _53;
+  # DEBUG BEGIN_STMT
+  _54 = pMsgContext_64(D)->resDataLen;
+  _55 = _54 + 1;
+  ClientContextPtr_71->AmountOfDataWrittenOnCurrentPage = _55;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->DTCStatusWrittenInResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _56 = pMsgContext_64(D)->resMaxDataLen;
+  _57 = _56 + 1;
+  ClientContextPtr_71->SizeOfOnePage = _57;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_71->FirstPageSent = 0;
+
+  <bb 6> :
+  # serviceProcessStatus_58 = PHI <serviceProcessStatus_62(2), serviceProcessStatus_90(4), serviceProcessStatus_62(5)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_58
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_58 != 26)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_92 = Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (DemClientId_68, OpStatus_69(D), pMsgContext_64(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_92
+
+  <bb 8> :
+  # serviceProcessStatus_59 = PHI <serviceProcessStatus_58(6), serviceProcessStatus_92(7)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_59
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _93 = serviceProcessStatus_59;
+  return _93;
+
+}
+
+
+Dcm_DspInternal_ReportUserDefMemoryDTCByStatusMask_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  Dcm_MsgItemType * _5;
+  unsigned char _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  Dcm_MsgItemType * _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  short unsigned int _12;
+  short unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  Std_ReturnType _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_20 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_20
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_22(D)->dcmRxPduId;
+  _2 = pMsgContext_22(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_24 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_24
+  # DEBUG BEGIN_STMT
+  DemClientId_26 = Dcm_Dsl_GetDemClientId (ProtocolIndex_24);
+  # DEBUG DemClientId => DemClientId_26
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_27(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29 = Dcm_Dsp_DemFacade_GetClient (DemClientId_26);
+  # DEBUG ClientContextPtr => ClientContextPtr_29
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_22(D)->reqDataLen;
+  if (_4 != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_22(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_44 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_22(D)->reqData;
+  _6 = *_5;
+  ClientContextPtr_29->RequestedStatusMask = _6;
+  # DEBUG BEGIN_STMT
+  _7 = pMsgContext_22(D)->reqData;
+  _8 = *_7;
+  ClientContextPtr_29->RequestedStatusBits = _8;
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_22(D)->reqData;
+  _10 = _9 + 1;
+  _11 = *_10;
+  _12 = (short unsigned int) _11;
+  _13 = _12 + 256;
+  ClientContextPtr_29->MemoryOrigin = _13;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->SubServiceID = 23;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  _14 = pMsgContext_22(D)->resMaxDataLen;
+  _15 = _14 + 1;
+  ClientContextPtr_29->SizeOfOnePage = _15;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->AmountOfDataWrittenOnCurrentPage = 2;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->MemoryOriginState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->AvailabilityMaskState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_29->FilteredDtcsState = 1;
+
+  <bb 6> :
+  # serviceProcessStatus_16 = PHI <serviceProcessStatus_20(2), serviceProcessStatus_44(4), serviceProcessStatus_20(5)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_16
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_16 != 26)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_26, OpStatus_27(D), pMsgContext_22(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+
+  <bb 8> :
+  # serviceProcessStatus_17 = PHI <serviceProcessStatus_16(6), serviceProcessStatus_46(7)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_17
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _47 = serviceProcessStatus_17;
+  return _47;
+
+}
+
+
+Dcm_DspInternal_ReportDTCFaultDetectionCounter_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_10 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_12(D)->dcmRxPduId;
+  _2 = pMsgContext_12(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_14 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_14
+  # DEBUG BEGIN_STMT
+  DemClientId_16 = Dcm_Dsl_GetDemClientId (ProtocolIndex_14);
+  # DEBUG DemClientId => DemClientId_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_12(D)->reqDataLen;
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_19(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21 = Dcm_Dsp_DemFacade_GetClient (DemClientId_16);
+  # DEBUG ClientContextPtr => ClientContextPtr_21
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->SubServiceID = 20;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilterForFaultDetectionCounter = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->RequestedStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->RequestedStatusBits = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_12(D)->resMaxDataLen;
+  _6 = _5 + 1;
+  ClientContextPtr_21->SizeOfOnePage = _6;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->AmountOfDataWrittenOnCurrentPage = 2;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->AvailabilityMaskState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilteredDtcsCountState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilteredDtcsState = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_38 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_16, OpStatus_19(D), pMsgContext_12(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_12(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_18 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_18
+
+  <bb 7> :
+  # serviceProcessStatus_7 = PHI <serviceProcessStatus_38(5), serviceProcessStatus_18(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _39 = serviceProcessStatus_7;
+  return _39;
+
+}
+
+
+Dcm_DspInternal_ReportSupportedDtcs_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  Std_ReturnType _39;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_10 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_12(D)->dcmRxPduId;
+  _2 = pMsgContext_12(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_14 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_14
+  # DEBUG BEGIN_STMT
+  DemClientId_16 = Dcm_Dsl_GetDemClientId (ProtocolIndex_14);
+  # DEBUG DemClientId => DemClientId_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_12(D)->reqDataLen;
+  if (_4 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_19(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21 = Dcm_Dsp_DemFacade_GetClient (DemClientId_16);
+  # DEBUG ClientContextPtr => ClientContextPtr_21
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->SubServiceID = 10;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->RequestedStatusMask = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->RequestedStatusBits = 255;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_12(D)->resMaxDataLen;
+  _6 = _5 + 1;
+  ClientContextPtr_21->SizeOfOnePage = _6;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->AmountOfDataWrittenOnCurrentPage = 2;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->AvailabilityMaskState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilteredDtcsCountState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_21->FilteredDtcsState = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_38 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_16, OpStatus_19(D), pMsgContext_12(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_38
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_12(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_18 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_18
+
+  <bb 7> :
+  # serviceProcessStatus_7 = PHI <serviceProcessStatus_38(5), serviceProcessStatus_18(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _39 = serviceProcessStatus_7;
+  return _39;
+
+}
+
+
+Dcm_DspInternal_ReportDtcExtendedDataRecordByDtcNumber_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  Dcm_MsgItemType * _10;
+  long unsigned int _11;
+  Dcm_MsgItemType * _12;
+  unsigned char _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  Dcm_MsgItemType * _16;
+  long unsigned int _17;
+  sizetype _18;
+  Dcm_MsgItemType * _19;
+  unsigned char _20;
+  long unsigned int _21;
+  Dcm_MsgItemType * _22;
+  long unsigned int _23;
+  sizetype _24;
+  Dcm_MsgItemType * _25;
+  unsigned char _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  Std_ReturnType _67;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_37 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_37
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_39(D)->dcmRxPduId;
+  _2 = pMsgContext_39(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_41 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_41
+  # DEBUG BEGIN_STMT
+  DemClientId_43 = Dcm_Dsl_GetDemClientId (ProtocolIndex_41);
+  # DEBUG DemClientId => DemClientId_43
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_44(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46 = Dcm_Dsp_DemFacade_GetClient (DemClientId_43);
+  # DEBUG ClientContextPtr => ClientContextPtr_46
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_39(D)->reqDataLen;
+  if (_4 != 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->AmountOfDataWrittenOnCurrentPage = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_39(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_64 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_64
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _5 = ClientContextPtr_46->DataRecordNumber;
+  _6 = _5 + 255;
+  if (_6 > 238)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _7 = ClientContextPtr_46->DataRecordNumber;
+  if (_7 != 255)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_39(D), 49);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_48 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_48
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->SubServiceID = 6;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->DataKind = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  _8 = ClientContextPtr_46->DTCMask;
+  _9 = _8 >> 16;
+  _10 = pMsgContext_39(D)->resData;
+  _11 = pMsgContext_39(D)->resDataLen;
+  _12 = _10 + _11;
+  _13 = (unsigned char) _9;
+  *_12 = _13;
+  # DEBUG BEGIN_STMT
+  _14 = ClientContextPtr_46->DTCMask;
+  _15 = _14 >> 8;
+  _16 = pMsgContext_39(D)->resData;
+  _17 = pMsgContext_39(D)->resDataLen;
+  _18 = _17 + 1;
+  _19 = _16 + _18;
+  _20 = (unsigned char) _15;
+  *_19 = _20;
+  # DEBUG BEGIN_STMT
+  _21 = ClientContextPtr_46->DTCMask;
+  _22 = pMsgContext_39(D)->resData;
+  _23 = pMsgContext_39(D)->resDataLen;
+  _24 = _23 + 2;
+  _25 = _22 + _24;
+  _26 = (unsigned char) _21;
+  *_25 = _26;
+  # DEBUG BEGIN_STMT
+  _27 = pMsgContext_39(D)->resDataLen;
+  _28 = _27 + 3;
+  pMsgContext_39(D)->resDataLen = _28;
+  # DEBUG BEGIN_STMT
+  _29 = pMsgContext_39(D)->resDataLen;
+  _30 = _29 + 1;
+  ClientContextPtr_46->AmountOfDataWrittenOnCurrentPage = _30;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->DTCStatusWrittenInResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _31 = pMsgContext_39(D)->resMaxDataLen;
+  _32 = _31 + 1;
+  ClientContextPtr_46->SizeOfOnePage = _32;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_46->FirstPageSent = 0;
+
+  <bb 9> :
+  # serviceProcessStatus_33 = PHI <serviceProcessStatus_37(2), serviceProcessStatus_64(4), serviceProcessStatus_48(7), serviceProcessStatus_37(8)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_33 != 26)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_66 = Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (DemClientId_43, OpStatus_44(D), pMsgContext_39(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_66
+
+  <bb 11> :
+  # serviceProcessStatus_34 = PHI <serviceProcessStatus_33(9), serviceProcessStatus_66(10)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _67 = serviceProcessStatus_34;
+  return _67;
+
+}
+
+
+Dcm_DspInternal_ReportDtcSnapshotRecordByDtcNumber_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  Dcm_MsgItemType * _7;
+  long unsigned int _8;
+  Dcm_MsgItemType * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  Dcm_MsgItemType * _13;
+  long unsigned int _14;
+  sizetype _15;
+  Dcm_MsgItemType * _16;
+  unsigned char _17;
+  long unsigned int _18;
+  Dcm_MsgItemType * _19;
+  long unsigned int _20;
+  sizetype _21;
+  Dcm_MsgItemType * _22;
+  unsigned char _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  Std_ReturnType _62;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_34 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_36(D)->dcmRxPduId;
+  _2 = pMsgContext_36(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_38 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_38
+  # DEBUG BEGIN_STMT
+  DemClientId_40 = Dcm_Dsl_GetDemClientId (ProtocolIndex_38);
+  # DEBUG DemClientId => DemClientId_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (OpStatus_41(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43 = Dcm_Dsp_DemFacade_GetClient (DemClientId_40);
+  # DEBUG ClientContextPtr => ClientContextPtr_43
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_36(D)->reqDataLen;
+  if (_4 != 4)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->AmountOfDataWrittenOnCurrentPage = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_36(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_59 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_59
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->SubServiceID = 4;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->DataKind = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  _5 = ClientContextPtr_43->DTCMask;
+  _6 = _5 >> 16;
+  _7 = pMsgContext_36(D)->resData;
+  _8 = pMsgContext_36(D)->resDataLen;
+  _9 = _7 + _8;
+  _10 = (unsigned char) _6;
+  *_9 = _10;
+  # DEBUG BEGIN_STMT
+  _11 = ClientContextPtr_43->DTCMask;
+  _12 = _11 >> 8;
+  _13 = pMsgContext_36(D)->resData;
+  _14 = pMsgContext_36(D)->resDataLen;
+  _15 = _14 + 1;
+  _16 = _13 + _15;
+  _17 = (unsigned char) _12;
+  *_16 = _17;
+  # DEBUG BEGIN_STMT
+  _18 = ClientContextPtr_43->DTCMask;
+  _19 = pMsgContext_36(D)->resData;
+  _20 = pMsgContext_36(D)->resDataLen;
+  _21 = _20 + 2;
+  _22 = _19 + _21;
+  _23 = (unsigned char) _18;
+  *_22 = _23;
+  # DEBUG BEGIN_STMT
+  _24 = pMsgContext_36(D)->resDataLen;
+  _25 = _24 + 3;
+  pMsgContext_36(D)->resDataLen = _25;
+  # DEBUG BEGIN_STMT
+  _26 = pMsgContext_36(D)->resDataLen;
+  _27 = _26 + 1;
+  ClientContextPtr_43->AmountOfDataWrittenOnCurrentPage = _27;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->DTCStatusWrittenInResponseBuffer = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _28 = pMsgContext_36(D)->resMaxDataLen;
+  _29 = _28 + 1;
+  ClientContextPtr_43->SizeOfOnePage = _29;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_43->FirstPageSent = 0;
+
+  <bb 6> :
+  # serviceProcessStatus_30 = PHI <serviceProcessStatus_34(2), serviceProcessStatus_59(4), serviceProcessStatus_34(5)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_30
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_30 != 26)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_61 = Dcm_Dsp_DemFacade_GetDTCInfoBySelect_Process (DemClientId_40, OpStatus_41(D), pMsgContext_36(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_61
+
+  <bb 8> :
+  # serviceProcessStatus_31 = PHI <serviceProcessStatus_30(6), serviceProcessStatus_61(7)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_31
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _62 = serviceProcessStatus_31;
+  return _62;
+
+}
+
+
+Dcm_DspInternal_ReportDTCByStatusMask_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  Dcm_MsgItemType * _9;
+  unsigned char _10;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_14 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_14
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_16(D)->dcmRxPduId;
+  _2 = pMsgContext_16(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_18 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_18
+  # DEBUG BEGIN_STMT
+  DemClientId_20 = Dcm_Dsl_GetDemClientId (ProtocolIndex_18);
+  # DEBUG DemClientId => DemClientId_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_16(D)->reqDataLen;
+  if (_4 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_23(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25 = Dcm_Dsp_DemFacade_GetClient (DemClientId_20);
+  # DEBUG ClientContextPtr => ClientContextPtr_25
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->SubServiceID = 2;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_16(D)->resMaxDataLen;
+  _6 = _5 + 1;
+  ClientContextPtr_25->SizeOfOnePage = _6;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AmountOfDataWrittenOnCurrentPage = 2;
+  # DEBUG BEGIN_STMT
+  _7 = pMsgContext_16(D)->reqData;
+  _8 = *_7;
+  ClientContextPtr_25->RequestedStatusMask = _8;
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_16(D)->reqData;
+  _10 = *_9;
+  ClientContextPtr_25->RequestedStatusBits = _10;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AvailabilityMaskState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DtcFormatIdState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsCountState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsState = 1;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_42 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_20, OpStatus_23(D), pMsgContext_16(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_42
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_16(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_22 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_22
+
+  <bb 7> :
+  # serviceProcessStatus_11 = PHI <serviceProcessStatus_42(5), serviceProcessStatus_22(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _43 = serviceProcessStatus_11;
+  return _43;
+
+}
+
+
+Dcm_DspInternal_ReportNumberOfDTCByStatusMask_SSvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  struct Dcm_DemClientContextType * ClientContextPtr;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType ProtocolIndex;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  Dcm_MsgItemType * _7;
+  unsigned char _8;
+  Dcm_MsgItemType * _9;
+  unsigned char _10;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_14 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_14
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_16(D)->dcmRxPduId;
+  _2 = pMsgContext_16(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  ProtocolIndex_18 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG ProtocolIndex => ProtocolIndex_18
+  # DEBUG BEGIN_STMT
+  DemClientId_20 = Dcm_Dsl_GetDemClientId (ProtocolIndex_18);
+  # DEBUG DemClientId => DemClientId_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_16(D)->reqDataLen;
+  if (_4 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_23(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25 = Dcm_Dsp_DemFacade_GetClient (DemClientId_20);
+  # DEBUG ClientContextPtr => ClientContextPtr_25
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->SubServiceID = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DTCFormat = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOrigin = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilterForFaultDetectionCounter = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->PageBufferingFlag = 0;
+  # DEBUG BEGIN_STMT
+  _5 = pMsgContext_16(D)->resMaxDataLen;
+  _6 = _5 + 1;
+  ClientContextPtr_25->SizeOfOnePage = _6;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AmountOfDataWrittenOnCurrentPage = 2;
+  # DEBUG BEGIN_STMT
+  _7 = pMsgContext_16(D)->reqData;
+  _8 = *_7;
+  ClientContextPtr_25->RequestedStatusMask = _8;
+  # DEBUG BEGIN_STMT
+  _9 = pMsgContext_16(D)->reqData;
+  _10 = *_9;
+  ClientContextPtr_25->RequestedStatusBits = _10;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FirstPageSent = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->MemoryOriginState = 0;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->AvailabilityMaskState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->DtcFormatIdState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsCountState = 1;
+  # DEBUG BEGIN_STMT
+  ClientContextPtr_25->FilteredDtcsState = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_42 = Dcm_Dsp_DemFacade_GetDTCInfoByFilter_Process (DemClientId_20, OpStatus_23(D), pMsgContext_16(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_42
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ExternalSetNegResponse (pMsgContext_16(D), 19);
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_22 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_22
+
+  <bb 7> :
+  # serviceProcessStatus_11 = PHI <serviceProcessStatus_42(5), serviceProcessStatus_22(6)>
+  # DEBUG serviceProcessStatus => serviceProcessStatus_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _43 = serviceProcessStatus_11;
+  return _43;
+
+}
+
+
+Dcm_DspInternal_ReadDTCInformation_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  static Std_ReturnType (*Dcm_ProcessPageFuncType) (Dcm_DemClientIdType, struct Dcm_MsgContextType *) Dcm_ReadDTC_ProcPageFunc[3] = {Dcm_DspInternal_ProcessPageFilteredDTCs, Dcm_DspInternal_ProcessPageDtcExtDataRecord, 0B};
+  struct Dcm_HsmInfoType * const curHsmInfo;
+  Dcm_DemClientIdType DemClientId;
+  Dcm_ProtocolIndexType instIdx;
+  Std_ReturnType serviceProcessStatus;
+  short unsigned int _1;
+  <unnamed-unsigned:3> _2;
+  unsigned char _3;
+  int _4;
+  int _5;
+  unsigned char _6;
+  unsigned char _7;
+  int _8;
+  Std_ReturnType (*<T694>) (Dcm_DemClientIdType, struct Dcm_MsgContextType *) _9;
+  unsigned char _10;
+  unsigned char _11;
+  int _12;
+  Std_ReturnType (*<T694>) (Dcm_DemClientIdType, struct Dcm_MsgContextType *) _13;
+  unsigned char _14;
+  unsigned char _15;
+  int _16;
+  Std_ReturnType (*<T694>) (Dcm_DemClientIdType, struct Dcm_MsgContextType *) _17;
+  unsigned char _18;
+  int _19;
+  Std_ReturnType (*<T694>) (Dcm_DemClientIdType, struct Dcm_MsgContextType *) _20;
+  Std_ReturnType _50;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_23 = 30;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_23
+  # DEBUG BEGIN_STMT
+  _1 = pMsgContext_25(D)->dcmRxPduId;
+  _2 = pMsgContext_25(D)->msgAddInfo.requestOrigin;
+  _3 = (unsigned char) _2;
+  instIdx_27 = Dcm_Dsl_Supervisor_GetProcessingProtocolIndex (_1, _3);
+  # DEBUG instIdx => instIdx_27
+  # DEBUG BEGIN_STMT
+  DemClientId_29 = Dcm_Dsl_GetDemClientId (instIdx_27);
+  # DEBUG DemClientId => DemClientId_29
+  # DEBUG BEGIN_STMT
+  _4 = (int) instIdx_27;
+  curHsmInfo_30 = &Dcm_HsmInfo[_4];
+  # DEBUG curHsmInfo => curHsmInfo_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _5 = (int) OpStatus_31(D);
+  switch (_5) <default: <L17> [INV], case 0: <L0> [INV], case 1: <L3> [INV], case 2: <L10> [INV], case 3: <L3> [INV], case 4: <L13> [INV], case 5 ... 6: <L11> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_46 = Dcm_DspInternal_ReadDTCInformation_SvcStart (pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_46
+  # DEBUG BEGIN_STMT
+  _6 = curHsmInfo_30->processPageFuncId;
+  if (_6 != 255)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_UpdateResponseBuffer (pMsgContext_25(D));
+  # DEBUG BEGIN_STMT
+  _7 = curHsmInfo_30->processPageFuncId;
+  _8 = (int) _7;
+  _9 = Dcm_ReadDTC_ProcPageFunc[_8];
+  serviceProcessStatus_49 = _9 (DemClientId_29, pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_49
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _10 = curHsmInfo_30->processPageFuncId;
+  if (_10 != 255)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 = curHsmInfo_30->processPageFuncId;
+  _12 = (int) _11;
+  _13 = Dcm_ReadDTC_ProcPageFunc[_12];
+  serviceProcessStatus_44 = _13 (DemClientId_29, pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_44
+  goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_39 = Dcm_DspInternal_ReadDTCInformation_SvcCont (OpStatus_31(D), pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_39
+  # DEBUG BEGIN_STMT
+  _14 = curHsmInfo_30->processPageFuncId;
+  if (_14 != 255)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_UpdateResponseBuffer (pMsgContext_25(D));
+  # DEBUG BEGIN_STMT
+  _15 = curHsmInfo_30->processPageFuncId;
+  _16 = (int) _15;
+  _17 = Dcm_ReadDTC_ProcPageFunc[_16];
+  serviceProcessStatus_42 = _17 (DemClientId_29, pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_42
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_DspInternal_ReadDTCInformation_SvcCont (OpStatus_31(D), pMsgContext_25(D));
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_37 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_37
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  curHsmInfo_30->processPageFuncId = 255;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_33 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_33
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18 = curHsmInfo_30->processPageFuncId;
+  _19 = (int) _18;
+  _20 = Dcm_ReadDTC_ProcPageFunc[_19];
+  serviceProcessStatus_35 = _20 (DemClientId_29, pMsgContext_25(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_35
+  # DEBUG BEGIN_STMT
+
+  <bb 12> :
+  # serviceProcessStatus_21 = PHI <serviceProcessStatus_49(4), serviceProcessStatus_39(7), serviceProcessStatus_37(9), serviceProcessStatus_33(10), serviceProcessStatus_35(11), serviceProcessStatus_23(2), serviceProcessStatus_46(3), serviceProcessStatus_44(6), serviceProcessStatus_42(8)>
+<L17>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _50 = serviceProcessStatus_21;
+  return _50;
+
+}
+
+

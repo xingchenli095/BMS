@@ -1,0 +1,164 @@
+__attribute__((target ("general-regs-only")))
+OS_CheckRateMonitor (os_ratemonitorid_t rmi)
+{
+  os_rateindex_t i;
+  os_boolean_t result;
+  struct os_timestamp_t frameEnd;
+  struct os_timestamp_t now;
+  os_rateindex_t * ri;
+  const struct os_ratemonitor_t * rm;
+  os_boolean_t D.7428;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) rmi;
+  rm = &OS_rateMonitor[_1];
+  # DEBUG BEGIN_STMT
+  _2 = (int) rmi;
+  ri = &OS_rateIndex[_2];
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&now);
+  # DEBUG BEGIN_STMT
+  i = *ri;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = rm->ringBuffer;
+  _4 = (unsigned int) i;
+  _5 = _4 * 8;
+  _6 = _3 + _5;
+  _7 = _6->tsHi;
+  frameEnd.tsHi = _7;
+  # DEBUG BEGIN_STMT
+  _8 = rm->ringBuffer;
+  _9 = (unsigned int) i;
+  _10 = _9 * 8;
+  _11 = _8 + _10;
+  _12 = _11->tsLo;
+  _13 = rm->timeLimit;
+  _14 = ~_13;
+  if (_12 > _14)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _15 = frameEnd.tsHi;
+  _16 = _15 + 1;
+  frameEnd.tsHi = _16;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _17 = rm->ringBuffer;
+  _18 = (unsigned int) i;
+  _19 = _18 * 8;
+  _20 = _17 + _19;
+  _21 = _20->tsLo;
+  _22 = rm->timeLimit;
+  _23 = _21 + _22;
+  frameEnd.tsLo = _23;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _24 = now.tsHi;
+  _25 = frameEnd.tsHi;
+  if (_24 < _25)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _26 = now.tsHi;
+  _27 = frameEnd.tsHi;
+  if (_26 == _27)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 6> :
+  _28 = now.tsLo;
+  _29 = frameEnd.tsLo;
+  if (_28 < _29)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  _30 = rm->ringBuffer;
+  _31 = (unsigned int) i;
+  _32 = _31 * 8;
+  _33 = _30 + _32;
+  _34 = _33->tsHi;
+  if (_34 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _35 = rm->ringBuffer;
+  _36 = (unsigned int) i;
+  _37 = _36 * 8;
+  _38 = _35 + _37;
+  _39 = _38->tsLo;
+  if (_39 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  result = 1;
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _40 = rm->ringBuffer;
+  _41 = (unsigned int) i;
+  _42 = _41 * 8;
+  _43 = _40 + _42;
+  _44 = now.tsLo;
+  _43->tsLo = _44;
+  # DEBUG BEGIN_STMT
+  _45 = rm->ringBuffer;
+  _46 = (unsigned int) i;
+  _47 = _46 * 8;
+  _48 = _45 + _47;
+  _49 = now.tsHi;
+  _48->tsHi = _49;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i.0_50 = i;
+  i = i.0_50 + 1;
+  # DEBUG BEGIN_STMT
+  _51 = rm->countLimit;
+  if (i >= _51)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  *ri = 0;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  *ri = i;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  D.7428 = result;
+  now = {CLOBBER};
+  frameEnd = {CLOBBER};
+  return D.7428;
+
+}
+
+

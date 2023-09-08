@@ -1,0 +1,154 @@
+
+
+ local analysis of OS_ActiTask
+   scanning: td_8 = tp_7(D)->dynamic;
+    Indirect ref read is not const
+  scanning: _1 = tp_7(D)->queuePrio;
+    Indirect ref read is not const
+  scanning: _2 = (short unsigned int) _1;
+  scanning: td_8->prio = _2;
+    Indirect ref write is not const/pure
+  scanning: td_8->state = 2;
+    Indirect ref write is not const/pure
+  scanning: td_8->cAct = 0;
+    Indirect ref write is not const/pure
+  scanning: td_8->pEvents = 0;
+    Indirect ref write is not const/pure
+  scanning: _3 = tp_7(D)->accounting;
+    Indirect ref read is not const
+  scanning: if (_3 != 0B)
+  scanning: _3->etUsed = 0;
+    Indirect ref write is not const/pure
+  scanning: _3->etType = 1;
+    Indirect ref write is not const/pure
+  scanning: _4 = tp_7(D)->linkBase;
+    Indirect ref read is not const
+  scanning: OS_EnqueueLink (_4, _2);
+  scanning: return;
+callgraph:
+
+OS_EnqueueLink/1 (OS_EnqueueLink) @06ca9d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ActiTask/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_ActiTask/0 (OS_ActiTask) @06ca9b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068971a0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+OS_ActiTask/0 (OS_ActiTask) @06ca9b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068971a0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+OS_ActiTask: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_ActiTask: malloc_bottom
+callgraph:
+
+OS_EnqueueLink/1 (OS_EnqueueLink) @06ca9d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ActiTask/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_ActiTask/0 (OS_ActiTask) @06ca9b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896fe0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+OS_ActiTask/0 (OS_ActiTask) @06ca9b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06896fe0
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 (1073741824 (estimated locally),1.00 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_ActiTask (const struct os_task_t * tp)
+{
+  struct os_taskdynamic_t * td;
+  unsigned char _1;
+  short unsigned int _2;
+  struct os_taskaccounting_t * _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_8 = tp_7(D)->dynamic;
+  # DEBUG td => td_8
+  # DEBUG BEGIN_STMT
+  _1 = tp_7(D)->queuePrio;
+  _2 = (short unsigned int) _1;
+  td_8->prio = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_8->state = 2;
+  # DEBUG BEGIN_STMT
+  td_8->cAct = 0;
+  # DEBUG BEGIN_STMT
+  td_8->pEvents = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = tp_7(D)->accounting;
+  if (_3 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  _3->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _3->etType = 1;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = tp_7(D)->linkBase;
+  OS_EnqueueLink (_4, _2);
+  return;
+
+}
+
+

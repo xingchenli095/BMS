@@ -1,0 +1,228 @@
+
+IPA constant propagation start:
+Determining dynamic type for call: _7 (cs_23);
+  Starting walk at: _7 (cs_23);
+  instance pointer: cs_23  Outer instance pointer: cs_23 offset: 0 (bits) vtbl reference: 
+
+IPA structures before propagation:
+
+Jump functions:
+  Jump functions of caller  OS_GetAlarmDelta/0:
+    indirect simple callsite, calling param -1, offset 0, for stmt _7 (cs_23);
+       param 0: UNKNOWN
+         value: 0x0, mask: 0xffffffff
+         Unknown VR
+
+ Propagating constants:
+
+Not considering OS_GetAlarmDelta for cloning; -fipa-cp-clone disabled.
+
+overall_size: 39, max_new_size: 11001
+
+IPA lattices after all propagation:
+
+Lattices:
+  Node: OS_GetAlarmDelta/0:
+    param [0]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [1]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [2]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+    param [3]: BOTTOM
+         ctxs: BOTTOM
+         Bits unusable (BOTTOM)
+         VARYING
+        AGGS BOTTOM
+
+IPA decision stage:
+
+
+IPA constant propagation end
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_totalAlarms/3 (OS_totalAlarms) @06c33b88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetAlarmDelta/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_alarmTableBase/2 (OS_alarmTableBase) @06c33b40
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetAlarmDelta/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_counterTableBase/1 (OS_counterTableBase) @06c33a68
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_GetAlarmDelta/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_GetAlarmDelta/0 (OS_GetAlarmDelta) @06c58b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_counterTableBase/1 (read)OS_alarmTableBase/2 (read)OS_totalAlarms/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:337833917 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(118241871 (estimated locally),0.35 per call) 
+
+;; Function OS_GetAlarmDelta (OS_GetAlarmDelta, funcdef_no=0, decl_uid=6471, cgraph_uid=1, symbol_order=0)
+
+Modification phase of node OS_GetAlarmDelta/0
+__attribute__((target ("general-regs-only")))
+OS_GetAlarmDelta (os_alarmid_t a, const struct os_alarm_t * as, struct os_alarmdynamic_t * ad, os_tick_t * out)
+{
+  os_tick_t total;
+  os_alarmid_t ap;
+  os_int_t result;
+  struct os_counterdynamic_t * cd;
+  const struct os_counter_t * cs;
+  const struct os_counter_t * OS_counterTableBase.0_1;
+  unsigned char _2;
+  unsigned int _3;
+  unsigned int _4;
+  const struct os_hwt_t * _5;
+  unsigned char _6;
+  void (*<T540>) (const struct os_counter_t *) _7;
+  unsigned char _8;
+  const struct os_alarm_t * OS_alarmTableBase.1_9;
+  unsigned int _10;
+  unsigned int _11;
+  const struct os_alarm_t * _12;
+  unsigned int _13;
+  short unsigned int OS_totalAlarms.2_14;
+
+  <bb 2> [local count: 337833917]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.0_1 = OS_counterTableBase;
+  _2 = as_22(D)->counter;
+  _3 = (unsigned int) _2;
+  _4 = _3 * 32;
+  cs_23 = OS_counterTableBase.0_1 + _4;
+  # DEBUG cs => cs_23
+  # DEBUG BEGIN_STMT
+  cd_24 = cs_23->dynamic;
+  # DEBUG cd => cd_24
+  # DEBUG BEGIN_STMT
+  _5 = cs_23->hwt;
+  if (_5 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 3> [local count: 236483742]:
+  # DEBUG BEGIN_STMT
+  _6 = cd_24->lock;
+  if (_6 == 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 118241871]:
+  # DEBUG BEGIN_STMT
+  _7 = cs_23->updFunc;
+  _7 (cs_23);
+
+  <bb 5> [local count: 337833918]:
+  # DEBUG BEGIN_STMT
+  _8 = ad_26(D)->inUse;
+  if (_8 == 1)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 6> [local count: 114863532]:
+  # DEBUG BEGIN_STMT
+  total_28 = ad_26(D)->delta;
+  # DEBUG total => total_28
+  # DEBUG BEGIN_STMT
+  ap_29 = cd_24->head;
+  # DEBUG ap => ap_29
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 958878293]:
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.1_9 = OS_alarmTableBase;
+  _10 = (unsigned int) ap_16;
+  _11 = _10 * 28;
+  _12 = OS_alarmTableBase.1_9 + _11;
+  ad_31 = _12->dynamic;
+  # DEBUG ad => ad_31
+  # DEBUG BEGIN_STMT
+  _13 = ad_31->delta;
+  total_32 = _13 + total_17;
+  # DEBUG total => total_32
+  # DEBUG BEGIN_STMT
+  ap_33 = ad_31->next;
+  # DEBUG ap => ap_33
+
+  <bb 8> [local count: 1073741824]:
+  # ap_16 = PHI <ap_29(6), ap_33(7)>
+  # total_17 = PHI <total_28(6), total_32(7)>
+  # DEBUG total => total_17
+  # DEBUG ap => ap_16
+  # DEBUG BEGIN_STMT
+  OS_totalAlarms.2_14 = OS_totalAlarms;
+  if (OS_totalAlarms.2_14 > ap_16)
+    goto <bb 9>; [94.50%]
+  else
+    goto <bb 10>; [5.50%]
+
+  <bb 9> [local count: 1014686024]:
+  if (ap_16 != a_30(D))
+    goto <bb 7>; [94.50%]
+  else
+    goto <bb 10>; [5.50%]
+
+  <bb 10> [local count: 114863532]:
+  # ap_20 = PHI <ap_16(8), ap_16(9)>
+  # total_27 = PHI <total_17(8), total_17(9)>
+  # DEBUG BEGIN_STMT
+  if (ap_20 == a_30(D))
+    goto <bb 11>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 11> [local count: 39053601]:
+  # DEBUG BEGIN_STMT
+  *out_34(D) = total_27;
+
+  <bb 12> [local count: 337833918]:
+  # result_15 = PHI <-1(10), 1(5), 0(11)>
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  return result_15;
+
+}
+
+

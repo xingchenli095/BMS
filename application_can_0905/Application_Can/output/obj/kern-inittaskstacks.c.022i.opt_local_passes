@@ -1,0 +1,86 @@
+__attribute__((target ("general-regs-only")))
+OS_InitTaskStacks ()
+{
+  os_size_t numElems;
+  os_stackelement_t * p;
+  const struct os_task_t * const tp;
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+  const struct os_task_t * OS_taskTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned char tid.1_5;
+  unsigned char OS_nTasks.2_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_12 = 0;
+  # DEBUG myCoreId => myCoreId_12
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  tid_13 = 0;
+  # DEBUG tid => tid_13
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_1 = OS_taskTableBase;
+  _2 = (unsigned int) tid_7;
+  _3 = _2 * 76;
+  tp_15 = OS_taskTableBase.0_1 + _3;
+  # DEBUG tp => tp_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p_16 = tp_15->stackBase;
+  # DEBUG p => p_16
+  # DEBUG BEGIN_STMT
+  _4 = tp_15->stackLen;
+  numElems_17 = _4 / 4;
+  # DEBUG numElems => numElems_17
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *p_8 = 3958107115;
+  # DEBUG BEGIN_STMT
+  p_20 = p_8 + 4;
+  # DEBUG p => p_20
+  # DEBUG BEGIN_STMT
+  numElems_21 = numElems_9 + 4294967295;
+  # DEBUG numElems => numElems_21
+
+  <bb 5> :
+  # p_8 = PHI <p_16(3), p_20(4)>
+  # numElems_9 = PHI <numElems_17(3), numElems_21(4)>
+  # DEBUG numElems => numElems_9
+  # DEBUG p => p_8
+  # DEBUG BEGIN_STMT
+  if (numElems_9 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  tid.1_5 = tid_7;
+  tid_18 = tid.1_5 + 1;
+  # DEBUG tid => tid_18
+
+  <bb 7> :
+  # tid_7 = PHI <tid_13(2), tid_18(6)>
+  # DEBUG tid => tid_7
+  # DEBUG BEGIN_STMT
+  OS_nTasks.2_6 = OS_nTasks;
+  if (tid_7 < OS_nTasks.2_6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

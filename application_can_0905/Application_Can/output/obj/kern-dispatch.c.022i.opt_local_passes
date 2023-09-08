@@ -1,0 +1,396 @@
+__attribute__((target ("general-regs-only")))
+OS_Dispatch (os_taskstate_t newstate)
+{
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  os_uint8_t Os_CallHookTmp;
+  struct os_kerneldata_t * const OS_kd;
+  struct os_taskdynamic_t * td;
+  os_taskstate_t qstate;
+  struct os_kerneldata_t * const kernel_data;
+  const struct os_task_t * _1;
+  const struct os_task_t * _2;
+  unsigned int OS_configMode.1_3;
+  unsigned int _4;
+  const struct os_task_t * _5;
+  os_stackelement_t * _6;
+  unsigned int _7;
+  os_stackelement_t * _8;
+  unsigned int _9;
+  const struct os_task_t * _10;
+  int _11;
+  unsigned char _12;
+  void (*<T467>) (void) OS_ptrPostTaskHook.3_13;
+  void (*<T62f>) (const struct os_task_t *) OS_preemptTaskExecTimingFp.4_14;
+  const struct os_task_t * _15;
+  const struct os_task_t * _16;
+  const struct os_task_t * _17;
+  const struct os_task_t * _18;
+  short unsigned int _19;
+  const struct os_task_t * _20;
+  unsigned char _21;
+  short unsigned int _22;
+  const struct os_task_t * _23;
+  unsigned char _24;
+  short unsigned int _25;
+  void (*<T467>) (void) OS_ptrPreTaskHook.5_26;
+  const struct os_task_t * _27;
+  void (*<T62f>) (const struct os_task_t *) OS_startTaskExecTimingFp.6_28;
+  const struct os_task_t * _29;
+  const struct os_task_t * _30;
+  void (*<T467>) (void) _31;
+  const struct os_task_t * _32;
+  os_stackelement_t * _33;
+  unsigned int _34;
+  const struct os_task_t * _35;
+  unsigned int _36;
+  unsigned int _37;
+  os_stackelement_t * _38;
+  const struct os_task_t * _39;
+  const struct os_appcontext_t * _40;
+  const struct os_task_t * _41;
+  const struct os_appcontext_t * _42;
+  unsigned char _43;
+  short unsigned int _44;
+  const struct os_task_t * _45;
+  unsigned char _46;
+  short unsigned int _47;
+  short unsigned int _48;
+  const struct os_task_t * _49;
+  unsigned char _50;
+  signed char _51;
+  const struct os_task_t * _52;
+  struct os_taskdynamic_t * _53;
+  os_stackelement_t * _54;
+  const struct os_task_t * _55;
+  struct os_taskdynamic_t * _56;
+  os_stackelement_t * _57;
+  const struct os_task_t * _58;
+  unsigned char _59;
+  signed char _60;
+  const struct os_task_t * _61;
+  struct os_taskdynamic_t * _62;
+  os_stackelement_t * _63;
+  const struct os_task_t * _64;
+  struct os_taskdynamic_t * _65;
+  os_stackelement_t * _66;
+  int iftmp.0_67;
+  int iftmp.2_68;
+  os_uint16_t iftmp.7_69;
+  int iftmp.2_83;
+  int iftmp.2_84;
+  int iftmp.0_85;
+  int iftmp.0_86;
+  os_uint16_t iftmp.7_114;
+  os_uint16_t iftmp.7_115;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_79 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_79
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.taskCurrent;
+  if (_1 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = OS_kernelData.taskCurrent;
+  td_81 = _2->dynamic;
+  # DEBUG td => td_81
+  # DEBUG BEGIN_STMT
+  OS_configMode.1_3 = OS_configMode;
+  _4 = OS_configMode.1_3 & 64;
+  if (_4 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  _5 = OS_kernelData.taskCurrent;
+  _6 = _5->stackBase;
+  _7 = *_6;
+  if (_7 != 3958107115)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  _8 = td_81->context.sp;
+  _9 = (unsigned int) _8;
+  _10 = OS_kernelData.taskCurrent;
+  _11 = OS_TaskSpOutOfBounds (_9, _10);
+  if (_11 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.2_84 = 1;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.2_83 = 0;
+
+  <bb 8> :
+  # iftmp.2_68 = PHI <iftmp.2_84(6), iftmp.2_83(7)>
+  if (iftmp.2_68 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.0_85 = 1;
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  iftmp.0_86 = 0;
+
+  <bb 11> :
+  # iftmp.0_67 = PHI <iftmp.0_85(9), iftmp.0_86(10)>
+  if (iftmp.0_67 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_Dispatch, 74, 0B);
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _12 = td_81->state;
+  if (_12 == 5)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd_88 = &OS_kernelData;
+  # DEBUG OS_kd => OS_kd_88
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_89 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_89
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 12;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPostTaskHook.3_13 = OS_ptrPostTaskHook;
+  OS_ptrPostTaskHook.3_13 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_89;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_81->state = newstate_93(D);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_preemptTaskExecTimingFp.4_14 = OS_preemptTaskExecTimingFp;
+  _15 = OS_kernelData.taskCurrent;
+  OS_preemptTaskExecTimingFp.4_14 (_15);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _16 = OS_kernelData.taskQueueHead;
+  if (_16 == 0B)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  OS_kernelData.taskCurrent = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_Idle ();
+  # DEBUG BEGIN_STMT
+  goto <bb 33>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _17 = OS_kernelData.taskQueueHead;
+  OS_kernelData.taskCurrent = _17;
+  # DEBUG BEGIN_STMT
+  _18 = OS_kernelData.taskCurrent;
+  td_97 = _18->dynamic;
+  # DEBUG td => td_97
+  # DEBUG BEGIN_STMT
+  qstate_98 = td_97->state;
+  # DEBUG qstate => qstate_98
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_97->state = 5;
+  # DEBUG BEGIN_STMT
+  _19 = td_97->prio;
+  _20 = OS_kernelData.taskCurrent;
+  _21 = _20->runPrio;
+  _22 = (short unsigned int) _21;
+  if (_19 < _22)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _23 = OS_kernelData.taskCurrent;
+  _24 = _23->runPrio;
+  _25 = (short unsigned int) _24;
+  td_97->prio = _25;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kd_101 = &OS_kernelData;
+  # DEBUG OS_kd => OS_kd_101
+  # DEBUG BEGIN_STMT
+  Os_CallHookTmp_102 = OS_kernelData.inFunction;
+  # DEBUG Os_CallHookTmp => Os_CallHookTmp_102
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 11;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ptrPreTaskHook.5_26 = OS_ptrPreTaskHook;
+  OS_ptrPreTaskHook.5_26 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = Os_CallHookTmp_102;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inKernel = 0;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 1;
+  # DEBUG BEGIN_STMT
+  _27 = OS_kernelData.taskCurrent;
+  OS_SetProtection (_27);
+  # DEBUG BEGIN_STMT
+  OS_startTaskExecTimingFp.6_28 = OS_startTaskExecTimingFp;
+  _29 = OS_kernelData.taskCurrent;
+  OS_startTaskExecTimingFp.6_28 (_29);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (qstate_98 == 2)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _30 = OS_kernelData.taskCurrent;
+  _31 = _30->entry;
+  _32 = OS_kernelData.taskCurrent;
+  _33 = _32->stackBase;
+  _34 = (unsigned int) _33;
+  _35 = OS_kernelData.taskCurrent;
+  _36 = _35->stackLen;
+  _37 = _34 + _36;
+  _38 = (os_stackelement_t *) _37;
+  _39 = OS_kernelData.taskCurrent;
+  _40 = _39->app;
+  if (_40 != 0B)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  _41 = OS_kernelData.taskCurrent;
+  _42 = _41->app;
+  _43 = _42->flags;
+  _44 = (short unsigned int) _43;
+  iftmp.7_115 = _44 << 8;
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+  iftmp.7_114 = 256;
+
+  <bb 23> :
+  # iftmp.7_69 = PHI <iftmp.7_115(21), iftmp.7_114(22)>
+  _45 = OS_kernelData.taskCurrent;
+  _46 = _45->flags;
+  _47 = (short unsigned int) _46;
+  _48 = iftmp.7_69 | _47;
+  OS_CORTEXM_StartTask (_31, _38, _48, OS_MissingTerminateTask);
+  goto <bb 32>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (qstate_98 == 4)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _49 = OS_kernelData.taskCurrent;
+  _50 = _49->flags;
+  _51 = (signed char) _50;
+  if (_51 < 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  _52 = OS_kernelData.taskCurrent;
+  _53 = _52->dynamic;
+  _54 = _53->context.sp;
+  OS_CORTEXM_FPContextLoad (_54);
+  goto <bb 32>; [INV]
+
+  <bb 27> :
+  _55 = OS_kernelData.taskCurrent;
+  _56 = _55->dynamic;
+  _57 = _56->context.sp;
+  OS_CORTEXM_ContextLoad (_57);
+  goto <bb 32>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  if (qstate_98 == 3)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 32>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _58 = OS_kernelData.taskCurrent;
+  _59 = _58->flags;
+  _60 = (signed char) _59;
+  if (_60 < 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  _61 = OS_kernelData.taskCurrent;
+  _62 = _61->dynamic;
+  _63 = _62->context.sp;
+  OS_CORTEXM_FPContextLoad (_63);
+  goto <bb 32>; [INV]
+
+  <bb 31> :
+  _64 = OS_kernelData.taskCurrent;
+  _65 = _64->dynamic;
+  _66 = _65->context.sp;
+  OS_CORTEXM_ContextLoad (_66);
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_Panic (9);
+  # DEBUG BEGIN_STMT
+  OS_ShutdownNoHooks ();
+
+  <bb 33> :
+  return;
+
+}
+
+

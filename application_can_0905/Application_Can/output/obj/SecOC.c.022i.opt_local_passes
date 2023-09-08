@@ -1,0 +1,1054 @@
+SecOC_RxCheckIncomingIfPdu (PduLengthType * pduLength, uint16 pduIdx, uint8 pduType)
+{
+  BufReq_ReturnType bufReqRetVal;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.27_4;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.28_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct SecOC_RxPduConfigType * _10;
+  short unsigned int _11;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.29_12;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.30_13;
+  long unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  sizetype _17;
+  const struct SecOC_RxPduConfigType * _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.31_21;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.32_22;
+  long unsigned int _23;
+  unsigned int _24;
+  unsigned int _25;
+  sizetype _26;
+  const struct SecOC_RxPduConfigType * _27;
+  short unsigned int _28;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.33_29;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.34_30;
+  long unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  sizetype _34;
+  const struct SecOC_RxPduConfigType * _35;
+  short unsigned int _36;
+  BufReq_ReturnType _49;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  bufReqRetVal_40 = 1;
+  # DEBUG bufReqRetVal => bufReqRetVal_40
+  # DEBUG BEGIN_STMT
+  if (pduType_41(D) == 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) pduIdx_43(D);
+  _2 = SecOC_RxConfig[_1].UseDynamicLength;
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = *pduLength_44(D);
+  SecOC_ConfigPtr.27_4 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.28_5 = SecOC_ConfigPtr;
+  _6 = SecOC_ConfigPtr.28_5->RxPduConfigPtr;
+  _7 = (unsigned int) pduIdx_43(D);
+  _8 = _7 * 32;
+  _9 = _6 + _8;
+  _10 = SecOC_ConfigPtr.27_4 + _9;
+  _11 = _10->BuffersConfig.SecuredPduBufferLength;
+  if (_3 > _11)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SecOC_ConfigPtr.29_12 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.30_13 = SecOC_ConfigPtr;
+  _14 = SecOC_ConfigPtr.30_13->RxPduConfigPtr;
+  _15 = (unsigned int) pduIdx_43(D);
+  _16 = _15 * 32;
+  _17 = _14 + _16;
+  _18 = SecOC_ConfigPtr.29_12 + _17;
+  _19 = _18->BuffersConfig.SecuredPduBufferLength;
+  *pduLength_44(D) = _19;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  bufReqRetVal_48 = 0;
+  # DEBUG bufReqRetVal => bufReqRetVal_48
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _20 = *pduLength_44(D);
+  SecOC_ConfigPtr.31_21 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.32_22 = SecOC_ConfigPtr;
+  _23 = SecOC_ConfigPtr.32_22->RxPduConfigPtr;
+  _24 = (unsigned int) pduIdx_43(D);
+  _25 = _24 * 32;
+  _26 = _23 + _25;
+  _27 = SecOC_ConfigPtr.31_21 + _26;
+  _28 = _27->BuffersConfig.SecuredPduBufferLength;
+  if (_20 >= _28)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SecOC_ConfigPtr.33_29 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.34_30 = SecOC_ConfigPtr;
+  _31 = SecOC_ConfigPtr.34_30->RxPduConfigPtr;
+  _32 = (unsigned int) pduIdx_43(D);
+  _33 = _32 * 32;
+  _34 = _31 + _33;
+  _35 = SecOC_ConfigPtr.33_29 + _34;
+  _36 = _35->BuffersConfig.SecuredPduBufferLength;
+  *pduLength_44(D) = _36;
+  # DEBUG BEGIN_STMT
+  bufReqRetVal_46 = 0;
+  # DEBUG bufReqRetVal => bufReqRetVal_46
+
+  <bb 9> :
+  # bufReqRetVal_37 = PHI <bufReqRetVal_40(2), bufReqRetVal_48(6), bufReqRetVal_40(7), bufReqRetVal_46(8)>
+  # DEBUG bufReqRetVal => bufReqRetVal_37
+  # DEBUG BEGIN_STMT
+  _49 = bufReqRetVal_37;
+  return _49;
+
+}
+
+
+SecOC_RxCheckForPduIdx (uint16 * rxPduIdx, uint8 * rxPduType)
+{
+  uint16 confPduIdx;
+  boolean idFound;
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+  short unsigned int confPduIdx.26_4;
+  boolean _21;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  idFound_11 = 0;
+  # DEBUG idFound => idFound_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  confPduIdx_12 = 0;
+  # DEBUG confPduIdx => confPduIdx_12
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) confPduIdx_7;
+  _2 = SecOC_RxConfig[_1].PduIdForSecuredPduAtSecOC;
+  _3 = *rxPduIdx_14(D);
+  if (_2 == _3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *rxPduIdx_14(D) = confPduIdx_7;
+  # DEBUG BEGIN_STMT
+  *rxPduType_16(D) = 3;
+  # DEBUG BEGIN_STMT
+  idFound_18 = 1;
+  # DEBUG idFound => idFound_18
+
+  <bb 5> :
+  # idFound_5 = PHI <idFound_6(3), idFound_18(4)>
+  # DEBUG idFound => idFound_5
+  # DEBUG BEGIN_STMT
+  confPduIdx.26_4 = confPduIdx_7;
+  confPduIdx_19 = confPduIdx.26_4 + 1;
+  # DEBUG confPduIdx => confPduIdx_19
+
+  <bb 6> :
+  # idFound_6 = PHI <idFound_11(2), idFound_5(5)>
+  # confPduIdx_7 = PHI <confPduIdx_12(2), confPduIdx_19(5)>
+  # DEBUG confPduIdx => confPduIdx_7
+  # DEBUG idFound => idFound_6
+  # DEBUG BEGIN_STMT
+  if (confPduIdx_7 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (idFound_6 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (idFound_6 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  *rxPduIdx_14(D) = 0;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _21 = idFound_6;
+  return _21;
+
+}
+
+
+SecOC_MainFunctionTx ()
+{
+  uint16 pduIdx;
+  long unsigned int SecOC_InitStatus.37_1;
+  short unsigned int pduIdx.38_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.37_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.37_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  pduIdx_7 = 0;
+  # DEBUG pduIdx => pduIdx_7
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SecOC_Tx_ProcessPduStates (pduIdx_3);
+  # DEBUG BEGIN_STMT
+  pduIdx.38_2 = pduIdx_3;
+  pduIdx_9 = pduIdx.38_2 + 1;
+  # DEBUG pduIdx => pduIdx_9
+
+  <bb 5> :
+  # pduIdx_3 = PHI <pduIdx_7(3), pduIdx_9(4)>
+  # DEBUG pduIdx => pduIdx_3
+  # DEBUG BEGIN_STMT
+  if (pduIdx_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  return;
+
+}
+
+
+SecOC_MainFunctionRx ()
+{
+  uint16 pduIdx;
+  long unsigned int SecOC_InitStatus.35_1;
+  short unsigned int pduIdx.36_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.35_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.35_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  pduIdx_7 = 0;
+  # DEBUG pduIdx => pduIdx_7
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SecOC_Rx_ProcessPduStates (pduIdx_3);
+  # DEBUG BEGIN_STMT
+  pduIdx.36_2 = pduIdx_3;
+  pduIdx_9 = pduIdx.36_2 + 1;
+  # DEBUG pduIdx => pduIdx_9
+
+  <bb 5> :
+  # pduIdx_3 = PHI <pduIdx_7(3), pduIdx_9(4)>
+  # DEBUG pduIdx => pduIdx_3
+  # DEBUG BEGIN_STMT
+  if (pduIdx_3 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  return;
+
+}
+
+
+SecOC_RxIndication (PduIdType id, const struct PduInfoType * info)
+{
+  uint8 * localBufferPtr;
+  BufReq_ReturnType bufReqRetVal;
+  uint8 pduType;
+  uint16 pduIdx;
+  PduLengthType pduLength;
+  long unsigned int SecOC_InitStatus.15_1;
+  short unsigned int _2;
+  unsigned char _3;
+  short unsigned int pduIdx.16_4;
+  int _5;
+  unsigned char _6;
+  short unsigned int pduIdx.17_7;
+  int _8;
+  unsigned char _9;
+  short unsigned int pduIdx.18_10;
+  unsigned char pduType.19_11;
+  unsigned char pduType.20_12;
+  short unsigned int pduIdx.21_13;
+  int _14;
+  short unsigned int pduIdx.22_15;
+  int _16;
+  short unsigned int pduLength.23_17;
+  short unsigned int pduIdx.24_18;
+  int _19;
+  uint8 * _20;
+  short unsigned int pduLength.25_21;
+  long unsigned int _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.15_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.15_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  if (info_29(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = info_29(D)->SduLength;
+  pduLength = _2;
+  # DEBUG BEGIN_STMT
+  pduIdx = id_31(D);
+  # DEBUG BEGIN_STMT
+  pduType = 0;
+  # DEBUG BEGIN_STMT
+  _3 = SecOC_RxCheckForPduIdx (&pduIdx, &pduType);
+  if (_3 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_SecOC_SCHM_SECOC_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  pduIdx.16_4 = pduIdx;
+  _5 = (int) pduIdx.16_4;
+  _6 = SecOC_RxData[_5].PduInProcess;
+  if (_6 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  pduIdx.17_7 = pduIdx;
+  _8 = (int) pduIdx.17_7;
+  _9 = SecOC_RxConfig[_8].ReceptionStrategy;
+  if (_9 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  pduIdx.18_10 = pduIdx;
+  pduType.19_11 = pduType;
+  bufReqRetVal_37 = SecOC_RxCheckIncomingIfPdu (&pduLength, pduIdx.18_10, pduType.19_11);
+  # DEBUG bufReqRetVal => bufReqRetVal_37
+  # DEBUG BEGIN_STMT
+  if (bufReqRetVal_37 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  localBufferPtr_38 = 0B;
+  # DEBUG localBufferPtr => localBufferPtr_38
+  # DEBUG BEGIN_STMT
+  pduType.20_12 = pduType;
+  if (pduType.20_12 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  pduIdx.21_13 = pduIdx;
+  _14 = (int) pduIdx.21_13;
+  SecOC_RxData[_14].PduREvent = 1;
+  # DEBUG BEGIN_STMT
+  pduIdx.22_15 = pduIdx;
+  _16 = (int) pduIdx.22_15;
+  pduLength.23_17 = pduLength;
+  SecOC_RxData[_16].ReceivedSecuredPdu.SduLength = pduLength.23_17;
+  # DEBUG BEGIN_STMT
+  pduIdx.24_18 = pduIdx;
+  _19 = (int) pduIdx.24_18;
+  localBufferPtr_41 = SecOC_RxData[_19].ReceivedSecuredPdu.SduDataPtr;
+  # DEBUG localBufferPtr => localBufferPtr_41
+
+  <bb 10> :
+  # localBufferPtr_23 = PHI <localBufferPtr_38(8), localBufferPtr_41(9)>
+  # DEBUG localBufferPtr => localBufferPtr_23
+  # DEBUG BEGIN_STMT
+  _20 = info_29(D)->SduDataPtr;
+  pduLength.25_21 = pduLength;
+  _22 = (long unsigned int) pduLength.25_21;
+  TS_MemCpy32 (localBufferPtr_23, _20, _22);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_SecOC_SCHM_SECOC_EXCLUSIVE_AREA_0 ();
+
+  <bb 12> :
+  pduLength ={v} {CLOBBER};
+  pduIdx ={v} {CLOBBER};
+  pduType ={v} {CLOBBER};
+
+  <bb 13> :
+  return;
+
+}
+
+
+SecOC_TxConfirmation (PduIdType id)
+{
+  boolean idFound;
+  uint16 pduIdx;
+  long unsigned int SecOC_InitStatus.11_1;
+  int _2;
+  short unsigned int _3;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.12_4;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.13_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct SecOC_TxPduConfigType * _10;
+  short unsigned int _11;
+  int _12;
+  short unsigned int pduIdx.14_13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.11_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.11_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  idFound_21 = 0;
+  # DEBUG idFound => idFound_21
+  # DEBUG BEGIN_STMT
+  pduIdx_22 = 0;
+  # DEBUG pduIdx => pduIdx_22
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) pduIdx_14;
+  _3 = SecOC_TxConfig[_2].PduIdForSecuredPduAtSecOC;
+  if (id_23(D) == _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  idFound_24 = 1;
+  # DEBUG idFound => idFound_24
+  # DEBUG BEGIN_STMT
+  SecOC_ConfigPtr.12_4 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.13_5 = SecOC_ConfigPtr;
+  _6 = SecOC_ConfigPtr.13_5->TxPduConfigPtr;
+  _7 = (unsigned int) pduIdx_14;
+  _8 = _7 * 36;
+  _9 = _6 + _8;
+  _10 = SecOC_ConfigPtr.12_4 + _9;
+  _11 = _10->ULAuthLayerPduIdAtPduR;
+  PduR_SecOCTxConfirmation (_11);
+  # DEBUG BEGIN_STMT
+  _12 = (int) pduIdx_14;
+  SecOC_TxData[_12].PduREvent = 3;
+
+  <bb 6> :
+  # idFound_15 = PHI <idFound_16(4), idFound_24(5)>
+  # DEBUG idFound => idFound_15
+  # DEBUG BEGIN_STMT
+  if (idFound_15 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  pduIdx.14_13 = pduIdx_14;
+  pduIdx_27 = pduIdx.14_13 + 1;
+  # DEBUG pduIdx => pduIdx_27
+
+  <bb 8> :
+  # pduIdx_14 = PHI <pduIdx_22(3), pduIdx_27(7)>
+  # idFound_16 = PHI <idFound_21(3), idFound_15(7)>
+  # DEBUG idFound => idFound_16
+  # DEBUG pduIdx => pduIdx_14
+  # DEBUG BEGIN_STMT
+  if (pduIdx_14 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  return;
+
+}
+
+
+SecOC_TriggerTransmit (PduIdType TxPduId, struct PduInfoType * PduInfoPtr)
+{
+  boolean idFound;
+  uint16 pduIdx;
+  PduLengthType bufferLength;
+  uint8 * bufferPtr;
+  Std_ReturnType retVal;
+  long unsigned int SecOC_InitStatus.9_1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  int _5;
+  int _6;
+  unsigned char _7;
+  short unsigned int _8;
+  uint8 * _9;
+  long unsigned int _10;
+  short unsigned int pduIdx.10_11;
+  Std_ReturnType _36;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_21 = 1;
+  # DEBUG retVal => retVal_21
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_22(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  SecOC_InitStatus.9_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.9_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  bufferPtr_24 = 0B;
+  # DEBUG bufferPtr => bufferPtr_24
+  # DEBUG BEGIN_STMT
+  bufferLength_25 = 0;
+  # DEBUG bufferLength => bufferLength_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  idFound_26 = 0;
+  # DEBUG idFound => idFound_26
+  # DEBUG BEGIN_STMT
+  pduIdx_27 = 0;
+  # DEBUG pduIdx => pduIdx_27
+  goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = (int) pduIdx_17;
+  _3 = SecOC_TxConfig[_2].PduIdForSecuredPduAtSecOC;
+  if (TxPduId_28(D) == _3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) pduIdx_17;
+  bufferPtr_29 = SecOC_TxData[_4].SecuredPdu.SduDataPtr;
+  # DEBUG bufferPtr => bufferPtr_29
+  # DEBUG BEGIN_STMT
+  _5 = (int) pduIdx_17;
+  bufferLength_30 = SecOC_TxData[_5].SecuredPdu.SduLength;
+  # DEBUG bufferLength => bufferLength_30
+  # DEBUG BEGIN_STMT
+  idFound_31 = 1;
+  # DEBUG idFound => idFound_31
+
+  <bb 7> :
+  # bufferPtr_13 = PHI <bufferPtr_14(5), bufferPtr_29(6)>
+  # bufferLength_15 = PHI <bufferLength_16(5), bufferLength_30(6)>
+  # idFound_18 = PHI <idFound_19(5), idFound_31(6)>
+  # DEBUG idFound => idFound_18
+  # DEBUG bufferLength => bufferLength_15
+  # DEBUG bufferPtr => bufferPtr_13
+  # DEBUG BEGIN_STMT
+  if (idFound_18 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) pduIdx_17;
+  _7 = SecOC_TxData[_6].State;
+  if (_7 == 5)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  _8 = PduInfoPtr_22(D)->SduLength;
+  if (bufferLength_15 <= _8)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _9 = PduInfoPtr_22(D)->SduDataPtr;
+  _10 = (long unsigned int) bufferLength_15;
+  TS_MemCpy32 (_9, bufferPtr_13, _10);
+  # DEBUG BEGIN_STMT
+  PduInfoPtr_22(D)->SduLength = bufferLength_15;
+  # DEBUG BEGIN_STMT
+  retVal_35 = 0;
+  # DEBUG retVal => retVal_35
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  pduIdx.10_11 = pduIdx_17;
+  pduIdx_32 = pduIdx.10_11 + 1;
+  # DEBUG pduIdx => pduIdx_32
+
+  <bb 12> :
+  # bufferPtr_14 = PHI <bufferPtr_24(4), bufferPtr_13(11)>
+  # bufferLength_16 = PHI <bufferLength_25(4), bufferLength_15(11)>
+  # pduIdx_17 = PHI <pduIdx_27(4), pduIdx_32(11)>
+  # idFound_19 = PHI <idFound_26(4), idFound_18(11)>
+  # DEBUG idFound => idFound_19
+  # DEBUG pduIdx => pduIdx_17
+  # DEBUG bufferLength => bufferLength_16
+  # DEBUG bufferPtr => bufferPtr_14
+  # DEBUG BEGIN_STMT
+  if (pduIdx_17 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # retVal_12 = PHI <retVal_21(2), retVal_21(3), retVal_21(9), retVal_21(12), retVal_21(8), retVal_35(10)>
+  # DEBUG retVal => retVal_12
+  # DEBUG BEGIN_STMT
+  _36 = retVal_12;
+  return _36;
+
+}
+
+
+SecOC_CancelTransmit (PduIdType id)
+{
+  uint16 pduIdx;
+  Std_ReturnType retVal;
+  long unsigned int SecOC_InitStatus.8_1;
+  int _2;
+  int _3;
+  Std_ReturnType _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_6 = 1;
+  # DEBUG retVal => retVal_6
+  # DEBUG BEGIN_STMT
+  pduIdx_8 = id_7(D);
+  # DEBUG pduIdx => pduIdx_8
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.8_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.8_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  if (pduIdx_8 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  retVal_10 = 0;
+  # DEBUG retVal => retVal_10
+  # DEBUG BEGIN_STMT
+  _2 = (int) pduIdx_8;
+  SecOC_TxData[_2].PduREvent = 5;
+  # DEBUG BEGIN_STMT
+  _3 = (int) pduIdx_8;
+  SecOC_TxData[_3].TransmitEvent = 0;
+
+  <bb 5> :
+  # retVal_4 = PHI <retVal_6(2), retVal_6(3), retVal_10(4)>
+  # DEBUG retVal => retVal_4
+  # DEBUG BEGIN_STMT
+  _13 = retVal_4;
+  return _13;
+
+}
+
+
+SecOC_Transmit (PduIdType id, const struct PduInfoType * info)
+{
+  uint16 pduIdx;
+  Std_ReturnType retVal;
+  long unsigned int SecOC_InitStatus.1_1;
+  short unsigned int _2;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.2_3;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.3_4;
+  long unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  sizetype _8;
+  const struct SecOC_TxPduConfigType * _9;
+  short unsigned int _10;
+  int _11;
+  unsigned char _12;
+  short unsigned int _13;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.4_14;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.5_15;
+  long unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  sizetype _19;
+  const struct SecOC_TxPduConfigType * _20;
+  short unsigned int _21;
+  int _22;
+  unsigned char _23;
+  short unsigned int _24;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.6_25;
+  const struct SecOC_ConfigType * SecOC_ConfigPtr.7_26;
+  long unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  sizetype _30;
+  const struct SecOC_TxPduConfigType * _31;
+  short unsigned int _32;
+  int _33;
+  short unsigned int _34;
+  int _35;
+  uint8 * _36;
+  uint8 * _37;
+  short unsigned int _38;
+  long unsigned int _39;
+  int _40;
+  Std_ReturnType _56;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_45 = 1;
+  # DEBUG retVal => retVal_45
+  # DEBUG BEGIN_STMT
+  pduIdx_47 = id_46(D);
+  # DEBUG pduIdx => pduIdx_47
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus.1_1 ={v} SecOC_InitStatus;
+  if (SecOC_InitStatus.1_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  if (info_49(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 4> :
+  if (id_46(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  _2 = info_49(D)->SduLength;
+  SecOC_ConfigPtr.2_3 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.3_4 = SecOC_ConfigPtr;
+  _5 = SecOC_ConfigPtr.3_4->TxPduConfigPtr;
+  _6 = (unsigned int) pduIdx_47;
+  _7 = _6 * 36;
+  _8 = _5 + _7;
+  _9 = SecOC_ConfigPtr.2_3 + _8;
+  _10 = _9->BuffersConfig.AuthPduBufferLength;
+  if (_2 <= _10)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_SecOC_SCHM_SECOC_EXCLUSIVE_AREA_1 ();
+  # DEBUG BEGIN_STMT
+  _11 = (int) pduIdx_47;
+  _12 = SecOC_TxConfig[_11].UseDynamicLength;
+  if (_12 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  _13 = info_49(D)->SduLength;
+  SecOC_ConfigPtr.4_14 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.5_15 = SecOC_ConfigPtr;
+  _16 = SecOC_ConfigPtr.5_15->TxPduConfigPtr;
+  _17 = (unsigned int) pduIdx_47;
+  _18 = _17 * 36;
+  _19 = _16 + _18;
+  _20 = SecOC_ConfigPtr.4_14 + _19;
+  _21 = _20->BuffersConfig.AuthPduBufferLength;
+  if (_13 <= _21)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _22 = (int) pduIdx_47;
+  _23 = SecOC_TxConfig[_22].UseDynamicLength;
+  if (_23 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  _24 = info_49(D)->SduLength;
+  SecOC_ConfigPtr.6_25 = SecOC_ConfigPtr;
+  SecOC_ConfigPtr.7_26 = SecOC_ConfigPtr;
+  _27 = SecOC_ConfigPtr.7_26->TxPduConfigPtr;
+  _28 = (unsigned int) pduIdx_47;
+  _29 = _28 * 36;
+  _30 = _27 + _29;
+  _31 = SecOC_ConfigPtr.6_25 + _30;
+  _32 = _31->BuffersConfig.AuthPduBufferLength;
+  if (_24 == _32)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _33 = (int) pduIdx_47;
+  _34 = info_49(D)->SduLength;
+  SecOC_TxData[_33].ReceivedAuthPdu.SduLength = _34;
+  # DEBUG BEGIN_STMT
+  _35 = (int) pduIdx_47;
+  _36 = SecOC_TxData[_35].ReceivedAuthPdu.SduDataPtr;
+  _37 = info_49(D)->SduDataPtr;
+  _38 = info_49(D)->SduLength;
+  _39 = (long unsigned int) _38;
+  TS_MemCpy32 (_36, _37, _39);
+  # DEBUG BEGIN_STMT
+  _40 = (int) pduIdx_47;
+  SecOC_TxData[_40].TransmitEvent = 1;
+  # DEBUG BEGIN_STMT
+  retVal_54 = 0;
+  # DEBUG retVal => retVal_54
+
+  <bb 11> :
+  # retVal_41 = PHI <retVal_45(8), retVal_45(9), retVal_54(10)>
+  # DEBUG retVal => retVal_41
+  # DEBUG BEGIN_STMT
+  SchM_Exit_SecOC_SCHM_SECOC_EXCLUSIVE_AREA_1 ();
+
+  <bb 12> :
+  # retVal_42 = PHI <retVal_45(2), retVal_45(3), retVal_45(4), retVal_45(5), retVal_41(11)>
+  # DEBUG retVal => retVal_42
+  # DEBUG BEGIN_STMT
+  _56 = retVal_42;
+  return _56;
+
+}
+
+
+SecOC_IsValidConfig (const void * voidConfigPtr)
+{
+  const struct SecOC_ConfigType * ConfigPtr;
+  Std_ReturnType retVal;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int SecOC_LcfgSignature.0_5;
+  long unsigned int _6;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_9 = 1;
+  # DEBUG retVal => retVal_9
+  # DEBUG BEGIN_STMT
+  ConfigPtr_11 = voidConfigPtr_10(D);
+  # DEBUG ConfigPtr => ConfigPtr_11
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_11 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_11->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr_11->CfgSignature;
+  if (_3 == 1275670664)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr_11->LcfgSignature;
+  SecOC_LcfgSignature.0_5 = SecOC_LcfgSignature;
+  if (_4 == SecOC_LcfgSignature.0_5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = ConfigPtr_11->PublicInfoSignature;
+  if (_6 == 844678326)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  retVal_14 = 0;
+  # DEBUG retVal => retVal_14
+
+  <bb 8> :
+  # retVal_7 = PHI <retVal_9(2), retVal_9(3), retVal_9(4), retVal_9(5), retVal_9(6), retVal_14(7)>
+  # DEBUG retVal => retVal_7
+  # DEBUG BEGIN_STMT
+  _15 = retVal_7;
+  return _15;
+
+}
+
+
+SecOC_DeInit ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus ={v} 0;
+  # DEBUG BEGIN_STMT
+  SecOC_Rx_DeInit ();
+  # DEBUG BEGIN_STMT
+  SecOC_Tx_DeInit ();
+  return;
+
+}
+
+
+SecOC_Init (const struct SecOC_ConfigType * config)
+{
+  const struct SecOC_ConfigType * LocalConfigPtr;
+  unsigned char _1;
+  long unsigned int _2;
+  long unsigned int _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  LocalConfigPtr_6 = config_5(D);
+  # DEBUG LocalConfigPtr => LocalConfigPtr_6
+  # DEBUG BEGIN_STMT
+  _1 = SecOC_IsValidConfig (LocalConfigPtr_6);
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = LocalConfigPtr_6->PduBufferSize;
+  if (_2 <= 20)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = LocalConfigPtr_6->IntBufferSize;
+  if (_3 <= 34)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SecOC_ConfigPtr = LocalConfigPtr_6;
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&SecOC_PB_PduBuffer, 20);
+  # DEBUG BEGIN_STMT
+  TS_MemBZero32 (&SecOC_PB_IntBuffer, 34);
+  # DEBUG BEGIN_STMT
+  SecOC_Rx_Init ();
+  # DEBUG BEGIN_STMT
+  SecOC_Tx_Init ();
+  # DEBUG BEGIN_STMT
+  SecOC_InitStatus ={v} 1;
+
+  <bb 6> :
+  return;
+
+}
+
+

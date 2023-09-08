@@ -1,0 +1,152 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: OS_StartupChecksCounter
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_nCounters/3 (OS_nCounters) @06d09b88
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksCounter/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_Panic/2 (OS_Panic) @06d29c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_StartupChecksCounter/0 OS_StartupChecksCounter/0 OS_StartupChecksCounter/0 
+  Calls: 
+OS_counterTableBase/1 (OS_counterTableBase) @06d09a68
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartupChecksCounter/0 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartupChecksCounter/0 (OS_StartupChecksCounter) @06d29a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_counterTableBase/1 (read)OS_nCounters/3 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: OS_Panic/2 OS_Panic/2 OS_Panic/2 
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksCounter ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_counter_t * const ctr;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  os_result_t D.7431;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  result = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.0_1 = OS_counterTableBase;
+  _2 = i * 32;
+  ctr = OS_counterTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  app = ctr->app;
+  # DEBUG BEGIN_STMT
+  if (app == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (51);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms = ctr->permissions;
+  # DEBUG BEGIN_STMT
+  if (app != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _3 = app->permissionBit;
+  _4 = perms & _3;
+  if (_4 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (50);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = ctr->hwt;
+  if (_5 != 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _6 = ctr->maxallowedvalue;
+  _7 = ctr->hwt;
+  _8 = _7->wrapMask;
+  if (_6 < _8)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  result = OS_Panic (23);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_nCounters.1_9 = OS_nCounters;
+  _10 = (unsigned int) OS_nCounters.1_9;
+  if (i < _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  D.7431 = result;
+  return D.7431;
+
+}
+
+

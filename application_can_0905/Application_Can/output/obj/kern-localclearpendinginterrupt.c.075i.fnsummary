@@ -1,0 +1,93 @@
+
+Analyzing function: OS_LocalClearPendingInterrupt/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 4 3 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+Analyzing function body size: OS_LocalClearPendingInterrupt
+
+IPA function summary for OS_LocalClearPendingInterrupt/0 inlinable
+  global time:     22.254700
+  self size:       11
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:2.000000, time:2.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 0] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op0[ref offset: 0] changed)
+  calls:
+    OS_CORTEXM_IntClearIsr/2 function body not available
+      loop depth: 0 freq:0.48 size: 2 time: 11
+    OS_AppIsAccessible/1 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+
+Symbol table:
+
+OS_CORTEXM_IntClearIsr/2 (OS_CORTEXM_IntClearIsr) @06c99d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalClearPendingInterrupt/0 (512926469 (estimated locally),0.48 per call) 
+  Calls: 
+OS_AppIsAccessible/1 (OS_AppIsAccessible) @06c99c40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_LocalClearPendingInterrupt/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_LocalClearPendingInterrupt/0 (OS_LocalClearPendingInterrupt) @06c99a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntClearIsr/2 (512926469 (estimated locally),0.48 per call) OS_AppIsAccessible/1 (1073741824 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_LocalClearPendingInterrupt (const struct os_isr_t * isr)
+{
+  os_errorresult_t result;
+  const struct os_appcontext_t * _1;
+  int _2;
+  const struct os_archisr_t * _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  _1 = isr_7(D)->app;
+  _2 = OS_AppIsAccessible (_1);
+  if (_2 == 0)
+    goto <bb 4>; [52.23%]
+  else
+    goto <bb 3>; [47.77%]
+
+  <bb 3> [local count: 512926469]:
+  # DEBUG BEGIN_STMT
+  _3 = &isr_7(D)->arch;
+  OS_CORTEXM_IntClearIsr (_3);
+
+  <bb 4> [local count: 1073741824]:
+  # result_4 = PHI <154(2), 0(3)>
+  # DEBUG result => result_4
+  # DEBUG BEGIN_STMT
+  return result_4;
+
+}
+
+

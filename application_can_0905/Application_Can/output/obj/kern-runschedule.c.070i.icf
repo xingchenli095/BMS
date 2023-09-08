@@ -1,0 +1,553 @@
+Parsed function:OS_FinalExpiry.isra.0
+Parsed function:OS_Chain
+Parsed function:OS_RunSchedule
+Dump after hash based groups
+Congruence classes: 3 (unique hash values: 3), with total: 3 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 3 classes
+
+
+Dump after WPA based types groups
+Congruence classes: 3 (unique hash values: 3), with total: 3 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 3 classes
+
+
+Worklist has been filled with: 2
+Address reference subdivision created: 0 new classes.
+Dump after callgraph-based congruence reduction
+Congruence classes: 3 (unique hash values: 3), with total: 3 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 3 classes
+
+
+Init called for 0 items (0.00%).
+Dump after full equality comparison of groups
+Congruence classes: 3 (unique hash values: 3), with total: 3 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 3 classes
+
+
+Worklist has been filled with: 2
+Address reference subdivision created: 0 new classes.
+Congruence classes: 3 (unique hash values: 3), with total: 3 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 3 classes
+
+
+
+Item count: 3
+Congruent classes before: 3, after: 3
+Average class size before: 1.00, after: 1.00
+Average non-singular class size: 0.00, count: 0
+Equal symbols: 0
+Fraction of visited symbols: 0.00%
+
+__attribute__((target ("general-regs-only")))
+OS_FinalExpiry.isra.0 (const struct os_schedule_t * ss, struct os_scheduledynamic_t * sd, const os_tick_t ISRA.17)
+{
+  const struct os_scheduleentry_t * nextp;
+  os_tick_t delta;
+  os_boolean_t repeat;
+  unsigned int _3;
+  unsigned int _5;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned int _14;
+  os_tick_t (*<T584>) (struct os_scheduledynamic_t *, const struct os_scheduleentry_t *, os_tick_t) OS_synchronizeFunc.14_16;
+  unsigned int iftmp.13_17;
+  unsigned int iftmp.13_18;
+  unsigned char _20;
+  unsigned char _21;
+
+  <bb 10> [local count: 1073741824]:
+  # DEBUG currp s=> currp
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG repeat => 0
+  # DEBUG BEGIN_STMT
+  sd_1(D)->next = 0;
+  # DEBUG BEGIN_STMT
+  _3 = ss_2(D)->period;
+  _5 = ISRA.17_34(D);
+  delta_6 = _3 - _5;
+  # DEBUG delta => delta_6
+  # DEBUG BEGIN_STMT
+  _7 = sd_1(D)->chain;
+  if (_7 != 255)
+    goto <bb 3>; [48.88%]
+  else
+    goto <bb 4>; [51.12%]
+
+  <bb 3> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  _8 = sd_1(D)->status;
+  _9 = _8 | 128;
+  sd_1(D)->status = _9;
+  # DEBUG BEGIN_STMT
+  repeat_10 = OS_ResetScheduleAlarm (ss_2(D), sd_1(D), delta_6);
+  # DEBUG repeat => repeat_10
+  goto <bb 9>; [100.00%]
+
+  <bb 4> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  _11 = ss_2(D)->flags;
+  _12 = _11 & 1;
+  if (_12 != 0)
+    goto <bb 5>; [67.00%]
+  else
+    goto <bb 8>; [33.00%]
+
+  <bb 5> [local count: 367760870]:
+  # DEBUG BEGIN_STMT
+  nextp_13 = ss_2(D)->table;
+  # DEBUG nextp => nextp_13
+  # DEBUG BEGIN_STMT
+  _14 = nextp_13->offset;
+  delta_15 = delta_6 + _14;
+  # DEBUG delta => delta_15
+  # DEBUG BEGIN_STMT
+  OS_synchronizeFunc.14_16 = OS_synchronizeFunc;
+  if (OS_synchronizeFunc.14_16 != 0B)
+    goto <bb 6>; [70.00%]
+  else
+    goto <bb 7>; [30.00%]
+
+  <bb 6> [local count: 257432609]:
+  iftmp.13_17 = OS_synchronizeFunc.14_16 (sd_1(D), nextp_13, delta_15);
+
+  <bb 7> [local count: 367760870]:
+  # iftmp.13_18 = PHI <delta_15(5), iftmp.13_17(6)>
+  # DEBUG delta => iftmp.13_18
+  # DEBUG BEGIN_STMT
+  repeat_19 = OS_ResetScheduleAlarm (ss_2(D), sd_1(D), iftmp.13_18);
+  # DEBUG repeat => repeat_19
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  _20 = sd_1(D)->status;
+  _21 = _20 | 128;
+  sd_1(D)->status = _21;
+  # DEBUG BEGIN_STMT
+  repeat_22 = OS_ResetScheduleAlarm (ss_2(D), sd_1(D), delta_6);
+  # DEBUG repeat => repeat_22
+
+  <bb 9> [local count: 1073741824]:
+  # repeat_23 = PHI <repeat_10(3), repeat_19(7), repeat_22(8)>
+  # DEBUG repeat => repeat_23
+  # DEBUG BEGIN_STMT
+  return repeat_23;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_Chain (struct os_scheduledynamic_t * sd)
+{
+  os_boolean_t repeat;
+  const struct os_scheduleentry_t * nextp;
+  struct os_scheduledynamic_t * scd;
+  const struct os_schedule_t * scs;
+  os_scheduleid_t sc;
+  const struct os_schedule_t * OS_scheduleTableBase.12_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned char _4;
+  unsigned int _5;
+  unsigned int _6;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG repeat => 0
+  # DEBUG BEGIN_STMT
+  sc_11 = sd_10(D)->chain;
+  # DEBUG sc => sc_11
+  # DEBUG BEGIN_STMT
+  sd_10(D)->chain = 255;
+  # DEBUG BEGIN_STMT
+  sd_10(D)->status = 0;
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.12_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) sc_11;
+  _3 = _2 * 36;
+  scs_14 = OS_scheduleTableBase.12_1 + _3;
+  # DEBUG scs => scs_14
+  # DEBUG BEGIN_STMT
+  scd_15 = scs_14->dynamic;
+  # DEBUG scd => scd_15
+  # DEBUG BEGIN_STMT
+  _4 = scd_15->status;
+  if (_4 == 2)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  # DEBUG BEGIN_STMT
+  scd_15->status = 3;
+  # DEBUG BEGIN_STMT
+  scd_15->next = 0;
+  # DEBUG BEGIN_STMT
+  nextp_19 = scs_14->table;
+  # DEBUG nextp => nextp_19
+  # DEBUG BEGIN_STMT
+  _5 = sd_10(D)->ctrAbs;
+  scd_15->ctrAbs = _5;
+  # DEBUG BEGIN_STMT
+  _6 = nextp_19->offset;
+  repeat_22 = OS_ResetScheduleAlarm (scs_14, scd_15, _6);
+  # DEBUG repeat => repeat_22
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_RunSchedule, 49, 0B);
+
+  <bb 5> [local count: 1073741824]:
+  # repeat_7 = PHI <repeat_22(3), 0(4)>
+  # DEBUG repeat => repeat_7
+  # DEBUG BEGIN_STMT
+  return repeat_7;
+
+}
+
+
+__attribute__((target ("general-regs-only")))
+OS_RunSchedule (os_scheduleid_t s)
+{
+  os_tick_t maxallowedvalue;
+  os_counterid_t counter;
+  os_boolean_t looping;
+  os_intstatus_t is;
+  os_tick_t delta;
+  const struct os_scheduleentry_t * nextp;
+  const struct os_scheduleentry_t * currp;
+  struct os_scheduledynamic_t * sd;
+  const struct os_schedule_t * ss;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int OS_kernDisableLevel.1_4;
+  unsigned char _5;
+  const struct os_alarm_t * OS_alarmTableBase.2_6;
+  short unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  const struct os_alarm_t * _10;
+  const struct os_counter_t * OS_counterTableBase.3_11;
+  unsigned int _12;
+  unsigned int _13;
+  const struct os_counter_t * _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned char _17;
+  signed char _18;
+  unsigned char _19;
+  const struct os_alarm_t * OS_alarmTableBase.4_20;
+  short unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  const struct os_alarm_t * _24;
+  unsigned char _25;
+  unsigned int _26;
+  unsigned int _27;
+  const struct os_schedule_t * _28;
+  short unsigned int _29;
+  unsigned int _30;
+  unsigned int _31;
+  const struct os_alarm_t * _32;
+  unsigned char _33;
+  const struct os_scheduleentry_t * _34;
+  short unsigned int _35;
+  unsigned int _36;
+  unsigned int _37;
+  unsigned int _38;
+  unsigned char _39;
+  unsigned char _40;
+  short unsigned int _41;
+  short unsigned int _42;
+  short unsigned int _43;
+  const struct os_scheduleentry_t * _44;
+  unsigned int _45;
+  unsigned int _46;
+  unsigned int _47;
+  unsigned int _48;
+  os_tick_t (*<T584>) (struct os_scheduledynamic_t *, const struct os_scheduleentry_t *, os_tick_t) OS_synchronizeFunc.10_49;
+  os_tick_t iftmp.9_57;
+  unsigned char _64;
+  os_tick_t iftmp.9_80;
+  unsigned int _97;
+
+  <bb 2> [local count: 526344038]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG looping => 0
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s_66(D);
+  _3 = _2 * 36;
+  ss_67 = OS_scheduleTableBase.0_1 + _3;
+  # DEBUG ss => ss_67
+  # DEBUG BEGIN_STMT
+  sd_68 = ss_67->dynamic;
+  # DEBUG sd => sd_68
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_4 = OS_kernDisableLevel;
+  is_70 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_4);
+  # DEBUG is => is_70
+  # DEBUG BEGIN_STMT
+  _5 = sd_68->status;
+  if (_5 == 9)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 178956973]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.2_6 = OS_alarmTableBase;
+  _7 = ss_67->alarm;
+  _8 = (unsigned int) _7;
+  _9 = _8 * 28;
+  _10 = OS_alarmTableBase.2_6 + _9;
+  counter_90 = _10->counter;
+  # DEBUG counter => counter_90
+  # DEBUG BEGIN_STMT
+  OS_counterTableBase.3_11 = OS_counterTableBase;
+  _12 = (unsigned int) counter_90;
+  _13 = _12 * 32;
+  _14 = OS_counterTableBase.3_11 + _13;
+  maxallowedvalue_91 = _14->maxallowedvalue;
+  # DEBUG maxallowedvalue => maxallowedvalue_91
+  # DEBUG BEGIN_STMT
+  _15 = sd_68->adjRemaining;
+  if (_15 > maxallowedvalue_91)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 4> [local count: 89478486]:
+  # DEBUG BEGIN_STMT
+  # DEBUG delta => maxallowedvalue_91
+  # DEBUG BEGIN_STMT
+  _16 = _15 - maxallowedvalue_91;
+  sd_68->adjRemaining = _16;
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 89478486]:
+  # DEBUG BEGIN_STMT
+  # DEBUG delta => _15
+  # DEBUG BEGIN_STMT
+  sd_68->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd_68->status = 11;
+
+  <bb 6> [local count: 178956973]:
+  # delta_54 = PHI <maxallowedvalue_91(4), _15(5)>
+  # DEBUG delta => delta_54
+  # DEBUG BEGIN_STMT
+  OS_SetScheduleAlarm (ss_67, sd_68, delta_54, 1);
+  goto <bb 23>; [100.00%]
+
+  <bb 7> [local count: 347387065]:
+  # DEBUG BEGIN_STMT
+  _64 = _5 & 7;
+  if (_64 != 3)
+    goto <bb 23>; [66.00%]
+  else
+    goto <bb 24>; [34.00%]
+
+  <bb 24> [local count: 118111602]:
+
+  <bb 8> [local count: 1073741824]:
+  # ss_50 = PHI <ss_67(24), ss_51(25)>
+  # sd_52 = PHI <sd_68(24), sd_53(25)>
+  # looping_55 = PHI <0(24), looping_56(25)>
+  # DEBUG looping => looping_55
+  # DEBUG sd => sd_52
+  # DEBUG ss => ss_50
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = sd_52->status;
+  _18 = (signed char) _17;
+  if (_18 < 0)
+    goto <bb 9>; [58.52%]
+  else
+    goto <bb 13>; [41.48%]
+
+  <bb 9> [local count: 628353716]:
+  # DEBUG BEGIN_STMT
+  sd_52->status = 0;
+  # DEBUG BEGIN_STMT
+  _19 = sd_52->chain;
+  if (_19 == 255)
+    goto <bb 22>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 10> [local count: 420996989]:
+  # DEBUG BEGIN_STMT
+  OS_alarmTableBase.4_20 = OS_alarmTableBase;
+  _21 = ss_50->alarm;
+  _22 = (unsigned int) _21;
+  _23 = _22 * 28;
+  _24 = OS_alarmTableBase.4_20 + _23;
+  _25 = _24->counter;
+  _26 = (unsigned int) _19;
+  _27 = _26 * 36;
+  _28 = OS_scheduleTableBase.0_1 + _27;
+  _29 = _28->alarm;
+  _30 = (unsigned int) _29;
+  _31 = _30 * 28;
+  _32 = OS_alarmTableBase.4_20 + _31;
+  _33 = _32->counter;
+  if (_25 != _33)
+    goto <bb 11>; [66.00%]
+  else
+    goto <bb 12>; [34.00%]
+
+  <bb 11> [local count: 277858013]:
+  # DEBUG BEGIN_STMT
+  OS_Panic (68);
+  goto <bb 22>; [100.00%]
+
+  <bb 12> [local count: 143138976]:
+  # DEBUG BEGIN_STMT
+  # DEBUG s => _19
+  # DEBUG BEGIN_STMT
+  looping_87 = OS_Chain (sd_52);
+  # DEBUG looping => looping_87
+  # DEBUG BEGIN_STMT
+  # DEBUG ss => _28
+  # DEBUG BEGIN_STMT
+  sd_88 = _28->dynamic;
+  # DEBUG sd => sd_88
+  goto <bb 22>; [100.00%]
+
+  <bb 13> [local count: 445388109]:
+  # DEBUG BEGIN_STMT
+  _34 = ss_50->table;
+  _35 = sd_52->next;
+  _36 = (unsigned int) _35;
+  _37 = _36 * 20;
+  currp_71 = _34 + _37;
+  # DEBUG currp => currp_71
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_70);
+  # DEBUG BEGIN_STMT
+  _38 = currp_71->event;
+  if (_38 == 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 15>; [50.00%]
+
+  <bb 14> [local count: 222694054]:
+  # DEBUG BEGIN_STMT
+  _39 = currp_71->task;
+  OS_KernActivateTask (_39);
+  goto <bb 16>; [100.00%]
+
+  <bb 15> [local count: 222694054]:
+  # DEBUG BEGIN_STMT
+  _40 = currp_71->task;
+  OS_KernSetEvent (_40, _38);
+
+  <bb 16> [local count: 445388109]:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_4);
+  # DEBUG BEGIN_STMT
+  _41 = sd_52->next;
+  _42 = _41 + 1;
+  sd_52->next = _42;
+  # DEBUG BEGIN_STMT
+  _43 = ss_50->nEntries;
+  if (_42 >= _43)
+    goto <bb 17>; [33.00%]
+  else
+    goto <bb 18>; [67.00%]
+
+  <bb 17> [local count: 146978076]:
+  # DEBUG BEGIN_STMT
+  _97 = MEM[(unsigned int *)currp_71];
+  # DEBUG D#1 => currp_71
+  looping_84 = OS_FinalExpiry.isra.0 (ss_50, sd_52, _97);
+  # DEBUG looping => looping_84
+  goto <bb 22>; [100.00%]
+
+  <bb 18> [local count: 298410033]:
+  # DEBUG BEGIN_STMT
+  _44 = ss_50->table;
+  _45 = (unsigned int) _42;
+  _46 = _45 * 20;
+  nextp_77 = _44 + _46;
+  # DEBUG nextp => nextp_77
+  # DEBUG BEGIN_STMT
+  _47 = nextp_77->offset;
+  _48 = currp_71->offset;
+  delta_78 = _47 - _48;
+  # DEBUG delta => delta_78
+  # DEBUG BEGIN_STMT
+  if (delta_78 == 0)
+    goto <bb 22>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 19> [local count: 149205017]:
+  # DEBUG BEGIN_STMT
+  OS_synchronizeFunc.10_49 = OS_synchronizeFunc;
+  if (OS_synchronizeFunc.10_49 != 0B)
+    goto <bb 20>; [70.00%]
+  else
+    goto <bb 21>; [30.00%]
+
+  <bb 20> [local count: 104443512]:
+  iftmp.9_80 = OS_synchronizeFunc.10_49 (sd_52, nextp_77, delta_78);
+
+  <bb 21> [local count: 149205017]:
+  # iftmp.9_57 = PHI <iftmp.9_80(20), delta_78(19)>
+  # DEBUG delta => iftmp.9_57
+  # DEBUG BEGIN_STMT
+  looping_82 = OS_ResetScheduleAlarm (ss_50, sd_52, iftmp.9_57);
+  # DEBUG looping => looping_82
+
+  <bb 22> [local count: 1073741824]:
+  # ss_51 = PHI <ss_50(11), ss_50(17), ss_50(18), ss_50(21), ss_50(9), _28(12)>
+  # sd_53 = PHI <sd_52(11), sd_52(17), sd_52(18), sd_52(21), sd_52(9), sd_88(12)>
+  # looping_56 = PHI <looping_55(11), looping_84(17), 1(18), looping_82(21), 0(9), looping_87(12)>
+  # DEBUG looping => looping_56
+  # DEBUG sd => sd_53
+  # DEBUG ss => ss_51
+  # DEBUG BEGIN_STMT
+  if (looping_56 != 0)
+    goto <bb 25>; [89.00%]
+  else
+    goto <bb 23>; [11.00%]
+
+  <bb 25> [local count: 955630224]:
+  goto <bb 8>; [100.00%]
+
+  <bb 23> [local count: 526344037]:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_70);
+  return;
+
+}
+
+

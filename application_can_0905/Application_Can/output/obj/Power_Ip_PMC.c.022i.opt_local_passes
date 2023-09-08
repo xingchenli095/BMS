@@ -1,0 +1,215 @@
+Power_Ip_PMC_PowerInit (const struct Power_Ip_PMC_ConfigType * ConfigPtr)
+{
+  uint32 ConfigValue;
+  uint32 LastMileRegValue;
+  uint32 LvscValue;
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  struct PMC_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct PMC_Type * _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  struct PMC_Type * _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int TimeoutTicks.0_12;
+  struct PMC_Type * _13;
+  long unsigned int _14;
+  struct PMC_Type * _15;
+  struct PMC_Type * _16;
+  struct PMC_Type * _17;
+  struct PMC_Type * _18;
+  struct PMC_Type * _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int TimeoutTicks.1_23;
+  struct PMC_Type * _24;
+  long unsigned int _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutOccurred_30 = 0;
+  # DEBUG TimeoutOccurred => TimeoutOccurred_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = 1076789248B;
+  _2 ={v} _1->LVSC;
+  _3 = _2 & 2164195328;
+  if (_3 == 2164195328)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076789248B;
+  _4->LVSC ={v} 2214527039;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = ConfigPtr_33(D)->ConfigRegister;
+  _6 = _5 & 1;
+  if (_6 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = ConfigPtr_33(D)->ConfigRegister;
+  _8 = 1076789248B;
+  _9 = _7 & 4294967294;
+  _8->CONFIG ={v} _9;
+  # DEBUG BEGIN_STMT
+  _10 = ConfigPtr_33(D)->ConfigRegister;
+  _11 = _10 & 2;
+  if (_11 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.0_12 = TimeoutTicks;
+  TimeoutOccurred_47 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.0_12);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_47
+  # DEBUG BEGIN_STMT
+  _13 = 1076789248B;
+  LvscValue_48 ={v} _13->LVSC;
+  # DEBUG LvscValue => LvscValue_48
+  # DEBUG BEGIN_STMT
+  _14 = LvscValue_48 & 8192;
+  if (_14 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (TimeoutOccurred_47 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_47 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _15 = 1076789248B;
+  ConfigValue_50 ={v} _15->CONFIG;
+  # DEBUG ConfigValue => ConfigValue_50
+  # DEBUG BEGIN_STMT
+  ConfigValue_51 = ConfigValue_50 & 4294967294;
+  # DEBUG ConfigValue => ConfigValue_51
+  # DEBUG BEGIN_STMT
+  ConfigValue_52 = ConfigValue_51 | 1;
+  # DEBUG ConfigValue => ConfigValue_52
+  # DEBUG BEGIN_STMT
+  _16 = 1076789248B;
+  _16->CONFIG ={v} ConfigValue_52;
+  goto <bb 19>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+  goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _17 = 1076789248B;
+  ConfigValue_41 ={v} _17->CONFIG;
+  # DEBUG ConfigValue => ConfigValue_41
+  # DEBUG BEGIN_STMT
+  ConfigValue_42 = ConfigValue_41 & 4294967294;
+  # DEBUG ConfigValue => ConfigValue_42
+  # DEBUG BEGIN_STMT
+  ConfigValue_43 = ConfigValue_42 | 1;
+  # DEBUG ConfigValue => ConfigValue_43
+  # DEBUG BEGIN_STMT
+  _18 = 1076789248B;
+  _18->CONFIG ={v} ConfigValue_43;
+  goto <bb 19>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = 1076789248B;
+  _20 = ConfigPtr_33(D)->ConfigRegister;
+  _19->CONFIG ={v} _20;
+  # DEBUG BEGIN_STMT
+  _21 = ConfigPtr_33(D)->ConfigRegister;
+  _22 = _21 & 65536;
+  if (_22 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.1_23 = TimeoutTicks;
+  TimeoutOccurred_37 = Power_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.1_23);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_37
+  # DEBUG BEGIN_STMT
+  _24 = 1076789248B;
+  _25 ={v} _24->CONFIG;
+  LastMileRegValue_38 = _25 & 131072;
+  # DEBUG LastMileRegValue => LastMileRegValue_38
+  # DEBUG BEGIN_STMT
+  if (LastMileRegValue_38 != 131072)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (TimeoutOccurred_37 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_37 != 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Power_Ip_ReportPowerErrors (0, 255);
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+

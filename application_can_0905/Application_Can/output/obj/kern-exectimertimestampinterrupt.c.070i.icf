@@ -1,0 +1,265 @@
+Parsed function:OS_ExecTimerTimestampInterrupt
+Dump after hash based groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Dump after WPA based types groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Worklist has been filled with: 0
+Address reference subdivision created: 0 new classes.
+Dump after callgraph-based congruence reduction
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Init called for 0 items (0.00%).
+Dump after full equality comparison of groups
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+Worklist has been filled with: 0
+Address reference subdivision created: 0 new classes.
+Congruence classes: 1 (unique hash values: 1), with total: 1 items
+Class size histogram [num of members]: number of classe number of classess
+[1]: 1 classes
+
+
+
+Item count: 1
+Congruent classes before: 1, after: 1
+Average class size before: 1.00, after: 1.00
+Average non-singular class size: 0.00, count: 0
+Equal symbols: 0
+Fraction of visited symbols: 0.00%
+
+__attribute__((target ("general-regs-only")))
+OS_ExecTimerTimestampInterrupt ()
+{
+  os_tick_t OS_hwtStartDelta;
+  const struct os_isr_t * isr;
+  os_tick_t remaining;
+  os_tick_t used;
+  const struct os_hwt_t * _1;
+  const struct os_hwtdrv_t * _2;
+  void (*<T521>) (const struct os_hwt_t *) _3;
+  unsigned int _4;
+  unsigned char _5;
+  const struct os_hwtdrv_t * _6;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned char _15;
+  const struct os_task_t * _16;
+  unsigned char _17;
+  struct os_taskaccounting_t * _18;
+  unsigned int _19;
+  const struct os_isr_t * OS_isrTableBase.0_20;
+  short unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned char _24;
+  struct os_israccounting_t * _25;
+  unsigned int _26;
+  const struct os_hwtdrv_t * _27;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _28;
+  unsigned int _29;
+  unsigned int _30;
+  unsigned int _31;
+  const struct os_hwtdrv_t * _32;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _33;
+  unsigned int _34;
+  unsigned char _39;
+  unsigned char _40;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_executionTimer[0];
+  _2 = _1->driver;
+  _3 = _2->hwtStop;
+  _3 (_1);
+  # DEBUG BEGIN_STMT
+  used_44 = OS_GetTimeUsed ();
+  # DEBUG used => used_44
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.accounting.frc;
+  OS_AdvanceTimeStampGeneric (_4);
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.etType;
+  if (_5 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _6 = _1->driver;
+  _7 = _6->hwtStart;
+  _8 = OS_kernelData.accounting.frc;
+  _9 = _1->maxDelta;
+  _7 (_1, _8, _9);
+  goto <bb 20>; [100.00%]
+
+  <bb 4> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _10 = OS_kernelData.accounting.etUsed;
+  _11 = ~_10;
+  if (_11 < used_44)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 5> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.etUsed = 4294967295;
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _12 = _10 + used_44;
+  OS_kernelData.accounting.etUsed = _12;
+
+  <bb 7> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _13 = OS_kernelData.accounting.etUsed;
+  _14 = OS_kernelData.accounting.etLimit;
+  if (_13 >= _14)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 8> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  _15 = OS_kernelData.inFunction;
+  if (_15 == 1)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 9> [local count: 91268055]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.accounting.taskTimingNesting = 1;
+  # DEBUG BEGIN_STMT
+  _16 = OS_kernelData.taskCurrent;
+  _17 = _16->flags;
+  _40 = _17 & 64;
+  if (_40 != 0)
+    goto <bb 10>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 10> [local count: 45634028]:
+  _18 = _16->accounting;
+  _19 = _18->etMax;
+  if (_13 > _19)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 11> [local count: 22817014]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _18->etMax = _13;
+  goto <bb 16>; [100.00%]
+
+  <bb 12> [local count: 177167401]:
+  # DEBUG BEGIN_STMT
+  if (_15 == 3)
+    goto <bb 13>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 13> [local count: 60236916]:
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_20 = OS_isrTableBase;
+  _21 = OS_kernelData.isrCurrent;
+  _22 = (unsigned int) _21;
+  _23 = _22 * 68;
+  isr_51 = OS_isrTableBase.0_20 + _23;
+  # DEBUG isr => isr_51
+  # DEBUG BEGIN_STMT
+  _24 = isr_51->flags;
+  _39 = _24 & 64;
+  if (_39 != 0)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 14> [local count: 30118458]:
+  _25 = isr_51->accounting;
+  _26 = _25->etMax;
+  if (_13 > _26)
+    goto <bb 15>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 15> [local count: 15059229]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _25->etMax = _13;
+
+  <bb 16> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+  # DEBUG BEGIN_STMT
+  _27 = _1->driver;
+  _28 = _27->hwtStart;
+  _29 = OS_kernelData.accounting.frc;
+  _30 = _1->maxDelta;
+  _28 (_1, _29, _30);
+  goto <bb 20>; [100.00%]
+
+  <bb 17> [local count: 268435456]:
+  # DEBUG BEGIN_STMT
+  remaining_48 = _14 - _13;
+  # DEBUG remaining => remaining_48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG OS_hwtStartDelta => remaining_48
+  # DEBUG BEGIN_STMT
+  _31 = _1->maxDelta;
+  if (_31 < remaining_48)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 19>; [50.00%]
+
+  <bb 18> [local count: 134217728]:
+  # DEBUG BEGIN_STMT
+  OS_hwtStartDelta_49 = _1->defDelta;
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_49
+
+  <bb 19> [local count: 268435456]:
+  # OS_hwtStartDelta_35 = PHI <remaining_48(17), OS_hwtStartDelta_49(18)>
+  # DEBUG OS_hwtStartDelta => OS_hwtStartDelta_35
+  # DEBUG BEGIN_STMT
+  _32 = _1->driver;
+  _33 = _32->hwtStart;
+  _34 = OS_kernelData.accounting.frc;
+  _33 (_1, _34, OS_hwtStartDelta_35);
+
+  <bb 20> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

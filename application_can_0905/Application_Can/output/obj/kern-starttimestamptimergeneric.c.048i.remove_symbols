@@ -1,0 +1,66 @@
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_lastTimeStampTime/10 (OS_lastTimeStampTime) @06c9d9d8
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartTimeStampTimerGeneric/8 (read)
+  Availability: not_available
+  Varpool flags:
+OS_timeStampTimer/9 (OS_timeStampTimer) @06c9d990
+  Type: variable
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: external public
+  References: 
+  Referring: OS_StartTimeStampTimerGeneric/8 (read)
+  Availability: not_available
+  Varpool flags: read-only
+OS_StartTimeStampTimerGeneric/8 (OS_StartTimeStampTimerGeneric) @06cbbee0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: OS_timeStampTimer/9 (read)OS_lastTimeStampTime/10 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+   Indirect call(751619278 (estimated locally),0.70 per call) 
+__attribute__((target ("general-regs-only")))
+OS_StartTimeStampTimerGeneric ()
+{
+  const struct os_hwt_t * OS_timeStampTimer.0_1;
+  const struct os_hwtdrv_t * _2;
+  os_boolean_t (*<T52b>) (const struct os_hwt_t *, os_timervalue_t, os_tick_t) _3;
+  unsigned int OS_lastTimeStampTime.3_4;
+  unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG myCoreId => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_timeStampTimer.0_1 = OS_timeStampTimer;
+  if (OS_timeStampTimer.0_1 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  _2 = OS_timeStampTimer.0_1->driver;
+  _3 = _2->hwtStart;
+  OS_lastTimeStampTime.3_4 = OS_lastTimeStampTime;
+  _5 = OS_timeStampTimer.0_1->maxDelta;
+  _3 (OS_timeStampTimer.0_1, OS_lastTimeStampTime.3_4, _5);
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+

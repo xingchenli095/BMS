@@ -1,0 +1,769 @@
+Dcm_Dsp_RequestVehicleInformation_ServiceExecution (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  const uint8 VehInfoIdx;
+  struct Dcm_DspMsgBufferCfgType * const pBuffer;
+  const uint8 firstReqVehInfo;
+  const Dcm_MsgLenType reqDataLen;
+  Std_ReturnType serviceProcessStatus;
+  int _1;
+  Dcm_MsgItemType * _2;
+  Dcm_MsgItemType * _3;
+  long unsigned int _4;
+  unsigned char _5;
+  uint8 * _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  int _9;
+  uint8 * _10;
+  uint8 * _11;
+  unsigned char _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  int _15;
+  long unsigned int _16;
+  short unsigned int _17;
+  long unsigned int _18;
+  Std_ReturnType _64;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_24 = 131;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_24
+  # DEBUG BEGIN_STMT
+  reqDataLen_27 = pMsgContext_26(D)->reqDataLen;
+  # DEBUG reqDataLen => reqDataLen_27
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_28(D);
+  switch (_1) <default: <L25> [INV], case 0: <L0> [INV], case 1: <L12> [INV], case 2: <L13> [INV], case 5 ... 6: <L14> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoContext.nrc = 0;
+  # DEBUG BEGIN_STMT
+  if (reqDataLen_27 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_26(D)->reqData;
+  firstReqVehInfo_38 = *_2;
+  # DEBUG firstReqVehInfo => firstReqVehInfo_38
+  # DEBUG BEGIN_STMT
+  _3 = pMsgContext_26(D)->resData;
+  Dcm_DspReqVehInfoBufferConfig.BufferPtr = _3;
+  # DEBUG BEGIN_STMT
+  _4 = pMsgContext_26(D)->resMaxDataLen;
+  Dcm_DspReqVehInfoBufferConfig.Size = _4;
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoBufferConfig.Occupied = 0;
+  # DEBUG BEGIN_STMT
+  _5 = firstReqVehInfo_38 & 31;
+  if (_5 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_55 = Dcm_ReqVehInfoAvailability (pMsgContext_26(D));
+  # DEBUG serviceProcessStatus => serviceProcessStatus_55
+  goto <bb 14>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (reqDataLen_27 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_45 = Dcm_Dsp_VinServices_HelperInit (firstReqVehInfo_38, &Dcm_DspReqVehInfoContext, &Dcm_DspReqVehInfoBufferConfig);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_45
+  # DEBUG BEGIN_STMT
+  if (serviceProcessStatus_45 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  pBuffer_46 = Dcm_DspReqVehInfoContext.BufferCfgPtr;
+  # DEBUG pBuffer => pBuffer_46
+  # DEBUG BEGIN_STMT
+  VehInfoIdx_47 = Dcm_DspReqVehInfoContext.currentVehInfoIdx;
+  # DEBUG VehInfoIdx => VehInfoIdx_47
+  # DEBUG BEGIN_STMT
+  _6 = pBuffer_46->BufferPtr;
+  *_6 = firstReqVehInfo_38;
+  # DEBUG BEGIN_STMT
+  _7 = pBuffer_46->Occupied;
+  _8 = _7 + 1;
+  pBuffer_46->Occupied = _8;
+  # DEBUG BEGIN_STMT
+  _9 = (int) VehInfoIdx_47;
+  _10 = pBuffer_46->BufferPtr;
+  _11 = _10 + 1;
+  _12 = Dcm_DspVehInfo[_9].NumOfVehInfoData;
+  *_11 = _12;
+  # DEBUG BEGIN_STMT
+  _13 = pBuffer_46->Occupied;
+  _14 = _13 + 1;
+  pBuffer_46->Occupied = _14;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_53 = Dcm_RequestVehicleInformation_HelperExecuteNonAvailableInfoType (OpStatus_28(D), &Dcm_DspReqVehInfoContext);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_53
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoContext.nrc = 19;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_43 = 1;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_43
+  goto <bb 14>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoContext.nrc = 19;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_37 = 1;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_37
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_34 = Dcm_RequestVehicleInformation_HelperExecuteNonAvailableInfoType (OpStatus_28(D), &Dcm_DspReqVehInfoContext);
+  # DEBUG serviceProcessStatus => serviceProcessStatus_34
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 12> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_HelperCancel (&Dcm_DspReqVehInfoContext);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+  # DEBUG BEGIN_STMT
+  Dcm_RequestVehicleInformation_LockStatus = 0;
+
+  <bb 13> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_32 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_32
+  # DEBUG BEGIN_STMT
+
+  <bb 14> :
+  # serviceProcessStatus_19 = PHI <serviceProcessStatus_37(10), serviceProcessStatus_34(11), serviceProcessStatus_32(13), serviceProcessStatus_24(2), serviceProcessStatus_53(8), serviceProcessStatus_43(9), serviceProcessStatus_45(7), serviceProcessStatus_55(5)>
+<L25>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_19
+  # DEBUG BEGIN_STMT
+  _15 = (int) serviceProcessStatus_19;
+  switch (_15) <default: <L26> [INV], case 0: <L18> [INV], case 1: <L19> [INV]>
+
+  <bb 15> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _16 = Dcm_DspReqVehInfoBufferConfig.Occupied;
+  _17 = (short unsigned int) _16;
+  _18 = (long unsigned int) _17;
+  pMsgContext_26(D)->resDataLen = _18;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+  # DEBUG BEGIN_STMT
+  Dcm_RequestVehicleInformation_LockStatus = 0;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_63 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_63
+  # DEBUG BEGIN_STMT
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+<L19>:
+  # DEBUG BEGIN_STMT
+  pMsgContext_26(D)->msgAddInfo.suppressPosResponse = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_VinServices_UnlockService ();
+  # DEBUG BEGIN_STMT
+  Dcm_RequestVehicleInformation_LockStatus = 0;
+  # DEBUG BEGIN_STMT
+  serviceProcessStatus_59 = 26;
+  # DEBUG serviceProcessStatus => serviceProcessStatus_59
+  # DEBUG BEGIN_STMT
+
+  <bb 17> :
+  # serviceProcessStatus_20 = PHI <serviceProcessStatus_63(15), serviceProcessStatus_59(16), serviceProcessStatus_19(14)>
+<L26>:
+  # DEBUG serviceProcessStatus => serviceProcessStatus_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _64 = serviceProcessStatus_20;
+  return _64;
+
+}
+
+
+Dcm_ReqVehInfoAvailability (struct Dcm_MsgContextType * pMsgContext)
+{
+  const Dcm_MsgLenType lastResponsePos;
+  Dcm_MsgLenType ResponsePos;
+  uint8_least reqIndex;
+  Dcm_MsgItemType * reqData;
+  Dcm_MsgLenType reqDataLen;
+  Std_ReturnType retVal;
+  unsigned char _1;
+  long unsigned int _2;
+  Dcm_MsgItemType * _3;
+  uint8 * _4;
+  long unsigned int _5;
+  uint8 * _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  Dcm_MsgItemType * _10;
+  unsigned char _11;
+  unsigned char _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  Std_ReturnType _41;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_23 = 1;
+  # DEBUG retVal => retVal_23
+  # DEBUG BEGIN_STMT
+  reqDataLen_26 = pMsgContext_25(D)->reqDataLen;
+  # DEBUG reqDataLen => reqDataLen_26
+  # DEBUG BEGIN_STMT
+  reqData_27 = pMsgContext_25(D)->reqData;
+  # DEBUG reqData => reqData_27
+  # DEBUG BEGIN_STMT
+  if (reqDataLen_26 <= 6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_OBDSupport_CheckRequestCombinedIds (reqData_27, reqDataLen_26);
+  if (_1 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  reqIndex_30 = 0;
+  # DEBUG reqIndex => reqIndex_30
+  # DEBUG BEGIN_STMT
+  ResponsePos_31 = 0;
+  # DEBUG ResponsePos => ResponsePos_31
+  # DEBUG BEGIN_STMT
+  _2 = pMsgContext_25(D)->resMaxDataLen;
+  lastResponsePos_32 = _2 + 4294967291;
+  # DEBUG lastResponsePos => lastResponsePos_32
+  # DEBUG BEGIN_STMT
+  reqIndex_33 = 0;
+  # DEBUG reqIndex => reqIndex_33
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = reqData_27 + reqIndex_19;
+  _4 = Dcm_DspReqVehInfoBufferConfig.BufferPtr;
+  _5 = Dcm_DspReqVehInfoBufferConfig.Occupied;
+  _6 = _4 + _5;
+  _7 = *_3;
+  *_6 = _7;
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_DspReqVehInfoBufferConfig.Occupied;
+  _9 = _8 + 1;
+  Dcm_DspReqVehInfoBufferConfig.Occupied = _9;
+  # DEBUG BEGIN_STMT
+  _10 = reqData_27 + reqIndex_19;
+  _11 = *_10;
+  _12 = Dcm_RequestVehicleInformation_HelperExecuteAvailableInfoType (_11, &Dcm_DspReqVehInfoBufferConfig);
+  if (_12 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal_38 = 0;
+  # DEBUG retVal => retVal_38
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_DspReqVehInfoBufferConfig.Occupied;
+  _14 = _13 + 4294967295;
+  Dcm_DspReqVehInfoBufferConfig.Occupied = _14;
+
+  <bb 8> :
+  # retVal_16 = PHI <retVal_38(6), retVal_17(7)>
+  # DEBUG retVal => retVal_16
+  # DEBUG BEGIN_STMT
+  reqIndex_39 = reqIndex_19 + 1;
+  # DEBUG reqIndex => reqIndex_39
+
+  <bb 9> :
+  # retVal_17 = PHI <retVal_23(4), retVal_16(8)>
+  # reqIndex_19 = PHI <reqIndex_33(4), reqIndex_39(8)>
+  # DEBUG reqIndex => reqIndex_19
+  # DEBUG retVal => retVal_17
+  # DEBUG BEGIN_STMT
+  if (reqIndex_19 < reqDataLen_26)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  if (ResponsePos_31 <= lastResponsePos_32)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _15 = Dcm_DspReqVehInfoBufferConfig.Occupied;
+  pMsgContext_25(D)->resDataLen = _15;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoContext.nrc = 19;
+
+  <bb 13> :
+  # retVal_18 = PHI <retVal_17(11), retVal_23(12), retVal_23(3)>
+  # DEBUG retVal => retVal_18
+  # DEBUG BEGIN_STMT
+  _41 = retVal_18;
+  return _41;
+
+}
+
+
+Dcm_DspInternal_RequestVehicleInformation_SvcH (Dcm_OpStatusType OpStatus, struct Dcm_MsgContextType * pMsgContext)
+{
+  Std_ReturnType VinLockStatus;
+  Std_ReturnType ServiceProcessStatus;
+  unsigned char Dcm_RequestVehicleInformation_LockStatus.0_1;
+  int _2;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_5 = 30;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_RequestVehicleInformation_LockStatus.0_1 = Dcm_RequestVehicleInformation_LockStatus;
+  _2 = (int) Dcm_RequestVehicleInformation_LockStatus.0_1;
+  switch (_2) <default: <L10> [INV], case 0: <L0> [INV], case 1: <L9> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  if (OpStatus_7(D) != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 4> :
+  if (OpStatus_7(D) != 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  if (OpStatus_7(D) != 6)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  VinLockStatus_12 = Dcm_Dsp_VinServices_LockService ();
+  # DEBUG VinLockStatus => VinLockStatus_12
+  # DEBUG BEGIN_STMT
+  if (VinLockStatus_12 == 31)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_16 = 10;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_16
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Dcm_RequestVehicleInformation_LockStatus = 1;
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_15 = Dcm_Dsp_RequestVehicleInformation_ServiceExecution (0, pMsgContext_8(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_15
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_17 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_17
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_10 = Dcm_Dsp_RequestVehicleInformation_ServiceExecution (OpStatus_7(D), pMsgContext_8(D));
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_10
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  ServiceProcessStatus_18 = 26;
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_18
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+
+  <bb 12> :
+  # ServiceProcessStatus_3 = PHI <ServiceProcessStatus_17(9), ServiceProcessStatus_10(10), ServiceProcessStatus_18(11), ServiceProcessStatus_15(8), ServiceProcessStatus_16(7)>
+  # DEBUG ServiceProcessStatus => ServiceProcessStatus_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = ServiceProcessStatus_3;
+  return _19;
+
+}
+
+
+Dcm_RequestVehicleInformation_HelperExecuteNonAvailableInfoType (Dcm_OpStatusType OpStatus, struct Dcm_DspReqVehInfoContextType * svcContext)
+{
+  Std_ReturnType (*Dcm_GetInfotypeValueDataFunctionPointerType) (Dcm_OpStatusType, uint8 *) pGetInfotypeValueData;
+  const struct Dcm_DspVehInfoDataType * const pVehInfoData;
+  Dcm_OpStatusType OperationStatus;
+  uint32 BufferOccupied;
+  uint8 * const pBuffer;
+  uint8_least VehInfoDataRelIndex;
+  const struct Dcm_DspVehInfoType * const pVehInfo;
+  const uint8 VehInfoIdx;
+  Std_ReturnType InterfaceReturnValue;
+  int _1;
+  struct Dcm_DspMsgBufferCfgType * _2;
+  struct Dcm_DspMsgBufferCfgType * _3;
+  unsigned char _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  uint8 * _8;
+  int _9;
+  unsigned char _10;
+  long unsigned int _11;
+  unsigned char _12;
+  long unsigned int _13;
+  unsigned char _14;
+  struct Dcm_DspMsgBufferCfgType * _15;
+  Std_ReturnType _55;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InterfaceReturnValue_30 = 1;
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_30
+  # DEBUG BEGIN_STMT
+  VehInfoIdx_33 = svcContext_32(D)->currentVehInfoIdx;
+  # DEBUG VehInfoIdx => VehInfoIdx_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (VehInfoIdx_33 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) VehInfoIdx_33;
+  pVehInfo_34 = &Dcm_DspVehInfo[_1];
+  # DEBUG pVehInfo => pVehInfo_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = svcContext_32(D)->BufferCfgPtr;
+  pBuffer_35 = _2->BufferPtr;
+  # DEBUG pBuffer => pBuffer_35
+  # DEBUG BEGIN_STMT
+  _3 = svcContext_32(D)->BufferCfgPtr;
+  BufferOccupied_36 = _3->Occupied;
+  # DEBUG BufferOccupied => BufferOccupied_36
+  # DEBUG BEGIN_STMT
+  OperationStatus_38 = OpStatus_37(D);
+  # DEBUG OperationStatus => OperationStatus_38
+  # DEBUG BEGIN_STMT
+  _4 = svcContext_32(D)->currentVehInfoDataIdx;
+  VehInfoDataRelIndex_39 = (uint8_least) _4;
+  # DEBUG VehInfoDataRelIndex => VehInfoDataRelIndex_39
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = pVehInfo_34->StartIndexOfVehInfoData;
+  _6 = (long unsigned int) _5;
+  _7 = VehInfoDataRelIndex_20 + _6;
+  pVehInfoData_40 = &Dcm_DspVehInfoData[_7];
+  # DEBUG pVehInfoData => pVehInfoData_40
+  # DEBUG BEGIN_STMT
+  pGetInfotypeValueData_41 = pVehInfoData_40->GetInfotypeValueDataFunctionPointer;
+  # DEBUG pGetInfotypeValueData => pGetInfotypeValueData_41
+  # DEBUG BEGIN_STMT
+  _8 = pBuffer_35 + BufferOccupied_22;
+  InterfaceReturnValue_43 = pGetInfotypeValueData_41 (OperationStatus_25, _8);
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_43
+  # DEBUG BEGIN_STMT
+  _9 = (int) InterfaceReturnValue_43;
+  switch (_9) <default: <L5> [INV], case 0: <L2> [INV], case 1: <L3> [INV], case 10: <L12> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _10 = pVehInfoData_40->VehInfoDataSize;
+  _11 = (long unsigned int) _10;
+  BufferOccupied_46 = BufferOccupied_22 + _11;
+  # DEBUG BufferOccupied => BufferOccupied_46
+  # DEBUG BEGIN_STMT
+  InterfaceReturnValue_47 = 0;
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_47
+  # DEBUG BEGIN_STMT
+  OperationStatus_48 = 0;
+  # DEBUG OperationStatus => OperationStatus_48
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  svcContext_32(D)->nrc = 34;
+  # DEBUG BEGIN_STMT
+  InterfaceReturnValue_45 = 1;
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_45
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  svcContext_32(D)->nrc = 34;
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 96, 2);
+  # DEBUG BEGIN_STMT
+  InterfaceReturnValue_51 = 1;
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_51
+  # DEBUG BEGIN_STMT
+
+  <bb 8> :
+  # InterfaceReturnValue_16 = PHI <InterfaceReturnValue_47(5), InterfaceReturnValue_45(6), InterfaceReturnValue_43(4), InterfaceReturnValue_51(7)>
+  # BufferOccupied_21 = PHI <BufferOccupied_46(5), BufferOccupied_22(6), BufferOccupied_22(4), BufferOccupied_22(7)>
+  # OperationStatus_24 = PHI <OperationStatus_48(5), OperationStatus_25(6), OperationStatus_25(4), OperationStatus_25(7)>
+<L12>:
+  # DEBUG OperationStatus => OperationStatus_24
+  # DEBUG BufferOccupied => BufferOccupied_21
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_16
+  # DEBUG BEGIN_STMT
+  if (InterfaceReturnValue_16 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  VehInfoDataRelIndex_52 = VehInfoDataRelIndex_20 + 1;
+  # DEBUG VehInfoDataRelIndex => VehInfoDataRelIndex_52
+
+  <bb 10> :
+  # InterfaceReturnValue_17 = PHI <InterfaceReturnValue_30(3), InterfaceReturnValue_16(9)>
+  # VehInfoDataRelIndex_20 = PHI <VehInfoDataRelIndex_39(3), VehInfoDataRelIndex_52(9)>
+  # BufferOccupied_22 = PHI <BufferOccupied_36(3), BufferOccupied_21(9)>
+  # OperationStatus_25 = PHI <OperationStatus_38(3), OperationStatus_24(9)>
+  # DEBUG OperationStatus => OperationStatus_25
+  # DEBUG BufferOccupied => BufferOccupied_22
+  # DEBUG VehInfoDataRelIndex => VehInfoDataRelIndex_20
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_17
+  # DEBUG BEGIN_STMT
+  _12 = pVehInfo_34->NumOfVehInfoData;
+  _13 = (long unsigned int) _12;
+  if (VehInfoDataRelIndex_20 < _13)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # InterfaceReturnValue_18 = PHI <InterfaceReturnValue_16(8), InterfaceReturnValue_17(10)>
+  # BufferOccupied_23 = PHI <BufferOccupied_21(8), BufferOccupied_22(10)>
+  # DEBUG BufferOccupied => BufferOccupied_23
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_18
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned char) VehInfoDataRelIndex_20;
+  svcContext_32(D)->currentVehInfoDataIdx = _14;
+  # DEBUG BEGIN_STMT
+  _15 = svcContext_32(D)->BufferCfgPtr;
+  _15->Occupied = BufferOccupied_23;
+
+  <bb 12> :
+  # InterfaceReturnValue_19 = PHI <InterfaceReturnValue_30(2), InterfaceReturnValue_18(11)>
+  # DEBUG InterfaceReturnValue => InterfaceReturnValue_19
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _55 = InterfaceReturnValue_19;
+  return _55;
+
+}
+
+
+Dcm_RequestVehicleInformation_HelperExecuteAvailableInfoType (Dcm_DspVehInfoInfoTypeType VehInfoInfoType, struct Dcm_DspMsgBufferCfgType * svcBufferContext)
+{
+  const uint8 currentVehInfoInfoType;
+  uint8_least vehInfoIndex;
+  const uint16 Size;
+  const uint16 Occupied;
+  Std_ReturnType retVal;
+  long unsigned int _1;
+  long unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  uint8 * _6;
+  sizetype _7;
+  uint8 * _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int _11;
+  unsigned int _12;
+  unsigned char _13;
+  unsigned char _14;
+  uint8 * _15;
+  sizetype _16;
+  uint8 * _17;
+  unsigned char _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  Std_ReturnType _43;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  retVal_29 = 1;
+  # DEBUG retVal => retVal_29
+  # DEBUG BEGIN_STMT
+  _1 = svcBufferContext_31(D)->Occupied;
+  Occupied_32 = (const uint16) _1;
+  # DEBUG Occupied => Occupied_32
+  # DEBUG BEGIN_STMT
+  _2 = svcBufferContext_31(D)->Size;
+  Size_33 = (const uint16) _2;
+  # DEBUG Size => Size_33
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) Size_33;
+  _4 = (unsigned int) Occupied_32;
+  _5 = _4 + 4;
+  if (_3 >= _5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = svcBufferContext_31(D)->BufferPtr;
+  _7 = (sizetype) Occupied_32;
+  _8 = _6 + _7;
+  TS_MemSet32 (_8, 0, 4);
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_35 = 0;
+  # DEBUG vehInfoIndex => vehInfoIndex_35
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = vehInfoIndex_24 / 8;
+  _10 = Dcm_DspVehInfoUsed[_9];
+  _11 = vehInfoIndex_24 & 7;
+  _12 = 1 << _11;
+  _13 = (unsigned char) _12;
+  _14 = _10 & _13;
+  if (_14 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  currentVehInfoInfoType_36 = Dcm_DspVehInfo[vehInfoIndex_24].VehInfoInfoType;
+  # DEBUG currentVehInfoInfoType => currentVehInfoInfoType_36
+  # DEBUG BEGIN_STMT
+  _15 = svcBufferContext_31(D)->BufferPtr;
+  _16 = (sizetype) Occupied_32;
+  _17 = _15 + _16;
+  _18 = Dcm_OBDSupport_UpdateAvailableInfoWithID (currentVehInfoInfoType_36, VehInfoInfoType_37(D), _17);
+  if (_18 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  retVal_39 = 0;
+  # DEBUG retVal => retVal_39
+
+  <bb 7> :
+  # retVal_21 = PHI <retVal_22(4), retVal_22(5), retVal_39(6)>
+  # DEBUG retVal => retVal_21
+  # DEBUG BEGIN_STMT
+  vehInfoIndex_40 = vehInfoIndex_24 + 1;
+  # DEBUG vehInfoIndex => vehInfoIndex_40
+
+  <bb 8> :
+  # retVal_22 = PHI <retVal_29(3), retVal_21(7)>
+  # vehInfoIndex_24 = PHI <vehInfoIndex_35(3), vehInfoIndex_40(7)>
+  # DEBUG vehInfoIndex => vehInfoIndex_24
+  # DEBUG retVal => retVal_22
+  # DEBUG BEGIN_STMT
+  if (vehInfoIndex_24 <= 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # retVal_23 = PHI <retVal_29(2), retVal_22(8)>
+  # DEBUG retVal => retVal_23
+  # DEBUG BEGIN_STMT
+  if (retVal_23 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _19 = svcBufferContext_31(D)->Occupied;
+  _20 = _19 + 4;
+  svcBufferContext_31(D)->Occupied = _20;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Dcm_DspReqVehInfoContext.nrc = 49;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _43 = retVal_23;
+  return _43;
+
+}
+
+

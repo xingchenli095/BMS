@@ -1,0 +1,895 @@
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  uint16_least RxConnectionIndex;
+  boolean CommunicationSessionIsActive;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CommunicationSessionIsActive = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionMainConnection ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  if (MainConnectionIndex == _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_CommunicationSessionState[RxConnectionIndex];
+  if (_3 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  _4 = Dcm_RxPduIdConfig[RxConnectionIndex].MainConnectionIndex;
+  if (MainConnectionIndex == _4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CommunicationSessionIsActive = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = RxConnectionIndex + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (CommunicationSessionIsActive == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StartS3Timer (1000);
+
+  <bb 11> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  Dcm_SesCtrlType CurrentSession;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CurrentSession = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex = Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionMainConnection ();
+  # DEBUG BEGIN_STMT
+  if (CurrentSession != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  if (MainConnectionIndex == _2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, 2, 3);
+
+  <bb 5> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_IsCancellationEnqueuedForRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex)
+{
+  boolean D.6819;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex;
+  D.6819 = Dcm_CancelRxConnection[_1];
+  return D.6819;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_EnqueueCancellationOfRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex;
+  Dcm_CancelRxConnection[_1] = 1;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingEnd (Dcm_BufferUserType RxConnectionId)
+{
+  uint8_least ComMChannelIndex;
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  uint16_least RxConnectionIndex;
+  boolean ChannelFound;
+  boolean ChannelIsActive;
+  Dcm_SesCtrlType CurrentSession;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelIsActive = 0;
+  # DEBUG BEGIN_STMT
+  ChannelFound = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentSession = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG BEGIN_STMT
+  if (CurrentSession != 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (RxConnectionId);
+  goto <bb 19>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RxConnectionIndex;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_1, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _2 = RxPduIdInfo.ComMChannelId;
+  _3 = SearchRxPduIdInfo.ComMChannelId;
+  if (_2 == _3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _4 = (short unsigned int) RxConnectionIndex;
+  _5 = (int) _4;
+  _6 = Dcm_CommunicationSessionState[_5];
+  _7 = _6 + 253;
+  if (_7 <= 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ChannelIsActive = 1;
+
+  <bb 8> :
+  SearchRxPduIdInfo = {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = RxConnectionIndex + 1;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (ChannelIsActive == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_RxComMChannelIDs[ComMChannelIndex];
+  _9 = RxPduIdInfo.ComMChannelId;
+  if (_8 == _9)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ChannelFound = 1;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = ComMChannelIndex + 1;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  if (ChannelFound == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic = 1;
+
+  <bb 18> :
+  RxPduIdInfo = {CLOBBER};
+
+  <bb 19> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (Dcm_BufferUserType RxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_CommunicationSessionState[_1];
+  _3 = (int) _2;
+  switch (_3) <default: <L7> [INV], case 3: <L1> [INV], case 4: <L2> [INV], case 5: <L3> [INV], case 6: <L4> [INV]>
+
+  <bb 3> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _4 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_4] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _5 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_5] = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_6] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _7 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_7] = 2;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+<L7>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingBegin (Dcm_BufferUserType RxConnectionId, boolean SendingBusyRepeatRequest)
+{
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  Dcm_RxConnectionIndexType RxConnectionIndex;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  boolean ChannelFound;
+  boolean ChannelIsAlreadyActive;
+  uint8_least ComMChannelIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (SendingBusyRepeatRequest == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_1] = 5;
+  goto <bb 20>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = 0;
+  # DEBUG BEGIN_STMT
+  ChannelIsAlreadyActive = 0;
+  # DEBUG BEGIN_STMT
+  ChannelFound = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_RxComMChannelIDs[ComMChannelIndex];
+  _3 = RxPduIdInfo.ComMChannelId;
+  if (_2 == _3)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelFound = 1;
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionIndex, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_RxComMChannelIDs[ComMChannelIndex];
+  _5 = SearchRxPduIdInfo.ComMChannelId;
+  if (_4 == _5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionIndex;
+  _7 = Dcm_CommunicationSessionState[_6];
+  _8 = _7 + 253;
+  if (_8 <= 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ChannelIsAlreadyActive = 1;
+  # DEBUG BEGIN_STMT
+  SearchRxPduIdInfo = {CLOBBER};
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  SearchRxPduIdInfo = {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex.0_9 = RxConnectionIndex;
+  RxConnectionIndex = RxConnectionIndex.0_9 + 1;
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = ComMChannelIndex + 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  if (ChannelFound == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (ChannelIsAlreadyActive == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic = 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _10 = (int) RxConnectionId;
+  _11 = Dcm_CommunicationSessionState[_10];
+  _12 = (int) _11;
+  if (_12 == 2)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+<L20>:
+  # DEBUG BEGIN_STMT
+  _13 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_13] = 3;
+  # DEBUG BEGIN_STMT
+
+  <bb 19> :
+  RxPduIdInfo = {CLOBBER};
+
+  <bb 20> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ReceptionEnd (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_SesCtrlType CurrentSession;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_CommunicationSessionState[_1];
+  _3 = (int) _2;
+  switch (_3) <default: <L7> [INV], case 2: <L0> [INV], case 4: <L1> [INV], case 6: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _4 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_4] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_5] = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_6] = 5;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _7 = (int) RxConnectionId;
+  Dcm_CancelRxConnection[_7] = 0;
+  # DEBUG BEGIN_STMT
+  CurrentSession = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG BEGIN_STMT
+  if (CurrentSession != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (RxConnectionId);
+
+  <bb 8> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ReceptionBegin (Dcm_BufferUserType RxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_CommunicationSessionState[_1];
+  _3 = (int) _2;
+  switch (_3) <default: <L6> [INV], case 1: <L0> [INV], case 3: <L2> [INV], case 5: <L3> [INV], case 7: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _4 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_4] = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (RxConnectionId);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_5] = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_6] = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _7 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_7] = 6;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> :
+<L6>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_PrepareApplicationDiagnosticRequest (Dcm_BufferUserType RxConnectionId)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId;
+  _2 = Dcm_CommunicationSessionState[_1];
+  if (_2 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) RxConnectionId;
+  Dcm_CommunicationSessionState[_3] = 7;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (RxConnectionId);
+
+  <bb 4> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_DefaultSessionEntered ()
+{
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  const NetworkHandleType CurrentNetworkId;
+  uint16_least RxConnectionIndex;
+  boolean ChannelIsActive;
+  uint8_least ChannelIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ChannelIndex = 0;
+  goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ChannelIsActive = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentNetworkId = Dcm_RxComMChannelIDs[ChannelIndex];
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RxConnectionIndex;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_1, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _2 = SearchRxPduIdInfo.ComMChannelId;
+  if (CurrentNetworkId == _2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_CommunicationSessionState[RxConnectionIndex];
+  _4 = _3 + 253;
+  if (_4 <= 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ChannelIsActive = 1;
+  # DEBUG BEGIN_STMT
+  SearchRxPduIdInfo = {CLOBBER};
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  SearchRxPduIdInfo = {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = RxConnectionIndex + 1;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (ChannelIsActive == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_RequestInactiveDiagnostic (CurrentNetworkId);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ChannelIndex = ChannelIndex + 1;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_MainFunction ()
+{
+  Dcm_ActiveDiagnosticRequestType ActiveDiagnosticRequest;
+  uint8_least ComMChannelIndex;
+  uint16_least RxConnectionIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CancelRxConnection[RxConnectionIndex];
+  if (_1 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) RxConnectionIndex;
+  Dcm_Dsl_RxConnectionCancelReceive (_2);
+  # DEBUG BEGIN_STMT
+  Dcm_CancelRxConnection[RxConnectionIndex] = 0;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = RxConnectionIndex + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = 0;
+  goto <bb 22>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  ActiveDiagnosticRequest = 0;
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic;
+  if (_3 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _4 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic;
+  if (_4 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic;
+  if (_5 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  _6 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic;
+  if (_6 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ActiveDiagnosticRequest = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic = 0;
+  goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic;
+  if (_7 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  _8 = Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic;
+  if (_8 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  ActiveDiagnosticRequest = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic = 0;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic = 0;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (ActiveDiagnosticRequest == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_RxComMChannelIDs[ComMChannelIndex];
+  Dcm_Dsl_ComMChannelStateManager_RequestActiveDiagnostic (_9);
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (ActiveDiagnosticRequest == 2)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_RxComMChannelIDs[ComMChannelIndex];
+  Dcm_Dsl_ComMChannelStateManager_RequestInactiveDiagnostic (_10);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = ComMChannelIndex + 1;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 23> :
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_Init ()
+{
+  uint8_least ComMChannelIndex;
+  uint16_least RxConnectionIndex;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dcm_CancelRxConnection[RxConnectionIndex] = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[RxConnectionIndex] = 1;
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex = RxConnectionIndex + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex <= 5)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = 0;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestActiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex].RequestInactiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  ComMChannelIndex = ComMChannelIndex + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

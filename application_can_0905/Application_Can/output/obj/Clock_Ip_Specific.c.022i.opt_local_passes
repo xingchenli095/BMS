@@ -1,0 +1,536 @@
+Clock_Ip_Command (const struct Clock_Ip_ClockConfigType * Config, Clock_Ip_CommandType Command)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  switch (Command_2(D)) <default: <L4> [INV], case 1: <L1> [INV], case 2: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Clock_Ip_ClockInitializeObjects ();
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  Clock_Ip_SpecificPlatformInitClock (Config_5(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 5> :
+<L4>:
+  return;
+
+}
+
+
+Clock_Ip_ClockPowerModeChangeNotification (Clock_Ip_PowerModesType PowerMode, Clock_Ip_PowerNotificationType Notification)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Clock_Ip_ClockInitializeObjects ()
+{
+  static boolean Clock_Ip_bObjectsAreInitialized = 0;
+  unsigned char Clock_Ip_bObjectsAreInitialized.4_1;
+  unsigned char _2;
+  int _3;
+  const struct Clock_Ip_IntOscCallbackType * _4;
+  unsigned char _5;
+  int _6;
+  const struct Clock_Ip_IntOscCallbackType * _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Clock_Ip_bObjectsAreInitialized.4_1 = Clock_Ip_bObjectsAreInitialized;
+  if (Clock_Ip_bObjectsAreInitialized.4_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_bObjectsAreInitialized = 1;
+  # DEBUG BEGIN_STMT
+  _2 = Clock_Ip_au8IrcoscCallbackIndex[2];
+  _3 = (int) _2;
+  _4 = &Clock_Ip_axIntOscCallbacks[_3];
+  Clock_Ip_pxSircStdbyClock = _4;
+  # DEBUG BEGIN_STMT
+  _5 = Clock_Ip_au8IrcoscCallbackIndex[1];
+  _6 = (int) _5;
+  _7 = &Clock_Ip_axIntOscCallbacks[_6];
+  Clock_Ip_pxFircStdbyClock = _7;
+
+  <bb 4> :
+  return;
+
+}
+
+
+EnableSircInStandbyMode ()
+{
+  struct Clock_Ip_IrcoscConfigType SircConfig;
+  const struct Clock_Ip_IntOscCallbackType * Clock_Ip_pxSircStdbyClock.3_1;
+  void (*<T9ff>) (const struct Clock_Ip_IrcoscConfigType *) _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SircConfig.Enable = 1;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_pxSircStdbyClock.3_1 = Clock_Ip_pxSircStdbyClock;
+  _2 = Clock_Ip_pxSircStdbyClock.3_1->Enable;
+  _2 (&SircConfig);
+  SircConfig ={v} {CLOBBER};
+  return;
+
+}
+
+
+DisableSircInStandbyMode ()
+{
+  const struct Clock_Ip_IntOscCallbackType * Clock_Ip_pxSircStdbyClock.2_1;
+  void (*<Ta02>) (Clock_Ip_NameType) _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_pxSircStdbyClock.2_1 = Clock_Ip_pxSircStdbyClock;
+  _2 = Clock_Ip_pxSircStdbyClock.2_1->Disable;
+  _2 (3);
+  return;
+
+}
+
+
+EnableFircInStandbyMode ()
+{
+  struct Clock_Ip_IrcoscConfigType FircConfig;
+  const struct Clock_Ip_IntOscCallbackType * Clock_Ip_pxFircStdbyClock.1_1;
+  void (*<T9ff>) (const struct Clock_Ip_IrcoscConfigType *) _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FircConfig.Enable = 1;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_pxFircStdbyClock.1_1 = Clock_Ip_pxFircStdbyClock;
+  _2 = Clock_Ip_pxFircStdbyClock.1_1->Enable;
+  _2 (&FircConfig);
+  FircConfig ={v} {CLOBBER};
+  return;
+
+}
+
+
+DisableFircInStandbyMode ()
+{
+  const struct Clock_Ip_IntOscCallbackType * Clock_Ip_pxFircStdbyClock.0_1;
+  void (*<Ta02>) (Clock_Ip_NameType) _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_pxFircStdbyClock.0_1 = Clock_Ip_pxFircStdbyClock;
+  _2 = Clock_Ip_pxFircStdbyClock.0_1->Disable;
+  _2 (1);
+  return;
+
+}
+
+
+Clock_Ip_SpecificPlatformInitClock (const struct Clock_Ip_ClockConfigType * Config)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Clock_Ip_PowerClockIpModules ();
+  return;
+
+}
+
+
+Clock_Ip_McMeEnterKey ()
+{
+  struct MC_ME_Type * _1;
+  struct MC_ME_Type * _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = 1076740096B;
+  _1->CTL_KEY ={v} 23280;
+  # DEBUG BEGIN_STMT
+  _2 = 1076740096B;
+  _2->CTL_KEY ={v} 42255;
+  return;
+
+}
+
+
+Clock_Ip_PowerClockIpModules ()
+{
+  boolean TimeoutOccurred;
+  uint32 TimeoutTicks;
+  uint32 ElapsedTime;
+  uint32 StartTime;
+  struct MC_ME_Type * _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  struct MC_ME_Type * _4;
+  long unsigned int _5;
+  struct MC_ME_Type * _6;
+  long unsigned int _7;
+  struct MC_ME_Type * _8;
+  long unsigned int _9;
+  struct MC_ME_Type * _10;
+  long unsigned int _11;
+  struct MC_ME_Type * _12;
+  long unsigned int _13;
+  struct MC_ME_Type * _14;
+  long unsigned int _15;
+  long unsigned int TimeoutTicks.5_16;
+  struct MC_ME_Type * _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  struct MC_ME_Type * _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  struct MC_ME_Type * _23;
+  long unsigned int _24;
+  struct MC_ME_Type * _25;
+  long unsigned int _26;
+  struct MC_ME_Type * _27;
+  long unsigned int _28;
+  struct MC_ME_Type * _29;
+  long unsigned int _30;
+  struct MC_ME_Type * _31;
+  long unsigned int _32;
+  struct MC_ME_Type * _33;
+  long unsigned int _34;
+  long unsigned int TimeoutTicks.6_35;
+  struct MC_ME_Type * _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  struct MC_ME_Type * _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  struct MC_ME_Type * _42;
+  long unsigned int _43;
+  struct MC_ME_Type * _44;
+  long unsigned int _45;
+  struct MC_ME_Type * _46;
+  long unsigned int _47;
+  struct MC_ME_Type * _48;
+  long unsigned int _49;
+  struct MC_ME_Type * _50;
+  long unsigned int _51;
+  struct MC_ME_Type * _52;
+  long unsigned int _53;
+  long unsigned int TimeoutTicks.7_54;
+  struct MC_ME_Type * _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  struct MC_ME_Type * _58;
+  long unsigned int _59;
+  long unsigned int _60;
+  struct MC_ME_Type * _61;
+  long unsigned int _62;
+  struct MC_ME_Type * _63;
+  long unsigned int _64;
+  struct MC_ME_Type * _65;
+  long unsigned int _66;
+  struct MC_ME_Type * _67;
+  long unsigned int _68;
+  struct MC_ME_Type * _69;
+  long unsigned int _70;
+  struct MC_ME_Type * _71;
+  long unsigned int _72;
+  long unsigned int TimeoutTicks.8_73;
+  struct MC_ME_Type * _74;
+  long unsigned int _75;
+  long unsigned int _76;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutOccurred_85 = 0;
+  # DEBUG TimeoutOccurred => TimeoutOccurred_85
+  # DEBUG BEGIN_STMT
+  _1 = 1076740096B;
+  _2 ={v} _1->PRTN1_COFB1_STAT;
+  _3 = _2 & 16777216;
+  if (_3 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = 1076740096B;
+  _5 ={v} _4->PRTN1_COFB1_CLKEN;
+  _6 = 1076740096B;
+  _7 = _5 | 16777216;
+  _6->PRTN1_COFB1_CLKEN ={v} _7;
+  # DEBUG BEGIN_STMT
+  _8 = 1076740096B;
+  _9 ={v} _8->PRTN1_PCONF;
+  _10 = 1076740096B;
+  _11 = _9 | 1;
+  _10->PRTN1_PCONF ={v} _11;
+  # DEBUG BEGIN_STMT
+  _12 = 1076740096B;
+  _13 ={v} _12->PRTN1_PUPD;
+  _14 = 1076740096B;
+  _15 = _13 | 1;
+  _14->PRTN1_PUPD ={v} _15;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_McMeEnterKey ();
+  # DEBUG BEGIN_STMT
+  Clock_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.5_16 = TimeoutTicks;
+  TimeoutOccurred_93 = Clock_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.5_16);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_93
+  # DEBUG BEGIN_STMT
+  _17 = 1076740096B;
+  _18 ={v} _17->PRTN1_COFB1_STAT;
+  _19 = _18 & 16777216;
+  if (_19 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  if (TimeoutOccurred_93 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_93 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_ReportClockErrors (1, 7);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _20 = 1076740096B;
+  _21 ={v} _20->PRTN1_COFB1_STAT;
+  _22 = _21 & 2097152;
+  if (_22 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _23 = 1076740096B;
+  _24 ={v} _23->PRTN1_COFB1_CLKEN;
+  _25 = 1076740096B;
+  _26 = _24 | 2097152;
+  _25->PRTN1_COFB1_CLKEN ={v} _26;
+  # DEBUG BEGIN_STMT
+  _27 = 1076740096B;
+  _28 ={v} _27->PRTN1_PCONF;
+  _29 = 1076740096B;
+  _30 = _28 | 1;
+  _29->PRTN1_PCONF ={v} _30;
+  # DEBUG BEGIN_STMT
+  _31 = 1076740096B;
+  _32 ={v} _31->PRTN1_PUPD;
+  _33 = 1076740096B;
+  _34 = _32 | 1;
+  _33->PRTN1_PUPD ={v} _34;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_McMeEnterKey ();
+  # DEBUG BEGIN_STMT
+  Clock_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.6_35 = TimeoutTicks;
+  TimeoutOccurred_101 = Clock_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.6_35);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_101
+  # DEBUG BEGIN_STMT
+  _36 = 1076740096B;
+  _37 ={v} _36->PRTN1_COFB1_STAT;
+  _38 = _37 & 2097152;
+  if (_38 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  if (TimeoutOccurred_101 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_101 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_ReportClockErrors (1, 5);
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _39 = 1076740096B;
+  _40 ={v} _39->PRTN1_COFB1_STAT;
+  _41 = _40 & 524288;
+  if (_41 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _42 = 1076740096B;
+  _43 ={v} _42->PRTN1_COFB1_CLKEN;
+  _44 = 1076740096B;
+  _45 = _43 | 524288;
+  _44->PRTN1_COFB1_CLKEN ={v} _45;
+  # DEBUG BEGIN_STMT
+  _46 = 1076740096B;
+  _47 ={v} _46->PRTN1_PCONF;
+  _48 = 1076740096B;
+  _49 = _47 | 1;
+  _48->PRTN1_PCONF ={v} _49;
+  # DEBUG BEGIN_STMT
+  _50 = 1076740096B;
+  _51 ={v} _50->PRTN1_PUPD;
+  _52 = 1076740096B;
+  _53 = _51 | 1;
+  _52->PRTN1_PUPD ={v} _53;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_McMeEnterKey ();
+  # DEBUG BEGIN_STMT
+  Clock_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.7_54 = TimeoutTicks;
+  TimeoutOccurred_109 = Clock_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.7_54);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_109
+  # DEBUG BEGIN_STMT
+  _55 = 1076740096B;
+  _56 ={v} _55->PRTN1_COFB1_STAT;
+  _57 = _56 & 524288;
+  if (_57 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  if (TimeoutOccurred_109 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_109 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_ReportClockErrors (1, 6);
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _58 = 1076740096B;
+  _59 ={v} _58->PRTN1_COFB1_STAT;
+  _60 = _59 & 32768;
+  if (_60 == 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _61 = 1076740096B;
+  _62 ={v} _61->PRTN1_COFB1_CLKEN;
+  _63 = 1076740096B;
+  _64 = _62 | 32768;
+  _63->PRTN1_COFB1_CLKEN ={v} _64;
+  # DEBUG BEGIN_STMT
+  _65 = 1076740096B;
+  _66 ={v} _65->PRTN1_PCONF;
+  _67 = 1076740096B;
+  _68 = _66 | 1;
+  _67->PRTN1_PCONF ={v} _68;
+  # DEBUG BEGIN_STMT
+  _69 = 1076740096B;
+  _70 ={v} _69->PRTN1_PUPD;
+  _71 = 1076740096B;
+  _72 = _70 | 1;
+  _71->PRTN1_PUPD ={v} _72;
+  # DEBUG BEGIN_STMT
+  Clock_Ip_McMeEnterKey ();
+  # DEBUG BEGIN_STMT
+  Clock_Ip_StartTimeout (&StartTime, &ElapsedTime, &TimeoutTicks, 50000);
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TimeoutTicks.8_73 = TimeoutTicks;
+  TimeoutOccurred_117 = Clock_Ip_TimeoutExpired (&StartTime, &ElapsedTime, TimeoutTicks.8_73);
+  # DEBUG TimeoutOccurred => TimeoutOccurred_117
+  # DEBUG BEGIN_STMT
+  _74 = 1076740096B;
+  _75 ={v} _74->PRTN1_COFB1_STAT;
+  _76 = _75 & 32768;
+  if (_76 == 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  if (TimeoutOccurred_117 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  if (TimeoutOccurred_117 == 1)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  Clock_Ip_ReportClockErrors (1, 125);
+
+  <bb 26> :
+  StartTime ={v} {CLOBBER};
+  ElapsedTime ={v} {CLOBBER};
+  TimeoutTicks ={v} {CLOBBER};
+  return;
+
+}
+
+

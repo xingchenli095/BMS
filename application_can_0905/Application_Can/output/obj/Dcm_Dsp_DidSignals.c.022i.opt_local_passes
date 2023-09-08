@@ -1,0 +1,3312 @@
+Dcm_Dsp_DidSignals_WriteNvmData (NvM_BlockIdType NvRamBlockId, Dcm_OpStatusType OpStatus, const uint8 * SignalBuffer)
+{
+  Std_ReturnType CancelJobsRetVal;
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  Std_ReturnType NvMOperationStatus;
+  NvM_RequestResultType NvmRequestResult;
+  Std_ReturnType WriteBlockRetVal;
+  boolean NvmOperationPending;
+  Std_ReturnType OperationRetVal;
+  int _1;
+  unsigned char NvmRequestResult.10_2;
+  int _3;
+  unsigned char NvmRequestResult.11_4;
+  Std_ReturnType _50;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_12 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_12
+  # DEBUG BEGIN_STMT
+  NvmOperationPending_13 = 0;
+  # DEBUG NvmOperationPending => NvmOperationPending_13
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_14(D);
+  switch (_1) <default: <L38> [INV], case 0: <L0> [INV], case 1 ... 2: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  WriteBlockRetVal_39 = 1;
+  # DEBUG WriteBlockRetVal => WriteBlockRetVal_39
+  # DEBUG BEGIN_STMT
+  NvM_SetBlockLockStatus (NvRamBlockId_16(D), 0);
+  # DEBUG BEGIN_STMT
+  WriteBlockRetVal_43 = NvM_ASR40_WriteBlock (NvRamBlockId_16(D), SignalBuffer_41(D));
+  # DEBUG WriteBlockRetVal => WriteBlockRetVal_43
+  # DEBUG BEGIN_STMT
+  if (WriteBlockRetVal_43 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_48 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_48
+  goto <bb 25>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (WriteBlockRetVal_43 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 208, 15);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_47 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_47
+  goto <bb 25>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 211, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_45 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_45
+  goto <bb 25>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMOperationStatus_18 = NvM_ASR40_GetErrorStatus (NvRamBlockId_16(D), &NvmRequestResult);
+  # DEBUG NvMOperationStatus => NvMOperationStatus_18
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_14(D) != 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  NvmRequestResult.10_2 = NvmRequestResult;
+  _3 = (int) NvmRequestResult.10_2;
+  switch (_3) <default: <L14> [INV], case 0: <L11> [INV], case 1: <L13> [INV], case 2: <L12> [INV]>
+
+  <bb 11> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  OperationRetVal_35 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_35
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 12> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  OperationRetVal_33 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_33
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 13> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  OperationRetVal_34 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_34
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 14> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 211, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_37 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_37
+  # DEBUG BEGIN_STMT
+  goto <bb 24>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  NvmRequestResult.11_4 = NvmRequestResult;
+  if (NvmRequestResult.11_4 == 2)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_24
+  # DEBUG BEGIN_STMT
+  CancelJobsRetVal_26 = NvM_ASR40_CancelJobs (NvRamBlockId_16(D));
+  # DEBUG CancelJobsRetVal => CancelJobsRetVal_26
+  # DEBUG BEGIN_STMT
+  NvmOperationPending_27 = 1;
+  # DEBUG NvmOperationPending => NvmOperationPending_27
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24->BlockId = NvRamBlockId_16(D);
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24->NvMService = 2;
+  # DEBUG BEGIN_STMT
+  if (CancelJobsRetVal_26 == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_32 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_32
+  goto <bb 24>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (CancelJobsRetVal_26 == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 208, 14);
+  goto <bb 24>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 212, 2);
+  goto <bb 24>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 == 1)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 208, 15);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_22 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_22
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 213, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_20 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_20
+
+  <bb 24> :
+  # OperationRetVal_5 = PHI <OperationRetVal_12(15), OperationRetVal_22(22), OperationRetVal_20(23), OperationRetVal_33(12), OperationRetVal_34(13), OperationRetVal_37(14), OperationRetVal_35(11), OperationRetVal_12(20), OperationRetVal_12(19), OperationRetVal_32(17)>
+  # NvmOperationPending_7 = PHI <NvmOperationPending_13(15), NvmOperationPending_13(22), NvmOperationPending_13(23), NvmOperationPending_13(12), NvmOperationPending_13(13), NvmOperationPending_13(14), NvmOperationPending_13(11), NvmOperationPending_27(20), NvmOperationPending_27(19), NvmOperationPending_27(17)>
+  # DEBUG NvmOperationPending => NvmOperationPending_7
+  # DEBUG OperationRetVal => OperationRetVal_5
+  NvmRequestResult ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+
+  <bb 25> :
+  # OperationRetVal_6 = PHI <OperationRetVal_47(6), OperationRetVal_5(24), OperationRetVal_12(2), OperationRetVal_48(4), OperationRetVal_45(7)>
+  # NvmOperationPending_8 = PHI <NvmOperationPending_13(6), NvmOperationPending_7(24), NvmOperationPending_13(2), NvmOperationPending_13(4), NvmOperationPending_13(7)>
+<L38>:
+  # DEBUG NvmOperationPending => NvmOperationPending_8
+  # DEBUG OperationRetVal => OperationRetVal_6
+  # DEBUG BEGIN_STMT
+  if (OperationRetVal_6 != 10)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  if (NvmOperationPending_8 == 0)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  NvM_SetBlockLockStatus (NvRamBlockId_16(D), 1);
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  _50 = OperationRetVal_6;
+  return _50;
+
+}
+
+
+Dcm_Dsp_DidSignals_WriteDataAsync (const struct Dcm_DidDataType * DataCfg, uint8 * SignalBuffer, uint16 SignalLength, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc)
+{
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  unsigned char _1;
+  Std_ReturnType (*<T760>) (const uint8 *, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _2;
+  Std_ReturnType (*<T765>) (const uint8 *, uint16, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Std_ReturnType _36;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InterfaceRetVal_13 = 1;
+  # DEBUG InterfaceRetVal => InterfaceRetVal_13
+  # DEBUG BEGIN_STMT
+  OperationRetVal_14 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_14
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_16(D)->FixedLength;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = DataCfg_16(D)->WriteFixedLengthDataAsync;
+  InterfaceRetVal_24 = _2 (SignalBuffer_17(D), OpStatus_19(D), Nrc_20(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_24
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = DataCfg_16(D)->WriteVarLengthDataAsync;
+  InterfaceRetVal_22 = _3 (SignalBuffer_17(D), SignalLength_18(D), OpStatus_19(D), Nrc_20(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_22
+
+  <bb 5> :
+  # InterfaceRetVal_7 = PHI <InterfaceRetVal_24(3), InterfaceRetVal_22(4)>
+  # DEBUG InterfaceRetVal => InterfaceRetVal_7
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_7 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_35 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_35
+  goto <bb 19>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_7 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_30 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_30
+  # DEBUG BEGIN_STMT
+  _4 = *Nrc_20(D);
+  if (_4 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _5 = DataCfg_16(D)->FixedLength;
+  if (_5 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 53, 19);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 62, 19);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_33 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_33
+  # DEBUG BEGIN_STMT
+  *Nrc_20(D) = 16;
+  goto <bb 19>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_7 == 10)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_29 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_29
+  goto <bb 19>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _6 = DataCfg_16(D)->FixedLength;
+  if (_6 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 53, 2);
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 62, 2);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_27 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_27
+  # DEBUG BEGIN_STMT
+  *Nrc_20(D) = 16;
+
+  <bb 19> :
+  # OperationRetVal_8 = PHI <OperationRetVal_35(6), OperationRetVal_33(12), OperationRetVal_29(14), OperationRetVal_27(18), OperationRetVal_30(8)>
+  # DEBUG OperationRetVal => OperationRetVal_8
+  # DEBUG BEGIN_STMT
+  _36 = OperationRetVal_8;
+  return _36;
+
+}
+
+
+Dcm_Dsp_DidSignals_WriteDataSync (const struct Dcm_DidDataType * DataCfg, uint8 * SignalBuffer, uint16 SignalLength, Dcm_NegativeResponseCodeType * Nrc)
+{
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  unsigned char _1;
+  Std_ReturnType (*<T756>) (const uint8 *, Dcm_NegativeResponseCodeType *) _2;
+  Std_ReturnType (*<T75b>) (const uint8 *, uint16, Dcm_NegativeResponseCodeType *) _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  Std_ReturnType _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InterfaceRetVal_13 = 1;
+  # DEBUG InterfaceRetVal => InterfaceRetVal_13
+  # DEBUG BEGIN_STMT
+  OperationRetVal_14 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_14
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_16(D)->FixedLength;
+  if (_1 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = DataCfg_16(D)->WriteFixedDataSync;
+  InterfaceRetVal_23 = _2 (SignalBuffer_17(D), Nrc_19(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_23
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = DataCfg_16(D)->WriteVariableDataSync;
+  InterfaceRetVal_21 = _3 (SignalBuffer_17(D), SignalLength_18(D), Nrc_19(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_21
+
+  <bb 5> :
+  # InterfaceRetVal_7 = PHI <InterfaceRetVal_23(3), InterfaceRetVal_21(4)>
+  # DEBUG InterfaceRetVal => InterfaceRetVal_7
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_7 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_7 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_30 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_30
+  # DEBUG BEGIN_STMT
+  _4 = *Nrc_19(D);
+  if (_4 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 = DataCfg_16(D)->FixedLength;
+  if (_5 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 81, 19);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 82, 19);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_33 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_33
+  # DEBUG BEGIN_STMT
+  *Nrc_19(D) = 16;
+  goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _6 = DataCfg_16(D)->FixedLength;
+  if (_6 == 1)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 81, 2);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 82, 2);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_28 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_28
+  # DEBUG BEGIN_STMT
+  *Nrc_19(D) = 16;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  *Nrc_19(D) = 0;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_25 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_25
+
+  <bb 17> :
+  # OperationRetVal_8 = PHI <OperationRetVal_28(15), OperationRetVal_25(16), OperationRetVal_33(11), OperationRetVal_30(7)>
+  # DEBUG OperationRetVal => OperationRetVal_8
+  # DEBUG BEGIN_STMT
+  _35 = OperationRetVal_8;
+  return _35;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadNvmData (NvM_BlockIdType NvRamBlockId, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc, uint8 * SignalBuffer)
+{
+  Std_ReturnType CancelJobsRetVal;
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  Std_ReturnType NvMOperationStatus;
+  NvM_RequestResultType NvmRequestResult;
+  Std_ReturnType ReadBlockRetVal;
+  Std_ReturnType OperationRetVal;
+  int _1;
+  unsigned char NvmRequestResult.7_2;
+  int _3;
+  unsigned char NvmRequestResult.8_4;
+  unsigned char _5;
+  Std_ReturnType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_11 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_11
+  # DEBUG BEGIN_STMT
+  *Nrc_13(D) = 0;
+  # DEBUG BEGIN_STMT
+  _1 = (int) OpStatus_15(D);
+  switch (_1) <default: <L41> [INV], case 0: <L0> [INV], case 1 ... 2: <L7> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ReadBlockRetVal_44 = NvM_ASR40_ReadBlock (NvRamBlockId_16(D), SignalBuffer_42(D));
+  # DEBUG ReadBlockRetVal => ReadBlockRetVal_44
+  # DEBUG BEGIN_STMT
+  if (ReadBlockRetVal_44 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_49 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_49
+  goto <bb 26>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (ReadBlockRetVal_44 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_48 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_48
+  goto <bb 26>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 210, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_46 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_46
+  goto <bb 26>; [INV]
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  NvMOperationStatus_18 = NvM_ASR40_GetErrorStatus (NvRamBlockId_16(D), &NvmRequestResult);
+  # DEBUG NvMOperationStatus => NvMOperationStatus_18
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_15(D) != 2)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  NvmRequestResult.7_2 = NvmRequestResult;
+  _3 = (int) NvmRequestResult.7_2;
+  switch (_3) <default: <L17> [INV], case 0: <L11> [INV], case 1: <L16> [INV], case 2: <L14> [INV], case 5: <L15> [INV], case 7 ... 8: <L11> [INV]>
+
+  <bb 11> :
+<L11>:
+  # DEBUG BEGIN_STMT
+  OperationRetVal_37 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_37
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 12> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  OperationRetVal_34 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_34
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 13> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  *Nrc_13(D) = 34;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_33 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_33
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 14> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  *Nrc_13(D) = 16;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_36 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_36
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 15> :
+<L17>:
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 210, 2);
+  # DEBUG BEGIN_STMT
+  *Nrc_13(D) = 16;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_40 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_40
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  NvmRequestResult.8_4 = NvmRequestResult;
+  if (NvmRequestResult.8_4 == 2)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_24
+  # DEBUG BEGIN_STMT
+  CancelJobsRetVal_26 = NvM_ASR40_CancelJobs (NvRamBlockId_16(D));
+  # DEBUG CancelJobsRetVal => CancelJobsRetVal_26
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24->BlockId = NvRamBlockId_16(D);
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_24->NvMService = 1;
+  # DEBUG BEGIN_STMT
+  if (CancelJobsRetVal_26 == 0)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_31 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_31
+  goto <bb 25>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  if (CancelJobsRetVal_26 == 1)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 14);
+  goto <bb 25>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 212, 2);
+  goto <bb 25>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_22 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_22
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 213, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_20 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_20
+
+  <bb 25> :
+  # OperationRetVal_6 = PHI <OperationRetVal_11(16), OperationRetVal_22(23), OperationRetVal_20(24), OperationRetVal_34(12), OperationRetVal_33(13), OperationRetVal_36(14), OperationRetVal_40(15), OperationRetVal_37(11), OperationRetVal_11(21), OperationRetVal_11(20), OperationRetVal_31(18)>
+  # DEBUG OperationRetVal => OperationRetVal_6
+  NvmRequestResult ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+
+  <bb 26> :
+  # OperationRetVal_7 = PHI <OperationRetVal_48(6), OperationRetVal_6(25), OperationRetVal_11(2), OperationRetVal_49(4), OperationRetVal_46(7)>
+<L41>:
+  # DEBUG OperationRetVal => OperationRetVal_7
+  # DEBUG BEGIN_STMT
+  if (OperationRetVal_7 == 1)
+    goto <bb 27>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 27> :
+  _5 = *Nrc_13(D);
+  if (_5 == 0)
+    goto <bb 28>; [INV]
+  else
+    goto <bb 29>; [INV]
+
+  <bb 28> :
+  # DEBUG BEGIN_STMT
+  *Nrc_13(D) = 16;
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _51 = OperationRetVal_7;
+  return _51;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadData (const struct Dcm_DidDataType * DataCfg, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc, uint8 * SignalBuffer)
+{
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  unsigned char _1;
+  int _2;
+  short unsigned int _3;
+  Std_ReturnType (*<T74f>) (uint8 *) _4;
+  Std_ReturnType (*<T752>) (Dcm_OpStatusType, uint8 *) _5;
+  Std_ReturnType _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InterfaceRetVal_8 = 1;
+  # DEBUG InterfaceRetVal => InterfaceRetVal_8
+  # DEBUG BEGIN_STMT
+  OperationRetVal_9 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_9
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_11(D)->AccessInterface;
+  _2 = (int) _1;
+  switch (_2) <default: <L18> [INV], case 0: <L0> [INV], case 1 ... 2: <L6> [INV], case 4 ... 5: <L1> [INV], case 6: <L14> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _3 = DataCfg_11(D)->NvRamBlockId;
+  OperationRetVal_31 = Dcm_Dsp_DidSignals_ReadNvmData (_3, OpStatus_22(D), Nrc_12(D), SignalBuffer_15(D));
+  # DEBUG OperationRetVal => OperationRetVal_31
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_11(D)->ReadDataFncSync;
+  InterfaceRetVal_17 = _4 (SignalBuffer_15(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_17
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_17 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_21 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_21
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 52, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_19 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_19
+  # DEBUG BEGIN_STMT
+  *Nrc_12(D) = 16;
+  goto <bb 13>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _5 = DataCfg_11(D)->ReadDataFncAsync;
+  InterfaceRetVal_24 = _5 (OpStatus_22(D), SignalBuffer_15(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_24
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_24 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_24 == 10)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_29 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_29
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 59, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_27 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_27
+  # DEBUG BEGIN_STMT
+  *Nrc_12(D) = 16;
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_25 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_25
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  *Nrc_12(D) = 16;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_14 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_14
+  # DEBUG BEGIN_STMT
+
+  <bb 13> :
+  # OperationRetVal_6 = PHI <OperationRetVal_31(3), OperationRetVal_19(6), OperationRetVal_25(11), OperationRetVal_14(12), OperationRetVal_9(2), OperationRetVal_21(5), OperationRetVal_27(10), OperationRetVal_29(9)>
+<L18>:
+  # DEBUG OperationRetVal => OperationRetVal_6
+  # DEBUG BEGIN_STMT
+  _32 = OperationRetVal_6;
+  return _32;
+
+}
+
+
+Dcm_Dsp_DidSignals_CopyToBuffer (struct Dcm_DidSignalReadContextType * ReadContext, Dcm_NegativeResponseCodeType * Nrc)
+{
+  uint32 SizeToCopy;
+  Dcm_MsgItemType * DataPtr;
+  uint16 NumSignalBytes;
+  struct Dcm_DidDataType * const DataCfg;
+  Std_ReturnType BufferCheckStatus;
+  short unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  unsigned char _11;
+  uint8 * _12;
+  unsigned char _13;
+  uint8 * _14;
+  long unsigned int _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  unsigned char _20;
+  unsigned char _21;
+  uint8 * _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  short unsigned int _26;
+  long unsigned int _27;
+  unsigned char _28;
+  uint8 * _29;
+  short unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  Std_ReturnType _55;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  BufferCheckStatus_37 = 1;
+  # DEBUG BufferCheckStatus => BufferCheckStatus_37
+  # DEBUG BEGIN_STMT
+  DataCfg_39 = &ReadContext_38(D)->DataCfg;
+  # DEBUG DataCfg => DataCfg_39
+  # DEBUG BEGIN_STMT
+  NumSignalBytes_40 = 0;
+  # DEBUG NumSignalBytes => NumSignalBytes_40
+  # DEBUG BEGIN_STMT
+  _1 = ReadContext_38(D)->SignalOffset;
+  _2 = (long unsigned int) _1;
+  _3 = ReadContext_38(D)->SignalLength;
+  _4 = _2 + _3;
+  _5 = _4 + 7;
+  _6 = _5 / 8;
+  NumSignalBytes_42 = (uint16) _6;
+  # DEBUG NumSignalBytes => NumSignalBytes_42
+  # DEBUG BEGIN_STMT
+  _7 = ReadContext_38(D)->BufferOffset;
+  _8 = (long unsigned int) NumSignalBytes_42;
+  _9 = _7 + _8;
+  _10 = ReadContext_38(D)->BufferLimit;
+  if (_9 <= _10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _11 = ReadContext_38(D)->OpStatus;
+  _12 = ReadContext_38(D)->SignalBuffer;
+  BufferCheckStatus_47 = Dcm_Dsp_DidSignals_ReadData (DataCfg_39, _11, Nrc_43(D), _12);
+  # DEBUG BufferCheckStatus => BufferCheckStatus_47
+  # DEBUG BEGIN_STMT
+  _13 = ReadContext_38(D)->OpStatus;
+  if (_13 != 2)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (BufferCheckStatus_47 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 = ReadContext_38(D)->OutputBuffer;
+  _15 = ReadContext_38(D)->BufferOffset;
+  DataPtr_49 = _14 + _15;
+  # DEBUG DataPtr => DataPtr_49
+  # DEBUG BEGIN_STMT
+  _16 = DataCfg_39->DataType;
+  if (_16 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _17 = DataCfg_39->DataType;
+  if (_17 == 7)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _18 = DataCfg_39->DataType;
+  if (_18 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _19 = DataCfg_39->DataType;
+  if (_19 == 9)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  _20 = ReadContext_38(D)->EndiannessConversion;
+  if (_20 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  _21 = DataCfg_39->AccessInterface;
+  if (_21 != 3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _22 = ReadContext_38(D)->SignalBuffer;
+  _23 = ReadContext_38(D)->SignalLength;
+  _24 = _23 + 7;
+  _25 = _24 / 8;
+  _26 = (short unsigned int) _25;
+  _27 = (long unsigned int) _26;
+  _28 = DataCfg_39->DataType;
+  Dcm_Dsp_DidSignals_Endianness_Conversion (_22, _27, _28);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SizeToCopy_51 = ReadContext_38(D)->SignalLength;
+  # DEBUG SizeToCopy => SizeToCopy_51
+  # DEBUG BEGIN_STMT
+  _29 = ReadContext_38(D)->SignalBuffer;
+  _30 = ReadContext_38(D)->SignalOffset;
+  _31 = (long unsigned int) _30;
+  Dcm_DspInternal_CopySignalData (_29, DataPtr_49, 0, _31, SizeToCopy_51, 3, 1);
+  # DEBUG BEGIN_STMT
+  _32 = (long unsigned int) NumSignalBytes_42;
+  ReadContext_38(D)->BufferOffset = _32;
+  goto <bb 15>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  BufferCheckStatus_48 = 0;
+  # DEBUG BufferCheckStatus => BufferCheckStatus_48
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  *Nrc_43(D) = 20;
+  # DEBUG BEGIN_STMT
+  BufferCheckStatus_45 = 1;
+  # DEBUG BufferCheckStatus => BufferCheckStatus_45
+
+  <bb 15> :
+  # BufferCheckStatus_33 = PHI <BufferCheckStatus_48(13), BufferCheckStatus_45(14), BufferCheckStatus_47(4), BufferCheckStatus_47(12)>
+  # DEBUG BufferCheckStatus => BufferCheckStatus_33
+  # DEBUG BEGIN_STMT
+  if (BufferCheckStatus_33 != 10)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 4;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _55 = BufferCheckStatus_33;
+  return _55;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadDataLength (const struct Dcm_DidDataType * DataCfg, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc, uint16 * SignalLength)
+{
+  boolean PendingAllowed;
+  uint16 ReadSignalDataLengthInBits;
+  uint16 ReadSignalDataLength;
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  unsigned char _1;
+  unsigned char _2;
+  Std_ReturnType (*<T74b>) (Dcm_OpStatusType, uint16 *) _3;
+  Std_ReturnType (*<T746>) (uint16 *) _4;
+  short unsigned int ReadSignalDataLength.5_5;
+  short unsigned int ReadSignalDataLength.6_6;
+  unsigned char _7;
+  unsigned char _8;
+  Std_ReturnType _45;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  InterfaceRetVal_16 = 1;
+  # DEBUG InterfaceRetVal => InterfaceRetVal_16
+  # DEBUG BEGIN_STMT
+  OperationRetVal_17 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_17
+  # DEBUG BEGIN_STMT
+  ReadSignalDataLength = 0;
+  # DEBUG BEGIN_STMT
+  ReadSignalDataLengthInBits_20 = 0;
+  # DEBUG ReadSignalDataLengthInBits => ReadSignalDataLengthInBits_20
+  # DEBUG BEGIN_STMT
+  PendingAllowed_21 = 0;
+  # DEBUG PendingAllowed => PendingAllowed_21
+  # DEBUG BEGIN_STMT
+  *Nrc_22(D) = 0;
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_24(D)->AccessInterface;
+  _2 = _1 + 255;
+  if (_2 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = DataCfg_24(D)->ReadDataLengthAsync;
+  InterfaceRetVal_29 = _3 (OpStatus_27(D), &ReadSignalDataLength);
+  # DEBUG InterfaceRetVal => InterfaceRetVal_29
+  # DEBUG BEGIN_STMT
+  PendingAllowed_30 = 1;
+  # DEBUG PendingAllowed => PendingAllowed_30
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_24(D)->ReadDataLengthSync;
+  InterfaceRetVal_26 = _4 (&ReadSignalDataLength);
+  # DEBUG InterfaceRetVal => InterfaceRetVal_26
+
+  <bb 5> :
+  # InterfaceRetVal_9 = PHI <InterfaceRetVal_29(3), InterfaceRetVal_26(4)>
+  # PendingAllowed_11 = PHI <PendingAllowed_30(3), PendingAllowed_21(4)>
+  # DEBUG PendingAllowed => PendingAllowed_11
+  # DEBUG InterfaceRetVal => InterfaceRetVal_9
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_9 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_9 == 10)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  if (PendingAllowed_11 == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_40 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_40
+  goto <bb 18>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (PendingAllowed_11 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 76, 2);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 54, 2);
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_43 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_43
+  # DEBUG BEGIN_STMT
+  *Nrc_22(D) = 16;
+  goto <bb 18>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReadSignalDataLength.5_5 = ReadSignalDataLength;
+  ReadSignalDataLengthInBits_31 = ReadSignalDataLength.5_5 * 8;
+  # DEBUG ReadSignalDataLengthInBits => ReadSignalDataLengthInBits_31
+  # DEBUG BEGIN_STMT
+  *SignalLength_32(D) = ReadSignalDataLengthInBits_31;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_34 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_34
+  # DEBUG BEGIN_STMT
+  ReadSignalDataLength.6_6 = ReadSignalDataLength;
+  if (ReadSignalDataLength.6_6 > 8191)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _7 = DataCfg_24(D)->AccessInterface;
+  _8 = _7 + 255;
+  if (_8 <= 1)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 76, 2);
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 54, 2);
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  *Nrc_22(D) = 16;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_38 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_38
+  # DEBUG BEGIN_STMT
+  *SignalLength_32(D) = 0;
+
+  <bb 18> :
+  # OperationRetVal_10 = PHI <OperationRetVal_43(12), OperationRetVal_34(13), OperationRetVal_38(17), OperationRetVal_40(8)>
+  # DEBUG OperationRetVal => OperationRetVal_10
+  # DEBUG BEGIN_STMT
+  _45 = OperationRetVal_10;
+  ReadSignalDataLength ={v} {CLOBBER};
+  return _45;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadConditionCheckAsync (const struct Dcm_DidDataType * DataCfg, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc)
+{
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  Std_ReturnType (*<T740>) (Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _1;
+  unsigned char _2;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OperationRetVal_5 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_7(D)->ConditionCheckReadAsync;
+  InterfaceRetVal_11 = _1 (OpStatus_8(D), Nrc_9(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_11
+  # DEBUG BEGIN_STMT
+  if (OpStatus_8(D) != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_11 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_11 == 10)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_21 = 10;
+  # DEBUG OperationRetVal => OperationRetVal_21
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_11 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_18 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_18
+  # DEBUG BEGIN_STMT
+  _2 = *Nrc_9(D);
+  if (_2 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 55, 19);
+  # DEBUG BEGIN_STMT
+  *Nrc_9(D) = 16;
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 55, 2);
+  # DEBUG BEGIN_STMT
+  OperationRetVal_16 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_16
+  # DEBUG BEGIN_STMT
+  *Nrc_9(D) = 16;
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *Nrc_9(D) = 0;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_14 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_14
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_12 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_12
+
+  <bb 12> :
+  # OperationRetVal_3 = PHI <OperationRetVal_14(10), OperationRetVal_12(11), OperationRetVal_18(8), OperationRetVal_16(9), OperationRetVal_18(7), OperationRetVal_21(5)>
+  # DEBUG OperationRetVal => OperationRetVal_3
+  # DEBUG BEGIN_STMT
+  _22 = OperationRetVal_3;
+  return _22;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadConditionCheckSync (const struct Dcm_DidDataType * DataCfg, Dcm_NegativeResponseCodeType * Nrc)
+{
+  Std_ReturnType OperationRetVal;
+  Std_ReturnType InterfaceRetVal;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _1;
+  unsigned char _2;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_6(D)->ConditionCheckReadSync;
+  InterfaceRetVal_9 = _1 (Nrc_7(D));
+  # DEBUG InterfaceRetVal => InterfaceRetVal_9
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_9 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OperationRetVal_12 = 1;
+  # DEBUG OperationRetVal => OperationRetVal_12
+  # DEBUG BEGIN_STMT
+  if (InterfaceRetVal_9 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _2 = *Nrc_7(D);
+  if (_2 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 73, 19);
+  # DEBUG BEGIN_STMT
+  *Nrc_7(D) = 16;
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 73, 2);
+  # DEBUG BEGIN_STMT
+  *Nrc_7(D) = 16;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  *Nrc_7(D) = 0;
+  # DEBUG BEGIN_STMT
+  OperationRetVal_11 = 0;
+  # DEBUG OperationRetVal => OperationRetVal_11
+
+  <bb 8> :
+  # OperationRetVal_3 = PHI <OperationRetVal_12(6), OperationRetVal_11(7), OperationRetVal_12(5), OperationRetVal_12(4)>
+  # DEBUG OperationRetVal => OperationRetVal_3
+  # DEBUG BEGIN_STMT
+  _17 = OperationRetVal_3;
+  return _17;
+
+}
+
+
+Dcm_Dsp_DidSignals_ReadConditionCheck (const struct Dcm_DidDataType * DataCfg, Dcm_OpStatusType OpStatus, Dcm_NegativeResponseCodeType * Nrc)
+{
+  Std_ReturnType ConditionCheckStatus;
+  unsigned char _1;
+  unsigned char _2;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _3;
+  unsigned char _4;
+  unsigned char _5;
+  Std_ReturnType (*<T740>) (Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _6;
+  Std_ReturnType _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_9 = 1;
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_9
+  # DEBUG BEGIN_STMT
+  _1 = DataCfg_11(D)->AccessInterface;
+  _2 = _1 + 252;
+  if (_2 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = DataCfg_11(D)->ConditionCheckReadSync;
+  if (_3 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_21 = Dcm_Dsp_DidSignals_ReadConditionCheckSync (DataCfg_11(D), Nrc_15(D));
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_21
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_19 = 0;
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_19
+  goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_11(D)->AccessInterface;
+  _5 = _4 + 255;
+  if (_5 <= 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 = DataCfg_11(D)->ConditionCheckReadAsync;
+  if (_6 != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (OpStatus_14(D) != 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_18 = Dcm_Dsp_DidSignals_ReadConditionCheckAsync (DataCfg_11(D), OpStatus_14(D), Nrc_15(D));
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_18
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_ReadConditionCheckAsync (DataCfg_11(D), 2, Nrc_15(D));
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_13 = 0;
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_13
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ConditionCheckStatus_12 = 0;
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_12
+
+  <bb 13> :
+  # ConditionCheckStatus_7 = PHI <ConditionCheckStatus_19(5), ConditionCheckStatus_13(11), ConditionCheckStatus_12(12), ConditionCheckStatus_21(4), ConditionCheckStatus_9(10), ConditionCheckStatus_18(9)>
+  # DEBUG ConditionCheckStatus => ConditionCheckStatus_7
+  # DEBUG BEGIN_STMT
+  _22 = ConditionCheckStatus_7;
+  return _22;
+
+}
+
+
+Dcm_Dsp_DidSignals_EndianessConversion_CalculateSignalLength (Dcm_DidDataByteType DataType, Dcm_MsgLenType DataLength)
+{
+  boolean ConversionNeeded;
+  uint8 DataTypeBase;
+  Dcm_MsgLenType SignalLength;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  Dcm_MsgLenType _25;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  SignalLength_12 = 0;
+  # DEBUG SignalLength => SignalLength_12
+  # DEBUG BEGIN_STMT
+  DataTypeBase_13 = 0;
+  # DEBUG DataTypeBase => DataTypeBase_13
+  # DEBUG BEGIN_STMT
+  ConversionNeeded_14 = 0;
+  # DEBUG ConversionNeeded => ConversionNeeded_14
+  # DEBUG BEGIN_STMT
+  _1 = (int) DataType_15(D);
+  switch (_1) <default: <L4> [INV], case 1: <L0> [INV], case 3: <L2> [INV], case 7: <L0> [INV], case 9: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  DataTypeBase_18 = 16;
+  # DEBUG DataTypeBase => DataTypeBase_18
+  # DEBUG BEGIN_STMT
+  ConversionNeeded_19 = 1;
+  # DEBUG ConversionNeeded => ConversionNeeded_19
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  DataTypeBase_16 = 32;
+  # DEBUG DataTypeBase => DataTypeBase_16
+  # DEBUG BEGIN_STMT
+  ConversionNeeded_17 = 1;
+  # DEBUG ConversionNeeded => ConversionNeeded_17
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SignalLength_21 = DataLength_20(D);
+  # DEBUG SignalLength => SignalLength_21
+  # DEBUG BEGIN_STMT
+  ConversionNeeded_22 = 0;
+  # DEBUG ConversionNeeded => ConversionNeeded_22
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  # SignalLength_8 = PHI <SignalLength_12(3), SignalLength_12(4), SignalLength_21(5)>
+  # DataTypeBase_10 = PHI <DataTypeBase_18(3), DataTypeBase_16(4), DataTypeBase_13(5)>
+  # ConversionNeeded_11 = PHI <ConversionNeeded_19(3), ConversionNeeded_17(4), ConversionNeeded_22(5)>
+  # DEBUG ConversionNeeded => ConversionNeeded_11
+  # DEBUG DataTypeBase => DataTypeBase_10
+  # DEBUG SignalLength => SignalLength_8
+  # DEBUG BEGIN_STMT
+  if (ConversionNeeded_11 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _2 = (long unsigned int) DataTypeBase_10;
+  _3 = DataLength_20(D) % _2;
+  if (_3 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SignalLength_24 = DataLength_20(D);
+  # DEBUG SignalLength => SignalLength_24
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _4 = (long unsigned int) DataTypeBase_10;
+  _5 = DataLength_20(D) / _4;
+  _6 = _5 + 1;
+  _7 = (long unsigned int) DataTypeBase_10;
+  SignalLength_23 = _6 * _7;
+  # DEBUG SignalLength => SignalLength_23
+
+  <bb 10> :
+  # SignalLength_9 = PHI <SignalLength_8(6), SignalLength_24(8), SignalLength_23(9)>
+  # DEBUG SignalLength => SignalLength_9
+  # DEBUG BEGIN_STMT
+  _25 = SignalLength_9;
+  return _25;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetIOControlDidDataAsyncFuncPointers (struct Dcm_DidDataType * DidDataPtr, uint16 DidDataIndex, const union Dcm_VariableFunctionPointerRecordType * DataCfg)
+{
+  const Dcm_DidDataDescriptorType DataDescriptor;
+  int _1;
+  unsigned int _2;
+  unsigned int _3;
+  Std_ReturnType (*<T740>) (Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  Std_ReturnType (*<T760>) (const uint8 *, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _9;
+  Std_ReturnType (*<T765>) (const uint8 *, uint16, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _10;
+  unsigned int _11;
+  unsigned int _12;
+  Std_ReturnType (*<T740>) (Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _13;
+  signed short DataDescriptor.1_14;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _16;
+  const union Dcm_VariableFunctionPointerRecordType * _37;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidDataIndex_24(D);
+  DataDescriptor_26 = Dcm_DidDataIndexingArray[_1].DidDataDescriptor;
+  # DEBUG DataDescriptor => DataDescriptor_26
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) DataDescriptor_26;
+  _3 = _2 & 8192;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_27(D)->FreezeCurrentStateAsync;
+  DidDataPtr_28(D)->FreezeCurrentStateAsync = _4;
+  # DEBUG BEGIN_STMT
+  DataCfg_30 = DataCfg_27(D) + 4;
+  # DEBUG DataCfg => DataCfg_30
+
+  <bb 4> :
+  # DataCfg_15 = PHI <DataCfg_27(D)(2), DataCfg_30(3)>
+  # DEBUG DataCfg => DataCfg_15
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) DataDescriptor_26;
+  _6 = _5 & 4096;
+  if (_6 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = (unsigned int) DataDescriptor_26;
+  _8 = _7 & 8;
+  if (_8 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = DataCfg_15->ShortTermAdjustmentFixedAsync;
+  DidDataPtr_28(D)->ShortTermAdjustmentFixedAsync = _9;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _10 = DataCfg_15->ShortTermAdjustmentVariableAsync;
+  DidDataPtr_28(D)->ShortTermAdjustmentVariableAsync = _10;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DataCfg_33 = DataCfg_15 + 4;
+  # DEBUG DataCfg => DataCfg_33
+
+  <bb 9> :
+  # DataCfg_17 = PHI <DataCfg_15(4), DataCfg_33(8)>
+  # DEBUG DataCfg => DataCfg_17
+  # DEBUG BEGIN_STMT
+  _11 = (unsigned int) DataDescriptor_26;
+  _12 = _11 & 16384;
+  if (_12 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _13 = DataCfg_17->ResetToDefaultAsync;
+  DidDataPtr_28(D)->ResetToDefaultAsync = _13;
+  # DEBUG BEGIN_STMT
+  DataCfg_35 = DataCfg_17 + 4;
+  # DEBUG DataCfg => DataCfg_35
+
+  <bb 11> :
+  # DataCfg_18 = PHI <DataCfg_17(9), DataCfg_35(10)>
+  # DEBUG DataCfg => DataCfg_18
+  # DEBUG BEGIN_STMT
+  DataDescriptor.1_14 = (signed short) DataDescriptor_26;
+  if (DataDescriptor.1_14 < 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = DataCfg_18->ReturnControlToEcuSync;
+  DidDataPtr_28(D)->ReturnControlToEcuSyncUnion.ReturnControlToEcuSync = _16;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _37 = DataCfg_18;
+  return _37;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetReadWriteDidDataAsyncFuncPointers (struct Dcm_DidDataType * DidDataPtr, uint16 DidDataIndex, const union Dcm_VariableFunctionPointerRecordType * DataCfg)
+{
+  const Dcm_DidDataDescriptorType DataDescriptor;
+  int _1;
+  unsigned int _2;
+  unsigned int _3;
+  Std_ReturnType (*<T740>) (Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _4;
+  unsigned int _5;
+  unsigned int _6;
+  Std_ReturnType (*<T74b>) (Dcm_OpStatusType, uint16 *) _8;
+  unsigned int _9;
+  unsigned int _10;
+  Std_ReturnType (*<T752>) (Dcm_OpStatusType, uint8 *) _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  Std_ReturnType (*<T760>) (const uint8 *, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _16;
+  Std_ReturnType (*<T765>) (const uint8 *, uint16, Dcm_OpStatusType, Dcm_NegativeResponseCodeType *) _17;
+  const union Dcm_VariableFunctionPointerRecordType * _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidDataIndex_26(D);
+  DataDescriptor_28 = Dcm_DidDataIndexingArray[_1].DidDataDescriptor;
+  # DEBUG DataDescriptor => DataDescriptor_28
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned int) DataDescriptor_28;
+  _3 = _2 & 1024;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_29(D)->ConditionCheckReadAsync;
+  DidDataPtr_30(D)->ConditionCheckReadAsync = _4;
+  # DEBUG BEGIN_STMT
+  DataCfg_32 = DataCfg_29(D) + 4;
+  # DEBUG DataCfg => DataCfg_32
+
+  <bb 4> :
+  # DataCfg_7 = PHI <DataCfg_29(D)(2), DataCfg_32(3)>
+  # DEBUG DataCfg => DataCfg_7
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned int) DataDescriptor_28;
+  _6 = _5 & 512;
+  if (_6 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = DataCfg_7->ReadDataLengthAsync;
+  DidDataPtr_30(D)->ReadDataLengthAsync = _8;
+  # DEBUG BEGIN_STMT
+  DataCfg_34 = DataCfg_7 + 4;
+  # DEBUG DataCfg => DataCfg_34
+
+  <bb 6> :
+  # DataCfg_18 = PHI <DataCfg_7(4), DataCfg_34(5)>
+  # DEBUG DataCfg => DataCfg_18
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) DataDescriptor_28;
+  _10 = _9 & 256;
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = DataCfg_18->ReadDataFncAsync;
+  DidDataPtr_30(D)->ReadDataFncAsync = _11;
+  # DEBUG BEGIN_STMT
+  DataCfg_36 = DataCfg_18 + 4;
+  # DEBUG DataCfg => DataCfg_36
+
+  <bb 8> :
+  # DataCfg_19 = PHI <DataCfg_18(6), DataCfg_36(7)>
+  # DEBUG DataCfg => DataCfg_19
+  # DEBUG BEGIN_STMT
+  _12 = (unsigned int) DataDescriptor_28;
+  _13 = _12 & 2048;
+  if (_13 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) DataDescriptor_28;
+  _15 = _14 & 8;
+  if (_15 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _16 = DataCfg_19->WriteFixedLengthDataAsync;
+  DidDataPtr_30(D)->WriteFixedLengthDataAsync = _16;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _17 = DataCfg_19->WriteVarLengthDataAsync;
+  DidDataPtr_30(D)->WriteVarLengthDataAsync = _17;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  DataCfg_39 = DataCfg_19 + 4;
+  # DEBUG DataCfg => DataCfg_39
+
+  <bb 13> :
+  # DataCfg_20 = PHI <DataCfg_19(8), DataCfg_39(12)>
+  # DEBUG DataCfg => DataCfg_20
+  # DEBUG BEGIN_STMT
+  _40 = DataCfg_20;
+  return _40;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetDidDataAsyncFuncPointers (struct Dcm_DidDataType * DidDataPtr, uint16 DidDataIndex)
+{
+  const union Dcm_VariableFunctionPointerRecordType * DataCfg;
+  const uint32 DataPosition;
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidDataIndex_2(D);
+  DataPosition_4 = Dcm_DidDataIndexingArray[_1].DidDataPosition;
+  # DEBUG DataPosition => DataPosition_4
+  # DEBUG BEGIN_STMT
+  DataCfg_5 = &Dcm_DidDataTable[DataPosition_4];
+  # DEBUG DataCfg => DataCfg_5
+  # DEBUG BEGIN_STMT
+  DataCfg_8 = Dcm_Dsp_DidSignals_GetReadWriteDidDataAsyncFuncPointers (DidDataPtr_6(D), DidDataIndex_2(D), DataCfg_5);
+  # DEBUG DataCfg => DataCfg_8
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetIOControlDidDataAsyncFuncPointers (DidDataPtr_6(D), DidDataIndex_2(D), DataCfg_8);
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetDidDataSyncFuncPointers (struct Dcm_DidDataType * DidDataPtr, uint16 DidDataIndex)
+{
+  const union Dcm_VariableFunctionPointerRecordType * DataCfg;
+  const uint32 DataPosition;
+  const Dcm_DidDataDescriptorType DataDescriptor;
+  int _1;
+  int _2;
+  unsigned int _3;
+  unsigned int _4;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _5;
+  unsigned int _6;
+  unsigned int _7;
+  Std_ReturnType (*<T746>) (uint16 *) _8;
+  unsigned int _9;
+  unsigned int _10;
+  Std_ReturnType (*<T74f>) (uint8 *) _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  Std_ReturnType (*<T756>) (const uint8 *, Dcm_NegativeResponseCodeType *) _16;
+  Std_ReturnType (*<T75b>) (const uint8 *, uint16, Dcm_NegativeResponseCodeType *) _17;
+  unsigned int _18;
+  unsigned int _19;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _20;
+  unsigned int _21;
+  unsigned int _22;
+  unsigned int _23;
+  unsigned int _24;
+  Std_ReturnType (*<T756>) (const uint8 *, Dcm_NegativeResponseCodeType *) _25;
+  Std_ReturnType (*<T75b>) (const uint8 *, uint16, Dcm_NegativeResponseCodeType *) _26;
+  unsigned int _27;
+  unsigned int _28;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _29;
+  signed short DataDescriptor.0_30;
+  Std_ReturnType (*<T73c>) (Dcm_NegativeResponseCodeType *) _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidDataIndex_49(D);
+  DataDescriptor_51 = Dcm_DidDataIndexingArray[_1].DidDataDescriptor;
+  # DEBUG DataDescriptor => DataDescriptor_51
+  # DEBUG BEGIN_STMT
+  _2 = (int) DidDataIndex_49(D);
+  DataPosition_52 = Dcm_DidDataIndexingArray[_2].DidDataPosition;
+  # DEBUG DataPosition => DataPosition_52
+  # DEBUG BEGIN_STMT
+  DataCfg_53 = &Dcm_DidDataTable[DataPosition_52];
+  # DEBUG DataCfg => DataCfg_53
+  # DEBUG BEGIN_STMT
+  _3 = (unsigned int) DataDescriptor_51;
+  _4 = _3 & 1024;
+  if (_4 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = DataCfg_53->ConditionCheckReadSync;
+  DidDataPtr_54(D)->ConditionCheckReadSync = _5;
+  # DEBUG BEGIN_STMT
+  DataCfg_56 = DataCfg_53 + 4;
+  # DEBUG DataCfg => DataCfg_56
+
+  <bb 4> :
+  # DataCfg_32 = PHI <DataCfg_53(2), DataCfg_56(3)>
+  # DEBUG DataCfg => DataCfg_32
+  # DEBUG BEGIN_STMT
+  _6 = (unsigned int) DataDescriptor_51;
+  _7 = _6 & 512;
+  if (_7 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = DataCfg_32->ReadDataLengthSync;
+  DidDataPtr_54(D)->ReadDataLengthSync = _8;
+  # DEBUG BEGIN_STMT
+  DataCfg_58 = DataCfg_32 + 4;
+  # DEBUG DataCfg => DataCfg_58
+
+  <bb 6> :
+  # DataCfg_33 = PHI <DataCfg_32(4), DataCfg_58(5)>
+  # DEBUG DataCfg => DataCfg_33
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) DataDescriptor_51;
+  _10 = _9 & 256;
+  if (_10 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _11 = DataCfg_33->ReadDataFncSync;
+  DidDataPtr_54(D)->ReadDataFncSync = _11;
+  # DEBUG BEGIN_STMT
+  DataCfg_60 = DataCfg_33 + 4;
+  # DEBUG DataCfg => DataCfg_60
+
+  <bb 8> :
+  # DataCfg_34 = PHI <DataCfg_33(6), DataCfg_60(7)>
+  # DEBUG DataCfg => DataCfg_34
+  # DEBUG BEGIN_STMT
+  _12 = (unsigned int) DataDescriptor_51;
+  _13 = _12 & 2048;
+  if (_13 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) DataDescriptor_51;
+  _15 = _14 & 8;
+  if (_15 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _16 = DataCfg_34->WriteFixedDataSync;
+  DidDataPtr_54(D)->WriteFixedDataSync = _16;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _17 = DataCfg_34->WriteVariableDataSync;
+  DidDataPtr_54(D)->WriteVariableDataSync = _17;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  DataCfg_63 = DataCfg_34 + 4;
+  # DEBUG DataCfg => DataCfg_63
+
+  <bb 13> :
+  # DataCfg_35 = PHI <DataCfg_34(8), DataCfg_63(12)>
+  # DEBUG DataCfg => DataCfg_35
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) DataDescriptor_51;
+  _19 = _18 & 8192;
+  if (_19 != 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _20 = DataCfg_35->FreezeCurrentStateSync;
+  DidDataPtr_54(D)->FreezeCurrentStateSyncUnion.FreezeCurrentStateSync = _20;
+  # DEBUG BEGIN_STMT
+  DataCfg_65 = DataCfg_35 + 4;
+  # DEBUG DataCfg => DataCfg_65
+
+  <bb 15> :
+  # DataCfg_36 = PHI <DataCfg_35(13), DataCfg_65(14)>
+  # DEBUG DataCfg => DataCfg_36
+  # DEBUG BEGIN_STMT
+  _21 = (unsigned int) DataDescriptor_51;
+  _22 = _21 & 4096;
+  if (_22 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _23 = (unsigned int) DataDescriptor_51;
+  _24 = _23 & 8;
+  if (_24 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  _25 = DataCfg_36->ShortTermAdjustmentFixedSync;
+  DidDataPtr_54(D)->ShortTermAdjustmentFixedSyncUnion.ShortTermAdjustmentFixedSync = _25;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _26 = DataCfg_36->ShortTermAdjustmentVariableSync;
+  DidDataPtr_54(D)->ShortTermAdjustmentVariableSyncUnion.ShortTermAdjustmentVariableSync = _26;
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  DataCfg_68 = DataCfg_36 + 4;
+  # DEBUG DataCfg => DataCfg_68
+
+  <bb 20> :
+  # DataCfg_37 = PHI <DataCfg_36(15), DataCfg_68(19)>
+  # DEBUG DataCfg => DataCfg_37
+  # DEBUG BEGIN_STMT
+  _27 = (unsigned int) DataDescriptor_51;
+  _28 = _27 & 16384;
+  if (_28 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _29 = DataCfg_37->ResetToDefaultSync;
+  DidDataPtr_54(D)->ResetToDefaultSyncUnion.ResetToDefaultSync = _29;
+  # DEBUG BEGIN_STMT
+  DataCfg_70 = DataCfg_37 + 4;
+  # DEBUG DataCfg => DataCfg_70
+
+  <bb 22> :
+  # DataCfg_38 = PHI <DataCfg_37(20), DataCfg_70(21)>
+  # DEBUG DataCfg => DataCfg_38
+  # DEBUG BEGIN_STMT
+  DataDescriptor.0_30 = (signed short) DataDescriptor_51;
+  if (DataDescriptor.0_30 < 0)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _31 = DataCfg_38->ReturnControlToEcuSync;
+  DidDataPtr_54(D)->ReturnControlToEcuSyncUnion.ReturnControlToEcuSync = _31;
+
+  <bb 24> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_InitDidDataFncPointers (struct Dcm_DidDataType * DidDataPtr)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ConditionCheckReadSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ConditionCheckReadAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReadDataLengthSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReadDataLengthAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReadDataFncSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReadDataFncAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->WriteFixedDataSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->WriteVariableDataSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->WriteFixedLengthDataAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->WriteVarLengthDataAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ResultWriteData = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->FreezeCurrentStateSyncUnion.FreezeCurrentStateSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->FreezeCurrentStateAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ShortTermAdjustmentFixedSyncUnion.ShortTermAdjustmentFixedSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ShortTermAdjustmentVariableSyncUnion.ShortTermAdjustmentVariableSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ShortTermAdjustmentFixedAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ShortTermAdjustmentVariableAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ResetToDefaultSyncUnion.ResetToDefaultSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ResetToDefaultAsync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReturnControlToEcuSyncUnion.ReturnControlToEcuSync = 0B;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_2(D)->ReturnControlToEcuAsync = 0B;
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_Write_Execute (struct Dcm_DidSignalWriteContextType * WriteContext)
+{
+  Dcm_NegativeResponseCodeType Nrc;
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  int _4;
+  short unsigned int _5;
+  unsigned char _6;
+  uint8 * _7;
+  struct Dcm_DidDataType * _8;
+  uint8 * _9;
+  short unsigned int _10;
+  struct Dcm_DidDataType * _11;
+  uint8 * _12;
+  short unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char Nrc.9_16;
+  Std_ReturnType _38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_21 = 1;
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  _1 = WriteContext_24(D)->ProcessingState;
+  _2 = (int) _1;
+  switch (_2) <default: <L24> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  WriteContext_24(D)->ProcessingState = 1;
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = WriteContext_24(D)->DataCfg.AccessInterface;
+  _4 = (int) _3;
+  switch (_4) <default: <L24> [INV], case 0: <L2> [INV], case 1 ... 2: <L10> [INV], case 4 ... 5: <L8> [INV], case 6: <L12> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _5 = WriteContext_24(D)->DataCfg.NvRamBlockId;
+  _6 = WriteContext_24(D)->OpStatus;
+  _7 = WriteContext_24(D)->SignalBuffer;
+  RetVal_33 = Dcm_Dsp_DidSignals_WriteNvmData (_5, _6, _7);
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  if (RetVal_33 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (RetVal_33 == 10)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Nrc = 114;
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _8 = &WriteContext_24(D)->DataCfg;
+  _9 = WriteContext_24(D)->SignalBuffer;
+  _10 = WriteContext_24(D)->SignalLength;
+  RetVal_29 = Dcm_Dsp_DidSignals_WriteDataSync (_8, _9, _10, &Nrc);
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _11 = &WriteContext_24(D)->DataCfg;
+  _12 = WriteContext_24(D)->SignalBuffer;
+  _13 = WriteContext_24(D)->SignalLength;
+  _14 = WriteContext_24(D)->OpStatus;
+  RetVal_31 = Dcm_Dsp_DidSignals_WriteDataAsync (_11, _12, _13, _14, &Nrc);
+  # DEBUG RetVal => RetVal_31
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+<L12>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Nrc = 16;
+  # DEBUG BEGIN_STMT
+  RetVal_27 = 1;
+  # DEBUG RetVal => RetVal_27
+  # DEBUG BEGIN_STMT
+
+  <bb 11> :
+  # RetVal_17 = PHI <RetVal_29(8), RetVal_21(2), RetVal_33(6), RetVal_33(7), RetVal_33(5), RetVal_21(4), RetVal_27(10), RetVal_31(9)>
+<L24>:
+  # DEBUG RetVal => RetVal_17
+  # DEBUG BEGIN_STMT
+  if (RetVal_17 == 10)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _15 = WriteContext_24(D)->OpStatus;
+  if (_15 != 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  WriteContext_24(D)->OpStatus = 1;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  WriteContext_24(D)->ProcessingState = 2;
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Nrc.9_16 = Nrc;
+  WriteContext_24(D)->Nrc = Nrc.9_16;
+  # DEBUG BEGIN_STMT
+  _38 = RetVal_17;
+  Nrc ={v} {CLOBBER};
+  return _38;
+
+}
+
+
+Dcm_Dsp_DidSignals_Write_Cancel (struct Dcm_DidSignalWriteContextType * WriteContext)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WriteContext_2(D)->OpStatus = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_Write_Execute (WriteContext_2(D));
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_Write_Init (struct Dcm_DidSignalWriteContextType * WriteContext, uint8 * InputBuffer, uint32 BufferLength, uint16 DidDataIndex, uint16 SignalOffset, boolean EndiannessConversion)
+{
+  struct Dcm_DidDataType * const DataCfg;
+  Dcm_MsgLenType SignalLength;
+  uint16 SignalLengthInBytes;
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  union Dcm_Union_BufferType * _2;
+  uint8[20] * _3;
+  uint8 * _4;
+  unsigned char _5;
+  short unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  short unsigned int _9;
+  long unsigned int _10;
+  short unsigned int _11;
+  uint8 * _12;
+  long unsigned int _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  uint8 * _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  short unsigned int _23;
+  long unsigned int _24;
+  unsigned char _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  Std_ReturnType _64;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_33 = 1;
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_36 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_36
+  # DEBUG BEGIN_STMT
+  _1 = pDidSignalBufferContext_36->NvMService;
+  if (_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SignalLengthInBytes_40 = 0;
+  # DEBUG SignalLengthInBytes => SignalLengthInBytes_40
+  # DEBUG BEGIN_STMT
+  SignalLength_41 = 0;
+  # DEBUG SignalLength => SignalLength_41
+  # DEBUG BEGIN_STMT
+  DataCfg_42 = &WriteContext_38(D)->DataCfg;
+  # DEBUG DataCfg => DataCfg_42
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetDidDataConfig (DataCfg_42, DidDataIndex_43(D));
+  # DEBUG BEGIN_STMT
+  _2 = pDidSignalBufferContext_36->SignalBuffer;
+  _3 = &_2->BufferUint8;
+  WriteContext_38(D)->SignalBuffer = _3;
+  # DEBUG BEGIN_STMT
+  _4 = WriteContext_38(D)->SignalBuffer;
+  TS_MemBZero32 (_4, 20);
+  # DEBUG BEGIN_STMT
+  _5 = DataCfg_42->FixedLength;
+  if (_5 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = DataCfg_42->DataLength;
+  SignalLength_51 = (Dcm_MsgLenType) _6;
+  # DEBUG SignalLength => SignalLength_51
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _7 = BufferLength_47(D) * 8;
+  _8 = (long unsigned int) SignalOffset_48(D);
+  SignalLength_49 = _7 - _8;
+  # DEBUG SignalLength => SignalLength_49
+  # DEBUG BEGIN_STMT
+  _9 = DataCfg_42->DataLength;
+  _10 = (long unsigned int) _9;
+  if (SignalLength_49 > _10)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 = DataCfg_42->DataLength;
+  SignalLength_50 = (Dcm_MsgLenType) _11;
+  # DEBUG SignalLength => SignalLength_50
+
+  <bb 7> :
+  # SignalLength_29 = PHI <SignalLength_51(4), SignalLength_49(5), SignalLength_50(6)>
+  # DEBUG SignalLength => SignalLength_29
+  # DEBUG BEGIN_STMT
+  _12 = WriteContext_38(D)->SignalBuffer;
+  _13 = (long unsigned int) SignalOffset_48(D);
+  Dcm_DspInternal_CopySignalData (InputBuffer_52(D), _12, _13, 0, SignalLength_29, 6, 1);
+  # DEBUG BEGIN_STMT
+  _14 = DataCfg_42->DataType;
+  if (_14 == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  _15 = DataCfg_42->DataType;
+  if (_15 == 7)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _16 = DataCfg_42->DataType;
+  if (_16 == 3)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _17 = DataCfg_42->DataType;
+  if (_17 == 9)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 11> :
+  if (EndiannessConversion_54(D) == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _18 = DataCfg_42->AccessInterface;
+  if (_18 != 3)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _19 = DataCfg_42->DataType;
+  SignalLength_56 = Dcm_Dsp_DidSignals_EndianessConversion_CalculateSignalLength (_19, SignalLength_29);
+  # DEBUG SignalLength => SignalLength_56
+  # DEBUG BEGIN_STMT
+  _20 = WriteContext_38(D)->SignalBuffer;
+  _21 = SignalLength_56 + 7;
+  _22 = _21 / 8;
+  _23 = (short unsigned int) _22;
+  _24 = (long unsigned int) _23;
+  _25 = DataCfg_42->DataType;
+  Dcm_Dsp_DidSignals_Endianness_Conversion (_20, _24, _25);
+
+  <bb 14> :
+  # SignalLength_30 = PHI <SignalLength_29(10), SignalLength_29(11), SignalLength_29(12), SignalLength_56(13)>
+  # DEBUG SignalLength => SignalLength_30
+  # DEBUG BEGIN_STMT
+  _26 = SignalLength_30 + 7;
+  _27 = _26 / 8;
+  SignalLengthInBytes_58 = (uint16) _27;
+  # DEBUG SignalLengthInBytes => SignalLengthInBytes_58
+  # DEBUG BEGIN_STMT
+  WriteContext_38(D)->SignalLength = SignalLengthInBytes_58;
+  # DEBUG BEGIN_STMT
+  WriteContext_38(D)->OpStatus = 0;
+  # DEBUG BEGIN_STMT
+  WriteContext_38(D)->ProcessingState = 0;
+  # DEBUG BEGIN_STMT
+  WriteContext_38(D)->Nrc = 0;
+  # DEBUG BEGIN_STMT
+  RetVal_63 = 0;
+  # DEBUG RetVal => RetVal_63
+  goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  RetVal_37 = 1;
+  # DEBUG RetVal => RetVal_37
+  # DEBUG BEGIN_STMT
+  WriteContext_38(D)->Nrc = 34;
+
+  <bb 16> :
+  # RetVal_28 = PHI <RetVal_63(14), RetVal_37(15)>
+  # DEBUG RetVal => RetVal_28
+  # DEBUG BEGIN_STMT
+  _64 = RetVal_28;
+  return _64;
+
+}
+
+
+Dcm_Dsp_DidSignals_Read_Execute (struct Dcm_DidSignalReadContextType * ReadContext)
+{
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  uint16 TempSignalLength;
+  struct Dcm_DidDataType * const DataCfg;
+  Dcm_NegativeResponseCodeType Nrc;
+  Std_ReturnType RetVal;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  long unsigned int _9;
+  short unsigned int _10;
+  unsigned char _11;
+  short unsigned int TempSignalLength.3_12;
+  long unsigned int _13;
+  unsigned char _14;
+  short unsigned int _15;
+  long unsigned int _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  unsigned char _24;
+  unsigned char Nrc.4_25;
+  Std_ReturnType _70;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_35 = 1;
+  # DEBUG RetVal => RetVal_35
+  # DEBUG BEGIN_STMT
+  Nrc = 0;
+  # DEBUG BEGIN_STMT
+  DataCfg_39 = &ReadContext_38(D)->DataCfg;
+  # DEBUG DataCfg => DataCfg_39
+  # DEBUG BEGIN_STMT
+  _1 = ReadContext_38(D)->ProcessingState;
+  _2 = (int) _1;
+  switch (_2) <default: <L39> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L7> [INV], case 3: <L25> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 1;
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _3 = ReadContext_38(D)->OpStatus;
+  RetVal_42 = Dcm_Dsp_DidSignals_ReadConditionCheck (DataCfg_39, _3, &Nrc);
+  # DEBUG RetVal => RetVal_42
+  # DEBUG BEGIN_STMT
+  if (RetVal_42 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (RetVal_42 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ConditionCheckFailed = 1;
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 4;
+  goto <bb 28>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 2;
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->OpStatus = 0;
+
+  <bb 8> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _4 = DataCfg_39->AccessInterface;
+  _5 = _4 + 255;
+  if (_5 <= 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _6 = DataCfg_39->AccessInterface;
+  if (_6 == 5)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _7 = DataCfg_39->AccessInterface;
+  if (_7 == 4)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 11> :
+  _8 = DataCfg_39->FixedLength;
+  if (_8 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _9 = ReadContext_38(D)->SignalLength;
+  _10 = (short unsigned int) _9;
+  TempSignalLength = _10;
+  # DEBUG BEGIN_STMT
+  _11 = ReadContext_38(D)->OpStatus;
+  RetVal_49 = Dcm_Dsp_DidSignals_ReadDataLength (DataCfg_39, _11, &Nrc, &TempSignalLength);
+  # DEBUG RetVal => RetVal_49
+  # DEBUG BEGIN_STMT
+  TempSignalLength.3_12 = TempSignalLength;
+  _13 = (long unsigned int) TempSignalLength.3_12;
+  ReadContext_38(D)->SignalLength = _13;
+  # DEBUG BEGIN_STMT
+  _14 = ReadContext_38(D)->OpStatus;
+  if (_14 == 2)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 18>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (RetVal_49 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (RetVal_49 != 10)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  RetVal_54 = 1;
+  # DEBUG RetVal => RetVal_54
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 4;
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 3;
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->OpStatus = 0;
+  TempSignalLength ={v} {CLOBBER};
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+  # RetVal_26 = PHI <RetVal_49(13), RetVal_54(16), RetVal_49(15)>
+  # DEBUG RetVal => RetVal_26
+  TempSignalLength ={v} {CLOBBER};
+  goto <bb 28>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = DataCfg_39->DataLength;
+  _16 = (long unsigned int) _15;
+  ReadContext_38(D)->SignalLength = _16;
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  _17 = ReadContext_38(D)->EndiannessConversion;
+  if (_17 == 1)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 21> :
+  _18 = DataCfg_39->AccessInterface;
+  if (_18 != 3)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _19 = DataCfg_39->DataType;
+  _20 = ReadContext_38(D)->SignalLength;
+  _21 = Dcm_Dsp_DidSignals_EndianessConversion_CalculateSignalLength (_19, _20);
+  ReadContext_38(D)->SignalLength = _21;
+
+  <bb 23> :
+<L25>:
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_62 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_62
+  # DEBUG BEGIN_STMT
+  _22 = ReadContext_38(D)->CheckBufferAvailability;
+  if (_22 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 24> :
+  _23 = ReadContext_38(D)->CheckBufferAvailability;
+  if (_23 == 1)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 25> :
+  _24 = pDidSignalBufferContext_62->NvMService;
+  if (_24 == 0)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  RetVal_67 = Dcm_Dsp_DidSignals_CopyToBuffer (ReadContext_38(D), &Nrc);
+  # DEBUG RetVal => RetVal_67
+  goto <bb 28>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  Nrc = 34;
+  # DEBUG BEGIN_STMT
+  RetVal_64 = 1;
+  # DEBUG RetVal => RetVal_64
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->ProcessingState = 4;
+
+  <bb 28> :
+  # RetVal_27 = PHI <RetVal_42(6), RetVal_26(18), RetVal_64(27), RetVal_35(2), RetVal_42(5), RetVal_67(26)>
+<L39>:
+  # DEBUG RetVal => RetVal_27
+  # DEBUG BEGIN_STMT
+  if (RetVal_27 == 10)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  ReadContext_38(D)->OpStatus = 1;
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  Nrc.4_25 = Nrc;
+  ReadContext_38(D)->Nrc = Nrc.4_25;
+  # DEBUG BEGIN_STMT
+  _70 = RetVal_27;
+  Nrc ={v} {CLOBBER};
+  return _70;
+
+}
+
+
+Dcm_Dsp_DidSignals_Read_Cancel (struct Dcm_DidSignalReadContextType * ReadContext)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReadContext_2(D)->OpStatus = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_Read_Execute (ReadContext_2(D));
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_Read_Init (struct Dcm_DidSignalReadContextType * ReadContext, uint8 * OutputBuffer, uint32 BufferLimit, uint16 DidDataIndex, uint16 SignalOffset, uint32 BufferOffset, Dcm_DidOpType DidOp, boolean EndiannessConversion)
+{
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  struct Dcm_DidDataType * const DataCfg;
+  union Dcm_Union_BufferType * _1;
+  uint8[20] * _2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DataCfg_4 = &ReadContext_3(D)->DataCfg;
+  # DEBUG DataCfg => DataCfg_4
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetDidDataConfig (DataCfg_4, DidDataIndex_6(D));
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->OpStatus = 0;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->ProcessingState = 0;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->EndiannessConversion = EndiannessConversion_10(D);
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->BufferLimit = BufferLimit_12(D);
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->OutputBuffer = OutputBuffer_14(D);
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->SignalLength = 0;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->BufferOffset = BufferOffset_17(D);
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->ConditionCheckFailed = 0;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->Nrc = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_22 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_22
+  # DEBUG BEGIN_STMT
+  _1 = pDidSignalBufferContext_22->SignalBuffer;
+  _2 = &_1->BufferUint8;
+  ReadContext_3(D)->SignalBuffer = _2;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->CheckBufferAvailability = 1;
+  # DEBUG BEGIN_STMT
+  ReadContext_3(D)->SignalOffset = SignalOffset_25(D);
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_Endianness_Conversion (uint8 * InBuffer, Dcm_MsgLenType DataLength, Dcm_DidDataByteType DataType)
+{
+  uint8 TmpByte;
+  const uint8 TmpByte;
+  uint16_least ByteCounter;
+  int _1;
+  uint8 * _2;
+  sizetype _3;
+  uint8 * _4;
+  uint8 * _5;
+  unsigned char _6;
+  sizetype _7;
+  uint8 * _8;
+  sizetype _9;
+  uint8 * _10;
+  uint8 * _11;
+  sizetype _12;
+  uint8 * _13;
+  unsigned char _14;
+  uint8 * _15;
+  sizetype _16;
+  uint8 * _17;
+  sizetype _18;
+  uint8 * _19;
+  sizetype _20;
+  uint8 * _21;
+  unsigned char _22;
+  sizetype _23;
+  uint8 * _24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (InBuffer_30(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DataType_32(D);
+  switch (_1) <default: <L14> [INV], case 1: <L1> [INV], case 3: <L6> [INV], case 7: <L1> [INV], case 9: <L6> [INV]>
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  ByteCounter_42 = 0;
+  # DEBUG ByteCounter => ByteCounter_42
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = InBuffer_30(D) + ByteCounter_25;
+  TmpByte_43 = *_2;
+  # DEBUG TmpByte => TmpByte_43
+  # DEBUG BEGIN_STMT
+  _3 = ByteCounter_25 + 1;
+  _4 = InBuffer_30(D) + _3;
+  _5 = InBuffer_30(D) + ByteCounter_25;
+  _6 = *_4;
+  *_5 = _6;
+  # DEBUG BEGIN_STMT
+  _7 = ByteCounter_25 + 1;
+  _8 = InBuffer_30(D) + _7;
+  *_8 = TmpByte_43;
+  # DEBUG BEGIN_STMT
+  ByteCounter_46 = ByteCounter_25 + 2;
+  # DEBUG ByteCounter => ByteCounter_46
+
+  <bb 6> :
+  # ByteCounter_25 = PHI <ByteCounter_42(4), ByteCounter_46(5)>
+  # DEBUG ByteCounter => ByteCounter_25
+  # DEBUG BEGIN_STMT
+  if (ByteCounter_25 < DataLength_34(D))
+    goto <bb 5>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ByteCounter_33 = 0;
+  # DEBUG ByteCounter => ByteCounter_33
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = ByteCounter_26 + 3;
+  _10 = InBuffer_30(D) + _9;
+  TmpByte_35 = *_10;
+  # DEBUG TmpByte => TmpByte_35
+  # DEBUG BEGIN_STMT
+  _11 = InBuffer_30(D) + ByteCounter_26;
+  _12 = ByteCounter_26 + 3;
+  _13 = InBuffer_30(D) + _12;
+  _14 = *_11;
+  *_13 = _14;
+  # DEBUG BEGIN_STMT
+  _15 = InBuffer_30(D) + ByteCounter_26;
+  *_15 = TmpByte_35;
+  # DEBUG BEGIN_STMT
+  _16 = ByteCounter_26 + 2;
+  _17 = InBuffer_30(D) + _16;
+  TmpByte_38 = *_17;
+  # DEBUG TmpByte => TmpByte_38
+  # DEBUG BEGIN_STMT
+  _18 = ByteCounter_26 + 1;
+  _19 = InBuffer_30(D) + _18;
+  _20 = ByteCounter_26 + 2;
+  _21 = InBuffer_30(D) + _20;
+  _22 = *_19;
+  *_21 = _22;
+  # DEBUG BEGIN_STMT
+  _23 = ByteCounter_26 + 1;
+  _24 = InBuffer_30(D) + _23;
+  *_24 = TmpByte_38;
+  # DEBUG BEGIN_STMT
+  ByteCounter_41 = ByteCounter_26 + 4;
+  # DEBUG ByteCounter => ByteCounter_41
+
+  <bb 9> :
+  # ByteCounter_26 = PHI <ByteCounter_33(7), ByteCounter_41(8)>
+  # DEBUG ByteCounter => ByteCounter_26
+  # DEBUG BEGIN_STMT
+  if (ByteCounter_26 < DataLength_34(D))
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+<L14>:
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_SignalBufferOperationsPoll ()
+{
+  Std_ReturnType NvMOperationStatus;
+  NvM_RequestResultType NvMRequestResult;
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  boolean FreeSignalBuffer;
+  Dcm_DidNvmOperationType LocalSigBufNvMService;
+  NvM_BlockIdType LocalSigBufBlockId;
+  unsigned char NvMRequestResult.2_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  FreeSignalBuffer_10 = 0;
+  # DEBUG FreeSignalBuffer => FreeSignalBuffer_10
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_13 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_13
+  # DEBUG BEGIN_STMT
+  LocalSigBufBlockId_14 = pDidSignalBufferContext_13->BlockId;
+  # DEBUG LocalSigBufBlockId => LocalSigBufBlockId_14
+  # DEBUG BEGIN_STMT
+  LocalSigBufNvMService_15 = pDidSignalBufferContext_13->NvMService;
+  # DEBUG LocalSigBufNvMService => LocalSigBufNvMService_15
+  # DEBUG BEGIN_STMT
+  if (LocalSigBufNvMService_15 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NvMRequestResult = 1;
+  # DEBUG BEGIN_STMT
+  NvMOperationStatus_18 = NvM_ASR40_GetErrorStatus (LocalSigBufBlockId_14, &NvMRequestResult);
+  # DEBUG NvMOperationStatus => NvMOperationStatus_18
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  NvMRequestResult.2_1 = NvMRequestResult;
+  if (NvMRequestResult.2_1 != 2)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  FreeSignalBuffer_23 = 1;
+  # DEBUG FreeSignalBuffer => FreeSignalBuffer_23
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (NvMOperationStatus_18 != 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 213, 2);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (LocalSigBufNvMService_15 == 1)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 209, 8);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 208, 15);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  FreeSignalBuffer_22 = 1;
+  # DEBUG FreeSignalBuffer => FreeSignalBuffer_22
+
+  <bb 12> :
+  # FreeSignalBuffer_2 = PHI <FreeSignalBuffer_23(5), FreeSignalBuffer_22(11), FreeSignalBuffer_10(4)>
+  # DEBUG FreeSignalBuffer => FreeSignalBuffer_2
+  NvMRequestResult ={v} {CLOBBER};
+
+  <bb 13> :
+  # FreeSignalBuffer_3 = PHI <FreeSignalBuffer_10(2), FreeSignalBuffer_2(12)>
+  # DEBUG FreeSignalBuffer => FreeSignalBuffer_3
+  # DEBUG BEGIN_STMT
+  if (FreeSignalBuffer_3 == 1)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (LocalSigBufNvMService_15 == 2)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  NvM_SetBlockLockStatus (LocalSigBufBlockId_14, 1);
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_13->BlockId = 0;
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_13->NvMService = 0;
+
+  <bb 17> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_SignalBufferContextNvM_Init ()
+{
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_3 = Dcm_Dsp_DidServices_GetDidSignalBuffer ();
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_3
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_3->BlockId = 0;
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_3->NvMService = 0;
+  return;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetDidDataConfig (struct Dcm_DidDataType * DidDataPtr, uint16 DidDataIndex)
+{
+  const Dcm_DidDataDescriptorType DataDescriptor;
+  int _1;
+  short unsigned int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  int _10;
+  int _11;
+  long unsigned int _12;
+  short unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidDataIndex_18(D);
+  DataDescriptor_20 = Dcm_DidDataIndexingArray[_1].DidDataDescriptor;
+  # DEBUG DataDescriptor => DataDescriptor_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_InitDidDataFncPointers (DidDataPtr_21(D));
+  # DEBUG BEGIN_STMT
+  _2 = DataDescriptor_20 >> 4;
+  _3 = (unsigned char) _2;
+  _4 = _3 & 15;
+  DidDataPtr_21(D)->DataType = _4;
+  # DEBUG BEGIN_STMT
+  _5 = (unsigned char) DataDescriptor_20;
+  _6 = _5 & 7;
+  DidDataPtr_21(D)->AccessInterface = _6;
+  # DEBUG BEGIN_STMT
+  _7 = (int) DidDataIndex_18(D);
+  _8 = Dcm_DidDataSizeArray[_7];
+  DidDataPtr_21(D)->DataLength = _8;
+  # DEBUG BEGIN_STMT
+  DidDataPtr_21(D)->NvRamBlockId = 0;
+  # DEBUG BEGIN_STMT
+  _9 = DidDataPtr_21(D)->AccessInterface;
+  _10 = (int) _9;
+  switch (_10) <default: <L10> [INV], case 0: <L4> [INV], case 1 ... 2: <L2> [INV], case 4 ... 5: <L0> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetDidDataSyncFuncPointers (DidDataPtr_21(D), DidDataIndex_18(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsp_DidSignals_GetDidDataAsyncFuncPointers (DidDataPtr_21(D), DidDataIndex_18(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  _11 = (int) DidDataIndex_18(D);
+  _12 = Dcm_DidDataIndexingArray[_11].DidDataPosition;
+  _13 = (short unsigned int) _12;
+  DidDataPtr_21(D)->NvRamBlockId = _13;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L10>:
+  # DEBUG BEGIN_STMT
+  _14 = (unsigned int) DataDescriptor_20;
+  _15 = _14 & 8;
+  if (_15 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  DidDataPtr_21(D)->FixedLength = 1;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  DidDataPtr_21(D)->FixedLength = 0;
+
+  <bb 9> :
+  return;
+
+}
+
+
+Dcm_Dsp_DidServices_GetDidSignalBuffer ()
+{
+  struct Dcm_SignalBufferContextType * pDidSignalBufferContext;
+  union Dcm_Union_BufferType * _1;
+  union Dcm_Union_BufferType * _2;
+  struct Dcm_SignalBufferContextType * _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_4 = 0B;
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_4
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_SignalBufferContext.SignalBuffer;
+  if (_1 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsp_DidServices_GetDidGeneralBuffer ();
+  Dcm_SignalBufferContext.SignalBuffer = _2;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  pDidSignalBufferContext_8 = &Dcm_SignalBufferContext;
+  # DEBUG pDidSignalBufferContext => pDidSignalBufferContext_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = pDidSignalBufferContext_8;
+  return _9;
+
+}
+
+
+Dcm_Dsp_DidSignals_GetDidSignalConfig (const uint16 DidSignalIndex)
+{
+  const struct Dcm_DidSignalType * pDidSignalCfg;
+  int _1;
+  const struct Dcm_DidSignalType * _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  pDidSignalCfg_2 = 0B;
+  # DEBUG pDidSignalCfg => pDidSignalCfg_2
+  # DEBUG BEGIN_STMT
+  _1 = (int) DidSignalIndex_3(D);
+  pDidSignalCfg_4 = &Dcm_DidSignals[_1];
+  # DEBUG pDidSignalCfg => pDidSignalCfg_4
+  # DEBUG BEGIN_STMT
+  _5 = pDidSignalCfg_4;
+  return _5;
+
+}
+
+

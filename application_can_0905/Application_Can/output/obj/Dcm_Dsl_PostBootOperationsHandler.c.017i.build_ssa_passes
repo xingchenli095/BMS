@@ -1,0 +1,301 @@
+Dcm_Dsl_PostBootOperationsHandler_MainFunction ()
+{
+  Std_ReturnType SetProgConditionsReturn;
+  struct Dcm_BufferType BootloaderResponseRequest;
+  Dcm_RequestTypeType RequestType;
+  Dcm_RequestOriginType RequestOrigin;
+  uint16_least RxPduIdx;
+  boolean TesterSourceAddrFound;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState.0_1 = Dcm_PostBootOperationsState;
+  _2 = (int) Dcm_PostBootOperationsState.0_1;
+  switch (_2) <default: <L33> [INV], case 0: <L0> [INV], case 2: <L15> [INV], case 3: <L19> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  TesterSourceAddrFound = 0;
+  # DEBUG BEGIN_STMT
+  RxPduIdx = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_RxPduIdConfig[RxPduIdx].MainConnectionIndex;
+  _4 = (int) _3;
+  _5 = Dcm_MainConnectionConfig[_4].TesterSourceAddress;
+  _6 = Dcm_ProgConditions.TesterSourceAddr;
+  if (_5 == _6)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  TesterSourceAddrFound = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RxPduIdx = RxPduIdx + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (RxPduIdx <= 5)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  if (TesterSourceAddrFound == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (TesterSourceAddrFound == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 75, 6);
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 2;
+  goto <bb 25>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = (short unsigned int) RxPduIdx;
+  Dcm_RxPduIdBL = _7;
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_ProgConditions.Sid;
+  Dcm_BootloaderRequestToRespondTo[0] = _8;
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_ProgConditions.SubFncId;
+  Dcm_BootloaderRequestToRespondTo[1] = _9;
+  # DEBUG BEGIN_STMT
+  BootloaderResponseRequest.BufferPtr = &Dcm_BootloaderRequestToRespondTo[0];
+  # DEBUG BEGIN_STMT
+  BootloaderResponseRequest.FilledLength = 2;
+  # DEBUG BEGIN_STMT
+  BootloaderResponseRequest.Size = 2;
+  # DEBUG BEGIN_STMT
+  BootloaderResponseRequest.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_ProgConditions.ResponseRequired;
+  if (_10 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  RequestOrigin = 4;
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  RequestOrigin = 5;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  Dcm_RxPduIdBL.1_11 = Dcm_RxPduIdBL;
+  RequestType = Dcm_Dsl_Supervisor_RequestRxPermission (Dcm_RxPduIdBL.1_11, 0, RequestOrigin);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_RxPduIdBL.2_12 = Dcm_RxPduIdBL;
+  Dcm_Dsl_Supervisor_IncomingReception (Dcm_RxPduIdBL.2_12, RequestType);
+  # DEBUG BEGIN_STMT
+  Dcm_RxPduIdBL.3_13 = Dcm_RxPduIdBL;
+  Dcm_Dsl_RxConnectionRxIndication (Dcm_RxPduIdBL.3_13, RequestType, BootloaderResponseRequest);
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  BootloaderResponseRequest = {CLOBBER};
+  goto <bb 25>; [INV]
+
+  <bb 15> :
+<L15>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DisinhibitRequestProcessing ();
+  # DEBUG BEGIN_STMT
+  _14 = Dcm_ProgConditions.ResponseRequired;
+  if (_14 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  _15 = Dcm_ProgConditions.ApplUpdated;
+  if (_15 == 1)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.ResponseRequired = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProgConditions.ApplUpdated = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 3;
+  # DEBUG BEGIN_STMT
+  Dcm_InhibitJumpToBootloader = 1;
+  goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 19> :
+<L19>:
+  # DEBUG BEGIN_STMT
+  SetProgConditionsReturn = 0;
+  # DEBUG BEGIN_STMT
+  SetProgConditionsReturn = Dcm_SetProgConditions (&Dcm_ProgConditions);
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn == 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  Dcm_InhibitJumpToBootloader = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 4;
+  goto <bb 25>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn == 10)
+    goto <bb 25>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  Dcm_InhibitJumpToBootloader = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 4;
+  # DEBUG BEGIN_STMT
+  if (SetProgConditionsReturn == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 74, 9);
+  goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 74, 2);
+
+  <bb 25> :
+<L33>:
+  return;
+
+}
+
+
+Dcm_Dsl_PostBootOperationsHandler_JumpInhibited ()
+{
+  boolean D.6641;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.6641 = Dcm_InhibitJumpToBootloader;
+  return D.6641;
+
+}
+
+
+Dcm_Dsl_PostBootOperationsHandler_ActionsCompleted ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 2;
+  return;
+
+}
+
+
+Dcm_Dsl_PostBootOperationsHandler_Init ()
+{
+  Dcm_EcuStartModeType EcuStartModeType;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 4;
+  # DEBUG BEGIN_STMT
+  EcuStartModeType = Dcm_GetProgConditions (&Dcm_ProgConditions);
+  # DEBUG BEGIN_STMT
+  if (EcuStartModeType == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProgConditions.Sid;
+  if (_1 == 16)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _2 = Dcm_ProgConditions.ApplUpdated;
+  if (_2 == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BswM_Dcm_ApplicationUpdated ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_InhibitRequestProcessing ();
+  # DEBUG BEGIN_STMT
+  Dcm_PostBootOperationsState = 0;
+  goto <bb 9>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DisinhibitRequestProcessing ();
+  # DEBUG BEGIN_STMT
+  if (EcuStartModeType != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (53, 0, 75, 2);
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Dcm_InhibitJumpToBootloader = 0;
+  return;
+
+}
+
+

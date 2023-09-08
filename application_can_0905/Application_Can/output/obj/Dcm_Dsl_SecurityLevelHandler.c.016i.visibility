@@ -1,0 +1,142 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: Dcm_Dsl_SecurityLevelHandler_SessionChange Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel Dcm_Dsl_SecurityLevelHandler_Init
+
+
+Marking externally visible variables: Dcm_CurrentSecurityLevel
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured/5 (Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured) @06cc79a0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: Dcm_Dsl_SecurityLevelHandler_SessionChange/4 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_SessionChange/4 (Dcm_Dsl_SecurityLevelHandler_SessionChange) @06cc7540
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel/2 Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured/5 
+Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/3 (Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel) @06cc7380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: Dcm_CurrentSecurityLevel/0 (read)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel/2 (Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel) @06cc71c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: Dcm_CurrentSecurityLevel/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: Dcm_Dsl_SecurityLevelHandler_SessionChange/4 
+  Calls: 
+Dcm_Dsl_SecurityLevelHandler_Init/1 (Dcm_Dsl_SecurityLevelHandler_Init) @06cc7000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: Dcm_CurrentSecurityLevel/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+Dcm_CurrentSecurityLevel/0 (Dcm_CurrentSecurityLevel) @06c9d870
+  Type: variable definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: Dcm_Dsl_SecurityLevelHandler_Init/1 (write)Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel/2 (write)Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel/3 (read)
+  Availability: available
+  Varpool flags:
+Dcm_Dsl_SecurityLevelHandler_SessionChange (Dcm_SesCtrlType OldSession, Dcm_SesCtrlType NewSession)
+{
+  boolean PreemptionOccured;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  PreemptionOccured = Dcm_Dsl_DiagnosticSessionHandler_GetPreemptionOccured ();
+  # DEBUG BEGIN_STMT
+  if (OldSession != 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (PreemptionOccured == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (0);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_GetSecurityLevel ()
+{
+  Dcm_SecLevelType CurrentSecurityLevel;
+  Dcm_SecLevelType D.6587;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentSecurityLevel = Dcm_CurrentSecurityLevel;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  D.6587 = CurrentSecurityLevel;
+  return D.6587;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (Dcm_SecLevelType newSecLevel)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CurrentSecurityLevel = newSecLevel;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_SecurityLevelHandler_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_CurrentSecurityLevel = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

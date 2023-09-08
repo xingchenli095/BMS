@@ -1,0 +1,51 @@
+__attribute__((target ("general-regs-only")))
+OS_InitResources ()
+{
+  struct os_resourcedynamic_t * const rd;
+  const struct os_resource_t * const rs;
+  const os_coreid_t myCore;
+  os_unsigned_t i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCore = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = i * 16;
+  rs = OS_resourceTableBase.0_1 + _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.1_3 = OS_resourceTableBase;
+  _4 = i * 16;
+  _5 = OS_resourceTableBase.1_3 + _4;
+  rd = _5->dynamic;
+  # DEBUG BEGIN_STMT
+  rd->lastPrio = 0;
+  # DEBUG BEGIN_STMT
+  rd->takenBy = 255;
+  # DEBUG BEGIN_STMT
+  rd->next = 4294967295;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_nResources.2_6 = OS_nResources;
+  _7 = (unsigned int) OS_nResources.2_6;
+  if (i < _7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

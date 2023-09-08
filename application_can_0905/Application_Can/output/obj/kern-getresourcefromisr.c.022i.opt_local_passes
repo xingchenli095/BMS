@@ -1,0 +1,195 @@
+__attribute__((target ("general-regs-only")))
+OS_GetResourceFromIsr (os_resourceid_t r, struct os_resourcedynamic_t * rd, os_paramtype_t * p)
+{
+  os_prio_t newLevel;
+  const struct os_appcontext_t * app;
+  const struct os_isr_t * isrp;
+  os_intstatus_t is;
+  const struct os_resource_t * rs;
+  os_result_t result;
+  struct os_kerneldata_t * const kernel_data;
+  const struct os_resource_t * OS_resourceTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_isr_t * OS_isrTableBase.1_4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  short unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  short unsigned int _14;
+  unsigned int _15;
+  short unsigned int OS_kernDisableLevel.2_16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  short unsigned int _22;
+  const os_tick_t * _23;
+  const os_tick_t * _24;
+  unsigned int _25;
+  unsigned int _26;
+  const os_tick_t * _27;
+  unsigned int _28;
+  void (*<T63c>) (struct os_resourcedynamic_t *, os_tick_t) OS_startResLockTimingFp.3_29;
+  const os_tick_t * _30;
+  unsigned int _31;
+  unsigned int _32;
+  const os_tick_t * _33;
+  unsigned int _34;
+  short unsigned int _35;
+  short unsigned int _36;
+  short unsigned int _37;
+  os_result_t _64;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_41 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_41
+  # DEBUG BEGIN_STMT
+  result_42 = 0;
+  # DEBUG result => result_42
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = (unsigned int) r_44(D);
+  _3 = _2 * 16;
+  rs_45 = OS_resourceTableBase.0_1 + _3;
+  # DEBUG rs => rs_45
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.1_4 = OS_isrTableBase;
+  _5 = OS_kernelData.isrCurrent;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 68;
+  isrp_46 = OS_isrTableBase.1_4 + _7;
+  # DEBUG isrp => isrp_46
+  # DEBUG BEGIN_STMT
+  app_47 = isrp_46->app;
+  # DEBUG app => app_47
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app_47 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  _8 = app_47->permissionBit;
+  _9 = rs_45->permissions;
+  _10 = _8 & _9;
+  if (_10 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_50 = OS_Error (&OS_svc_GetResource, 37, p_48(D));
+  # DEBUG result => result_50
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _11 = isrp_46->arch.priority;
+  _12 = (unsigned int) _11;
+  _13 = 272 - _12;
+  _14 = rs_45->prio;
+  _15 = (unsigned int) _14;
+  if (_13 > _15)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  result_63 = OS_Error (&OS_svc_GetResource, 26, p_48(D));
+  # DEBUG result => result_63
+  goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_16 = OS_kernDisableLevel;
+  is_52 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.2_16);
+  # DEBUG is => is_52
+  # DEBUG BEGIN_STMT
+  _17 = OS_kernelData.isrLastLock;
+  rd_53(D)->next = _17;
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) r_44(D);
+  _19 = _18 | 67108864;
+  OS_kernelData.isrLastLock = _19;
+  # DEBUG BEGIN_STMT
+  _20 = 272 - is_52;
+  rd_53(D)->lastPrio = _20;
+  # DEBUG BEGIN_STMT
+  _21 = isrp_46->isrId;
+  _22 = _21 + 256;
+  rd_53(D)->takenBy = _22;
+  # DEBUG BEGIN_STMT
+  _23 = isrp_46->resourceLockTime;
+  if (_23 != 0B)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  _24 = isrp_46->resourceLockTime;
+  _25 = (unsigned int) r_44(D);
+  _26 = _25 * 4;
+  _27 = _24 + _26;
+  _28 = *_27;
+  if (_28 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  OS_startResLockTimingFp.3_29 = OS_startResLockTimingFp;
+  _30 = isrp_46->resourceLockTime;
+  _31 = (unsigned int) r_44(D);
+  _32 = _31 * 4;
+  _33 = _30 + _32;
+  _34 = *_33;
+  OS_startResLockTimingFp.3_29 (rd_53(D), _34);
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _35 = rs_45->prio;
+  _36 = rd_53(D)->lastPrio;
+  if (_35 > _36)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _37 = rs_45->prio;
+  newLevel_60 = 272 - _37;
+  # DEBUG newLevel => newLevel_60
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (newLevel_60);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_52);
+
+  <bb 13> :
+  # result_38 = PHI <result_50(4), result_63(6), result_42(11), result_42(12)>
+  # DEBUG result => result_38
+  # DEBUG BEGIN_STMT
+  _64 = result_38;
+  return _64;
+
+}
+
+

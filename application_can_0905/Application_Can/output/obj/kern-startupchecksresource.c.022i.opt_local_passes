@@ -1,0 +1,106 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksResource ()
+{
+  const os_permission_t perms;
+  const struct os_appcontext_t * const app;
+  const struct os_resource_t * const resource;
+  const os_coreid_t myCoreId;
+  os_resourceid_t i;
+  os_result_t result;
+  const struct os_resource_t * OS_resourceTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  short unsigned int i.1_6;
+  short unsigned int OS_nResources.2_7;
+  os_result_t _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  result_15 = 0;
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId_16 = 0;
+  # DEBUG myCoreId => myCoreId_16
+  # DEBUG BEGIN_STMT
+  i_17 = 0;
+  # DEBUG i => i_17
+  goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = (unsigned int) i_11;
+  _3 = _2 * 16;
+  resource_20 = OS_resourceTableBase.0_1 + _3;
+  # DEBUG resource => resource_20
+  # DEBUG BEGIN_STMT
+  app_21 = resource_20->app;
+  # DEBUG app => app_21
+  # DEBUG BEGIN_STMT
+  if (app_21 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_23 = OS_Panic (51);
+  # DEBUG result => result_23
+
+  <bb 5> :
+  # result_8 = PHI <result_23(4), result_10(3)>
+  # DEBUG result => result_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  perms_24 = resource_20->permissions;
+  # DEBUG perms => perms_24
+  # DEBUG BEGIN_STMT
+  if (app_21 != 0B)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _4 = app_21->permissionBit;
+  _5 = perms_24 & _4;
+  if (_5 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_26 = OS_Panic (50);
+  # DEBUG result => result_26
+
+  <bb 8> :
+  # result_9 = PHI <result_26(7), result_8(5), result_8(6)>
+  # DEBUG result => result_9
+  # DEBUG BEGIN_STMT
+  i.1_6 = i_11;
+  i_27 = i.1_6 + 1;
+  # DEBUG i => i_27
+
+  <bb 9> :
+  # result_10 = PHI <result_15(2), result_9(8)>
+  # i_11 = PHI <i_17(2), i_27(8)>
+  # DEBUG i => i_11
+  # DEBUG result => result_10
+  # DEBUG BEGIN_STMT
+  OS_nResources.2_7 = OS_nResources;
+  if (i_11 < OS_nResources.2_7)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _19 = result_10;
+  return _19;
+
+}
+
+

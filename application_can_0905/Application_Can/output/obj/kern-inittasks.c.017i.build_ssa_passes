@@ -1,0 +1,43 @@
+__attribute__((target ("general-regs-only")))
+OS_InitTasks ()
+{
+  const struct os_task_t * const tp;
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  tid = 0;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_1 = OS_taskTableBase;
+  _2 = (unsigned int) tid;
+  _3 = _2 * 76;
+  tp = OS_taskTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = tp->dynamic;
+  _4->lastLock = 4294967295;
+  # DEBUG BEGIN_STMT
+  tid.1_5 = tid;
+  tid = tid.1_5 + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.2_6 = OS_nTasks;
+  if (tid < OS_nTasks.2_6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+

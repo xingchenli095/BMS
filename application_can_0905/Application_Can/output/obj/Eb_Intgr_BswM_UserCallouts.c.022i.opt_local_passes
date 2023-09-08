@@ -1,0 +1,290 @@
+Eb_Intgr_BswM_RunTwo ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_ASR40_RequestComMode (0, 2);
+  return;
+
+}
+
+
+Eb_Intgr_BswM_GoOffOneB ()
+{
+  uint8 sleepMode;
+  EcuM_StateType shutdownTarget;
+  unsigned char shutdownTarget.7_1;
+  unsigned char shutdownTarget.8_2;
+  unsigned char shutdownTarget.9_3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuM_ASR40_GetShutdownTarget (&shutdownTarget, &sleepMode);
+  # DEBUG BEGIN_STMT
+  shutdownTarget.7_1 = shutdownTarget;
+  if (shutdownTarget.7_1 == 128)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  shutdownTarget.8_2 = shutdownTarget;
+  if (shutdownTarget.8_2 == 80)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanTrcv_Callout_SimulatedShutDown ();
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  shutdownTarget.9_3 = shutdownTarget;
+  if (shutdownTarget.9_3 == 144)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  EcuM_GoDown (42);
+
+  <bb 7> :
+  shutdownTarget ={v} {CLOBBER};
+  sleepMode ={v} {CLOBBER};
+  return;
+
+}
+
+
+Eb_Intgr_BswM_GoOffOneA ()
+{
+  uint8 sleepMode;
+  EcuM_StateType shutdownTarget;
+  unsigned char _1;
+  unsigned char shutdownTarget.4_2;
+  unsigned char shutdownTarget.5_3;
+  unsigned char shutdownTarget.6_4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EcuM_ASR40_GetShutdownTarget (&shutdownTarget, &sleepMode);
+  # DEBUG BEGIN_STMT
+  _1 = Rte_Stop ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_DeInitNvMWriteAll ();
+  # DEBUG BEGIN_STMT
+  shutdownTarget.4_2 = shutdownTarget;
+  if (shutdownTarget.4_2 == 80)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  shutdownTarget.5_3 = shutdownTarget;
+  if (shutdownTarget.5_3 == 128)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  shutdownTarget.6_4 = shutdownTarget;
+  if (shutdownTarget.6_4 == 144)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  BswM_RequestMode (0, 1);
+
+  <bb 6> :
+  shutdownTarget ={v} {CLOBBER};
+  sleepMode ={v} {CLOBBER};
+  return;
+
+}
+
+
+Eb_Intgr_BswM_WaitMemDriverReady ()
+{
+  MemIf_StatusType status;
+  unsigned char _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Fee_MainFunction ();
+  # DEBUG BEGIN_STMT
+  Fls_MainFunction ();
+  # DEBUG BEGIN_STMT
+  status_7 = Fee_GetStatus ();
+  # DEBUG status => status_7
+  # DEBUG BEGIN_STMT
+  _1 = status_7 + 254;
+  if (_1 <= 1)
+    goto <bb 2>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  return;
+
+}
+
+
+Eb_Intgr_BswM_TriggerMemoryStack (const NvM_BlockIdType BlockId)
+{
+  NvM_RequestResultType Result;
+  unsigned char Result.2_1;
+  unsigned char Result.3_2;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_UserActivateTask (7);
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_GetErrorStatus (BlockId_6(D), &Result);
+  # DEBUG BEGIN_STMT
+  Result.2_1 = Result;
+  if (Result.2_1 == 2)
+    goto <bb 2>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Result.3_2 = Result;
+  # DEBUG BEGIN_STMT
+  Result ={v} {CLOBBER};
+  return;
+
+}
+
+
+Eb_Intgr_BswM_DeInitNvMWriteAll ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  NvM_WriteAll ();
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_TriggerMemoryStack (0);
+  return;
+
+}
+
+
+Eb_Intgr_BswM_InitNvMReadAll ()
+{
+  NvM_RequestResultType JobResult;
+  unsigned char JobResult.1_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  JobResult = 2;
+  # DEBUG BEGIN_STMT
+  NvM_ReadAll ();
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_TriggerMemoryStack (0);
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_GetErrorStatus (1, &JobResult);
+  # DEBUG BEGIN_STMT
+  JobResult.1_1 = JobResult;
+  if (JobResult.1_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_SetBlockProtection (1, 0);
+  # DEBUG BEGIN_STMT
+  NvM_ASR40_WriteBlock (1, 0B);
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Crypto_Init ();
+  # DEBUG BEGIN_STMT
+  CryIf_Init ();
+  # DEBUG BEGIN_STMT
+  Csm_Init ();
+  # DEBUG BEGIN_STMT
+  SecOC_Init (&SecOC_ConfigLayout.RootCfg);
+  JobResult ={v} {CLOBBER};
+  return;
+
+}
+
+
+Eb_Intgr_BswM_DriverInitThree ()
+{
+  <unnamed type> Dem_InitializationState.0_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_Init (&ComM_Configuration.RootCfg);
+  # DEBUG BEGIN_STMT
+  CanTrcv_Callout_SimulatedWakeup ();
+  # DEBUG BEGIN_STMT
+  Dem_InitializationState.0_1 = Dem_InitializationState;
+  if (Dem_InitializationState.0_1 != 2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Dem_Init ();
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  E2EXf_PartitionInit ();
+  return;
+
+}
+
+
+Eb_Intgr_BswM_DriverInitTwo ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Fls_Init (&Fls_Config);
+  # DEBUG BEGIN_STMT
+  Fee_Init (0B);
+  # DEBUG BEGIN_STMT
+  Eb_Intgr_BswM_WaitMemDriverReady ();
+  # DEBUG BEGIN_STMT
+  NvM_Init ();
+  # DEBUG BEGIN_STMT
+  CanTrcv_Init ();
+  # DEBUG BEGIN_STMT
+  Can_Init (&Can_Config);
+  # DEBUG BEGIN_STMT
+  CanIf_Init (&CanIf_ConfigLayout.RootCfg);
+  # DEBUG BEGIN_STMT
+  CanTp_Init (&CanTp_ConfigLayout.RootCfg);
+  # DEBUG BEGIN_STMT
+  PduR_Init (&PduR_ConfigLayout.PduR_RootConfig);
+  # DEBUG BEGIN_STMT
+  Nm_Init ();
+  # DEBUG BEGIN_STMT
+  CanNm_Init (&CanNm_ConfigLayout.RootCfg);
+  # DEBUG BEGIN_STMT
+  CanSM_Init (&CanSM_ConfigLayout.RootCfg);
+  # DEBUG BEGIN_STMT
+  Com_Init (&Com_ConfigLayout.Com_RootConfig);
+  # DEBUG BEGIN_STMT
+  Dcm_Init (&DcmConfigSet);
+  return;
+
+}
+
+

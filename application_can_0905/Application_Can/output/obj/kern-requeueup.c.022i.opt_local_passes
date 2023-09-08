@@ -1,0 +1,220 @@
+__attribute__((target ("general-regs-only")))
+OS_RequeueUp (os_tasklink_t tAct, os_prio_t prio)
+{
+  os_tasklink_t qNewNext;
+  os_tasklink_t qOld;
+  os_tasklink_t qNew;
+  os_tasklink_t qAct;
+  os_tasklink_t * const taskActivations;
+  unsigned int _1;
+  unsigned int _2;
+  os_tasklink_t * _3;
+  int _4;
+  int _5;
+  const struct os_task_t * _6;
+  short unsigned int _7;
+  int _8;
+  int _9;
+  const struct os_task_t * _10;
+  struct os_taskdynamic_t * _11;
+  unsigned char _12;
+  int _13;
+  int _14;
+  int _15;
+  const struct os_task_t * _16;
+  struct os_taskdynamic_t * _17;
+  short unsigned int _18;
+  int _19;
+  const struct os_task_t * _20;
+  unsigned char _21;
+  int _22;
+  unsigned int _23;
+  unsigned int _24;
+  os_tasklink_t * _25;
+  unsigned int _26;
+  unsigned int _27;
+  os_tasklink_t * _28;
+  unsigned int _29;
+  unsigned int _30;
+  os_tasklink_t * _31;
+  short unsigned int _32;
+  unsigned int _33;
+  unsigned int _34;
+  os_tasklink_t * _35;
+  unsigned int _36;
+  unsigned int _37;
+  os_tasklink_t * _38;
+  short unsigned int _39;
+  int _40;
+  const struct os_task_t * _41;
+  int iftmp.0_46;
+  int iftmp.0_52;
+  int iftmp.0_53;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  taskActivations_48 = &OS_taskActivations;
+  # DEBUG taskActivations => taskActivations_48
+  # DEBUG BEGIN_STMT
+  qAct_50 = OS_taskActivations[0];
+  # DEBUG qAct => qAct_50
+  # DEBUG BEGIN_STMT
+  qNew_51 = 0;
+  # DEBUG qNew => qNew_51
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  qNew_55 = qAct_42;
+  # DEBUG qNew => qNew_55
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned int) qAct_42;
+  _2 = _1 * 2;
+  _3 = &OS_taskActivations + _2;
+  qAct_56 = *_3;
+  # DEBUG qAct => qAct_56
+
+  <bb 4> :
+  # qAct_42 = PHI <qAct_50(2), qAct_56(3)>
+  # qNew_44 = PHI <qNew_51(2), qNew_55(3)>
+  # DEBUG qNew => qNew_44
+  # DEBUG qAct => qAct_42
+  # DEBUG BEGIN_STMT
+  if (qAct_42 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 5> :
+  _4 = (int) qAct_42;
+  _5 = (int) qAct_42;
+  _6 = OS_taskPtrs[_5];
+  _7 = _6->linkBase;
+  _8 = (int) _7;
+  _9 = (int) qAct_42;
+  _10 = OS_taskPtrs[_9];
+  _11 = _10->dynamic;
+  _12 = _11->cAct;
+  _13 = (int) _12;
+  _14 = _8 + _13;
+  if (_4 == _14)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  _15 = (int) qAct_42;
+  _16 = OS_taskPtrs[_15];
+  _17 = _16->dynamic;
+  _18 = _17->prio;
+  iftmp.0_53 = (int) _18;
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  _19 = (int) qAct_42;
+  _20 = OS_taskPtrs[_19];
+  _21 = _20->queuePrio;
+  iftmp.0_52 = (int) _21;
+
+  <bb 8> :
+  # iftmp.0_46 = PHI <iftmp.0_53(6), iftmp.0_52(7)>
+  _22 = (int) prio_54(D);
+  if (iftmp.0_46 > _22)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (qAct_42 != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  qNewNext_57 = qAct_42;
+  # DEBUG qNewNext => qNewNext_57
+  # DEBUG BEGIN_STMT
+  qOld_58 = qNew_44;
+  # DEBUG qOld => qOld_58
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  qOld_60 = qAct_43;
+  # DEBUG qOld => qOld_60
+  # DEBUG BEGIN_STMT
+  _23 = (unsigned int) qAct_43;
+  _24 = _23 * 2;
+  _25 = &OS_taskActivations + _24;
+  qAct_61 = *_25;
+  # DEBUG qAct => qAct_61
+
+  <bb 12> :
+  # qAct_43 = PHI <qAct_42(10), qAct_61(11)>
+  # qOld_45 = PHI <qOld_58(10), qOld_60(11)>
+  # DEBUG qOld => qOld_45
+  # DEBUG qAct => qAct_43
+  # DEBUG BEGIN_STMT
+  if (qAct_43 != tAct_59(D))
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  if (qAct_43 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (qOld_45 == qNew_44)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  if (qAct_43 == tAct_59(D))
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _26 = (unsigned int) tAct_59(D);
+  _27 = _26 * 2;
+  _28 = &OS_taskActivations + _27;
+  _29 = (unsigned int) qOld_45;
+  _30 = _29 * 2;
+  _31 = &OS_taskActivations + _30;
+  _32 = *_28;
+  *_31 = _32;
+  # DEBUG BEGIN_STMT
+  _33 = (unsigned int) qNew_44;
+  _34 = _33 * 2;
+  _35 = &OS_taskActivations + _34;
+  *_35 = tAct_59(D);
+  # DEBUG BEGIN_STMT
+  _36 = (unsigned int) tAct_59(D);
+  _37 = _36 * 2;
+  _38 = &OS_taskActivations + _37;
+  *_38 = qNewNext_57;
+  # DEBUG BEGIN_STMT
+  _39 = OS_taskActivations[0];
+  _40 = (int) _39;
+  _41 = OS_taskPtrs[_40];
+  OS_kernelData.taskQueueHead = _41;
+
+  <bb 17> :
+  return;
+
+}
+
+

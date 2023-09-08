@@ -1,0 +1,185 @@
+
+Marking local functions:
+
+
+Marking externally visible functions: FreeTimer_ConvertTicks2Us FreeTimer_ConvertTicks2Ms FreeTimer_ConvertMs2Ticks FreeTimer_GetTimeInTicks FreeTimer_StartTimeMeasurement FreeTimer_Init FreeTimer_GetCurrentTimeInTicks
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+OS_GetTimeStampGeneric/15 (OS_GetTimeStampGeneric) @06d89540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: FreeTimer_GetCurrentTimeInTicks/8 
+  Calls: 
+FreeTimer_ConvertTicks2Us/14 (FreeTimer_ConvertTicks2Us) @06d89380
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+FreeTimer_ConvertTicks2Ms/13 (FreeTimer_ConvertTicks2Ms) @06d891c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+FreeTimer_ConvertMs2Ticks/12 (FreeTimer_ConvertMs2Ticks) @06d89000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+FreeTimer_GetTimeInTicks/11 (FreeTimer_GetTimeInTicks) @06d74c40
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: FreeTimer_GetCurrentTimeInTicks/8 
+FreeTimer_StartTimeMeasurement/10 (FreeTimer_StartTimeMeasurement) @06d74a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: FreeTimer_GetCurrentTimeInTicks/8 
+FreeTimer_Init/9 (FreeTimer_Init) @06d748c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: 
+FreeTimer_GetCurrentTimeInTicks/8 (FreeTimer_GetCurrentTimeInTicks) @06d74700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: FreeTimer_GetTimeInTicks/11 FreeTimer_StartTimeMeasurement/10 
+  Calls: OS_GetTimeStampGeneric/15 
+FreeTimer_ConvertTicks2Us (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInUsType D.8198;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8198 = timeInTicks / 50;
+  return D.8198;
+
+}
+
+
+FreeTimer_ConvertTicks2Ms (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInMsType D.8196;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8196 = timeInTicks / 50000;
+  return D.8196;
+
+}
+
+
+FreeTimer_ConvertMs2Ticks (const FreeTimer_TimeInMsType timeInMs)
+{
+  FreeTimer_TimeInTicksType D.8194;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8194 = timeInMs * 50000;
+  return D.8194;
+
+}
+
+
+FreeTimer_GetTimeInTicks (FreeTimer_TimeInTicksType initialTimeInTicks)
+{
+  const FreeTimer_TimeInTicksType elapsedTimeInTicks;
+  FreeTimer_TimeInTicksType D.8192;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  elapsedTimeInTicks = FreeTimer_GetCurrentTimeInTicks ();
+  # DEBUG BEGIN_STMT
+  D.8192 = elapsedTimeInTicks - initialTimeInTicks;
+  return D.8192;
+
+}
+
+
+FreeTimer_StartTimeMeasurement (FreeTimer_TimeInTicksType * initialTimeInTicks)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = FreeTimer_GetCurrentTimeInTicks ();
+  *initialTimeInTicks = _1;
+  return;
+
+}
+
+
+FreeTimer_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+FreeTimer_GetCurrentTimeInTicks ()
+{
+  uint32 RetVal;
+  struct os_timestamp_t CounterValue;
+  FreeTimer_TimeInTicksType D.8189;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&CounterValue);
+  # DEBUG BEGIN_STMT
+  _1 = CounterValue.tsHi;
+  _2 = _1 << 32;
+  RetVal = RetVal | _2;
+  # DEBUG BEGIN_STMT
+  _3 = CounterValue.tsLo;
+  RetVal = RetVal | _3;
+  # DEBUG BEGIN_STMT
+  D.8189 = RetVal;
+  CounterValue = {CLOBBER};
+  return D.8189;
+
+}
+
+

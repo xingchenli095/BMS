@@ -1,0 +1,127 @@
+__attribute__((target ("general-regs-only")))
+OS_Synchronize (struct os_scheduledynamic_t * sd, const struct os_scheduleentry_t * nextp, os_tick_t delta)
+{
+  os_schedulestatus_t dir;
+  os_tick_t adj;
+  unsigned char _1;
+  unsigned int _2;
+  unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  unsigned char _6;
+  unsigned char _7;
+  const os_tick_t iftmp.0_12;
+  const os_tick_t iftmp.0_19;
+  const os_tick_t iftmp.0_20;
+  os_tick_t _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = sd_15(D)->status;
+  dir_16 = _1 & 48;
+  # DEBUG dir => dir_16
+  # DEBUG BEGIN_STMT
+  if (dir_16 == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (dir_16 == 16)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.0_20 = nextp_18(D)->maxDecrease;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.0_19 = nextp_18(D)->maxIncrease;
+
+  <bb 6> :
+  # iftmp.0_12 = PHI <iftmp.0_20(4), iftmp.0_19(5)>
+  adj_21 = iftmp.0_12;
+  # DEBUG adj => adj_21
+  # DEBUG BEGIN_STMT
+  _2 = sd_15(D)->adjRemaining;
+  if (adj_21 > _2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  adj_22 = sd_15(D)->adjRemaining;
+  # DEBUG adj => adj_22
+
+  <bb 8> :
+  # adj_10 = PHI <adj_21(6), adj_22(7)>
+  # DEBUG adj => adj_10
+  # DEBUG BEGIN_STMT
+  if (dir_16 == 16)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (adj_10 > delta_17(D))
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  adj_25 = delta_17(D);
+  # DEBUG adj => adj_25
+  # DEBUG BEGIN_STMT
+  delta_26 = 0;
+  # DEBUG delta => delta_26
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  delta_24 = delta_17(D) - adj_10;
+  # DEBUG delta => delta_24
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  delta_23 = delta_17(D) + adj_10;
+  # DEBUG delta => delta_23
+
+  <bb 13> :
+  # delta_8 = PHI <delta_24(11), delta_23(12), delta_26(10)>
+  # adj_11 = PHI <adj_10(11), adj_10(12), adj_25(10)>
+  # DEBUG adj => adj_11
+  # DEBUG delta => delta_8
+  # DEBUG BEGIN_STMT
+  _3 = sd_15(D)->adjRemaining;
+  _4 = _3 - adj_11;
+  sd_15(D)->adjRemaining = _4;
+  # DEBUG BEGIN_STMT
+  _5 = sd_15(D)->adjRemaining;
+  if (_5 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _6 = sd_15(D)->status;
+  _7 = _6 & 207;
+  sd_15(D)->status = _7;
+
+  <bb 15> :
+  # delta_9 = PHI <delta_17(D)(2), delta_8(13), delta_8(14)>
+  # DEBUG delta => delta_9
+  # DEBUG BEGIN_STMT
+  _29 = delta_9;
+  return _29;
+
+}
+
+

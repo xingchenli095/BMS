@@ -1,0 +1,98 @@
+FreeTimer_ConvertTicks2Us (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInUsType D.8198;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8198 = timeInTicks / 50;
+  return D.8198;
+
+}
+
+
+FreeTimer_ConvertTicks2Ms (const FreeTimer_TimeInTicksType timeInTicks)
+{
+  FreeTimer_TimeInMsType D.8196;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8196 = timeInTicks / 50000;
+  return D.8196;
+
+}
+
+
+FreeTimer_ConvertMs2Ticks (const FreeTimer_TimeInMsType timeInMs)
+{
+  FreeTimer_TimeInTicksType D.8194;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  D.8194 = timeInMs * 50000;
+  return D.8194;
+
+}
+
+
+FreeTimer_GetTimeInTicks (FreeTimer_TimeInTicksType initialTimeInTicks)
+{
+  const FreeTimer_TimeInTicksType elapsedTimeInTicks;
+  FreeTimer_TimeInTicksType D.8192;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  elapsedTimeInTicks = FreeTimer_GetCurrentTimeInTicks ();
+  # DEBUG BEGIN_STMT
+  D.8192 = elapsedTimeInTicks - initialTimeInTicks;
+  return D.8192;
+
+}
+
+
+FreeTimer_StartTimeMeasurement (FreeTimer_TimeInTicksType * initialTimeInTicks)
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = FreeTimer_GetCurrentTimeInTicks ();
+  *initialTimeInTicks = _1;
+  return;
+
+}
+
+
+FreeTimer_Init ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+FreeTimer_GetCurrentTimeInTicks ()
+{
+  uint32 RetVal;
+  struct os_timestamp_t CounterValue;
+  FreeTimer_TimeInTicksType D.8189;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  OS_GetTimeStampGeneric (&CounterValue);
+  # DEBUG BEGIN_STMT
+  _1 = CounterValue.tsHi;
+  _2 = _1 << 32;
+  RetVal = RetVal | _2;
+  # DEBUG BEGIN_STMT
+  _3 = CounterValue.tsLo;
+  RetVal = RetVal | _3;
+  # DEBUG BEGIN_STMT
+  D.8189 = RetVal;
+  CounterValue = {CLOBBER};
+  return D.8189;
+
+}
+
+

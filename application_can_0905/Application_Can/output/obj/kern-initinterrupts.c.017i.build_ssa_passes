@@ -1,0 +1,65 @@
+__attribute__((target ("general-regs-only")))
+OS_InitInterrupts ()
+{
+  struct os_isrdynamic_t * const isrd;
+  const struct os_isr_t * const isr;
+  const os_coreid_t myCoreId;
+  os_isrid_t i;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = (unsigned int) i;
+  _3 = _2 * 68;
+  isr = OS_isrTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  isrd = isr->dynamic;
+  # DEBUG BEGIN_STMT
+  _4 = &isr->arch;
+  OS_CORTEXM_IntSetupIsr (_4);
+  # DEBUG BEGIN_STMT
+  _5 = isr->flags;
+  _6 = (signed char) _5;
+  if (_6 < 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = &isr->arch;
+  OS_CORTEXM_IntEnableIsr (_7);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  isrd->statusflags = 32;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  i.1_8 = i;
+  i = i.1_8 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.2_9 = OS_nInterrupts;
+  if (i < OS_nInterrupts.2_9)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

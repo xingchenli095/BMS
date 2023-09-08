@@ -1,0 +1,171 @@
+__attribute__((target ("general-regs-only")))
+OS_StartupChecksIsr ()
+{
+  const struct os_appcontext_t * const app;
+  const struct os_isr_t * const isr;
+  os_unsigned_t i;
+  os_result_t result;
+  const os_coreid_t myCoreId;
+  const struct os_isr_t * OS_isrTableBase.0_1;
+  unsigned int _2;
+  unsigned char _3;
+  unsigned int _4;
+  unsigned int _5;
+  struct os_israccounting_t * _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  const os_tick_t * _10;
+  struct os_israccounting_t * _11;
+  unsigned int _12;
+  unsigned int _13;
+  short unsigned int OS_nInterrupts.1_14;
+  unsigned int _15;
+  os_result_t _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId_27 = 0;
+  # DEBUG myCoreId => myCoreId_27
+  # DEBUG BEGIN_STMT
+  result_28 = 0;
+  # DEBUG result => result_28
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_29 = 0;
+  # DEBUG i => i_29
+  goto <bb 17>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.0_1 = OS_isrTableBase;
+  _2 = i_21 * 68;
+  isr_32 = OS_isrTableBase.0_1 + _2;
+  # DEBUG isr => isr_32
+  # DEBUG BEGIN_STMT
+  app_33 = isr_32->app;
+  # DEBUG app => app_33
+  # DEBUG BEGIN_STMT
+  if (app_33 == 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  result_35 = OS_Panic (51);
+  # DEBUG result => result_35
+
+  <bb 5> :
+  # result_16 = PHI <result_35(4), result_20(3)>
+  # DEBUG result => result_16
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = isr_32->flags;
+  _4 = (unsigned int) _3;
+  _5 = _4 & 64;
+  if (_5 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _6 = isr_32->accounting;
+  if (_6 == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  result_37 = OS_Panic (52);
+  # DEBUG result => result_37
+
+  <bb 8> :
+  # result_17 = PHI <result_16(5), result_16(6), result_37(7)>
+  # DEBUG result => result_17
+  # DEBUG BEGIN_STMT
+  _7 = isr_32->execBudget;
+  if (_7 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  _8 = isr_32->osLockTime;
+  if (_8 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  _9 = isr_32->allLockTime;
+  if (_9 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _10 = isr_32->resourceLockTime;
+  if (_10 != 0B)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _11 = isr_32->accounting;
+  if (_11 == 0B)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  result_39 = OS_Panic (53);
+  # DEBUG result => result_39
+
+  <bb 14> :
+  # result_18 = PHI <result_17(12), result_39(13)>
+  # DEBUG result => result_18
+  # DEBUG BEGIN_STMT
+  _12 = isr_32->osLockTime;
+  _13 = isr_32->allLockTime;
+  if (_12 < _13)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  result_41 = OS_Panic (54);
+  # DEBUG result => result_41
+
+  <bb 16> :
+  # result_19 = PHI <result_41(15), result_17(11), result_18(14)>
+  # DEBUG result => result_19
+  # DEBUG BEGIN_STMT
+  i_42 = i_21 + 1;
+  # DEBUG i => i_42
+
+  <bb 17> :
+  # result_20 = PHI <result_28(2), result_19(16)>
+  # i_21 = PHI <i_29(2), i_42(16)>
+  # DEBUG i => i_21
+  # DEBUG result => result_20
+  # DEBUG BEGIN_STMT
+  OS_nInterrupts.1_14 = OS_nInterrupts;
+  _15 = (unsigned int) OS_nInterrupts.1_14;
+  if (i_21 < _15)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _31 = result_20;
+  return _31;
+
+}
+
+

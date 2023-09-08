@@ -1,0 +1,82 @@
+__attribute__((target ("general-regs-only")))
+OS_KillSchedule (os_scheduleid_t sid, os_schedulestatus_t state)
+{
+  os_intstatus_t is;
+  os_result_t r;
+  os_scheduleid_t s;
+  struct os_scheduledynamic_t * sd;
+  const struct os_schedule_t * ss;
+  const struct os_schedule_t * OS_scheduleTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int OS_kernDisableLevel.1_4;
+  short unsigned int _5;
+  os_result_t _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  r_9 = 0;
+  # DEBUG r => r_9
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  s_11 = sid_10(D);
+  # DEBUG s => s_11
+  # DEBUG BEGIN_STMT
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_scheduleTableBase.0_1 = OS_scheduleTableBase;
+  _2 = (unsigned int) s_7;
+  _3 = _2 * 36;
+  ss_15 = OS_scheduleTableBase.0_1 + _3;
+  # DEBUG ss => ss_15
+  # DEBUG BEGIN_STMT
+  sd_16 = ss_15->dynamic;
+  # DEBUG sd => sd_16
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.1_4 = OS_kernDisableLevel;
+  is_18 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.1_4);
+  # DEBUG is => is_18
+  # DEBUG BEGIN_STMT
+  sd_16->adjRemaining = 0;
+  # DEBUG BEGIN_STMT
+  sd_16->next = 0;
+  # DEBUG BEGIN_STMT
+  sd_16->status = state_6;
+  # DEBUG BEGIN_STMT
+  _5 = ss_15->alarm;
+  OS_KillAlarm (_5, 0);
+  # DEBUG BEGIN_STMT
+  s_23 = sd_16->chain;
+  # DEBUG s => s_23
+  # DEBUG BEGIN_STMT
+  sd_16->chain = 255;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_18);
+  # DEBUG BEGIN_STMT
+  state_26 = 0;
+  # DEBUG state => state_26
+
+  <bb 4> :
+  # state_6 = PHI <state_12(D)(2), state_26(3)>
+  # s_7 = PHI <s_11(2), s_23(3)>
+  # DEBUG s => s_7
+  # DEBUG state => state_6
+  # DEBUG BEGIN_STMT
+  if (s_7 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 = r_9;
+  return _14;
+
+}
+
+

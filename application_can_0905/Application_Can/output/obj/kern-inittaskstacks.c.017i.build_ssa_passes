@@ -1,0 +1,66 @@
+__attribute__((target ("general-regs-only")))
+OS_InitTaskStacks ()
+{
+  os_size_t numElems;
+  os_stackelement_t * p;
+  const struct os_task_t * const tp;
+  os_taskid_t tid;
+  const os_coreid_t myCoreId;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  myCoreId = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  tid = 0;
+  goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  OS_taskTableBase.0_1 = OS_taskTableBase;
+  _2 = (unsigned int) tid;
+  _3 = _2 * 76;
+  tp = OS_taskTableBase.0_1 + _3;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  p = tp->stackBase;
+  # DEBUG BEGIN_STMT
+  _4 = tp->stackLen;
+  numElems = _4 / 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  *p = 3958107115;
+  # DEBUG BEGIN_STMT
+  p = p + 4;
+  # DEBUG BEGIN_STMT
+  numElems = numElems + 4294967295;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (numElems != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  tid.1_5 = tid;
+  tid = tid.1_5 + 1;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  OS_nTasks.2_6 = OS_nTasks;
+  if (tid < OS_nTasks.2_6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  return;
+
+}
+
+

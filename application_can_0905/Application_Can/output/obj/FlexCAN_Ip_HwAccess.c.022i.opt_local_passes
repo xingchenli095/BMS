@@ -1,0 +1,5146 @@
+FlexCAN_ResetImaskBuff (uint8 Instance)
+{
+  uint8 ImaskCnt;
+  int _1;
+  int _2;
+  unsigned char ImaskCnt.26_3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ImaskCnt_6 = 0;
+  # DEBUG ImaskCnt => ImaskCnt_6
+  # DEBUG BEGIN_STMT
+  ImaskCnt_7 = 0;
+  # DEBUG ImaskCnt => ImaskCnt_7
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) Instance_9(D);
+  _2 = (int) ImaskCnt_4;
+  FlexCAN_Ip_au32ImaskBuff[_1][_2] ={v} 0;
+  # DEBUG BEGIN_STMT
+  ImaskCnt.26_3 = ImaskCnt_4;
+  ImaskCnt_11 = ImaskCnt.26_3 + 1;
+  # DEBUG ImaskCnt => ImaskCnt_11
+
+  <bb 4> :
+  # ImaskCnt_4 = PHI <ImaskCnt_7(2), ImaskCnt_11(3)>
+  # DEBUG ImaskCnt => ImaskCnt_4
+  # DEBUG BEGIN_STMT
+  if (ImaskCnt_4 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  return;
+
+}
+
+
+FlexCAN_ConfigCtrlOptions (struct FLEXCAN_Type * pBase, uint32 u32Options)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = u32Options_17(D) & 32;
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetIsoCan (pBase_19(D), 1);
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetIsoCan (pBase_19(D), 0);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 = u32Options_17(D) & 64;
+  if (_2 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetEntireFrameArbitrationFieldComparison (pBase_19(D), 1);
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetEntireFrameArbitrationFieldComparison (pBase_19(D), 0);
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _3 = u32Options_17(D) & 8;
+  if (_3 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetProtocolException (pBase_19(D), 1);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetProtocolException (pBase_19(D), 0);
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _4 = u32Options_17(D) & 2;
+  if (_4 != 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _5 ={v} pBase_19(D)->MCR;
+  _6 = _5 & 2048;
+  if (_6 == 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_CanBitSampling (pBase_19(D), 1);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_CanBitSampling (pBase_19(D), 0);
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _7 = u32Options_17(D) & 4;
+  if (_7 != 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetBusOffAutorecovery (pBase_19(D), 1);
+  goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetBusOffAutorecovery (pBase_19(D), 0);
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _8 = u32Options_17(D) & 1;
+  if (_8 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetRemoteReqStore (pBase_19(D), 1);
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetRemoteReqStore (pBase_19(D), 0);
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _9 = u32Options_17(D) & 16;
+  if (_9 != 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetEdgeFilter (pBase_19(D), 1);
+  goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetEdgeFilter (pBase_19(D), 0);
+
+  <bb 24> :
+  return;
+
+}
+
+
+FlexCAN_SetEnhancedRxFifoFilter (struct FLEXCAN_Type * base, const struct Flexcan_Ip_EnhancedIdTableType * idFilterTable)
+{
+  volatile uint32 * FilterStdIDTable;
+  volatile uint32 * FilterExtIDTable;
+  uint32 Val;
+  uint32 Val1;
+  uint32 Val2;
+  uint32 NumOfStdIDFilter;
+  uint32 NumOfExtIDFilter;
+  uint32 NumOfEnhancedFilter;
+  uint32 n;
+  uint32 j;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  const struct Flexcan_Ip_EnhancedIdTableType * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  const struct Flexcan_Ip_EnhancedIdTableType * _12;
+  unsigned char _13;
+  long unsigned int _14;
+  const struct Flexcan_Ip_EnhancedIdTableType * _15;
+  unsigned char _16;
+  long unsigned int _17;
+  const struct Flexcan_Ip_EnhancedIdTableType * _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  const struct Flexcan_Ip_EnhancedIdTableType * _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  volatile uint32 * _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  const struct Flexcan_Ip_EnhancedIdTableType * _31;
+  <unnamed type> _32;
+  long unsigned int _33;
+  volatile uint32 * _34;
+  long unsigned int _35;
+  volatile uint32 * _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  volatile uint32 * _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  volatile uint32 * _42;
+  long unsigned int _43;
+  long unsigned int _44;
+  volatile uint32 * _45;
+  long unsigned int _46;
+  long unsigned int _47;
+  volatile uint32 * _48;
+  long unsigned int _49;
+  long unsigned int _50;
+  const struct Flexcan_Ip_EnhancedIdTableType * _51;
+  unsigned char _52;
+  long unsigned int _53;
+  const struct Flexcan_Ip_EnhancedIdTableType * _54;
+  unsigned char _55;
+  long unsigned int _56;
+  const struct Flexcan_Ip_EnhancedIdTableType * _57;
+  long unsigned int _58;
+  long unsigned int _59;
+  long unsigned int _60;
+  volatile uint32 * _61;
+  long unsigned int _62;
+  long unsigned int _63;
+  const struct Flexcan_Ip_EnhancedIdTableType * _64;
+  long unsigned int _65;
+  long unsigned int _66;
+  sizetype _67;
+  sizetype _68;
+  volatile uint32 * _69;
+  long unsigned int _70;
+  long unsigned int _71;
+  const struct Flexcan_Ip_EnhancedIdTableType * _72;
+  <unnamed type> _73;
+  long unsigned int _74;
+  volatile uint32 * _75;
+  long unsigned int _76;
+  volatile uint32 * _77;
+  long unsigned int _78;
+  long unsigned int _79;
+  volatile uint32 * _80;
+  long unsigned int _81;
+  long unsigned int _82;
+  volatile uint32 * _83;
+  long unsigned int _84;
+  long unsigned int _85;
+  volatile uint32 * _86;
+  long unsigned int _87;
+  long unsigned int _88;
+  volatile uint32 * _89;
+  long unsigned int _90;
+  long unsigned int _91;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Val2_105 = 0;
+  # DEBUG Val2 => Val2_105
+  Val1_106 = 0;
+  # DEBUG Val1 => Val1_106
+  Val_107 = 0;
+  # DEBUG Val => Val_107
+  # DEBUG BEGIN_STMT
+  FilterExtIDTable_108 = 0B;
+  # DEBUG FilterExtIDTable => FilterExtIDTable_108
+  # DEBUG BEGIN_STMT
+  FilterStdIDTable_109 = 0B;
+  # DEBUG FilterStdIDTable => FilterStdIDTable_109
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_111(D)->ERFCR;
+  _2 = _1 >> 8;
+  NumOfEnhancedFilter_112 = _2 & 63;
+  # DEBUG NumOfEnhancedFilter => NumOfEnhancedFilter_112
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_111(D)->ERFCR;
+  _4 = _3 >> 16;
+  NumOfExtIDFilter_113 = _4 & 127;
+  # DEBUG NumOfExtIDFilter => NumOfExtIDFilter_113
+  # DEBUG BEGIN_STMT
+  _5 = NumOfEnhancedFilter_112 - NumOfExtIDFilter_113;
+  _6 = _5 + 1;
+  NumOfStdIDFilter_114 = _6 * 2;
+  # DEBUG NumOfStdIDFilter => NumOfStdIDFilter_114
+  # DEBUG BEGIN_STMT
+  FilterExtIDTable_115 = &base_111(D)->ERFFEL[0];
+  # DEBUG FilterExtIDTable => FilterExtIDTable_115
+  # DEBUG BEGIN_STMT
+  _7 = NumOfExtIDFilter_113 * 2;
+  FilterStdIDTable_116 = &base_111(D)->ERFFEL[_7];
+  # DEBUG FilterStdIDTable => FilterStdIDTable_116
+  # DEBUG BEGIN_STMT
+  j_117 = 0;
+  # DEBUG j => j_117
+  # DEBUG BEGIN_STMT
+  n_118 = 0;
+  # DEBUG n => n_118
+  # DEBUG BEGIN_STMT
+  i_119 = 0;
+  # DEBUG i => i_119
+  goto <bb 25>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _8 = i_92 * 16;
+  _9 = idFilterTable_120(D) + _8;
+  _10 = _9->isExtendedFrame;
+  if (_10 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Val_132 = 0;
+  # DEBUG Val => Val_132
+  # DEBUG BEGIN_STMT
+  _11 = i_92 * 16;
+  _12 = idFilterTable_120(D) + _11;
+  _13 = _12->rtr2;
+  if (_13 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Val_133 = 134217728;
+  # DEBUG Val => Val_133
+
+  <bb 6> :
+  # Val_99 = PHI <Val_132(4), Val_133(5)>
+  # DEBUG Val => Val_99
+  # DEBUG BEGIN_STMT
+  _14 = i_92 * 16;
+  _15 = idFilterTable_120(D) + _14;
+  _16 = _15->rtr1;
+  if (_16 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Val_134 = Val_99 | 2048;
+  # DEBUG Val => Val_134
+
+  <bb 8> :
+  # Val_100 = PHI <Val_99(6), Val_134(7)>
+  # DEBUG Val => Val_100
+  # DEBUG BEGIN_STMT
+  _17 = i_92 * 16;
+  _18 = idFilterTable_120(D) + _17;
+  _19 = _18->id2;
+  _20 = _19 << 16;
+  _21 = _20 & 134152192;
+  _22 = i_92 * 16;
+  _23 = idFilterTable_120(D) + _22;
+  _24 = _23->id1;
+  _25 = _24 & 2047;
+  _26 = _21 | _25;
+  _27 = j_94 * 4;
+  _28 = FilterStdIDTable_116 + _27;
+  _29 = Val_100 | _26;
+  *_28 ={v} _29;
+  # DEBUG BEGIN_STMT
+  _30 = i_92 * 16;
+  _31 = idFilterTable_120(D) + _30;
+  _32 = _31->filterType;
+  switch (_32) <default: <L9> [INV], case 0: <L6> [INV], case 1: <L7> [INV], case 2: <L8> [INV]>
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _33 = j_94 * 4;
+  _34 = FilterStdIDTable_116 + _33;
+  _35 = j_94 * 4;
+  _36 = FilterStdIDTable_116 + _35;
+  _37 ={v} *_34;
+  *_36 ={v} _37;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  _38 = j_94 * 4;
+  _39 = FilterStdIDTable_116 + _38;
+  _40 ={v} *_39;
+  _41 = j_94 * 4;
+  _42 = FilterStdIDTable_116 + _41;
+  _43 = _40 | 1073741824;
+  *_42 ={v} _43;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  _44 = j_94 * 4;
+  _45 = FilterStdIDTable_116 + _44;
+  _46 ={v} *_45;
+  _47 = j_94 * 4;
+  _48 = FilterStdIDTable_116 + _47;
+  _49 = _46 | 2147483648;
+  *_48 ={v} _49;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+<L9>:
+  # DEBUG BEGIN_STMT
+  DevAssert (0);
+  # DEBUG BEGIN_STMT
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  j_140 = j_94 + 1;
+  # DEBUG j => j_140
+  goto <bb 24>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  Val2_121 = 0;
+  # DEBUG Val2 => Val2_121
+  # DEBUG BEGIN_STMT
+  Val1_122 = 0;
+  # DEBUG Val1 => Val1_122
+  # DEBUG BEGIN_STMT
+  _50 = i_92 * 16;
+  _51 = idFilterTable_120(D) + _50;
+  _52 = _51->rtr2;
+  if (_52 != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  Val2_123 = 536870912;
+  # DEBUG Val2 => Val2_123
+
+  <bb 16> :
+  # Val2_97 = PHI <Val2_121(14), Val2_123(15)>
+  # DEBUG Val2 => Val2_97
+  # DEBUG BEGIN_STMT
+  _53 = i_92 * 16;
+  _54 = idFilterTable_120(D) + _53;
+  _55 = _54->rtr1;
+  if (_55 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Val1_124 = 536870912;
+  # DEBUG Val1 => Val1_124
+
+  <bb 18> :
+  # Val1_98 = PHI <Val1_122(16), Val1_124(17)>
+  # DEBUG Val1 => Val1_98
+  # DEBUG BEGIN_STMT
+  _56 = i_92 * 16;
+  _57 = idFilterTable_120(D) + _56;
+  _58 = _57->id2;
+  _59 = _58 & 536870911;
+  _60 = n_96 * 4;
+  _61 = FilterExtIDTable_115 + _60;
+  _62 = Val2_97 | _59;
+  *_61 ={v} _62;
+  # DEBUG BEGIN_STMT
+  _63 = i_92 * 16;
+  _64 = idFilterTable_120(D) + _63;
+  _65 = _64->id1;
+  _66 = _65 & 536870911;
+  _67 = n_96 + 1;
+  _68 = _67 * 4;
+  _69 = FilterExtIDTable_115 + _68;
+  _70 = Val1_98 | _66;
+  *_69 ={v} _70;
+  # DEBUG BEGIN_STMT
+  _71 = i_92 * 16;
+  _72 = idFilterTable_120(D) + _71;
+  _73 = _72->filterType;
+  switch (_73) <default: <L19> [INV], case 0: <L16> [INV], case 1: <L17> [INV], case 2: <L18> [INV]>
+
+  <bb 19> :
+<L16>:
+  # DEBUG BEGIN_STMT
+  _74 = n_96 * 4;
+  _75 = FilterExtIDTable_115 + _74;
+  _76 = n_96 * 4;
+  _77 = FilterExtIDTable_115 + _76;
+  _78 ={v} *_75;
+  *_77 ={v} _78;
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 20> :
+<L17>:
+  # DEBUG BEGIN_STMT
+  _79 = n_96 * 4;
+  _80 = FilterExtIDTable_115 + _79;
+  _81 ={v} *_80;
+  _82 = n_96 * 4;
+  _83 = FilterExtIDTable_115 + _82;
+  _84 = _81 | 1073741824;
+  *_83 ={v} _84;
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 21> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  _85 = n_96 * 4;
+  _86 = FilterExtIDTable_115 + _85;
+  _87 ={v} *_86;
+  _88 = n_96 * 4;
+  _89 = FilterExtIDTable_115 + _88;
+  _90 = _87 | 2147483648;
+  *_89 ={v} _90;
+  # DEBUG BEGIN_STMT
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+<L19>:
+  # DEBUG BEGIN_STMT
+  DevAssert (0);
+  # DEBUG BEGIN_STMT
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  n_131 = n_96 + 2;
+  # DEBUG n => n_131
+
+  <bb 24> :
+  # j_93 = PHI <j_140(13), j_94(23)>
+  # n_95 = PHI <n_96(13), n_131(23)>
+  # DEBUG n => n_95
+  # DEBUG j => j_93
+  # DEBUG BEGIN_STMT
+  i_141 = i_92 + 1;
+  # DEBUG i => i_141
+
+  <bb 25> :
+  # i_92 = PHI <i_119(2), i_141(24)>
+  # j_94 = PHI <j_117(2), j_93(24)>
+  # n_96 = PHI <n_118(2), n_95(24)>
+  # DEBUG n => n_96
+  # DEBUG j => j_94
+  # DEBUG i => i_92
+  # DEBUG BEGIN_STMT
+  _91 = NumOfExtIDFilter_113 + NumOfStdIDFilter_114;
+  if (i_92 < _91)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 26> :
+  return;
+
+}
+
+
+FlexCAN_EnableEnhancedRxFifo (struct FLEXCAN_Type * base, uint32 numOfStdIDFilters, uint32 numOfExtIDFilters, uint32 numOfWatermark)
+{
+  uint32 NumOfEnhancedFilters;
+  Flexcan_Ip_StatusType Stat;
+  unsigned char _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  Flexcan_Ip_StatusType _51;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Stat_32 = 0;
+  # DEBUG Stat => Stat_32
+  # DEBUG BEGIN_STMT
+  NumOfEnhancedFilters_33 = 0;
+  # DEBUG NumOfEnhancedFilters => NumOfEnhancedFilters_33
+  # DEBUG BEGIN_STMT
+  _1 = FlexCAN_IsEnhancedRxFifoAvailable (base_35(D));
+  if (_1 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _2 = numOfStdIDFilters_38(D) >> 1;
+  _3 = numOfExtIDFilters_39(D) + _2;
+  NumOfEnhancedFilters_40 = _3 + 4294967295;
+  # DEBUG NumOfEnhancedFilters => NumOfEnhancedFilters_40
+  # DEBUG BEGIN_STMT
+  if (numOfStdIDFilters_38(D) == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  if (numOfExtIDFilters_39(D) == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Stat_41 = 1;
+  # DEBUG Stat => Stat_41
+
+  <bb 6> :
+  # Stat_27 = PHI <Stat_32(3), Stat_32(4), Stat_41(5)>
+  # DEBUG Stat => Stat_27
+  # DEBUG BEGIN_STMT
+  _4 = numOfStdIDFilters_38(D) & 1;
+  if (_4 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Stat_42 = 1;
+  # DEBUG Stat => Stat_42
+
+  <bb 8> :
+  # Stat_28 = PHI <Stat_27(6), Stat_42(7)>
+  # DEBUG Stat => Stat_28
+  # DEBUG BEGIN_STMT
+  _5 ={v} base_35(D)->MCR;
+  _6 = _5 & 536870912;
+  if (_6 == 536870912)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Stat_43 = 1;
+  # DEBUG Stat => Stat_43
+
+  <bb 10> :
+  # Stat_29 = PHI <Stat_28(8), Stat_43(9)>
+  # DEBUG Stat => Stat_29
+  # DEBUG BEGIN_STMT
+  if (Stat_29 == 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _7 ={v} base_35(D)->ERFCR;
+  _8 = _7 | 2147483648;
+  base_35(D)->ERFCR ={v} _8;
+  # DEBUG BEGIN_STMT
+  _9 ={v} base_35(D)->ERFSR;
+  _10 = _9 | 134217728;
+  base_35(D)->ERFSR ={v} _10;
+  # DEBUG BEGIN_STMT
+  _11 ={v} base_35(D)->ERFSR;
+  _12 = _11 & 268435455;
+  base_35(D)->ERFSR ={v} _12;
+  # DEBUG BEGIN_STMT
+  _13 ={v} base_35(D)->ERFCR;
+  _14 = _13 & 4294951167;
+  _15 = NumOfEnhancedFilters_40 << 8;
+  _16 = _15 & 16128;
+  _17 = _14 | _16;
+  base_35(D)->ERFCR ={v} _17;
+  # DEBUG BEGIN_STMT
+  _18 ={v} base_35(D)->ERFCR;
+  _19 = _18 & 4286644223;
+  _20 = numOfExtIDFilters_39(D) << 16;
+  _21 = _20 & 8323072;
+  _22 = _19 | _21;
+  base_35(D)->ERFCR ={v} _22;
+  # DEBUG BEGIN_STMT
+  _23 ={v} base_35(D)->ERFCR;
+  _24 = _23 & 4294967264;
+  _25 = numOfWatermark_49(D) & 31;
+  _26 = _24 | _25;
+  base_35(D)->ERFCR ={v} _26;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Stat_37 = 1;
+  # DEBUG Stat => Stat_37
+
+  <bb 13> :
+  # Stat_30 = PHI <Stat_29(11), Stat_37(12), Stat_29(10)>
+  # DEBUG Stat => Stat_30
+  # DEBUG BEGIN_STMT
+  _51 = Stat_30;
+  return _51;
+
+}
+
+
+FlexCAN_IsEnhancedRxFifoAvailable (const struct FLEXCAN_Type * base)
+{
+  boolean ReturnValue;
+  static struct FLEXCAN_Type * const FlexcanBase[1] = {1076903936B};
+  uint32 i;
+  struct FLEXCAN_Type * _1;
+  boolean _11;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  i_4 = 0;
+  # DEBUG i => i_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ReturnValue_5 = 0;
+  # DEBUG ReturnValue => ReturnValue_5
+  # DEBUG BEGIN_STMT
+  i_6 = 0;
+  # DEBUG i => i_6
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = FlexcanBase[i_2];
+  if (base_8(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_10 = 1;
+  # DEBUG ReturnValue => ReturnValue_10
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  i_9 = i_2 + 1;
+  # DEBUG i => i_9
+
+  <bb 6> :
+  # i_2 = PHI <i_6(2), i_9(5)>
+  # DEBUG i => i_2
+  # DEBUG BEGIN_STMT
+  if (i_2 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # ReturnValue_3 = PHI <ReturnValue_10(4), ReturnValue_5(6)>
+  # DEBUG ReturnValue => ReturnValue_3
+  # DEBUG BEGIN_STMT
+  _11 = ReturnValue_3;
+  return _11;
+
+}
+
+
+FlexCAN_IsMbOutOfRange (const struct FLEXCAN_Type * pBase, uint8 u8MbIndex, boolean bIsLegacyFifoEn, uint32 u32MaxMbNum)
+{
+  uint32 u32NumOfMbOccupiedByFiFo;
+  uint32 u32NumOfFiFoElement;
+  boolean ReturnValue;
+  unsigned char _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  boolean _22;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_9 = 0;
+  # DEBUG ReturnValue => ReturnValue_9
+  # DEBUG BEGIN_STMT
+  u32NumOfFiFoElement_10 = 0;
+  # DEBUG u32NumOfFiFoElement => u32NumOfFiFoElement_10
+  # DEBUG BEGIN_STMT
+  u32NumOfMbOccupiedByFiFo_11 = 0;
+  # DEBUG u32NumOfMbOccupiedByFiFo => u32NumOfMbOccupiedByFiFo_11
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) u32MaxMbNum_12(D);
+  if (u8MbIndex_13(D) >= _1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_21 = 1;
+  # DEBUG ReturnValue => ReturnValue_21
+  goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (bIsLegacyFifoEn_14(D) == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _2 ={v} pBase_17(D)->CTRL2;
+  _3 = _2 >> 24;
+  u32NumOfFiFoElement_18 = _3 & 15;
+  # DEBUG u32NumOfFiFoElement => u32NumOfFiFoElement_18
+  # DEBUG BEGIN_STMT
+  _4 = u32NumOfFiFoElement_18 + 1;
+  _5 = _4 * 8;
+  _6 = _5 / 4;
+  u32NumOfMbOccupiedByFiFo_19 = _6 + 5;
+  # DEBUG u32NumOfMbOccupiedByFiFo => u32NumOfMbOccupiedByFiFo_19
+  # DEBUG BEGIN_STMT
+  _7 = (long unsigned int) u8MbIndex_13(D);
+  if (u32NumOfMbOccupiedByFiFo_19 >= _7)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_20 = 1;
+  # DEBUG ReturnValue => ReturnValue_20
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ReturnValue_15 = 0;
+  # DEBUG ReturnValue => ReturnValue_15
+
+  <bb 8> :
+  # ReturnValue_8 = PHI <ReturnValue_21(3), ReturnValue_20(6), ReturnValue_15(7), ReturnValue_9(5)>
+  # DEBUG ReturnValue => ReturnValue_8
+  # DEBUG BEGIN_STMT
+  _22 = ReturnValue_8;
+  return _22;
+
+}
+
+
+FlexCAN_ReadEnhancedRxFifo (const struct FLEXCAN_Type * base, struct Flexcan_Ip_MsgBuffType * rxFifo)
+{
+  uint8 can_real_payload;
+  uint8 flexcan_mb_dlc_value;
+  uint32 * MsgData_32;
+  const uint32 * Flexcan_Mb_Data_32;
+  const uint32 * Flexcan_Mb_Id;
+  const uint32 * Flexcan_Mb;
+  uint8 Idhit_Offset;
+  uint32 MbWord;
+  uint32 DataByte;
+  long unsigned int base.17_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  _Bool _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned int _18;
+  unsigned int _19;
+  const uint32 * _20;
+  long unsigned int _21;
+  unsigned char _22;
+  unsigned char _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  const uint32 * _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  long unsigned int _36;
+  long unsigned int _37;
+  long unsigned int _38;
+  uint32 * _39;
+  long unsigned int _40;
+  long unsigned int _41;
+  uint8 iftmp.18_44;
+  uint8 iftmp.18_64;
+  uint8 iftmp.18_65;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  base.17_1 = (long unsigned int) base_47(D);
+  _2 = base.17_1 + 8192;
+  Flexcan_Mb_48 = (const uint32 *) _2;
+  # DEBUG Flexcan_Mb => Flexcan_Mb_48
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Id_49 = Flexcan_Mb_48 + 4;
+  # DEBUG Flexcan_Mb_Id => Flexcan_Mb_Id_49
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_32_50 = Flexcan_Mb_48 + 8;
+  # DEBUG Flexcan_Mb_Data_32 => Flexcan_Mb_Data_32_50
+  # DEBUG BEGIN_STMT
+  MsgData_32_51 = 0B;
+  # DEBUG MsgData_32 => MsgData_32_51
+  # DEBUG BEGIN_STMT
+  _3 ={v} *Flexcan_Mb_48;
+  _4 = _3 >> 16;
+  _5 = (unsigned char) _4;
+  flexcan_mb_dlc_value_53 = _5 & 15;
+  # DEBUG flexcan_mb_dlc_value => flexcan_mb_dlc_value_53
+  # DEBUG BEGIN_STMT
+  can_real_payload_55 = FlexCAN_ComputePayloadSize (flexcan_mb_dlc_value_53);
+  # DEBUG can_real_payload => can_real_payload_55
+  # DEBUG BEGIN_STMT
+  _6 = rxFifo_56(D) != 0B;
+  _7 = (unsigned char) _6;
+  DevAssert (_7);
+  # DEBUG BEGIN_STMT
+  MsgData_32_58 = &rxFifo_56(D)->data;
+  # DEBUG MsgData_32 => MsgData_32_58
+  # DEBUG BEGIN_STMT
+  rxFifo_56(D)->dataLen = can_real_payload_55;
+  # DEBUG BEGIN_STMT
+  _8 ={v} *Flexcan_Mb_48;
+  rxFifo_56(D)->cs = _8;
+  # DEBUG BEGIN_STMT
+  _9 = rxFifo_56(D)->cs;
+  _10 = _9 & 2097152;
+  if (_10 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _11 ={v} *Flexcan_Mb_Id_49;
+  rxFifo_56(D)->msgId = _11;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _12 ={v} *Flexcan_Mb_Id_49;
+  _13 = _12 >> 18;
+  rxFifo_56(D)->msgId = _13;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 = rxFifo_56(D)->cs;
+  _15 = _14 & 1048576;
+  if (_15 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  can_real_payload_63 = 0;
+  # DEBUG can_real_payload => can_real_payload_63
+
+  <bb 7> :
+  # can_real_payload_43 = PHI <can_real_payload_55(5), can_real_payload_63(6)>
+  # DEBUG can_real_payload => can_real_payload_43
+  # DEBUG BEGIN_STMT
+  _16 = can_real_payload_43 >> 2;
+  _17 = can_real_payload_43 & 3;
+  if (_17 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.18_65 = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.18_64 = 0;
+
+  <bb 10> :
+  # iftmp.18_44 = PHI <iftmp.18_65(8), iftmp.18_64(9)>
+  Idhit_Offset_66 = iftmp.18_44 + _16;
+  # DEBUG Idhit_Offset => Idhit_Offset_66
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) Idhit_Offset_66;
+  _19 = _18 * 4;
+  _20 = Flexcan_Mb_Data_32_50 + _19;
+  _21 ={v} *_20;
+  _22 = (unsigned char) _21;
+  _23 = _22 & 127;
+  rxFifo_56(D)->id_hit = _23;
+  # DEBUG BEGIN_STMT
+  _24 = rxFifo_56(D)->cs;
+  _25 = _24 & 65535;
+  rxFifo_56(D)->time_stamp = _25;
+  # DEBUG BEGIN_STMT
+  DataByte_69 = 0;
+  # DEBUG DataByte => DataByte_69
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _26 = DataByte_42 >> 2;
+  _27 = _26 * 4;
+  _28 = Flexcan_Mb_Data_32_50 + _27;
+  MbWord_70 ={v} *_28;
+  # DEBUG MbWord => MbWord_70
+  # DEBUG BEGIN_STMT
+  _29 = MbWord_70 >> 24;
+  _30 = MbWord_70 >> 8;
+  _31 = _30 & 65280;
+  _32 = _29 | _31;
+  _33 = MbWord_70 << 8;
+  _34 = _33 & 16711680;
+  _35 = _32 | _34;
+  _36 = MbWord_70 << 24;
+  _37 = DataByte_42 >> 2;
+  _38 = _37 * 4;
+  _39 = MsgData_32_58 + _38;
+  _40 = _35 | _36;
+  *_39 = _40;
+  # DEBUG BEGIN_STMT
+  DataByte_72 = DataByte_42 + 4;
+  # DEBUG DataByte => DataByte_72
+
+  <bb 12> :
+  # DataByte_42 = PHI <DataByte_69(10), DataByte_72(11)>
+  # DEBUG DataByte => DataByte_42
+  # DEBUG BEGIN_STMT
+  _41 = (long unsigned int) can_real_payload_43;
+  if (DataByte_42 < _41)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  return;
+
+}
+
+
+FlexCAN_ReadRxFifo (const struct FLEXCAN_Type * base, struct Flexcan_Ip_MsgBuffType * rxFifo)
+{
+  uint8 can_real_payload;
+  uint8 flexcan_mb_dlc_value;
+  uint32 * msgData_32;
+  const uint32 * flexcan_mb_data_32;
+  const uint32 * flexcan_mb_id;
+  const uint32 * flexcan_mb;
+  uint32 MbWord;
+  uint32 DataByte;
+  long unsigned int base.16_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  unsigned char _5;
+  _Bool _6;
+  unsigned char _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  unsigned char _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  const uint32 * _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  uint32 * _31;
+  long unsigned int _32;
+  long unsigned int _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  base.16_1 = (long unsigned int) base_38(D);
+  _2 = base.16_1 + 128;
+  flexcan_mb_39 = (const uint32 *) _2;
+  # DEBUG flexcan_mb => flexcan_mb_39
+  # DEBUG BEGIN_STMT
+  flexcan_mb_id_40 = flexcan_mb_39 + 4;
+  # DEBUG flexcan_mb_id => flexcan_mb_id_40
+  # DEBUG BEGIN_STMT
+  flexcan_mb_data_32_41 = flexcan_mb_39 + 8;
+  # DEBUG flexcan_mb_data_32 => flexcan_mb_data_32_41
+  # DEBUG BEGIN_STMT
+  msgData_32_43 = &rxFifo_42(D)->data;
+  # DEBUG msgData_32 => msgData_32_43
+  # DEBUG BEGIN_STMT
+  _3 ={v} *flexcan_mb_39;
+  _4 = _3 >> 16;
+  _5 = (unsigned char) _4;
+  flexcan_mb_dlc_value_45 = _5 & 15;
+  # DEBUG flexcan_mb_dlc_value => flexcan_mb_dlc_value_45
+  # DEBUG BEGIN_STMT
+  can_real_payload_47 = FlexCAN_ComputePayloadSize (flexcan_mb_dlc_value_45);
+  # DEBUG can_real_payload => can_real_payload_47
+  # DEBUG BEGIN_STMT
+  _6 = rxFifo_42(D) != 0B;
+  _7 = (unsigned char) _6;
+  DevAssert (_7);
+  # DEBUG BEGIN_STMT
+  if (can_real_payload_47 > 8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  can_real_payload_49 = 8;
+  # DEBUG can_real_payload => can_real_payload_49
+
+  <bb 4> :
+  # can_real_payload_35 = PHI <can_real_payload_47(2), can_real_payload_49(3)>
+  # DEBUG can_real_payload => can_real_payload_35
+  # DEBUG BEGIN_STMT
+  rxFifo_42(D)->dataLen = can_real_payload_35;
+  # DEBUG BEGIN_STMT
+  _8 ={v} *flexcan_mb_39;
+  rxFifo_42(D)->cs = _8;
+  # DEBUG BEGIN_STMT
+  _9 = rxFifo_42(D)->cs;
+  _10 = _9 & 2097152;
+  if (_10 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _11 ={v} *flexcan_mb_id_40;
+  rxFifo_42(D)->msgId = _11;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _12 ={v} *flexcan_mb_id_40;
+  _13 = _12 >> 18;
+  rxFifo_42(D)->msgId = _13;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _14 ={v} base_38(D)->RXFIR;
+  _15 = (unsigned char) _14;
+  rxFifo_42(D)->id_hit = _15;
+  # DEBUG BEGIN_STMT
+  _16 = rxFifo_42(D)->cs;
+  _17 = _16 & 65535;
+  rxFifo_42(D)->time_stamp = _17;
+  # DEBUG BEGIN_STMT
+  DataByte_56 = 0;
+  # DEBUG DataByte => DataByte_56
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _18 = DataByte_34 >> 2;
+  _19 = _18 * 4;
+  _20 = flexcan_mb_data_32_41 + _19;
+  MbWord_57 ={v} *_20;
+  # DEBUG MbWord => MbWord_57
+  # DEBUG BEGIN_STMT
+  _21 = MbWord_57 >> 24;
+  _22 = MbWord_57 >> 8;
+  _23 = _22 & 65280;
+  _24 = _21 | _23;
+  _25 = MbWord_57 << 8;
+  _26 = _25 & 16711680;
+  _27 = _24 | _26;
+  _28 = MbWord_57 << 24;
+  _29 = DataByte_34 >> 2;
+  _30 = _29 * 4;
+  _31 = msgData_32_43 + _30;
+  _32 = _27 | _28;
+  *_31 = _32;
+  # DEBUG BEGIN_STMT
+  DataByte_59 = DataByte_34 + 4;
+  # DEBUG DataByte => DataByte_59
+
+  <bb 9> :
+  # DataByte_34 = PHI <DataByte_56(7), DataByte_59(8)>
+  # DEBUG DataByte => DataByte_34
+  # DEBUG BEGIN_STMT
+  _33 = (long unsigned int) can_real_payload_35;
+  if (DataByte_34 < _33)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 10> :
+  return;
+
+}
+
+
+FlexCAN_SetRxFifoFilter (struct FLEXCAN_Type * base, Flexcan_Ip_RxFifoIdElementFormatType idFormat, const struct Flexcan_Ip_IdTableType * idFilterTable)
+{
+  volatile uint32 * FilterTable;
+  uint32 Val;
+  uint32 Val2;
+  uint32 Val1;
+  uint32 NumOfFilters;
+  uint32 j;
+  uint32 i;
+  long unsigned int base.14_1;
+  long unsigned int _2;
+  unsigned char _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  const struct Flexcan_Ip_IdTableType * _9;
+  unsigned char _10;
+  long unsigned int _11;
+  const struct Flexcan_Ip_IdTableType * _12;
+  unsigned char _13;
+  long unsigned int _14;
+  const struct Flexcan_Ip_IdTableType * _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  volatile uint32 * _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  const struct Flexcan_Ip_IdTableType * _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  volatile uint32 * _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  long unsigned int _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  long unsigned int _34;
+  long unsigned int _35;
+  const struct Flexcan_Ip_IdTableType * _36;
+  unsigned char _37;
+  sizetype _38;
+  sizetype _39;
+  const struct Flexcan_Ip_IdTableType * _40;
+  unsigned char _41;
+  long unsigned int _42;
+  const struct Flexcan_Ip_IdTableType * _43;
+  unsigned char _44;
+  long unsigned int _45;
+  const struct Flexcan_Ip_IdTableType * _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  long unsigned int _49;
+  long unsigned int _50;
+  long unsigned int _51;
+  volatile uint32 * _52;
+  long unsigned int _53;
+  long unsigned int _54;
+  const struct Flexcan_Ip_IdTableType * _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  long unsigned int _58;
+  long unsigned int _59;
+  volatile uint32 * _60;
+  long unsigned int _61;
+  sizetype _62;
+  sizetype _63;
+  const struct Flexcan_Ip_IdTableType * _64;
+  unsigned char _65;
+  long unsigned int _66;
+  volatile uint32 * _67;
+  long unsigned int _68;
+  sizetype _69;
+  sizetype _70;
+  const struct Flexcan_Ip_IdTableType * _71;
+  long unsigned int _72;
+  long unsigned int _73;
+  long unsigned int _74;
+  long unsigned int _75;
+  long unsigned int _76;
+  volatile uint32 * _77;
+  long unsigned int _78;
+  long unsigned int _79;
+  volatile uint32 * _80;
+  long unsigned int _81;
+  sizetype _82;
+  sizetype _83;
+  const struct Flexcan_Ip_IdTableType * _84;
+  long unsigned int _85;
+  long unsigned int _86;
+  long unsigned int _87;
+  long unsigned int _88;
+  long unsigned int _89;
+  volatile uint32 * _90;
+  long unsigned int _91;
+  long unsigned int _92;
+  long unsigned int _93;
+  long unsigned int _94;
+  long unsigned int _95;
+  long unsigned int _96;
+  long unsigned int _97;
+  const struct Flexcan_Ip_IdTableType * _98;
+  unsigned char _99;
+  long unsigned int _100;
+  const struct Flexcan_Ip_IdTableType * _101;
+  long unsigned int _102;
+  long unsigned int _103;
+  long unsigned int _104;
+  long unsigned int _105;
+  volatile uint32 * _106;
+  long unsigned int _107;
+  long unsigned int _108;
+  const struct Flexcan_Ip_IdTableType * _109;
+  long unsigned int _110;
+  long unsigned int _111;
+  long unsigned int _112;
+  long unsigned int _113;
+  volatile uint32 * _114;
+  long unsigned int _115;
+  sizetype _116;
+  sizetype _117;
+  const struct Flexcan_Ip_IdTableType * _118;
+  unsigned char _119;
+  long unsigned int _120;
+  volatile uint32 * _121;
+  long unsigned int _122;
+  sizetype _123;
+  sizetype _124;
+  const struct Flexcan_Ip_IdTableType * _125;
+  long unsigned int _126;
+  long unsigned int _127;
+  long unsigned int _128;
+  long unsigned int _129;
+  long unsigned int _130;
+  long unsigned int _131;
+  volatile uint32 * _132;
+  long unsigned int _133;
+  long unsigned int _134;
+  volatile uint32 * _135;
+  long unsigned int _136;
+  sizetype _137;
+  sizetype _138;
+  const struct Flexcan_Ip_IdTableType * _139;
+  long unsigned int _140;
+  long unsigned int _141;
+  long unsigned int _142;
+  long unsigned int _143;
+  long unsigned int _144;
+  long unsigned int _145;
+  volatile uint32 * _146;
+  long unsigned int _147;
+  sizetype _148;
+  sizetype _149;
+  const struct Flexcan_Ip_IdTableType * _150;
+  unsigned char _151;
+  long unsigned int _152;
+  volatile uint32 * _153;
+  long unsigned int _154;
+  sizetype _155;
+  sizetype _156;
+  const struct Flexcan_Ip_IdTableType * _157;
+  long unsigned int _158;
+  long unsigned int _159;
+  long unsigned int _160;
+  long unsigned int _161;
+  long unsigned int _162;
+  long unsigned int _163;
+  volatile uint32 * _164;
+  long unsigned int _165;
+  long unsigned int _166;
+  volatile uint32 * _167;
+  long unsigned int _168;
+  sizetype _169;
+  sizetype _170;
+  const struct Flexcan_Ip_IdTableType * _171;
+  long unsigned int _172;
+  long unsigned int _173;
+  long unsigned int _174;
+  long unsigned int _175;
+  long unsigned int _176;
+  long unsigned int _177;
+  volatile uint32 * _178;
+  long unsigned int _179;
+  sizetype _180;
+  sizetype _181;
+  const struct Flexcan_Ip_IdTableType * _182;
+  unsigned char _183;
+  long unsigned int _184;
+  volatile uint32 * _185;
+  long unsigned int _186;
+  sizetype _187;
+  sizetype _188;
+  const struct Flexcan_Ip_IdTableType * _189;
+  long unsigned int _190;
+  long unsigned int _191;
+  long unsigned int _192;
+  long unsigned int _193;
+  long unsigned int _194;
+  volatile uint32 * _195;
+  long unsigned int _196;
+  long unsigned int _197;
+  volatile uint32 * _198;
+  long unsigned int _199;
+  sizetype _200;
+  sizetype _201;
+  const struct Flexcan_Ip_IdTableType * _202;
+  long unsigned int _203;
+  long unsigned int _204;
+  long unsigned int _205;
+  long unsigned int _206;
+  long unsigned int _207;
+  volatile uint32 * _208;
+  long unsigned int _209;
+  long unsigned int _210;
+  long unsigned int _211;
+  long unsigned int _212;
+  long unsigned int _213;
+  int iftmp.15_222;
+  int iftmp.15_241;
+  int iftmp.15_242;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Val1_234 = 0;
+  # DEBUG Val1 => Val1_234
+  Val2_235 = 0;
+  # DEBUG Val2 => Val2_235
+  Val_236 = 0;
+  # DEBUG Val => Val_236
+  # DEBUG BEGIN_STMT
+  base.14_1 = (long unsigned int) base_237(D);
+  _2 = base.14_1 + 224;
+  FilterTable_238 = (volatile uint32 *) _2;
+  # DEBUG FilterTable => FilterTable_238
+  # DEBUG BEGIN_STMT
+  if (idFilterTable_239(D) != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  if (idFormat_240(D) == 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.15_242 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.15_241 = 0;
+
+  <bb 6> :
+  # iftmp.15_222 = PHI <iftmp.15_242(4), iftmp.15_241(5)>
+  _3 = (unsigned char) iftmp.15_222;
+  DevAssert (_3);
+  # DEBUG BEGIN_STMT
+  _4 ={v} base_237(D)->CTRL2;
+  _5 = _4 >> 24;
+  NumOfFilters_245 = _5 & 15;
+  # DEBUG NumOfFilters => NumOfFilters_245
+  # DEBUG BEGIN_STMT
+  switch (idFormat_240(D)) <default: <L46> [INV], case 0: <L4> [INV], case 1: <L13> [INV], case 2: <L27> [INV], case 3: <L43> [INV]>
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  _6 ={v} base_237(D)->MCR;
+  _7 = _6 & 4294966527;
+  base_237(D)->MCR ={v} _7;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  i_284 = 0;
+  # DEBUG i => i_284
+  goto <bb 14>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Val_285 = 0;
+  # DEBUG Val => Val_285
+  # DEBUG BEGIN_STMT
+  _8 = i_214 * 8;
+  _9 = idFilterTable_239(D) + _8;
+  _10 = _9->isRemoteFrame;
+  if (_10 != 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Val_286 = 2147483648;
+  # DEBUG Val => Val_286
+
+  <bb 10> :
+  # Val_221 = PHI <Val_285(8), Val_286(9)>
+  # DEBUG Val => Val_221
+  # DEBUG BEGIN_STMT
+  _11 = i_214 * 8;
+  _12 = idFilterTable_239(D) + _11;
+  _13 = _12->isExtendedFrame;
+  if (_13 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Val_288 = Val_221 | 1073741824;
+  # DEBUG Val => Val_288
+  # DEBUG BEGIN_STMT
+  _14 = i_214 * 8;
+  _15 = idFilterTable_239(D) + _14;
+  _16 = _15->id;
+  _17 = _16 << 1;
+  _18 = _17 & 1073741823;
+  _19 = i_214 * 4;
+  _20 = FilterTable_238 + _19;
+  _21 = Val_288 + _18;
+  *_20 ={v} _21;
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _22 = i_214 * 8;
+  _23 = idFilterTable_239(D) + _22;
+  _24 = _23->id;
+  _25 = _24 << 19;
+  _26 = _25 & 1073217536;
+  _27 = i_214 * 4;
+  _28 = FilterTable_238 + _27;
+  _29 = Val_221 + _26;
+  *_28 ={v} _29;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  i_290 = i_214 + 1;
+  # DEBUG i => i_290
+
+  <bb 14> :
+  # i_214 = PHI <i_284(7), i_290(13)>
+  # DEBUG i => i_214
+  # DEBUG BEGIN_STMT
+  _30 = NumOfFilters_245 + 1;
+  _31 = _30 * 8;
+  if (i_214 < _31)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 44>; [INV]
+
+  <bb 15> :
+<L13>:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  _32 ={v} base_237(D)->MCR;
+  _33 = _32 & 4294966527;
+  _34 = _33 | 256;
+  base_237(D)->MCR ={v} _34;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  j_267 = 0;
+  # DEBUG j => j_267
+  # DEBUG BEGIN_STMT
+  i_268 = 0;
+  # DEBUG i => i_268
+  goto <bb 27>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  Val1_269 = 0;
+  # DEBUG Val1 => Val1_269
+  # DEBUG BEGIN_STMT
+  Val2_270 = 0;
+  # DEBUG Val2 => Val2_270
+  # DEBUG BEGIN_STMT
+  _35 = j_217 * 8;
+  _36 = idFilterTable_239(D) + _35;
+  _37 = _36->isRemoteFrame;
+  if (_37 != 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Val1_271 = 2147483648;
+  # DEBUG Val1 => Val1_271
+
+  <bb 18> :
+  # Val1_219 = PHI <Val1_269(16), Val1_271(17)>
+  # DEBUG Val1 => Val1_219
+  # DEBUG BEGIN_STMT
+  _38 = j_217 + 1;
+  _39 = _38 * 8;
+  _40 = idFilterTable_239(D) + _39;
+  _41 = _40->isRemoteFrame;
+  if (_41 != 0)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Val2_272 = 32768;
+  # DEBUG Val2 => Val2_272
+
+  <bb 20> :
+  # Val2_220 = PHI <Val2_270(18), Val2_272(19)>
+  # DEBUG Val2 => Val2_220
+  # DEBUG BEGIN_STMT
+  _42 = j_217 * 8;
+  _43 = idFilterTable_239(D) + _42;
+  _44 = _43->isExtendedFrame;
+  if (_44 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  Val1_274 = Val1_219 | 1073741824;
+  # DEBUG Val1 => Val1_274
+  # DEBUG BEGIN_STMT
+  _45 = j_217 * 8;
+  _46 = idFilterTable_239(D) + _45;
+  _47 = _46->id;
+  _48 = _47 >> 15;
+  _49 = _48 << 16;
+  _50 = _49 & 1073676288;
+  _51 = i_215 * 4;
+  _52 = FilterTable_238 + _51;
+  _53 = Val1_274 + _50;
+  *_52 ={v} _53;
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _54 = j_217 * 8;
+  _55 = idFilterTable_239(D) + _54;
+  _56 = _55->id;
+  _57 = _56 << 19;
+  _58 = _57 & 1073217536;
+  _59 = i_215 * 4;
+  _60 = FilterTable_238 + _59;
+  _61 = Val1_219 + _58;
+  *_60 ={v} _61;
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  _62 = j_217 + 1;
+  _63 = _62 * 8;
+  _64 = idFilterTable_239(D) + _63;
+  _65 = _64->isExtendedFrame;
+  if (_65 != 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Val2_277 = Val2_220 | 16384;
+  # DEBUG Val2 => Val2_277
+  # DEBUG BEGIN_STMT
+  _66 = i_215 * 4;
+  _67 = FilterTable_238 + _66;
+  _68 ={v} *_67;
+  _69 = j_217 + 1;
+  _70 = _69 * 8;
+  _71 = idFilterTable_239(D) + _70;
+  _72 = _71->id;
+  _73 = _72 >> 15;
+  _74 = _73 & 16383;
+  _75 = Val2_277 + _74;
+  _76 = i_215 * 4;
+  _77 = FilterTable_238 + _76;
+  _78 = _68 | _75;
+  *_77 ={v} _78;
+  goto <bb 26>; [INV]
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _79 = i_215 * 4;
+  _80 = FilterTable_238 + _79;
+  _81 ={v} *_80;
+  _82 = j_217 + 1;
+  _83 = _82 * 8;
+  _84 = idFilterTable_239(D) + _83;
+  _85 = _84->id;
+  _86 = _85 << 3;
+  _87 = _86 & 16376;
+  _88 = Val2_220 + _87;
+  _89 = i_215 * 4;
+  _90 = FilterTable_238 + _89;
+  _91 = _81 | _88;
+  *_90 ={v} _91;
+
+  <bb 26> :
+  # DEBUG BEGIN_STMT
+  j_279 = j_217 + 2;
+  # DEBUG j => j_279
+  # DEBUG BEGIN_STMT
+  i_280 = i_215 + 1;
+  # DEBUG i => i_280
+
+  <bb 27> :
+  # i_215 = PHI <i_268(15), i_280(26)>
+  # j_217 = PHI <j_267(15), j_279(26)>
+  # DEBUG j => j_217
+  # DEBUG i => i_215
+  # DEBUG BEGIN_STMT
+  _92 = NumOfFilters_245 + 1;
+  _93 = _92 * 8;
+  if (i_215 < _93)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 44>; [INV]
+
+  <bb 28> :
+<L27>:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  _94 ={v} base_237(D)->MCR;
+  _95 = _94 & 4294966527;
+  _96 = _95 | 512;
+  base_237(D)->MCR ={v} _96;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  j_252 = 0;
+  # DEBUG j => j_252
+  # DEBUG BEGIN_STMT
+  i_253 = 0;
+  # DEBUG i => i_253
+  goto <bb 42>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  _97 = j_218 * 8;
+  _98 = idFilterTable_239(D) + _97;
+  _99 = _98->isExtendedFrame;
+  if (_99 != 0)
+    goto <bb 30>; [INV]
+  else
+    goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  _100 = j_218 * 8;
+  _101 = idFilterTable_239(D) + _100;
+  _102 = _101->id;
+  _103 = _102 >> 21;
+  _104 = _103 << 24;
+  _105 = i_216 * 4;
+  _106 = FilterTable_238 + _105;
+  _107 = Val1_234 + _104;
+  *_106 ={v} _107;
+  goto <bb 32>; [INV]
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  _108 = j_218 * 8;
+  _109 = idFilterTable_239(D) + _108;
+  _110 = _109->id;
+  _111 = _110 >> 3;
+  _112 = _111 << 24;
+  _113 = i_216 * 4;
+  _114 = FilterTable_238 + _113;
+  _115 = Val1_234 + _112;
+  *_114 ={v} _115;
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _116 = j_218 + 1;
+  _117 = _116 * 8;
+  _118 = idFilterTable_239(D) + _117;
+  _119 = _118->isExtendedFrame;
+  if (_119 != 0)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _120 = i_216 * 4;
+  _121 = FilterTable_238 + _120;
+  _122 ={v} *_121;
+  _123 = j_218 + 1;
+  _124 = _123 * 8;
+  _125 = idFilterTable_239(D) + _124;
+  _126 = _125->id;
+  _127 = _126 >> 21;
+  _128 = _127 << 16;
+  _129 = _128 & 16711680;
+  _130 = Val1_234 + _129;
+  _131 = i_216 * 4;
+  _132 = FilterTable_238 + _131;
+  _133 = _122 | _130;
+  *_132 ={v} _133;
+  goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  _134 = i_216 * 4;
+  _135 = FilterTable_238 + _134;
+  _136 ={v} *_135;
+  _137 = j_218 + 1;
+  _138 = _137 * 8;
+  _139 = idFilterTable_239(D) + _138;
+  _140 = _139->id;
+  _141 = _140 >> 3;
+  _142 = _141 << 16;
+  _143 = _142 & 16711680;
+  _144 = Val1_234 + _143;
+  _145 = i_216 * 4;
+  _146 = FilterTable_238 + _145;
+  _147 = _136 | _144;
+  *_146 ={v} _147;
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  _148 = j_218 + 2;
+  _149 = _148 * 8;
+  _150 = idFilterTable_239(D) + _149;
+  _151 = _150->isExtendedFrame;
+  if (_151 != 0)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 36> :
+  # DEBUG BEGIN_STMT
+  _152 = i_216 * 4;
+  _153 = FilterTable_238 + _152;
+  _154 ={v} *_153;
+  _155 = j_218 + 2;
+  _156 = _155 * 8;
+  _157 = idFilterTable_239(D) + _156;
+  _158 = _157->id;
+  _159 = _158 >> 21;
+  _160 = _159 << 8;
+  _161 = _160 & 65535;
+  _162 = Val1_234 + _161;
+  _163 = i_216 * 4;
+  _164 = FilterTable_238 + _163;
+  _165 = _154 | _162;
+  *_164 ={v} _165;
+  goto <bb 38>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  _166 = i_216 * 4;
+  _167 = FilterTable_238 + _166;
+  _168 ={v} *_167;
+  _169 = j_218 + 2;
+  _170 = _169 * 8;
+  _171 = idFilterTable_239(D) + _170;
+  _172 = _171->id;
+  _173 = _172 >> 3;
+  _174 = _173 << 8;
+  _175 = _174 & 65535;
+  _176 = Val1_234 + _175;
+  _177 = i_216 * 4;
+  _178 = FilterTable_238 + _177;
+  _179 = _168 | _176;
+  *_178 ={v} _179;
+
+  <bb 38> :
+  # DEBUG BEGIN_STMT
+  _180 = j_218 + 3;
+  _181 = _180 * 8;
+  _182 = idFilterTable_239(D) + _181;
+  _183 = _182->isExtendedFrame;
+  if (_183 != 0)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 39> :
+  # DEBUG BEGIN_STMT
+  _184 = i_216 * 4;
+  _185 = FilterTable_238 + _184;
+  _186 ={v} *_185;
+  _187 = j_218 + 3;
+  _188 = _187 * 8;
+  _189 = idFilterTable_239(D) + _188;
+  _190 = _189->id;
+  _191 = _190 >> 21;
+  _192 = _191 & 255;
+  _193 = Val1_234 + _192;
+  _194 = i_216 * 4;
+  _195 = FilterTable_238 + _194;
+  _196 = _186 | _193;
+  *_195 ={v} _196;
+  goto <bb 41>; [INV]
+
+  <bb 40> :
+  # DEBUG BEGIN_STMT
+  _197 = i_216 * 4;
+  _198 = FilterTable_238 + _197;
+  _199 ={v} *_198;
+  _200 = j_218 + 3;
+  _201 = _200 * 8;
+  _202 = idFilterTable_239(D) + _201;
+  _203 = _202->id;
+  _204 = _203 >> 3;
+  _205 = _204 & 255;
+  _206 = Val1_234 + _205;
+  _207 = i_216 * 4;
+  _208 = FilterTable_238 + _207;
+  _209 = _199 | _206;
+  *_208 ={v} _209;
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  j_262 = j_218 + 4;
+  # DEBUG j => j_262
+  # DEBUG BEGIN_STMT
+  i_263 = i_216 + 1;
+  # DEBUG i => i_263
+
+  <bb 42> :
+  # i_216 = PHI <i_253(28), i_263(41)>
+  # j_218 = PHI <j_252(28), j_262(41)>
+  # DEBUG j => j_218
+  # DEBUG i => i_216
+  # DEBUG BEGIN_STMT
+  _210 = NumOfFilters_245 + 1;
+  _211 = _210 * 8;
+  if (i_216 < _211)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 44>; [INV]
+
+  <bb 43> :
+<L43>:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+  _212 ={v} base_237(D)->MCR;
+  _213 = _212 | 768;
+  base_237(D)->MCR ={v} _213;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_13 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 44> :
+<L46>:
+  return;
+
+}
+
+
+FlexCAN_SetOperationMode (struct FLEXCAN_Type * base, Flexcan_Ip_ModesType mode)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  switch (mode_12(D)) <default: <L5> [INV], case 0: <L0> [INV], case 1: <L1> [INV], case 2: <L2> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_14(D)->CTRL1;
+  _2 = _1 & 4294967287;
+  base_14(D)->CTRL1 ={v} _2;
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_14(D)->CTRL1;
+  _4 = _3 & 4294963199;
+  base_14(D)->CTRL1 ={v} _4;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 ={v} base_14(D)->CTRL1;
+  _6 = _5 | 8;
+  base_14(D)->CTRL1 ={v} _6;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _7 ={v} base_14(D)->CTRL1;
+  _8 = _7 | 4096;
+  base_14(D)->CTRL1 ={v} _8;
+  # DEBUG BEGIN_STMT
+  _9 ={v} base_14(D)->CTRL1;
+  _10 = _9 & 4294967287;
+  base_14(D)->CTRL1 ={v} _10;
+  # DEBUG BEGIN_STMT
+  FlexCAN_SetSelfReception (base_14(D), 1);
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+<L5>:
+  return;
+
+}
+
+
+FlexCAN_SetMaxMsgBuffNum (struct FLEXCAN_Type * base, uint32 maxMsgBuffNum)
+{
+  Flexcan_Ip_StatusType Status;
+  uint32 ValEndRam;
+  uint32 ValEndMb;
+  uint8 Can_Real_Payload;
+  uint8 Arbitration_Field_Size;
+  volatile uint8 * Flexcan_Mb_Data;
+  volatile uint32 * Flexcan_Mb_Id;
+  volatile uint32 * Flexcan_Mb;
+  const uint32 * ValEndMbPointer;
+  const uint32 * RAM;
+  uint32 DataByte;
+  uint8 MsgBuffIdx;
+  long unsigned int base.10_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  _Bool _4;
+  unsigned char _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int ValEndMbPointer.11_8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  const uint32 * _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  volatile uint8 * _24;
+  long unsigned int _25;
+  unsigned char MsgBuffIdx.12_26;
+  long unsigned int _27;
+  Flexcan_Ip_StatusType _72;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  base.10_1 = (long unsigned int) base_36(D);
+  _2 = base.10_1 + 128;
+  RAM_37 = (const uint32 *) _2;
+  # DEBUG RAM => RAM_37
+  # DEBUG BEGIN_STMT
+  ValEndMbPointer_38 = 0B;
+  # DEBUG ValEndMbPointer => ValEndMbPointer_38
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_39 = 0B;
+  # DEBUG Flexcan_Mb => Flexcan_Mb_39
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Id_40 = 0B;
+  # DEBUG Flexcan_Mb_Id => Flexcan_Mb_Id_40
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_41 = 0B;
+  # DEBUG Flexcan_Mb_Data => Flexcan_Mb_Data_41
+  # DEBUG BEGIN_STMT
+  Arbitration_Field_Size_42 = 8;
+  # DEBUG Arbitration_Field_Size => Arbitration_Field_Size_42
+  # DEBUG BEGIN_STMT
+  _3 = maxMsgBuffNum_43(D) + 4294967295;
+  Can_Real_Payload_46 = FlexCAN_GetMbPayloadSize (base_36(D), _3);
+  # DEBUG Can_Real_Payload => Can_Real_Payload_46
+  # DEBUG BEGIN_STMT
+  ValEndMb_47 = 0;
+  # DEBUG ValEndMb => ValEndMb_47
+  # DEBUG BEGIN_STMT
+  ValEndRam_48 = 0;
+  # DEBUG ValEndRam => ValEndRam_48
+  # DEBUG BEGIN_STMT
+  Status_49 = 0;
+  # DEBUG Status => Status_49
+  # DEBUG BEGIN_STMT
+  _4 = maxMsgBuffNum_43(D) != 0;
+  _5 = (unsigned char) _4;
+  DevAssert (_5);
+  # DEBUG BEGIN_STMT
+  _6 = maxMsgBuffNum_43(D) + 4294967295;
+  ValEndMbPointer_52 = FlexCAN_GetMsgBuffRegion (base_36(D), _6);
+  # DEBUG ValEndMbPointer => ValEndMbPointer_52
+  # DEBUG BEGIN_STMT
+  _7 = (long unsigned int) Can_Real_Payload_46;
+  ValEndMbPointer.11_8 = (long unsigned int) ValEndMbPointer_52;
+  _9 = _7 + ValEndMbPointer.11_8;
+  _10 = (long unsigned int) Arbitration_Field_Size_42;
+  ValEndMb_53 = _9 + _10;
+  # DEBUG ValEndMb => ValEndMb_53
+  # DEBUG BEGIN_STMT
+  _11 = FlexCAN_GetMaxMbNum (base_36(D));
+  _12 = _11 * 16;
+  _13 = RAM_37 + _12;
+  ValEndRam_55 = (uint32) _13;
+  # DEBUG ValEndRam => ValEndRam_55
+  # DEBUG BEGIN_STMT
+  if (ValEndMb_53 > ValEndRam_55)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _14 = FlexCAN_GetMaxMbNum (base_36(D));
+  if (maxMsgBuffNum_43(D) > _14)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  Status_57 = 4;
+  # DEBUG Status => Status_57
+
+  <bb 5> :
+  # Status_30 = PHI <Status_49(3), Status_57(4)>
+  # DEBUG Status => Status_30
+  # DEBUG BEGIN_STMT
+  if (Status_30 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _15 ={v} base_36(D)->MCR;
+  _16 = _15 & 4294967168;
+  _17 = maxMsgBuffNum_43(D) + 4294967295;
+  _18 = _17 & 127;
+  _19 = _16 | _18;
+  base_36(D)->MCR ={v} _19;
+  # DEBUG BEGIN_STMT
+  _20 ={v} base_36(D)->MCR;
+  _21 = _20 & 536870912;
+  if (_21 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  MsgBuffIdx_59 = 0;
+  # DEBUG MsgBuffIdx => MsgBuffIdx_59
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _22 = (long unsigned int) MsgBuffIdx_28;
+  Flexcan_Mb_61 = FlexCAN_GetMsgBuffRegion (base_36(D), _22);
+  # DEBUG Flexcan_Mb => Flexcan_Mb_61
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Id_62 = Flexcan_Mb_61 + 4;
+  # DEBUG Flexcan_Mb_Id => Flexcan_Mb_Id_62
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_63 = Flexcan_Mb_61 + 8;
+  # DEBUG Flexcan_Mb_Data => Flexcan_Mb_Data_63
+  # DEBUG BEGIN_STMT
+  *Flexcan_Mb_61 ={v} 0;
+  # DEBUG BEGIN_STMT
+  *Flexcan_Mb_Id_62 ={v} 0;
+  # DEBUG BEGIN_STMT
+  _23 = (long unsigned int) MsgBuffIdx_28;
+  Can_Real_Payload_67 = FlexCAN_GetMbPayloadSize (base_36(D), _23);
+  # DEBUG Can_Real_Payload => Can_Real_Payload_67
+  # DEBUG BEGIN_STMT
+  DataByte_68 = 0;
+  # DEBUG DataByte => DataByte_68
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _24 = Flexcan_Mb_Data_63 + DataByte_29;
+  *_24 ={v} 0;
+  # DEBUG BEGIN_STMT
+  DataByte_71 = DataByte_29 + 1;
+  # DEBUG DataByte => DataByte_71
+
+  <bb 10> :
+  # DataByte_29 = PHI <DataByte_68(8), DataByte_71(9)>
+  # DEBUG DataByte => DataByte_29
+  # DEBUG BEGIN_STMT
+  _25 = (long unsigned int) Can_Real_Payload_67;
+  if (DataByte_29 < _25)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  MsgBuffIdx.12_26 = MsgBuffIdx_28;
+  MsgBuffIdx_69 = MsgBuffIdx.12_26 + 1;
+  # DEBUG MsgBuffIdx => MsgBuffIdx_69
+
+  <bb 12> :
+  # MsgBuffIdx_28 = PHI <MsgBuffIdx_59(7), MsgBuffIdx_69(11)>
+  # DEBUG MsgBuffIdx => MsgBuffIdx_28
+  # DEBUG BEGIN_STMT
+  _27 = (long unsigned int) MsgBuffIdx_28;
+  if (maxMsgBuffNum_43(D) > _27)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  _72 = Status_30;
+  return _72;
+
+}
+
+
+FlexCAN_SetTxMsgBuff (volatile uint32 * const pMbAddr, const struct Flexcan_Ip_MsbuffCodeStatusType * cs, uint32 msgId, const uint8 * msgData, const boolean isRemote)
+{
+  const uint32 * MsgData_32;
+  volatile uint32 * Flexcan_Mb_Data_32;
+  volatile uint8 * Flexcan_Mb_Data;
+  volatile uint32 * Flexcan_Mb_Id;
+  volatile uint32 * Flexcan_Mb;
+  uint8 Payload_Size;
+  uint8 Dlc_Value;
+  uint32 DataByte;
+  uint32 Flexcan_Mb_Config;
+  _Bool _1;
+  unsigned char _2;
+  long unsigned int _3;
+  unsigned char _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  const uint32 * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  const uint32 * _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  const uint32 * _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  const uint32 * _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+  long unsigned int _30;
+  volatile uint32 * _31;
+  long unsigned int _32;
+  long unsigned int _33;
+  long unsigned int _34;
+  const uint8 * _35;
+  long unsigned int _36;
+  volatile uint8 * _37;
+  unsigned char _38;
+  long unsigned int _39;
+  long unsigned int _40;
+  volatile uint8 * _41;
+  unsigned char _42;
+  long unsigned int _43;
+  <unnamed type> _44;
+  long unsigned int _45;
+  long unsigned int _46;
+  long unsigned int _47;
+  long unsigned int _48;
+  long unsigned int _49;
+  <unnamed type> _50;
+  long unsigned int _51;
+  long unsigned int _52;
+  long unsigned int _53;
+  long unsigned int _54;
+  long unsigned int _55;
+  long unsigned int _56;
+  long unsigned int _57;
+  long unsigned int _58;
+  long unsigned int _59;
+  long unsigned int _60;
+  long unsigned int _61;
+  unsigned char _62;
+  long unsigned int _63;
+  long unsigned int _64;
+  long unsigned int _65;
+  long unsigned int _66;
+  long unsigned int _67;
+  long unsigned int _68;
+  long unsigned int _69;
+  unsigned char _70;
+  long unsigned int _71;
+  long unsigned int _72;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_88 = 0;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_88
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_90 = pMbAddr_89(D);
+  # DEBUG Flexcan_Mb => Flexcan_Mb_90
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Id_91 = Flexcan_Mb_90 + 4;
+  # DEBUG Flexcan_Mb_Id => Flexcan_Mb_Id_91
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_92 = Flexcan_Mb_90 + 8;
+  # DEBUG Flexcan_Mb_Data => Flexcan_Mb_Data_92
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_32_93 = Flexcan_Mb_90 + 8;
+  # DEBUG Flexcan_Mb_Data_32 => Flexcan_Mb_Data_32_93
+  # DEBUG BEGIN_STMT
+  MsgData_32_95 = msgData_94(D);
+  # DEBUG MsgData_32 => MsgData_32_95
+  # DEBUG BEGIN_STMT
+  _1 = cs_96(D) != 0B;
+  _2 = (unsigned char) _1;
+  DevAssert (_2);
+  # DEBUG BEGIN_STMT
+  *Flexcan_Mb_90 ={v} 134217728;
+  # DEBUG BEGIN_STMT
+  *Flexcan_Mb_Id_91 ={v} 0;
+  # DEBUG BEGIN_STMT
+  _3 = cs_96(D)->dataLen;
+  _4 = (unsigned char) _3;
+  Dlc_Value_102 = FlexCAN_ComputeDLCValue (_4);
+  # DEBUG Dlc_Value => Dlc_Value_102
+  # DEBUG BEGIN_STMT
+  if (msgData_94(D) != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  DataByte_103 = 0;
+  # DEBUG DataByte => DataByte_103
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _5 = DataByte_78 >> 2;
+  _6 = _5 * 4;
+  _7 = MsgData_32_95 + _6;
+  _8 = *_7;
+  _9 = _8 >> 24;
+  _10 = DataByte_78 >> 2;
+  _11 = _10 * 4;
+  _12 = MsgData_32_95 + _11;
+  _13 = *_12;
+  _14 = _13 >> 8;
+  _15 = _14 & 65280;
+  _16 = _9 | _15;
+  _17 = DataByte_78 >> 2;
+  _18 = _17 * 4;
+  _19 = MsgData_32_95 + _18;
+  _20 = *_19;
+  _21 = _20 << 8;
+  _22 = _21 & 16711680;
+  _23 = _16 | _22;
+  _24 = DataByte_78 >> 2;
+  _25 = _24 * 4;
+  _26 = MsgData_32_95 + _25;
+  _27 = *_26;
+  _28 = _27 << 24;
+  _29 = DataByte_78 >> 2;
+  _30 = _29 * 4;
+  _31 = Flexcan_Mb_Data_32_93 + _30;
+  _32 = _23 | _28;
+  *_31 ={v} _32;
+  # DEBUG BEGIN_STMT
+  DataByte_112 = DataByte_78 + 4;
+  # DEBUG DataByte => DataByte_112
+
+  <bb 5> :
+  # DataByte_78 = PHI <DataByte_103(3), DataByte_112(4)>
+  # DEBUG DataByte => DataByte_78
+  # DEBUG BEGIN_STMT
+  _33 = cs_96(D)->dataLen;
+  _34 = _33 & 4294967292;
+  if (DataByte_78 < _34)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _35 = msgData_94(D) + DataByte_79;
+  _36 = DataByte_79 ^ 3;
+  _37 = Flexcan_Mb_Data_92 + _36;
+  _38 = *_35;
+  *_37 ={v} _38;
+  # DEBUG BEGIN_STMT
+  DataByte_110 = DataByte_79 + 1;
+  # DEBUG DataByte => DataByte_110
+
+  <bb 7> :
+  # DataByte_79 = PHI <DataByte_78(5), DataByte_110(6)>
+  # DEBUG DataByte => DataByte_79
+  # DEBUG BEGIN_STMT
+  _39 = cs_96(D)->dataLen;
+  if (DataByte_79 < _39)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Payload_Size_105 = FlexCAN_ComputePayloadSize (Dlc_Value_102);
+  # DEBUG Payload_Size => Payload_Size_105
+  # DEBUG BEGIN_STMT
+  DataByte_106 = cs_96(D)->dataLen;
+  # DEBUG DataByte => DataByte_106
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _40 = DataByte_80 ^ 3;
+  _41 = Flexcan_Mb_Data_92 + _40;
+  _42 = cs_96(D)->fd_padding;
+  *_41 ={v} _42;
+  # DEBUG BEGIN_STMT
+  DataByte_108 = DataByte_80 + 1;
+  # DEBUG DataByte => DataByte_108
+
+  <bb 10> :
+  # DataByte_80 = PHI <DataByte_106(8), DataByte_108(9)>
+  # DEBUG DataByte => DataByte_80
+  # DEBUG BEGIN_STMT
+  _43 = (long unsigned int) Payload_Size_105;
+  if (DataByte_80 < _43)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _44 = cs_96(D)->msgIdType;
+  if (_44 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _45 ={v} *Flexcan_Mb_Id_91;
+  _46 = _45 & 3758096384;
+  *Flexcan_Mb_Id_91 ={v} _46;
+  # DEBUG BEGIN_STMT
+  _47 ={v} *Flexcan_Mb_Id_91;
+  _48 = msgId_114(D) & 536870911;
+  _49 = _47 | _48;
+  *Flexcan_Mb_Id_91 ={v} _49;
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_116 = Flexcan_Mb_Config_88 | 6291456;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_116
+
+  <bb 13> :
+  # Flexcan_Mb_Config_73 = PHI <Flexcan_Mb_Config_88(11), Flexcan_Mb_Config_116(12)>
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_73
+  # DEBUG BEGIN_STMT
+  _50 = cs_96(D)->msgIdType;
+  if (_50 == 0)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _51 ={v} *Flexcan_Mb_Id_91;
+  _52 = _51 & 3758358527;
+  *Flexcan_Mb_Id_91 ={v} _52;
+  # DEBUG BEGIN_STMT
+  _53 ={v} *Flexcan_Mb_Id_91;
+  _54 = msgId_114(D) << 18;
+  _55 = _54 & 536608768;
+  _56 = _53 | _55;
+  *Flexcan_Mb_Id_91 ={v} _56;
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_119 = Flexcan_Mb_Config_73 & 4288675839;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_119
+
+  <bb 15> :
+  # Flexcan_Mb_Config_74 = PHI <Flexcan_Mb_Config_73(13), Flexcan_Mb_Config_119(14)>
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_74
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_120 = Flexcan_Mb_Config_74 & 4293984255;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_120
+  # DEBUG BEGIN_STMT
+  _57 = (long unsigned int) Dlc_Value_102;
+  _58 = _57 << 16;
+  _59 = _58 & 983040;
+  Flexcan_Mb_Config_121 = Flexcan_Mb_Config_120 | _59;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_121
+  # DEBUG BEGIN_STMT
+  _60 = cs_96(D)->code;
+  if (_60 != 15)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 26>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _61 = cs_96(D)->code;
+  if (_61 == 28)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_124 = Flexcan_Mb_Config_121 | 1048576;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_124
+  goto <bb 20>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  if (isRemote_122(D) == 1)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 20>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_123 = Flexcan_Mb_Config_121 | 1048576;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_123
+
+  <bb 20> :
+  # Flexcan_Mb_Config_75 = PHI <Flexcan_Mb_Config_124(17), Flexcan_Mb_Config_121(18), Flexcan_Mb_Config_123(19)>
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_75
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_125 = Flexcan_Mb_Config_75 & 4043309055;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_125
+  # DEBUG BEGIN_STMT
+  _62 = cs_96(D)->fd_enable;
+  if (_62 != 0)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  _63 = cs_96(D)->code;
+  _64 = _63 << 24;
+  _65 = _64 & 251658240;
+  _66 = Flexcan_Mb_Config_125 | _65;
+  Flexcan_Mb_Config_127 = _66 | 2147483648;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_127
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_128 = Flexcan_Mb_Config_127 & 4293918719;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_128
+  goto <bb 23>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _67 = cs_96(D)->code;
+  _68 = _67 << 24;
+  _69 = _68 & 251658240;
+  Flexcan_Mb_Config_126 = Flexcan_Mb_Config_125 | _69;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_126
+
+  <bb 23> :
+  # Flexcan_Mb_Config_76 = PHI <Flexcan_Mb_Config_128(21), Flexcan_Mb_Config_126(22)>
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_76
+  # DEBUG BEGIN_STMT
+  _70 = cs_96(D)->enable_brs;
+  if (_70 != 0)
+    goto <bb 24>; [INV]
+  else
+    goto <bb 25>; [INV]
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Config_129 = Flexcan_Mb_Config_76 | 1073741824;
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_129
+
+  <bb 25> :
+  # Flexcan_Mb_Config_77 = PHI <Flexcan_Mb_Config_76(23), Flexcan_Mb_Config_129(24)>
+  # DEBUG Flexcan_Mb_Config => Flexcan_Mb_Config_77
+  # DEBUG BEGIN_STMT
+  _71 ={v} *Flexcan_Mb_90;
+  _72 = Flexcan_Mb_Config_77 | _71;
+  *Flexcan_Mb_90 ={v} _72;
+
+  <bb 26> :
+  return;
+
+}
+
+
+FlexCAN_GetMsgBuff (const struct FLEXCAN_Type * base, uint32 msgBuffIdx, struct Flexcan_Ip_MsgBuffType * msgBuff)
+{
+  uint8 Payload_Size;
+  uint8 Flexcan_Mb_Dlc_Value;
+  uint32 MbWord;
+  uint32 * MsgBuff_Data_32;
+  const uint32 * Flexcan_Mb_Data_32;
+  const uint8 * Flexcan_Mb_Data;
+  const uint32 * Flexcan_Mb_Id;
+  const uint32 * Flexcan_Mb;
+  uint8 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  unsigned char _3;
+  _Bool _4;
+  unsigned char _5;
+  unsigned char _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+  unsigned char _15;
+  unsigned int _16;
+  unsigned int _17;
+  const uint32 * _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  unsigned char _27;
+  unsigned int _28;
+  unsigned int _29;
+  uint32 * _30;
+  long unsigned int _31;
+  unsigned int _32;
+  unsigned int _33;
+  unsigned int _34;
+  unsigned char _35;
+  sizetype _36;
+  const uint8 * _37;
+  int _38;
+  unsigned char _39;
+  unsigned char i.9_40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_52 = FlexCAN_GetMsgBuffRegion (base_49(D), msgBuffIdx_50(D));
+  # DEBUG Flexcan_Mb => Flexcan_Mb_52
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Id_53 = Flexcan_Mb_52 + 4;
+  # DEBUG Flexcan_Mb_Id => Flexcan_Mb_Id_53
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_54 = Flexcan_Mb_52 + 8;
+  # DEBUG Flexcan_Mb_Data => Flexcan_Mb_Data_54
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_Data_32_55 = Flexcan_Mb_52 + 8;
+  # DEBUG Flexcan_Mb_Data_32 => Flexcan_Mb_Data_32_55
+  # DEBUG BEGIN_STMT
+  MsgBuff_Data_32_57 = &msgBuff_56(D)->data;
+  # DEBUG MsgBuff_Data_32 => MsgBuff_Data_32_57
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 ={v} *Flexcan_Mb_52;
+  _2 = _1 >> 16;
+  _3 = (unsigned char) _2;
+  Flexcan_Mb_Dlc_Value_58 = _3 & 15;
+  # DEBUG Flexcan_Mb_Dlc_Value => Flexcan_Mb_Dlc_Value_58
+  # DEBUG BEGIN_STMT
+  Payload_Size_60 = FlexCAN_ComputePayloadSize (Flexcan_Mb_Dlc_Value_58);
+  # DEBUG Payload_Size => Payload_Size_60
+  # DEBUG BEGIN_STMT
+  _4 = msgBuff_56(D) != 0B;
+  _5 = (unsigned char) _4;
+  DevAssert (_5);
+  # DEBUG BEGIN_STMT
+  _6 = FlexCAN_GetMbPayloadSize (base_49(D), msgBuffIdx_50(D));
+  if (Payload_Size_60 > _6)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Payload_Size_64 = FlexCAN_GetMbPayloadSize (base_49(D), msgBuffIdx_50(D));
+  # DEBUG Payload_Size => Payload_Size_64
+
+  <bb 4> :
+  # Payload_Size_43 = PHI <Payload_Size_60(2), Payload_Size_64(3)>
+  # DEBUG Payload_Size => Payload_Size_43
+  # DEBUG BEGIN_STMT
+  msgBuff_56(D)->dataLen = Payload_Size_43;
+  # DEBUG BEGIN_STMT
+  _7 ={v} *Flexcan_Mb_52;
+  msgBuff_56(D)->cs = _7;
+  # DEBUG BEGIN_STMT
+  _8 = msgBuff_56(D)->cs;
+  _9 = _8 & 2097152;
+  if (_9 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _10 ={v} *Flexcan_Mb_Id_53;
+  msgBuff_56(D)->msgId = _10;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _11 ={v} *Flexcan_Mb_Id_53;
+  _12 = _11 >> 18;
+  msgBuff_56(D)->msgId = _12;
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _13 = msgBuff_56(D)->cs;
+  _14 = _13 & 65535;
+  msgBuff_56(D)->time_stamp = _14;
+  # DEBUG BEGIN_STMT
+  i_70 = 0;
+  # DEBUG i => i_70
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _15 = i_41 >> 2;
+  _16 = (unsigned int) _15;
+  _17 = _16 * 4;
+  _18 = Flexcan_Mb_Data_32_55 + _17;
+  MbWord_73 ={v} *_18;
+  # DEBUG MbWord => MbWord_73
+  # DEBUG BEGIN_STMT
+  _19 = MbWord_73 >> 24;
+  _20 = MbWord_73 >> 8;
+  _21 = _20 & 65280;
+  _22 = _19 | _21;
+  _23 = MbWord_73 << 8;
+  _24 = _23 & 16711680;
+  _25 = _22 | _24;
+  _26 = MbWord_73 << 24;
+  _27 = i_41 >> 2;
+  _28 = (unsigned int) _27;
+  _29 = _28 * 4;
+  _30 = MsgBuff_Data_32_57 + _29;
+  _31 = _25 | _26;
+  *_30 = _31;
+  # DEBUG BEGIN_STMT
+  i_75 = i_41 + 4;
+  # DEBUG i => i_75
+
+  <bb 9> :
+  # i_41 = PHI <i_70(7), i_75(8)>
+  # DEBUG i => i_41
+  # DEBUG BEGIN_STMT
+  _32 = (unsigned int) i_41;
+  _33 = (unsigned int) Payload_Size_43;
+  _34 = _33 & 4294967292;
+  if (_32 < _34)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _35 = i_42 ^ 3;
+  _36 = (sizetype) _35;
+  _37 = Flexcan_Mb_Data_54 + _36;
+  _38 = (int) i_42;
+  _39 ={v} *_37;
+  msgBuff_56(D)->data[_38] = _39;
+  # DEBUG BEGIN_STMT
+  i.9_40 = i_42;
+  i_72 = i.9_40 + 1;
+  # DEBUG i => i_72
+
+  <bb 11> :
+  # i_42 = PHI <i_41(9), i_72(10)>
+  # DEBUG i => i_42
+  # DEBUG BEGIN_STMT
+  if (i_42 < Payload_Size_43)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  return;
+
+}
+
+
+FlexCAN_GetMsgBuffTimestamp (const struct FLEXCAN_Type * base, uint32 msgBuffIdx)
+{
+  const uint32 * Flexcan_Mb;
+  uint32 TimeStamp;
+  long unsigned int _1;
+  uint32 _9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  TimeStamp_2 = 0;
+  # DEBUG TimeStamp => TimeStamp_2
+  # DEBUG BEGIN_STMT
+  Flexcan_Mb_7 = FlexCAN_GetMsgBuffRegion (base_4(D), msgBuffIdx_5(D));
+  # DEBUG Flexcan_Mb => Flexcan_Mb_7
+  # DEBUG BEGIN_STMT
+  _1 ={v} *Flexcan_Mb_7;
+  TimeStamp_8 = _1 & 65535;
+  # DEBUG TimeStamp => TimeStamp_8
+  # DEBUG BEGIN_STMT
+  _9 = TimeStamp_8;
+  return _9;
+
+}
+
+
+FlexCAN_SetRxMsgBuff (const struct FLEXCAN_Type * base, uint32 msgBuffIdx, const struct Flexcan_Ip_MsbuffCodeStatusType * cs, uint32 msgId)
+{
+  volatile uint32 * flexcan_mb_id;
+  volatile uint32 * flexcan_mb;
+  _Bool _1;
+  unsigned char _2;
+  <unnamed type> _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  <unnamed type> _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  long unsigned int _16;
+  long unsigned int _17;
+  long unsigned int _18;
+  long unsigned int _19;
+  long unsigned int _20;
+  long unsigned int _21;
+  long unsigned int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  long unsigned int _25;
+  long unsigned int _26;
+  long unsigned int _27;
+  long unsigned int _28;
+  long unsigned int _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  flexcan_mb_37 = FlexCAN_GetMsgBuffRegion (base_34(D), msgBuffIdx_35(D));
+  # DEBUG flexcan_mb => flexcan_mb_37
+  # DEBUG BEGIN_STMT
+  flexcan_mb_id_38 = flexcan_mb_37 + 4;
+  # DEBUG flexcan_mb_id => flexcan_mb_id_38
+  # DEBUG BEGIN_STMT
+  _1 = cs_39(D) != 0B;
+  _2 = (unsigned char) _1;
+  DevAssert (_2);
+  # DEBUG BEGIN_STMT
+  *flexcan_mb_37 ={v} 0;
+  # DEBUG BEGIN_STMT
+  *flexcan_mb_id_38 ={v} 0;
+  # DEBUG BEGIN_STMT
+  _3 = cs_39(D)->msgIdType;
+  if (_3 == 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 ={v} *flexcan_mb_37;
+  _5 = _4 | 2097152;
+  *flexcan_mb_37 ={v} _5;
+  # DEBUG BEGIN_STMT
+  _6 ={v} *flexcan_mb_37;
+  _7 = _6 & 4290772991;
+  *flexcan_mb_37 ={v} _7;
+  # DEBUG BEGIN_STMT
+  _8 ={v} *flexcan_mb_id_38;
+  _9 = _8 & 3758096384;
+  *flexcan_mb_id_38 ={v} _9;
+  # DEBUG BEGIN_STMT
+  _10 ={v} *flexcan_mb_id_38;
+  _11 = msgId_46(D) & 536870911;
+  _12 = _10 | _11;
+  *flexcan_mb_id_38 ={v} _12;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _13 = cs_39(D)->msgIdType;
+  if (_13 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 ={v} *flexcan_mb_37;
+  _15 = _14 & 4288675839;
+  *flexcan_mb_37 ={v} _15;
+  # DEBUG BEGIN_STMT
+  _16 ={v} *flexcan_mb_id_38;
+  _17 = _16 & 3758358527;
+  *flexcan_mb_id_38 ={v} _17;
+  # DEBUG BEGIN_STMT
+  _18 ={v} *flexcan_mb_id_38;
+  _19 = msgId_46(D) << 18;
+  _20 = _19 & 536608768;
+  _21 = _18 | _20;
+  *flexcan_mb_id_38 ={v} _21;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _22 = cs_39(D)->code;
+  if (_22 != 15)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _23 ={v} *flexcan_mb_37;
+  _24 = _23 & 4043309055;
+  *flexcan_mb_37 ={v} _24;
+  # DEBUG BEGIN_STMT
+  _25 ={v} *flexcan_mb_37;
+  _26 = cs_39(D)->code;
+  _27 = _26 << 24;
+  _28 = _27 & 251658240;
+  _29 = _25 | _28;
+  *flexcan_mb_37 ={v} _29;
+
+  <bb 8> :
+  return;
+
+}
+
+
+FlexCAN_EnableInterrupts (struct FLEXCAN_Type * pBase, uint8 u8Instance)
+{
+  uint32 u32MaxMbCrtlNum;
+  int _1;
+  long unsigned int _2;
+  int _3;
+  long unsigned int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  u32MaxMbCrtlNum_9 = FlexCAN_GetMaxMbNum (pBase_7(D));
+  # DEBUG u32MaxMbCrtlNum => u32MaxMbCrtlNum_9
+  # DEBUG BEGIN_STMT
+  _1 = (int) u8Instance_10(D);
+  _2 ={v} FlexCAN_Ip_au32ImaskBuff[_1][0];
+  pBase_7(D)->IMASK1 ={v} _2;
+  # DEBUG BEGIN_STMT
+  if (u32MaxMbCrtlNum_9 > 32)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) u8Instance_10(D);
+  _4 ={v} FlexCAN_Ip_au32ImaskBuff[_3][1];
+  pBase_7(D)->IMASK2 ={v} _4;
+
+  <bb 4> :
+  return;
+
+}
+
+
+FlexCAN_DisableInterrupts (struct FLEXCAN_Type * pBase)
+{
+  uint32 u32MaxMbCrtlNum;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  u32MaxMbCrtlNum_5 = FlexCAN_GetMaxMbNum (pBase_3(D));
+  # DEBUG u32MaxMbCrtlNum => u32MaxMbCrtlNum_5
+  # DEBUG BEGIN_STMT
+  pBase_3(D)->IMASK1 ={v} 0;
+  # DEBUG BEGIN_STMT
+  if (u32MaxMbCrtlNum_5 > 32)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  pBase_3(D)->IMASK2 ={v} 0;
+
+  <bb 4> :
+  return;
+
+}
+
+
+FLEXCAN_ClearMsgBuffIntCmd (struct FLEXCAN_Type * pBase, uint8 u8Instance, uint32 mb_idx, boolean bIsIntActive)
+{
+  uint32 temp;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  int _4;
+  long unsigned int _5;
+  int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  int _11;
+  long unsigned int _12;
+  int _13;
+  long unsigned int _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = mb_idx_19(D) & 31;
+  temp_20 = 1 << _1;
+  # DEBUG temp => temp_20
+  # DEBUG BEGIN_STMT
+  if (mb_idx_19(D) <= 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_11 ();
+  # DEBUG BEGIN_STMT
+  _2 ={v} pBase_23(D)->IMASK1;
+  _3 = ~temp_20;
+  _4 = (int) u8Instance_24(D);
+  _5 = _2 & _3;
+  FlexCAN_Ip_au32ImaskBuff[_4][0] ={v} _5;
+  # DEBUG BEGIN_STMT
+  if (bIsIntActive_26(D) == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) u8Instance_24(D);
+  _7 ={v} FlexCAN_Ip_au32ImaskBuff[_6][0];
+  pBase_23(D)->IMASK1 ={v} _7;
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_11 ();
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _8 = mb_idx_19(D) + 4294967264;
+  if (_8 <= 31)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_11 ();
+  # DEBUG BEGIN_STMT
+  _9 ={v} pBase_23(D)->IMASK2;
+  _10 = ~temp_20;
+  _11 = (int) u8Instance_24(D);
+  _12 = _9 & _10;
+  FlexCAN_Ip_au32ImaskBuff[_11][1] ={v} _12;
+  # DEBUG BEGIN_STMT
+  if (bIsIntActive_26(D) == 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _13 = (int) u8Instance_24(D);
+  _14 ={v} FlexCAN_Ip_au32ImaskBuff[_13][1];
+  pBase_23(D)->IMASK2 ={v} _14;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_11 ();
+
+  <bb 10> :
+  return;
+
+}
+
+
+FlexCAN_SetMsgBuffIntCmd (struct FLEXCAN_Type * base, uint8 u8Instance, uint32 msgBuffIdx, boolean enable, boolean bIsIntActive)
+{
+  Flexcan_Ip_StatusType stat;
+  uint32 temp;
+  long unsigned int _1;
+  int _2;
+  long unsigned int _3;
+  int _4;
+  long unsigned int _5;
+  int _6;
+  long unsigned int _7;
+  int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  int _11;
+  long unsigned int _12;
+  int _13;
+  long unsigned int _14;
+  long unsigned int _15;
+  int _16;
+  long unsigned int _17;
+  int _18;
+  long unsigned int _19;
+  int _20;
+  long unsigned int _21;
+  int _22;
+  long unsigned int _23;
+  long unsigned int _24;
+  int _25;
+  long unsigned int _26;
+  int _27;
+  long unsigned int _28;
+  Flexcan_Ip_StatusType _57;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  stat_33 = 0;
+  # DEBUG stat => stat_33
+  # DEBUG BEGIN_STMT
+  _1 = msgBuffIdx_34(D) & 31;
+  temp_35 = 1 << _1;
+  # DEBUG temp => temp_35
+  # DEBUG BEGIN_STMT
+  if (msgBuffIdx_34(D) <= 31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (enable_37(D) != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_18 ();
+  # DEBUG BEGIN_STMT
+  _2 = (int) u8Instance_39(D);
+  _3 ={v} FlexCAN_Ip_au32ImaskBuff[_2][0];
+  _4 = (int) u8Instance_39(D);
+  _5 = temp_35 | _3;
+  FlexCAN_Ip_au32ImaskBuff[_4][0] ={v} _5;
+  # DEBUG BEGIN_STMT
+  if (bIsIntActive_46(D) == 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _6 = (int) u8Instance_39(D);
+  _7 ={v} FlexCAN_Ip_au32ImaskBuff[_6][0];
+  base_41(D)->IMASK1 ={v} _7;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_18 ();
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_18 ();
+  # DEBUG BEGIN_STMT
+  _8 = (int) u8Instance_39(D);
+  _9 ={v} FlexCAN_Ip_au32ImaskBuff[_8][0];
+  _10 = ~temp_35;
+  _11 = (int) u8Instance_39(D);
+  _12 = _9 & _10;
+  FlexCAN_Ip_au32ImaskBuff[_11][0] ={v} _12;
+  # DEBUG BEGIN_STMT
+  _13 = (int) u8Instance_39(D);
+  _14 ={v} FlexCAN_Ip_au32ImaskBuff[_13][0];
+  base_41(D)->IMASK1 ={v} _14;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_18 ();
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _15 = msgBuffIdx_34(D) + 4294967264;
+  if (_15 <= 31)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (enable_37(D) != 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_18 ();
+  # DEBUG BEGIN_STMT
+  _16 = (int) u8Instance_39(D);
+  _17 ={v} FlexCAN_Ip_au32ImaskBuff[_16][1];
+  _18 = (int) u8Instance_39(D);
+  _19 = temp_35 | _17;
+  FlexCAN_Ip_au32ImaskBuff[_18][1] ={v} _19;
+  # DEBUG BEGIN_STMT
+  if (bIsIntActive_46(D) == 1)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _20 = (int) u8Instance_39(D);
+  _21 ={v} FlexCAN_Ip_au32ImaskBuff[_20][1];
+  base_41(D)->IMASK2 ={v} _21;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_18 ();
+  goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_18 ();
+  # DEBUG BEGIN_STMT
+  _22 = (int) u8Instance_39(D);
+  _23 ={v} FlexCAN_Ip_au32ImaskBuff[_22][1];
+  _24 = ~temp_35;
+  _25 = (int) u8Instance_39(D);
+  _26 = _23 & _24;
+  FlexCAN_Ip_au32ImaskBuff[_25][1] ={v} _26;
+  # DEBUG BEGIN_STMT
+  _27 = (int) u8Instance_39(D);
+  _28 ={v} FlexCAN_Ip_au32ImaskBuff[_27][1];
+  base_41(D)->IMASK2 ={v} _28;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_18 ();
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  _57 = stat_33;
+  return _57;
+
+}
+
+
+FlexCAN_LockRxMsgBuff (const struct FLEXCAN_Type * base, uint32 msgBuffIdx)
+{
+  const uint32 * flexcan_mb;
+  long unsigned int vol.8_6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  flexcan_mb_5 = FlexCAN_GetMsgBuffRegion (base_2(D), msgBuffIdx_3(D));
+  # DEBUG flexcan_mb => flexcan_mb_5
+  # DEBUG BEGIN_STMT
+  vol.8_6 ={v} *flexcan_mb_5;
+  return;
+
+}
+
+
+FlexCAN_GetMbPayloadSize (const struct FLEXCAN_Type * base, uint32 maxMsgBuffNum)
+{
+  uint8 mb_size;
+  uint8 i;
+  uint8 maxMbBlockNum;
+  uint8 can_real_payload;
+  uint32 ramBlockSize;
+  uint8 arbitration_field_size;
+  long unsigned int _1;
+  long unsigned int _2;
+  unsigned char _3;
+  long unsigned int _4;
+  unsigned char i.7_5;
+  uint8 _27;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  arbitration_field_size_12 = 8;
+  # DEBUG arbitration_field_size => arbitration_field_size_12
+  # DEBUG BEGIN_STMT
+  ramBlockSize_13 = 512;
+  # DEBUG ramBlockSize => ramBlockSize_13
+  # DEBUG BEGIN_STMT
+  can_real_payload_14 = 8;
+  # DEBUG can_real_payload => can_real_payload_14
+  # DEBUG BEGIN_STMT
+  maxMbBlockNum_15 = 0;
+  # DEBUG maxMbBlockNum => maxMbBlockNum_15
+  # DEBUG BEGIN_STMT
+  i_16 = 0;
+  # DEBUG i => i_16
+  # DEBUG BEGIN_STMT
+  mb_size_17 = 0;
+  # DEBUG mb_size => mb_size_17
+  # DEBUG BEGIN_STMT
+  i_18 = 0;
+  # DEBUG i => i_18
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  can_real_payload_22 = FlexCAN_GetPayloadSize (base_20(D), i_9);
+  # DEBUG can_real_payload => can_real_payload_22
+  # DEBUG BEGIN_STMT
+  mb_size_23 = can_real_payload_22 + arbitration_field_size_12;
+  # DEBUG mb_size => mb_size_23
+  # DEBUG BEGIN_STMT
+  _1 = (long unsigned int) mb_size_23;
+  _2 = ramBlockSize_13 / _1;
+  _3 = (unsigned char) _2;
+  maxMbBlockNum_24 = maxMbBlockNum_8 + _3;
+  # DEBUG maxMbBlockNum => maxMbBlockNum_24
+  # DEBUG BEGIN_STMT
+  _4 = (long unsigned int) maxMbBlockNum_24;
+  if (maxMsgBuffNum_25(D) < _4)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  i.7_5 = i_9;
+  i_26 = i.7_5 + 1;
+  # DEBUG i => i_26
+
+  <bb 5> :
+  # can_real_payload_6 = PHI <can_real_payload_14(2), can_real_payload_22(4)>
+  # maxMbBlockNum_8 = PHI <maxMbBlockNum_15(2), maxMbBlockNum_24(4)>
+  # i_9 = PHI <i_18(2), i_26(4)>
+  # DEBUG i => i_9
+  # DEBUG maxMbBlockNum => maxMbBlockNum_8
+  # DEBUG can_real_payload => can_real_payload_6
+  # DEBUG BEGIN_STMT
+  if (i_9 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # can_real_payload_7 = PHI <can_real_payload_22(3), can_real_payload_6(5)>
+  # DEBUG can_real_payload => can_real_payload_7
+  # DEBUG BEGIN_STMT
+  _27 = can_real_payload_7;
+  return _27;
+
+}
+
+
+FlexCAN_GetPayloadSize (const struct FLEXCAN_Type * base, uint8 mbdsrIdx)
+{
+  uint32 payloadSize;
+  int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  uint8 _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  payloadSize_12 = 8;
+  # DEBUG payloadSize => payloadSize_12
+  # DEBUG BEGIN_STMT
+  _1 = (int) mbdsrIdx_13(D);
+  switch (_1) <default: <L2> [INV], case 0: <L0> [INV], case 1: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _2 ={v} base_15(D)->FDCTRL;
+  _3 = _2 >> 16;
+  _4 = _3 & 3;
+  payloadSize_17 = 8 << _4;
+  # DEBUG payloadSize => payloadSize_17
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  _5 ={v} base_15(D)->FDCTRL;
+  _6 = _5 >> 19;
+  _7 = _6 & 3;
+  payloadSize_16 = 8 << _7;
+  # DEBUG payloadSize => payloadSize_16
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  _8 ={v} base_15(D)->FDCTRL;
+  _9 = _8 >> 16;
+  _10 = _9 & 3;
+  payloadSize_18 = 8 << _10;
+  # DEBUG payloadSize => payloadSize_18
+  # DEBUG BEGIN_STMT
+
+  <bb 6> :
+  # payloadSize_11 = PHI <payloadSize_17(3), payloadSize_16(4), payloadSize_18(5)>
+  # DEBUG payloadSize => payloadSize_11
+  # DEBUG BEGIN_STMT
+  _19 = (uint8) payloadSize_11;
+  return _19;
+
+}
+
+
+FlexCAN_SetPayloadSize (struct FLEXCAN_Type * base, const struct Flexcan_Ip_PayloadSizeType * payloadSize)
+{
+  uint32 tmp;
+  unsigned char _1;
+  <unnamed type> _2;
+  unsigned char _3;
+  unsigned char _4;
+  <unnamed type> _5;
+  unsigned char _6;
+  unsigned char _7;
+  <unnamed type> _8;
+  long unsigned int _9;
+  <unnamed type> _10;
+  long unsigned int _11;
+  int iftmp.4_12;
+  int iftmp.5_13;
+  int iftmp.4_19;
+  int iftmp.4_20;
+  int iftmp.5_23;
+  int iftmp.5_24;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = FlexCAN_IsFDEnabled (base_16(D));
+  if (_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _2 = payloadSize_18(D)->payloadBlock0;
+  if (_2 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.4_20 = 1;
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.4_19 = 0;
+
+  <bb 6> :
+  # iftmp.4_12 = PHI <iftmp.4_20(4), iftmp.4_19(5)>
+  _3 = (unsigned char) iftmp.4_12;
+  DevAssert (_3);
+  # DEBUG BEGIN_STMT
+  _4 = FlexCAN_IsFDEnabled (base_16(D));
+  if (_4 != 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _5 = payloadSize_18(D)->payloadBlock1;
+  if (_5 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.5_24 = 1;
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  iftmp.5_23 = 0;
+
+  <bb 10> :
+  # iftmp.5_13 = PHI <iftmp.5_24(8), iftmp.5_23(9)>
+  _6 = (unsigned char) iftmp.5_13;
+  DevAssert (_6);
+  # DEBUG BEGIN_STMT
+  _7 = FlexCAN_IsFDEnabled (base_16(D));
+  if (_7 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  tmp_27 ={v} base_16(D)->FDCTRL;
+  # DEBUG tmp => tmp_27
+  # DEBUG BEGIN_STMT
+  tmp_28 = tmp_27 & 4294770687;
+  # DEBUG tmp => tmp_28
+  # DEBUG BEGIN_STMT
+  _8 = payloadSize_18(D)->payloadBlock0;
+  _9 = _8 << 16;
+  tmp_29 = tmp_28 | _9;
+  # DEBUG tmp => tmp_29
+  # DEBUG BEGIN_STMT
+  tmp_30 = tmp_29 & 4293394431;
+  # DEBUG tmp => tmp_30
+  # DEBUG BEGIN_STMT
+  _10 = payloadSize_18(D)->payloadBlock1;
+  _11 = _10 << 19;
+  tmp_31 = tmp_30 | _11;
+  # DEBUG tmp => tmp_31
+  # DEBUG BEGIN_STMT
+  base_16(D)->FDCTRL ={v} tmp_31;
+
+  <bb 12> :
+  return;
+
+}
+
+
+FlexCAN_EnableRxFifo (struct FLEXCAN_Type * base, uint32 numOfFilters)
+{
+  Flexcan_Ip_StatusType stat;
+  uint16 noOfMbx;
+  uint32 i;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  Flexcan_Ip_StatusType _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = FlexCAN_GetMaxMbNum (base_17(D));
+  noOfMbx_19 = (uint16) _1;
+  # DEBUG noOfMbx => noOfMbx_19
+  # DEBUG BEGIN_STMT
+  stat_20 = 0;
+  # DEBUG stat => stat_20
+  # DEBUG BEGIN_STMT
+  _2 ={v} base_17(D)->MCR;
+  _3 = _2 & 2048;
+  if (_3 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  stat_21 = 1;
+  # DEBUG stat => stat_21
+
+  <bb 4> :
+  # stat_13 = PHI <stat_20(2), stat_21(3)>
+  # DEBUG stat => stat_13
+  # DEBUG BEGIN_STMT
+  if (stat_13 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 ={v} base_17(D)->MCR;
+  _5 = _4 | 536870912;
+  base_17(D)->MCR ={v} _5;
+  # DEBUG BEGIN_STMT
+  _6 ={v} base_17(D)->CTRL2;
+  _7 = _6 & 4043309055;
+  _8 = numOfFilters_23(D) << 24;
+  _9 = _8 & 251658240;
+  _10 = _7 | _9;
+  base_17(D)->CTRL2 ={v} _10;
+  # DEBUG BEGIN_STMT
+  base_17(D)->RXFGMASK ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  i_26 = 0;
+  # DEBUG i => i_26
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  base_17(D)->RXIMR[i_12] ={v} 536870911;
+  # DEBUG BEGIN_STMT
+  i_28 = i_12 + 1;
+  # DEBUG i => i_28
+
+  <bb 7> :
+  # i_12 = PHI <i_26(5), i_28(6)>
+  # DEBUG i => i_12
+  # DEBUG BEGIN_STMT
+  _11 = (long unsigned int) noOfMbx_19;
+  if (i_12 < _11)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _29 = stat_13;
+  return _29;
+
+}
+
+
+FlexCAN_Init (struct FLEXCAN_Type * base)
+{
+  Flexcan_Ip_StatusType returnResult;
+  uint32 uS2Ticks;
+  uint32 timeElapsed;
+  uint32 timeStart;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _26;
+  Flexcan_Ip_StatusType _49;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  timeStart = 0;
+  # DEBUG BEGIN_STMT
+  timeElapsed_17 = 0;
+  # DEBUG timeElapsed => timeElapsed_17
+  # DEBUG BEGIN_STMT
+  uS2Ticks_19 = OsIf_MicrosToTicks (1000000, 0);
+  # DEBUG uS2Ticks => uS2Ticks_19
+  # DEBUG BEGIN_STMT
+  returnResult_20 = 0;
+  # DEBUG returnResult => returnResult_20
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_21(D)->MCR;
+  _2 = _1 | 33554432;
+  base_21(D)->MCR ={v} _2;
+  # DEBUG BEGIN_STMT
+  _3 = OsIf_GetCounter (0);
+  timeStart = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _26 = OsIf_GetElapsed (&timeStart, 0);
+  timeElapsed_27 = _26 + timeElapsed_9;
+  # DEBUG timeElapsed => timeElapsed_27
+  # DEBUG BEGIN_STMT
+  if (timeElapsed_27 >= uS2Ticks_19)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  returnResult_28 = 3;
+  # DEBUG returnResult => returnResult_28
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # timeElapsed_9 = PHI <timeElapsed_17(2), timeElapsed_27(3)>
+  # DEBUG timeElapsed => timeElapsed_9
+  # DEBUG BEGIN_STMT
+  _4 ={v} base_21(D)->MCR;
+  _5 = _4 & 33554432;
+  if (_5 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # returnResult_10 = PHI <returnResult_28(4), returnResult_20(5)>
+  # DEBUG returnResult => returnResult_10
+  # DEBUG BEGIN_STMT
+  if (returnResult_10 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _6 ={v} base_21(D)->MCR;
+  _7 = _6 | 4096;
+  base_21(D)->MCR ={v} _7;
+  # DEBUG BEGIN_STMT
+  FlexCAN_ClearRAM (base_21(D));
+  # DEBUG BEGIN_STMT
+  base_21(D)->RXMGMASK ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  base_21(D)->RX14MASK ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  base_21(D)->RX15MASK ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  base_21(D)->IMASK1 ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->IFLAG1 ={v} 4294967295;
+  # DEBUG BEGIN_STMT
+  _8 = FlexCAN_GetMaxMbNum (base_21(D));
+  if (_8 > 32)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  base_21(D)->IMASK2 ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->IFLAG2 ={v} 4294967295;
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  base_21(D)->ESR1 ={v} 3866630;
+  # DEBUG BEGIN_STMT
+  base_21(D)->CTRL1 ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->CTRL2 ={v} 1048576;
+  # DEBUG BEGIN_STMT
+  base_21(D)->CBT ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->EPRS ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->ENCBT ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->EDCBT ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->ETDC ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->FDCBT ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_21(D)->FDCTRL ={v} 2147500288;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _49 = returnResult_10;
+  timeStart ={v} {CLOBBER};
+  return _49;
+
+}
+
+
+FlexCAN_SetErrIntCmd (struct FLEXCAN_Type * base, flexcan_int_type_t errType, boolean enable)
+{
+  uint32 temp;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  unsigned int _12;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  temp_18 = errType_17(D);
+  # DEBUG temp => temp_18
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_06 ();
+  # DEBUG BEGIN_STMT
+  if (enable_21(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  if (errType_17(D) == 16385)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_22(D)->CTRL2;
+  _2 = _1 | 2147483648;
+  base_22(D)->CTRL2 ={v} _2;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (errType_17(D) == 1024)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  if (errType_17(D) == 2048)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_22(D)->MCR;
+  _4 = _3 | 2097152;
+  base_22(D)->MCR ={v} _4;
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _5 ={v} base_22(D)->CTRL1;
+  _6 = temp_18 | _5;
+  base_22(D)->CTRL1 ={v} _6;
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  if (errType_17(D) == 16385)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _7 ={v} base_22(D)->CTRL2;
+  _8 = _7 & 2147483647;
+  base_22(D)->CTRL2 ={v} _8;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _9 ={v} base_22(D)->CTRL1;
+  _10 = ~temp_18;
+  _11 = _9 & _10;
+  base_22(D)->CTRL1 ={v} _11;
+  # DEBUG BEGIN_STMT
+  temp_24 ={v} base_22(D)->CTRL1;
+  # DEBUG temp => temp_24
+  # DEBUG BEGIN_STMT
+  _12 = temp_24 & 3072;
+  if (_12 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _13 ={v} base_22(D)->MCR;
+  _14 = _13 & 4292870143;
+  base_22(D)->MCR ={v} _14;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_06 ();
+  return;
+
+}
+
+
+FlexCAN_Disable (struct FLEXCAN_Type * base)
+{
+  Flexcan_Ip_StatusType returnResult;
+  uint32 uS2Ticks;
+  uint32 timeElapsed;
+  uint32 timeStart;
+  long unsigned int _1;
+  signed int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _25;
+  Flexcan_Ip_StatusType _28;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  timeStart = 0;
+  # DEBUG BEGIN_STMT
+  timeElapsed_14 = 0;
+  # DEBUG timeElapsed => timeElapsed_14
+  # DEBUG BEGIN_STMT
+  uS2Ticks_16 = OsIf_MicrosToTicks (1000000, 0);
+  # DEBUG uS2Ticks => uS2Ticks_16
+  # DEBUG BEGIN_STMT
+  returnResult_17 = 0;
+  # DEBUG returnResult => returnResult_17
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_18(D)->MCR;
+  _2 = (signed int) _1;
+  if (_2 >= 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_05 ();
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_18(D)->MCR;
+  _4 = _3 | 2147483648;
+  base_18(D)->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_05 ();
+  # DEBUG BEGIN_STMT
+  _5 = OsIf_GetCounter (0);
+  timeStart = _5;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _25 = OsIf_GetElapsed (&timeStart, 0);
+  timeElapsed_26 = _25 + timeElapsed_8;
+  # DEBUG timeElapsed => timeElapsed_26
+  # DEBUG BEGIN_STMT
+  if (timeElapsed_26 >= uS2Ticks_16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  returnResult_27 = 3;
+  # DEBUG returnResult => returnResult_27
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # timeElapsed_8 = PHI <timeElapsed_14(3), timeElapsed_26(4)>
+  # DEBUG timeElapsed => timeElapsed_8
+  # DEBUG BEGIN_STMT
+  _6 ={v} base_18(D)->MCR;
+  _7 = _6 & 1048576;
+  if (_7 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # returnResult_9 = PHI <returnResult_17(2), returnResult_27(5), returnResult_17(6)>
+  # DEBUG returnResult => returnResult_9
+  # DEBUG BEGIN_STMT
+  _28 = returnResult_9;
+  timeStart ={v} {CLOBBER};
+  return _28;
+
+}
+
+
+FlexCAN_ExitFreezeMode (struct FLEXCAN_Type * base)
+{
+  Flexcan_Ip_StatusType returnValue;
+  uint32 uS2Ticks;
+  uint32 timeElapsed;
+  uint32 timeStart;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  long unsigned int _7;
+  long unsigned int _26;
+  Flexcan_Ip_StatusType _29;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  timeStart = 0;
+  # DEBUG BEGIN_STMT
+  timeElapsed_14 = 0;
+  # DEBUG timeElapsed => timeElapsed_14
+  # DEBUG BEGIN_STMT
+  uS2Ticks_16 = OsIf_MicrosToTicks (1000000, 0);
+  # DEBUG uS2Ticks => uS2Ticks_16
+  # DEBUG BEGIN_STMT
+  returnValue_17 = 0;
+  # DEBUG returnValue => returnValue_17
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_04 ();
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_19(D)->MCR;
+  _2 = _1 & 4026531839;
+  base_19(D)->MCR ={v} _2;
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_19(D)->MCR;
+  _4 = _3 & 3221225471;
+  base_19(D)->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_04 ();
+  # DEBUG BEGIN_STMT
+  _5 = OsIf_GetCounter (0);
+  timeStart = _5;
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _26 = OsIf_GetElapsed (&timeStart, 0);
+  timeElapsed_27 = _26 + timeElapsed_8;
+  # DEBUG timeElapsed => timeElapsed_27
+  # DEBUG BEGIN_STMT
+  if (timeElapsed_27 >= uS2Ticks_16)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  returnValue_28 = 3;
+  # DEBUG returnValue => returnValue_28
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # timeElapsed_8 = PHI <timeElapsed_14(2), timeElapsed_27(3)>
+  # DEBUG timeElapsed => timeElapsed_8
+  # DEBUG BEGIN_STMT
+  _6 ={v} base_19(D)->MCR;
+  _7 = _6 & 16777216;
+  if (_7 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # returnValue_9 = PHI <returnValue_28(4), returnValue_17(5)>
+  # DEBUG returnValue => returnValue_9
+  # DEBUG BEGIN_STMT
+  _29 = returnValue_9;
+  timeStart ={v} {CLOBBER};
+  return _29;
+
+}
+
+
+FlexCAN_Enable (struct FLEXCAN_Type * base)
+{
+  Flexcan_Ip_StatusType returnValue;
+  uint32 uS2Ticks;
+  uint32 timeElapsed;
+  uint32 timeStart;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _23;
+  Flexcan_Ip_StatusType _26;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  timeStart = 0;
+  # DEBUG BEGIN_STMT
+  timeElapsed_12 = 0;
+  # DEBUG timeElapsed => timeElapsed_12
+  # DEBUG BEGIN_STMT
+  uS2Ticks_14 = OsIf_MicrosToTicks (1000000, 0);
+  # DEBUG uS2Ticks => uS2Ticks_14
+  # DEBUG BEGIN_STMT
+  returnValue_15 = 0;
+  # DEBUG returnValue => returnValue_15
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_03 ();
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_17(D)->MCR;
+  _2 = _1 & 2147483647;
+  base_17(D)->MCR ={v} _2;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_03 ();
+  # DEBUG BEGIN_STMT
+  _3 = OsIf_GetCounter (0);
+  timeStart = _3;
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _23 = OsIf_GetElapsed (&timeStart, 0);
+  timeElapsed_24 = _23 + timeElapsed_6;
+  # DEBUG timeElapsed => timeElapsed_24
+  # DEBUG BEGIN_STMT
+  if (timeElapsed_24 >= uS2Ticks_14)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  returnValue_25 = 3;
+  # DEBUG returnValue => returnValue_25
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # timeElapsed_6 = PHI <timeElapsed_12(2), timeElapsed_24(3)>
+  # DEBUG timeElapsed => timeElapsed_6
+  # DEBUG BEGIN_STMT
+  _4 ={v} base_17(D)->MCR;
+  _5 = _4 & 16777216;
+  if (_5 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # returnValue_7 = PHI <returnValue_25(4), returnValue_15(5)>
+  # DEBUG returnValue => returnValue_7
+  # DEBUG BEGIN_STMT
+  _26 = returnValue_7;
+  timeStart ={v} {CLOBBER};
+  return _26;
+
+}
+
+
+FlexCAN_EnterFreezeMode (struct FLEXCAN_Type * base)
+{
+  Flexcan_Ip_StatusType returnResult;
+  uint32 uS2Ticks;
+  uint32 timeElapsed;
+  uint32 timeStart;
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  signed int _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  long unsigned int _11;
+  long unsigned int _32;
+  Flexcan_Ip_StatusType _35;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  timeStart = 0;
+  # DEBUG BEGIN_STMT
+  timeElapsed_19 = 0;
+  # DEBUG timeElapsed => timeElapsed_19
+  # DEBUG BEGIN_STMT
+  uS2Ticks_21 = OsIf_MicrosToTicks (1000000, 0);
+  # DEBUG uS2Ticks => uS2Ticks_21
+  # DEBUG BEGIN_STMT
+  returnResult_22 = 0;
+  # DEBUG returnResult => returnResult_22
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Can_CAN_EXCLUSIVE_AREA_02 ();
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_24(D)->MCR;
+  _2 = _1 | 1073741824;
+  base_24(D)->MCR ={v} _2;
+  # DEBUG BEGIN_STMT
+  _3 ={v} base_24(D)->MCR;
+  _4 = _3 | 268435456;
+  base_24(D)->MCR ={v} _4;
+  # DEBUG BEGIN_STMT
+  _5 ={v} base_24(D)->MCR;
+  _6 = (signed int) _5;
+  if (_6 < 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _7 ={v} base_24(D)->MCR;
+  _8 = _7 & 2147483647;
+  base_24(D)->MCR ={v} _8;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Can_CAN_EXCLUSIVE_AREA_02 ();
+  # DEBUG BEGIN_STMT
+  _9 = OsIf_GetCounter (0);
+  timeStart = _9;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _32 = OsIf_GetElapsed (&timeStart, 0);
+  timeElapsed_33 = _32 + timeElapsed_12;
+  # DEBUG timeElapsed => timeElapsed_33
+  # DEBUG BEGIN_STMT
+  if (timeElapsed_33 >= uS2Ticks_21)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  returnResult_34 = 3;
+  # DEBUG returnResult => returnResult_34
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # timeElapsed_12 = PHI <timeElapsed_19(4), timeElapsed_33(5)>
+  # DEBUG timeElapsed => timeElapsed_12
+  # DEBUG BEGIN_STMT
+  _10 ={v} base_24(D)->MCR;
+  _11 = _10 & 16777216;
+  if (_11 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # returnResult_13 = PHI <returnResult_34(6), returnResult_22(7)>
+  # DEBUG returnResult => returnResult_13
+  # DEBUG BEGIN_STMT
+  _35 = returnResult_13;
+  timeStart ={v} {CLOBBER};
+  return _35;
+
+}
+
+
+FlexCAN_GetMaxMbNum (const struct FLEXCAN_Type * base)
+{
+  static const uint32 maxMbNum[4] = {64, 64, 64, 32};
+  static struct FLEXCAN_Type * const flexcanBase[4] = {1076903936B, 1076920320B, 1076936704B, 1076953088B};
+  uint32 ret;
+  uint32 i;
+  struct FLEXCAN_Type * _1;
+  uint32 _7;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_5 = 0;
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  i_6 = 0;
+  # DEBUG i => i_6
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = flexcanBase[i_2];
+  if (base_9(D) == _1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ret_10 = maxMbNum[i_2];
+  # DEBUG ret => ret_10
+
+  <bb 5> :
+  # ret_3 = PHI <ret_4(3), ret_10(4)>
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  i_11 = i_2 + 1;
+  # DEBUG i => i_11
+
+  <bb 6> :
+  # i_2 = PHI <i_6(2), i_11(5)>
+  # ret_4 = PHI <ret_5(2), ret_3(5)>
+  # DEBUG ret => ret_4
+  # DEBUG i => i_2
+  # DEBUG BEGIN_STMT
+  if (i_2 <= 3)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _7 = ret_4;
+  return _7;
+
+}
+
+
+FlexCAN_GetMsgBuffRegion (const struct FLEXCAN_Type * base, uint32 msgBuffIdx)
+{
+  volatile uint32 * pAddressRet;
+  volatile uint32 * RAM;
+  uint8 payload_size;
+  uint32 mb_index;
+  uint8 maxMbNum;
+  uint8 i;
+  uint32 msgBuffIdxBackup;
+  uint32 ramBlockOffset;
+  uint32 ramBlockSize;
+  uint8 mb_size;
+  uint8 arbitration_field_size;
+  long unsigned int base.0_1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int _5;
+  long unsigned int _6;
+  unsigned char i.1_7;
+  long unsigned int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  volatile uint32 * _47;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  arbitration_field_size_23 = 8;
+  # DEBUG arbitration_field_size => arbitration_field_size_23
+  # DEBUG BEGIN_STMT
+  mb_size_24 = 0;
+  # DEBUG mb_size => mb_size_24
+  # DEBUG BEGIN_STMT
+  ramBlockSize_25 = 512;
+  # DEBUG ramBlockSize => ramBlockSize_25
+  # DEBUG BEGIN_STMT
+  ramBlockOffset_26 = 0;
+  # DEBUG ramBlockOffset => ramBlockOffset_26
+  # DEBUG BEGIN_STMT
+  msgBuffIdxBackup_28 = msgBuffIdx_27(D);
+  # DEBUG msgBuffIdxBackup => msgBuffIdxBackup_28
+  # DEBUG BEGIN_STMT
+  i_29 = 0;
+  # DEBUG i => i_29
+  # DEBUG BEGIN_STMT
+  maxMbNum_30 = 0;
+  # DEBUG maxMbNum => maxMbNum_30
+  # DEBUG BEGIN_STMT
+  mb_index_31 = 0;
+  # DEBUG mb_index => mb_index_31
+  # DEBUG BEGIN_STMT
+  payload_size_32 = 0;
+  # DEBUG payload_size => payload_size_32
+  # DEBUG BEGIN_STMT
+  base.0_1 = (long unsigned int) base_33(D);
+  _2 = base.0_1 + 128;
+  RAM_34 = (volatile uint32 *) _2;
+  # DEBUG RAM => RAM_34
+  # DEBUG BEGIN_STMT
+  pAddressRet_35 = 0B;
+  # DEBUG pAddressRet => pAddressRet_35
+  # DEBUG BEGIN_STMT
+  i_36 = 0;
+  # DEBUG i => i_36
+  goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  payload_size_39 = FlexCAN_GetPayloadSize (base_33(D), i_18);
+  # DEBUG payload_size => payload_size_39
+  # DEBUG BEGIN_STMT
+  mb_size_40 = payload_size_39 + arbitration_field_size_23;
+  # DEBUG mb_size => mb_size_40
+  # DEBUG BEGIN_STMT
+  _3 = (long unsigned int) mb_size_40;
+  _4 = ramBlockSize_25 / _3;
+  maxMbNum_41 = (uint8) _4;
+  # DEBUG maxMbNum => maxMbNum_41
+  # DEBUG BEGIN_STMT
+  _5 = (long unsigned int) maxMbNum_41;
+  if (msgBuffIdxBackup_17 < _5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ramBlockOffset_42 = ramBlockOffset_16 + 128;
+  # DEBUG ramBlockOffset => ramBlockOffset_42
+  # DEBUG BEGIN_STMT
+  _6 = (long unsigned int) maxMbNum_41;
+  msgBuffIdxBackup_43 = msgBuffIdxBackup_17 - _6;
+  # DEBUG msgBuffIdxBackup => msgBuffIdxBackup_43
+  # DEBUG BEGIN_STMT
+  i.1_7 = i_18;
+  i_44 = i.1_7 + 1;
+  # DEBUG i => i_44
+
+  <bb 5> :
+  # mb_size_14 = PHI <mb_size_24(2), mb_size_40(4)>
+  # ramBlockOffset_16 = PHI <ramBlockOffset_26(2), ramBlockOffset_42(4)>
+  # msgBuffIdxBackup_17 = PHI <msgBuffIdxBackup_28(2), msgBuffIdxBackup_43(4)>
+  # i_18 = PHI <i_36(2), i_44(4)>
+  # maxMbNum_19 = PHI <maxMbNum_30(2), maxMbNum_41(4)>
+  # DEBUG maxMbNum => maxMbNum_19
+  # DEBUG i => i_18
+  # DEBUG msgBuffIdxBackup => msgBuffIdxBackup_17
+  # DEBUG ramBlockOffset => ramBlockOffset_16
+  # DEBUG mb_size => mb_size_14
+  # DEBUG BEGIN_STMT
+  if (i_18 <= 1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  # mb_size_15 = PHI <mb_size_40(3), mb_size_14(5)>
+  # maxMbNum_20 = PHI <maxMbNum_41(3), maxMbNum_19(5)>
+  # DEBUG maxMbNum => maxMbNum_20
+  # DEBUG mb_size => mb_size_15
+  # DEBUG BEGIN_STMT
+  _8 = (long unsigned int) maxMbNum_20;
+  _9 = msgBuffIdxBackup_17 % _8;
+  _10 = mb_size_15 >> 2;
+  _11 = (long unsigned int) _10;
+  _12 = _9 * _11;
+  mb_index_45 = ramBlockOffset_16 + _12;
+  # DEBUG mb_index => mb_index_45
+  # DEBUG BEGIN_STMT
+  _13 = mb_index_45 * 4;
+  pAddressRet_46 = RAM_34 + _13;
+  # DEBUG pAddressRet => pAddressRet_46
+  # DEBUG BEGIN_STMT
+  _47 = pAddressRet_46;
+  return _47;
+
+}
+
+
+FlexCAN_ComputePayloadSize (uint8 dlcValue)
+{
+  uint8 ret;
+  int _1;
+  uint8 _13;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_3 = 8;
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  if (dlcValue_4(D) <= 8)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ret_12 = dlcValue_4(D);
+  # DEBUG ret => ret_12
+  goto <bb 12>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) dlcValue_4(D);
+  switch (_1) <default: <L13> [INV], case 9: <L2> [INV], case 10: <L3> [INV], case 11: <L4> [INV], case 12: <L5> [INV], case 13: <L6> [INV], case 14: <L7> [INV], case 15: <L8> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  ret_11 = 12;
+  # DEBUG ret => ret_11
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  ret_10 = 16;
+  # DEBUG ret => ret_10
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 7> :
+<L4>:
+  # DEBUG BEGIN_STMT
+  ret_9 = 20;
+  # DEBUG ret => ret_9
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 8> :
+<L5>:
+  # DEBUG BEGIN_STMT
+  ret_8 = 24;
+  # DEBUG ret => ret_8
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 9> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  ret_7 = 32;
+  # DEBUG ret => ret_7
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 10> :
+<L7>:
+  # DEBUG BEGIN_STMT
+  ret_6 = 48;
+  # DEBUG ret => ret_6
+  # DEBUG BEGIN_STMT
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+<L8>:
+  # DEBUG BEGIN_STMT
+  ret_5 = 64;
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+
+  <bb 12> :
+  # ret_2 = PHI <ret_12(3), ret_11(5), ret_10(6), ret_9(7), ret_8(8), ret_7(9), ret_6(10), ret_5(11), ret_3(4)>
+<L13>:
+  # DEBUG ret => ret_2
+  # DEBUG BEGIN_STMT
+  _13 = ret_2;
+  return _13;
+
+}
+
+
+FlexCAN_ClearRAM (struct FLEXCAN_Type * base)
+{
+  uint32 ram_addr;
+  volatile uint32 * RAM;
+  uint32 RXIMR_size;
+  uint32 RAM_size;
+  uint32 databyte;
+  long unsigned int _1;
+  long unsigned int base.2_2;
+  long unsigned int _3;
+  long unsigned int _4;
+  volatile uint32 * _5;
+  long unsigned int _6;
+  volatile uint32 * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  long unsigned int base.3_10;
+  long unsigned int _11;
+  volatile uint32 * _12;
+  long unsigned int _13;
+  long unsigned int _14;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = FlexCAN_GetMaxMbNum (base_22(D));
+  RAM_size_24 = _1 * 4;
+  # DEBUG RAM_size => RAM_size_24
+  # DEBUG BEGIN_STMT
+  RXIMR_size_26 = FlexCAN_GetMaxMbNum (base_22(D));
+  # DEBUG RXIMR_size => RXIMR_size_26
+  # DEBUG BEGIN_STMT
+  base.2_2 = (long unsigned int) base_22(D);
+  _3 = base.2_2 + 128;
+  RAM_27 = (volatile uint32 *) _3;
+  # DEBUG RAM => RAM_27
+  # DEBUG BEGIN_STMT
+  databyte_28 = 0;
+  # DEBUG databyte => databyte_28
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _4 = databyte_15 * 4;
+  _5 = RAM_27 + _4;
+  *_5 ={v} 0;
+  # DEBUG BEGIN_STMT
+  databyte_45 = databyte_15 + 1;
+  # DEBUG databyte => databyte_45
+
+  <bb 4> :
+  # databyte_15 = PHI <databyte_28(2), databyte_45(3)>
+  # DEBUG databyte => databyte_15
+  # DEBUG BEGIN_STMT
+  if (databyte_15 < RAM_size_24)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RAM_29 = &base_22(D)->RXIMR;
+  # DEBUG RAM => RAM_29
+  # DEBUG BEGIN_STMT
+  databyte_30 = 0;
+  # DEBUG databyte => databyte_30
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = databyte_16 * 4;
+  _7 = RAM_29 + _6;
+  *_7 ={v} 0;
+  # DEBUG BEGIN_STMT
+  databyte_43 = databyte_16 + 1;
+  # DEBUG databyte => databyte_43
+
+  <bb 7> :
+  # databyte_16 = PHI <databyte_30(5), databyte_43(6)>
+  # DEBUG databyte => databyte_16
+  # DEBUG BEGIN_STMT
+  if (databyte_16 < RXIMR_size_26)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _8 ={v} base_22(D)->CTRL2;
+  _9 = _8 | 268435456;
+  base_22(D)->CTRL2 ={v} _9;
+  # DEBUG BEGIN_STMT
+  base.3_10 = (long unsigned int) base_22(D);
+  ram_addr_32 = base.3_10 + 128;
+  # DEBUG ram_addr => ram_addr_32
+  # DEBUG BEGIN_STMT
+  RAM_33 = (volatile uint32 *) ram_addr_32;
+  # DEBUG RAM => RAM_33
+  # DEBUG BEGIN_STMT
+  base_22(D)->RXMGMASK ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_22(D)->RXFGMASK ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_22(D)->RX14MASK ={v} 0;
+  # DEBUG BEGIN_STMT
+  base_22(D)->RX15MASK ={v} 0;
+  # DEBUG BEGIN_STMT
+  databyte_38 = 0;
+  # DEBUG databyte => databyte_38
+  goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _11 = databyte_17 * 4;
+  _12 = RAM_33 + _11;
+  *_12 ={v} 0;
+  # DEBUG BEGIN_STMT
+  databyte_41 = databyte_17 + 1;
+  # DEBUG databyte => databyte_41
+
+  <bb 10> :
+  # databyte_17 = PHI <databyte_38(8), databyte_41(9)>
+  # DEBUG databyte => databyte_17
+  # DEBUG BEGIN_STMT
+  if (databyte_17 == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _13 ={v} base_22(D)->CTRL2;
+  _14 = _13 & 4026531839;
+  base_22(D)->CTRL2 ={v} _14;
+  return;
+
+}
+
+
+FlexCAN_ComputeDLCValue (uint8 payloadSize)
+{
+  static const uint8 payload_code[65] = "\x00\x01\x02\x03\x04\x05\x06\x07\b\t\t\t\t\n\n\n\n\v\v\v\v\f\f\f\f\r\r\r\r\r\r\r\r\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f\x0f";
+  uint32 ret;
+  int _1;
+  unsigned char _2;
+  uint8 _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ret_4 = 255;
+  # DEBUG ret => ret_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (payloadSize_5(D) <= 64)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) payloadSize_5(D);
+  _2 = payload_code[_1];
+  ret_7 = (uint32) _2;
+  # DEBUG ret => ret_7
+
+  <bb 4> :
+  # ret_3 = PHI <ret_4(2), ret_7(3)>
+  # DEBUG ret => ret_3
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = (uint8) ret_3;
+  return _8;
+
+}
+
+
+FlexCAN_CanBitSampling (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.22_4;
+  long unsigned int iftmp.22_8;
+  long unsigned int iftmp.22_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL1;
+  _2 = _1 & 4294967167;
+  if (enable_7(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.22_9 = 128;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.22_8 = 0;
+
+  <bb 5> :
+  # iftmp.22_4 = PHI <iftmp.22_9(3), iftmp.22_8(4)>
+  _3 = iftmp.22_4 | _2;
+  base_6(D)->CTRL1 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetEdgeFilter (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.25_4;
+  long unsigned int iftmp.25_8;
+  long unsigned int iftmp.25_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL2;
+  _2 = _1 & 4294965247;
+  if (enable_7(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.25_9 = 2048;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.25_8 = 0;
+
+  <bb 5> :
+  # iftmp.25_4 = PHI <iftmp.25_9(3), iftmp.25_8(4)>
+  _3 = iftmp.25_4 | _2;
+  base_6(D)->CTRL2 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetBusOffAutorecovery (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.23_4;
+  long unsigned int iftmp.23_8;
+  long unsigned int iftmp.23_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL1;
+  _2 = _1 & 4294967231;
+  if (enable_7(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.23_9 = 64;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.23_8 = 0;
+
+  <bb 5> :
+  # iftmp.23_4 = PHI <iftmp.23_9(3), iftmp.23_8(4)>
+  _3 = iftmp.23_4 | _2;
+  base_6(D)->CTRL1 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetRemoteReqStore (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.24_4;
+  long unsigned int iftmp.24_8;
+  long unsigned int iftmp.24_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL2;
+  _2 = _1 & 4294836223;
+  if (enable_7(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.24_9 = 131072;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.24_8 = 0;
+
+  <bb 5> :
+  # iftmp.24_4 = PHI <iftmp.24_9(3), iftmp.24_8(4)>
+  _3 = iftmp.24_4 | _2;
+  base_6(D)->CTRL2 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetProtocolException (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.21_4;
+  long unsigned int iftmp.21_8;
+  long unsigned int iftmp.21_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL2;
+  _2 = _1 & 4294950911;
+  if (enable_7(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.21_9 = 16384;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.21_8 = 0;
+
+  <bb 5> :
+  # iftmp.21_4 = PHI <iftmp.21_9(3), iftmp.21_8(4)>
+  _3 = iftmp.21_4 | _2;
+  base_6(D)->CTRL2 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetEntireFrameArbitrationFieldComparison (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.20_4;
+  long unsigned int iftmp.20_8;
+  long unsigned int iftmp.20_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL2;
+  _2 = _1 & 4294901759;
+  if (enable_7(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.20_9 = 65536;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.20_8 = 0;
+
+  <bb 5> :
+  # iftmp.20_4 = PHI <iftmp.20_9(3), iftmp.20_8(4)>
+  _3 = iftmp.20_4 | _2;
+  base_6(D)->CTRL2 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_SetIsoCan (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.19_4;
+  long unsigned int iftmp.19_8;
+  long unsigned int iftmp.19_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->CTRL2;
+  _2 = _1 & 4294963199;
+  if (enable_7(D) != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.19_9 = 4096;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.19_8 = 0;
+
+  <bb 5> :
+  # iftmp.19_4 = PHI <iftmp.19_9(3), iftmp.19_8(4)>
+  _3 = iftmp.19_4 | _2;
+  base_6(D)->CTRL2 ={v} _3;
+  return;
+
+}
+
+
+FlexCAN_IsFDEnabled (const struct FLEXCAN_Type * base)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  _Bool _3;
+  boolean _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_5(D)->MCR;
+  _2 = _1 & 2048;
+  _3 = _2 != 0;
+  _6 = (boolean) _3;
+  return _6;
+
+}
+
+
+FlexCAN_SetSelfReception (struct FLEXCAN_Type * base, boolean enable)
+{
+  long unsigned int _1;
+  long unsigned int _2;
+  long unsigned int _3;
+  long unsigned int iftmp.13_4;
+  long unsigned int iftmp.13_8;
+  long unsigned int iftmp.13_9;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 ={v} base_6(D)->MCR;
+  _2 = _1 & 4294836223;
+  if (enable_7(D) == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  iftmp.13_9 = 131072;
+  goto <bb 5>; [INV]
+
+  <bb 4> :
+  iftmp.13_8 = 0;
+
+  <bb 5> :
+  # iftmp.13_4 = PHI <iftmp.13_9(3), iftmp.13_8(4)>
+  _3 = iftmp.13_4 | _2;
+  base_6(D)->MCR ={v} _3;
+  return;
+
+}
+
+
+DevAssert (volatile boolean x)
+{
+  unsigned char x.6_1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  x.6_1 ={v} x;
+  if (x.6_1 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("BKPT #0");
+  # DEBUG BEGIN_STMT
+  goto <bb 3>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

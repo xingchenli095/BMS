@@ -1,0 +1,105 @@
+
+Analyzing function: OS_ActiTask/0
+;; 1 loops found
+;;
+;; Loop 0
+;;  header 0, latch 1
+;;  depth 0, outer -1
+;;  nodes: 0 1 2 3 4
+;; 2 succs { 3 4 }
+;; 3 succs { 4 }
+;; 4 succs { 1 }
+
+Analyzing function body size: OS_ActiTask
+
+IPA function summary for OS_ActiTask/0 inlinable
+  global time:     25.400000
+  self size:       18
+  global size:     0
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:4.000000, time:4.000000
+    size:3.000000, time:2.000000,  executed if:(not inlined)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 0] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op0[ref offset: 0] changed)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 40] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op0[ref offset: 40] changed)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 192] changed) && (not inlined)
+    size:2.500000, time:2.500000,  nonconst if:(op0[ref offset: 192] changed)
+    size:2.000000, time:1.400000,  executed if:(op0[ref offset: 192] != 0B)
+    size:0.500000, time:0.500000,  executed if:(not inlined),  nonconst if:(op0[ref offset: 48] changed) && (not inlined)
+    size:0.500000, time:0.500000,  nonconst if:(op0[ref offset: 48] changed)
+  calls:
+    OS_EnqueueLink/1 function body not available
+      loop depth: 0 freq:1.00 size: 3 time: 12
+
+Symbol table:
+
+OS_EnqueueLink/1 (OS_EnqueueLink) @06ca9d20
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_ActiTask/0 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+OS_ActiTask/0 (OS_ActiTask) @06ca9b60
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_EnqueueLink/1 (1073741824 (estimated locally),1.00 per call) 
+__attribute__((target ("general-regs-only")))
+OS_ActiTask (const struct os_task_t * tp)
+{
+  struct os_taskdynamic_t * td;
+  unsigned char _1;
+  short unsigned int _2;
+  struct os_taskaccounting_t * _3;
+  short unsigned int _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_8 = tp_7(D)->dynamic;
+  # DEBUG td => td_8
+  # DEBUG BEGIN_STMT
+  _1 = tp_7(D)->queuePrio;
+  _2 = (short unsigned int) _1;
+  td_8->prio = _2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  td_8->state = 2;
+  # DEBUG BEGIN_STMT
+  td_8->cAct = 0;
+  # DEBUG BEGIN_STMT
+  td_8->pEvents = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = tp_7(D)->accounting;
+  if (_3 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 4>; [30.00%]
+
+  <bb 3> [local count: 751619278]:
+  # DEBUG BEGIN_STMT
+  _3->etUsed = 0;
+  # DEBUG BEGIN_STMT
+  _3->etType = 1;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = tp_7(D)->linkBase;
+  OS_EnqueueLink (_4, _2);
+  return;
+
+}
+
+

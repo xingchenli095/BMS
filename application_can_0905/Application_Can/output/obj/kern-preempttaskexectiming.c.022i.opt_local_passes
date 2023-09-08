@@ -1,0 +1,106 @@
+__attribute__((target ("general-regs-only")))
+OS_PreemptTaskExecTiming (const struct os_task_t * tp)
+{
+  os_tick_t used;
+  struct os_taskaccounting_t * acc;
+  struct os_kerneldata_t * const kernel_data;
+  const struct os_hwt_t * _1;
+  const struct os_hwtdrv_t * _2;
+  void (*<T521>) (const struct os_hwt_t *) _3;
+  const struct os_hwt_t * _4;
+  unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned char _8;
+  unsigned char _9;
+  unsigned int _10;
+  unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  kernel_data_20 = &OS_kernelData;
+  # DEBUG kernel_data => kernel_data_20
+  # DEBUG BEGIN_STMT
+  acc_23 = tp_22(D)->accounting;
+  # DEBUG acc => acc_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (acc_23 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = OS_executionTimer[0];
+  _2 = _1->driver;
+  _3 = _2->hwtStop;
+  _4 = OS_executionTimer[0];
+  _3 (_4);
+  # DEBUG BEGIN_STMT
+  used_26 = OS_GetTimeUsed ();
+  # DEBUG used => used_26
+  # DEBUG BEGIN_STMT
+  _5 = OS_kernelData.accounting.etUsed;
+  _6 = used_26 + _5;
+  OS_kernelData.accounting.etUsed = _6;
+  # DEBUG BEGIN_STMT
+  _7 = OS_kernelData.accounting.etUsed;
+  acc_23->etUsed = _7;
+  # DEBUG BEGIN_STMT
+  _8 = OS_kernelData.accounting.etType;
+  acc_23->etType = _8;
+  # DEBUG BEGIN_STMT
+  _9 = tp_22(D)->flags;
+  _10 = (unsigned int) _9;
+  _11 = _10 & 64;
+  if (_11 != 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _12 = OS_kernelData.accounting.etUsed;
+  _13 = acc_23->etMax;
+  if (_12 > _13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _14 = OS_kernelData.accounting.etUsed;
+  acc_23->etMax = _14;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _15 = OS_kernelData.accounting.etLimit;
+  if (_15 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 7> :
+  _16 = OS_kernelData.accounting.etUsed;
+  _17 = OS_kernelData.accounting.etLimit;
+  if (_16 >= _17)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  OS_ExceedExecTime ();
+
+  <bb 9> :
+  return;
+
+}
+
+

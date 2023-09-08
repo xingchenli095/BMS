@@ -1,0 +1,3741 @@
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveUDSProtocolsInNonDefaultSession ()
+{
+  Dcm_ProtocolGroupType ProtocolGroup;
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  long unsigned int _6;
+  int _8;
+  unsigned char _11;
+
+  <bb 2> [local count: 357878148]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  _1 = (unsigned char) ProtocolIndex_3;
+  # DEBUG ProtocolIndex => _1
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _6 = ProtocolIndex_3;
+  _8 = (int) _6;
+  _11 = Dcm_ProtocolConfig[_8].Type;
+  if (_11 <= 2)
+    goto <bb 4>; [65.00%]
+  else
+    goto <bb 5>; [35.00%]
+
+  <bb 4> [local count: 465311388]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 5> [local count: 715863674]:
+  # ProtocolGroup_12 = PHI <2(3), 1(4)>
+  # DEBUG ProtocolGroup => ProtocolGroup_12
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG ProtocolGroup => ProtocolGroup_12
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolQueue[ProtocolIndex_3].ProtocolQueueState;
+  if (_2 != 1)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 6> [local count: 472470025]:
+  if (ProtocolGroup_12 == 2)
+    goto <bb 7>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 7> [local count: 95627933]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveProtocol (_1);
+
+  <bb 8> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_10 = ProtocolIndex_3 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_10
+
+  <bb 9> [local count: 1073741824]:
+  # ProtocolIndex_3 = PHI <0(2), ProtocolIndex_10(8)>
+  # DEBUG ProtocolIndex => ProtocolIndex_3
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_3 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 10>; [33.33%]
+
+  <bb 10> [local count: 357878150]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_PreemptionPendingProcess (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  const Dcm_TimerValueType NRCTimeout;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  unsigned char _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  unsigned char _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_13(D);
+  _2 = Dcm_ProtocolQueue[_1].RequestType;
+  if (_2 != 14)
+    goto <bb 3>; [79.76%]
+  else
+    goto <bb 6>; [20.24%]
+
+  <bb 3> [local count: 856416480]:
+  if (_2 != 10)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 4> [local count: 565234877]:
+  if (_2 != 11)
+    goto <bb 5>; [48.88%]
+  else
+    goto <bb 6>; [51.12%]
+
+  <bb 5> [local count: 276286807]:
+  # DEBUG BEGIN_STMT
+  NRCTimeout_16 = Dcm_Dsl_DiagnosticSessionHandler_GetTimerValue (ProtocolIndex_13(D), 2);
+  # DEBUG NRCTimeout => NRCTimeout_16
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_InitiateNRC (_3, Dcm_ProtocolQueue[_1].RequestBuffer, 33, NRCTimeout_16);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, ProtocolIndex_13(D), 2);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, ProtocolIndex_13(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_13(D), 0);
+  goto <bb 13>; [100.00%]
+
+  <bb 6> [local count: 797455017]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_4, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolQueue[_1].RequestType;
+  _6 = _5 + 255;
+  if (_6 <= 1)
+    goto <bb 9>; [41.00%]
+  else
+    goto <bb 7>; [59.00%]
+
+  <bb 7> [local count: 470498460]:
+  if (_5 == 8)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 8> [local count: 310528984]:
+  if (_5 == 9)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 9> [local count: 592505889]:
+  # DEBUG BEGIN_STMT
+  if (_6 <= 1)
+    goto <bb 10>; [25.50%]
+  else
+    goto <bb 11>; [74.50%]
+
+  <bb 10> [local count: 151089002]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, ProtocolIndex_13(D), 2);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, ProtocolIndex_13(D));
+
+  <bb 11> [local count: 592505889]:
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_7);
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingEnd (_8);
+
+  <bb 12> [local count: 797455018]:
+  # DEBUG BEGIN_STMT
+  _9 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_ClearMainConnection (_9);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_13(D), 0);
+  RxPduIdInfo ={v} {CLOBBER};
+
+  <bb 13> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToDispatchPresumptiveTYPE1ProtocolOnStack (Dcm_StackNumberType StackNumber)
+{
+  Std_ReturnType StackCanAcceptRequest;
+  Dcm_ProtocolIndexType TYPE1PresumptiveProtocolIndex;
+  unsigned char TYPE1PresumptiveProtocolIndex.1_1;
+  unsigned char _2;
+  unsigned char TYPE1PresumptiveProtocolIndex.2_3;
+  unsigned char TYPE1PresumptiveProtocolIndex.3_4;
+  unsigned char TYPE1PresumptiveProtocolIndex.4_5;
+  int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  StackCanAcceptRequest_15 = Dcm_Dsl_Supervisor_ProtocolHandling_MainConnNotBusy_StackCanAcceptRequest (StackNumber_13(D), &TYPE1PresumptiveProtocolIndex, 1);
+  # DEBUG StackCanAcceptRequest => StackCanAcceptRequest_15
+  # DEBUG BEGIN_STMT
+  if (StackCanAcceptRequest_15 != 30)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 10>; [34.00%]
+
+  <bb 3> [local count: 708669604]:
+  # DEBUG BEGIN_STMT
+  if (StackCanAcceptRequest_15 != 1)
+    goto <bb 4>; [48.88%]
+  else
+    goto <bb 7>; [51.12%]
+
+  <bb 4> [local count: 346397702]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  TYPE1PresumptiveProtocolIndex.1_1 = TYPE1PresumptiveProtocolIndex;
+  _2 = Dcm_Dsl_Supervisor_GetProtocolGroupTypeForProtocol (TYPE1PresumptiveProtocolIndex.1_1);
+  if (_2 == 2)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 117775219]:
+  # DEBUG BEGIN_STMT
+  TYPE1PresumptiveProtocolIndex.2_3 = TYPE1PresumptiveProtocolIndex;
+  Dcm_LatestExternalUDSProtocolIndex = TYPE1PresumptiveProtocolIndex.2_3;
+
+  <bb 6> [local count: 346397702]:
+  # DEBUG BEGIN_STMT
+  TYPE1PresumptiveProtocolIndex.3_4 = TYPE1PresumptiveProtocolIndex;
+  Dcm_Dsl_Supervisor_ProtocolHandling_DispatchPresumptiveTYPE1Protocol (TYPE1PresumptiveProtocolIndex.3_4);
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 362271901]:
+  # DEBUG BEGIN_STMT
+  TYPE1PresumptiveProtocolIndex.4_5 = TYPE1PresumptiveProtocolIndex;
+  _6 = (int) TYPE1PresumptiveProtocolIndex.4_5;
+  _7 = Dcm_ProtocolQueue[_6].PreemptionTimeout;
+  if (_7 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 8> [local count: 181135951]:
+  # DEBUG BEGIN_STMT
+  _8 = _7 + 65535;
+  Dcm_ProtocolQueue[_6].PreemptionTimeout = _8;
+  # DEBUG BEGIN_STMT
+  if (_8 == 0)
+    goto <bb 9>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 9> [local count: 59774864]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_PreemptionPendingProcess (TYPE1PresumptiveProtocolIndex.4_5);
+
+  <bb 10> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  TYPE1PresumptiveProtocolIndex ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_DispatchPresumptiveTYPE1Protocol (Dcm_ProtocolIndexType TYPE1PresumptiveProtocolIndex)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_MakeStartedProtocolActive (TYPE1PresumptiveProtocolIndex_2(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_DispatchTYPE1RequestToProtocol (TYPE1PresumptiveProtocolIndex_2(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ResetToDefaultIfSessionWasSetWithProtocolFromAnotherStack (TYPE1PresumptiveProtocolIndex_2(D));
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (TYPE1PresumptiveProtocolIndex_2(D), 1);
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ResetToDefaultIfSessionWasSetWithProtocolFromAnotherStack (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  const Dcm_SesCtrlType CurrentSession;
+  const Dcm_ProtocolStackNumberType CurrentProtocolStackNumber;
+  const Dcm_ProtocolIndexType NonDefaultSessionProtocolIndex;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  NonDefaultSessionProtocolIndex_9 = Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionProtocolIndex ();
+  # DEBUG NonDefaultSessionProtocolIndex => NonDefaultSessionProtocolIndex_9
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_10(D);
+  CurrentProtocolStackNumber_11 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG CurrentProtocolStackNumber => CurrentProtocolStackNumber_11
+  # DEBUG BEGIN_STMT
+  CurrentSession_13 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_13
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolQueue[_1].RequestType;
+  _3 = _2 + 255;
+  if (_3 <= 1)
+    goto <bb 3>; [41.00%]
+  else
+    goto <bb 7>; [59.00%]
+
+  <bb 3> [local count: 440234148]:
+  if (CurrentSession_13 != 1)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 4> [local count: 290554537]:
+  if (NonDefaultSessionProtocolIndex_9 != 2)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 5> [local count: 191765995]:
+  _4 = (int) NonDefaultSessionProtocolIndex_9;
+  _5 = Dcm_ProtocolConfig[_4].StackNumber;
+  if (_5 != CurrentProtocolStackNumber_11)
+    goto <bb 6>; [48.88%]
+  else
+    goto <bb 7>; [51.12%]
+
+  <bb 6> [local count: 93735218]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_EnqueueResetOfDiagnosticSession ();
+
+  <bb 7> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToStartPresumptiveTYPE1ProtocolOnStack (Dcm_StackNumberType StackNumber)
+{
+  Dcm_ProtocolIndexType TYPE1PresumptiveProtocolIndex;
+  unsigned char _1;
+  int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetSessionToDefault => 0
+  # DEBUG BEGIN_STMT
+  TYPE1PresumptiveProtocolIndex_6 = Dcm_Dsl_Supervisor_GetTYPE1PresumptiveProtocolOnStack (StackNumber_5(D));
+  # DEBUG TYPE1PresumptiveProtocolIndex => TYPE1PresumptiveProtocolIndex_6
+  # DEBUG BEGIN_STMT
+  if (TYPE1PresumptiveProtocolIndex_6 != 2)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 7>; [34.00%]
+
+  <bb 4> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_ProtocolHandling_StackCanAcceptTYPE1Request (StackNumber_5(D));
+  if (_1 == 1)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 7>; [79.76%]
+
+  <bb 5> [local count: 143434728]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetSessionToDefault => 1
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_SecurityLevelHandler_SetSecurityLevel (0);
+  # DEBUG BEGIN_STMT
+  _2 = (int) TYPE1PresumptiveProtocolIndex_6;
+  Dcm_ProtocolStatus[_2].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG ResetSessionToDefault => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_ResetToDefaultSession (1);
+
+  <bb 7> [local count: 1073741824]:
+  # DEBUG ResetSessionToDefault => NULL
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToStopStoppingProtocols ()
+{
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState;
+  _2 = _1 + 232;
+  if (_2 <= 3)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 10>; [67.00%]
+
+  <bb 4> [local count: 236235013]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState;
+  switch (_3) <default: <L11> [20.00%], case 24: <L2> [20.00%], case 25: <L3> [20.00%], case 26: <L4> [20.00%], case 27: <L5> [20.00%]>
+
+  <bb 5> [local count: 47247002]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 6> [local count: 47247002]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 7> [local count: 47247002]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [100.00%]
+
+  <bb 8> [local count: 47247002]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState = 4;
+  # DEBUG BEGIN_STMT
+
+  <bb 9> [local count: 236235013]:
+<L11>:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+
+  <bb 10> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_15 = ProtocolIndex_4 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_15
+
+  <bb 11> [local count: 1073741824]:
+  # ProtocolIndex_4 = PHI <0(2), ProtocolIndex_15(10)>
+  # DEBUG ProtocolIndex => ProtocolIndex_4
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_4 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 12>; [33.33%]
+
+  <bb 12> [local count: 357878150]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveProtocol (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  Dcm_TimerValueType NRCTimeout;
+  const Dcm_TimerValueType NRCTimeout;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _11;
+  short unsigned int _12;
+  unsigned char _13;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_5(D);
+  _2 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  switch (_2) <default: <L14> [20.00%], case 2 ... 3: <L0> [20.00%], case 4 ... 5: <L5> [20.00%], case 6 ... 7: <L7> [20.00%], case 8 ... 9: <L10> [20.00%]>
+
+  <bb 3> [local count: 214748364]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  NRCTimeout_20 = Dcm_Dsl_DiagnosticSessionHandler_GetTimerValue (ProtocolIndex_5(D), 2);
+  # DEBUG NRCTimeout => NRCTimeout_20
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_InitiateNRC (_3, Dcm_ProtocolQueue[_1].RequestBuffer, 33, NRCTimeout_20);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_5(D), 0);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, ProtocolIndex_5(D), 2);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, ProtocolIndex_5(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 214748364]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  NRCTimeout_16 = Dcm_Dsl_Supervisor_MainConnectionHandling_GetNRCTimeout (ProtocolIndex_5(D));
+  # DEBUG NRCTimeout => NRCTimeout_16
+  # DEBUG BEGIN_STMT
+  _11 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_InitiateNRC (_11, Dcm_ProtocolQueue[_1].RequestBuffer, 33, NRCTimeout_16);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_5(D), 0);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 214748364]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _12 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_12, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_5(D), 0);
+  # DEBUG BEGIN_STMT
+  _13 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_ClearMainConnection (_13);
+  # DEBUG BEGIN_STMT
+  RxPduIdInfo ={v} {CLOBBER};
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 214748364]:
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (ProtocolIndex_5(D), 0);
+  # DEBUG BEGIN_STMT
+
+  <bb 7> [local count: 1073741824]:
+<L14>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_DispatchTYPE1RequestToProtocol (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_ProtocolRCRRPTransmissionType ProtocolRCRRPTransmission;
+  PduIdType ConfirmationTxPduId;
+  Dcm_BufferUserType TxConnectionId;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  int _1;
+  short unsigned int _2;
+  unsigned char _3;
+  int _4;
+  unsigned char _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  short unsigned int _12;
+  unsigned char _13;
+  short unsigned int _14;
+  unsigned char _15;
+  short unsigned int _16;
+  short unsigned int _17;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolRCRRPTransmission => 0
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_20(D);
+  _2 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_2, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _3 = RxPduIdInfo.MainConnectionIndex;
+  _4 = (int) _3;
+  ConfirmationTxPduId_23 = Dcm_MainConnectionConfig[_4].ConfirmationTxPduId;
+  # DEBUG ConfirmationTxPduId => ConfirmationTxPduId_23
+  # DEBUG BEGIN_STMT
+  TxConnectionId_24 = ConfirmationTxPduId_23 + 6;
+  # DEBUG TxConnectionId => TxConnectionId_24
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  _6 = (short unsigned int) ProtocolIndex_20(D);
+  _7 = _6 + 12;
+  _8 = Dcm_ProtocolQueue[_1].RequestBuffer.BufferId;
+  Dcm_Dsl_Supervisor_ProtocolHandling_GiveTYPE1RequestBufferToProtocol (_5, _7, _8);
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  switch (_9) <default: <L11> [33.33%], case 3: <L0> [33.33%], case 4 ... 5: <L1> [33.33%]>
+
+  <bb 3> [local count: 357878150]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_GiveP2Timer (14, _7, ProtocolIndex_20(D));
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolRCRRPTransmission => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 357878150]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_GiveP2Timer (14, _7, ProtocolIndex_20(D));
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  if (_10 == 4)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 236199579]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolRCRRPTransmission => 3
+
+  <bb 6> [local count: 1073634451]:
+  # ProtocolRCRRPTransmission_18 = PHI <1(3), 3(5), 0(2), 2(4)>
+<L11>:
+  # DEBUG ProtocolRCRRPTransmission => ProtocolRCRRPTransmission_18
+  # DEBUG BEGIN_STMT
+  _11 = Dcm_ProtocolQueue[_1].RequestType;
+  Dcm_ProtocolStatus[_1].RequestType = _11;
+  # DEBUG BEGIN_STMT
+  _12 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_ProtocolStatus[_1].RxConnectionId = _12;
+  # DEBUG BEGIN_STMT
+  _13 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_RequestDispatchedToProtocol (_13);
+  # DEBUG BEGIN_STMT
+  _14 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  _15 = Dcm_ProtocolQueue[_1].RequestType;
+  _16 = Dcm_ProtocolQueue[_1].RCRRPsSent;
+  _17 = Dcm_ProtocolQueue[_1].RCRRPsConfirmed;
+  Dcm_Dsp_ProtocolStart (_7, _14, TxConnectionId_24, Dcm_ProtocolQueue[_1].RequestBuffer, _15, ProtocolRCRRPTransmission_18, _16, _17);
+  RxPduIdInfo ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GiveTYPE1RequestBufferToProtocol (Dcm_SupervisorProtocolQueueStateType ProtocolQueueState, Dcm_BufferUserType ProtocolToStartId, Dcm_BufferIdType BufferId)
+{
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  switch (ProtocolQueueState_2(D)) <default: <L8> [33.33%], case 3 ... 5: <L0> [33.33%], case 6: <L3> [33.33%]>
+
+  <bb 3> [local count: 357878150]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferChangeState (14, 15, BufferId_4(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 5>; [100.00%]
+
+  <bb 4> [local count: 357878150]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferChangeState (14, 16, BufferId_4(D));
+  # DEBUG BEGIN_STMT
+
+  <bb 5> [local count: 1073634451]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_BufferGive (14, ProtocolToStartId_7(D), BufferId_4(D));
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolOfDifferentTypeRunningOnDifferentStack (Dcm_ProtocolIndexType RxProtocolIndex)
+{
+  Dcm_ProtocolGroupType ProtocolGroup;
+  Dcm_ProtocolGroupType ProtocolGroup;
+  boolean ProtocolOfSameTypeRunningOnDifferentStack;
+  const Dcm_ProtocolStackNumberType StackNumber;
+  uint8_least ProtocolIndex;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _13;
+  long unsigned int _14;
+  int _17;
+  unsigned char _18;
+
+  <bb 2> [local count: 404414748]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxProtocolIndex_10(D);
+  StackNumber_12 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG StackNumber => StackNumber_12
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => RxProtocolIndex_10(D)
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_ProtocolConfig[_1].Type;
+  if (_13 <= 2)
+    goto <bb 3>; [65.00%]
+  else
+    goto <bb 4>; [35.00%]
+
+  <bb 3> [local count: 262869586]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 4> [local count: 404414748]:
+  # ProtocolGroup_16 = PHI <2(2), 1(3)>
+  # DEBUG ProtocolGroup => ProtocolGroup_16
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG RxProtocolGroup => ProtocolGroup_16
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolOfSameTypeRunningOnDifferentStack => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 18>; [100.00%]
+
+  <bb 5> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => (unsigned char) ProtocolIndex_7
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _14 = ProtocolIndex_7;
+  _17 = (int) _14;
+  _18 = Dcm_ProtocolConfig[_17].Type;
+  if (_18 <= 2)
+    goto <bb 6>; [65.00%]
+  else
+    goto <bb 7>; [35.00%]
+
+  <bb 6> [local count: 465311388]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 7> [local count: 715863674]:
+  # ProtocolGroup_19 = PHI <2(5), 1(6)>
+  # DEBUG ProtocolGroup => ProtocolGroup_19
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG OtherProtocolGroup => ProtocolGroup_19
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolConfig[ProtocolIndex_7].StackNumber;
+  if (_2 != StackNumber_12)
+    goto <bb 8>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 8> [local count: 472470025]:
+  if (ProtocolGroup_16 != ProtocolGroup_19)
+    goto <bb 9>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 9> [local count: 311830217]:
+  _3 = Dcm_ProtocolStatus[ProtocolIndex_7].ProtocolState;
+  _4 = _3 + 248;
+  if (_4 <= 3)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 10>; [98.00%]
+
+  <bb 10> [local count: 305593612]:
+  if (_3 == 19)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 11>; [98.00%]
+
+  <bb 11> [local count: 299481740]:
+  if (_3 == 20)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 12>; [98.00%]
+
+  <bb 12> [local count: 293492106]:
+  if (_3 == 21)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 13>; [98.00%]
+
+  <bb 13> [local count: 287622263]:
+  if (_3 == 14)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 14>; [98.00%]
+
+  <bb 14> [local count: 281869818]:
+  if (_3 == 15)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 15>; [98.00%]
+
+  <bb 15> [local count: 276232421]:
+  if (_3 == 16)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 16>; [98.00%]
+
+  <bb 16> [local count: 270707773]:
+  _5 = Dcm_ProtocolQueue[ProtocolIndex_7].ProtocolQueueState;
+  _6 = _5 + 254;
+  if (_6 <= 5)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 17>; [98.00%]
+
+  <bb 17> [local count: 669327076]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_15 = ProtocolIndex_7 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_15
+
+  <bb 18> [local count: 1073741824]:
+  # ProtocolIndex_7 = PHI <0(4), ProtocolIndex_15(17)>
+  # DEBUG ProtocolIndex => ProtocolIndex_7
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_7 != 2)
+    goto <bb 5>; [66.67%]
+  else
+    goto <bb 19>; [33.33%]
+
+  <bb 19> [local count: 404414749]:
+  # ProtocolOfSameTypeRunningOnDifferentStack_8 = PHI <1(10), 0(18), 1(9), 1(16), 1(15), 1(14), 1(13), 1(12), 1(11)>
+  # DEBUG ProtocolOfSameTypeRunningOnDifferentStack => ProtocolOfSameTypeRunningOnDifferentStack_8
+  # DEBUG BEGIN_STMT
+  return ProtocolOfSameTypeRunningOnDifferentStack_8;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_MainConnNotBusy_StackCanAcceptRequest (Dcm_StackNumberType StackNumber, Dcm_ProtocolIndexType * ProtocolIndex, boolean RequestIsType1)
+{
+  Std_ReturnType RequestCanBeAccepted;
+  unsigned char _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RequestCanBeAccepted => 30
+  # DEBUG BEGIN_STMT
+  if (RequestIsType1_5(D) == 1)
+    goto <bb 3>; [48.89%]
+  else
+    goto <bb 6>; [51.11%]
+
+  <bb 3> [local count: 524952378]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_GetTYPE1PresumptiveProtocolOnStack (StackNumber_7(D));
+  *ProtocolIndex_8(D) = _1;
+  # DEBUG BEGIN_STMT
+  if (_1 != 2)
+    goto <bb 4>; [78.28%]
+  else
+    goto <bb 6>; [21.72%]
+
+  <bb 4> [local count: 410932721]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_Dsl_Supervisor_ProtocolHandling_StackCanAcceptTYPE1Request (StackNumber_7(D));
+  if (_2 == 1)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 271215596]:
+  # DEBUG BEGIN_STMT
+  # DEBUG RequestCanBeAccepted => 1
+
+  <bb 6> [local count: 1073741824]:
+  # RequestCanBeAccepted_3 = PHI <30(2), 30(3), 0(4), 1(5)>
+  # DEBUG RequestCanBeAccepted => RequestCanBeAccepted_3
+  # DEBUG BEGIN_STMT
+  return RequestCanBeAccepted_3;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolOfSameTypeRunningOnDifferentStack (Dcm_ProtocolIndexType RxProtocolIndex)
+{
+  Dcm_ProtocolGroupType ProtocolGroup;
+  Dcm_ProtocolGroupType ProtocolGroup;
+  boolean ProtocolOfSameTypeRunningOnDifferentStack;
+  const Dcm_ProtocolStackNumberType StackNumber;
+  uint8_least ProtocolIndex;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _13;
+  long unsigned int _14;
+  int _17;
+  unsigned char _18;
+
+  <bb 2> [local count: 381851548]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxProtocolIndex_10(D);
+  StackNumber_12 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG StackNumber => StackNumber_12
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => RxProtocolIndex_10(D)
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _13 = Dcm_ProtocolConfig[_1].Type;
+  if (_13 <= 2)
+    goto <bb 3>; [65.00%]
+  else
+    goto <bb 4>; [35.00%]
+
+  <bb 3> [local count: 248203506]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 4> [local count: 381851548]:
+  # ProtocolGroup_16 = PHI <2(2), 1(3)>
+  # DEBUG ProtocolGroup => ProtocolGroup_16
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG RxProtocolGroup => ProtocolGroup_16
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolOfSameTypeRunningOnDifferentStack => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 18>; [100.00%]
+
+  <bb 5> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => (unsigned char) ProtocolIndex_7
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _14 = ProtocolIndex_7;
+  _17 = (int) _14;
+  _18 = Dcm_ProtocolConfig[_17].Type;
+  if (_18 <= 2)
+    goto <bb 6>; [65.00%]
+  else
+    goto <bb 7>; [35.00%]
+
+  <bb 6> [local count: 465311389]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 7> [local count: 715863675]:
+  # ProtocolGroup_19 = PHI <2(5), 1(6)>
+  # DEBUG ProtocolGroup => ProtocolGroup_19
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG OtherProtocolGroup => ProtocolGroup_19
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolConfig[ProtocolIndex_7].StackNumber;
+  if (_2 != StackNumber_12)
+    goto <bb 8>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 8> [local count: 472470025]:
+  if (ProtocolGroup_16 == ProtocolGroup_19)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 9> [local count: 160639808]:
+  _3 = Dcm_ProtocolStatus[ProtocolIndex_7].ProtocolState;
+  _4 = _3 + 248;
+  if (_4 <= 3)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 10>; [98.00%]
+
+  <bb 10> [local count: 157427012]:
+  if (_3 == 19)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 11>; [98.00%]
+
+  <bb 11> [local count: 154278472]:
+  if (_3 == 20)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 12>; [98.00%]
+
+  <bb 12> [local count: 151192903]:
+  if (_3 == 21)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 13>; [98.00%]
+
+  <bb 13> [local count: 148169045]:
+  if (_3 == 14)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 14>; [98.00%]
+
+  <bb 14> [local count: 145205664]:
+  if (_3 == 15)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 15>; [98.00%]
+
+  <bb 15> [local count: 142301550]:
+  if (_3 == 16)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 16>; [98.00%]
+
+  <bb 16> [local count: 139455519]:
+  _5 = Dcm_ProtocolQueue[ProtocolIndex_7].ProtocolQueueState;
+  _6 = _5 + 254;
+  if (_6 <= 5)
+    goto <bb 19>; [2.00%]
+  else
+    goto <bb 17>; [98.00%]
+
+  <bb 17> [local count: 691890276]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_15 = ProtocolIndex_7 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_15
+
+  <bb 18> [local count: 1073741824]:
+  # ProtocolIndex_7 = PHI <0(4), ProtocolIndex_15(17)>
+  # DEBUG ProtocolIndex => ProtocolIndex_7
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_7 != 2)
+    goto <bb 5>; [66.67%]
+  else
+    goto <bb 19>; [33.33%]
+
+  <bb 19> [local count: 381851549]:
+  # ProtocolOfSameTypeRunningOnDifferentStack_8 = PHI <1(10), 0(18), 1(9), 1(16), 1(15), 1(14), 1(13), 1(12), 1(11)>
+  # DEBUG ProtocolOfSameTypeRunningOnDifferentStack => ProtocolOfSameTypeRunningOnDifferentStack_8
+  # DEBUG BEGIN_STMT
+  return ProtocolOfSameTypeRunningOnDifferentStack_8;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_MakeStartedProtocolActive (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073527120]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_4(D);
+  _2 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  switch (_2) <default: <L8> [16.67%], case 2: <L0> [16.67%], case 3: <L1> [16.67%], case 4 ... 5: <L2> [16.67%], case 6: <L4> [16.67%], case 7: <L5> [16.67%]>
+
+  <bb 3> [local count: 178956971]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 4> [local count: 178956971]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 9;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 5> [local count: 178956971]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 9;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 6> [local count: 178956971]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 10;
+  # DEBUG BEGIN_STMT
+  goto <bb 8>; [100.00%]
+
+  <bb 7> [local count: 178956971]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 11;
+  # DEBUG BEGIN_STMT
+
+  <bb 8> [local count: 1073741824]:
+<L8>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_GetTYPE1PresumptiveProtocolOnStack (Dcm_StackNumberType StackNumber)
+{
+  Dcm_ProtocolIndexType FoundProtocol;
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 377410988]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG FoundProtocol => 2
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolConfig[ProtocolIndex_5].StackNumber;
+  if (_1 == StackNumber_8(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 4> [local count: 243393650]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolQueue[ProtocolIndex_5].ProtocolQueueState;
+  _3 = _2 + 254;
+  if (_3 <= 3)
+    goto <bb 7>; [2.75%]
+  else
+    goto <bb 5>; [97.25%]
+
+  <bb 5> [local count: 236700324]:
+  if (_2 == 7)
+    goto <bb 7>; [2.75%]
+  else
+    goto <bb 6>; [97.25%]
+
+  <bb 6> [local count: 230191065]:
+  if (_2 == 6)
+    goto <bb 7>; [2.75%]
+  else
+    goto <bb 8>; [97.25%]
+
+  <bb 7> [local count: 19532839]:
+  # ProtocolIndex_4 = PHI <ProtocolIndex_5(4), ProtocolIndex_5(5), ProtocolIndex_5(6)>
+  # DEBUG BEGIN_STMT
+  FoundProtocol_9 = (Dcm_ProtocolIndexType) ProtocolIndex_4;
+  # DEBUG FoundProtocol => FoundProtocol_9
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 8> [local count: 696330837]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_10 = ProtocolIndex_5 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_10
+
+  <bb 9> [local count: 1073741824]:
+  # ProtocolIndex_5 = PHI <0(2), ProtocolIndex_10(8)>
+  # DEBUG ProtocolIndex => ProtocolIndex_5
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_5 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 10>; [33.33%]
+
+  <bb 10> [local count: 377410989]:
+  # FoundProtocol_6 = PHI <FoundProtocol_9(7), 2(9)>
+  # DEBUG FoundProtocol => FoundProtocol_6
+  # DEBUG BEGIN_STMT
+  return FoundProtocol_6;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_StackCanAcceptTYPE1Request (Dcm_StackNumberType StackNumber)
+{
+  boolean StackCanAcceptRequest;
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 357878148]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG StackCanAcceptRequest => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 23>; [100.00%]
+
+  <bb 3> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolConfig[ProtocolIndex_4].StackNumber;
+  if (_1 == StackNumber_9(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 22>; [66.00%]
+
+  <bb 4> [local count: 243393649]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState;
+  _3 = _2 + 248;
+  if (_3 <= 3)
+    goto <bb 21>; [50.00%]
+  else
+    goto <bb 5>; [50.00%]
+
+  <bb 5> [local count: 121696825]:
+  if (_2 == 19)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 6> [local count: 80319904]:
+  if (_2 == 20)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 7> [local count: 53011137]:
+  if (_2 == 21)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 8> [local count: 34987350]:
+  if (_2 == 15)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 9> [local count: 23091651]:
+  if (_2 == 16)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 10> [local count: 15240490]:
+  if (_2 == 14)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 11> [local count: 10058723]:
+  if (_2 == 17)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 12> [local count: 6638757]:
+  if (_2 == 18)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 13> [local count: 4381580]:
+  if (_2 == 4)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 14>; [66.00%]
+
+  <bb 14> [local count: 2891843]:
+  if (_2 == 5)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 15> [local count: 1908616]:
+  if (_2 == 22)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 16> [local count: 1259687]:
+  if (_2 == 23)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 17> [local count: 831393]:
+  if (_2 == 24)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 18> [local count: 548720]:
+  if (_2 == 25)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+
+  <bb 19> [local count: 362155]:
+  if (_2 == 26)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 20>; [66.00%]
+
+  <bb 20> [local count: 239022]:
+  if (_2 == 27)
+    goto <bb 21>; [34.00%]
+  else
+    goto <bb 22>; [66.00%]
+
+  <bb 21> [local count: 243235894]:
+  # DEBUG BEGIN_STMT
+  # DEBUG StackCanAcceptRequest => 0
+
+  <bb 22> [local count: 715863676]:
+  # StackCanAcceptRequest_5 = PHI <StackCanAcceptRequest_6(3), StackCanAcceptRequest_6(20), 0(21)>
+  # DEBUG StackCanAcceptRequest => StackCanAcceptRequest_5
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_10 = ProtocolIndex_4 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_10
+
+  <bb 23> [local count: 1073741824]:
+  # ProtocolIndex_4 = PHI <0(2), ProtocolIndex_10(22)>
+  # StackCanAcceptRequest_6 = PHI <1(2), StackCanAcceptRequest_5(22)>
+  # DEBUG StackCanAcceptRequest => StackCanAcceptRequest_6
+  # DEBUG ProtocolIndex => ProtocolIndex_4
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_4 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 24>; [33.33%]
+
+  <bb 24> [local count: 357878150]:
+  # StackCanAcceptRequest_7 = PHI <StackCanAcceptRequest_6(23)>
+  # DEBUG BEGIN_STMT
+  return StackCanAcceptRequest_7;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GetCurrentProtocolOnStack (Dcm_ProtocolStackNumberType StackNumber)
+{
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  Dcm_ProtocolIndexType _9;
+
+  <bb 2> [local count: 428627386]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 22>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolConfig[ProtocolIndex_5].StackNumber;
+  if (_1 == StackNumber_7(D))
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 21>; [66.00%]
+
+  <bb 4> [local count: 243393649]:
+  _2 = Dcm_ProtocolStatus[ProtocolIndex_5].ProtocolState;
+  _3 = _2 + 248;
+  if (_3 <= 3)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 5>; [98.00%]
+
+  <bb 5> [local count: 238525776]:
+  if (_2 == 6)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 6>; [98.00%]
+
+  <bb 6> [local count: 233755260]:
+  if (_2 == 12)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 7>; [98.00%]
+
+  <bb 7> [local count: 229080155]:
+  if (_2 == 13)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 8>; [98.00%]
+
+  <bb 8> [local count: 224498552]:
+  if (_2 == 19)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 9>; [98.00%]
+
+  <bb 9> [local count: 220008581]:
+  if (_2 == 20)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 10>; [98.00%]
+
+  <bb 10> [local count: 215608409]:
+  if (_2 == 21)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 11>; [98.00%]
+
+  <bb 11> [local count: 211296241]:
+  if (_2 == 14)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 12>; [98.00%]
+
+  <bb 12> [local count: 207070316]:
+  if (_2 == 15)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 13>; [98.00%]
+
+  <bb 13> [local count: 202928909]:
+  if (_2 == 16)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 14>; [98.00%]
+
+  <bb 14> [local count: 198870331]:
+  if (_2 == 17)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 15>; [98.00%]
+
+  <bb 15> [local count: 194892924]:
+  if (_2 == 18)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 16>; [98.00%]
+
+  <bb 16> [local count: 190995066]:
+  if (_2 == 22)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 17>; [98.00%]
+
+  <bb 17> [local count: 187175165]:
+  if (_2 == 23)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 18>; [98.00%]
+
+  <bb 18> [local count: 183431662]:
+  if (_2 == 25)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 19>; [98.00%]
+
+  <bb 19> [local count: 179763029]:
+  if (_2 == 26)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 20>; [98.00%]
+
+  <bb 20> [local count: 176167768]:
+  if (_2 == 24)
+    goto <bb 23>; [2.00%]
+  else
+    goto <bb 21>; [98.00%]
+
+  <bb 21> [local count: 645114438]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_8 = ProtocolIndex_5 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_8
+
+  <bb 22> [local count: 1073741824]:
+  # ProtocolIndex_5 = PHI <0(2), ProtocolIndex_8(21)>
+  # DEBUG ProtocolIndex => ProtocolIndex_5
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_5 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 23>; [33.33%]
+
+  <bb 23> [local count: 428627386]:
+  # ProtocolIndex_4 = PHI <ProtocolIndex_5(4), ProtocolIndex_5(5), ProtocolIndex_5(6), ProtocolIndex_5(7), ProtocolIndex_5(8), ProtocolIndex_5(9), ProtocolIndex_5(10), ProtocolIndex_5(11), ProtocolIndex_5(12), ProtocolIndex_5(13), ProtocolIndex_5(14), ProtocolIndex_5(15), ProtocolIndex_5(16), ProtocolIndex_5(17), ProtocolIndex_5(18), ProtocolIndex_5(19), ProtocolIndex_5(20), ProtocolIndex_5(22)>
+  # DEBUG BEGIN_STMT
+  _9 = (Dcm_ProtocolIndexType) ProtocolIndex_4;
+  return _9;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusyWithNonROE (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean ProtocolBusyWithNonROE;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusyWithNonROE => 0
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusy (ProtocolIndex_6(D));
+  if (_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _2 = (int) ProtocolIndex_6(D);
+  _3 = Dcm_ProtocolStatus[_2].ProtocolState;
+  if (_3 != 10)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 4> [local count: 240947665]:
+  if (_3 != 12)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 5> [local count: 159025459]:
+  if (_3 != 2)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 6> [local count: 104956803]:
+  if (_3 != 25)
+    goto <bb 7>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 7> [local count: 69271490]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusyWithNonROE => 1
+
+  <bb 8> [local count: 1073741824]:
+  # ProtocolBusyWithNonROE_4 = PHI <0(2), 0(3), 0(4), 0(5), 0(6), 1(7)>
+  # DEBUG ProtocolBusyWithNonROE => ProtocolBusyWithNonROE_4
+  # DEBUG BEGIN_STMT
+  return ProtocolBusyWithNonROE_4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusy (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean ProtocolBusy;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusy => 0
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_5(D);
+  _2 = Dcm_ProtocolStatus[_1].ProtocolState;
+  _3 = _2 + 248;
+  if (_3 <= 5)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  if (_2 == 25)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 4> [local count: 354334802]:
+  if (_2 == 26)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 233860969]:
+  if (_2 == 2)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 6> [local count: 154348240]:
+  if (_2 == 3)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 971871986]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusy => 1
+
+  <bb 8> [local count: 1073741824]:
+  # ProtocolBusy_4 = PHI <0(6), 1(7)>
+  # DEBUG ProtocolBusy => ProtocolBusy_4
+  # DEBUG BEGIN_STMT
+  return ProtocolBusy_4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsPresumptiveWithNonROE (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean ProtocolPresumptiveWithNonROE;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolPresumptiveWithNonROE => 0
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsPresumptive (ProtocolIndex_6(D));
+  if (_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _2 = (int) ProtocolIndex_6(D);
+  _3 = Dcm_ProtocolQueue[_2].ProtocolQueueState;
+  if (_3 != 6)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 4> [local count: 240947665]:
+  if (_3 != 8)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 6>; [34.00%]
+
+  <bb 5> [local count: 159025459]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolPresumptiveWithNonROE => 1
+
+  <bb 6> [local count: 1073741824]:
+  # ProtocolPresumptiveWithNonROE_4 = PHI <0(2), 0(3), 0(4), 1(5)>
+  # DEBUG ProtocolPresumptiveWithNonROE => ProtocolPresumptiveWithNonROE_4
+  # DEBUG BEGIN_STMT
+  return ProtocolPresumptiveWithNonROE_4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsPresumptive (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean ProtocolPresumptive;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolPresumptive => 0
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_5(D);
+  _2 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  _3 = _2 + 254;
+  if (_3 <= 3)
+    goto <bb 7>; [50.00%]
+  else
+    goto <bb 3>; [50.00%]
+
+  <bb 3> [local count: 536870911]:
+  if (_2 == 7)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 4> [local count: 354334802]:
+  if (_2 == 9)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 233860969]:
+  if (_2 == 6)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 6> [local count: 154348240]:
+  if (_2 == 8)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 971871986]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolPresumptive => 1
+
+  <bb 8> [local count: 1073741824]:
+  # ProtocolPresumptive_4 = PHI <0(6), 1(7)>
+  # DEBUG ProtocolPresumptive => ProtocolPresumptive_4
+  # DEBUG BEGIN_STMT
+  return ProtocolPresumptive_4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_PresumptiveProtocolEnd (Dcm_ProtocolIndexType TYPE1PresumptiveProtocolIndex)
+{
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) TYPE1PresumptiveProtocolIndex_5(D);
+  _2 = Dcm_ProtocolQueue[_1].RequestType;
+  _3 = _2 + 255;
+  if (_3 <= 1)
+    goto <bb 3>; [25.50%]
+  else
+    goto <bb 4>; [74.50%]
+
+  <bb 3> [local count: 273804165]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, TYPE1PresumptiveProtocolIndex_5(D), 2);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, TYPE1PresumptiveProtocolIndex_5(D));
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (TYPE1PresumptiveProtocolIndex_5(D), 0);
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusyWithType1ROE (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  boolean ProtocolBusyWithType1ROE;
+  unsigned char _1;
+  int _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusyWithType1ROE => 0
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusy (ProtocolIndex_6(D));
+  if (_1 == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _2 = (int) ProtocolIndex_6(D);
+  _3 = Dcm_ProtocolStatus[_2].ProtocolState;
+  if (_3 == 10)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 4> [local count: 240947665]:
+  if (_3 == 15)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 159025459]:
+  if (_3 == 20)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 6> [local count: 260115417]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusyWithType1ROE => 1
+
+  <bb 7> [local count: 1073741824]:
+  # ProtocolBusyWithType1ROE_4 = PHI <0(2), 0(5), 1(6)>
+  # DEBUG ProtocolBusyWithType1ROE => ProtocolBusyWithType1ROE_4
+  # DEBUG BEGIN_STMT
+  return ProtocolBusyWithType1ROE_4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_RCRRPTransmissionFinished (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  short unsigned int _1;
+  int _2;
+  short unsigned int _3;
+  int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  int _7;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (ProtocolIndex_10(D));
+  if (_1 == 255)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 3> [local count: 365072220]:
+  _2 = (int) ProtocolIndex_10(D);
+  _3 = Dcm_ProtocolQueue[_2].RCRRPsSent;
+  if (_3 == 255)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 4> [local count: 124124555]:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_2].RCRRPsSent = 254;
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 949617270]:
+  # DEBUG BEGIN_STMT
+  _4 = (int) ProtocolIndex_10(D);
+  _5 = Dcm_ProtocolQueue[_4].RCRRPsConfirmed;
+  _6 = _5 + 1;
+  Dcm_ProtocolQueue[_4].RCRRPsConfirmed = _6;
+
+  <bb 6> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _7 = (int) ProtocolIndex_10(D);
+  Dcm_ProtocolQueue[_7].ProtocolQueueState = 3;
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched = 1;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_RCRRPSent (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  int _1;
+  short unsigned int _2;
+  short unsigned int _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_4(D);
+  _2 = Dcm_ProtocolQueue[_1].RCRRPsSent;
+  _3 = _2 + 1;
+  Dcm_ProtocolQueue[_1].RCRRPsSent = _3;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].ProtocolQueueState = 5;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_P2TimerTimeout (Dcm_TimerIndexType TimerIndex)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  uint16 Max_RCRRP;
+  Dcm_NegativeResponseCodeType NRCToSend;
+  int _1;
+  Dcm_MsgItemType * _2;
+  unsigned char _3;
+  unsigned char _4;
+  short unsigned int _5;
+  Dcm_MsgItemType * _6;
+  unsigned char _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  unsigned char _10;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => TimerIndex_15(D)
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _1 = (int) TimerIndex_15(D);
+  _2 = Dcm_ProtocolQueue[_1].RequestBuffer.BufferPtr;
+  _3 = *_2;
+  _4 = _3 + 255;
+  if (_4 > 2)
+    goto <bb 3>; [67.00%]
+  else
+    goto <bb 17>; [33.00%]
+
+  <bb 3> [local count: 719407022]:
+  if (_3 != 6)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 4> [local count: 474808634]:
+  if (_3 != 7)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 5> [local count: 313373699]:
+  if (_3 != 8)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 17>; [34.00%]
+
+  <bb 6> [local count: 206826641]:
+  if (_3 != 10)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 17>; [51.12%]
+
+  <bb 7> [local count: 101096862]:
+  # DEBUG BEGIN_STMT
+  Max_RCRRP_19 = Dcm_Dsl_DiagnosticSessionHandler_GetSessionMaxRcrrp (TimerIndex_15(D));
+  # DEBUG Max_RCRRP => Max_RCRRP_19
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolQueue[_1].RCRRPsSent;
+  if (_5 == Max_RCRRP_19)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 8> [local count: 34372933]:
+  if (Max_RCRRP_19 != 255)
+    goto <bb 9>; [66.00%]
+  else
+    goto <bb 13>; [34.00%]
+
+  <bb 9> [local count: 22686136]:
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_ProtocolQueue[_1].RequestBuffer.BufferPtr;
+  _7 = *_6;
+  if (_7 != 4)
+    goto <bb 10>; [66.00%]
+  else
+    goto <bb 11>; [34.00%]
+
+  <bb 10> [local count: 14972850]:
+  if (_7 != 9)
+    goto <bb 12>; [66.00%]
+  else
+    goto <bb 11>; [34.00%]
+
+  <bb 11> [local count: 12804055]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NRCToSend => 34
+
+  <bb 12> [local count: 22686136]:
+  # NRCToSend_11 = PHI <16(10), 34(11)>
+  # DEBUG NRCToSend => NRCToSend_11
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, TimerIndex_15(D));
+  goto <bb 14>; [100.00%]
+
+  <bb 13> [local count: 78410726]:
+  # DEBUG BEGIN_STMT
+  # DEBUG NRCToSend => 120
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].ProtocolQueueState = 4;
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched = 1;
+
+  <bb 14> [local count: 101096862]:
+  # NRCToSend_12 = PHI <NRCToSend_11(12), 120(13)>
+  # DEBUG NRCToSend => NRCToSend_12
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_InitiateNRC (_8, Dcm_ProtocolQueue[_1].RequestBuffer, NRCToSend_12, 0);
+  # DEBUG BEGIN_STMT
+  if (NRCToSend_12 == 16)
+    goto <bb 16>; [20.24%]
+  else
+    goto <bb 15>; [79.76%]
+
+  <bb 15> [local count: 80634857]:
+  if (NRCToSend_12 == 34)
+    goto <bb 16>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 16> [local count: 47877856]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (TimerIndex_15(D), 0);
+  goto <bb 18>; [100.00%]
+
+  <bb 17> [local count: 972644962]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_ProtocolQueue[_1].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_9, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _10 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_End (_10);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (TimerIndex_15(D), 0);
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_FreeP2Timer (14, TimerIndex_15(D));
+  RxPduIdInfo ={v} {CLOBBER};
+
+  <bb 18> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GetLatestExternalUDSProtocolIndex ()
+{
+  Dcm_ProtocolIndexType _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_LatestExternalUDSProtocolIndex;
+  return _2;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelUDSProtocolsInNonDefaultSession ()
+{
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  long unsigned int _12;
+  int _13;
+  unsigned char _23;
+
+  <bb 2> [local count: 357878146]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveUDSProtocolsInNonDefaultSession ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 17>; [100.00%]
+
+  <bb 3> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => (unsigned char) ProtocolIndex_6
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _12 = ProtocolIndex_6;
+  _13 = (int) _12;
+  _23 = Dcm_ProtocolConfig[_13].Type;
+  if (_23 <= 2)
+    goto <bb 16>; [65.00%]
+  else
+    goto <bb 4>; [35.00%]
+
+  <bb 4> [local count: 250552286]:
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState;
+  _2 = _1 + 247;
+  if (_2 <= 4)
+    goto <bb 7>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 5> [local count: 167870031]:
+  if (_1 == 2)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 6> [local count: 110794221]:
+  if (_1 == 3)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 7> [local count: 177428100]:
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) ProtocolIndex_6;
+  _4 = _3 + 12;
+  Dcm_Dsp_ProtocolCancel (_4);
+
+  <bb 8> [local count: 250552285]:
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState;
+  switch (_5) <default: <L18> [12.50%], case 2: <L11> [12.50%], case 3: <L12> [12.50%], case 9: <L6> [12.50%], case 10: <L7> [12.50%], case 11: <L8> [12.50%], case 12: <L9> [12.50%], case 13: <L10> [12.50%]>
+
+  <bb 9> [local count: 31319036]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 14;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 10> [local count: 31319036]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 15;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 11> [local count: 31319036]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 16;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 12> [local count: 31319036]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 17;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 13> [local count: 31319036]:
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 18;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 14> [local count: 31319036]:
+<L11>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 15> [local count: 31319036]:
+<L12>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_6].ProtocolState = 5;
+  # DEBUG BEGIN_STMT
+
+  <bb 16> [local count: 715863672]:
+<L18>:
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_22 = ProtocolIndex_6 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_22
+
+  <bb 17> [local count: 1073741824]:
+  # ProtocolIndex_6 = PHI <0(2), ProtocolIndex_22(16)>
+  # DEBUG ProtocolIndex => ProtocolIndex_6
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_6 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 18>; [33.33%]
+
+  <bb 18> [local count: 357878150]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelROEProcessingOnAllProtocols ()
+{
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+  short unsigned int _10;
+  short unsigned int _11;
+
+  <bb 2> [local count: 357878148]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 7>; [100.00%]
+
+  <bb 3> [local count: 715863672]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolQueue[ProtocolIndex_12].ProtocolQueueState;
+  if (_1 == 8)
+    goto <bb 5>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 4> [local count: 570972865]:
+  if (_1 == 6)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 339021581]:
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned char) ProtocolIndex_12;
+  Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveProtocol (_2);
+
+  <bb 6> [local count: 715863672]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_29 = ProtocolIndex_12 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_29
+
+  <bb 7> [local count: 1073741820]:
+  # ProtocolIndex_12 = PHI <0(2), ProtocolIndex_29(6)>
+  # DEBUG ProtocolIndex => ProtocolIndex_12
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_12 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 16>; [33.33%]
+
+  <bb 16> [local count: 357878148]:
+  goto <bb 14>; [100.00%]
+
+  <bb 8> [local count: 715863674]:
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolStatus[ProtocolIndex_13].ProtocolState;
+  switch (_3) <default: <L15> [20.00%], case 2: <L7> [20.00%], case 10: <L8> [20.00%], case 12: <L9> [20.00%], case 25: <L10> [20.00%]>
+
+  <bb 9> [local count: 143172735]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) ProtocolIndex_13;
+  _5 = _4 + 12;
+  Dcm_Dsp_ProtocolCancel (_5);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_13].ProtocolState = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [100.00%]
+
+  <bb 10> [local count: 143172735]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) ProtocolIndex_13;
+  _7 = _6 + 12;
+  Dcm_Dsp_ProtocolCancel (_7);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_13].ProtocolState = 15;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [100.00%]
+
+  <bb 11> [local count: 143172735]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  _8 = (short unsigned int) ProtocolIndex_13;
+  _9 = _8 + 12;
+  Dcm_Dsp_ProtocolCancel (_9);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_13].ProtocolState = 17;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 143172735]:
+<L10>:
+  # DEBUG BEGIN_STMT
+  _10 = (short unsigned int) ProtocolIndex_13;
+  _11 = _10 + 12;
+  Dcm_Dsp_ProtocolCancel (_11);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_13].ProtocolState = 27;
+  # DEBUG BEGIN_STMT
+
+  <bb 13> [local count: 715863674]:
+<L15>:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_27 = ProtocolIndex_13 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_27
+
+  <bb 14> [local count: 1073741824]:
+  # ProtocolIndex_13 = PHI <ProtocolIndex_27(13), 0(16)>
+  # DEBUG ProtocolIndex => ProtocolIndex_13
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_13 != 2)
+    goto <bb 8>; [66.67%]
+  else
+    goto <bb 15>; [33.33%]
+
+  <bb 15> [local count: 357878150]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_EnqueueAsPresumptive (Dcm_ProtocolIndexType ProcessingProtocolIndex, Dcm_BufferUserType RxConnectionId, Dcm_RequestTypeType RequestType, struct Dcm_BufferType RequestBuffer, boolean PreemptionNecessary)
+{
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  int _1;
+  short unsigned int _2;
+  int _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+
+  <bb 2> [local count: 1073419798]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId_11(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (PreemptionNecessary_13(D) == 1)
+    goto <bb 3>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 3> [local count: 364962731]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProcessingProtocolIndex_14(D);
+  _2 = Dcm_ProtocolConfig[_1].PreemptionTimeout;
+  Dcm_ProtocolQueue[_1].PreemptionTimeout = _2;
+
+  <bb 4> [local count: 1073419798]:
+  # DEBUG BEGIN_STMT
+  _3 = (int) ProcessingProtocolIndex_14(D);
+  Dcm_ProtocolQueue[_3].RxConnectionId = RxConnectionId_11(D);
+  # DEBUG BEGIN_STMT
+  switch (RequestType_17(D)) <default: <L14> [14.29%], case 1 ... 2: <L2> [14.29%], case 8 ... 9: <L4> [14.29%], case 10 ... 11: <L6> [14.29%], case 12 ... 13: <L9> [14.29%], case 14: <L8> [14.29%], case 15: <L11> [14.29%]>
+
+  <bb 5> [local count: 153391689]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 3;
+  # DEBUG BEGIN_STMT
+  _4 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_BusyWithRequest (_4, RxConnectionId_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 6> [local count: 153391689]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 2;
+  # DEBUG BEGIN_STMT
+  _5 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_BusyWithRequest (_5, RxConnectionId_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 7> [local count: 153391689]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 6;
+  # DEBUG BEGIN_STMT
+  _6 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_BusyWithRequest (_6, RxConnectionId_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 8> [local count: 153391689]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 7;
+  # DEBUG BEGIN_STMT
+  _7 = RxPduIdInfo.MainConnectionIndex;
+  Dcm_Dsl_Supervisor_MainConnectionHandling_BusyWithRequest (_7, RxConnectionId_11(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 9> [local count: 153391689]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 8;
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 10> [local count: 153391689]:
+<L11>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].ProtocolQueueState = 9;
+  # DEBUG BEGIN_STMT
+
+  <bb 11> [local count: 1073741824]:
+<L14>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].RequestType = RequestType_17(D);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].RCRRPsSent = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].RCRRPsConfirmed = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_3].RequestBuffer = RequestBuffer;
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched = 1;
+  RxPduIdInfo ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelTYPE1PresumptiveProtocolsOnSameStack (Dcm_ProtocolIndexType ProcessingProtocolIndex)
+{
+  Dcm_ProtocolStackNumberType ProcessingStackNumber;
+  uint8_least ProtocolIndex;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProcessingProtocolIndex_8(D);
+  ProcessingStackNumber_10 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG ProcessingStackNumber => ProcessingStackNumber_10
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolConfig[ProtocolIndex_5].StackNumber;
+  if (_2 == ProcessingStackNumber_10)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 4> [local count: 243393649]:
+  _3 = Dcm_ProtocolQueue[ProtocolIndex_5].ProtocolQueueState;
+  if (_3 != 1)
+    goto <bb 5>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 5> [local count: 160639809]:
+  if (_3 != 9)
+    goto <bb 6>; [66.00%]
+  else
+    goto <bb 8>; [34.00%]
+
+  <bb 6> [local count: 106022274]:
+  if (_3 != 8)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 51823687]:
+  # DEBUG BEGIN_STMT
+  _4 = (unsigned char) ProtocolIndex_5;
+  Dcm_Dsl_Supervisor_ProtocolHandling_CancelPresumptiveProtocol (_4);
+
+  <bb 8> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_12 = ProtocolIndex_5 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_12
+
+  <bb 9> [local count: 1073741824]:
+  # ProtocolIndex_5 = PHI <0(2), ProtocolIndex_12(8)>
+  # DEBUG ProtocolIndex => ProtocolIndex_5
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_5 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 10>; [33.33%]
+
+  <bb 10> [local count: 357878150]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ClearPresumptiveProtocol (Dcm_ProtocolIndexType ProtocolIndex, boolean RequestDispatched)
+{
+  int _1;
+  short unsigned int _2;
+  unsigned char _3;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_5(D);
+  Dcm_ProtocolQueue[_1].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].PreemptionTimeout = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].RCRRPsSent = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].RCRRPsConfirmed = 0;
+  # DEBUG BEGIN_STMT
+  if (RequestDispatched_11(D) == 0)
+    goto <bb 3>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 3> [local count: 354334802]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_ProtocolQueue[_1].RequestBuffer.BufferId;
+  Dcm_Dsl_BufferFree (14, _2);
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolQueue[_1].ProtocolQueueState;
+  if (_3 == 2)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 71717364]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DisinhibitRequestProcessing ();
+
+  <bb 5> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].RequestType = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].RequestBuffer.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[_1].ProtocolQueueState = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched = 0;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_CancelOngoingReceptionsOnLowerPriorityProtocolsOfSameStack (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_StackNumberType ReceptionStackNumber;
+  Dcm_StackNumberType ProcessingStackNumber;
+  Dcm_ProtocolPriorityType RxProtocolPriority;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  uint16_least RxConnectionIndex;
+  unsigned char _1;
+  int _2;
+  short unsigned int _3;
+  unsigned char _4;
+  int _5;
+  unsigned char _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+
+  <bb 2> [local count: 153437706]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId_14(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _1 = RxPduIdInfo.ProtocolIndex;
+  _2 = (int) _1;
+  ProcessingStackNumber_16 = Dcm_ProtocolConfig[_2].StackNumber;
+  # DEBUG ProcessingStackNumber => ProcessingStackNumber_16
+  # DEBUG BEGIN_STMT
+  RxProtocolPriority_17 = Dcm_ProtocolConfig[_2].Priority;
+  # DEBUG RxProtocolPriority => RxProtocolPriority_17
+  # DEBUG BEGIN_STMT
+  # DEBUG RxConnectionIndex => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 3> [local count: 920304118]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (short unsigned int) RxConnectionIndex_10;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_3, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _4 = RxPduIdInfo.ProtocolIndex;
+  _5 = (int) _4;
+  ReceptionStackNumber_20 = Dcm_ProtocolConfig[_5].StackNumber;
+  # DEBUG ReceptionStackNumber => ReceptionStackNumber_20
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_Dsl_RxConnectionGetState (_3);
+  if (_6 == 1)
+    goto <bb 4>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 4> [local count: 312903400]:
+  _7 = RxPduIdInfo.ProtocolIndex;
+  _8 = (int) _7;
+  _9 = Dcm_ProtocolConfig[_8].Priority;
+  if (_9 >= RxProtocolPriority_17)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 8>; [50.00%]
+
+  <bb 5> [local count: 156451700]:
+  if (_3 != RxConnectionId_14(D))
+    goto <bb 6>; [77.53%]
+  else
+    goto <bb 8>; [22.47%]
+
+  <bb 6> [local count: 121297003]:
+  if (ProcessingStackNumber_16 == ReceptionStackNumber_20)
+    goto <bb 7>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 7> [local count: 24550513]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EnqueueCancellationOfRxConnection (_3);
+
+  <bb 8> [local count: 920304119]:
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_23 = RxConnectionIndex_10 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_23
+
+  <bb 9> [local count: 1073741824]:
+  # RxConnectionIndex_10 = PHI <0(2), RxConnectionIndex_23(8)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_10
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_10 != 6)
+    goto <bb 3>; [85.71%]
+  else
+    goto <bb 10>; [14.29%]
+
+  <bb 10> [local count: 153437707]:
+  RxPduIdInfo ={v} {CLOBBER};
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_TYPE1RequestPriorityAssessment (Dcm_ProtocolIndexType RequestedProtocolIndex, Dcm_RequestOriginType RequestOrigin)
+{
+  const Dcm_SesCtrlType CurrentSession;
+  const Dcm_SesCtrlType CurrentSession;
+  Dcm_ProtocolIndexType CurrentProtocolIndex;
+  Dcm_ProtocolIndexType CurrentPresumptiveProtocolIndex;
+  Dcm_ProtocolStackNumberType ProcessingStackNumber;
+  const boolean ProtocolOfSameTypeRunningOnDifferentStack;
+  Dcm_ReceptionArbitrationResultType ArbitrationResult;
+  boolean ProtocolBusyOnOtherStack;
+  boolean ProtocolBusy;
+  boolean ProtocolPresumptive;
+  int _1;
+  int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  int _8;
+  unsigned char _9;
+  unsigned char _10;
+  unsigned char _11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned char _14;
+  unsigned char _15;
+  unsigned char _16;
+  unsigned char _17;
+  unsigned char _18;
+  unsigned char _19;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolBusyOnOtherStack => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 4
+  # DEBUG BEGIN_STMT
+  if (RequestOrigin_24(D) == 1)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 3>; [66.00%]
+
+  <bb 3> [local count: 708669604]:
+  if (RequestOrigin_24(D) == 4)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 4>; [66.00%]
+
+  <bb 4> [local count: 467721938]:
+  if (RequestOrigin_24(D) == 5)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 5> [local count: 765045345]:
+  # DEBUG BEGIN_STMT
+  ProtocolPresumptive_29 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsPresumptiveWithNonROE (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolPresumptive => ProtocolPresumptive_29
+  # DEBUG BEGIN_STMT
+  ProtocolBusy_30 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusyWithNonROE (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolBusy => ProtocolBusy_30
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 308696479]:
+  # DEBUG BEGIN_STMT
+  ProtocolPresumptive_27 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsPresumptive (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolPresumptive => ProtocolPresumptive_27
+  # DEBUG BEGIN_STMT
+  ProtocolBusy_28 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolIsBusy (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolBusy => ProtocolBusy_28
+
+  <bb 7> [local count: 1073741823]:
+  # ProtocolPresumptive_20 = PHI <ProtocolPresumptive_29(5), ProtocolPresumptive_27(6)>
+  # ProtocolBusy_21 = PHI <ProtocolBusy_30(5), ProtocolBusy_28(6)>
+  # DEBUG ProtocolBusy => ProtocolBusy_21
+  # DEBUG ProtocolPresumptive => ProtocolPresumptive_20
+  # DEBUG BEGIN_STMT
+  ProtocolBusyOnOtherStack_31 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolOfDifferentTypeRunningOnDifferentStack (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolBusyOnOtherStack => ProtocolBusyOnOtherStack_31
+  # DEBUG BEGIN_STMT
+  if (ProtocolPresumptive_20 == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 8> [local count: 708669604]:
+  if (ProtocolBusy_21 == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 9> [local count: 467721938]:
+  if (ProtocolBusyOnOtherStack_31 == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 10> [local count: 159025459]:
+  if (RequestOrigin_24(D) == 2)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 11> [local count: 413653282]:
+  # DEBUG BEGIN_STMT
+  ProtocolOfSameTypeRunningOnDifferentStack_32 = Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolOfSameTypeRunningOnDifferentStack (RequestedProtocolIndex_26(D));
+  # DEBUG ProtocolOfSameTypeRunningOnDifferentStack => ProtocolOfSameTypeRunningOnDifferentStack_32
+  # DEBUG BEGIN_STMT
+  if (ProtocolOfSameTypeRunningOnDifferentStack_32 == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 12> [local count: 273011166]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RequestedProtocolIndex_26(D);
+  ProcessingStackNumber_33 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG ProcessingStackNumber => ProcessingStackNumber_33
+  # DEBUG BEGIN_STMT
+  CurrentPresumptiveProtocolIndex_34 = Dcm_Dsl_Supervisor_GetTYPE1PresumptiveProtocolOnStack (ProcessingStackNumber_33);
+  # DEBUG CurrentPresumptiveProtocolIndex => CurrentPresumptiveProtocolIndex_34
+  # DEBUG BEGIN_STMT
+  if (CurrentPresumptiveProtocolIndex_34 != 2)
+    goto <bb 13>; [66.00%]
+  else
+    goto <bb 26>; [34.00%]
+
+  <bb 13> [local count: 180187370]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) CurrentPresumptiveProtocolIndex_34;
+  _3 = Dcm_ProtocolConfig[_2].Priority;
+  _4 = Dcm_ProtocolConfig[_1].Priority;
+  if (_3 > _4)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 21>; [50.00%]
+
+  <bb 14> [local count: 90093685]:
+  # DEBUG BEGIN_STMT
+  if (RequestOrigin_24(D) == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 15>; [66.00%]
+
+  <bb 15> [local count: 59461832]:
+  if (RequestOrigin_24(D) == 4)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 16>; [66.00%]
+
+  <bb 16> [local count: 39244809]:
+  if (RequestOrigin_24(D) == 5)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 17>; [66.00%]
+
+  <bb 17> [local count: 25901574]:
+  if (RequestOrigin_24(D) == 3)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 18>; [66.00%]
+
+  <bb 18> [local count: 17095039]:
+  # DEBUG BEGIN_STMT
+  if (RequestOrigin_24(D) == 2)
+    goto <bb 19>; [34.00%]
+  else
+    goto <bb 20>; [66.00%]
+
+  <bb 19> [local count: 5812313]:
+  _5 = Dcm_ProtocolQueue[_2].ProtocolQueueState;
+  _6 = _5 + 254;
+  if (_6 > 3)
+    goto <bb 45>; [50.00%]
+  else
+    goto <bb 20>; [50.00%]
+
+  <bb 20> [local count: 14188882]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 4
+  goto <bb 45>; [100.00%]
+
+  <bb 21> [local count: 90093685]:
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_ProtocolQueue[_2].ProtocolQueueState;
+  if (_7 == 6)
+    goto <bb 22>; [34.00%]
+  else
+    goto <bb 25>; [66.00%]
+
+  <bb 22> [local count: 30631853]:
+  if (RequestOrigin_24(D) == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 23>; [66.00%]
+
+  <bb 23> [local count: 20217023]:
+  if (RequestOrigin_24(D) == 4)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 24>; [66.00%]
+
+  <bb 24> [local count: 13343235]:
+  if (RequestOrigin_24(D) == 5)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 25>; [66.00%]
+
+  <bb 25> [local count: 68268367]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 4
+  goto <bb 45>; [100.00%]
+
+  <bb 26> [local count: 92823797]:
+  # DEBUG BEGIN_STMT
+  CurrentProtocolIndex_35 = Dcm_Dsl_Supervisor_ProtocolHandling_GetCurrentProtocolOnStack (ProcessingStackNumber_33);
+  # DEBUG CurrentProtocolIndex => CurrentProtocolIndex_35
+  # DEBUG BEGIN_STMT
+  if (CurrentProtocolIndex_35 != 2)
+    goto <bb 27>; [66.00%]
+  else
+    goto <bb 45>; [34.00%]
+
+  <bb 27> [local count: 61263706]:
+  # DEBUG BEGIN_STMT
+  _8 = (int) CurrentProtocolIndex_35;
+  _9 = Dcm_ProtocolStatus[_8].ProtocolState;
+  switch (_9) <default: <L87> [20.00%], case 6: <L63> [20.00%], case 8 ... 9: <L34> [20.00%], case 10: <L48> [20.00%], case 11: <L42> [20.00%], case 12 ... 13: <L63> [20.00%], case 14: <L34> [20.00%], case 15: <L48> [20.00%], case 16: <L42> [20.00%], case 17 ... 18: <L63> [20.00%], case 19: <L34> [20.00%], case 20: <L48> [20.00%], case 21: <L42> [20.00%], case 22 ... 26: <L63> [20.00%]>
+
+  <bb 28> [local count: 12252741]:
+<L34>:
+  # DEBUG BEGIN_STMT
+  _10 = Dcm_ProtocolConfig[_8].Priority;
+  _11 = Dcm_ProtocolConfig[_1].Priority;
+  if (_10 <= _11)
+    goto <bb 45>; [50.00%]
+  else
+    goto <bb 29>; [50.00%]
+
+  <bb 29> [local count: 6126371]:
+  if (RequestOrigin_24(D) == 2)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 30>; [66.00%]
+
+  <bb 30> [local count: 4043405]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 6
+  goto <bb 45>; [100.00%]
+
+  <bb 31> [local count: 12252741]:
+<L42>:
+  # DEBUG BEGIN_STMT
+  _12 = Dcm_ProtocolConfig[_8].Priority;
+  _13 = Dcm_ProtocolConfig[_1].Priority;
+  if (_12 <= _13)
+    goto <bb 45>; [50.00%]
+  else
+    goto <bb 32>; [50.00%]
+
+  <bb 32> [local count: 6126371]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 6
+  goto <bb 45>; [100.00%]
+
+  <bb 33> [local count: 12252741]:
+<L48>:
+  # DEBUG BEGIN_STMT
+  if (RequestOrigin_24(D) == 1)
+    goto <bb 36>; [20.24%]
+  else
+    goto <bb 34>; [79.76%]
+
+  <bb 34> [local count: 9772786]:
+  if (RequestOrigin_24(D) == 4)
+    goto <bb 36>; [34.00%]
+  else
+    goto <bb 35>; [66.00%]
+
+  <bb 35> [local count: 6450039]:
+  if (RequestOrigin_24(D) == 5)
+    goto <bb 36>; [34.00%]
+  else
+    goto <bb 39>; [66.00%]
+
+  <bb 36> [local count: 7995715]:
+  # DEBUG BEGIN_STMT
+  CurrentSession_37 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_37
+  # DEBUG BEGIN_STMT
+  if (CurrentSession_37 == 1)
+    goto <bb 45>; [34.00%]
+  else
+    goto <bb 37>; [66.00%]
+
+  <bb 37> [local count: 5277172]:
+  _14 = Dcm_ProtocolConfig[_8].Priority;
+  _15 = Dcm_ProtocolConfig[_1].Priority;
+  if (_14 > _15)
+    goto <bb 45>; [50.00%]
+  else
+    goto <bb 38>; [50.00%]
+
+  <bb 38> [local count: 2638586]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 4
+  goto <bb 45>; [100.00%]
+
+  <bb 39> [local count: 4257026]:
+  # DEBUG BEGIN_STMT
+  _16 = Dcm_ProtocolConfig[_8].Priority;
+  _17 = Dcm_ProtocolConfig[_1].Priority;
+  if (_16 <= _17)
+    goto <bb 45>; [50.00%]
+  else
+    goto <bb 40>; [50.00%]
+
+  <bb 40> [local count: 2128513]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 6
+  goto <bb 45>; [100.00%]
+
+  <bb 41> [local count: 12252741]:
+<L63>:
+  # DEBUG BEGIN_STMT
+  CurrentSession_39 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_39
+  # DEBUG BEGIN_STMT
+  _18 = Dcm_ProtocolConfig[_8].Priority;
+  _19 = Dcm_ProtocolConfig[_1].Priority;
+  if (_18 <= _19)
+    goto <bb 42>; [50.00%]
+  else
+    goto <bb 44>; [50.00%]
+
+  <bb 42> [local count: 6126371]:
+  if (RequestedProtocolIndex_26(D) != CurrentProtocolIndex_35)
+    goto <bb 43>; [66.00%]
+  else
+    goto <bb 44>; [34.00%]
+
+  <bb 43> [local count: 4043405]:
+  if (CurrentSession_39 != 1)
+    goto <bb 45>; [66.00%]
+  else
+    goto <bb 44>; [34.00%]
+
+  <bb 44> [local count: 9584094]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ArbitrationResult => 6
+
+  <bb 45> [local count: 1073741824]:
+  # ArbitrationResult_22 = PHI <4(8), 3(11), 6(23), 6(32), 6(26), 6(19), 4(20), 6(15), 4(25), 6(30), 4(43), 6(40), 6(37), 4(38), 4(31), 4(29), 4(27), 6(44), 4(39), 4(7), 4(10), 6(14), 6(17), 6(16), 6(22), 6(24), 4(28), 6(36)>
+<L87>:
+  # DEBUG ArbitrationResult => ArbitrationResult_22
+  # DEBUG BEGIN_STMT
+  return ArbitrationResult_22;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_ProtocolFree (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  int _1;
+  unsigned char _2;
+  short unsigned int _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+
+  <bb 2> [local count: 1072883520]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_9(D);
+  _2 = Dcm_ProtocolStatus[_1].ProtocolState;
+  switch (_2) <default: <L28> [5.56%], case 2 ... 3: <L6> [5.56%], case 4: <L14> [5.56%], case 5: <L15> [5.56%], case 8: <L0> [5.56%], case 9: <L1> [5.56%], case 10 ... 11: <L2> [5.56%], case 12 ... 13: <L4> [5.56%], case 14: <L19> [5.56%], case 15 ... 16: <L20> [5.56%], case 17: <L8> [5.56%], case 18: <L9> [5.56%], case 19: <L16> [5.56%], case 20: <L18> [5.56%], case 21: <L17> [5.56%], case 22: <L12> [5.56%], case 23: <L13> [5.56%], case 25 ... 26: <L10> [5.56%]>
+
+  <bb 3> [local count: 59652324]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_DisinhibitRequestProcessing ();
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ProtocolStatus[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_3);
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 4> [local count: 59652324]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  _4 = Dcm_ProtocolStatus[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_4);
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 5> [local count: 59652324]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 6> [local count: 59652324]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 7> [local count: 59652324]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 8> [local count: 59652324]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 9> [local count: 59652324]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 10> [local count: 59652324]:
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 11> [local count: 59652324]:
+<L12>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 12> [local count: 59652324]:
+<L13>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 13> [local count: 59652324]:
+<L14>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 14> [local count: 59652324]:
+<L15>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 0
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [100.00%]
+
+  <bb 15> [local count: 59652324]:
+<L16>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ProtocolStatus[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_5);
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 16> [local count: 59652324]:
+<L17>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 17> [local count: 59652324]:
+<L18>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 18> [local count: 59652324]:
+<L19>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  _6 = Dcm_ProtocolStatus[_1].RxConnectionId;
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (_6);
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 20>; [100.00%]
+
+  <bb 19> [local count: 59652324]:
+<L20>:
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].ProtocolState = 6;
+  # DEBUG BEGIN_STMT
+  # DEBUG ResetMainConnection => 1
+  # DEBUG BEGIN_STMT
+
+  <bb 20> [local count: 477218590]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_ProtocolStatus[_1].RxConnectionId;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_7, &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex_34 = RxPduIdInfo.MainConnectionIndex;
+  # DEBUG MainConnectionIndex => MainConnectionIndex_34
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_MainConnectionHandling_ClearMainConnection (MainConnectionIndex_34);
+  RxPduIdInfo ={v} {CLOBBER};
+
+  <bb 21> [local count: 1073741824]:
+<L28>:
+  # DEBUG ResetMainConnection => NULL
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_1].RequestType = 0;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_IsSessionClearedToSwitch (Dcm_SesCtrlType NewSession)
+{
+  Dcm_SessionSwitchPermissionType IsSessionClearedToSwitch;
+  uint8_least ProtocolIndex;
+  unsigned char _1;
+  unsigned char _2;
+  unsigned char _3;
+  long unsigned int _7;
+  int _9;
+  unsigned char _12;
+
+  <bb 2> [local count: 383366894]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG IsSessionClearedToSwitch => 3
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 17>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_ProtocolStatus[ProtocolIndex_4].ProtocolState;
+  _2 = _1 + 248;
+  if (_2 <= 3)
+    goto <bb 14>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 4> [local count: 357931837]:
+  if (_1 == 14)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 5>; [66.00%]
+
+  <bb 5> [local count: 236235013]:
+  if (_1 == 15)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 6>; [66.00%]
+
+  <bb 6> [local count: 155915108]:
+  if (_1 == 16)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 7> [local count: 102903971]:
+  if (_1 == 19)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 8> [local count: 67916621]:
+  if (_1 == 20)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 9> [local count: 44824970]:
+  if (_1 == 21)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 10>; [66.00%]
+
+  <bb 10> [local count: 29584480]:
+  if (_1 == 24)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 11>; [66.00%]
+
+  <bb 11> [local count: 19525757]:
+  if (_1 == 25)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 12> [local count: 12887000]:
+  if (_1 == 26)
+    goto <bb 14>; [34.00%]
+  else
+    goto <bb 13>; [66.00%]
+
+  <bb 13> [local count: 8505420]:
+  _3 = Dcm_ProtocolQueue[ProtocolIndex_4].ProtocolQueueState;
+  if (_3 != 1)
+    goto <bb 14>; [66.00%]
+  else
+    goto <bb 16>; [34.00%]
+
+  <bb 14> [local count: 712971832]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => (unsigned char) ProtocolIndex_4
+  # DEBUG INLINE_ENTRY Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _7 = ProtocolIndex_4;
+  _9 = (int) _7;
+  _12 = Dcm_ProtocolConfig[_9].Type;
+  if (_12 <= 2)
+    goto <bb 15>; [65.00%]
+  else
+    goto <bb 16>; [35.00%]
+
+  <bb 15> [local count: 463431690]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG ProcessingProtocolGroup => 1
+  # DEBUG BEGIN_STMT
+  if (NewSession_10(D) != 1)
+    goto <bb 18>; [5.50%]
+  else
+    goto <bb 16>; [94.50%]
+
+  <bb 16> [local count: 690374932]:
+  # DEBUG ProtocolIndex => NULL
+  # DEBUG ProtocolGroup => NULL
+  # DEBUG ProcessingProtocolGroup => NULL
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_11 = ProtocolIndex_4 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_11
+
+  <bb 17> [local count: 1073741824]:
+  # ProtocolIndex_4 = PHI <0(2), ProtocolIndex_11(16)>
+  # DEBUG ProtocolIndex => ProtocolIndex_4
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_4 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 18>; [33.33%]
+
+  <bb 18> [local count: 383366893]:
+  # IsSessionClearedToSwitch_5 = PHI <2(15), 3(17)>
+  # DEBUG IsSessionClearedToSwitch => IsSessionClearedToSwitch_5
+  # DEBUG BEGIN_STMT
+  return IsSessionClearedToSwitch_5;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolRequestType (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  int _1;
+  Dcm_SupervisorProtocolRequestTypeType _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_2(D);
+  _4 = Dcm_ProtocolStatus[_1].RequestType;
+  return _4;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GetProtocolGroupTypeForProtocol (Dcm_ProtocolIndexType ProtocolIndex)
+{
+  Dcm_ProtocolGroupType ProtocolGroup;
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 2
+  # DEBUG BEGIN_STMT
+  _1 = (int) ProtocolIndex_4(D);
+  _2 = Dcm_ProtocolConfig[_1].Type;
+  if (_2 <= 2)
+    goto <bb 3>; [65.00%]
+  else
+    goto <bb 4>; [35.00%]
+
+  <bb 3> [local count: 697932186]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolGroup => 1
+
+  <bb 4> [local count: 1073741824]:
+  # ProtocolGroup_3 = PHI <2(2), 1(3)>
+  # DEBUG ProtocolGroup => ProtocolGroup_3
+  # DEBUG BEGIN_STMT
+  return ProtocolGroup_3;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_TerminateCurrentProtocolOnSameStack (Dcm_ProtocolIndexType NextProtocolIndex)
+{
+  Dcm_ProtocolStackNumberType StackNumber;
+  Dcm_ProtocolIndexType CurrentProtocolIndex;
+  int _1;
+  int _2;
+  unsigned char _3;
+  short unsigned int _4;
+  short unsigned int _5;
+  short unsigned int _6;
+  short unsigned int _7;
+  short unsigned int _8;
+  short unsigned int _9;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) NextProtocolIndex_11(D);
+  StackNumber_13 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG StackNumber => StackNumber_13
+  # DEBUG BEGIN_STMT
+  CurrentProtocolIndex_14 = Dcm_Dsl_Supervisor_ProtocolHandling_GetCurrentProtocolOnStack (StackNumber_13);
+  # DEBUG CurrentProtocolIndex => CurrentProtocolIndex_14
+  # DEBUG BEGIN_STMT
+  if (CurrentProtocolIndex_14 != 2)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 15>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) CurrentProtocolIndex_14;
+  _3 = Dcm_ProtocolStatus[_2].ProtocolState;
+  switch (_3) <default: <L24> [8.33%], case 6: <L16> [8.33%], case 9: <L1> [8.33%], case 10: <L3> [8.33%], case 11: <L2> [8.33%], case 12: <L4> [8.33%], case 13: <L5> [8.33%], case 14: <L6> [8.33%], case 15: <L7> [8.33%], case 16: <L8> [8.33%], case 17: <L9> [8.33%], case 18: <L10> [8.33%]>
+
+  <bb 4> [local count: 59032178]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  _4 = (short unsigned int) CurrentProtocolIndex_14;
+  _5 = _4 + 12;
+  Dcm_Dsp_ProtocolCancel (_5);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 19;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 5> [local count: 59032178]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  _6 = (short unsigned int) CurrentProtocolIndex_14;
+  _7 = _6 + 12;
+  Dcm_Dsp_ProtocolCancel (_7);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 21;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 6> [local count: 59032178]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  _8 = (short unsigned int) CurrentProtocolIndex_14;
+  _9 = _8 + 12;
+  Dcm_Dsp_ProtocolCancel (_9);
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 20;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 7> [local count: 59032178]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 25;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 8> [local count: 59032178]:
+<L5>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 26;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 9> [local count: 59032178]:
+<L6>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 19;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 10> [local count: 59032178]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 20;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 11> [local count: 59032178]:
+<L8>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 21;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 12> [local count: 59032178]:
+<L9>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 22;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 13> [local count: 59032178]:
+<L10>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 23;
+  # DEBUG BEGIN_STMT
+  goto <bb 15>; [100.00%]
+
+  <bb 14> [local count: 59032178]:
+<L16>:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[_2].ProtocolState = 24;
+  # DEBUG BEGIN_STMT
+
+  <bb 15> [local count: 1073458357]:
+<L24>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_PreemptionNecessaryOnStack (Dcm_ProtocolIndexType NextProtocolIndex)
+{
+  Dcm_StackNumberType StackNumber;
+  Dcm_ProtocolIndexType CurrentProtocolIndex;
+  boolean PreemptionNecessary;
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PreemptionNecessary => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) NextProtocolIndex_3(D);
+  StackNumber_5 = Dcm_ProtocolConfig[_1].StackNumber;
+  # DEBUG StackNumber => StackNumber_5
+  # DEBUG BEGIN_STMT
+  CurrentProtocolIndex_6 = Dcm_Dsl_Supervisor_ProtocolHandling_GetCurrentProtocolOnStack (StackNumber_5);
+  # DEBUG CurrentProtocolIndex => CurrentProtocolIndex_6
+  # DEBUG BEGIN_STMT
+  if (CurrentProtocolIndex_6 != 2)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  if (NextProtocolIndex_3(D) != CurrentProtocolIndex_6)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 4> [local count: 467721939]:
+  # DEBUG BEGIN_STMT
+  # DEBUG PreemptionNecessary => 1
+
+  <bb 5> [local count: 1073741824]:
+  # PreemptionNecessary_2 = PHI <1(4), 1(2), 0(3)>
+  # DEBUG PreemptionNecessary => PreemptionNecessary_2
+  # DEBUG BEGIN_STMT
+  return PreemptionNecessary_2;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_GetLatestExternalUDSProtocolConfig (struct Dcm_ProtocolConfigType * const CurrentProtocolConfig)
+{
+  Std_ReturnType GetProtocolConfigResult;
+  unsigned char Dcm_LatestExternalUDSProtocolIndex.8_1;
+  int _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG GetProtocolConfigResult => 1
+  # DEBUG BEGIN_STMT
+  Dcm_LatestExternalUDSProtocolIndex.8_1 = Dcm_LatestExternalUDSProtocolIndex;
+  if (Dcm_LatestExternalUDSProtocolIndex.8_1 != 2)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  # DEBUG BEGIN_STMT
+  _2 = (int) Dcm_LatestExternalUDSProtocolIndex.8_1;
+  *CurrentProtocolConfig_6(D) = Dcm_ProtocolConfig[_2];
+  # DEBUG BEGIN_STMT
+  # DEBUG GetProtocolConfigResult => 0
+
+  <bb 4> [local count: 1073741824]:
+  # GetProtocolConfigResult_3 = PHI <1(2), 0(3)>
+  # DEBUG GetProtocolConfigResult => GetProtocolConfigResult_3
+  # DEBUG BEGIN_STMT
+  return GetProtocolConfigResult_3;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_MainFunction ()
+{
+  Dcm_ProtocolIndexType CurrentProtocolIndex;
+  uint8_least StackNumber;
+  unsigned char Dcm_PresumptiveProtocolToBeStartedOrDispatched.0_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1052582796]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToStopStoppingProtocols ();
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched.0_1 = Dcm_PresumptiveProtocolToBeStartedOrDispatched;
+  if (Dcm_PresumptiveProtocolToBeStartedOrDispatched.0_1 == 1)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 8> [local count: 357878150]:
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  _2 = (unsigned char) StackNumber_3;
+  CurrentProtocolIndex_9 = Dcm_Dsl_Supervisor_ProtocolHandling_GetCurrentProtocolOnStack (_2);
+  # DEBUG CurrentProtocolIndex => CurrentProtocolIndex_9
+  # DEBUG BEGIN_STMT
+  if (CurrentProtocolIndex_9 == 2)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 144890808]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToStartPresumptiveTYPE1ProtocolOnStack (_2);
+
+  <bb 5> [local count: 715863675]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_ProtocolHandling_AttemptToDispatchPresumptiveTYPE1ProtocolOnStack (_2);
+  # DEBUG BEGIN_STMT
+  StackNumber_12 = StackNumber_3 + 1;
+  # DEBUG StackNumber => StackNumber_12
+
+  <bb 6> [local count: 1073741824]:
+  # StackNumber_3 = PHI <StackNumber_12(5), 0(8)>
+  # DEBUG StackNumber => StackNumber_3
+  # DEBUG BEGIN_STMT
+  if (StackNumber_3 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 7>; [33.33%]
+
+  <bb 7> [local count: 1052582796]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_ProtocolHandling_Init ()
+{
+  uint8_least ProtocolIndex;
+
+  <bb 2> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ProtocolIndex => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 715863676]:
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_1].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_1].ProtocolState = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolStatus[ProtocolIndex_1].RequestType = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].ProtocolQueueState = 1;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].RxConnectionId = 15;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].PreemptionTimeout = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].RequestType = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].RCRRPsSent = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].RCRRPsConfirmed = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ProtocolQueue[ProtocolIndex_1].RequestBuffer.BufferId = 18;
+  # DEBUG BEGIN_STMT
+  ProtocolIndex_16 = ProtocolIndex_1 + 1;
+  # DEBUG ProtocolIndex => ProtocolIndex_16
+
+  <bb 4> [local count: 1073741824]:
+  # ProtocolIndex_1 = PHI <0(2), ProtocolIndex_16(3)>
+  # DEBUG ProtocolIndex => ProtocolIndex_1
+  # DEBUG BEGIN_STMT
+  if (ProtocolIndex_1 != 2)
+    goto <bb 3>; [66.67%]
+  else
+    goto <bb 5>; [33.33%]
+
+  <bb 5> [local count: 357878150]:
+  # DEBUG BEGIN_STMT
+  Dcm_LatestExternalUDSProtocolIndex = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_PresumptiveProtocolToBeStartedOrDispatched = 0;
+  return;
+
+}
+
+

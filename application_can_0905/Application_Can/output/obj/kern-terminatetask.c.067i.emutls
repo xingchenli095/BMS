@@ -1,0 +1,101 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_KernTerminateTask ()
+{
+  os_result_t r;
+  struct os_taskdynamic_t * td;
+  const struct os_task_t * tp;
+  unsigned char _1;
+  unsigned char OS_iecMode.0_2;
+  short unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG r => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = OS_kernelData.inFunction;
+  if (_1 == 1)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 11>; [48.88%]
+
+  <bb 3> [local count: 548896821]:
+  # DEBUG BEGIN_STMT
+  tp_11 = OS_kernelData.taskCurrent;
+  # DEBUG tp => tp_11
+  # DEBUG BEGIN_STMT
+  td_12 = tp_11->dynamic;
+  # DEBUG td => td_12
+  # DEBUG BEGIN_STMT
+  OS_iecMode.0_2 = OS_iecMode;
+  if (OS_iecMode.0_2 != 0)
+    goto <bb 4>; [50.00%]
+  else
+    goto <bb 6>; [50.00%]
+
+  <bb 4> [local count: 274448410]:
+  _3 = BIT_FIELD_REF <MEM[(void *)td_12], 16, 160>;
+  if (_3 != 0)
+    goto <bb 5>; [33.00%]
+  else
+    goto <bb 6>; [67.00%]
+
+  <bb 5> [local count: 90567975]:
+  # DEBUG BEGIN_STMT
+  r_14 = OS_Error (&OS_svc_TerminateTask, 55, 0B);
+  # DEBUG r => r_14
+  goto <bb 12>; [100.00%]
+
+  <bb 6> [local count: 458328844]:
+  # DEBUG BEGIN_STMT
+  _4 = td_12->lastLock;
+  if (_4 != 4294967295)
+    goto <bb 7>; [79.76%]
+  else
+    goto <bb 10>; [20.24%]
+
+  <bb 7> [local count: 365563086]:
+  # DEBUG BEGIN_STMT
+  _5 = _4 >> 24;
+  if (_5 == 9)
+    goto <bb 8>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 8> [local count: 124291449]:
+  # DEBUG BEGIN_STMT
+  r_19 = OS_Error (&OS_svc_TerminateTask, 156, 0B);
+  # DEBUG r => r_19
+  goto <bb 12>; [100.00%]
+
+  <bb 9> [local count: 241271637]:
+  # DEBUG BEGIN_STMT
+  r_17 = OS_Error (&OS_svc_TerminateTask, 13, 0B);
+  # DEBUG r => r_17
+  goto <bb 12>; [100.00%]
+
+  <bb 10> [local count: 92765758]:
+  # DEBUG BEGIN_STMT
+  OS_DoTerminateTask (tp_11, td_12);
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  r_10 = OS_Error (&OS_svc_TerminateTask, 12, 0B);
+  # DEBUG r => r_10
+
+  <bb 12> [local count: 1073741824]:
+  # r_6 = PHI <r_17(9), r_10(11), r_14(5), r_19(8), 0(10)>
+  # DEBUG r => r_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return r_6;
+
+}
+
+

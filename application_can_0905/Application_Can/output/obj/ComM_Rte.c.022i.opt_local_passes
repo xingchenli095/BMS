@@ -1,0 +1,354 @@
+ComM_Rte_GetCurrentPNCComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentPNCComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = ret_5;
+  return _6;
+
+}
+
+
+ComM_Rte_GetCurrentComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetCurrentComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = ret_5;
+  return _6;
+
+}
+
+
+ComM_Rte_GetRequestedComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetRequestedComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = ret_5;
+  return _6;
+
+}
+
+
+ComM_Rte_GetMaxComMode (ComM_UserHandleType pdav0, ComM_ModeType * ComMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_GetMaxComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = ret_5;
+  return _6;
+
+}
+
+
+ComM_Rte_RequestComMode (ComM_UserHandleType pdav0, ComM_ModeType ComMode)
+{
+  Std_ReturnType ret;
+  Std_ReturnType _6;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ret_5 = ComM_ASR40_RequestComMode (pdav0_2(D), ComMode_3(D));
+  # DEBUG ret => ret_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _6 = ret_5;
+  return _6;
+
+}
+
+
+ComM_RteNotify (uint8 User, ComM_ASR40_ModeType CurComMMode)
+{
+  const Std_ReturnType rteReturnVal;
+  const Rte_ModeType_ComMMode newRteMode;
+  int _1;
+  int _2;
+  int _3;
+  unsigned char _4;
+  int _5;
+  Std_ReturnType (*<T699>) (Rte_ModeType_ComMMode) _6;
+  int _7;
+  int _8;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) CurComMMode_10(D);
+  newRteMode_12 = ComM_ComModeToRteMode[_1];
+  # DEBUG newRteMode => newRteMode_12
+  # DEBUG BEGIN_STMT
+  _2 = (int) User_13(D);
+  ComM_RteNotificationSuccessful[_2] = 1;
+  # DEBUG BEGIN_STMT
+  _3 = (int) User_13(D);
+  _4 = ComM_RteModeUser[_3];
+  if (CurComMMode_10(D) != _4)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _5 = (int) User_13(D);
+  _6 = ComM_RteSwitchCbk[_5];
+  rteReturnVal_16 = _6 (newRteMode_12);
+  # DEBUG rteReturnVal => rteReturnVal_16
+  # DEBUG BEGIN_STMT
+  if (rteReturnVal_16 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _7 = (int) User_13(D);
+  ComM_RteModeUser[_7] = CurComMMode_10(D);
+  goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _8 = (int) User_13(D);
+  ComM_RteNotificationSuccessful[_8] = 0;
+
+  <bb 6> :
+  return;
+
+}
+
+
+ComM_EvaluateChannel (uint8 Channel)
+{
+  const ComM_ASR40_ModeType PncReqMode;
+  const ComM_ASR40_ModeType UserReqMode;
+  const uint8 UserOfChannel;
+  ComM_ASR40_ModeType ComMode;
+  PNCHandleType ElementPos;
+  const PNCHandleType NumPncs;
+  const uint8_least NumUser;
+  const struct ComM_ConfigType * ComM_ConfigPtr.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  short unsigned int _4;
+  unsigned char _5;
+  const struct ComM_ConfigType * ComM_ConfigPtr.1_6;
+  int _7;
+  short unsigned int _8;
+  unsigned char _9;
+  unsigned char _10;
+  const struct ComM_ConfigType * ComM_ConfigPtr.2_11;
+  unsigned int _12;
+  unsigned int _13;
+  short unsigned int _14;
+  const struct ComM_ConfigType * ComM_ConfigPtr.3_15;
+  int _16;
+  short unsigned int _17;
+  const struct ComM_ConfigType * ComM_ConfigPtr.4_18;
+  const struct ComM_ConfigType * ComM_ConfigPtr.5_19;
+  long unsigned int _20;
+  const struct ComM_ConfigType * ComM_ConfigPtr.6_21;
+  int _22;
+  short unsigned int _23;
+  int _24;
+  int _25;
+  int _26;
+  sizetype _27;
+  sizetype _28;
+  const uint8 * _29;
+  short unsigned int ElementPos.7_30;
+  long unsigned int _31;
+  short unsigned int ElementPos.8_32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.0_1 = ComM_ConfigPtr;
+  _2 = (unsigned int) Channel_42(D);
+  _3 = _2 + 1;
+  _4 = ComM_ConfigPtr.0_1->NumUsersOfAllChannel[_3];
+  _5 = (unsigned char) _4;
+  ComM_ConfigPtr.1_6 = ComM_ConfigPtr;
+  _7 = (int) Channel_42(D);
+  _8 = ComM_ConfigPtr.1_6->NumUsersOfAllChannel[_7];
+  _9 = (unsigned char) _8;
+  _10 = _5 - _9;
+  NumUser_43 = (const uint8_least) _10;
+  # DEBUG NumUser => NumUser_43
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.2_11 = ComM_ConfigPtr;
+  _12 = (unsigned int) Channel_42(D);
+  _13 = _12 + 1;
+  _14 = ComM_ConfigPtr.2_11->NumPncOfAllCh[_13];
+  ComM_ConfigPtr.3_15 = ComM_ConfigPtr;
+  _16 = (int) Channel_42(D);
+  _17 = ComM_ConfigPtr.3_15->NumPncOfAllCh[_16];
+  NumPncs_44 = _14 - _17;
+  # DEBUG NumPncs => NumPncs_44
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  ComMode_45 = 0;
+  # DEBUG ComMode => ComMode_45
+  # DEBUG BEGIN_STMT
+  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  ElementPos_47 = 0;
+  # DEBUG ElementPos => ElementPos_47
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  ComM_ConfigPtr.4_18 = ComM_ConfigPtr;
+  ComM_ConfigPtr.5_19 = ComM_ConfigPtr;
+  _20 = ComM_ConfigPtr.5_19->pUsersOfAllChannel;
+  ComM_ConfigPtr.6_21 = ComM_ConfigPtr;
+  _22 = (int) Channel_42(D);
+  _23 = ComM_ConfigPtr.6_21->NumUsersOfAllChannel[_22];
+  _24 = (int) _23;
+  _25 = (int) ElementPos_33;
+  _26 = _24 + _25;
+  _27 = (sizetype) _26;
+  _28 = _20 + _27;
+  _29 = ComM_ConfigPtr.4_18 + _28;
+  UserOfChannel_55 = *_29;
+  # DEBUG UserOfChannel => UserOfChannel_55
+  # DEBUG BEGIN_STMT
+  UserReqMode_57 = ComM_EB_GetUserRequestedComMode (UserOfChannel_55);
+  # DEBUG UserReqMode => UserReqMode_57
+  # DEBUG BEGIN_STMT
+  if (ComMode_36 < UserReqMode_57)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  ComMode_58 = UserReqMode_57;
+  # DEBUG ComMode => ComMode_58
+
+  <bb 5> :
+  # ComMode_35 = PHI <ComMode_36(3), ComMode_58(4)>
+  # DEBUG ComMode => ComMode_35
+  # DEBUG BEGIN_STMT
+  ElementPos.7_30 = ElementPos_33;
+  ElementPos_59 = ElementPos.7_30 + 1;
+  # DEBUG ElementPos => ElementPos_59
+
+  <bb 6> :
+  # ElementPos_33 = PHI <ElementPos_47(2), ElementPos_59(5)>
+  # ComMode_36 = PHI <ComMode_45(2), ComMode_35(5)>
+  # DEBUG ComMode => ComMode_36
+  # DEBUG ElementPos => ElementPos_33
+  # DEBUG BEGIN_STMT
+  _31 = (long unsigned int) ElementPos_33;
+  if (NumUser_43 > _31)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  ElementPos_48 = 0;
+  # DEBUG ElementPos => ElementPos_48
+  goto <bb 11>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PncReqMode_52 = ComM_EB_GetPncRequestedComMode (Channel_42(D), ElementPos_34);
+  # DEBUG PncReqMode => PncReqMode_52
+  # DEBUG BEGIN_STMT
+  if (ComMode_38 < PncReqMode_52)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  ComMode_53 = PncReqMode_52;
+  # DEBUG ComMode => ComMode_53
+
+  <bb 10> :
+  # ComMode_37 = PHI <ComMode_38(8), ComMode_53(9)>
+  # DEBUG ComMode => ComMode_37
+  # DEBUG BEGIN_STMT
+  ElementPos.8_32 = ElementPos_34;
+  ElementPos_54 = ElementPos.8_32 + 1;
+  # DEBUG ElementPos => ElementPos_54
+
+  <bb 11> :
+  # ElementPos_34 = PHI <ElementPos_48(7), ElementPos_54(10)>
+  # ComMode_38 = PHI <ComMode_36(7), ComMode_37(10)>
+  # DEBUG ComMode => ComMode_38
+  # DEBUG ElementPos => ElementPos_34
+  # DEBUG BEGIN_STMT
+  if (ElementPos_34 < NumPncs_44)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  ComM_EB_SetRequestedComMode (Channel_42(D), ComMode_38);
+  # DEBUG BEGIN_STMT
+  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  return;
+
+}
+
+
+ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0 ()
+{
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_ComM_SCHM_COMM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+

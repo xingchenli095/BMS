@@ -1,0 +1,160 @@
+__attribute__((target ("general-regs-only")))
+OS_AppIsAccessible (const struct os_appcontext_t * app)
+{
+  os_boolean_t result;
+  struct os_appdynamic_t * _1;
+  unsigned char _2;
+  int _3;
+  unsigned char _4;
+  const struct os_task_t * _5;
+  unsigned char _6;
+  const struct os_isr_t * OS_isrTableBase.2_7;
+  short unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  const struct os_isr_t * _11;
+  unsigned char _12;
+  unsigned char _13;
+  unsigned char _14;
+  const struct os_appcontext_t * iftmp.0_16;
+  const struct os_appcontext_t * iftmp.1_17;
+  const struct os_appcontext_t * iftmp.3_18;
+  const struct os_appcontext_t * iftmp.3_22;
+  const struct os_appcontext_t * iftmp.3_23;
+  const struct os_appcontext_t * iftmp.1_24;
+  const struct os_appcontext_t * iftmp.1_25;
+  const struct os_appcontext_t * iftmp.0_26;
+  const struct os_appcontext_t * iftmp.0_27;
+  os_boolean_t _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app_19(D) == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  result_31 = 1;
+  # DEBUG result => result_31
+  goto <bb 21>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = app_19(D)->dynamic;
+  _2 = _1->appstate;
+  _3 = (int) _2;
+  switch (_3) <default: <L18> [INV], case 1: <L3> [INV], case 2: <L2> [INV]>
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  result_21 = 1;
+  # DEBUG result => result_21
+  # DEBUG BEGIN_STMT
+  goto <bb 21>; [INV]
+
+  <bb 6> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _4 = OS_kernelData.inFunction;
+  if (_4 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  _5 = OS_kernelData.taskCurrent;
+  iftmp.0_27 = _5->app;
+  goto <bb 17>; [INV]
+
+  <bb 8> :
+  _6 = OS_kernelData.inFunction;
+  if (_6 == 3)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  OS_isrTableBase.2_7 = OS_isrTableBase;
+  _8 = OS_kernelData.isrCurrent;
+  _9 = (unsigned int) _8;
+  _10 = _9 * 68;
+  _11 = OS_isrTableBase.2_7 + _10;
+  iftmp.1_25 = _11->app;
+  goto <bb 16>; [INV]
+
+  <bb 10> :
+  _12 = OS_kernelData.inFunction;
+  if (_12 == 10)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  _13 = OS_kernelData.inFunction;
+  if (_13 == 8)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 12> :
+  _14 = OS_kernelData.inFunction;
+  if (_14 == 9)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  iftmp.3_23 = OS_kernelData.hookApp;
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  iftmp.3_22 = 0B;
+
+  <bb 15> :
+  # iftmp.3_18 = PHI <iftmp.3_23(13), iftmp.3_22(14)>
+  iftmp.1_24 = iftmp.3_18;
+
+  <bb 16> :
+  # iftmp.1_17 = PHI <iftmp.1_25(9), iftmp.1_24(15)>
+  iftmp.0_26 = iftmp.1_17;
+
+  <bb 17> :
+  # iftmp.0_16 = PHI <iftmp.0_27(7), iftmp.0_26(16)>
+  if (iftmp.0_16 == app_19(D))
+    goto <bb 18>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  result_29 = 1;
+  # DEBUG result => result_29
+  goto <bb 21>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  result_28 = 0;
+  # DEBUG result => result_28
+  goto <bb 21>; [INV]
+
+  <bb 20> :
+<L18>:
+  # DEBUG BEGIN_STMT
+  result_30 = 0;
+  # DEBUG result => result_30
+  # DEBUG BEGIN_STMT
+
+  <bb 21> :
+  # result_15 = PHI <result_31(3), result_21(5), result_28(19), result_30(20), result_29(18)>
+  # DEBUG result => result_15
+  # DEBUG BEGIN_STMT
+  _32 = result_15;
+  return _32;
+
+}
+
+

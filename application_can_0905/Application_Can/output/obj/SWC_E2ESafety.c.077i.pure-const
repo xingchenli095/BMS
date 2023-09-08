@@ -1,0 +1,237 @@
+
+
+ local analysis of SWC_E2EProtSafe_Data_Cyclic
+   scanning: E2E_Data_Safety.2_1 = E2E_Data_Safety;
+  scanning: _2 = E2E_Data_Safety.2_1 + 1;
+  scanning: E2E_Data_Safety = _2;
+  scanning: arg_Send_data.SafetyE2E_Data = _2;
+  scanning: arg_Send_data.SafetyE2E_Data_CRC = 0;
+  scanning: arg_Send_data.SafetyE2E_Data_SQC_Counter = 0;
+  scanning: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data (&arg_Send_data);
+  scanning: return;
+Function is locally const.
+
+
+ local analysis of SWC_E2EProtSafe_Data_Received
+   scanning: E2E_Data_Safety.0_1 = E2E_Data_Safety;
+  scanning: _2 = Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data (&arg_Receive_data);
+  scanning: if (_2 == 0)
+  scanning: _3 = arg_Receive_data.SafetyE2E_Data;
+  scanning: E2E_Data_Safety = _3;
+  scanning: Rte_Inst_SWC_E2ESafety.1_4 = Rte_Inst_SWC_E2ESafety;
+  scanning: _5 = Rte_Inst_SWC_E2ESafety.1_4->UpdateE2EProtSafeData_P_E2E_SafeData_E2EProt_Data;
+    Indirect ref read is not const
+  scanning: MEM[(struct Rte_DE_E2EProt_Data *)_5] = E2E_Data_Safety.0_1;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Rte_DE_E2EProt_Data *)_5 + 2B] = 0;
+    Indirect ref write is not const/pure
+  scanning: MEM[(struct Rte_DE_E2EProt_Data *)_5 + 4B] = 0;
+    Indirect ref write is not const/pure
+  scanning: return;
+callgraph:
+
+Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data) @06afec40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Cyclic/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data) @06afea80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Received/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+SWC_E2EProtSafe_Data_Cyclic/2 (SWC_E2EProtSafe_Data_Cyclic) @06afe8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06827060
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (1073741824 (estimated locally),1.00 per call) 
+SWC_E2EProtSafe_Data_Received/1 (SWC_E2EProtSafe_Data_Received) @06afe700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06827260
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)Rte_Inst_SWC_E2ESafety/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced for nothrow
+SWC_E2EProtSafe_Data_Cyclic/2 (SWC_E2EProtSafe_Data_Cyclic) @06afe8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06827060
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (1073741824 (estimated locally),1.00 per call) 
+SWC_E2EProtSafe_Data_Received/1 (SWC_E2EProtSafe_Data_Received) @06afe700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06827260
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)Rte_Inst_SWC_E2ESafety/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (1073741824 (estimated locally),1.00 per call) 
+
+
+
+MALLOC LATTICE Initial:
+SWC_E2EProtSafe_Data_Cyclic: malloc_bottom
+SWC_E2EProtSafe_Data_Received: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+SWC_E2EProtSafe_Data_Cyclic: malloc_bottom
+SWC_E2EProtSafe_Data_Received: malloc_bottom
+callgraph:
+
+Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data) @06afec40
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Cyclic/2 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data) @06afea80
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: SWC_E2EProtSafe_Data_Received/1 (1073741824 (estimated locally),1.00 per call) 
+  Calls: 
+SWC_E2EProtSafe_Data_Cyclic/2 (SWC_E2EProtSafe_Data_Cyclic) @06afe8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068272c0
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (1073741824 (estimated locally),1.00 per call) 
+SWC_E2EProtSafe_Data_Received/1 (SWC_E2EProtSafe_Data_Received) @06afe700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068272e0
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)Rte_Inst_SWC_E2ESafety/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (1073741824 (estimated locally),1.00 per call) 
+
+
+ ordered call graph: reduced
+SWC_E2EProtSafe_Data_Cyclic/2 (SWC_E2EProtSafe_Data_Cyclic) @06afe8c0
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068272c0
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data/5 (1073741824 (estimated locally),1.00 per call) 
+SWC_E2EProtSafe_Data_Received/1 (SWC_E2EProtSafe_Data_Received) @06afe700
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @068272e0
+  References: E2E_Data_Safety/0 (read)E2E_Data_Safety/0 (write)Rte_Inst_SWC_E2ESafety/4 (read)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data/3 (1073741824 (estimated locally),1.00 per call) 
+
+SWC_E2EProtSafe_Data_Cyclic ()
+{
+  struct E2EProt_Data arg_Send_data;
+  unsigned char E2E_Data_Safety.2_1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.2_1 = E2E_Data_Safety;
+  _2 = E2E_Data_Safety.2_1 + 1;
+  E2E_Data_Safety = _2;
+  arg_Send_data.SafetyE2E_Data = _2;
+  arg_Send_data.SafetyE2E_Data_CRC = 0;
+  arg_Send_data.SafetyE2E_Data_SQC_Counter = 0;
+  # DEBUG BEGIN_STMT
+  Rte_Send_SWC_E2ESafety_P_E2E_SafeData_E2EProt_Data (&arg_Send_data);
+  arg_Send_data ={v} {CLOBBER};
+  return;
+
+}
+
+
+SWC_E2EProtSafe_Data_Received ()
+{
+  struct E2EProt_Data arg_Receive_data;
+  unsigned char E2E_Data_Safety.0_1;
+  unsigned char _2;
+  unsigned char _3;
+  const struct Rte_CDS_SWC_E2ESafety * Rte_Inst_SWC_E2ESafety.1_4;
+  struct Rte_DE_E2EProt_Data * _5;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  E2E_Data_Safety.0_1 = E2E_Data_Safety;
+  # DEBUG arg_IWrite_data$SafetyE2E_Data => E2E_Data_Safety.0_1
+  # DEBUG arg_IWrite_data$SafetyE2E_Data_CRC => 0
+  # DEBUG arg_IWrite_data$SafetyE2E_Data_SQC_Counter => 0
+  # DEBUG BEGIN_STMT
+  _2 = Rte_Receive_SWC_E2ESafety_R_E2E_SafeData_E2EProt_Data (&arg_Receive_data);
+  if (_2 == 0)
+    goto <bb 3>; [50.00%]
+  else
+    goto <bb 4>; [50.00%]
+
+  <bb 3> [local count: 536870913]:
+  # DEBUG BEGIN_STMT
+  _3 = arg_Receive_data.SafetyE2E_Data;
+  E2E_Data_Safety = _3;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Rte_Inst_SWC_E2ESafety.1_4 = Rte_Inst_SWC_E2ESafety;
+  _5 = Rte_Inst_SWC_E2ESafety.1_4->UpdateE2EProtSafeData_P_E2E_SafeData_E2EProt_Data;
+  MEM[(struct Rte_DE_E2EProt_Data *)_5] = E2E_Data_Safety.0_1;
+  MEM[(struct Rte_DE_E2EProt_Data *)_5 + 2B] = 0;
+  MEM[(struct Rte_DE_E2EProt_Data *)_5 + 4B] = 0;
+  arg_Receive_data ={v} {CLOBBER};
+  # DEBUG D#1 => {CLOBBER}
+  # DEBUG arg_IWrite_data$SafetyE2E_Data => D#1
+  # DEBUG D#2 => {CLOBBER}
+  # DEBUG arg_IWrite_data$SafetyE2E_Data_CRC => D#2
+  # DEBUG D#3 => {CLOBBER}
+  # DEBUG arg_IWrite_data$SafetyE2E_Data_SQC_Counter => D#3
+  return;
+
+}
+
+

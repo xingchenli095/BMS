@@ -1,0 +1,578 @@
+
+
+ local analysis of OS_HookRestoreMemprot.isra.0
+   scanning: _2 = ISRA.16_31(D);
+  scanning: _3 = _2 & 1;
+  scanning: if (_3 == 0)
+  scanning: switch (oldInFunction_4(D)) <default: <L4> [20.00%], case 1: <L1> [20.00%], case 3: <L0> [20.00%], case 8: <L2> [20.00%], case 9: <L3> [20.00%]>
+  scanning: <L0>:
+  scanning: _6 = kernel_data_5(D)->isrCurrent;
+    Indirect ref read is not const
+  scanning: OS_nInterrupts.10_7 = OS_nInterrupts;
+  scanning: if (_6 < OS_nInterrupts.10_7)
+  scanning: OS_isrTableBase.11_8 = OS_isrTableBase;
+  scanning: _9 = (unsigned int) _6;
+  scanning: _10 = _9 * 68;
+  scanning: _11 = OS_isrTableBase.11_8 + _10;
+  scanning: _12 = _11->dynamic;
+    Indirect ref read is not const
+  scanning: OS_SetIsrProtection (_11, _12);
+  scanning: <L1>:
+  scanning: _13 = kernel_data_5(D)->taskCurrent;
+    Indirect ref read is not const
+  scanning: if (_13 != 0B)
+  scanning: OS_SetProtection (_13);
+  scanning: <L2>:
+  scanning: _15 = oldApp_14(D)->flags;
+    Indirect ref read is not const
+  scanning: _16 = _15 & 1;
+  scanning: if (_16 == 0)
+  scanning: _17 = &kernel_data_5(D)->sHookContext.c;
+  scanning: OS_sHookMpuSize.13_18 = OS_sHookMpuSize;
+  scanning: _19 = (unsigned int) OS_sHookMpuSize.13_18;
+  scanning: OS_SetHookProtection (oldApp_14(D), _17, _19);
+  scanning: <L3>:
+  scanning: _20 = oldApp_14(D)->flags;
+    Indirect ref read is not const
+  scanning: _21 = _20 & 1;
+  scanning: if (_21 == 0)
+  scanning: _22 = &kernel_data_5(D)->sHookContext.c;
+  scanning: OS_sHookMpuSize.14_23 = OS_sHookMpuSize;
+  scanning: _24 = (unsigned int) OS_sHookMpuSize.14_23;
+  scanning: OS_SetHookProtection (oldApp_14(D), _22, _24);
+  scanning: <L4>:
+  scanning: return;
+Function is locally pure.
+
+
+ local analysis of OS_CallErrorHook
+   scanning: saveHookApp_32 = OS_kernelData.hookApp;
+  scanning: OS_kernelData.hookApp = app_33(D);
+  scanning: OS_configMode.1_1 = OS_configMode;
+  scanning: _2 = OS_configMode.1_1 & 64;
+  scanning: if (_2 != 0)
+  scanning: __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_35);
+    volatile is not const/pure
+  scanning: _3 = OS_kernelData.iStackBase;
+  scanning: _4 = OS_getSpResult_35 - _3;
+  scanning: _5 = app_33(D)->errorHookStack;
+    Indirect ref read is not const
+  scanning: _6 = (int) _5;
+  scanning: if (_4 <= _6)
+  scanning: OS_Error (&OS_svc_HookHandler, 57, 0B);
+  scanning: saveInFunction_36 = OS_kernelData.inFunction;
+  scanning: OS_kernelData.inFunction = 10;
+  scanning: is_39 = OS_IntDisableConditional ();
+  scanning: saveNestSuspendAll_40 = OS_kernelData.nestSuspendAll;
+  scanning: saveOldSuspendAll_41 = OS_kernelData.oldSuspendAll;
+  scanning: OS_kernelData.nestSuspendAll = 0;
+  scanning: _7 = OS_configMode.1_1 & 8192;
+  scanning: if (_7 != 0)
+  scanning: _8 = app_33(D)->errorHook;
+    Indirect ref read is not const
+  scanning: _8 (code_49(D));
+  scanning: __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_43);
+    volatile is not const/pure
+  scanning: _9 = (unsigned int) OS_getSpResult_43;
+  scanning: _10 = _9 + 4294967232;
+  scanning: OS_eHookMpuSize.4_11 = OS_eHookMpuSize;
+  scanning: if (OS_eHookMpuSize.4_11 != 0)
+  scanning: _12 = (unsigned int) OS_eHookMpuSize.4_11;
+  scanning: _13 = _12 >> 1;
+  scanning: _14 = _13 + 1;
+  scanning: _15 = 1 << _14;
+  scanning: iftmp.3_44 = -_15;
+  scanning: _16 = _10 & iftmp.3_27;
+  scanning: _17 = (os_stackelement_t *) _16;
+  scanning: OS_kernelData.eHookContext.c.sp = _17;
+  scanning: OS_eHookStackLen.6_18 = OS_eHookStackLen;
+  scanning: _19 = OS_eHookStackLen.6_18 & 4294967292;
+  scanning: _20 = -_19;
+  scanning: _21 = _17 + _20;
+  scanning: OS_kernelData.eHookContext.c.stackLimit = _21;
+  scanning: _22 = (unsigned int) OS_eHookMpuSize.4_11;
+  scanning: OS_SetHookProtection (app_33(D), &OS_kernelData.eHookContext.c, _22);
+  scanning: OS_kernDisableLevel.8_23 = OS_kernDisableLevel;
+  scanning: _24 = app_33(D)->errorHook;
+    Indirect ref read is not const
+  scanning: _25 = OS_kernelData.eHookContext.c.sp;
+  scanning: iftmp.9_48 = app_33(D)->flags;
+    Indirect ref read is not const
+  scanning: OS_CORTEXM_Call (OS_kernDisableLevel.8_23, _24, &OS_kernelData.eHookContext.c.sp, _25, iftmp.9_48, code_49(D));
+  scanning: OS_kernelData.eHookContext.c.sp = 0B;
+  scanning: OS_kernelData.eHookContext.c.stackLimit = 0B;
+  scanning: _62 = MEM[(unsigned char *)app_33(D) + 53B];
+    Indirect ref read is not const
+  scanning: OS_HookRestoreMemprot.isra.0 (&OS_kernelData, _62, saveHookApp_32, saveInFunction_36);
+  scanning: _26 = OS_kernelData.nestSuspendAll;
+  scanning: if (_26 != 0)
+  scanning: OS_Error (&OS_svc_HookHandler, 55, 0B);
+  scanning: OS_kernelData.nestSuspendAll = saveNestSuspendAll_40;
+  scanning: OS_kernelData.oldSuspendAll = saveOldSuspendAll_41;
+  scanning: OS_CORTEXM_IntSetDisablingLevel (is_39);
+  scanning: OS_kernelData.inFunction = saveInFunction_36;
+  scanning: OS_kernelData.hookApp = saveHookApp_32;
+  scanning: return;
+Function is locally looping.
+Function can locally free.
+callgraph:
+
+OS_HookRestoreMemprot.isra.0.constprop.0/19 (OS_HookRestoreMemprot.isra.0.constprop) @06cd1c40
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06b6de78
+  References: OS_nInterrupts/13 (read)OS_isrTableBase/14 (read)OS_sHookMpuSize/17 (read)OS_sHookMpuSize/17 (read)OS_kernelData/2 (addr)
+  Referring: 
+  Function OS_HookRestoreMemprot.isra.0.constprop/19 is inline copy in OS_CallErrorHook/1
+  Clone of OS_HookRestoreMemprot.isra.0/18
+  Availability: local
+  Function flags: count:418168753 (estimated locally) local optimize_size
+  Called by: OS_CallErrorHook/1 (inlined) (418168753 (estimated locally),0.39 per call) 
+  Calls: OS_SetIsrProtection/15 (13799569 (estimated locally),0.01 per call) OS_SetProtection/16 (22359483 (estimated locally),0.02 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) 
+OS_HookRestoreMemprot.isra.0/18 (OS_HookRestoreMemprot.isra.0) @06df79a0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly artificial
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+OS_SetProtection/16 (OS_SetProtection) @06d7f8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (22359483 (estimated locally),0.02 per call) 
+  Calls: 
+OS_SetIsrProtection/15 (OS_SetIsrProtection) @06d7f7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/12 (OS_CORTEXM_IntSetDisablingLevel) @06d7f620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (836337507 (estimated locally),0.78 per call) 
+  Calls: 
+OS_CORTEXM_Call/11 (OS_CORTEXM_Call) @06d7f540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (418168753 (estimated locally),0.39 per call) 
+  Calls: 
+OS_SetHookProtection/9 (OS_SetHookProtection) @06d7f460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) OS_CallErrorHook/1 (418168753 (estimated locally),0.39 per call) 
+  Calls: 
+OS_IntDisableConditional/6 (OS_IntDisableConditional) @06d7f380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (836337506 (estimated locally),0.78 per call) 
+  Calls: 
+OS_Error/4 (OS_Error) @06d7f1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (275991377 (estimated locally),0.26 per call) OS_CallErrorHook/1 (237404317 (estimated locally),0.22 per call) 
+  Calls: 
+OS_CallErrorHook/1 (OS_CallErrorHook) @06d7f000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b6e0f8
+  References: OS_kernelData/2 (read)OS_kernelData/2 (write)OS_configMode/3 (read)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_eHookMpuSize/7 (read)OS_kernelData/2 (write)OS_eHookStackLen/8 (read)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernDisableLevel/10 (read)OS_kernelData/2 (read)OS_kernelData/2 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/12 (836337507 (estimated locally),0.78 per call) OS_Error/4 (275991377 (estimated locally),0.26 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (inlined) (418168753 (estimated locally),0.39 per call) OS_CORTEXM_Call/11 (418168753 (estimated locally),0.39 per call) OS_SetHookProtection/9 (418168753 (estimated locally),0.39 per call) OS_IntDisableConditional/6 (836337506 (estimated locally),0.78 per call) OS_Error/4 (237404317 (estimated locally),0.22 per call) 
+   Indirect call(418168753 (estimated locally),0.39 per call)  of param:0 loaded from aggregate passed by reference at offset 96 (vptr maybe changed)
+
+
+ ordered call graph: reduced for nothrow
+OS_HookRestoreMemprot.isra.0.constprop.0/19 (OS_HookRestoreMemprot.isra.0.constprop) @06cd1c40
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06b6de78
+  References: OS_nInterrupts/13 (read)OS_isrTableBase/14 (read)OS_sHookMpuSize/17 (read)OS_sHookMpuSize/17 (read)OS_kernelData/2 (addr)
+  Referring: 
+  Function OS_HookRestoreMemprot.isra.0.constprop/19 is inline copy in OS_CallErrorHook/1
+  Clone of OS_HookRestoreMemprot.isra.0/18
+  Availability: local
+  Function flags: count:418168753 (estimated locally) local optimize_size
+  Called by: OS_CallErrorHook/1 (inlined) (418168753 (estimated locally),0.39 per call) 
+  Calls: OS_SetIsrProtection/15 (13799569 (estimated locally),0.01 per call) OS_SetProtection/16 (22359483 (estimated locally),0.02 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) 
+OS_CallErrorHook/1 (OS_CallErrorHook) @06d7f000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b6e0f8
+  References: OS_kernelData/2 (read)OS_kernelData/2 (write)OS_configMode/3 (read)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_eHookMpuSize/7 (read)OS_kernelData/2 (write)OS_eHookStackLen/8 (read)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernDisableLevel/10 (read)OS_kernelData/2 (read)OS_kernelData/2 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/12 (836337507 (estimated locally),0.78 per call) OS_Error/4 (275991377 (estimated locally),0.26 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (inlined) (418168753 (estimated locally),0.39 per call) OS_CORTEXM_Call/11 (418168753 (estimated locally),0.39 per call) OS_SetHookProtection/9 (418168753 (estimated locally),0.39 per call) OS_IntDisableConditional/6 (836337506 (estimated locally),0.78 per call) OS_Error/4 (237404317 (estimated locally),0.22 per call) 
+   Indirect call(418168753 (estimated locally),0.39 per call)  of param:0 loaded from aggregate passed by reference at offset 96 (vptr maybe changed)
+
+
+
+MALLOC LATTICE Initial:
+OS_HookRestoreMemprot.isra.0.constprop: malloc_bottom
+OS_HookRestoreMemprot.isra.0: malloc_bottom
+OS_CallErrorHook: malloc_bottom
+
+
+MALLOC LATTICE after propagation:
+OS_HookRestoreMemprot.isra.0.constprop: malloc_bottom
+OS_HookRestoreMemprot.isra.0: malloc_bottom
+OS_CallErrorHook: malloc_bottom
+callgraph:
+
+OS_HookRestoreMemprot.isra.0.constprop.0/19 (OS_HookRestoreMemprot.isra.0.constprop) @06cd1c40
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06b6de78
+  References: OS_nInterrupts/13 (read)OS_isrTableBase/14 (read)OS_sHookMpuSize/17 (read)OS_sHookMpuSize/17 (read)OS_kernelData/2 (addr)
+  Referring: 
+  Function OS_HookRestoreMemprot.isra.0.constprop/19 is inline copy in OS_CallErrorHook/1
+  Clone of OS_HookRestoreMemprot.isra.0/18
+  Availability: local
+  Function flags: count:418168753 (estimated locally) local optimize_size
+  Called by: OS_CallErrorHook/1 (inlined) (418168753 (estimated locally),0.39 per call) 
+  Calls: OS_SetIsrProtection/15 (13799569 (estimated locally),0.01 per call) OS_SetProtection/16 (22359483 (estimated locally),0.02 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) 
+OS_HookRestoreMemprot.isra.0/18 (OS_HookRestoreMemprot.isra.0) @06df79a0
+  Type: function
+  Body removed by symtab_remove_unreachable_nodes
+  Visibility: prevailing_def_ironly artificial
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: count:1073741824 (estimated locally) body optimize_size
+  Called by: 
+  Calls: 
+OS_SetProtection/16 (OS_SetProtection) @06d7f8c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (22359483 (estimated locally),0.02 per call) 
+  Calls: 
+OS_SetIsrProtection/15 (OS_SetIsrProtection) @06d7f7e0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) 
+  Calls: 
+OS_CORTEXM_IntSetDisablingLevel/12 (OS_CORTEXM_IntSetDisablingLevel) @06d7f620
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (836337507 (estimated locally),0.78 per call) 
+  Calls: 
+OS_CORTEXM_Call/11 (OS_CORTEXM_Call) @06d7f540
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (418168753 (estimated locally),0.39 per call) 
+  Calls: 
+OS_SetHookProtection/9 (OS_SetHookProtection) @06d7f460
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (13799569 (estimated locally),0.01 per call) OS_CallErrorHook/1 (418168753 (estimated locally),0.39 per call) 
+  Calls: 
+OS_IntDisableConditional/6 (OS_IntDisableConditional) @06d7f380
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (836337506 (estimated locally),0.78 per call) 
+  Calls: 
+OS_Error/4 (OS_Error) @06d7f1c0
+  Type: function
+  Visibility: external public
+  References: 
+  Referring: 
+  Availability: not_available
+  Function flags: optimize_size
+  Called by: OS_CallErrorHook/1 (275991377 (estimated locally),0.26 per call) OS_CallErrorHook/1 (237404317 (estimated locally),0.22 per call) 
+  Calls: 
+OS_CallErrorHook/1 (OS_CallErrorHook) @06d7f000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b6df58
+  References: OS_kernelData/2 (read)OS_kernelData/2 (write)OS_configMode/3 (read)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_eHookMpuSize/7 (read)OS_kernelData/2 (write)OS_eHookStackLen/8 (read)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernDisableLevel/10 (read)OS_kernelData/2 (read)OS_kernelData/2 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/12 (836337507 (estimated locally),0.78 per call) OS_Error/4 (275991377 (estimated locally),0.26 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (inlined) (418168753 (estimated locally),0.39 per call) OS_CORTEXM_Call/11 (418168753 (estimated locally),0.39 per call) OS_SetHookProtection/9 (418168753 (estimated locally),0.39 per call) OS_IntDisableConditional/6 (836337506 (estimated locally),0.78 per call) OS_Error/4 (237404317 (estimated locally),0.22 per call) 
+   Indirect call(418168753 (estimated locally),0.39 per call)  of param:0 loaded from aggregate passed by reference at offset 96 (vptr maybe changed)
+
+
+ ordered call graph: reduced
+OS_CallErrorHook/1 (OS_CallErrorHook) @06d7f000
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  Aux: @06b6df58
+  References: OS_kernelData/2 (read)OS_kernelData/2 (write)OS_configMode/3 (read)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_kernelData/2 (read)OS_kernelData/2 (read)OS_kernelData/2 (write)OS_eHookMpuSize/7 (read)OS_kernelData/2 (write)OS_eHookStackLen/8 (read)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernDisableLevel/10 (read)OS_kernelData/2 (read)OS_kernelData/2 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (addr)OS_kernelData/2 (read)OS_svc_HookHandler/5 (addr)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)OS_kernelData/2 (write)
+  Referring: 
+  Availability: available
+  Function flags: count:1073741823 (estimated locally) body optimize_size
+  Called by: 
+  Calls: OS_CORTEXM_IntSetDisablingLevel/12 (836337507 (estimated locally),0.78 per call) OS_Error/4 (275991377 (estimated locally),0.26 per call) OS_HookRestoreMemprot.isra.0.constprop/19 (inlined) (418168753 (estimated locally),0.39 per call) OS_CORTEXM_Call/11 (418168753 (estimated locally),0.39 per call) OS_SetHookProtection/9 (418168753 (estimated locally),0.39 per call) OS_IntDisableConditional/6 (836337506 (estimated locally),0.78 per call) OS_Error/4 (237404317 (estimated locally),0.22 per call) 
+   Indirect call(418168753 (estimated locally),0.39 per call)  of param:0 loaded from aggregate passed by reference at offset 96 (vptr maybe changed)
+OS_HookRestoreMemprot.isra.0.constprop.0/19 (OS_HookRestoreMemprot.isra.0.constprop) @06cd1c40
+  Type: function definition analyzed
+  Visibility: artificial
+  Aux: @06b6de78
+  References: OS_nInterrupts/13 (read)OS_isrTableBase/14 (read)OS_sHookMpuSize/17 (read)OS_sHookMpuSize/17 (read)OS_kernelData/2 (addr)
+  Referring: 
+  Function OS_HookRestoreMemprot.isra.0.constprop/19 is inline copy in OS_CallErrorHook/1
+  Clone of OS_HookRestoreMemprot.isra.0/18
+  Availability: local
+  Function flags: count:418168753 (estimated locally) local optimize_size
+  Called by: OS_CallErrorHook/1 (inlined) (418168753 (estimated locally),0.39 per call) 
+  Calls: OS_SetIsrProtection/15 (13799569 (estimated locally),0.01 per call) OS_SetProtection/16 (22359483 (estimated locally),0.02 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) OS_SetHookProtection/9 (13799569 (estimated locally),0.01 per call) 
+
+__attribute__((target ("general-regs-only")))
+OS_CallErrorHook (const struct os_appcontext_t * app, os_result_t code)
+{
+  register os_stackelement_t * OS_getSpResult;
+  register os_stackelement_t * OS_getSpResult;
+  os_intstatus_t is;
+  os_uint8_t saveInFunction;
+  os_oldlevel_t saveOldSuspendAll;
+  os_uint8_t saveNestSuspendAll;
+  const struct os_appcontext_t * saveHookApp;
+  unsigned int OS_configMode.1_1;
+  unsigned int _2;
+  os_stackelement_t * _3;
+  int _4;
+  unsigned int _5;
+  int _6;
+  unsigned int _7;
+  void (*<T4f2>) (os_result_t) _8;
+  unsigned int _9;
+  unsigned int _10;
+  unsigned char OS_eHookMpuSize.4_11;
+  unsigned int _12;
+  unsigned int _13;
+  unsigned int _14;
+  unsigned int _15;
+  unsigned int _16;
+  os_stackelement_t * _17;
+  unsigned int OS_eHookStackLen.6_18;
+  sizetype _19;
+  sizetype _20;
+  os_stackelement_t * _21;
+  unsigned int _22;
+  short unsigned int OS_kernDisableLevel.8_23;
+  void (*<T4f2>) (os_result_t) _24;
+  os_stackelement_t * _25;
+  unsigned char _26;
+  unsigned int iftmp.3_27;
+  unsigned int iftmp.3_44;
+  os_uint8_t iftmp.9_48;
+  unsigned char _62;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  saveHookApp_32 = OS_kernelData.hookApp;
+  # DEBUG saveHookApp => saveHookApp_32
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = app_33(D);
+  # DEBUG BEGIN_STMT
+  OS_configMode.1_1 = OS_configMode;
+  _2 = OS_configMode.1_1 & 64;
+  if (_2 != 0)
+    goto <bb 3>; [67.00%]
+  else
+    goto <bb 5>; [33.00%]
+
+  <bb 3> [local count: 719407022]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_35);
+  # DEBUG OS_getSpResult => OS_getSpResult_35
+  # DEBUG BEGIN_STMT
+  _3 = OS_kernelData.iStackBase;
+  _4 = OS_getSpResult_35 - _3;
+  _5 = app_33(D)->errorHookStack;
+  _6 = (int) _5;
+  if (_4 <= _6)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 237404317]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_HookHandler, 57, 0B);
+  goto <bb 13>; [100.00%]
+
+  <bb 5> [local count: 836337506]:
+  # DEBUG BEGIN_STMT
+  saveInFunction_36 = OS_kernelData.inFunction;
+  # DEBUG saveInFunction => saveInFunction_36
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = 10;
+  # DEBUG BEGIN_STMT
+  is_39 = OS_IntDisableConditional ();
+  # DEBUG is => is_39
+  # DEBUG BEGIN_STMT
+  saveNestSuspendAll_40 = OS_kernelData.nestSuspendAll;
+  # DEBUG saveNestSuspendAll => saveNestSuspendAll_40
+  # DEBUG BEGIN_STMT
+  saveOldSuspendAll_41 = OS_kernelData.oldSuspendAll;
+  # DEBUG saveOldSuspendAll => saveOldSuspendAll_41
+  # DEBUG BEGIN_STMT
+  OS_kernelData.nestSuspendAll = 0;
+  # DEBUG BEGIN_STMT
+  _7 = OS_configMode.1_1 & 8192;
+  if (_7 != 0)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 418168753]:
+  # DEBUG BEGIN_STMT
+  _8 = app_33(D)->errorHook;
+  _8 (code_49(D));
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 418168753]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG k_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  __asm__ __volatile__("mov	%0, r13" : "result" "=r" OS_getSpResult_43);
+  # DEBUG OS_getSpResult => OS_getSpResult_43
+  # DEBUG BEGIN_STMT
+  _9 = (unsigned int) OS_getSpResult_43;
+  _10 = _9 + 4294967232;
+  OS_eHookMpuSize.4_11 = OS_eHookMpuSize;
+  if (OS_eHookMpuSize.4_11 != 0)
+    goto <bb 8>; [50.00%]
+  else
+    goto <bb 9>; [50.00%]
+
+  <bb 8> [local count: 209084376]:
+  _12 = (unsigned int) OS_eHookMpuSize.4_11;
+  _13 = _12 >> 1;
+  _14 = _13 + 1;
+  _15 = 1 << _14;
+  iftmp.3_44 = -_15;
+
+  <bb 9> [local count: 418168753]:
+  # iftmp.3_27 = PHI <iftmp.3_44(8), 4294967288(7)>
+  _16 = _10 & iftmp.3_27;
+  _17 = (os_stackelement_t *) _16;
+  OS_kernelData.eHookContext.c.sp = _17;
+  # DEBUG BEGIN_STMT
+  OS_eHookStackLen.6_18 = OS_eHookStackLen;
+  _19 = OS_eHookStackLen.6_18 & 4294967292;
+  _20 = -_19;
+  _21 = _17 + _20;
+  OS_kernelData.eHookContext.c.stackLimit = _21;
+  # DEBUG BEGIN_STMT
+  _22 = (unsigned int) OS_eHookMpuSize.4_11;
+  OS_SetHookProtection (app_33(D), &OS_kernelData.eHookContext.c, _22);
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.8_23 = OS_kernDisableLevel;
+  _24 = app_33(D)->errorHook;
+  _25 = OS_kernelData.eHookContext.c.sp;
+  iftmp.9_48 = app_33(D)->flags;
+  OS_CORTEXM_Call (OS_kernDisableLevel.8_23, _24, &OS_kernelData.eHookContext.c.sp, _25, iftmp.9_48, code_49(D));
+  # DEBUG BEGIN_STMT
+  OS_kernelData.eHookContext.c.sp = 0B;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.eHookContext.c.stackLimit = 0B;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _62 = MEM[(unsigned char *)app_33(D) + 53B];
+  # DEBUG D#1 => app_33(D)
+  OS_HookRestoreMemprot.isra.0 (&OS_kernelData, _62, saveHookApp_32, saveInFunction_36);
+
+  <bb 10> [local count: 836337506]:
+  # DEBUG BEGIN_STMT
+  _26 = OS_kernelData.nestSuspendAll;
+  if (_26 != 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 11> [local count: 275991377]:
+  # DEBUG BEGIN_STMT
+  OS_Error (&OS_svc_HookHandler, 55, 0B);
+
+  <bb 12> [local count: 836337507]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.nestSuspendAll = saveNestSuspendAll_40;
+  # DEBUG BEGIN_STMT
+  OS_kernelData.oldSuspendAll = saveOldSuspendAll_41;
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_39);
+  # DEBUG BEGIN_STMT
+  OS_kernelData.inFunction = saveInFunction_36;
+
+  <bb 13> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  OS_kernelData.hookApp = saveHookApp_32;
+  return;
+
+}
+
+

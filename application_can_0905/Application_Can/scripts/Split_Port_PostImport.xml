@@ -1,0 +1,22 @@
+<Script xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation='Scriptor.xsd'>
+	<Name>Split_Port_PostImport</Name>
+	<Decription>desc</Decription>
+	<Expression>as:modconf('Port')[1]</Expression>
+	<Operations>
+
+		<Operation Type= "ForEach">
+			<Expression>as:modconf('Port')[1]/PortConfigSet/PortContainer/*/PortPin/*/PortPinMode</Expression>
+			<Operations>
+				<Operation Type= "Condition">
+				<Expression>not(node:exists(./*))</Expression>
+					<Operations>
+						<Operation Type="Add">
+							<Expression>'PORT_PIN_MODE_ALL'</Expression>
+						</Operation>
+					</Operations>
+				</Operation>
+			</Operations>	
+		</Operation>
+
+	</Operations>
+</Script>

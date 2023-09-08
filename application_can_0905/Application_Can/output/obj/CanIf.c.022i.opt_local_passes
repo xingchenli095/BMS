@@ -1,0 +1,3417 @@
+CanIf_ProcessTxLength (PduIdType CanIfTxPduId, PduLengthType RequestedTxLength)
+{
+  PduLengthType TransmitLength;
+  PduLengthType MaxFrameLength;
+  uint8 truncOpt;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.28_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct CanIf_TxLPduConfigType * _4;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.29_5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct CanIf_TxLPduConfigType * _8;
+  long unsigned int _9;
+  long unsigned int _10;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.30_11;
+  unsigned int _12;
+  unsigned int _13;
+  const struct CanIf_TxLPduConfigType * _14;
+  short unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  unsigned int _19;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.31_20;
+  unsigned int _21;
+  unsigned int _22;
+  const struct CanIf_TxLPduConfigType * _23;
+  PduLengthType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.28_1 = CanIf_TxPduConfigPtr;
+  _2 = (unsigned int) CanIfTxPduId_28(D);
+  _3 = _2 * 16;
+  _4 = CanIf_TxPduConfigPtr.28_1 + _3;
+  truncOpt_29 = _4->truncateOptions;
+  # DEBUG truncOpt => truncOpt_29
+  # DEBUG BEGIN_STMT
+  MaxFrameLength_30 = 8;
+  # DEBUG MaxFrameLength => MaxFrameLength_30
+  # DEBUG BEGIN_STMT
+  TransmitLength_31 = 255;
+  # DEBUG TransmitLength => TransmitLength_31
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.29_5 = CanIf_TxPduConfigPtr;
+  _6 = (unsigned int) CanIfTxPduId_28(D);
+  _7 = _6 * 16;
+  _8 = CanIf_TxPduConfigPtr.29_5 + _7;
+  _9 = _8->canId;
+  _10 = _9 & 1073741824;
+  if (_10 != 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  MaxFrameLength_32 = 64;
+  # DEBUG MaxFrameLength => MaxFrameLength_32
+
+  <bb 4> :
+  # MaxFrameLength_24 = PHI <MaxFrameLength_30(2), MaxFrameLength_32(3)>
+  # DEBUG MaxFrameLength => MaxFrameLength_24
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.30_11 = CanIf_TxPduConfigPtr;
+  _12 = (unsigned int) CanIfTxPduId_28(D);
+  _13 = _12 * 16;
+  _14 = CanIf_TxPduConfigPtr.30_11 + _13;
+  _15 = _14->PduLength;
+  if (RequestedTxLength_33(D) > _15)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _16 = (unsigned int) truncOpt_29;
+  _17 = _16 & 1;
+  if (_17 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _18 = (unsigned int) truncOpt_29;
+  _19 = _18 & 2;
+  if (_19 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  if (RequestedTxLength_33(D) > MaxFrameLength_24)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  TransmitLength_38 = MaxFrameLength_24;
+  # DEBUG TransmitLength => TransmitLength_38
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 5, 11);
+  goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  TransmitLength_37 = RequestedTxLength_33(D);
+  # DEBUG TransmitLength => TransmitLength_37
+  goto <bb 13>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.31_20 = CanIf_TxPduConfigPtr;
+  _21 = (unsigned int) CanIfTxPduId_28(D);
+  _22 = _21 * 16;
+  _23 = CanIf_TxPduConfigPtr.31_20 + _22;
+  TransmitLength_36 = _23->PduLength;
+  # DEBUG TransmitLength => TransmitLength_36
+  goto <bb 13>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR43_ReportRuntimeError (60, 0, 5, 90);
+  goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  TransmitLength_34 = RequestedTxLength_33(D);
+  # DEBUG TransmitLength => TransmitLength_34
+
+  <bb 13> :
+  # TransmitLength_25 = PHI <TransmitLength_31(11), TransmitLength_34(12), TransmitLength_36(10), TransmitLength_38(8), TransmitLength_37(9)>
+  # DEBUG TransmitLength => TransmitLength_25
+  # DEBUG BEGIN_STMT
+  _40 = TransmitLength_25;
+  return _40;
+
+}
+
+
+CanIf_ProcessRxPdu (struct PduInfoType * PduInfoPtr, Can_IdType CanId, CanIf_LPduIndexType RxPduId, uint8 ControllerId)
+{
+  const uint8 cfgPduLength;
+  struct PduInfoType PduInfo;
+  boolean Rx_Condition_not_allowed;
+  const struct CanIf_RxLPduConfigType * const RxLPduConfig;
+  const struct CanIf_RxLPduConfigType * CanIf_RxPduConfigPtr.124_1;
+  unsigned int _2;
+  unsigned int _3;
+  int _4;
+  <unnamed type> _5;
+  int _6;
+  <unnamed type> _7;
+  int _8;
+  <unnamed type> _9;
+  short unsigned int _10;
+  unsigned char _11;
+  short unsigned int _12;
+  short unsigned int _13;
+  short unsigned int _14;
+  short unsigned int _15;
+  uint8 * _16;
+  int _17;
+  unsigned char _18;
+  int _19;
+  int _20;
+  int _21;
+  unsigned char _22;
+  int _23;
+  unsigned char _24;
+  unsigned char _25;
+  short unsigned int _26;
+  int iftmp.125_27;
+  int iftmp.125_37;
+  int iftmp.125_38;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanIf_RxPduConfigPtr.124_1 = CanIf_RxPduConfigPtr;
+  _2 = (unsigned int) RxPduId_32(D);
+  _3 = _2 * 4;
+  RxLPduConfig_33 = CanIf_RxPduConfigPtr.124_1 + _3;
+  # DEBUG RxLPduConfig => RxLPduConfig_33
+  # DEBUG BEGIN_STMT
+  Rx_Condition_not_allowed_34 = 0;
+  # DEBUG Rx_Condition_not_allowed => Rx_Condition_not_allowed_34
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = (int) ControllerId_36(D);
+  _5 = CanIf_CanControllerMode[_4];
+  if (_5 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  _6 = (int) ControllerId_36(D);
+  _7 = CanIf_PduMode[_6];
+  if (_7 != 3)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _8 = (int) ControllerId_36(D);
+  _9 = CanIf_PduMode[_8];
+  if (_9 != 1)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  iftmp.125_38 = 1;
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  iftmp.125_37 = 0;
+
+  <bb 7> :
+  # iftmp.125_27 = PHI <iftmp.125_38(5), iftmp.125_37(6)>
+  Rx_Condition_not_allowed_39 = (boolean) iftmp.125_27;
+  # DEBUG Rx_Condition_not_allowed => Rx_Condition_not_allowed_39
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (Rx_Condition_not_allowed_39 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _10 = PduInfoPtr_41(D)->SduLength;
+  _11 = (unsigned char) _10;
+  _12 = (short unsigned int) _11;
+  PduInfo.SduLength = _12;
+  # DEBUG BEGIN_STMT
+  cfgPduLength_43 = RxLPduConfig_33->limitedPduLength;
+  # DEBUG cfgPduLength => cfgPduLength_43
+  # DEBUG BEGIN_STMT
+  _13 = PduInfo.SduLength;
+  _14 = (short unsigned int) cfgPduLength_43;
+  if (_13 > _14)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _15 = (short unsigned int) cfgPduLength_43;
+  PduInfo.SduLength = _15;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _16 = PduInfoPtr_41(D)->SduDataPtr;
+  PduInfo.SduDataPtr = _16;
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _17 = (int) ControllerId_36(D);
+  _18 = CanIf_CanControllerFlags[_17];
+  _19 = (int) _18;
+  _20 = _19 & 8;
+  if (_20 != 0)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _21 = (int) ControllerId_36(D);
+  _22 = CanIf_CanControllerFlags[_21];
+  _23 = (int) ControllerId_36(D);
+  _24 = _22 & 247;
+  CanIf_CanControllerFlags[_23] = _24;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _25 = RxLPduConfig_33->userType;
+  _26 = RxLPduConfig_33->targetPduId;
+  CanIf_SendRxIndication (_25, _26, &PduInfo, CanId_49(D));
+  PduInfo ={v} {CLOBBER};
+
+  <bb 13> :
+  return;
+
+}
+
+
+CanIf_SendTxConfirmation (PduIdType CanTxPduId)
+{
+  PduIdType sourcePduId;
+  uint8 userType;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.32_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct CanIf_TxLPduConfigType * _4;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.33_5;
+  unsigned int _6;
+  unsigned int _7;
+  const struct CanIf_TxLPduConfigType * _8;
+  int _9;
+  void (*<T8f0>) (PduIdType) _10;
+  int _11;
+  void (*<T8f0>) (PduIdType) _12;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.32_1 = CanIf_TxPduConfigPtr;
+  _2 = (unsigned int) CanTxPduId_15(D);
+  _3 = _2 * 16;
+  _4 = CanIf_TxPduConfigPtr.32_1 + _3;
+  userType_16 = _4->userType;
+  # DEBUG userType => userType_16
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.33_5 = CanIf_TxPduConfigPtr;
+  _6 = (unsigned int) CanTxPduId_15(D);
+  _7 = _6 * 16;
+  _8 = CanIf_TxPduConfigPtr.33_5 + _7;
+  sourcePduId_17 = _8->sourcePduId_UL;
+  # DEBUG sourcePduId => sourcePduId_17
+  # DEBUG BEGIN_STMT
+  if (userType_16 != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _9 = (int) userType_16;
+  _10 = CanIf_CbkFctPtrTbl[_9].TxConfFctPtr;
+  if (_10 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _11 = (int) userType_16;
+  _12 = CanIf_CbkFctPtrTbl[_11].TxConfFctPtr;
+  _12 (sourcePduId_17);
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_SendRxIndication (uint8 userType, PduIdType RxLPduId, struct PduInfoType * PduInfoPtr, Can_IdType CanId)
+{
+  int _1;
+  void (*<T8e7>) (PduIdType, struct PduInfoType *) _2;
+  int _3;
+  void (*<T8e7>) (PduIdType, struct PduInfoType *) _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  if (userType_6(D) != 255)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) userType_6(D);
+  _2 = CanIf_CbkFctPtrTbl[_1].UlRxIndFctPtr;
+  if (_2 != 0B)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = (int) userType_6(D);
+  _4 = CanIf_CbkFctPtrTbl[_3].UlRxIndFctPtr;
+  _4 (RxLPduId_8(D), PduInfoPtr_9(D));
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_RxIndication_DetChecks (Can_HwHandleType Hrh, Can_IdType CanId, PduLengthType CanDlc, const uint8 * CanSduPtr)
+{
+  const uint16 CanIfHrhIdx;
+  Std_ReturnType RetCode;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.91_1;
+  unsigned char _2;
+  long unsigned int _3;
+  signed int CanId.92_4;
+  long unsigned int _5;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.93_6;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.94_7;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.95_8;
+  long unsigned int _9;
+  const struct CanIf_CanDriverConfigType * _10;
+  long unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  sizetype _14;
+  const uint16 * _15;
+  signed short CanIfHrhIdx.96_16;
+  Std_ReturnType _32;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetCode_19 = 1;
+  # DEBUG RetCode => RetCode_19
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.91_1 = CanIf_DriverConfigPtr;
+  _2 = CanIf_DriverConfigPtr.91_1->upperHohIdLimit;
+  if (Hrh_21(D) >= _2)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 12);
+  goto <bb 15>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = CanId_22(D) & 536870912;
+  if (_3 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  CanId.92_4 = (signed int) CanId_22(D);
+  if (CanId.92_4 >= 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  _5 = CanId_22(D) & 1073739776;
+  if (_5 != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 10);
+  goto <bb 15>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (CanDlc_23(D) > 64)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 11);
+  goto <bb 15>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (CanSduPtr_24(D) == 0B)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 20);
+  goto <bb 15>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.93_6 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.94_7 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.95_8 = CanIf_ConfigPtr;
+  _9 = CanIf_ConfigPtr.95_8->driverConfigPtr;
+  _10 = CanIf_ConfigPtr.94_7 + _9;
+  _11 = _10->hohIdToCanIfIdxPtr;
+  _12 = (unsigned int) Hrh_21(D);
+  _13 = _12 * 2;
+  _14 = _11 + _13;
+  _15 = CanIf_ConfigPtr.93_6 + _14;
+  CanIfHrhIdx_25 = *_15;
+  # DEBUG CanIfHrhIdx => CanIfHrhIdx_25
+  # DEBUG BEGIN_STMT
+  CanIfHrhIdx.96_16 = (signed short) CanIfHrhIdx_25;
+  if (CanIfHrhIdx.96_16 < 0)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 12);
+  goto <bb 15>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  RetCode_26 = 0;
+  # DEBUG RetCode => RetCode_26
+
+  <bb 15> :
+  # RetCode_17 = PHI <RetCode_19(3), RetCode_19(7), RetCode_19(9), RetCode_19(11), RetCode_19(13), RetCode_26(14)>
+  # DEBUG RetCode => RetCode_17
+  # DEBUG BEGIN_STMT
+  _32 = RetCode_17;
+  return _32;
+
+}
+
+
+CanIf_BinarySwFiltering (const CanIf_LPduIndexType FirstIdx, const CanIf_LPduIndexType LastIdx, const Can_IdType CanId, CanIf_LPduIndexType * const Index)
+{
+  uint32 cfgCanId;
+  sint32 middle;
+  sint32 right;
+  sint32 left;
+  Std_ReturnType RetVal;
+  long int _1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.115_2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.116_3;
+  long unsigned int _4;
+  unsigned int middle.117_5;
+  unsigned int _6;
+  sizetype _7;
+  const struct CanIf_SortedRxLPduConfigType * _8;
+  short unsigned int _9;
+  long int _10;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.118_11;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.119_12;
+  long unsigned int _13;
+  unsigned int middle.120_14;
+  unsigned int _15;
+  sizetype _16;
+  const struct CanIf_SortedRxLPduConfigType * _17;
+  long unsigned int _18;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.121_19;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.122_20;
+  long unsigned int _21;
+  unsigned int middle.123_22;
+  unsigned int _23;
+  sizetype _24;
+  const struct CanIf_SortedRxLPduConfigType * _25;
+  long unsigned int _26;
+  short unsigned int _27;
+  Std_ReturnType _54;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_37 = 1;
+  # DEBUG RetVal => RetVal_37
+  # DEBUG BEGIN_STMT
+  left_39 = (sint32) FirstIdx_38(D);
+  # DEBUG left => left_39
+  # DEBUG BEGIN_STMT
+  right_41 = (sint32) LastIdx_40(D);
+  # DEBUG right => right_41
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (left_39 > right_41)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 3>; [INV]
+
+  <bb 3> :
+  # left_30 = PHI <left_39(2), left_31(8)>
+  # right_32 = PHI <right_41(2), right_33(8)>
+  # DEBUG right => right_32
+  # DEBUG left => left_30
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = left_30 + right_32;
+  middle_43 = _1 / 2;
+  # DEBUG middle => middle_43
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.115_2 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.116_3 = CanIf_ConfigPtr;
+  _4 = CanIf_ConfigPtr.116_3->sortedRxLPduConfigPtr;
+  middle.117_5 = (unsigned int) middle_43;
+  _6 = middle.117_5 * 12;
+  _7 = _4 + _6;
+  _8 = CanIf_ConfigPtr.115_2 + _7;
+  cfgCanId_44 = _8->canId;
+  # DEBUG cfgCanId => cfgCanId_44
+  # DEBUG BEGIN_STMT
+  if (cfgCanId_44 == CanId_45(D))
+    goto <bb 4>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _9 = (short unsigned int) middle_43;
+  *Index_48(D) = _9;
+  # DEBUG BEGIN_STMT
+  RetVal_50 = 0;
+  # DEBUG RetVal => RetVal_50
+  # DEBUG BEGIN_STMT
+  goto <bb 9>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  if (CanId_45(D) < cfgCanId_44)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  right_47 = middle_43 + -1;
+  # DEBUG right => right_47
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  left_46 = middle_43 + 1;
+  # DEBUG left => left_46
+
+  <bb 8> :
+  # left_31 = PHI <left_30(6), left_46(7)>
+  # right_33 = PHI <right_47(6), right_32(7)>
+  # DEBUG right => right_33
+  # DEBUG left => left_31
+  # DEBUG BEGIN_STMT
+  if (left_31 <= right_33)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # RetVal_28 = PHI <RetVal_50(4), RetVal_37(8)>
+  # DEBUG RetVal => RetVal_28
+  # DEBUG BEGIN_STMT
+  if (RetVal_28 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  if (cfgCanId_44 > CanId_45(D))
+    goto <bb 11>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  middle_51 = middle_43 + -1;
+  # DEBUG middle => middle_51
+
+  <bb 12> :
+  # middle_34 = PHI <middle_43(10), middle_51(11)>
+  # DEBUG middle => middle_34
+  # DEBUG BEGIN_STMT
+  _10 = (long int) FirstIdx_38(D);
+  if (middle_34 >= _10)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 13> :
+  CanIf_ConfigPtr.118_11 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.119_12 = CanIf_ConfigPtr;
+  _13 = CanIf_ConfigPtr.119_12->sortedRxLPduConfigPtr;
+  middle.120_14 = (unsigned int) middle_34;
+  _15 = middle.120_14 * 12;
+  _16 = _13 + _15;
+  _17 = CanIf_ConfigPtr.118_11 + _16;
+  _18 = _17->upperRangeCanId;
+  if (_18 != 4294967295)
+    goto <bb 14>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 14> :
+  CanIf_ConfigPtr.121_19 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.122_20 = CanIf_ConfigPtr;
+  _21 = CanIf_ConfigPtr.122_20->sortedRxLPduConfigPtr;
+  middle.123_22 = (unsigned int) middle_34;
+  _23 = middle.123_22 * 12;
+  _24 = _21 + _23;
+  _25 = CanIf_ConfigPtr.121_19 + _24;
+  _26 = _25->upperRangeCanId;
+  if (CanId_45(D) <= _26)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  _27 = (short unsigned int) middle_34;
+  *Index_48(D) = _27;
+  # DEBUG BEGIN_STMT
+  RetVal_53 = 0;
+  # DEBUG RetVal => RetVal_53
+
+  <bb 16> :
+  # RetVal_29 = PHI <RetVal_37(2), RetVal_28(9), RetVal_28(12), RetVal_28(13), RetVal_28(14), RetVal_53(15)>
+  # DEBUG RetVal => RetVal_29
+  # DEBUG BEGIN_STMT
+  _54 = RetVal_29;
+  return _54;
+
+}
+
+
+CanIf_PerformSwFiltering (const CanIf_LPduIndexType FirstIdx, CanIf_LPduIndexType LastIdx, const Can_IdType CanId, CanIf_LPduIndexType * const Index)
+{
+  Std_ReturnType RetVal;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.107_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.108_2;
+  long unsigned int _3;
+  unsigned int _4;
+  unsigned int _5;
+  sizetype _6;
+  const struct CanIf_SortedRxLPduConfigType * _7;
+  long unsigned int _8;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.109_9;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.110_10;
+  long unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  sizetype _14;
+  const struct CanIf_SortedRxLPduConfigType * _15;
+  long unsigned int _16;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.111_17;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.112_18;
+  long unsigned int _19;
+  unsigned int _20;
+  unsigned int _21;
+  sizetype _22;
+  const struct CanIf_SortedRxLPduConfigType * _23;
+  long unsigned int _24;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.113_25;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.114_26;
+  long unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  sizetype _30;
+  const struct CanIf_SortedRxLPduConfigType * _31;
+  long unsigned int _32;
+  int iftmp.106_34;
+  int iftmp.106_44;
+  int iftmp.106_45;
+  Std_ReturnType _48;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_36 = 1;
+  # DEBUG RetVal => RetVal_36
+  # DEBUG BEGIN_STMT
+  if (FirstIdx_37(D) == LastIdx_38(D))
+    goto <bb 3>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.107_1 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.108_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.108_2->sortedRxLPduConfigPtr;
+  _4 = (unsigned int) FirstIdx_37(D);
+  _5 = _4 * 12;
+  _6 = _3 + _5;
+  _7 = CanIf_ConfigPtr.107_1 + _6;
+  _8 = _7->canId;
+  if (CanId_40(D) != _8)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  CanIf_ConfigPtr.109_9 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.110_10 = CanIf_ConfigPtr;
+  _11 = CanIf_ConfigPtr.110_10->sortedRxLPduConfigPtr;
+  _12 = (unsigned int) FirstIdx_37(D);
+  _13 = _12 * 12;
+  _14 = _11 + _13;
+  _15 = CanIf_ConfigPtr.109_9 + _14;
+  _16 = _15->upperRangeCanId;
+  if (_16 == 4294967295)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  CanIf_ConfigPtr.111_17 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.112_18 = CanIf_ConfigPtr;
+  _19 = CanIf_ConfigPtr.112_18->sortedRxLPduConfigPtr;
+  _20 = (unsigned int) FirstIdx_37(D);
+  _21 = _20 * 12;
+  _22 = _19 + _21;
+  _23 = CanIf_ConfigPtr.111_17 + _22;
+  _24 = _23->canId;
+  if (CanId_40(D) < _24)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  CanIf_ConfigPtr.113_25 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.114_26 = CanIf_ConfigPtr;
+  _27 = CanIf_ConfigPtr.114_26->sortedRxLPduConfigPtr;
+  _28 = (unsigned int) FirstIdx_37(D);
+  _29 = _28 * 12;
+  _30 = _27 + _29;
+  _31 = CanIf_ConfigPtr.113_25 + _30;
+  _32 = _31->upperRangeCanId;
+  if (CanId_40(D) > _32)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  iftmp.106_44 = 1;
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  iftmp.106_45 = 0;
+
+  <bb 9> :
+  # iftmp.106_34 = PHI <iftmp.106_44(7), iftmp.106_45(8)>
+  RetVal_46 = (Std_ReturnType) iftmp.106_34;
+  # DEBUG RetVal => RetVal_46
+  # DEBUG BEGIN_STMT
+  if (RetVal_46 == 0)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 12>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  *Index_41(D) = FirstIdx_37(D);
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  RetVal_43 = CanIf_BinarySwFiltering (FirstIdx_37(D), LastIdx_38(D), CanId_40(D), Index_41(D));
+  # DEBUG RetVal => RetVal_43
+
+  <bb 12> :
+  # RetVal_33 = PHI <RetVal_46(10), RetVal_43(11), RetVal_46(9)>
+  # DEBUG RetVal => RetVal_33
+  # DEBUG BEGIN_STMT
+  _48 = RetVal_33;
+  return _48;
+
+}
+
+
+CanIf_SoftwareFiltering (const uint16 CanIfHrhIdx, const Can_IdType CanId, CanIf_LPduIndexType * const Index)
+{
+  CanIf_LPduIndexType LastIdx;
+  CanIf_LPduIndexType FirstIdx;
+  Std_ReturnType RetVal;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.97_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.98_2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.99_3;
+  long unsigned int _4;
+  const struct CanIf_CanDriverConfigType * _5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_HrhConfigType * _10;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.100_11;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.101_12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.102_13;
+  long unsigned int _14;
+  const struct CanIf_CanDriverConfigType * _15;
+  long unsigned int _16;
+  unsigned int _17;
+  unsigned int _18;
+  sizetype _19;
+  const struct CanIf_HrhConfigType * _20;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.103_21;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.104_22;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.105_23;
+  long unsigned int _24;
+  const struct CanIf_CanDriverConfigType * _25;
+  long unsigned int _26;
+  unsigned int _27;
+  unsigned int _28;
+  sizetype _29;
+  const struct CanIf_HrhConfigType * _30;
+  unsigned char _31;
+  Std_ReturnType _46;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_34 = 1;
+  # DEBUG RetVal => RetVal_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.97_1 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.98_2 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.99_3 = CanIf_ConfigPtr;
+  _4 = CanIf_ConfigPtr.99_3->driverConfigPtr;
+  _5 = CanIf_ConfigPtr.98_2 + _4;
+  _6 = _5->hrhConfigPtr;
+  _7 = (unsigned int) CanIfHrhIdx_36(D);
+  _8 = _7 * 6;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.97_1 + _9;
+  FirstIdx_37 = _10->firstIndex;
+  # DEBUG FirstIdx => FirstIdx_37
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.100_11 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.101_12 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.102_13 = CanIf_ConfigPtr;
+  _14 = CanIf_ConfigPtr.102_13->driverConfigPtr;
+  _15 = CanIf_ConfigPtr.101_12 + _14;
+  _16 = _15->hrhConfigPtr;
+  _17 = (unsigned int) CanIfHrhIdx_36(D);
+  _18 = _17 * 6;
+  _19 = _16 + _18;
+  _20 = CanIf_ConfigPtr.100_11 + _19;
+  LastIdx_38 = _20->lastIndex;
+  # DEBUG LastIdx => LastIdx_38
+  # DEBUG BEGIN_STMT
+  if (LastIdx_38 != 65535)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 3> :
+  if (FirstIdx_37 != 65535)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.103_21 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.104_22 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.105_23 = CanIf_ConfigPtr;
+  _24 = CanIf_ConfigPtr.105_23->driverConfigPtr;
+  _25 = CanIf_ConfigPtr.104_22 + _24;
+  _26 = _25->hrhConfigPtr;
+  _27 = (unsigned int) CanIfHrhIdx_36(D);
+  _28 = _27 * 6;
+  _29 = _26 + _28;
+  _30 = CanIf_ConfigPtr.103_21 + _29;
+  _31 = _30->swFiltering;
+  if (_31 == 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  RetVal_44 = CanIf_PerformSwFiltering (FirstIdx_37, LastIdx_38, CanId_42(D), Index_39(D));
+  # DEBUG RetVal => RetVal_44
+  goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  *Index_39(D) = FirstIdx_37;
+  # DEBUG BEGIN_STMT
+  RetVal_41 = 0;
+  # DEBUG RetVal => RetVal_41
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_45 = 1;
+  # DEBUG RetVal => RetVal_45
+
+  <bb 8> :
+  # RetVal_32 = PHI <RetVal_41(6), RetVal_45(7), RetVal_44(5)>
+  # DEBUG RetVal => RetVal_32
+  # DEBUG BEGIN_STMT
+  _46 = RetVal_32;
+  return _46;
+
+}
+
+
+CanIf_SetOffline (uint8 ControllerId, CanIf_PduModeType OldPduMode)
+{
+  int _1;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  _1 = (int) ControllerId_2(D);
+  CanIf_PduMode[_1] = 0;
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_SetPduModeInternal (uint8 ControllerId, CanIf_PduModeType PduModeRequest)
+{
+  CanIf_PduModeType OldPduMode;
+  int _1;
+  int _2;
+  int _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.36_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.37_5;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.38_6;
+  long unsigned int _7;
+  const struct CanIf_CanDriverConfigType * _8;
+  long unsigned int _9;
+  unsigned int _10;
+  unsigned int _11;
+  sizetype _12;
+  const struct CanIf_CanControllerConfigType * _13;
+  unsigned char _14;
+  int _15;
+  unsigned char _16;
+  int _17;
+  unsigned char _18;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) ControllerId_20(D);
+  OldPduMode_22 = CanIf_PduMode[_1];
+  # DEBUG OldPduMode => OldPduMode_22
+  # DEBUG BEGIN_STMT
+  switch (PduModeRequest_23(D)) <default: <L2> [INV], case 0: <L0> [INV], case 3: <L1> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  CanIf_SetOffline (ControllerId_20(D), OldPduMode_22);
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+<L1>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _2 = (int) ControllerId_20(D);
+  CanIf_PduMode[_2] = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [INV]
+
+  <bb 5> :
+<L2>:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = (int) ControllerId_20(D);
+  CanIf_PduMode[_3] = 1;
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.36_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.37_5 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.38_6 = CanIf_ConfigPtr;
+  _7 = CanIf_ConfigPtr.38_6->driverConfigPtr;
+  _8 = CanIf_ConfigPtr.37_5 + _7;
+  _9 = _8->ctrlConfigPtr;
+  _10 = (unsigned int) ControllerId_20(D);
+  _11 = _10 * 12;
+  _12 = _9 + _11;
+  _13 = CanIf_ConfigPtr.36_4 + _12;
+  _14 = _13->pNFilterEnabled;
+  if (_14 == 1)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = (int) ControllerId_20(D);
+  _16 = CanIf_CanControllerFlags[_15];
+  _17 = (int) ControllerId_20(D);
+  _18 = _16 | 8;
+  CanIf_CanControllerFlags[_17] = _18;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+
+  <bb 7> :
+  return;
+
+}
+
+
+CanIf_SetControllerModeInternal (uint8 ControllerId, CanIf_ControllerModeType ControllerMode)
+{
+  uint8 canCtrlId;
+  uint8 canIdx;
+  Std_ReturnType RetVal;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.11_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.12_2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.13_3;
+  long unsigned int _4;
+  const struct CanIf_CanDriverConfigType * _5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanControllerConfigType * _10;
+  int _11;
+  int _12;
+  Std_ReturnType (*<T8c3>) (uint8, Can_ControllerStateType) _13;
+  unsigned char _14;
+  int _15;
+  Std_ReturnType (*<T8c3>) (uint8, Can_ControllerStateType) _16;
+  unsigned char _17;
+  int _18;
+  Std_ReturnType (*<T8c3>) (uint8, Can_ControllerStateType) _19;
+  unsigned char _20;
+  int _21;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.14_22;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.15_23;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.16_24;
+  long unsigned int _25;
+  const struct CanIf_CanDriverConfigType * _26;
+  long unsigned int _27;
+  unsigned int _28;
+  unsigned int _29;
+  sizetype _30;
+  const struct CanIf_CanControllerConfigType * _31;
+  unsigned char _32;
+  int _33;
+  unsigned char _34;
+  int _35;
+  unsigned char _36;
+  Std_ReturnType _55;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_40 = 1;
+  # DEBUG RetVal => RetVal_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  canIdx_41 = 0;
+  # DEBUG canIdx => canIdx_41
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.11_1 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.12_2 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.13_3 = CanIf_ConfigPtr;
+  _4 = CanIf_ConfigPtr.13_3->driverConfigPtr;
+  _5 = CanIf_ConfigPtr.12_2 + _4;
+  _6 = _5->ctrlConfigPtr;
+  _7 = (unsigned int) ControllerId_43(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.11_1 + _9;
+  canCtrlId_44 = _10->controllerId;
+  # DEBUG canCtrlId => canCtrlId_44
+  # DEBUG BEGIN_STMT
+  switch (ControllerMode_45(D)) <default: <L14> [INV], case 1: <L3> [INV], case 2: <L0> [INV], case 3: <L6> [INV]>
+
+  <bb 3> :
+<L0>:
+  # DEBUG BEGIN_STMT
+  _11 = (int) ControllerId_43(D);
+  CanIf_PduMode[_11] = 1;
+  # DEBUG BEGIN_STMT
+  _12 = (int) canIdx_41;
+  _13 = CanIf_CanDrvFctConfig[_12].SetControllerMode;
+  _14 = _13 (canCtrlId_44, 2);
+  if (_14 == 0)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  RetVal_52 = 0;
+  # DEBUG RetVal => RetVal_52
+  goto <bb 11>; [INV]
+
+  <bb 5> :
+<L3>:
+  # DEBUG BEGIN_STMT
+  _15 = (int) canIdx_41;
+  _16 = CanIf_CanDrvFctConfig[_15].SetControllerMode;
+  _17 = _16 (canCtrlId_44, 1);
+  if (_17 == 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  RetVal_54 = 0;
+  # DEBUG RetVal => RetVal_54
+  goto <bb 11>; [INV]
+
+  <bb 7> :
+<L6>:
+  # DEBUG BEGIN_STMT
+  _18 = (int) canIdx_41;
+  _19 = CanIf_CanDrvFctConfig[_18].SetControllerMode;
+  _20 = _19 (canCtrlId_44, 3);
+  if (_20 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  RetVal_47 = 0;
+  # DEBUG RetVal => RetVal_47
+
+  <bb 9> :
+  # RetVal_37 = PHI <RetVal_40(7), RetVal_47(8)>
+  # DEBUG RetVal => RetVal_37
+  # DEBUG BEGIN_STMT
+  _21 = (int) ControllerId_43(D);
+  CanIf_PduMode[_21] = 0;
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.14_22 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.15_23 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.16_24 = CanIf_ConfigPtr;
+  _25 = CanIf_ConfigPtr.16_24->driverConfigPtr;
+  _26 = CanIf_ConfigPtr.15_23 + _25;
+  _27 = _26->ctrlConfigPtr;
+  _28 = (unsigned int) ControllerId_43(D);
+  _29 = _28 * 12;
+  _30 = _27 + _29;
+  _31 = CanIf_ConfigPtr.14_22 + _30;
+  _32 = _31->pNFilterEnabled;
+  if (_32 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _33 = (int) ControllerId_43(D);
+  _34 = CanIf_CanControllerFlags[_33];
+  _35 = (int) ControllerId_43(D);
+  _36 = _34 | 8;
+  CanIf_CanControllerFlags[_35] = _36;
+
+  <bb 11> :
+  # RetVal_38 = PHI <RetVal_52(4), RetVal_54(6), RetVal_37(10), RetVal_40(2), RetVal_40(3), RetVal_40(5), RetVal_37(9)>
+<L14>:
+  # DEBUG RetVal => RetVal_38
+  # DEBUG BEGIN_STMT
+  _55 = RetVal_38;
+  return _55;
+
+}
+
+
+CanIf_CheckTrcvWakeFlagIndication (uint8 Transceiver)
+{
+  unsigned char CanIf_State.136_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.137_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.136_1 = CanIf_State;
+  if (CanIf_State.136_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 33, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.137_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.137_2->nrOfTransceivers;
+  if (Transceiver_6(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 33, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanSM_CheckTransceiverWakeFlagIndication (Transceiver_6(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_ClearTrcvWufFlagIndication (uint8 Transceiver)
+{
+  unsigned char CanIf_State.134_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.135_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.134_1 = CanIf_State;
+  if (CanIf_State.134_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 32, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.135_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.135_2->nrOfTransceivers;
+  if (Transceiver_6(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 32, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanSM_ClearTrcvWufFlagIndication (Transceiver_6(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_ConfirmPnAvailability (uint8 Transceiver)
+{
+  unsigned char CanIf_State.132_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.133_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.132_1 = CanIf_State;
+  if (CanIf_State.132_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 26, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.133_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.133_2->nrOfTransceivers;
+  if (Transceiver_6(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 26, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanSM_ConfirmPnAvailability (Transceiver_6(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_TrcvModeIndication (uint8 Transceiver, CanTrcv_TrcvModeType TransceiverMode)
+{
+  unsigned char CanIf_State.130_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.131_2;
+  unsigned char _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.130_1 = CanIf_State;
+  if (CanIf_State.130_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 24, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.131_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.131_2->nrOfTransceivers;
+  if (Transceiver_6(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 24, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanSM_TransceiverModeIndication (Transceiver_6(D), TransceiverMode_7(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_ControllerModeIndication (uint8 ControllerId, Can_ControllerStateType ControllerMode)
+{
+  unsigned char CanIf_State.128_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.129_2;
+  unsigned char _3;
+  int _4;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.128_1 = CanIf_State;
+  if (CanIf_State.128_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 23, 30);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.129_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.129_2->nrOfControllers;
+  if (ControllerId_7(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 23, 14);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ControllerMode_8(D) != 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  if (ControllerMode_8(D) != 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (ControllerMode_8(D) != 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 23, 21);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) ControllerId_7(D);
+  CanIf_CanControllerMode[_4] = ControllerMode_8(D);
+  # DEBUG BEGIN_STMT
+  CanSM_ControllerModeIndication (ControllerId_7(D), ControllerMode_8(D));
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_ControllerBusOff (uint8 Controller)
+{
+  unsigned char CanIf_State.126_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.127_2;
+  unsigned char _3;
+  int _4;
+  int _5;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.126_1 = CanIf_State;
+  if (CanIf_State.126_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 22, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.127_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.127_2->nrOfControllers;
+  if (Controller_8(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 22, 14);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = (int) Controller_8(D);
+  CanIf_CanControllerMode[_4] = 2;
+  # DEBUG BEGIN_STMT
+  _5 = (int) Controller_8(D);
+  CanIf_PduMode[_5] = 1;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanSM_ControllerBusOff (Controller_8(D));
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_RxIndication (const struct Can_HwType * Mailbox, const struct PduInfoType * PduInfoPtr)
+{
+  struct PduInfoType RxPduInfo;
+  const CanIf_LPduIndexType PduIdx;
+  const Std_ReturnType SwFilterResult;
+  CanIf_LPduIndexType Index;
+  const Can_IdType ConfCanId;
+  const uint16 CanIfHrhIdx;
+  const uint8 * CanSduPtrLcl;
+  const PduLengthType LclDlc;
+  const uint8 ControllerId;
+  const Can_IdType CanIdLcl;
+  const Can_HwHandleType HrhLcl;
+  unsigned char CanIf_State.84_1;
+  unsigned char _2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.85_3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.86_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.87_5;
+  long unsigned int _6;
+  const struct CanIf_CanDriverConfigType * _7;
+  long unsigned int _8;
+  long unsigned int _9;
+  unsigned char _10;
+  long unsigned int _11;
+  long unsigned int _12;
+  long unsigned int _13;
+  sizetype _14;
+  const uint16 * _15;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.88_16;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.89_17;
+  long unsigned int _18;
+  short unsigned int Index.90_19;
+  unsigned int _20;
+  unsigned int _21;
+  sizetype _22;
+  const struct CanIf_SortedRxLPduConfigType * _23;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.84_1 = CanIf_State;
+  if (CanIf_State.84_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 30);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (Mailbox_27(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 20, 20);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  HrhLcl_28 = Mailbox_27(D)->Hoh;
+  # DEBUG HrhLcl => HrhLcl_28
+  # DEBUG BEGIN_STMT
+  CanIdLcl_29 = Mailbox_27(D)->CanId;
+  # DEBUG CanIdLcl => CanIdLcl_29
+  # DEBUG BEGIN_STMT
+  ControllerId_30 = Mailbox_27(D)->ControllerId;
+  # DEBUG ControllerId => ControllerId_30
+  # DEBUG BEGIN_STMT
+  LclDlc_32 = PduInfoPtr_31(D)->SduLength;
+  # DEBUG LclDlc => LclDlc_32
+  # DEBUG BEGIN_STMT
+  CanSduPtrLcl_33 = PduInfoPtr_31(D)->SduDataPtr;
+  # DEBUG CanSduPtrLcl => CanSduPtrLcl_33
+  # DEBUG BEGIN_STMT
+  _2 = CanIf_RxIndication_DetChecks (HrhLcl_28, CanIdLcl_29, LclDlc_32, CanSduPtrLcl_33);
+  if (_2 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.85_3 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.86_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.87_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.87_5->driverConfigPtr;
+  _7 = CanIf_ConfigPtr.86_4 + _6;
+  _8 = _7->hohIdToCanIfIdxPtr;
+  _9 = (long unsigned int) HrhLcl_28;
+  _10 = CanIf_CanDrvFctConfig[0].HohIdOffset;
+  _11 = (long unsigned int) _10;
+  _12 = _9 + _11;
+  _13 = _12 * 2;
+  _14 = _8 + _13;
+  _15 = CanIf_ConfigPtr.85_3 + _14;
+  CanIfHrhIdx_35 = *_15;
+  # DEBUG CanIfHrhIdx => CanIfHrhIdx_35
+  # DEBUG BEGIN_STMT
+  ConfCanId_36 = CanIdLcl_29;
+  # DEBUG ConfCanId => ConfCanId_36
+  # DEBUG BEGIN_STMT
+  Index = 65535;
+  # DEBUG BEGIN_STMT
+  SwFilterResult_39 = CanIf_SoftwareFiltering (CanIfHrhIdx_35, ConfCanId_36, &Index);
+  # DEBUG SwFilterResult => SwFilterResult_39
+  # DEBUG BEGIN_STMT
+  if (SwFilterResult_39 == 0)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.88_16 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.89_17 = CanIf_ConfigPtr;
+  _18 = CanIf_ConfigPtr.89_17->sortedRxLPduConfigPtr;
+  Index.90_19 = Index;
+  _20 = (unsigned int) Index.90_19;
+  _21 = _20 * 12;
+  _22 = _18 + _21;
+  _23 = CanIf_ConfigPtr.88_16 + _22;
+  PduIdx_40 = _23->rxLPduIndex;
+  # DEBUG PduIdx => PduIdx_40
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RxPduInfo.SduLength = LclDlc_32;
+  # DEBUG BEGIN_STMT
+  RxPduInfo.SduDataPtr = CanSduPtrLcl_33;
+  # DEBUG BEGIN_STMT
+  CanIf_ProcessRxPdu (&RxPduInfo, ConfCanId_36, PduIdx_40, ControllerId_30);
+  RxPduInfo ={v} {CLOBBER};
+
+  <bb 9> :
+  Index ={v} {CLOBBER};
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_TxConfirmation (PduIdType CanTxPduId)
+{
+  const uint8 ControllerId;
+  unsigned char CanIf_State.81_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.82_2;
+  short unsigned int _3;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.83_4;
+  unsigned int _5;
+  unsigned int _6;
+  const struct CanIf_TxLPduConfigType * _7;
+  int _8;
+  unsigned char _9;
+  int _10;
+  unsigned char _11;
+  int _12;
+  <unnamed type> _13;
+  int _14;
+  <unnamed type> _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.81_1 = CanIf_State;
+  if (CanIf_State.81_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 19, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.82_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.82_2->nrOfTxLPdus;
+  if (CanTxPduId_18(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 19, 13);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.83_4 = CanIf_TxPduConfigPtr;
+  _5 = (unsigned int) CanTxPduId_18(D);
+  _6 = _5 * 16;
+  _7 = CanIf_TxPduConfigPtr.83_4 + _6;
+  ControllerId_19 = _7->intCtrlIdx;
+  # DEBUG ControllerId => ControllerId_19
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = (int) ControllerId_19;
+  _9 = CanIf_CanControllerFlags[_8];
+  _10 = (int) ControllerId_19;
+  _11 = _9 & 247;
+  CanIf_CanControllerFlags[_10] = _11;
+  # DEBUG BEGIN_STMT
+  _12 = (int) ControllerId_19;
+  _13 = CanIf_CanControllerMode[_12];
+  if (_13 == 1)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  _14 = (int) ControllerId_19;
+  _15 = CanIf_PduMode[_14];
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  CanIf_SendTxConfirmation (CanTxPduId_18(D));
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_CheckTrcvWakeFlag (uint8 TransceiverId)
+{
+  uint8 TrcvDrvIdx;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.75_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.76_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.77_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.78_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8df>) (uint8) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.79_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.80_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.75_1 = CanIf_State;
+  if (CanIf_State.75_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 31, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.76_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.76_2->nrOfTransceivers;
+  if (TransceiverId_25(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 31, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.77_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.78_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.78_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_25(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.77_4 + _9;
+  TrcvDrvIdx_26 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_26
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_26;
+  _12 = CanIf_CanTrcvConfig[_11].checkWakeFlag;
+  CanIf_ConfigPtr.79_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.80_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.80_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_25(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.79_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_28 = _12 (_20);
+  # DEBUG RetVal => RetVal_28
+
+  <bb 7> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_28(6)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_21;
+  return _31;
+
+}
+
+
+CanIf_ClearTrcvWufFlag (uint8 TransceiverId)
+{
+  uint8 TrcvDrvIdx;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.69_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.70_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.71_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.72_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8df>) (uint8) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.73_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.74_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _31;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.69_1 = CanIf_State;
+  if (CanIf_State.69_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 30, 30);
+  goto <bb 7>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.70_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.70_2->nrOfTransceivers;
+  if (TransceiverId_25(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 30, 17);
+  goto <bb 7>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.71_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.72_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.72_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_25(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.71_4 + _9;
+  TrcvDrvIdx_26 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_26
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_26;
+  _12 = CanIf_CanTrcvConfig[_11].clearWufFlag;
+  CanIf_ConfigPtr.73_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.74_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.74_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_25(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.73_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_28 = _12 (_20);
+  # DEBUG RetVal => RetVal_28
+
+  <bb 7> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_28(6)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _31 = RetVal_21;
+  return _31;
+
+}
+
+
+CanIf_CheckWakeup (EcuM_WakeupSourceType WakeupSource)
+{
+  const struct CanIf_CanTrcvChnlConfigType * TrcvChnlConfigPtr;
+  uint8_least i;
+  EcuM_WakeupSourceType CheckedSources;
+  Std_ReturnType Result;
+  boolean WakeupSourceValid;
+  unsigned char CanIf_State.65_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.66_2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.67_3;
+  long unsigned int _4;
+  long unsigned int _5;
+  sizetype _6;
+  long unsigned int _7;
+  long unsigned int _8;
+  unsigned char _9;
+  int _10;
+  Std_ReturnType (*<T8df>) (uint8) _11;
+  unsigned char _12;
+  unsigned char _13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.68_14;
+  unsigned char _15;
+  long unsigned int _16;
+  Std_ReturnType _40;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  WakeupSourceValid_27 = 0;
+  # DEBUG WakeupSourceValid => WakeupSourceValid_27
+  # DEBUG BEGIN_STMT
+  Result_28 = 1;
+  # DEBUG Result => Result_28
+  # DEBUG BEGIN_STMT
+  CheckedSources_29 = 0;
+  # DEBUG CheckedSources => CheckedSources_29
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.65_1 = CanIf_State;
+  if (CanIf_State.65_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 17, 30);
+  goto <bb 13>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  i_31 = 0;
+  # DEBUG i => i_31
+  goto <bb 10>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.66_2 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.67_3 = CanIf_ConfigPtr;
+  _4 = CanIf_ConfigPtr.67_3->trcvChnlConfigPtr;
+  _5 = i_23 * 12;
+  _6 = _4 + _5;
+  TrcvChnlConfigPtr_33 = CanIf_ConfigPtr.66_2 + _6;
+  # DEBUG TrcvChnlConfigPtr => TrcvChnlConfigPtr_33
+  # DEBUG BEGIN_STMT
+  _7 = TrcvChnlConfigPtr_33->wakeupSourceIn;
+  _8 = WakeupSource_34(D) & _7;
+  if (_8 != 0)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _9 = TrcvChnlConfigPtr_33->trcvDrvIdx;
+  _10 = (int) _9;
+  _11 = CanIf_CanTrcvConfig[_10].chkWakeupByBus;
+  _12 = TrcvChnlConfigPtr_33->trcvChnlId;
+  _13 = _11 (_12);
+  if (_13 == 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Result_36 = 0;
+  # DEBUG Result => Result_36
+
+  <bb 8> :
+  # Result_19 = PHI <Result_21(6), Result_36(7)>
+  # DEBUG Result => Result_19
+  # DEBUG BEGIN_STMT
+  WakeupSourceValid_37 = 1;
+  # DEBUG WakeupSourceValid => WakeupSourceValid_37
+
+  <bb 9> :
+  # WakeupSourceValid_17 = PHI <WakeupSourceValid_18(5), WakeupSourceValid_37(8)>
+  # Result_20 = PHI <Result_21(5), Result_19(8)>
+  # DEBUG Result => Result_20
+  # DEBUG WakeupSourceValid => WakeupSourceValid_17
+  # DEBUG BEGIN_STMT
+  i_38 = i_23 + 1;
+  # DEBUG i => i_38
+
+  <bb 10> :
+  # WakeupSourceValid_18 = PHI <WakeupSourceValid_27(4), WakeupSourceValid_17(9)>
+  # Result_21 = PHI <Result_28(4), Result_20(9)>
+  # i_23 = PHI <i_31(4), i_38(9)>
+  # DEBUG i => i_23
+  # DEBUG Result => Result_21
+  # DEBUG WakeupSourceValid => WakeupSourceValid_18
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.68_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.68_14->nrOfTransceivers;
+  _16 = (long unsigned int) _15;
+  if (i_23 < _16)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  if (WakeupSourceValid_18 == 0)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 17, 16);
+
+  <bb 13> :
+  # Result_22 = PHI <Result_28(3), Result_21(11), Result_21(12)>
+  # DEBUG Result => Result_22
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _40 = Result_22;
+  return _40;
+
+}
+
+
+CanIf_SetTrcvWakeupMode (uint8 TransceiverId, CanTrcv_TrcvWakeupModeType TrcvWakeupMode)
+{
+  uint8 TrcvDrvIdx;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.59_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.60_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.61_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.62_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8db>) (uint8, CanTrcv_TrcvWakeupModeType) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.63_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.64_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.59_1 = CanIf_State;
+  if (CanIf_State.59_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 16, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.60_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.60_2->nrOfTransceivers;
+  if (TransceiverId_25(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 16, 17);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (TrcvWakeupMode_26(D) > 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 16, 19);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.61_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.62_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.62_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_25(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.61_4 + _9;
+  TrcvDrvIdx_27 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_27
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_27;
+  _12 = CanIf_CanTrcvConfig[_11].setWakeupMode;
+  CanIf_ConfigPtr.63_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.64_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.64_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_25(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.63_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_29 = _12 (_20, TrcvWakeupMode_26(D));
+  # DEBUG RetVal => RetVal_29
+
+  <bb 9> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_23(7), RetVal_29(8)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_21;
+  return _33;
+
+}
+
+
+CanIf_GetTrcvWakeupReason (uint8 TransceiverId, CanTrcv_TrcvWakeupReasonType * TrcvWuReasonPtr)
+{
+  uint8 TrcvDrvIdx;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.53_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.54_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.55_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.56_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8d6>) (uint8, CanTrcv_TrcvWakeupReasonType *) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.57_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.58_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.53_1 = CanIf_State;
+  if (CanIf_State.53_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 15, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (TrcvWuReasonPtr_25(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 15, 20);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.54_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.54_2->nrOfTransceivers;
+  if (TransceiverId_26(D) >= _3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 15, 17);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.55_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.56_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.56_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_26(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.55_4 + _9;
+  TrcvDrvIdx_27 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_27
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_27;
+  _12 = CanIf_CanTrcvConfig[_11].getBusWuReason;
+  CanIf_ConfigPtr.57_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.58_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.58_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_26(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.57_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_29 = _12 (_20, TrcvWuReasonPtr_25(D));
+  # DEBUG RetVal => RetVal_29
+
+  <bb 9> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_23(7), RetVal_29(8)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_21;
+  return _33;
+
+}
+
+
+CanIf_GetTrcvMode (CanTrcv_TrcvModeType * TransceiverModePtr, uint8 TransceiverId)
+{
+  Std_ReturnType RetVal;
+  uint8 TrcvDrvIdx;
+  unsigned char CanIf_State.47_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.48_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.49_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.50_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8cf>) (uint8, CanTrcv_TrcvModeType *) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.51_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.52_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.47_1 = CanIf_State;
+  if (CanIf_State.47_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 14, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (TransceiverModePtr_25(D) == 0B)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 14, 20);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.48_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.48_2->nrOfTransceivers;
+  if (TransceiverId_26(D) >= _3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 14, 17);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.49_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.50_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.50_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_26(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.49_4 + _9;
+  TrcvDrvIdx_27 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_27
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_27;
+  _12 = CanIf_CanTrcvConfig[_11].getOpMode;
+  CanIf_ConfigPtr.51_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.52_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.52_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_26(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.51_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_29 = _12 (_20, TransceiverModePtr_25(D));
+  # DEBUG RetVal => RetVal_29
+
+  <bb 9> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_23(7), RetVal_29(8)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_21;
+  return _33;
+
+}
+
+
+CanIf_SetTrcvMode (uint8 TransceiverId, CanTrcv_TrcvModeType TransceiverMode)
+{
+  uint8 TrcvDrvIdx;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.41_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.42_2;
+  unsigned char _3;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.43_4;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.44_5;
+  long unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  sizetype _9;
+  const struct CanIf_CanTrcvChnlConfigType * _10;
+  int _11;
+  Std_ReturnType (*<T8c8>) (uint8, CanTrcv_TrcvModeType) _12;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.45_13;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.46_14;
+  long unsigned int _15;
+  unsigned int _16;
+  unsigned int _17;
+  sizetype _18;
+  const struct CanIf_CanTrcvChnlConfigType * _19;
+  unsigned char _20;
+  Std_ReturnType _33;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_23 = 1;
+  # DEBUG RetVal => RetVal_23
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.41_1 = CanIf_State;
+  if (CanIf_State.41_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 13, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.42_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.42_2->nrOfTransceivers;
+  if (TransceiverId_25(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 13, 17);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (TransceiverMode_26(D) > 2)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 13, 18);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.43_4 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.44_5 = CanIf_ConfigPtr;
+  _6 = CanIf_ConfigPtr.44_5->trcvChnlConfigPtr;
+  _7 = (unsigned int) TransceiverId_25(D);
+  _8 = _7 * 12;
+  _9 = _6 + _8;
+  _10 = CanIf_ConfigPtr.43_4 + _9;
+  TrcvDrvIdx_27 = _10->trcvDrvIdx;
+  # DEBUG TrcvDrvIdx => TrcvDrvIdx_27
+  # DEBUG BEGIN_STMT
+  _11 = (int) TrcvDrvIdx_27;
+  _12 = CanIf_CanTrcvConfig[_11].setOpMode;
+  CanIf_ConfigPtr.45_13 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.46_14 = CanIf_ConfigPtr;
+  _15 = CanIf_ConfigPtr.46_14->trcvChnlConfigPtr;
+  _16 = (unsigned int) TransceiverId_25(D);
+  _17 = _16 * 12;
+  _18 = _15 + _17;
+  _19 = CanIf_ConfigPtr.45_13 + _18;
+  _20 = _19->trcvChnlId;
+  RetVal_29 = _12 (_20, TransceiverMode_26(D));
+  # DEBUG RetVal => RetVal_29
+
+  <bb 9> :
+  # RetVal_21 = PHI <RetVal_23(3), RetVal_23(5), RetVal_23(7), RetVal_29(8)>
+  # DEBUG RetVal => RetVal_21
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _33 = RetVal_21;
+  return _33;
+
+}
+
+
+CanIf_GetPduMode (uint8 ControllerId, CanIf_PduModeType * PduModePtr)
+{
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.39_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.40_2;
+  unsigned char _3;
+  int _4;
+  <unnamed type> _5;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 1;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.39_1 = CanIf_State;
+  if (CanIf_State.39_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 10, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.40_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.40_2->nrOfControllers;
+  if (ControllerId_10(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 10, 15);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduModePtr_11(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 10, 20);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = (int) ControllerId_10(D);
+  _5 = CanIf_PduMode[_4];
+  *PduModePtr_11(D) = _5;
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 0;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 9> :
+  # RetVal_6 = PHI <RetVal_8(3), RetVal_8(5), RetVal_8(7), RetVal_13(8)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = RetVal_6;
+  return _17;
+
+}
+
+
+CanIf_SetPduMode (uint8 ControllerId, CanIf_PduModeType PduModeRequest)
+{
+  CanIf_ControllerModeType CanControllerMode;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.34_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.35_2;
+  unsigned char _3;
+  int _4;
+  Std_ReturnType _17;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_7 = 1;
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.34_1 = CanIf_State;
+  if (CanIf_State.34_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 9, 30);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.35_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.35_2->nrOfControllers;
+  if (ControllerId_9(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 9, 15);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduModeRequest_10(D) > 3)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  if (PduModeRequest_10(D) == 2)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 9, 22);
+  goto <bb 11>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _4 = (int) ControllerId_9(D);
+  CanControllerMode_11 = CanIf_CanControllerMode[_4];
+  # DEBUG CanControllerMode => CanControllerMode_11
+  # DEBUG BEGIN_STMT
+  if (CanControllerMode_11 == 1)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  CanIf_SetPduModeInternal (ControllerId_9(D), PduModeRequest_10(D));
+  # DEBUG BEGIN_STMT
+  RetVal_13 = 0;
+  # DEBUG RetVal => RetVal_13
+
+  <bb 11> :
+  # RetVal_5 = PHI <RetVal_7(3), RetVal_7(5), RetVal_7(8), RetVal_7(9), RetVal_13(10)>
+  # DEBUG RetVal => RetVal_5
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _17 = RetVal_5;
+  return _17;
+
+}
+
+
+CanIf_Transmit (PduIdType CanTxPduId, const struct PduInfoType * PduInfoPtr)
+{
+  Can_ReturnType CanRetVal;
+  Can_IdType TmpCanId;
+  boolean CallTxConfirmation;
+  boolean send_message;
+  PduLengthType sduLengthInt;
+  uint8 ControllerId;
+  struct Can_PduType PduInfo;
+  Can_HwHandleType CanHth;
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.19_1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.20_2;
+  short unsigned int _3;
+  uint8 * _4;
+  short unsigned int _5;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.21_6;
+  unsigned int _7;
+  unsigned int _8;
+  const struct CanIf_TxLPduConfigType * _9;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.22_10;
+  unsigned int _11;
+  unsigned int _12;
+  const struct CanIf_TxLPduConfigType * _13;
+  int _14;
+  <unnamed type> _15;
+  int _16;
+  <unnamed type> _17;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.23_18;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.24_19;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.25_20;
+  long unsigned int _21;
+  const struct CanIf_CanDriverConfigType * _22;
+  long unsigned int _23;
+  unsigned int _24;
+  unsigned int _25;
+  sizetype _26;
+  const struct CanIf_CanControllerConfigType * _27;
+  unsigned char _28;
+  int _29;
+  unsigned char _30;
+  unsigned int _31;
+  unsigned int _32;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.26_33;
+  unsigned int _34;
+  unsigned int _35;
+  const struct CanIf_TxLPduConfigType * _36;
+  unsigned char _37;
+  const struct CanIf_TxLPduConfigType * CanIf_TxPduConfigPtr.27_38;
+  unsigned int _39;
+  unsigned int _40;
+  const struct CanIf_TxLPduConfigType * _41;
+  unsigned char _42;
+  uint8 * _43;
+  Std_ReturnType (*<T8be>) (Can_HwHandleType, const struct Can_PduType *) _44;
+  unsigned char _45;
+  Std_ReturnType _81;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_53 = 1;
+  # DEBUG RetVal => RetVal_53
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  send_message_54 = 0;
+  # DEBUG send_message => send_message_54
+  # DEBUG BEGIN_STMT
+  CallTxConfirmation_55 = 0;
+  # DEBUG CallTxConfirmation => CallTxConfirmation_55
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.19_1 = CanIf_State;
+  if (CanIf_State.19_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 5, 30);
+  goto <bb 24>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.20_2 = CanIf_ConfigPtr;
+  _3 = CanIf_ConfigPtr.20_2->nrOfTxLPdus;
+  if (CanTxPduId_57(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 5, 50);
+  goto <bb 24>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (PduInfoPtr_58(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 5, 20);
+  goto <bb 24>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  _4 = PduInfoPtr_58(D)->SduDataPtr;
+  if (_4 == 0B)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 5, 20);
+  goto <bb 24>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  _5 = PduInfoPtr_58(D)->SduLength;
+  sduLengthInt_60 = CanIf_ProcessTxLength (CanTxPduId_57(D), _5);
+  # DEBUG sduLengthInt => sduLengthInt_60
+  # DEBUG BEGIN_STMT
+  if (sduLengthInt_60 != 255)
+    goto <bb 11>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.21_6 = CanIf_TxPduConfigPtr;
+  _7 = (unsigned int) CanTxPduId_57(D);
+  _8 = _7 * 16;
+  _9 = CanIf_TxPduConfigPtr.21_6 + _8;
+  CanHth_61 = _9->hth;
+  # DEBUG CanHth => CanHth_61
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.22_10 = CanIf_TxPduConfigPtr;
+  _11 = (unsigned int) CanTxPduId_57(D);
+  _12 = _11 * 16;
+  _13 = CanIf_TxPduConfigPtr.22_10 + _12;
+  ControllerId_62 = _13->intCtrlIdx;
+  # DEBUG ControllerId => ControllerId_62
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _14 = (int) ControllerId_62;
+  _15 = CanIf_CanControllerMode[_14];
+  if (_15 == 1)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  _16 = (int) ControllerId_62;
+  _17 = CanIf_PduMode[_16];
+  if (_17 == 3)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.23_18 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.24_19 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.25_20 = CanIf_ConfigPtr;
+  _21 = CanIf_ConfigPtr.25_20->driverConfigPtr;
+  _22 = CanIf_ConfigPtr.24_19 + _21;
+  _23 = _22->ctrlConfigPtr;
+  _24 = (unsigned int) ControllerId_62;
+  _25 = _24 * 12;
+  _26 = _23 + _25;
+  _27 = CanIf_ConfigPtr.23_18 + _26;
+  _28 = _27->pNFilterEnabled;
+  if (_28 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  _29 = (int) ControllerId_62;
+  _30 = CanIf_CanControllerFlags[_29];
+  _31 = (unsigned int) _30;
+  _32 = _31 & 8;
+  if (_32 == 0)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 15>; [INV]
+
+  <bb 15> :
+  CanIf_TxPduConfigPtr.26_33 = CanIf_TxPduConfigPtr;
+  _34 = (unsigned int) CanTxPduId_57(D);
+  _35 = _34 * 16;
+  _36 = CanIf_TxPduConfigPtr.26_33 + _35;
+  _37 = _36->pNFilterFlag;
+  if (_37 == 1)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_TxPduConfigPtr.27_38 = CanIf_TxPduConfigPtr;
+  _39 = (unsigned int) CanTxPduId_57(D);
+  _40 = _39 * 16;
+  _41 = CanIf_TxPduConfigPtr.27_38 + _40;
+  TmpCanId_64 = _41->canId;
+  # DEBUG TmpCanId => TmpCanId_64
+  # DEBUG BEGIN_STMT
+  PduInfo.id = TmpCanId_64;
+  # DEBUG BEGIN_STMT
+  _42 = (unsigned char) sduLengthInt_60;
+  PduInfo.length = _42;
+  # DEBUG BEGIN_STMT
+  _43 = PduInfoPtr_58(D)->SduDataPtr;
+  PduInfo.sdu = _43;
+  # DEBUG BEGIN_STMT
+  PduInfo.swPduHandle = CanTxPduId_57(D);
+  # DEBUG BEGIN_STMT
+  send_message_69 = 1;
+  # DEBUG send_message => send_message_69
+
+  <bb 17> :
+  # send_message_49 = PHI <send_message_54(11), send_message_54(12), send_message_69(16), send_message_54(15)>
+  # DEBUG send_message => send_message_49
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  if (send_message_49 == 1)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 21>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _44 = CanIf_CanDrvFctConfig[0].Write;
+  _45 = _44 (CanHth_61, &PduInfo);
+  CanRetVal_73 = (Can_ReturnType) _45;
+  # DEBUG CanRetVal => CanRetVal_73
+  # DEBUG BEGIN_STMT
+  if (CanRetVal_73 != 0)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 19>; [INV]
+
+  <bb 19> :
+  # DEBUG BEGIN_STMT
+  RetVal_74 = 0;
+  # DEBUG RetVal => RetVal_74
+
+  <bb 20> :
+  # RetVal_46 = PHI <RetVal_53(18), RetVal_74(19)>
+  # DEBUG RetVal => RetVal_46
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+
+  <bb 21> :
+  # RetVal_47 = PHI <RetVal_53(17), RetVal_46(20)>
+  # DEBUG RetVal => RetVal_47
+  # DEBUG BEGIN_STMT
+  if (RetVal_47 == 0)
+    goto <bb 22>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  if (CallTxConfirmation_55 == 1)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  CanIf_SendTxConfirmation (CanTxPduId_57(D));
+
+  <bb 24> :
+  # RetVal_48 = PHI <RetVal_53(3), RetVal_53(5), RetVal_53(7), RetVal_53(9), RetVal_53(10), RetVal_47(21), RetVal_47(22), RetVal_47(23)>
+  # DEBUG RetVal => RetVal_48
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _81 = RetVal_48;
+  PduInfo ={v} {CLOBBER};
+  return _81;
+
+}
+
+
+CanIf_GetControllerMode (uint8 ControllerId, CanIf_ControllerModeType * ControllerModePtr)
+{
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.17_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.18_2;
+  unsigned char _3;
+  int _4;
+  <unnamed type> _5;
+  Std_ReturnType _19;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_8 = 1;
+  # DEBUG RetVal => RetVal_8
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.17_1 = CanIf_State;
+  if (CanIf_State.17_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 4, 30);
+  goto <bb 9>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.18_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.18_2->nrOfControllers;
+  if (ControllerId_10(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 4, 15);
+  goto <bb 9>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ControllerModePtr_11(D) == 0B)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 4, 20);
+  goto <bb 9>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  SchM_Enter_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _4 = (int) ControllerId_10(D);
+  _5 = CanIf_CanControllerMode[_4];
+  *ControllerModePtr_11(D) = _5;
+  # DEBUG BEGIN_STMT
+  SchM_Exit_CanIf_SCHM_CANIF_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  RetVal_15 = 0;
+  # DEBUG RetVal => RetVal_15
+
+  <bb 9> :
+  # RetVal_6 = PHI <RetVal_8(3), RetVal_8(5), RetVal_8(7), RetVal_15(8)>
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _19 = RetVal_6;
+  return _19;
+
+}
+
+
+CanIf_SetControllerMode (uint8 ControllerId, CanIf_ControllerModeType ControllerMode)
+{
+  Std_ReturnType RetVal;
+  unsigned char CanIf_State.9_1;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.10_2;
+  unsigned char _3;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_6 = 1;
+  # DEBUG RetVal => RetVal_6
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State.9_1 = CanIf_State;
+  if (CanIf_State.9_1 == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 3, 30);
+  goto <bb 11>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.10_2 = CanIf_DriverConfigPtr;
+  _3 = CanIf_DriverConfigPtr.10_2->nrOfControllers;
+  if (ControllerId_8(D) >= _3)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 3, 15);
+  goto <bb 11>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (ControllerMode_9(D) != 3)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 7> :
+  if (ControllerMode_9(D) != 1)
+    goto <bb 8>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 8> :
+  if (ControllerMode_9(D) != 2)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 10>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 3, 21);
+  goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal_12 = CanIf_SetControllerModeInternal (ControllerId_8(D), ControllerMode_9(D));
+  # DEBUG RetVal => RetVal_12
+
+  <bb 11> :
+  # RetVal_4 = PHI <RetVal_6(3), RetVal_6(5), RetVal_6(9), RetVal_12(10)>
+  # DEBUG RetVal => RetVal_4
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = RetVal_4;
+  return _15;
+
+}
+
+
+CanIf_Init (const struct CanIf_ConfigType * ConfigPtr)
+{
+  const struct CanIf_ConfigType * LocalConfigPtr;
+  uint16 i;
+  unsigned char _1;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.1_2;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.2_3;
+  long unsigned int _4;
+  const struct CanIf_TxLPduConfigType * _5;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.3_6;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.4_7;
+  long unsigned int _8;
+  const struct CanIf_RxLPduConfigType * _9;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.5_10;
+  const struct CanIf_ConfigType * CanIf_ConfigPtr.6_11;
+  long unsigned int _12;
+  const struct CanIf_CanDriverConfigType * _13;
+  int _14;
+  int _15;
+  int _16;
+  short unsigned int i.7_17;
+  const struct CanIf_CanDriverConfigType * CanIf_DriverConfigPtr.8_18;
+  unsigned char _19;
+  short unsigned int _20;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  LocalConfigPtr_25 = ConfigPtr_24(D);
+  # DEBUG LocalConfigPtr => LocalConfigPtr_25
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (LocalConfigPtr_25 == 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 4>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 1, 20);
+  goto <bb 10>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _1 = CanIf_IsValidConfig (LocalConfigPtr_25);
+  if (_1 != 0)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 1, 20);
+  goto <bb 10>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr = LocalConfigPtr_25;
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.1_2 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.2_3 = CanIf_ConfigPtr;
+  _4 = CanIf_ConfigPtr.2_3->txLPduConfigPtr;
+  _5 = CanIf_ConfigPtr.1_2 + _4;
+  CanIf_TxPduConfigPtr = _5;
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.3_6 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.4_7 = CanIf_ConfigPtr;
+  _8 = CanIf_ConfigPtr.4_7->rxLPduConfigPtr;
+  _9 = CanIf_ConfigPtr.3_6 + _8;
+  CanIf_RxPduConfigPtr = _9;
+  # DEBUG BEGIN_STMT
+  CanIf_ConfigPtr.5_10 = CanIf_ConfigPtr;
+  CanIf_ConfigPtr.6_11 = CanIf_ConfigPtr;
+  _12 = CanIf_ConfigPtr.6_11->driverConfigPtr;
+  _13 = CanIf_ConfigPtr.5_10 + _12;
+  CanIf_DriverConfigPtr = _13;
+  # DEBUG BEGIN_STMT
+  i_32 = 0;
+  # DEBUG i => i_32
+  goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _14 = (int) i_21;
+  CanIf_CanControllerMode[_14] = 2;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = (int) i_21;
+  CanIf_CanControllerFlags[_15] = 8;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _16 = (int) i_21;
+  CanIf_PduMode[_16] = 0;
+  # DEBUG BEGIN_STMT
+  i.7_17 = i_21;
+  i_37 = i.7_17 + 1;
+  # DEBUG i => i_37
+
+  <bb 8> :
+  # i_21 = PHI <i_32(6), i_37(7)>
+  # DEBUG i => i_21
+  # DEBUG BEGIN_STMT
+  CanIf_DriverConfigPtr.8_18 = CanIf_DriverConfigPtr;
+  _19 = CanIf_DriverConfigPtr.8_18->nrOfControllers;
+  _20 = (short unsigned int) _19;
+  if (i_21 < _20)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 9>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CanIf_State = 1;
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  return;
+
+}
+
+
+CanIf_IsValidConfig (const void * voidConfigPtr)
+{
+  const struct CanIf_ConfigType * ConfigPtr;
+  Std_ReturnType RetVal;
+  long unsigned int _1;
+  unsigned char _2;
+  long unsigned int _3;
+  long unsigned int _4;
+  long unsigned int CanIf_LcfgSignature.0_5;
+  long unsigned int _6;
+  Std_ReturnType _15;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal_9 = 1;
+  # DEBUG RetVal => RetVal_9
+  # DEBUG BEGIN_STMT
+  ConfigPtr_11 = voidConfigPtr_10(D);
+  # DEBUG ConfigPtr => ConfigPtr_11
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (ConfigPtr_11 != 0B)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  _1 = ConfigPtr_11->PlatformSignature;
+  _2 = TS_PlatformSigIsValid (_1);
+  if (_2 == 1)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  _3 = ConfigPtr_11->CfgSignature;
+  if (_3 == 4094173456)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  _4 = ConfigPtr_11->LcfgSignature;
+  CanIf_LcfgSignature.0_5 = CanIf_LcfgSignature;
+  if (_4 == CanIf_LcfgSignature.0_5)
+    goto <bb 6>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  _6 = ConfigPtr_11->PublicInfoSignature;
+  if (_6 == 3439471228)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  # DEBUG BEGIN_STMT
+  RetVal_14 = 0;
+  # DEBUG RetVal => RetVal_14
+
+  <bb 8> :
+  # RetVal_7 = PHI <RetVal_9(2), RetVal_9(3), RetVal_9(4), RetVal_9(5), RetVal_9(6), RetVal_14(7)>
+  # DEBUG RetVal => RetVal_7
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _15 = RetVal_7;
+  return _15;
+
+}
+
+
+CanIf_CheckWakeFlag_HlpNoPn (uint8 TransceiverId)
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 31, 17);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 1;
+  return _3;
+
+}
+
+
+CanIf_ClearTrcvWufFlag_HlpNoPn (uint8 TransceiverId)
+{
+  Std_ReturnType _3;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  Det_ASR40_ReportError (60, 0, 30, 17);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _3 = 1;
+  return _3;
+
+}
+
+

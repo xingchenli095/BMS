@@ -1,0 +1,983 @@
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop.part.0 ()
+{
+  Dcm_SesCtrlType CurrentSession;
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  Dcm_BufferUserType RxConnectionId;
+
+  <bb 4> [local count: 1073741824]:
+  # DEBUG D#2 s=> RxConnectionId
+  # DEBUG RxConnectionId => D#2
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StopTimer (14, 2, 3);
+
+  <bb 3> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  uint16_least RxConnectionIndex;
+  boolean CommunicationSessionIsActive;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 549543372]:
+  # DEBUG BEGIN_STMT
+  # DEBUG CommunicationSessionIsActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex_10 = Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionMainConnection ();
+  # DEBUG MainConnectionIndex => MainConnectionIndex_10
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_11(D);
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  if (_2 == MainConnectionIndex_10)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 10> [local count: 186844746]:
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 920304119]:
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_CommunicationSessionState[RxConnectionIndex_6];
+  if (_3 != 1)
+    goto <bb 4>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 4> [local count: 607400718]:
+  _4 = Dcm_RxPduIdConfig[RxConnectionIndex_6].MainConnectionIndex;
+  if (_4 == MainConnectionIndex_10)
+    goto <bb 7>; [5.50%]
+  else
+    goto <bb 5>; [94.50%]
+
+  <bb 5> [local count: 886897079]:
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_12 = RxConnectionIndex_6 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_12
+
+  <bb 6> [local count: 1073741824]:
+  # RxConnectionIndex_6 = PHI <RxConnectionIndex_12(5), 0(10)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_6
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_6 != 6)
+    goto <bb 3>; [85.71%]
+  else
+    goto <bb 7>; [14.29%]
+
+  <bb 7> [local count: 186844746]:
+  # CommunicationSessionIsActive_5 = PHI <1(4), 0(6)>
+  # DEBUG CommunicationSessionIsActive => CommunicationSessionIsActive_5
+  # DEBUG BEGIN_STMT
+  if (CommunicationSessionIsActive_5 == 0)
+    goto <bb 8>; [33.00%]
+  else
+    goto <bb 9>; [67.00%]
+
+  <bb 8> [local count: 61658766]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_DiagnosticSessionHandler_StartS3Timer (1000);
+
+  <bb 9> [local count: 549543373]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_MainConnectionIndexType MainConnectionIndex;
+  Dcm_SesCtrlType CurrentSession;
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  CurrentSession_5 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_5
+  # DEBUG BEGIN_STMT
+  MainConnectionIndex_7 = Dcm_Dsl_DiagnosticSessionHandler_GetNonDefaultSessionMainConnection ();
+  # DEBUG MainConnectionIndex => MainConnectionIndex_7
+  # DEBUG BEGIN_STMT
+  if (CurrentSession_5 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 5>; [34.00%]
+
+  <bb 3> [local count: 708669605]:
+  _1 = (int) RxConnectionId_8(D);
+  _2 = Dcm_RxPduIdConfig[_1].MainConnectionIndex;
+  if (_2 == MainConnectionIndex_7)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 143434727]:
+  # DEBUG D#1 => RxConnectionId_8(D)
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop.part.0 ();
+
+  <bb 5> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_IsCancellationEnqueuedForRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex)
+{
+  int _1;
+  boolean _4;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex_2(D);
+  _4 = Dcm_CancelRxConnection[_1];
+  return _4;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_EnqueueCancellationOfRxConnection (Dcm_RxConnectionIndexType RxConnectionIndex)
+{
+  int _1;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionIndex_2(D);
+  Dcm_CancelRxConnection[_1] = 1;
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingEnd (Dcm_BufferUserType RxConnectionId)
+{
+  uint8_least ComMChannelIndex;
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  uint16_least RxConnectionIndex;
+  boolean ChannelFound;
+  boolean ChannelIsActive;
+  Dcm_SesCtrlType CurrentSession;
+  short unsigned int _1;
+  unsigned char _2;
+  unsigned char _3;
+  int _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _9;
+  long unsigned int _18;
+
+  <bb 2> [local count: 451287371]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelFound => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentSession_22 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_22
+  # DEBUG BEGIN_STMT
+  if (CurrentSession_22 != 1)
+    goto <bb 3>; [66.00%]
+  else
+    goto <bb 4>; [34.00%]
+
+  <bb 3> [local count: 297849665]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (RxConnectionId_23(D));
+  goto <bb 17>; [100.00%]
+
+  <bb 4> [local count: 153437706]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId_23(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  # DEBUG RxConnectionIndex => 0
+  goto <bb 9>; [100.00%]
+
+  <bb 5> [local count: 920304119]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RxConnectionIndex_13;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_1, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _2 = RxPduIdInfo.ComMChannelId;
+  _3 = SearchRxPduIdInfo.ComMChannelId;
+  if (_2 == _3)
+    goto <bb 6>; [34.00%]
+  else
+    goto <bb 8>; [66.00%]
+
+  <bb 6> [local count: 312903400]:
+  _18 = RxConnectionIndex_13;
+  _5 = (int) _18;
+  _6 = Dcm_CommunicationSessionState[_5];
+  _7 = _6 + 253;
+  if (_7 <= 1)
+    goto <bb 7>; [41.00%]
+  else
+    goto <bb 8>; [59.00%]
+
+  <bb 7> [local count: 128290394]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsActive => 1
+
+  <bb 8> [local count: 920304119]:
+  # ChannelIsActive_10 = PHI <ChannelIsActive_11(5), ChannelIsActive_11(6), 1(7)>
+  # DEBUG ChannelIsActive => ChannelIsActive_10
+  SearchRxPduIdInfo ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_31 = RxConnectionIndex_13 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_31
+
+  <bb 9> [local count: 1073741824]:
+  # ChannelIsActive_11 = PHI <0(4), ChannelIsActive_10(8)>
+  # RxConnectionIndex_13 = PHI <0(4), RxConnectionIndex_31(8)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_13
+  # DEBUG ChannelIsActive => ChannelIsActive_11
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_13 != 6)
+    goto <bb 5>; [85.71%]
+  else
+    goto <bb 10>; [14.29%]
+
+  <bb 10> [local count: 153437707]:
+  # ChannelIsActive_25 = PHI <ChannelIsActive_11(9)>
+  # DEBUG BEGIN_STMT
+  if (ChannelIsActive_25 == 0)
+    goto <bb 18>; [50.00%]
+  else
+    goto <bb 16>; [50.00%]
+
+  <bb 18> [local count: 76718853]:
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 990890176]:
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_RxComMChannelIDs[0];
+  _9 = RxPduIdInfo.ComMChannelId;
+  if (_8 == _9)
+    goto <bb 20>; [33.00%]
+  else
+    goto <bb 19>; [67.00%]
+
+  <bb 20> [local count: 326993758]:
+  goto <bb 13>; [100.00%]
+
+  <bb 19> [local count: 663896418]:
+
+  <bb 12> [local count: 740615273]:
+  # ChannelFound_4 = PHI <0(18), 0(19)>
+  # ComMChannelIndex_19 = PHI <0(18), 1(19)>
+  # DEBUG ComMChannelIndex => NULL
+
+  <bb 13> [local count: 1067609031]:
+  # ChannelFound_12 = PHI <ChannelFound_4(12), 1(20)>
+  # ComMChannelIndex_14 = PHI <ComMChannelIndex_19(12), 0(20)>
+  # DEBUG ComMChannelIndex => ComMChannelIndex_14
+  # DEBUG ChannelFound => ChannelFound_12
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex_14 == 0)
+    goto <bb 14>; [96.34%]
+  else
+    goto <bb 15>; [3.66%]
+
+  <bb 14> [local count: 1028534541]:
+  if (ChannelFound_12 == 0)
+    goto <bb 11>; [96.34%]
+  else
+    goto <bb 15>; [3.66%]
+
+  <bb 15> [local count: 76718855]:
+  # ComMChannelIndex_29 = PHI <ComMChannelIndex_14(13), 0(14)>
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex_29].RequestInactiveDiagnostic = 1;
+
+  <bb 16> [local count: 153437708]:
+  RxPduIdInfo ={v} {CLOBBER};
+
+  <bb 17> [local count: 451287374]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_EndOfCommunicationSession (Dcm_BufferUserType RxConnectionId)
+{
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_4(D);
+  _2 = Dcm_CommunicationSessionState[_1];
+  switch (_2) <default: <L7> [20.00%], case 3: <L1> [20.00%], case 4: <L2> [20.00%], case 5: <L3> [20.00%], case 6: <L4> [20.00%]>
+
+  <bb 3> [local count: 214748364]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 214748364]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 214748364]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 214748364]:
+<L4>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 2;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> [local count: 1073741824]:
+<L7>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ProcessingBegin (Dcm_BufferUserType RxConnectionId, boolean SendingBusyRepeatRequest)
+{
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  Dcm_RxConnectionIndexType RxConnectionIndex;
+  struct Dcm_RxPduIdInfoType RxPduIdInfo;
+  boolean ChannelFound;
+  boolean ChannelIsAlreadyActive;
+  uint8_least ComMChannelIndex;
+  int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _5;
+  int _6;
+  unsigned char _7;
+  unsigned char _8;
+  int _10;
+  unsigned char _11;
+
+  <bb 2> [local count: 40343192]:
+  # DEBUG BEGIN_STMT
+  if (SendingBusyRepeatRequest_22(D) == 1)
+    goto <bb 3>; [51.12%]
+  else
+    goto <bb 4>; [48.88%]
+
+  <bb 3> [local count: 20623440]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_27(D);
+  Dcm_CommunicationSessionState[_1] = 5;
+  goto <bb 20>; [100.00%]
+
+  <bb 4> [local count: 19719752]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ComMChannelIndex => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsAlreadyActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelFound => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionId_27(D), &RxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  goto <bb 11>; [100.00%]
+
+  <bb 5> [local count: 254697603]:
+  # DEBUG BEGIN_STMT
+  _2 = Dcm_RxComMChannelIDs[0];
+  _3 = RxPduIdInfo.ComMChannelId;
+  if (_2 == _3)
+    goto <bb 21>; [67.00%]
+  else
+    goto <bb 23>; [33.00%]
+
+  <bb 23> [local count: 84050209]:
+  goto <bb 13>; [100.00%]
+
+  <bb 21> [local count: 170647394]:
+  goto <bb 10>; [100.00%]
+
+  <bb 6> [local count: 920304118]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (RxConnectionIndex_16, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _5 = SearchRxPduIdInfo.ComMChannelId;
+  if (_2 == _5)
+    goto <bb 7>; [34.00%]
+  else
+    goto <bb 9>; [66.00%]
+
+  <bb 7> [local count: 312903400]:
+  # DEBUG BEGIN_STMT
+  _6 = (int) RxConnectionIndex_16;
+  _7 = Dcm_CommunicationSessionState[_6];
+  _8 = _7 + 253;
+  if (_8 <= 1)
+    goto <bb 8>; [5.50%]
+  else
+    goto <bb 9>; [94.50%]
+
+  <bb 8> [local count: 17209687]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsAlreadyActive => 1
+  # DEBUG BEGIN_STMT
+  SearchRxPduIdInfo ={v} {CLOBBER};
+  goto <bb 11>; [100.00%]
+
+  <bb 9> [local count: 903094432]:
+  SearchRxPduIdInfo ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_36 = RxConnectionIndex_16 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_36
+
+  <bb 10> [local count: 1073741824]:
+  # RxConnectionIndex_16 = PHI <RxConnectionIndex_36(9), 0(21)>
+  # DEBUG ChannelFound => NULL
+  # DEBUG RxConnectionIndex => RxConnectionIndex_16
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_16 != 6)
+    goto <bb 6>; [85.71%]
+  else
+    goto <bb 22>; [14.29%]
+
+  <bb 22> [local count: 153437707]:
+  goto <bb 12>; [100.00%]
+
+  <bb 11> [local count: 36929439]:
+  # ComMChannelIndex_29 = PHI <0(8), 0(4)>
+  # ChannelIsAlreadyActive_30 = PHI <1(8), 0(4)>
+  # ChannelFound_31 = PHI <1(8), 0(4)>
+
+  <bb 12> [local count: 190367146]:
+  # ComMChannelIndex_23 = PHI <ComMChannelIndex_29(11), 0(22)>
+  # ChannelIsAlreadyActive_12 = PHI <ChannelIsAlreadyActive_30(11), ChannelIsAlreadyActive_14(22)>
+  # ChannelFound_9 = PHI <ChannelFound_31(11), 1(22)>
+
+  <bb 13> [local count: 274417355]:
+  # ComMChannelIndex_13 = PHI <ComMChannelIndex_23(12), 1(23)>
+  # ChannelIsAlreadyActive_14 = PHI <ChannelIsAlreadyActive_12(12), ChannelIsAlreadyActive_14(23)>
+  # ChannelFound_15 = PHI <ChannelFound_9(12), 0(23)>
+  # DEBUG ChannelFound => ChannelFound_15
+  # DEBUG ChannelIsAlreadyActive => ChannelIsAlreadyActive_14
+  # DEBUG ComMChannelIndex => ComMChannelIndex_13
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex_13 == 0)
+    goto <bb 14>; [96.34%]
+  else
+    goto <bb 15>; [3.66%]
+
+  <bb 14> [local count: 264373680]:
+  if (ChannelFound_15 == 0)
+    goto <bb 5>; [96.34%]
+  else
+    goto <bb 15>; [3.66%]
+
+  <bb 15> [local count: 19719752]:
+  # ComMChannelIndex_24 = PHI <ComMChannelIndex_13(13), 0(14)>
+  # ChannelIsAlreadyActive_25 = PHI <ChannelIsAlreadyActive_14(13), ChannelIsAlreadyActive_14(14)>
+  # DEBUG BEGIN_STMT
+  if (ChannelIsAlreadyActive_25 == 0)
+    goto <bb 16>; [50.00%]
+  else
+    goto <bb 17>; [50.00%]
+
+  <bb 16> [local count: 9859876]:
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[ComMChannelIndex_24].RequestActiveDiagnostic = 1;
+
+  <bb 17> [local count: 19719752]:
+  # DEBUG BEGIN_STMT
+  _10 = (int) RxConnectionId_27(D);
+  _11 = Dcm_CommunicationSessionState[_10];
+  if (_11 == 2)
+    goto <bb 18>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+
+  <bb 18> [local count: 6704716]:
+<L20>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_10] = 3;
+  # DEBUG BEGIN_STMT
+
+  <bb 19> [local count: 19719752]:
+  RxPduIdInfo ={v} {CLOBBER};
+
+  <bb 20> [local count: 40343192]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ReceptionEnd (Dcm_BufferUserType RxConnectionId)
+{
+  Dcm_SesCtrlType CurrentSession;
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_5(D);
+  _2 = Dcm_CommunicationSessionState[_1];
+  switch (_2) <default: <L7> [25.00%], case 2: <L0> [25.00%], case 4: <L1> [25.00%], case 6: <L2> [25.00%]>
+
+  <bb 3> [local count: 268435456]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 1;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 4> [local count: 268435456]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 3;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 268435456]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 5;
+  # DEBUG BEGIN_STMT
+
+  <bb 6> [local count: 1073741824]:
+<L7>:
+  # DEBUG BEGIN_STMT
+  Dcm_CancelRxConnection[_1] = 0;
+  # DEBUG BEGIN_STMT
+  CurrentSession_12 = Dcm_Dsl_DiagnosticSessionHandler_GetCurrentSession ();
+  # DEBUG CurrentSession => CurrentSession_12
+  # DEBUG BEGIN_STMT
+  if (CurrentSession_12 != 1)
+    goto <bb 7>; [48.88%]
+  else
+    goto <bb 8>; [51.12%]
+
+  <bb 7> [local count: 524845004]:
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerRestart (RxConnectionId_5(D));
+
+  <bb 8> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_ReceptionBegin (Dcm_BufferUserType RxConnectionId)
+{
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_4(D);
+  _2 = Dcm_CommunicationSessionState[_1];
+  switch (_2) <default: <L6> [20.00%], case 1: <L0> [20.00%], case 3: <L2> [20.00%], case 5: <L3> [20.00%], case 7: <L1> [20.00%]>
+
+  <bb 3> [local count: 214748364]:
+<L0>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 2;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (RxConnectionId_4(D));
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 4> [local count: 214748364]:
+<L1>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 2;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 5> [local count: 214748364]:
+<L2>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 4;
+  # DEBUG BEGIN_STMT
+  goto <bb 7>; [100.00%]
+
+  <bb 6> [local count: 214748364]:
+<L3>:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 6;
+  # DEBUG BEGIN_STMT
+
+  <bb 7> [local count: 1073741824]:
+<L6>:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_PrepareApplicationDiagnosticRequest (Dcm_BufferUserType RxConnectionId)
+{
+  int _1;
+  unsigned char _2;
+
+  <bb 2> [local count: 1073741824]:
+  # DEBUG BEGIN_STMT
+  _1 = (int) RxConnectionId_4(D);
+  _2 = Dcm_CommunicationSessionState[_1];
+  if (_2 == 1)
+    goto <bb 3>; [20.24%]
+  else
+    goto <bb 4>; [79.76%]
+
+  <bb 3> [local count: 217325345]:
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[_1] = 7;
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_Supervisor_CommunicationSessionHandling_CheckS3TimerStop (RxConnectionId_4(D));
+
+  <bb 4> [local count: 1073741824]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_DefaultSessionEntered ()
+{
+  struct Dcm_RxPduIdInfoType SearchRxPduIdInfo;
+  const NetworkHandleType CurrentNetworkId;
+  uint16_least RxConnectionIndex;
+  uint8_least ChannelIndex;
+  short unsigned int _1;
+  unsigned char _2;
+  unsigned char _3;
+  unsigned char _4;
+
+  <bb 2> [local count: 21091252]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIndex => 0
+  goto <bb 11>; [100.00%]
+
+  <bb 3> [local count: 170647394]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  CurrentNetworkId_11 = Dcm_RxComMChannelIDs[0];
+  # DEBUG CurrentNetworkId => CurrentNetworkId_11
+  # DEBUG BEGIN_STMT
+  # DEBUG RxConnectionIndex => 0
+  goto <bb 8>; [100.00%]
+
+  <bb 4> [local count: 920304118]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _1 = (short unsigned int) RxConnectionIndex_6;
+  Dcm_Dsl_RxConnectionGetRxPduIdInformation (_1, &SearchRxPduIdInfo);
+  # DEBUG BEGIN_STMT
+  _2 = SearchRxPduIdInfo.ComMChannelId;
+  if (_2 == CurrentNetworkId_11)
+    goto <bb 5>; [34.00%]
+  else
+    goto <bb 7>; [66.00%]
+
+  <bb 5> [local count: 312903400]:
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_CommunicationSessionState[RxConnectionIndex_6];
+  _4 = _3 + 253;
+  if (_4 <= 1)
+    goto <bb 6>; [5.50%]
+  else
+    goto <bb 7>; [94.50%]
+
+  <bb 6> [local count: 17209687]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ChannelIsActive => 1
+  # DEBUG BEGIN_STMT
+  SearchRxPduIdInfo ={v} {CLOBBER};
+  # DEBUG ChannelIsActive => 1
+  # DEBUG BEGIN_STMT
+  goto <bb 10>; [100.00%]
+
+  <bb 7> [local count: 903094432]:
+  SearchRxPduIdInfo ={v} {CLOBBER};
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_15 = RxConnectionIndex_6 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_15
+
+  <bb 8> [local count: 1073741824]:
+  # RxConnectionIndex_6 = PHI <0(3), RxConnectionIndex_15(7)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_6
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_6 != 6)
+    goto <bb 4>; [85.71%]
+  else
+    goto <bb 9>; [14.29%]
+
+  <bb 9> [local count: 153437707]:
+  # DEBUG ChannelIsActive => 0
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  Dcm_Dsl_ComMChannelStateManager_RequestInactiveDiagnostic (CurrentNetworkId_11);
+
+  <bb 10> [local count: 170647394]:
+  # ChannelIndex_8 = PHI <1(6), 1(9)>
+
+  <bb 11> [local count: 191738645]:
+  # ChannelIndex_5 = PHI <ChannelIndex_8(10), 0(2)>
+  # DEBUG ChannelIndex => ChannelIndex_5
+  # DEBUG BEGIN_STMT
+  if (ChannelIndex_5 == 0)
+    goto <bb 3>; [89.00%]
+  else
+    goto <bb 12>; [11.00%]
+
+  <bb 12> [local count: 21091251]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_MainFunction ()
+{
+  Dcm_ActiveDiagnosticRequestType ActiveDiagnosticRequest;
+  uint8_least ComMChannelIndex;
+  uint16_least RxConnectionIndex;
+  unsigned char _1;
+  short unsigned int _2;
+  unsigned char _3;
+  unsigned char _4;
+  unsigned char _5;
+  unsigned char _6;
+  unsigned char _7;
+  unsigned char _8;
+  unsigned char _9;
+
+  <bb 2> [local count: 118111600]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RxConnectionIndex => 0
+  goto <bb 6>; [100.00%]
+
+  <bb 3> [local count: 708421641]:
+  # DEBUG BEGIN_STMT
+  _1 = Dcm_CancelRxConnection[RxConnectionIndex_10];
+  if (_1 == 1)
+    goto <bb 4>; [20.24%]
+  else
+    goto <bb 5>; [79.76%]
+
+  <bb 4> [local count: 143384540]:
+  # DEBUG BEGIN_STMT
+  _2 = (short unsigned int) RxConnectionIndex_10;
+  Dcm_Dsl_RxConnectionCancelReceive (_2);
+  # DEBUG BEGIN_STMT
+  Dcm_CancelRxConnection[RxConnectionIndex_10] = 0;
+
+  <bb 5> [local count: 708421641]:
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_28 = RxConnectionIndex_10 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_28
+
+  <bb 6> [local count: 826533242]:
+  # RxConnectionIndex_10 = PHI <0(2), RxConnectionIndex_28(5)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_10
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_10 != 6)
+    goto <bb 3>; [85.71%]
+  else
+    goto <bb 22>; [14.29%]
+
+  <bb 22> [local count: 118111600]:
+  goto <bb 21>; [100.00%]
+
+  <bb 7> [local count: 955630224]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ActiveDiagnosticRequest => 0
+  # DEBUG BEGIN_STMT
+  _3 = Dcm_ActionsOnComMChannels[0].RequestActiveDiagnostic;
+  if (_3 == 1)
+    goto <bb 9>; [20.24%]
+  else
+    goto <bb 8>; [79.76%]
+
+  <bb 8> [local count: 762210667]:
+  _4 = Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic;
+  if (_4 == 1)
+    goto <bb 9>; [34.00%]
+  else
+    goto <bb 19>; [66.00%]
+
+  <bb 9> [local count: 452571183]:
+  # DEBUG BEGIN_STMT
+  SchM_Enter_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  _5 = Dcm_ActionsOnComMChannels[0].RequestActiveDiagnostic;
+  if (_5 == 1)
+    goto <bb 10>; [34.00%]
+  else
+    goto <bb 12>; [66.00%]
+
+  <bb 10> [local count: 153874202]:
+  _6 = Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic;
+  if (_6 == 0)
+    goto <bb 11>; [33.00%]
+  else
+    goto <bb 12>; [67.00%]
+
+  <bb 11> [local count: 50778487]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ActiveDiagnosticRequest => 1
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestActiveDiagnostic = 0;
+  # DEBUG ActiveDiagnosticRequest => 1
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  _8 = Dcm_RxComMChannelIDs[0];
+  Dcm_Dsl_ComMChannelStateManager_RequestActiveDiagnostic (_8);
+  goto <bb 19>; [100.00%]
+
+  <bb 12> [local count: 401792696]:
+  # DEBUG BEGIN_STMT
+  _7 = Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic;
+  if (_7 == 1)
+    goto <bb 13>; [51.12%]
+  else
+    goto <bb 15>; [48.88%]
+
+  <bb 13> [local count: 205396426]:
+  if (_5 == 0)
+    goto <bb 14>; [33.00%]
+  else
+    goto <bb 15>; [67.00%]
+
+  <bb 14> [local count: 67780821]:
+  # DEBUG BEGIN_STMT
+  # DEBUG ActiveDiagnosticRequest => 2
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic = 0;
+  # DEBUG ActiveDiagnosticRequest => 2
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+  goto <bb 16>; [100.00%]
+
+  <bb 15> [local count: 334011876]:
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestActiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic = 0;
+  # DEBUG ActiveDiagnosticRequest => 0
+  # DEBUG BEGIN_STMT
+  SchM_Exit_Dcm_SCHM_DCM_EXCLUSIVE_AREA_0 ();
+  # DEBUG BEGIN_STMT
+
+  <bb 16> [local count: 401792696]:
+  # ActiveDiagnosticRequest_31 = PHI <2(14), 0(15)>
+  # DEBUG BEGIN_STMT
+  if (ActiveDiagnosticRequest_31 == 2)
+    goto <bb 17>; [20.24%]
+  else
+    goto <bb 19>; [79.76%]
+
+  <bb 17> [local count: 81322842]:
+  # DEBUG BEGIN_STMT
+  _9 = Dcm_RxComMChannelIDs[0];
+  Dcm_Dsl_ComMChannelStateManager_RequestInactiveDiagnostic (_9);
+
+  <bb 19> [local count: 955630224]:
+  # ComMChannelIndex_14 = PHI <1(11), 1(16), 1(8), 1(17)>
+
+  <bb 21> [local count: 1073741824]:
+  # ComMChannelIndex_11 = PHI <ComMChannelIndex_14(19), 0(22)>
+  # DEBUG ComMChannelIndex => ComMChannelIndex_11
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex_11 == 0)
+    goto <bb 7>; [89.00%]
+  else
+    goto <bb 20>; [11.00%]
+
+  <bb 20> [local count: 118111601]:
+  return;
+
+}
+
+
+Dcm_Dsl_Supervisor_CommunicationSessionHandling_Init ()
+{
+  uint8_least ComMChannelIndex;
+  uint16_least RxConnectionIndex;
+
+  <bb 2> [local count: 153437706]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG RxConnectionIndex => 0
+  goto <bb 4>; [100.00%]
+
+  <bb 3> [local count: 920304118]:
+  # DEBUG BEGIN_STMT
+  Dcm_CancelRxConnection[RxConnectionIndex_1] = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_CommunicationSessionState[RxConnectionIndex_1] = 1;
+  # DEBUG BEGIN_STMT
+  RxConnectionIndex_10 = RxConnectionIndex_1 + 1;
+  # DEBUG RxConnectionIndex => RxConnectionIndex_10
+
+  <bb 4> [local count: 1073741824]:
+  # RxConnectionIndex_1 = PHI <0(2), RxConnectionIndex_10(3)>
+  # DEBUG RxConnectionIndex => RxConnectionIndex_1
+  # DEBUG BEGIN_STMT
+  if (RxConnectionIndex_1 != 6)
+    goto <bb 3>; [85.71%]
+  else
+    goto <bb 8>; [14.29%]
+
+  <bb 8> [local count: 153437707]:
+  goto <bb 6>; [100.00%]
+
+  <bb 5> [local count: 153437707]:
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestActiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  Dcm_ActionsOnComMChannels[0].RequestInactiveDiagnostic = 0;
+  # DEBUG BEGIN_STMT
+  # DEBUG ComMChannelIndex => 1
+
+  <bb 6> [local count: 306875413]:
+  # ComMChannelIndex_2 = PHI <1(5), 0(8)>
+  # DEBUG ComMChannelIndex => ComMChannelIndex_2
+  # DEBUG BEGIN_STMT
+  if (ComMChannelIndex_2 == 0)
+    goto <bb 5>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 7> [local count: 153437707]:
+  return;
+
+}
+
+

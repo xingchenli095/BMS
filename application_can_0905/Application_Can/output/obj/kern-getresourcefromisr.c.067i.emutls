@@ -1,0 +1,173 @@
+No TLS variables found.
+__attribute__((target ("general-regs-only")))
+OS_GetResourceFromIsr (os_resourceid_t r, struct os_resourcedynamic_t * rd, os_paramtype_t * p)
+{
+  os_prio_t newLevel;
+  const struct os_appcontext_t * app;
+  const struct os_isr_t * isrp;
+  os_intstatus_t is;
+  const struct os_resource_t * rs;
+  os_result_t result;
+  const struct os_resource_t * OS_resourceTableBase.0_1;
+  unsigned int _2;
+  unsigned int _3;
+  const struct os_isr_t * OS_isrTableBase.1_4;
+  short unsigned int _5;
+  unsigned int _6;
+  unsigned int _7;
+  unsigned int _8;
+  unsigned int _9;
+  unsigned int _10;
+  short unsigned int _11;
+  unsigned int _12;
+  unsigned int _13;
+  short unsigned int _14;
+  unsigned int _15;
+  short unsigned int OS_kernDisableLevel.2_16;
+  unsigned int _17;
+  unsigned int _18;
+  short unsigned int _19;
+  short unsigned int _20;
+  short unsigned int _21;
+  const os_tick_t * _22;
+  unsigned int _23;
+  const os_tick_t * _24;
+  unsigned int _25;
+  void (*<T63c>) (struct os_resourcedynamic_t *, os_tick_t) OS_startResLockTimingFp.3_26;
+  short unsigned int _27;
+  short unsigned int _28;
+
+  <bb 2> [local count: 1073741823]:
+  # DEBUG BEGIN_STMT
+  # DEBUG kernel_data => &OS_kernelData
+  # DEBUG BEGIN_STMT
+  # DEBUG result => 0
+  # DEBUG BEGIN_STMT
+  OS_resourceTableBase.0_1 = OS_resourceTableBase;
+  _2 = (unsigned int) r_33(D);
+  _3 = _2 * 16;
+  rs_34 = OS_resourceTableBase.0_1 + _3;
+  # DEBUG rs => rs_34
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  OS_isrTableBase.1_4 = OS_isrTableBase;
+  _5 = OS_kernelData.isrCurrent;
+  _6 = (unsigned int) _5;
+  _7 = _6 * 68;
+  isrp_35 = OS_isrTableBase.1_4 + _7;
+  # DEBUG isrp => isrp_35
+  # DEBUG BEGIN_STMT
+  app_36 = isrp_35->app;
+  # DEBUG app => app_36
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  if (app_36 != 0B)
+    goto <bb 3>; [70.00%]
+  else
+    goto <bb 5>; [30.00%]
+
+  <bb 3> [local count: 751619277]:
+  _8 = app_36->permissionBit;
+  _9 = rs_34->permissions;
+  _10 = _8 & _9;
+  if (_10 == 0)
+    goto <bb 4>; [33.00%]
+  else
+    goto <bb 5>; [67.00%]
+
+  <bb 4> [local count: 248034361]:
+  # DEBUG BEGIN_STMT
+  result_39 = OS_Error (&OS_svc_GetResource, 37, p_37(D));
+  # DEBUG result => result_39
+  goto <bb 13>; [100.00%]
+
+  <bb 5> [local count: 825707462]:
+  # DEBUG BEGIN_STMT
+  _11 = isrp_35->arch.priority;
+  _12 = (unsigned int) _11;
+  _13 = 272 - _12;
+  _14 = rs_34->prio;
+  _15 = (unsigned int) _14;
+  if (_13 > _15)
+    goto <bb 6>; [50.00%]
+  else
+    goto <bb 7>; [50.00%]
+
+  <bb 6> [local count: 412853730]:
+  # DEBUG BEGIN_STMT
+  result_52 = OS_Error (&OS_svc_GetResource, 26, p_37(D));
+  # DEBUG result => result_52
+  goto <bb 13>; [100.00%]
+
+  <bb 7> [local count: 412853730]:
+  # DEBUG BEGIN_STMT
+  OS_kernDisableLevel.2_16 = OS_kernDisableLevel;
+  is_41 = OS_CORTEXM_IntSetDisablingLevel (OS_kernDisableLevel.2_16);
+  # DEBUG is => is_41
+  # DEBUG BEGIN_STMT
+  _17 = OS_kernelData.isrLastLock;
+  rd_42(D)->next = _17;
+  # DEBUG BEGIN_STMT
+  _18 = _2 | 67108864;
+  OS_kernelData.isrLastLock = _18;
+  # DEBUG BEGIN_STMT
+  _19 = 272 - is_41;
+  rd_42(D)->lastPrio = _19;
+  # DEBUG BEGIN_STMT
+  _20 = isrp_35->isrId;
+  _21 = _20 + 256;
+  rd_42(D)->takenBy = _21;
+  # DEBUG BEGIN_STMT
+  _22 = isrp_35->resourceLockTime;
+  if (_22 != 0B)
+    goto <bb 8>; [70.00%]
+  else
+    goto <bb 10>; [30.00%]
+
+  <bb 8> [local count: 288997611]:
+  _23 = _2 * 4;
+  _24 = _22 + _23;
+  _25 = *_24;
+  if (_25 != 0)
+    goto <bb 9>; [50.00%]
+  else
+    goto <bb 10>; [50.00%]
+
+  <bb 9> [local count: 144498806]:
+  # DEBUG BEGIN_STMT
+  OS_startResLockTimingFp.3_26 = OS_startResLockTimingFp;
+  OS_startResLockTimingFp.3_26 (rd_42(D), _25);
+
+  <bb 10> [local count: 412853730]:
+  # DEBUG BEGIN_STMT
+  _27 = rs_34->prio;
+  _28 = rd_42(D)->lastPrio;
+  if (_27 > _28)
+    goto <bb 11>; [50.00%]
+  else
+    goto <bb 12>; [50.00%]
+
+  <bb 11> [local count: 206426865]:
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  newLevel_49 = 272 - _27;
+  # DEBUG newLevel => newLevel_49
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (newLevel_49);
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [100.00%]
+
+  <bb 12> [local count: 206426865]:
+  # DEBUG BEGIN_STMT
+  OS_CORTEXM_IntSetDisablingLevel (is_41);
+
+  <bb 13> [local count: 1073741824]:
+  # result_29 = PHI <result_39(4), result_52(6), 0(11), 0(12)>
+  # DEBUG result => result_29
+  # DEBUG BEGIN_STMT
+  return result_29;
+
+}
+
+

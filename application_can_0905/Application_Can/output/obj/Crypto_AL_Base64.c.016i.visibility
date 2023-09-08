@@ -1,0 +1,509 @@
+
+Marking local functions: Crypto_Base64DecodeOneBlock
+
+
+Marking externally visible functions: Crypto_AL_Base64Decode
+
+
+Marking externally visible variables:
+
+
+Reclaiming functions:
+Reclaiming variables:
+Clearing address taken flags:
+Symbol table:
+
+Crypto_Base64DecodeOneBlock/2 (Crypto_Base64DecodeOneBlock) @06ad1c40
+  Type: function definition analyzed
+  Visibility: prevailing_def_ironly
+  References: Crypto_Base64Mapping/0 (read)
+  Referring: 
+  Availability: local
+  Function flags: body local optimize_size
+  Called by: Crypto_AL_Base64Decode/1 
+  Calls: 
+Crypto_AL_Base64Decode/1 (Crypto_AL_Base64Decode) @06ad1a80
+  Type: function definition analyzed
+  Visibility: externally_visible public
+  References: 
+  Referring: 
+  Availability: available
+  Function flags: body optimize_size
+  Called by: 
+  Calls: Crypto_Base64DecodeOneBlock/2 
+Crypto_Base64Mapping/0 (Crypto_Base64Mapping) @068ac558
+  Type: variable definition analyzed
+  Visibility: prevailing_def_ironly
+  References: 
+  Referring: Crypto_Base64DecodeOneBlock/2 (read)
+  Availability: available
+  Varpool flags: initialized read-only const-value-known
+Crypto_Base64DecodeOneBlock (const uint8 * EncodingBlock, uint32 EncodingBlockLength, uint8 * ResultBlock, uint32 ResultBlockLength)
+{
+  uint8 SixDecodedBits;
+  uint32 j;
+  uint32 i;
+  Std_ReturnType RetVal;
+  uint32 DecodedBytes;
+  Std_ReturnType D.5482;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  DecodedBytes = 0;
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  i = 0;
+  # DEBUG BEGIN_STMT
+  j = 0;
+  # DEBUG BEGIN_STMT
+  SixDecodedBits = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 13>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 4> :
+  # DEBUG BEGIN_STMT
+  if (i < EncodingBlockLength)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 5> :
+  _1 = EncodingBlock + i;
+  _2 = *_1;
+  if (_2 == 13)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 6> :
+  _3 = EncodingBlock + i;
+  _4 = *_3;
+  if (_4 == 10)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 7>; [INV]
+
+  <bb 7> :
+  _5 = EncodingBlock + i;
+  _6 = *_5;
+  if (_6 == 61)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  if (i < EncodingBlockLength)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 13>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  _7 = EncodingBlock + i;
+  _8 = *_7;
+  _9 = (int) _8;
+  SixDecodedBits = Crypto_Base64Mapping[_9];
+  # DEBUG BEGIN_STMT
+  if (SixDecodedBits == 255)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 12>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _10 = (long unsigned int) SixDecodedBits;
+  _11 = j * 4294967290;
+  _12 = _11 + 18;
+  _13 = _10 << _12;
+  DecodedBytes = DecodedBytes | _13;
+
+  <bb 12> :
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+  # DEBUG BEGIN_STMT
+  j = j + 1;
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  if (i < EncodingBlockLength)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 15> :
+  # DEBUG BEGIN_STMT
+  i = 0;
+  goto <bb 17>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  _14 = 2 - i;
+  _15 = _14 * 8;
+  _16 = DecodedBytes >> _15;
+  _17 = ResultBlock + i;
+  _18 = (unsigned char) _16;
+  *_17 = _18;
+  # DEBUG BEGIN_STMT
+  i = i + 1;
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  if (i < ResultBlockLength)
+    goto <bb 16>; [INV]
+  else
+    goto <bb 18>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  D.5482 = RetVal;
+  return D.5482;
+
+}
+
+
+Crypto_AL_Base64Decode (const uint8 * Encoding, uint32 EncodingLength, uint8 * Result, uint32 * ResultLengthPtr)
+{
+  boolean Finished;
+  uint32 PaddingCharsAtEnd;
+  uint32 TotalPaddingChars;
+  uint32 ResultBufferLength;
+  uint32 ResultBlockLength;
+  uint32 EncodingBlockRealLength;
+  uint32 EncodingBlockLength;
+  uint32 ResultPosition;
+  uint32 EncodingPosition;
+  Std_ReturnType RetVal;
+  Std_ReturnType D.5470;
+
+  <bb 2> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  # DEBUG BEGIN_STMT
+  EncodingPosition = EncodingLength;
+  # DEBUG BEGIN_STMT
+  EncodingLength = 0;
+  # DEBUG BEGIN_STMT
+  Finished = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 6>; [INV]
+
+  <bb 3> :
+  # DEBUG BEGIN_STMT
+  EncodingPosition = EncodingPosition + 4294967295;
+  # DEBUG BEGIN_STMT
+  _1 = Encoding + EncodingPosition;
+  _2 = *_1;
+  if (_2 != 10)
+    goto <bb 4>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 4> :
+  _3 = Encoding + EncodingPosition;
+  _4 = *_3;
+  if (_4 != 13)
+    goto <bb 5>; [INV]
+  else
+    goto <bb 6>; [INV]
+
+  <bb 5> :
+  # DEBUG BEGIN_STMT
+  Finished = 1;
+  # DEBUG BEGIN_STMT
+  EncodingLength = EncodingPosition + 1;
+
+  <bb 6> :
+  # DEBUG BEGIN_STMT
+  if (EncodingPosition != 0)
+    goto <bb 7>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 7> :
+  if (Finished == 0)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 8>; [INV]
+
+  <bb 8> :
+  # DEBUG BEGIN_STMT
+  PaddingCharsAtEnd = 0;
+  # DEBUG BEGIN_STMT
+  Finished = 0;
+  # DEBUG BEGIN_STMT
+  EncodingPosition = EncodingLength;
+  # DEBUG BEGIN_STMT
+  goto <bb 14>; [INV]
+
+  <bb 9> :
+  # DEBUG BEGIN_STMT
+  EncodingPosition = EncodingPosition + 4294967295;
+  # DEBUG BEGIN_STMT
+  _5 = Encoding + EncodingPosition;
+  _6 = *_5;
+  if (_6 == 61)
+    goto <bb 10>; [INV]
+  else
+    goto <bb 11>; [INV]
+
+  <bb 10> :
+  # DEBUG BEGIN_STMT
+  PaddingCharsAtEnd = PaddingCharsAtEnd + 1;
+  goto <bb 14>; [INV]
+
+  <bb 11> :
+  # DEBUG BEGIN_STMT
+  _7 = Encoding + EncodingPosition;
+  _8 = *_7;
+  if (_8 != 10)
+    goto <bb 12>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 12> :
+  _9 = Encoding + EncodingPosition;
+  _10 = *_9;
+  if (_10 != 13)
+    goto <bb 13>; [INV]
+  else
+    goto <bb 14>; [INV]
+
+  <bb 13> :
+  # DEBUG BEGIN_STMT
+  Finished = 1;
+
+  <bb 14> :
+  # DEBUG BEGIN_STMT
+  if (EncodingPosition != 0)
+    goto <bb 15>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 15> :
+  if (Finished == 0)
+    goto <bb 9>; [INV]
+  else
+    goto <bb 16>; [INV]
+
+  <bb 16> :
+  # DEBUG BEGIN_STMT
+  RetVal = 0;
+  # DEBUG BEGIN_STMT
+  EncodingPosition = 0;
+  # DEBUG BEGIN_STMT
+  ResultPosition = 0;
+  # DEBUG BEGIN_STMT
+  TotalPaddingChars = 0;
+  # DEBUG BEGIN_STMT
+  ResultBufferLength = *ResultLengthPtr;
+  # DEBUG BEGIN_STMT
+  ResultBlockLength = 0;
+  # DEBUG BEGIN_STMT
+  EncodingBlockRealLength = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 35>; [INV]
+
+  <bb 17> :
+  # DEBUG BEGIN_STMT
+  EncodingBlockLength = 0;
+  # DEBUG BEGIN_STMT
+  EncodingBlockRealLength = 0;
+  # DEBUG BEGIN_STMT
+  goto <bb 25>; [INV]
+
+  <bb 18> :
+  # DEBUG BEGIN_STMT
+  _11 = EncodingPosition + EncodingBlockLength;
+  _12 = Encoding + _11;
+  _13 = *_12;
+  if (_13 != 13)
+    goto <bb 19>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 19> :
+  _14 = EncodingPosition + EncodingBlockLength;
+  _15 = Encoding + _14;
+  _16 = *_15;
+  if (_16 != 10)
+    goto <bb 20>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 20> :
+  _17 = EncodingPosition + EncodingBlockLength;
+  _18 = Encoding + _17;
+  _19 = *_18;
+  if (_19 != 61)
+    goto <bb 21>; [INV]
+  else
+    goto <bb 22>; [INV]
+
+  <bb 21> :
+  # DEBUG BEGIN_STMT
+  EncodingBlockRealLength = EncodingBlockRealLength + 1;
+
+  <bb 22> :
+  # DEBUG BEGIN_STMT
+  _20 = EncodingPosition + EncodingBlockLength;
+  _21 = Encoding + _20;
+  _22 = *_21;
+  if (_22 == 61)
+    goto <bb 23>; [INV]
+  else
+    goto <bb 24>; [INV]
+
+  <bb 23> :
+  # DEBUG BEGIN_STMT
+  TotalPaddingChars = TotalPaddingChars + 1;
+
+  <bb 24> :
+  # DEBUG BEGIN_STMT
+  EncodingBlockLength = EncodingBlockLength + 1;
+
+  <bb 25> :
+  # DEBUG BEGIN_STMT
+  _23 = EncodingBlockLength + EncodingPosition;
+  if (EncodingLength > _23)
+    goto <bb 26>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 26> :
+  if (EncodingBlockRealLength <= 3)
+    goto <bb 18>; [INV]
+  else
+    goto <bb 27>; [INV]
+
+  <bb 27> :
+  # DEBUG BEGIN_STMT
+  if (EncodingBlockRealLength <= 1)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 28>; [INV]
+
+  <bb 28> :
+  if (TotalPaddingChars > PaddingCharsAtEnd)
+    goto <bb 29>; [INV]
+  else
+    goto <bb 30>; [INV]
+
+  <bb 29> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+  goto <bb 31>; [INV]
+
+  <bb 30> :
+  # DEBUG BEGIN_STMT
+  ResultBlockLength = EncodingBlockRealLength + 4294967295;
+
+  <bb 31> :
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 32>; [INV]
+  else
+    goto <bb 35>; [INV]
+
+  <bb 32> :
+  # DEBUG BEGIN_STMT
+  _24 = ResultPosition + ResultBlockLength;
+  if (ResultBufferLength >= _24)
+    goto <bb 33>; [INV]
+  else
+    goto <bb 34>; [INV]
+
+  <bb 33> :
+  # DEBUG BEGIN_STMT
+  _25 = Encoding + EncodingPosition;
+  _26 = Result + ResultPosition;
+  RetVal = Crypto_Base64DecodeOneBlock (_25, EncodingBlockLength, _26, ResultBlockLength);
+  # DEBUG BEGIN_STMT
+  EncodingPosition = EncodingPosition + EncodingBlockLength;
+  # DEBUG BEGIN_STMT
+  ResultPosition = ResultPosition + ResultBlockLength;
+  goto <bb 35>; [INV]
+
+  <bb 34> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+
+  <bb 35> :
+  # DEBUG BEGIN_STMT
+  if (EncodingPosition < EncodingLength)
+    goto <bb 36>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 36> :
+  if (RetVal == 0)
+    goto <bb 17>; [INV]
+  else
+    goto <bb 37>; [INV]
+
+  <bb 37> :
+  # DEBUG BEGIN_STMT
+  if (RetVal == 0)
+    goto <bb 38>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 38> :
+  if (PaddingCharsAtEnd != 0)
+    goto <bb 39>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 39> :
+  _27 = PaddingCharsAtEnd + EncodingBlockRealLength;
+  if (_27 != 4)
+    goto <bb 41>; [INV]
+  else
+    goto <bb 40>; [INV]
+
+  <bb 40> :
+  if (PaddingCharsAtEnd > 2)
+    goto <bb 41>; [INV]
+  else
+    goto <bb 42>; [INV]
+
+  <bb 41> :
+  # DEBUG BEGIN_STMT
+  RetVal = 1;
+
+  <bb 42> :
+  # DEBUG BEGIN_STMT
+  *ResultLengthPtr = ResultPosition;
+  # DEBUG BEGIN_STMT
+  D.5470 = RetVal;
+  return D.5470;
+
+}
+
+
