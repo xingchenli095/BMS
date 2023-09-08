@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3_STRICT_COMPACT.xsd">
+
+
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>AUTOSAR_SecOC</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwComponentTypes</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-SW-COMPONENT-TYPE>
+              <SHORT-NAME>SecOC</SHORT-NAME>
+              <PORTS>
+                <!-- RX related -->
+                <!-- !LINKSTO SecOC.ASR430.Rx.SWS_SecOC_91001,4 -->
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>PS_RxFreshnessManagement</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_SecOC/PortInterfaces/RxFreshnessManagement</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <!-- !LINKSTO SecOC.ASR20-11.Rx.SWS_SecOC_91022,1 -->
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PS_VerifyStatusConfiguration</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_SecOC/PortInterfaces/VerifyStatusConfiguration</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <!-- TX related -->
+                <!-- !LINKSTO SecOC.ASR430.Tx.SWS_SecOC_91001,4 -->
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>PS_TxFreshnessManagement</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="CLIENT-SERVER-INTERFACE">/AUTOSAR_SecOC/PortInterfaces/TxFreshnessManagement</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SecOCInternalBehavior</SHORT-NAME>
+                  <EVENTS>
+                    <OPERATION-INVOKED-EVENT>
+                      <SHORT-NAME>EV_VerifyStatusOverride</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/AUTOSAR_SecOC/SwComponentTypes/SecOC/SecOCInternalBehavior/RE_VerifyStatusOverride</START-ON-EVENT-REF>
+                      <OPERATION-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/AUTOSAR_SecOC/SwComponentTypes/SecOC/PS_VerifyStatusConfiguration</CONTEXT-P-PORT-REF>
+                        <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_SecOC/PortInterfaces/VerifyStatusConfiguration/VerifyStatusOverride</TARGET-PROVIDED-OPERATION-REF>
+                      </OPERATION-IREF>
+                    </OPERATION-INVOKED-EVENT>
+                  </EVENTS>
+                  <HANDLE-TERMINATION-AND-RESTART>NO-SUPPORT</HANDLE-TERMINATION-AND-RESTART>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_VerifyStatusOverride</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <ARGUMENTS>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>freshnessValueId</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>overrideStatus</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                        <RUNNABLE-ENTITY-ARGUMENT>
+                          <SYMBOL>numberOfMessagesToOverride</SYMBOL>
+                        </RUNNABLE-ENTITY-ARGUMENT>
+                      </ARGUMENTS>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SYMBOL>SecOC_VerifyStatusOverride</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_MainFunctionRx</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SERVER-CALL-POINTS>
+                        <SYNCHRONOUS-SERVER-CALL-POINT>
+                          <SHORT-NAME>SSCP_GetRxFreshness</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_SecOC/SwComponentTypes/SecOC/PS_RxFreshnessManagement</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_SecOC/PortInterfaces/RxFreshnessManagement/GetRxFreshness</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                          <TIMEOUT>0</TIMEOUT>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                      </SERVER-CALL-POINTS>
+                      <SYMBOL>SecOC_MainFunctionRx</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>RE_MainFunctionTx</SHORT-NAME>
+                      <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SERVER-CALL-POINTS>
+                        <SYNCHRONOUS-SERVER-CALL-POINT>
+                          <SHORT-NAME>SSCP_GetTxFreshness</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_SecOC/SwComponentTypes/SecOC/PS_TxFreshnessManagement</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_SecOC/PortInterfaces/TxFreshnessManagement/GetTxFreshness</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                          <TIMEOUT>0</TIMEOUT>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                        <SYNCHRONOUS-SERVER-CALL-POINT>
+                          <SHORT-NAME>SSCP_SPduTxConfirmation</SHORT-NAME>
+                          <OPERATION-IREF>
+                            <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/AUTOSAR_SecOC/SwComponentTypes/SecOC/PS_TxFreshnessManagement</CONTEXT-R-PORT-REF>
+                            <TARGET-REQUIRED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/AUTOSAR_SecOC/PortInterfaces/TxFreshnessManagement/SPduTxConfirmation</TARGET-REQUIRED-OPERATION-REF>
+                          </OPERATION-IREF>
+                          <TIMEOUT>0</TIMEOUT>
+                        </SYNCHRONOUS-SERVER-CALL-POINT>
+                      </SERVER-CALL-POINTS>
+                      <SYMBOL>SecOC_MainFunctionTx</SYMBOL>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </SERVICE-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>EB_SecOC</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwcImplementations</SHORT-NAME>
+          <ELEMENTS>
+            <SWC-IMPLEMENTATION>
+              <SHORT-NAME>SecOCImpl</SHORT-NAME>
+              <CODE-DESCRIPTORS>
+                <CODE>
+                  <SHORT-NAME>SecOCCode</SHORT-NAME>
+                  <ARTIFACT-DESCRIPTORS>
+                    <AUTOSAR-ENGINEERING-OBJECT>
+                      <SHORT-LABEL>EngObject</SHORT-LABEL>
+                      <CATEGORY>SWSRC</CATEGORY>
+                    </AUTOSAR-ENGINEERING-OBJECT>
+                  </ARTIFACT-DESCRIPTORS>
+                </CODE>
+              </CODE-DESCRIPTORS>
+              <PROGRAMMING-LANGUAGE>C</PROGRAMMING-LANGUAGE>
+              <RESOURCE-CONSUMPTION>
+                <SHORT-NAME>Resources</SHORT-NAME>
+                <MEMORY-SECTIONS>
+                  <MEMORY-SECTION>
+                    <SHORT-NAME>CODE</SHORT-NAME>
+                    <SW-ADDRMETHOD-REF DEST="SW-ADDR-METHOD">/AUTOSAR_MemMap/SwAddrMethods/CODE</SW-ADDRMETHOD-REF>
+                  </MEMORY-SECTION>
+                </MEMORY-SECTIONS>
+              </RESOURCE-CONSUMPTION>
+              <SW-VERSION>2.8.1</SW-VERSION>
+              <VENDOR-ID>1</VENDOR-ID>
+              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/AUTOSAR_SecOC/SwComponentTypes/SecOC/SecOCInternalBehavior</BEHAVIOR-REF>
+            </SWC-IMPLEMENTATION>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

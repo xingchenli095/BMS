@@ -1,0 +1,33 @@
+C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/obj/ComXf_S_PartitionApi.o \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/obj/ComXf_S_PartitionApi.s: \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/src/ComXf_S_PartitionApi.c \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/ComXf_S_PartitionApi.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Platform_Types.h \
+ D:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/source/config/Compiler_Cfg.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
+ D:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TransformerTypes.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/SchM_ComXfType.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Rte_Type.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Rte.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSAutosar.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/TSAutosar_Cfg.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/source/config/Platforms_TSPlatforms.h \
+ D:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_TSPlatforms.h \
+ D:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/TSCompiler.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSCompiler_Default.h \
+ D:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_platform_types.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Atomics_MemMap.h \
+ D:/EB/tresos/plugins/Rte_TS_TxDxM6I8R0/include/Rte_Version.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/ComStack_Types.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/ComStack_Cfg.h \
+ D:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Can_GeneralTypes.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/Can_GeneralTypes_Cfg.h \
+ D:/EB/tresos/plugins/E2E_TS_TxDxM2I0R0/include/E2E_ComXf_S_Stc.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/ComXf_Cfg.h \
+ D:/EB/tresos/plugins/E2E_TS_TxDxM2I0R0/include/E2E_UnPackSig.h \
+ C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/include/ComXf_MemMap.h
