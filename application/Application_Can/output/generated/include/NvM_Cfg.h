@@ -724,7 +724,7 @@
  **        the configuration parameter NvMBlockUseCrc set to true and
  **        NvMBlockCrcType set to NVM_CRC32.
  **/
-#define NVM_NUMBER_OF_CALC_CRC32_BLOCKS                 4
+#define NVM_NUMBER_OF_CALC_CRC32_BLOCKS                 3
 
 #if (defined NVM_NUMBER_OF_CRC_BLOCKS)
 #error NVM_NUMBER_OF_CRC_BLOCKS is already defined
@@ -733,7 +733,7 @@
  **        the configuration parameter NvMBlockUseCrc set to true and
  **        NvMBlockCrcType set to NVM_CRC32.
  **/
-#define NVM_NUMBER_OF_CRC_BLOCKS                 5
+#define NVM_NUMBER_OF_CRC_BLOCKS                 4
 
 #if (defined NVM_CRC_COMP_MECH)
 #error NVM_CRC_COMP_MECH is already defined

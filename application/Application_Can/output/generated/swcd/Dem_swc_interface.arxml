@@ -21,7 +21,7 @@
                 <DATA-CONSTR-RULE>
                   <INTERNAL-CONSTRS>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">14</UPPER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">15</UPPER-LIMIT>
                   </INTERNAL-CONSTRS>
                 </DATA-CONSTR-RULE>
              </DATA-CONSTR-RULES>
@@ -188,67 +188,99 @@
 
             <COMPU-METHOD>
               <SHORT-NAME>CM_EventStatusExtendedType</SHORT-NAME>
-            <!-- !LINKSTO Dem.RteTypes_Implicit3,2 -->
-              <CATEGORY>TEXTTABLE</CATEGORY>
+            <!-- !LINKSTO Dem.ASR431.SWS_Dem_00928,1 -->
+              <CATEGORY>BITFIELD_TEXTTABLE</CATEGORY>
               <COMPU-INTERNAL-TO-PHYS>
-                <COMPU-SCALES>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_TF</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_TFTOC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_PDTC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_CDTC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_TNCSLC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">32</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">32</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_TFSLC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">64</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">64</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_TNCTOC</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">128</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">128</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_UDS_STATUS_WIR</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                </COMPU-SCALES>
+                  <COMPU-SCALES>
+                      <!-- bit 0: TestFailed -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_TF</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_TF</SYMBOL>
+                          <MASK>0b00000001</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000001</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000001</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_TF</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 1: TestFailedThisOperationCycle -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_TFTOC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_TFTOC</SYMBOL>
+                          <MASK>0b00000010</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000010</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000010</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_TFTOC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 2: PendingDTC -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_PDTC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_PDTC</SYMBOL>
+                          <MASK>0b00000100</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000100</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000100</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_PDTC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 3: ConfirmedDTC -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_CDTC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_CDTC</SYMBOL>
+                          <MASK>0b00001000</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00001000</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00001000</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_CDTC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 4: TestNotCompletedSinceLastClear -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_TNCSLC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_TNCSLC</SYMBOL>
+                          <MASK>0b00010000</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00010000</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00010000</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_TNCSLC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 5: TestFailedSinceLastClear -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_TFSLC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_TFSLC</SYMBOL>
+                          <MASK>0b00100000</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00100000</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00100000</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_TFSLC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 6: TestNotCompletedThisOperationCycle -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_TNCTOC</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_TNCTOC</SYMBOL>
+                          <MASK>0b01000000</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b01000000</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b01000000</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_TNCTOC</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <!-- bit 7: WarningIndicatorRequested -->
+                      <COMPU-SCALE>
+                          <SHORT-LABEL>DEM_UDS_STATUS_WIR</SHORT-LABEL>
+                          <SYMBOL>DEM_UDS_STATUS_WIR</SYMBOL>
+                          <MASK>0b10000000</MASK>
+                          <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b10000000</LOWER-LIMIT>
+                          <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b10000000</UPPER-LIMIT>
+                          <COMPU-CONST>
+                              <VT>DEM_UDS_STATUS_WIR</VT>
+                          </COMPU-CONST>
+                      </COMPU-SCALE>
+                  </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
             </COMPU-METHOD>
 
@@ -299,44 +331,59 @@
 
             <COMPU-METHOD>
               <SHORT-NAME>CM_DebouncingStateType</SHORT-NAME>
-            <!-- !LINKSTO Dem.RteTypes_Implicit15,1 -->
-              <CATEGORY>TEXTTABLE</CATEGORY>
+            <!-- !LINKSTO Dem.ASR431.SWS_Dem_01000,1 -->
+              <CATEGORY>BITFIELD_TEXTTABLE</CATEGORY>
               <COMPU-INTERNAL-TO-PHYS>
                 <COMPU-SCALES>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_TEMPORARILY_DEFECTIVE</VT>
-                    </COMPU-CONST>
+                      <SHORT-LABEL>DEM_TEMPORARILY_DEFECTIVE</SHORT-LABEL>
+                      <SYMBOL>DEM_TEMPORARILY_DEFECTIVE</SYMBOL>
+                      <MASK>0b00000001</MASK>
+                      <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000001</LOWER-LIMIT>
+                      <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000001</UPPER-LIMIT>
+                      <COMPU-CONST>
+                          <VT>DEM_TEMPORARILY_DEFECTIVE</VT>
+                      </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_FINALY_DEFECTIVE</VT>
-                    </COMPU-CONST>
+                      <SHORT-LABEL>DEM_FINALLY_DEFECTIVE</SHORT-LABEL>
+                      <SYMBOL>DEM_FINALLY_DEFECTIVE</SYMBOL>
+                      <MASK>0b00000010</MASK>
+                      <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000010</LOWER-LIMIT>
+                      <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000010</UPPER-LIMIT>
+                      <COMPU-CONST>
+                          <VT>DEM_FINALLY_DEFECTIVE</VT>
+                      </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_TEMPORARILY_HEALED</VT>
-                    </COMPU-CONST>
+                      <SHORT-LABEL>DEM_TEMPORARILY_HEALED</SHORT-LABEL>
+                      <SYMBOL>DEM_TEMPORARILY_HEALED</SYMBOL>
+                      <MASK>0b00000100</MASK>
+                      <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00000100</LOWER-LIMIT>
+                      <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00000100</UPPER-LIMIT>
+                      <COMPU-CONST>
+                          <VT>DEM_TEMPORARILY_HEALED</VT>
+                      </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_TEST_COMPLETE</VT>
-                    </COMPU-CONST>
+                      <SHORT-LABEL>DEM_TEST_COMPLETE</SHORT-LABEL>
+                      <SYMBOL>DEM_TEST_COMPLETE</SYMBOL>
+                      <MASK>0b00001000</MASK>
+                      <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00001000</LOWER-LIMIT>
+                      <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00001000</UPPER-LIMIT>
+                      <COMPU-CONST>
+                          <VT>DEM_TEST_COMPLETE</VT>
+                      </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">16</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">16</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>DEM_DTR_UPDATE</VT>
-                    </COMPU-CONST>
+                      <SHORT-LABEL>DEM_DTR_UPDATE</SHORT-LABEL>
+                      <SYMBOL>DEM_DTR_UPDATE</SYMBOL>
+                      <MASK>0b00010000</MASK>
+                      <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0b00010000</LOWER-LIMIT>
+                      <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0b00010000</UPPER-LIMIT>
+                      <COMPU-CONST>
+                          <VT>DEM_DTR_UPDATE</VT>
+                      </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
@@ -576,6 +623,13 @@
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">14</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>DemConf_DemEventParameter_MCU_E_CLOCKMUXSWITCH_FAILURE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">15</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">15</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>DemConf_DemEventParameter_SPI_E_HARDWARE_ERROR</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>
@@ -994,58 +1048,10 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_NO_FDC_AVAILABLE</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
 
-                <CLIENT-SERVER-OPERATION>
-                  <SHORT-NAME>GetEventFreezeFrameData</SHORT-NAME>
-                  <ARGUMENTS>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>RecordNumber</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>ReportTotalRecord</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DataId</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DestBuffer</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_MaxDataValueType</TYPE-TREF>
-                      <DIRECTION>OUT</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                  </ARGUMENTS>
-                  <POSSIBLE-ERROR-REFS>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_DIDNUMBER</POSSIBLE-ERROR-REF>
-                  </POSSIBLE-ERROR-REFS>
-                </CLIENT-SERVER-OPERATION>
-
-                <CLIENT-SERVER-OPERATION>
-                  <SHORT-NAME>GetEventExtendedDataRecord</SHORT-NAME>
-                  <ARGUMENTS>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>RecordNumber</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DestBuffer</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_MaxDataValueType</TYPE-TREF>
-                      <DIRECTION>OUT</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                  </ARGUMENTS>
-                  <POSSIBLE-ERROR-REFS>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                  </POSSIBLE-ERROR-REFS>
-                </CLIENT-SERVER-OPERATION>
                 <!-- Functionalities not implemented, only stub available. -->
                 <!-- !LINKSTO SWS_Dem_00730,1 -->
                 <CLIENT-SERVER-OPERATION>
@@ -1083,9 +1089,8 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_BUFFERSIZE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_BUFFER_TOO_SMALL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_NO_SUCH_ELEMENT</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
                 <!-- !LINKSTO SWS_Dem_01191,1 -->
@@ -1115,10 +1120,8 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_DIDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_E_WRONG_BUFFERSIZE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_BUFFER_TOO_SMALL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/DiagnosticInfo/DEM_NO_SUCH_ELEMENT</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
               </OPERATIONS>
@@ -1129,27 +1132,19 @@
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
                   <SHORT-NAME>DEM_E_NO_DTC_AVAILABLE</SHORT-NAME>
-                  <ERROR-CODE>2</ERROR-CODE>
+                  <ERROR-CODE>10</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
                   <SHORT-NAME>DEM_E_NO_FDC_AVAILABLE</SHORT-NAME>
-                  <ERROR-CODE>3</ERROR-CODE>
+                  <ERROR-CODE>14</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_BUFFERSIZE</SHORT-NAME>
+                  <SHORT-NAME>DEM_BUFFER_TOO_SMALL</SHORT-NAME>
                   <ERROR-CODE>21</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_NODATAAVAILABLE</SHORT-NAME>
+                  <SHORT-NAME>DEM_NO_SUCH_ELEMENT</SHORT-NAME>
                   <ERROR-CODE>48</ERROR-CODE>
-                </APPLICATION-ERROR>
-                <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_RECORDNUMBER</SHORT-NAME>
-                  <ERROR-CODE>49</ERROR-CODE>
-                </APPLICATION-ERROR>
-                <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_DIDNUMBER</SHORT-NAME>
-                  <ERROR-CODE>50</ERROR-CODE>
                 </APPLICATION-ERROR>
               </POSSIBLE-ERRORS>
             </CLIENT-SERVER-INTERFACE>
@@ -1258,68 +1253,10 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_NO_FDC_AVAILABLE</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
 
-                <CLIENT-SERVER-OPERATION>
-                  <SHORT-NAME>GetEventFreezeFrameData</SHORT-NAME>
-                  <ARGUMENTS>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>EventId</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_EventIdType</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>RecordNumber</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>ReportTotalRecord</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/boolean</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DataId</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint16</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DestBuffer</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_MaxDataValueType</TYPE-TREF>
-                      <DIRECTION>OUT</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                  </ARGUMENTS>
-                  <POSSIBLE-ERROR-REFS>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_DIDNUMBER</POSSIBLE-ERROR-REF>
-                  </POSSIBLE-ERROR-REFS>
-                </CLIENT-SERVER-OPERATION>
-
-                <CLIENT-SERVER-OPERATION>
-                  <SHORT-NAME>GetEventExtendedDataRecord</SHORT-NAME>
-                  <ARGUMENTS>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>EventId</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_EventIdType</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>RecordNumber</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Platform/ImplementationDataTypes/uint8</TYPE-TREF>
-                      <DIRECTION>IN</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                    <ARGUMENT-DATA-PROTOTYPE>
-                      <SHORT-NAME>DestBuffer</SHORT-NAME>
-                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_Dem/ImplementationDataTypes/Dem_MaxDataValueType</TYPE-TREF>
-                      <DIRECTION>OUT</DIRECTION>
-                    </ARGUMENT-DATA-PROTOTYPE>
-                  </ARGUMENTS>
-                  <POSSIBLE-ERROR-REFS>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                  </POSSIBLE-ERROR-REFS>
-                </CLIENT-SERVER-OPERATION>
                 <!-- Functionalities not implemented, only stub available. -->
                 <!-- !LINKSTO SWS_Dem_00730,1 -->
                 <CLIENT-SERVER-OPERATION>
@@ -1367,9 +1304,8 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_BUFFERSIZE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_BUFFER_TOO_SMALL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_NO_SUCH_ELEMENT</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
                 <!-- !LINKSTO SWS_Dem_01191,1 -->
@@ -1404,10 +1340,8 @@
                   </ARGUMENTS>
                   <POSSIBLE-ERROR-REFS>
                     <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/E_NOT_OK</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_NODATAAVAILABLE</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_RECORDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_DIDNUMBER</POSSIBLE-ERROR-REF>
-                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_E_WRONG_BUFFERSIZE</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_BUFFER_TOO_SMALL</POSSIBLE-ERROR-REF>
+                    <POSSIBLE-ERROR-REF DEST="APPLICATION-ERROR">/AUTOSAR_Dem/PortInterfaces/GeneralDiagnosticInfo/DEM_NO_SUCH_ELEMENT</POSSIBLE-ERROR-REF>
                   </POSSIBLE-ERROR-REFS>
                 </CLIENT-SERVER-OPERATION>
               </OPERATIONS>
@@ -1418,27 +1352,19 @@
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
                   <SHORT-NAME>DEM_E_NO_DTC_AVAILABLE</SHORT-NAME>
-                  <ERROR-CODE>2</ERROR-CODE>
+                  <ERROR-CODE>10</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
                   <SHORT-NAME>DEM_E_NO_FDC_AVAILABLE</SHORT-NAME>
-                  <ERROR-CODE>3</ERROR-CODE>
+                  <ERROR-CODE>14</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_BUFFERSIZE</SHORT-NAME>
+                  <SHORT-NAME>DEM_BUFFER_TOO_SMALL</SHORT-NAME>
                   <ERROR-CODE>21</ERROR-CODE>
                 </APPLICATION-ERROR>
                 <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_NODATAAVAILABLE</SHORT-NAME>
+                  <SHORT-NAME>DEM_NO_SUCH_ELEMENT</SHORT-NAME>
                   <ERROR-CODE>48</ERROR-CODE>
-                </APPLICATION-ERROR>
-                <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_RECORDNUMBER</SHORT-NAME>
-                  <ERROR-CODE>49</ERROR-CODE>
-                </APPLICATION-ERROR>
-                <APPLICATION-ERROR>
-                  <SHORT-NAME>DEM_E_WRONG_DIDNUMBER</SHORT-NAME>
-                  <ERROR-CODE>50</ERROR-CODE>
                 </APPLICATION-ERROR>
               </POSSIBLE-ERRORS>
             </CLIENT-SERVER-INTERFACE>

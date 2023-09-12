@@ -39,6 +39,7 @@
 #include <PbcfgM.h>
 #include <Wdg.h>
 #include <Adc.h>
+#include <Spi.h>
 
 
 
@@ -552,6 +553,12 @@ STATIC FUNC(void, ECUM_CODE) EcuM_DriverInitListOneCall(uint8 id)
       {
         /* *** Call service Init of module Adc *** */
         Adc_Init(&Adc_Config);
+        break;
+      }
+      case 8:
+      {
+        /* *** Call service Init of module Spi *** */
+        Spi_Init(&Spi_Config);
         break;
       }
       default:

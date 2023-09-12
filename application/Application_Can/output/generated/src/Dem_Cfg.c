@@ -1054,6 +1054,48 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     /* No aging cycle Id */
     | ( (uint32)(DEM_AGINGCYCLEIDX_MASK & DEM_NUM_AGINGCYCLES) << DEM_AGINGCYCLEIDX_OFFSET )
   },
+  { /* event: SPI_E_HARDWARE_ERROR */
+    /* No UDS-DTC value */
+    ( (uint32)(DEM_NO_DTC) )
+    /* Origin of DTC */
+    | ( (uint32) (DEM_DTCORIGIN_MASK & (DEM_DTC_ORIGIN_PRIMARY_MEMORY - 1U)) << DEM_DTCORIGIN_OFFSET )
+    /* No severity specified for DTC */
+    | ( (uint32)(DEM_DTCSEVERITY_MASK & 0U) << DEM_DTCSEVERITY_OFFSET )
+    /* Prestorage disabled */
+    /* Event kind is BSW */
+    | ( (uint32)(DEM_EVENTKIND_MASK & DEM_EVENT_KIND_BSW) << DEM_EVENTKIND_OFFSET )
+    /* No warning indicator used */
+    /* Immediate storage disabled */
+    ,
+    /* DTC Significance */
+    ( (uint32)(DEM_EVENTSIGNIFICANCE_MASK & DEM_EVENT_SIGNIFICANCE_FAULT) << DEM_EVENTSIGNIFICANCE_OFFSET )
+    /* No freeze frame class */
+    | ( (uint32)(DEM_FFCLASSIDX_MASK & DEM_FFCLS_NULL_IDX) << DEM_FFCLASSIDX_OFFSET )
+    /* No freeze frame records */
+    | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
+    /* No extended data class */
+    | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
+    /* Operation cycle Id */
+    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
+    /* Aging disabled (AgingCycles = 0) */
+    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
+    /* No group of DTC */
+    | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    ,
+    /* No enable condition group referenced */
+    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* Fault confirmation not configured */
+    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
+    /* Internal event priority (0 = most important) */
+    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    /* Monitor internal event debouncing */
+    | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
+    /* Index not used */
+    /* No DTC Functional Unit */
+    | ( (DEM_DTCFUNCTIONALUNIT_MASK & DEM_NO_DTC_FUNCTIONAL_UNIT) << DEM_DTCFUNCTIONALUNIT_OFFSET )
+    /* No aging cycle Id */
+    | ( (uint32)(DEM_AGINGCYCLEIDX_MASK & DEM_NUM_AGINGCYCLES) << DEM_AGINGCYCLEIDX_OFFSET )
+  },
 };
 
 #define DEM_STOP_SEC_CALIB_32
@@ -1082,7 +1124,7 @@ CONST(Dem_PriorityType, DEM_CONST) Dem_ExternalPrioValue[DEM_NUM_EVENT_PRIORITIE
 CONST(uint8, DEM_CONST) Dem_StatusBitStorageTF[DEM_STATUS_BIT_STORAGE_TF_ARRAY_SIZE] =
 {
   0x00U,
-  0x00U
+  0x00U,
 };
 #endif
 
@@ -1206,6 +1248,14 @@ CONST(Dem_OBDConfigType, DEM_CONST) Dem_OBDConfig[DEM_NUMBER_OF_EVENTS] =
         DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* MCU_E_CLOCKMUXSWITCH_FAILURE */
+    (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
+    0U /* Minimum Ratio Event is not set */
+    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
+        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
+    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
+        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
+  },
+  { /* SPI_E_HARDWARE_ERROR */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
     | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
@@ -1535,6 +1585,13 @@ CONST(Dem_CbPropertyType, DEM_CONST) Dem_CbProperty[DEM_NUMBER_OF_EVENTS] =
   /* no fault detection counter callback */
   DEM_ZERO_END,
   /* event: MCU_E_CLOCKMUXSWITCH_FAILURE */
+  /* no init monitor callback */
+  /* no trigger on event status callback(s) */
+  /* no trigger on event data changed callback */
+  /* no clearEventAllowed callback */
+  /* no fault detection counter callback */
+  DEM_ZERO_END,
+  /* event: SPI_E_HARDWARE_ERROR */
   /* no init monitor callback */
   /* no trigger on event status callback(s) */
   /* no trigger on event data changed callback */

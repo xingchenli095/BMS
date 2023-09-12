@@ -16,5 +16,6 @@ McalExt_Mcu_USED      :=true
 McalExt_Os_USED      :=true
 McalExt_Port_USED      :=true
 McalExt_Resource_USED      :=true
+McalExt_Spi_USED      :=true
 
 

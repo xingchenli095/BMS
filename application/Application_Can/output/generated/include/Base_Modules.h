@@ -538,6 +538,16 @@
 #define BASE_SERVICEAPPLTEMPLATE_HEADER <ServiceApplTemplate.h>
 #endif
 
+#ifndef BASE_SPI_ENABLED
+/** \brief Enable status of the module Spi (/Spi/Spi) (VariantPostBuild) */
+#define BASE_SPI_ENABLED STD_ON
+#endif
+
+#ifndef BASE_SPI_HEADER
+/** \brief Name of the Spi (/Spi/Spi) module's main header file */
+#define BASE_SPI_HEADER <Spi.h>
+#endif
+
 #ifndef BASE_WDG_ENABLED
 /** \brief Enable status of the module Wdg (/Wdg/Wdg) (VariantPostBuild) */
 #define BASE_WDG_ENABLED STD_ON

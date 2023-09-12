@@ -108,8 +108,8 @@
         NVM_ASSERT_STC(16U == sizeof(Dcm_Dsl_RoeServices_Persistent_Data));
   
                     /* BlockIdentifier: 4 - RamBlockDataAddress: &Dem_NvData */
-        /* Length = 36U (Block length) */
-        NVM_ASSERT_STC(36U == sizeof(Dem_NvData));
+        /* Length = 40U (Block length) */
+        NVM_ASSERT_STC(40U == sizeof(Dem_NvData));
   
                     /* BlockIdentifier: 5 - RamBlockDataAddress: &Dem_NvGateEntryPrimaryData */
         /* Length = 56U (Block length) */
@@ -225,8 +225,8 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     &Dem_NvMWriteCopyEventStatusBlock, /* writeRamToNvCallback */
     NULL_PTR, /* romBlockDataAddress */
     &Dem_NvData, /* ramBlockDataAddress */
-    0x00462203U,  /* blockDesc */
-    36U,  /* nvBlockLength */
+    0x00460200U,  /* blockDesc */
+    40U,  /* nvBlockLength */
     
     
     80U,  /* nvBlockBaseNumber */

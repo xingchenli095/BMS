@@ -30,10 +30,10 @@ DERIVATE := S32K34X
 ifeq (,$(ENABLED_PLUGINS))
 # In case enabled modules are NOT specified explicitly
 # use all enabled modules (including modules, that are NOT generated)
-PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Make McalExt Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate WdgIf WdgM Wdg
+PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Make McalExt Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate Spi WdgIf WdgM Wdg
 else
 # otherwise only use generated modules
-PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Make McalExt Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate WdgIf WdgM Wdg
+PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Make McalExt Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate Spi WdgIf WdgM Wdg
 endif
 
 # add tresos2 make plugin if not yet contained in SOFTWARE_MODULES
@@ -135,6 +135,7 @@ SecOC_VARIANT   := TS_TxDxM2I8R0
 SecOC_CORE_PATH := $(TRESOS_BASE)/plugins/SecOC_TS_TxDxM2I8R0
 ServiceApplTemplate_VARIANT   := TS_TxDxM1I3R0
 ServiceApplTemplate_CORE_PATH := $(TRESOS_BASE)/plugins/ServiceApplTemplate_TS_TxDxM1I3R0
+Spi_VARIANT   := TS_T40D34M20I1R0
 WdgIf_VARIANT   := TS_TxDxM6I1R0
 WdgIf_CORE_PATH := $(TRESOS_BASE)/plugins/WdgIf_TS_TxDxM6I1R0
 WdgM_VARIANT   := TS_TxDxM6I1R0

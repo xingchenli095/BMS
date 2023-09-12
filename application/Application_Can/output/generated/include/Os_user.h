@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  *
- * Date         : 9/8/23 2:48 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/11/23 5:27 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_USER_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_H    0xd964d033UL
+#define OS_GENERATION_ID_OS_H    0xe65d6702UL
 
 #define OS_AUTOSAROS_VER         6
 
@@ -115,6 +115,8 @@ extern void OS_CounterIsr_HwCounter(void);
 #define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_1E3BA96972F6352754D1659D8F1E5B6B  0x0020u
 #define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_87FF1E90955AB02FBCF7374E77F1780A  0x0040u
 #define Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8  0x0008u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_D3499F3675C83D894764E034B9E1C95A  0x0010u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131  0x0020u
 
 /*===================================================================
  * Interrupts

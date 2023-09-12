@@ -64,7 +64,7 @@ typedef uint16 Dem_EventIdType;
 /* !LINKSTO Dem.EB.Config.Id,1 */
 /** \brief Sign a certain configuration with unique hash
  **/
-#define DEM_CFG_SIGNATURE 4254208480U
+#define DEM_CFG_SIGNATURE 726248421U
 
 #if (defined DEM_NVRAM_CONFIG_SIGNATURE_USED)
 #error DEM_NVRAM_CONFIG_SIGNATURE_USED is already defined
@@ -123,7 +123,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_ENABLE_ASR43_SERVICE_API already defined
 #endif
 /** \brief Definition whether AUTOSAR 4.3 service API is enabled */
-#define DEM_ENABLE_ASR43_SERVICE_API  STD_OFF
+#define DEM_ENABLE_ASR43_SERVICE_API  STD_ON
 
 #if (defined DEM_DEFAULT_ASR_SERVICE_API)
 #error DEM_DEFAULT_ASR_SERVICE_API already defined
@@ -1104,8 +1104,12 @@ typedef uint16 Dem_EventIdType;
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event MCU_E_CLOCKMUXSWITCH_FAILURE:
    no internal values + no extended data + no freeze frames = 0 */
+
+
+/* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event SPI_E_HARDWARE_ERROR:
+   no internal values + no extended data + no freeze frames = 0 */
 /* entry data sizes (IntVal + ED + Num * FF) of prm memory:
-   10 9 0 0 0 0 0 0 0 10 0 0 0 */
+   10 9 0 0 0 0 0 0 0 10 0 0 0 0 */
 /* entry data sizes (IntVal + ED + Num * FF) of sec memory:
    10 */
 /* entry data sizes (IntVal + ED + Num * FF) of mir memory:
@@ -1228,7 +1232,7 @@ typedef uint16 Dem_EventIdType;
  ** NVRAM and whenever the entry gets updated, it can be stored immediately
  ** to NVRAM if immediate storage is enabled for it.
  **/
-#define DEM_IMMEDIATE_NV_STORAGE_LIMIT     0U
+#define DEM_IMMEDIATE_NV_STORAGE_LIMIT     36U
 
 #if (defined DEM_ZERO_END)
 #error DEM_ZERO_END already defined
@@ -1503,7 +1507,7 @@ typedef uint16 Dem_EventIdType;
  **
  ** \note Macro name is still existing for compatibility reasons with AR2.1.
  **/
-#define DEM_NUMBER_OF_EVENTS 15U
+#define DEM_NUMBER_OF_EVENTS 16U
 
 #if (defined DEM_NUM_SWC_EVENTS)
 #error DEM_NUM_SWC_EVENTS already defined

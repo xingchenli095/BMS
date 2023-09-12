@@ -31,7 +31,7 @@
 #if (defined ECUM_CFG_SIGNATURE)
 #error ECUM_CFG_SIGNATURE already defined
 #endif
-#define ECUM_CFG_SIGNATURE 2911045488U /* Compile time verification value */
+#define ECUM_CFG_SIGNATURE 3845172668U /* Compile time verification value */
 
 #if (defined ECUM_PUBLIC_INFO_SIGNATURE)
 #error ECUM_PUBLIC_INFO_SIGNATURE already defined

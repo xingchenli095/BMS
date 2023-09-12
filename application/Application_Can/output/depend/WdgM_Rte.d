@@ -1,3 +1,3 @@
-C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/obj/WdgM_Rte.o \
- C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/obj/WdgM_Rte.s: \
- C:/Users/dlrj.01/Desktop/ACHITA/Resource/Applications/342/Application_Can_main_testADC/Application_Can/output/generated/src/WdgM_Rte.c
+D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/WdgM_Rte.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/WdgM_Rte.s: \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/src/WdgM_Rte.c

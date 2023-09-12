@@ -289,6 +289,11 @@
 
 
 #ifdef MEMMAP_ERROR
+  #include <Spi_MemMap.h>
+#endif
+
+
+#ifdef MEMMAP_ERROR
   #include <WdgIf_MemMap.h>
 #endif
 

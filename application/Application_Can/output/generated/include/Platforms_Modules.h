@@ -13,6 +13,8 @@
 
 #define CAN_INIT_FUNC              Can_Init
 
+#define BASE_SPI_CONFIG_PTR              &Spi_Config
+
 #endif /* ifndef PLATFORMS_MODULES_H */
 
 /*==================[end of file]===========================================*/

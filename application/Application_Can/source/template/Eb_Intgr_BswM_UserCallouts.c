@@ -446,7 +446,7 @@
 #define SPI_DONT_PROVIDE_LEGACY_SYMBOLIC_NAMES
 #endif
 #include <Spi.h>
-#include <Spi_UserCode.h>
+/*#include <Spi_UserCode.h>*/
 #endif
 #endif
 
@@ -565,7 +565,7 @@ FUNC(void, BSWM_APPL_CODE) Eb_Intgr_BswM_DriverInitTwo(void)
 #if defined(BASE_SPI_ENABLED)
 #if (BASE_SPI_ENABLED==STD_ON)
   SPI_INIT_FUNC(BASE_SPI_CONFIG_PTR);
-  Spi_InitDMAUsr();
+  /*Spi_InitDMAUsr();*/
 #endif
 #endif
 #if defined(BASE_EEP_ENABLED)

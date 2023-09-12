@@ -1699,16 +1699,20 @@ PORT_CONFIG_PB
 #define PortConfigSet_PortContainer_0_DIO_LED  0
 #define PortConfigSet_PortContainer_0_ADC_VER  1
 #define PortConfigSet_PortContainer_0_AIN_VOL_VIN  2
+#define PortConfigSet_PortContainer_1_SPI1_CS  3
+#define PortConfigSet_PortContainer_1_SPI1_MOSI  4
+#define PortConfigSet_PortContainer_1_SPI1_MISO  5
+#define PortConfigSet_PortContainer_1_SPI1_SCLK  6
 
 /**
 * @brief The maximum number of configured pins
 */
-#define PORT_MAX_CONFIGURED_PADS_U16   ((uint16)3)
+#define PORT_MAX_CONFIGURED_PADS_U16   ((uint16)7)
 
 /**
 * @brief Number of UnUsed pin array
 */
-#define PORT_MAX_UNUSED_PADS_U16    (127U)
+#define PORT_MAX_UNUSED_PADS_U16    (123U)
 
 /**
 * @brief Port driver Post-build configuration switch
