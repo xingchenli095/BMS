@@ -94,10 +94,22 @@ extern "C"{
 /**
 * @brief          ADC SAR Ip List of Channels Configuration for Logical ID 0 corresponding to the ADC0 configuration variant  .
 */
-static const Adc_Sar_Ip_ChanConfigType AdcSarIpChansConfig_0[1] =
+static const Adc_Sar_Ip_ChanConfigType AdcSarIpChansConfig_0[2] =
 {
     {
         0U, /* ChanIndex */
+        (boolean)FALSE, /* PresamplingEnable */
+    #if (STD_ON == ADC_SAR_IP_WDG_ENABLED)
+        0U, /* WdgThreshRegIndex */
+        (boolean)FALSE, /* WdgNotificationEn */
+    #endif /* (STD_ON == ADC_SAR_IP_WDG_ENABLED) */
+    #if (STD_ON == ADC_SAR_IP_EOC_ENABLED)
+        (boolean)FALSE, /* EndOfConvNotification */
+    #endif /* (STD_ON == ADC_SAR_IP_EOC_ENABLED) */
+        (boolean)FALSE /* EndOfConvDmaEnable */
+    },
+    {
+        32U, /* ChanIndex */
         (boolean)FALSE, /* PresamplingEnable */
     #if (STD_ON == ADC_SAR_IP_WDG_ENABLED)
         0U, /* WdgThreshRegIndex */
@@ -183,7 +195,7 @@ const Adc_Sar_Ip_ConfigType AdcSarIpConfig_0 =
     ADC_SAR_IP_DMA_REQ_CLEAR_ON_ACK, /* DmaClearSource */
     { 0U, 0U, 0U }, /* ChanMaskNormal */
     { 0U, 0U, 0U }, /* ChanMaskInjected */
-    1U, /* NumChannels */
+    2U, /* NumChannels */
     AdcSarIpChansConfig_0, /* ChannelConfigsPtr */
 #if (STD_ON == ADC_SAR_IP_WDG_ENABLED)
     0U, /* NumWdgThresholds */

@@ -239,6 +239,16 @@
 
 
 #ifdef MEMMAP_ERROR
+  #include <Icu_MemMap.h>
+#endif
+
+
+#ifdef MEMMAP_ERROR
+  #include <Mcl_MemMap.h>
+#endif
+
+
+#ifdef MEMMAP_ERROR
   #include <Mcu_MemMap.h>
 #endif
 

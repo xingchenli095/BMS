@@ -175,6 +175,24 @@ static const Adc_Ipw_ChannelConfig AdcIpwChannelConfig_0[] =
             0U /* ChannelLowLimit */
         }
 #endif /* (ADC_ENABLE_LIMIT_CHECK == STD_ON) */
+    },
+    /**< @brief Channel logical Id 1 */
+    {
+        NULL_PTR, /* WdgNotification */
+        0U, /* LogicalThresholdId */
+#if (ADC_ENABLE_LIMIT_CHECK == STD_ON)
+        /* ChannelLimitCheckingConfig */
+        {
+            /**< @brief limit check enabled */
+            (boolean)FALSE, /* ChannelLimitCheckEnabled */
+            /**< @brief range for limit check */
+            ADC_RANGE_ALWAYS, /* ChannelRange */
+            /**< @brief high limit value */
+            4095U, /* ChannelHighLimit */
+            /**< @brief low limit value */
+            0U /* ChannelLowLimit */
+        }
+#endif /* (ADC_ENABLE_LIMIT_CHECK == STD_ON) */
     }
 };
 
@@ -240,10 +258,10 @@ const Adc_Ipw_Config AdcIpwCfg =
         /**< @brief number of groups per hw unit > */
         { 1U, 1U }, /* AdcGroups */
         /**< @brief number of channels per hw unit > */
-        { 1U, 1U }, /* AdcChannels */
+        { 2U, 1U }, /* AdcChannels */
         /* ChannelLogicalId */
         {
-            { 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U },
+            { 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 1U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U },
             { 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U, 0U }
         },
         { ADC_IPW_INVALID_DMA_CHANNEL_ID, ADC_IPW_INVALID_DMA_CHANNEL_ID }, /* AdcDmaChannelLogicId */

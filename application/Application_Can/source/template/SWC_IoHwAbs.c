@@ -38,6 +38,10 @@
 #include <Adc_Cfg.h>
 #include <Adc_CfgDefines.h>
 
+#include <Icu.h>
+#include <Icu_Cfg.h>
+#include <Icu_Ipw_PBcfg.h>
+
 
 #define DIO_HIGH_VALUE 1U
 #define DIO_LOW_VALUE 0U
@@ -48,7 +52,11 @@ int Count = 0u;
 #define Dio_LevelType uint8
 uint16 AdcGroupResult[ADC_NUM_RESULTS] = {0};
 
+int icu_gloable_Status = 0u;
 
+int IcuCount = 0u;
+int Icu_CMP_Count1 =0u;
+int Icu_CMP_Count2 =0u;
 /* ==================[Definition of functions with external linkage]========== */
 /* ------------------------[runnable entity skeletons]------------------------ */
 
@@ -59,6 +67,12 @@ FUNC(void, RTE_CODE) Adc_ReadValue (void)
   Adc_SetupResultBuffer(AdcConf_AdcGroup_AdcChannel_VER_G0,AdcGroupResult);
   Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
   Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);
+
+
+    /*Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
+  Adc_SetupResultBuffer(AdcConf_AdcGroup_AdcChannel_VER_G0,AdcGroupResult);
+  Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);*/
+  /*Adc_StopGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);*/
 
 } /* FUNC(void, RTE_CODE) Adc_ReadValue (void) */
 #define SWC_IoHwAbs_STOP_SEC_CODE
@@ -75,7 +89,7 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
   
   ComM_RequestComMode(ComMConf_ComMUser_ComMUser_0,COMM_FULL_COMMUNICATION);
   
-  
+  /*
   if(Dio_ReadChannel(DioConf_DioChannel_MY_LED_CYCLIC) == DIO_LOW_VALUE)
   {
     Dio_WriteChannel(DioConf_DioChannel_MY_LED_CYCLIC, (Dio_LevelType) DIO_HIGH_VALUE);
@@ -84,7 +98,7 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
   {
     Dio_WriteChannel(DioConf_DioChannel_MY_LED_CYCLIC, (Dio_LevelType) DIO_LOW_VALUE);
   }
-  
+  */
 
 /*
   if(flag)
@@ -103,13 +117,53 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
   }
   Count++;
   */
+  
+  if (icu_gloable_Status == 0)
+  {
 
-  /*Adc_StartGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);
-  Adc_SetupResultBuffer(AdcConf_AdcGroup_AdcChannel_VER_G0,AdcGroupResult);
-  Adc_ReadGroup(AdcConf_AdcGroup_AdcChannel_VER_G0, AdcGroupResult);*/
-  /*Adc_StopGroupConversion(AdcConf_AdcGroup_AdcChannel_VER_G0);*/
+      Count++;
+
+        Icu_EnableEdgeDetection(IcuChannel_0);
+        Icu_EnableNotification(IcuChannel_0); 
+        Icu_EnableEdgeDetection(IcuChannel_CMP_PTE8);
+        Icu_EnableNotification(IcuChannel_CMP_PTE8); 
+        /*
+        
+        
+        Cmp_Ip_EnableInterrupt(IcuChannel_CMP_PTE8);
+        Cmp_Ip_EnableNotification(IcuChannel_CMP_PTE8);
+        Cmp_Ip_SetInterruptActivation(IcuChannel_CMP_PTE8,CMP_IP_INTTRIG_FALLING_EDGE);
+*/
+        icu_gloable_Status = 1;
+  }
+  
+
 
 } /* FUNC(void, RTE_CODE) LedControl_IO (void) */
+
+void IcuSignalEdgeDetection_SIUL(void)
+{
+  IcuCount ++;
+  if (IcuCount == 10)
+  {
+    IcuCount = 0;
+  }
+}
+
+void IcuSignalEdageDetection_Notification(void)
+{
+ IcuCount = 0;
+}
+
+void IcuSignalEdageDetection_CMP_Notification(void)
+{
+ Icu_CMP_Count1 ++;
+  if (Icu_CMP_Count1 == 10)
+  {
+    Icu_CMP_Count1 = 0;
+  }
+}
+
 
 #define SWC_IoHwAbs_STOP_SEC_CODE
 #include <SWC_IoHwAbs_MemMap.h>

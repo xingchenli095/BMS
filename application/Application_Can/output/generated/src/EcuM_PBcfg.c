@@ -83,11 +83,11 @@ EcuM_ConstConfigLayoutType EcuM_Configuration = {
     { /* RootCfg */
         UINT32_C( 2147485970 ), /* PlatformSignature */
         UINT32_C( 2949684411 ), /* LcfgSignature */
-        UINT32_C( 3845172668 ), /* CfgSignature */
+        UINT32_C( 500002554 ), /* CfgSignature */
         UINT32_C( 1985306092 ), /* PublicInfoSignature */
         UINT8_C( 0 ), /* DefaultAppMode */
         TS_MAKEREF2CFG( DriverInitListOne[0] ), /* PtrDriverInitListOne */
-        UINT8_C( 9 ), /* NumDriversInitListOne */
+        UINT8_C( 11 ), /* NumDriversInitListOne */
         UINT8_C( 128 ), /* DefaultShutdownTarget */
         UINT8_C( 0 ) /* DefaultMode */
     },
@@ -100,7 +100,9 @@ EcuM_ConstConfigLayoutType EcuM_Configuration = {
         UINT8_C( 5 ), /* DriverInitListOne[5] */
         UINT8_C( 6 ), /* DriverInitListOne[6] */
         UINT8_C( 7 ), /* DriverInitListOne[7] */
-        UINT8_C( 8 ) /* DriverInitListOne[8] */
+        UINT8_C( 8 ), /* DriverInitListOne[8] */
+        UINT8_C( 9 ), /* DriverInitListOne[9] */
+        UINT8_C( 10 ) /* DriverInitListOne[10] */
     }
 };
 

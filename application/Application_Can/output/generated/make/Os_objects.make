@@ -8,7 +8,7 @@
 # 91058 Erlangen
 # GERMANY
 # 
-# Date         : 9/11/23 5:27 PM           !!!IGNORE-LINE!!!
+# Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
 
 ifndef OS_OBJECTS_MAKE_INCLUDED
 OS_OBJECTS_MAKE_INCLUDED := 1
@@ -38,7 +38,7 @@ APPLICATIONS = OS_SYSTEM_0
 #   that belong to the application XXX
 
 TASKS_OS_SYSTEM_0 = Init_Task Rte_Event_Task Rte_Time_Task SchMComTask_10ms SchMComTask_5ms SchMDiagStateTask_20ms SchMMemTask_10ms TASK_RTE_ModeSwitchEvent
-ISRS_OS_SYSTEM_0 = CAN0_ORED_IRQHandler CAN0_ORED_0_31_MB_IRQHandler CAN0_ORED_32_63_MB_IRQHandler Adc_Sar_0_Isr
+ISRS_OS_SYSTEM_0 = CAN0_ORED_IRQHandler CAN0_ORED_0_31_MB_IRQHandler CAN0_ORED_32_63_MB_IRQHandler Adc_Sar_0_Isr SIUL2_EXT_IRQ_24_31_ISR SIUL2_EXT_IRQ_0_7_ISR CMP_0_ISR
 
 #####################################################################
 # Configured Modes
@@ -123,6 +123,9 @@ OS_CORTEXM_REGION_SIZE_CAN0_ORED_IRQHandler = 0x0
 OS_CORTEXM_REGION_SIZE_CAN0_ORED_0_31_MB_IRQHandler = 0x0
 OS_CORTEXM_REGION_SIZE_CAN0_ORED_32_63_MB_IRQHandler = 0x0
 OS_CORTEXM_REGION_SIZE_Adc_Sar_0_Isr = 0x0
+OS_CORTEXM_REGION_SIZE_SIUL2_EXT_IRQ_24_31_ISR = 0x0
+OS_CORTEXM_REGION_SIZE_SIUL2_EXT_IRQ_0_7_ISR = 0x0
+OS_CORTEXM_REGION_SIZE_CMP_0_ISR = 0x0
 OS_CORTEXM_REGION_SIZE_Os_Counter_STM0_0 = 0x0
 OS_CORTEXM_REGION_SIZE_os_kernstack0 = 0x1000
 

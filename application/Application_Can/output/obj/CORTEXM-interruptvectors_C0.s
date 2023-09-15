@@ -578,7 +578,7 @@ OS_CORTEXM_IRQ_C0_26:
  .import OS_Cat2Entry
  .type OS_CORTEXM_IRQ_C0_27, $function
 OS_CORTEXM_IRQ_C0_27:
- DispatchInterrupt 4, OS_Cat2Entry, OS_CORTEXM_IntCat2Exit, 2, OS_kernelDataAddr1
+ DispatchInterrupt 7, OS_Cat2Entry, OS_CORTEXM_IntCat2Exit, 2, OS_kernelDataAddr1
  .size OS_CORTEXM_IRQ_C0_27, . - OS_CORTEXM_IRQ_C0_27
  .global OS_CORTEXM_IRQ_C0_28
  .import OS_UnknownInterrupt
@@ -659,10 +659,10 @@ OS_CORTEXM_IRQ_C0_34:
  b DispatchUnknownInterrupt
  .size OS_CORTEXM_IRQ_C0_34, . - OS_CORTEXM_IRQ_C0_34
  .global OS_CORTEXM_IRQ_C0_35
- .import OS_UnknownInterrupt
+ .import OS_Cat2Entry
  .type OS_CORTEXM_IRQ_C0_35, $function
 OS_CORTEXM_IRQ_C0_35:
- b DispatchUnknownInterrupt
+ DispatchInterrupt 5, OS_Cat2Entry, OS_CORTEXM_IntCat2Exit, 2, OS_kernelDataAddr1
  .size OS_CORTEXM_IRQ_C0_35, . - OS_CORTEXM_IRQ_C0_35
  .global OS_CORTEXM_IRQ_C0_36
  .import OS_UnknownInterrupt
@@ -677,10 +677,10 @@ OS_CORTEXM_IRQ_C0_37:
  b DispatchUnknownInterrupt
  .size OS_CORTEXM_IRQ_C0_37, . - OS_CORTEXM_IRQ_C0_37
  .global OS_CORTEXM_IRQ_C0_38
- .import OS_UnknownInterrupt
+ .import OS_Cat2Entry
  .type OS_CORTEXM_IRQ_C0_38, $function
 OS_CORTEXM_IRQ_C0_38:
- b DispatchUnknownInterrupt
+ DispatchInterrupt 4, OS_Cat2Entry, OS_CORTEXM_IntCat2Exit, 2, OS_kernelDataAddr1
  .size OS_CORTEXM_IRQ_C0_38, . - OS_CORTEXM_IRQ_C0_38
  .global OS_CORTEXM_IRQ_C0_39
  .import OS_UnknownInterrupt
@@ -1455,10 +1455,10 @@ OS_CORTEXM_IRQ_C0_b6:
  b DispatchUnknownInterrupt
  .size OS_CORTEXM_IRQ_C0_b6, . - OS_CORTEXM_IRQ_C0_b6
  .global OS_CORTEXM_IRQ_C0_b7
- .import OS_UnknownInterrupt
+ .import OS_Cat2Entry
  .type OS_CORTEXM_IRQ_C0_b7, $function
 OS_CORTEXM_IRQ_C0_b7:
- b DispatchUnknownInterrupt
+ DispatchInterrupt 6, OS_Cat2Entry, OS_CORTEXM_IntCat2Exit, 2, OS_kernelDataAddr5
  .size OS_CORTEXM_IRQ_C0_b7, . - OS_CORTEXM_IRQ_C0_b7
  .global OS_CORTEXM_IRQ_C0_b8
  .import OS_UnknownInterrupt

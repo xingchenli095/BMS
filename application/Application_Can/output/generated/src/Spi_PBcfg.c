@@ -163,8 +163,8 @@ extern "C"{
 #include "Spi_MemMap.h"
 
 /* Buffers Descriptors for EB Channels and Allocate Buffers for IB Channels */
-static Spi_DataBufferType Spi_BufferTXSpiChannel_0[1];
-static Spi_DataBufferType Spi_BufferRXSpiChannel_0[1];
+static Spi_BufferDescriptorType Spi_BufferSpiChannel_0;
+/* Allocate Buffers for IB Channels (if any) */
 
 
 #if ((SPI_DMA_USED == STD_ON) && \
@@ -181,11 +181,6 @@ static Spi_DataBufferType Spi_BufferRXSpiChannel_0[1];
 
 /* Buffers Descriptors for IB Channels */
     /*  Buffers Descriptors for IB Channels (if any) */
-static Spi_BufferDescriptorType Spi_BufferSpiChannel_0 =
-{
-    Spi_BufferTXSpiChannel_0,  /* pBufferTX */
-    Spi_BufferRXSpiChannel_0   /* pBufferRX */
-};
 
 
 
@@ -202,10 +197,9 @@ static Spi_BufferDescriptorType Spi_BufferSpiChannel_0 =
 static const Spi_ChannelConfigType Spi_ChannelConfig_SpiChannel_0 =
 {
         /* SpiChannel_0*/
-        IB, /* BufferType IB or EB */
+        EB, /* BufferType IB or EB */
         8U, /* Frame size */
-        
-        (boolean)TRUE, /* Bite order */
+                (boolean)FALSE, /* Bite order */
         
 #ifdef SPI_HALF_DUPLEX_MODE_SUPPORT
   #if (STD_ON == SPI_HALF_DUPLEX_MODE_SUPPORT)
@@ -215,7 +209,7 @@ static const Spi_ChannelConfigType Spi_ChannelConfig_SpiChannel_0 =
   #endif
 #endif
         (uint32)1U, /* In the case SpiDefaultData is disabled. Set this value is 1U */
-        1U, /* Length (configured in SpiIbNBuffers) */
+        48U, /* Length (configured in SpiEbMaxLength) */
         &Spi_BufferSpiChannel_0, /* pcBufferDescriptor */
         SPI_SPURIOUS_CORE_ID_U32,
         &Spi_axSpiChannelState[0U] /* pChannelState pointer */

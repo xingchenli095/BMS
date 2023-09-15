@@ -160,9 +160,9 @@ static Lpspi_Ip_DeviceParamsType Lpspi_Ip_DeviceParamsCfg[1U] =
 /* Lpspi_Ip_DeviceAttributes_SpiExternalDevice_0 Device Attribute Configuration of Spi*/
 const Lpspi_Ip_ExternalDeviceType Lpspi_Ip_DeviceAttributes_SpiExternalDevice_0 =
 {
-    0U,  /* Instance */
-        (uint32)(LPSPI_CCR_SCKPCS(19U) | LPSPI_CCR_PCSSCK(19U) | LPSPI_CCR_SCKDIV(198U) | LPSPI_CCR_DBT(127U)), /* CCR */
-                (uint32)LPSPI_TCR_WIDTH(0U) | (LPSPI_TCR_CPOL(1U) | LPSPI_TCR_CPHA(1U) | LPSPI_TCR_PRESCALE(3U) |         LPSPI_TCR_PCS(0U) | LPSPI_TCR_CONT(0U)) /* TCR */
+    1U,  /* Instance */
+        (uint32)(LPSPI_CCR_SCKPCS(255U) | LPSPI_CCR_PCSSCK(255U) | LPSPI_CCR_SCKDIV(158U) | LPSPI_CCR_DBT(255U)), /* CCR */
+                (uint32)LPSPI_TCR_WIDTH(0U) | (LPSPI_TCR_CPOL(0U) | LPSPI_TCR_CPHA(1U) | LPSPI_TCR_PRESCALE(0U) |         LPSPI_TCR_PCS(0U) | LPSPI_TCR_CONT(0U)) /* TCR */
         
     #if (STD_ON == LPSPI_IP_HALF_DUPLEX_MODE_SUPPORT) 
     ,(uint32)0U /* This device do not support half duplex mode */    
@@ -174,11 +174,11 @@ const Lpspi_Ip_ExternalDeviceType Lpspi_Ip_DeviceAttributes_SpiExternalDevice_0 
 const Lpspi_Ip_ConfigType Lpspi_Ip_PhyUnitConfig_SpiPhyUnit_0 =
 {
 
-    0U,  /* Instance */
+    1U,  /* Instance */
     /* CR */
     (uint32)0,
     /* CFGR1 */
-    (uint32)(LPSPI_CFGR1_PINCFG(0U) | LPSPI_CFGR1_PCSPOL(1U) | LPSPI_CFGR1_MASTER(1U) | LPSPI_CFGR1_SAMPLE(0U)),
+    (uint32)(LPSPI_CFGR1_PINCFG(0U) | LPSPI_CFGR1_PCSPOL(0U) | LPSPI_CFGR1_MASTER(1U) | LPSPI_CFGR1_SAMPLE(0U)),
     #if (LPSPI_IP_SLAVE_SUPPORT == STD_ON)
     (boolean)FALSE,
     #endif

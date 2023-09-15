@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  *
- * Date         : 9/11/23 5:27 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_USER_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_H    0xe65d6702UL
+#define OS_GENERATION_ID_OS_H    0x6e614cafUL
 
 #define OS_AUTOSAROS_VER         6
 
@@ -145,6 +145,24 @@ extern void OS_ISR_Adc_Sar_0_Isr(void);
 #define Adc_Sar_0_Isr_ISR_CATEGORY  2
 #define Adc_Sar_0_Isr_ISR_VECTOR    180
 #define Adc_Sar_0_Isr_ISR_LEVEL     7
+#ifndef OS_ASM
+extern void OS_ISR_SIUL2_EXT_IRQ_24_31_ISR(void);
+#endif  /* OS_ASM */
+#define SIUL2_EXT_IRQ_24_31_ISR_ISR_CATEGORY  2
+#define SIUL2_EXT_IRQ_24_31_ISR_ISR_VECTOR    56
+#define SIUL2_EXT_IRQ_24_31_ISR_ISR_LEVEL     7
+#ifndef OS_ASM
+extern void OS_ISR_SIUL2_EXT_IRQ_0_7_ISR(void);
+#endif  /* OS_ASM */
+#define SIUL2_EXT_IRQ_0_7_ISR_ISR_CATEGORY  2
+#define SIUL2_EXT_IRQ_0_7_ISR_ISR_VECTOR    53
+#define SIUL2_EXT_IRQ_0_7_ISR_ISR_LEVEL     7
+#ifndef OS_ASM
+extern void OS_ISR_CMP_0_ISR(void);
+#endif  /* OS_ASM */
+#define CMP_0_ISR_ISR_CATEGORY  2
+#define CMP_0_ISR_ISR_VECTOR    183
+#define CMP_0_ISR_ISR_LEVEL     7
 #define Os_Counter_STM0_0_ISR_CATEGORY  2
 #define Os_Counter_STM0_0_ISR_VECTOR    39
 #define Os_Counter_STM0_0_ISR_LEVEL     2
@@ -159,6 +177,15 @@ extern void OS_ISR_Adc_Sar_0_Isr(void);
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
 #define Adc_Sar_0_Isr  3
+#endif
+#if OS_KERNEL_TYPE != OS_MICROKERNEL
+#define SIUL2_EXT_IRQ_24_31_ISR  4
+#endif
+#if OS_KERNEL_TYPE != OS_MICROKERNEL
+#define SIUL2_EXT_IRQ_0_7_ISR  5
+#endif
+#if OS_KERNEL_TYPE != OS_MICROKERNEL
+#define CMP_0_ISR  6
 #endif
 
 /*===================================================================

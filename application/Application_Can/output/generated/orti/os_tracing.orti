@@ -8,7 +8,7 @@
 // 91058 Erlangen
 // GERMANY
 //
-// Date         : 9/11/23 5:27 PM           !!!IGNORE-LINE!!!
+// Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
 
 //-------------------------------------------------------------------
 // 00 ORTI Version
@@ -46,7 +46,10 @@ OS
     "CAN0_ORED_0_31_MB_IRQHandler" = 1,
     "CAN0_ORED_32_63_MB_IRQHandler" = 2,
     "Adc_Sar_0_Isr" = 3,
-    "Os_Counter_STM0_0" = 4
+    "SIUL2_EXT_IRQ_24_31_ISR" = 4,
+    "SIUL2_EXT_IRQ_0_7_ISR" = 5,
+    "CMP_0_ISR" = 6,
+    "Os_Counter_STM0_0" = 7
   ] RUNNINGISR2, "Running ISR identification";
   ENUM [
     "Boot"           = 0,
@@ -177,7 +180,10 @@ RESOURCE
     "CAN0_ORED_0_31_MB_IRQHandler" = 257,
     "CAN0_ORED_32_63_MB_IRQHandler" = 258,
     "Adc_Sar_0_Isr" = 259,
-    "Os_Counter_STM0_0" = 260
+    "SIUL2_EXT_IRQ_24_31_ISR" = 260,
+    "SIUL2_EXT_IRQ_0_7_ISR" = 261,
+    "CMP_0_ISR" = 262,
+    "Os_Counter_STM0_0" = 263
   ] LOCKER, "Locker identification";
   ENUM "unsigned char" [ "UNLOCKED"=0,"LOCKED"=1 ] STATE, "Resource state";
 };
@@ -500,7 +506,7 @@ vs_APPLICATION OS_SYSTEM_0
 {
   vs_NUMBER_TASKS          = "8";
   vs_NUMBER_RESOURCES      = "4";
-  vs_NUMBER_ISRS           = "5";
+  vs_NUMBER_ISRS           = "8";
   vs_NUMBER_ALARMS         = "3";
   vs_NUMBER_SCHEDULETABLES = "2";
   vs_NUMBER_COUNTER        = "2";
@@ -664,13 +670,49 @@ vs_ISR Adc_Sar_0_Isr
   vs_REALPRIORITY        = "7";
   vs_TIMING_PROTECTION   = "false";
 };
-vs_ISR Os_Counter_STM0_0
+vs_ISR SIUL2_EXT_IRQ_24_31_ISR
 {
   vs_CATEGORY            = "2";
   vs_ENABLE_ON_STARTUP   = "true";
   vs_MEASURE_MAX_RUNTIME = "false";
   vs_STACKSIZE           = "512";
   vs_STATUS              = "(OS_isrTableBase[4].dynamic->statusflags & 0x30)";
+  vs_STACK               = "OS_kernStack0";
+  vs_ASSIGNEDPRIO        = "7";
+  vs_REALPRIORITY        = "7";
+  vs_TIMING_PROTECTION   = "false";
+};
+vs_ISR SIUL2_EXT_IRQ_0_7_ISR
+{
+  vs_CATEGORY            = "2";
+  vs_ENABLE_ON_STARTUP   = "true";
+  vs_MEASURE_MAX_RUNTIME = "false";
+  vs_STACKSIZE           = "512";
+  vs_STATUS              = "(OS_isrTableBase[5].dynamic->statusflags & 0x30)";
+  vs_STACK               = "OS_kernStack0";
+  vs_ASSIGNEDPRIO        = "7";
+  vs_REALPRIORITY        = "7";
+  vs_TIMING_PROTECTION   = "false";
+};
+vs_ISR CMP_0_ISR
+{
+  vs_CATEGORY            = "2";
+  vs_ENABLE_ON_STARTUP   = "true";
+  vs_MEASURE_MAX_RUNTIME = "false";
+  vs_STACKSIZE           = "512";
+  vs_STATUS              = "(OS_isrTableBase[6].dynamic->statusflags & 0x30)";
+  vs_STACK               = "OS_kernStack0";
+  vs_ASSIGNEDPRIO        = "7";
+  vs_REALPRIORITY        = "7";
+  vs_TIMING_PROTECTION   = "false";
+};
+vs_ISR Os_Counter_STM0_0
+{
+  vs_CATEGORY            = "2";
+  vs_ENABLE_ON_STARTUP   = "true";
+  vs_MEASURE_MAX_RUNTIME = "false";
+  vs_STACKSIZE           = "512";
+  vs_STATUS              = "(OS_isrTableBase[7].dynamic->statusflags & 0x30)";
   vs_STACK               = "OS_kernStack0";
   vs_ASSIGNEDPRIO        = "2";
   vs_REALPRIORITY        = "2";

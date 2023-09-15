@@ -167,7 +167,7 @@ static const Spi_ExternalDeviceConfigType Spi_ExternalDeviceConfig_SpiExternalDe
 {
         /* SpiExternalDevice_0*/
         SPI_OVER_LPSPI, /* IpType */
-        0U,  /* Instance */
+        1U,  /* Instance */
         
         {   /* ExternalDeviceConfig */
             &Lpspi_Ip_DeviceAttributes_SpiExternalDevice_0 /* LPSPI ExternalDeviceConfig */
@@ -190,7 +190,7 @@ const Spi_ExDevicesConfigType Spi_aExternalDeviceConfigList[1U] =
 static const Spi_HWUnitConfigType Spi_HwUnitConfig_SpiPhyUnit_0 =
 {
         SPI_OVER_LPSPI, /* IpType */
-        (uint8)0U, /* Instance */
+        (uint8)1U, /* Instance */
         SPI_SPURIOUS_CORE_ID_U32, /* SpiCoreUse */
         {
             &Lpspi_Ip_PhyUnitConfig_SpiPhyUnit_0 /* LPSPI IpConfig */

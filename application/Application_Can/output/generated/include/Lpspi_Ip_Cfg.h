@@ -115,7 +115,7 @@ extern "C"{
 
 /** @brief HWUnits enabled/disabled */
 
-#define LPSPI_IP_0_ENABLED  (STD_ON)
+#define LPSPI_IP_1_ENABLED  (STD_ON)
     
 #define LPSPI_IP_SLAVE_SUPPORT  ((STD_OFF))
 

@@ -1,21 +1,21 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/Power_Ip_Cfg.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/Power_Ip_Cfg.s: \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/src/Power_Ip_Cfg.c \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_PBcfg.h \
+D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Power_Ip_Cfg.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Power_Ip_Cfg.s: \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/src/Power_Ip_Cfg.c \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_PBcfg.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_MC_ME_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_Cfg_Defines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Power_Ip_Cfg_Defines.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/StandardTypes.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_MC_ME.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_COMMON.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/BasicTypes.h \
@@ -29,4 +29,4 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/Po
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_MC_RGM_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_PMC_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcu_TS_T40D34M20I1R0/include/Power_Ip_DCM_GPR_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Mcu_MemMap.h
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Mcu_MemMap.h

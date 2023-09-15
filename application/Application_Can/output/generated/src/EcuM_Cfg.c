@@ -35,11 +35,13 @@
 #include <OsIf.h>
 #include <Dem.h>
 #include <Eb_Intgr_McuArchClockInit.h>
+#include <Mcl.h>
 #include <Port.h>
 #include <PbcfgM.h>
 #include <Wdg.h>
 #include <Adc.h>
 #include <Spi.h>
+#include <Icu.h>
 
 
 
@@ -533,32 +535,44 @@ STATIC FUNC(void, ECUM_CODE) EcuM_DriverInitListOneCall(uint8 id)
       }
       case 4:
       {
+        /* *** Call service Init of module Mcl *** */
+        Mcl_Init(&Mcl_Config);
+        break;
+      }
+      case 5:
+      {
         /* *** Call service Init of module Port *** */
         Port_Init(&Port_Config);
         break;
       }
-      case 5:
+      case 6:
       {
         /* *** Call service Init of module PbcfgM *** */
         PbcfgM_Init(BASE_PBCFGM_CONFIG_PTR);
         break;
       }
-      case 6:
+      case 7:
       {
         /* *** Call service Init of module Wdg *** */
         Wdg_Init(NULL_PTR);
         break;
       }
-      case 7:
+      case 8:
       {
         /* *** Call service Init of module Adc *** */
         Adc_Init(&Adc_Config);
         break;
       }
-      case 8:
+      case 9:
       {
         /* *** Call service Init of module Spi *** */
         Spi_Init(&Spi_Config);
+        break;
+      }
+      case 10:
+      {
+        /* *** Call service Init of module Icu *** */
+        Icu_Init(&Icu_Config);
         break;
       }
       default:

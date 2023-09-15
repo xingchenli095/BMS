@@ -89,12 +89,12 @@ extern "C" {
 /**
 * @brief          Function @p Dio_FlipChannel() enable switch.
 */
-#define DIO_FLIP_CHANNEL_API    (STD_OFF)
+#define DIO_FLIP_CHANNEL_API    (STD_ON)
 
 /**
 * @brief          Function @p Dio_MaskedWritePort() enable switch.
 */
-#define DIO_MASKEDWRITEPORT_API (STD_OFF)
+#define DIO_MASKEDWRITEPORT_API (STD_ON)
 
 /**
 * @brief          Platform specific define stating if mapping of port bits over port pins is reversed.

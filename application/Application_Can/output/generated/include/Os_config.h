@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  * 
- * Date         : 9/11/23 5:27 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_CONFIG_H
@@ -31,7 +31,7 @@ extern "C" {
 #include <Os_tool.h>
 #include <CORTEXM/Os_CORTEXM_timer_fs_stm.h>
 
-#define OS_GENERATION_ID_OS_CONF_H  0xe65d6702UL
+#define OS_GENERATION_ID_OS_CONF_H  0x6e614cafUL
 
 #define OS_AUTOSAROS_VER            6
 
@@ -267,9 +267,9 @@ OS_COUNTER_INIT(    /* HwCounter */  \
  * Interrupts
  *==================================================================*/
 
-#define OS_NINTERRUPTS         5
+#define OS_NINTERRUPTS         8
 #define OS_NCAT1_INTERRUPTS    0
-#define OS_NCAT2_INTERRUPTS    5
+#define OS_NCAT2_INTERRUPTS    8
 #define OS_NCATK_INTERRUPTS    0
 #define OS_NCAT2K_INTERRUPTS   0
 #define OS_NISRSEXECTIMELIMIT  0
@@ -284,7 +284,7 @@ OS_COUNTER_INIT(    /* HwCounter */  \
 
 /* Internal Interrupt Ids */
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Os_Counter_STM0_0  4
+#define Os_Counter_STM0_0  7
 #endif
 
 /* Isr Config Struct Init Macros. */
@@ -392,6 +392,84 @@ OS_ISRCONFIG_INIT(    /* Adc_Sar_0_Isr */  \
       /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
     )  \
 ),  \
+OS_ISRCONFIG_INIT(    /* SIUL2_EXT_IRQ_24_31_ISR */  \
+  /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
+  /* Permissions */                       0x1u,  \
+  /* Accounting structure */              OS_NULL,  \
+  /* start of data/bss */                 OS_NULL,  \
+  /* end of data/bss */                   OS_NULL,  \
+  /* start of initial data */             OS_NULL,  \
+  /* end of initial data */               OS_NULL,  \
+  /* Interrupt entry */                   &OS_ISR_SIUL2_EXT_IRQ_24_31_ISR,  \
+  /* Execution budget */                  0u,  \
+  /* Os interrupt lock budget */          0u,  \
+  /* All interrupt lock budget */         0u,  \
+  /* Resource lock budget */              OS_NULL,  \
+  /* Stack size */                        512u,  \
+  /* Rate monitor */                      OS_NULLRATEMONITOR,  \
+  /* Isr id */                            SIUL2_EXT_IRQ_24_31_ISR,  \
+  /* dynamic data */                      &OS_isrDynamic_core0[4],  \
+  /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
+    OS_ARCHISR_INIT(  \
+      /* ISR source */                                                 56,  \
+      /* ISR priority */                                               7,  \
+      /* Target core */                                                OS_CORTEXM_INT_TARGET_DEFAULT,  \
+      /* size of the private data region for MPU */                    OS_CORTEXM_MPU_SIZE_DISABLED,  \
+      /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
+    )  \
+),  \
+OS_ISRCONFIG_INIT(    /* SIUL2_EXT_IRQ_0_7_ISR */  \
+  /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
+  /* Permissions */                       0x1u,  \
+  /* Accounting structure */              OS_NULL,  \
+  /* start of data/bss */                 OS_NULL,  \
+  /* end of data/bss */                   OS_NULL,  \
+  /* start of initial data */             OS_NULL,  \
+  /* end of initial data */               OS_NULL,  \
+  /* Interrupt entry */                   &OS_ISR_SIUL2_EXT_IRQ_0_7_ISR,  \
+  /* Execution budget */                  0u,  \
+  /* Os interrupt lock budget */          0u,  \
+  /* All interrupt lock budget */         0u,  \
+  /* Resource lock budget */              OS_NULL,  \
+  /* Stack size */                        512u,  \
+  /* Rate monitor */                      OS_NULLRATEMONITOR,  \
+  /* Isr id */                            SIUL2_EXT_IRQ_0_7_ISR,  \
+  /* dynamic data */                      &OS_isrDynamic_core0[5],  \
+  /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
+    OS_ARCHISR_INIT(  \
+      /* ISR source */                                                 53,  \
+      /* ISR priority */                                               7,  \
+      /* Target core */                                                OS_CORTEXM_INT_TARGET_DEFAULT,  \
+      /* size of the private data region for MPU */                    OS_CORTEXM_MPU_SIZE_DISABLED,  \
+      /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
+    )  \
+),  \
+OS_ISRCONFIG_INIT(    /* CMP_0_ISR */  \
+  /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
+  /* Permissions */                       0x1u,  \
+  /* Accounting structure */              OS_NULL,  \
+  /* start of data/bss */                 OS_NULL,  \
+  /* end of data/bss */                   OS_NULL,  \
+  /* start of initial data */             OS_NULL,  \
+  /* end of initial data */               OS_NULL,  \
+  /* Interrupt entry */                   &OS_ISR_CMP_0_ISR,  \
+  /* Execution budget */                  0u,  \
+  /* Os interrupt lock budget */          0u,  \
+  /* All interrupt lock budget */         0u,  \
+  /* Resource lock budget */              OS_NULL,  \
+  /* Stack size */                        512u,  \
+  /* Rate monitor */                      OS_NULLRATEMONITOR,  \
+  /* Isr id */                            CMP_0_ISR,  \
+  /* dynamic data */                      &OS_isrDynamic_core0[6],  \
+  /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
+    OS_ARCHISR_INIT(  \
+      /* ISR source */                                                 183,  \
+      /* ISR priority */                                               7,  \
+      /* Target core */                                                OS_CORTEXM_INT_TARGET_DEFAULT,  \
+      /* size of the private data region for MPU */                    OS_CORTEXM_MPU_SIZE_DISABLED,  \
+      /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
+    )  \
+),  \
 OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
   /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
   /* Permissions */                       0x1u,  \
@@ -408,7 +486,7 @@ OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
   /* Stack size */                        512u,  \
   /* Rate monitor */                      OS_NULLRATEMONITOR,  \
   /* Isr id */                            Os_Counter_STM0_0,  \
-  /* dynamic data */                      &OS_isrDynamic_core0[4],  \
+  /* dynamic data */                      &OS_isrDynamic_core0[7],  \
   /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
     OS_ARCHISR_INIT(  \
       /* ISR source */                                                 39,  \
@@ -422,7 +500,7 @@ OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
 /* Stack Macros */
 #define OS_ISTACKBASE_0          OS_kernStack0
 #define OS_ISTACKLEN_0           OS_U( 3072 )
-#define OS_NINTERRUPTS_CORE0     5
+#define OS_NINTERRUPTS_CORE0     8
 #define OS_NISRACCOUNTING_CORE0  0
 
 /*===================================================================
@@ -6609,6 +6687,21 @@ OS_TASKCONFIG_INIT(    /* SchMMemTask_10ms */  \
 #define OS_SRCb4_C0_ENTRY                     OS_Cat2Entry
 #define OS_SRCb4_C0_EXIT                      OS_CORTEXM_IntCat2Exit
 #define OS_SRCb4_C0_LOCKLEVEL                 OS_KERNLOCK
+#define OS_SRC38_C0_NAME                      _OS_VECTOR_I056_SIUL_IRQ3
+#define OS_SRC38_C0_ISRID                     SIUL2_EXT_IRQ_24_31_ISR
+#define OS_SRC38_C0_ENTRY                     OS_Cat2Entry
+#define OS_SRC38_C0_EXIT                      OS_CORTEXM_IntCat2Exit
+#define OS_SRC38_C0_LOCKLEVEL                 OS_KERNLOCK
+#define OS_SRC35_C0_NAME                      _OS_VECTOR_I053_SIUL_IRQ0
+#define OS_SRC35_C0_ISRID                     SIUL2_EXT_IRQ_0_7_ISR
+#define OS_SRC35_C0_ENTRY                     OS_Cat2Entry
+#define OS_SRC35_C0_EXIT                      OS_CORTEXM_IntCat2Exit
+#define OS_SRC35_C0_LOCKLEVEL                 OS_KERNLOCK
+#define OS_SRCb7_C0_NAME                      _OS_VECTOR_I183_LPComparator_0
+#define OS_SRCb7_C0_ISRID                     CMP_0_ISR
+#define OS_SRCb7_C0_ENTRY                     OS_Cat2Entry
+#define OS_SRCb7_C0_EXIT                      OS_CORTEXM_IntCat2Exit
+#define OS_SRCb7_C0_LOCKLEVEL                 OS_KERNLOCK
 #define OS_SRC27_C0_NAME                      _OS_VECTOR_I039_STM_0
 #define OS_SRC27_C0_ISRID                     Os_Counter_STM0_0
 #define OS_SRC27_C0_ENTRY                     OS_Cat2Entry

@@ -361,6 +361,16 @@
 #define BASE_FLS_HEADER <Fls.h>
 #endif
 
+#ifndef BASE_ICU_ENABLED
+/** \brief Enable status of the module Icu (/Icu/Icu) (VariantPostBuild) */
+#define BASE_ICU_ENABLED STD_ON
+#endif
+
+#ifndef BASE_ICU_HEADER
+/** \brief Name of the Icu (/Icu/Icu) module's main header file */
+#define BASE_ICU_HEADER <Icu.h>
+#endif
+
 #ifndef BASE_MCALEXT_ENABLED
 /** \brief Enable status of the module McalExt (/McalExt/McalExt) (VariantPreCompile) */
 #define BASE_MCALEXT_ENABLED STD_ON
@@ -369,6 +379,16 @@
 #ifndef BASE_MCALEXT_HEADER
 /** \brief Name of the McalExt (/McalExt/McalExt) module's main header file */
 #define BASE_MCALEXT_HEADER <McalExt.h>
+#endif
+
+#ifndef BASE_MCL_ENABLED
+/** \brief Enable status of the module Mcl (/Mcl/Mcl) (VariantPostBuild) */
+#define BASE_MCL_ENABLED STD_ON
+#endif
+
+#ifndef BASE_MCL_HEADER
+/** \brief Name of the Mcl (/Mcl/Mcl) module's main header file */
+#define BASE_MCL_HEADER <Mcl.h>
 #endif
 
 #ifndef BASE_MCU_ENABLED
@@ -605,16 +625,6 @@
 #define BASE_WDGM_HEADER <WdgM.h>
 #endif
 
-#ifndef BASE_COMXF_ENABLED
-/** \brief Enable status of the module ComXf (/ComXf/Xfrm) (VariantPreCompile) */
-#define BASE_COMXF_ENABLED STD_ON
-#endif
-
-#ifndef BASE_COMXF_HEADER
-/** \brief Name of the ComXf (/ComXf/Xfrm) module's main header file */
-#define BASE_COMXF_HEADER <ComXf.h>
-#endif
-
 #ifndef BASE_E2EXF_ENABLED
 /** \brief Enable status of the module E2EXf (/E2EXf/Xfrm) (VariantPreCompile) */
 #define BASE_E2EXF_ENABLED STD_ON
@@ -623,6 +633,16 @@
 #ifndef BASE_E2EXF_HEADER
 /** \brief Name of the E2EXf (/E2EXf/Xfrm) module's main header file */
 #define BASE_E2EXF_HEADER <E2EXf.h>
+#endif
+
+#ifndef BASE_COMXF_ENABLED
+/** \brief Enable status of the module ComXf (/ComXf/Xfrm) (VariantPreCompile) */
+#define BASE_COMXF_ENABLED STD_ON
+#endif
+
+#ifndef BASE_COMXF_HEADER
+/** \brief Name of the ComXf (/ComXf/Xfrm) module's main header file */
+#define BASE_COMXF_HEADER <ComXf.h>
 #endif
 
 #endif /* ifndef BASE_MODULES_H */

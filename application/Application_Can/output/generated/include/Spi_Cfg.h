@@ -126,7 +126,7 @@ extern "C"{
 * @implements SPI_DEV_ERROR_DETECT_define
 */
 
-#define SPI_DEV_ERROR_DETECT           (STD_ON)
+#define SPI_DEV_ERROR_DETECT           (STD_OFF)
 
 /**
 * @brief Switches the Version Information API functionality ON or OFF.
@@ -174,7 +174,7 @@ extern "C"{
 *        (see chapter 7.2.1)
 * @implements SPI_CHANNEL_BUFFERS_ALLOWED_define
 */
-#define SPI_CHANNEL_BUFFERS_ALLOWED    (SPI_USAGE0)
+#define SPI_CHANNEL_BUFFERS_ALLOWED    (SPI_USAGE1)
 
 /* The LEVEL 0 Simple Synchronous SPI Handler Driver functionalities are selected.*/
 #define SPI_LEVEL0                          0x00u

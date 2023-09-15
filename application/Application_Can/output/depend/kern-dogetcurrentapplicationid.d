@@ -1,12 +1,12 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/kern-dogetcurrentapplicationid.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/kern-dogetcurrentapplicationid.s: \
+D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/kern-dogetcurrentapplicationid.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/kern-dogetcurrentapplicationid.s: \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/lib_src/kernel/kern-dogetcurrentapplicationid.c \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_kernel.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_defs.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_usuffix.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_hw.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_hw_CORTEXM.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Os_kconfig.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Os_kconfig.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_hwsel.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_defs_CORTEXM.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_types.h \
@@ -14,7 +14,7 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/obj/ke
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_types_CORTEXM.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/S32K34X/Os_types_S32K34X.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_libconfig.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Spi/Application_Can/output/generated/include/Os_libcfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Os_libcfg.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_error.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_arch.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_kernel_CORTEXM.h \

@@ -49,7 +49,7 @@
 
 typedef struct /* EcuM_ConfigLayoutType */ {
     VAR( EcuM_ConfigType, TYPEDEF ) RootCfg;
-    VAR( uint8, TYPEDEF ) DriverInitListOne[9]; /* Configured Drivers List in Init Block 1 */
+    VAR( uint8, TYPEDEF ) DriverInitListOne[11]; /* Configured Drivers List in Init Block 1 */
 } EcuM_ConfigLayoutType;
 
 typedef CONST( EcuM_ConfigLayoutType, ECUM_APPL_CONST ) EcuM_ConstConfigLayoutType;

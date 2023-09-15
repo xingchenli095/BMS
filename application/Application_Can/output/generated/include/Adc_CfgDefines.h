@@ -269,7 +269,7 @@ extern "C"{
 /**
 * @brief           Maximum number of channels across all hardware units.
 */
-#define ADC_MAX_CHANNEL_PER_HW_UNIT         (1U)
+#define ADC_MAX_CHANNEL_PER_HW_UNIT         (2U)
 #endif /* defined(ADC_DMA_SUPPORTED) || ...  */
 
 /**
@@ -373,6 +373,7 @@ extern "C"{
 *                  Bit fields [0-11]:   Logical id of channel in HW unit (used in Adc_EnableChannel()/Adc_DisableChannel()/Adc_EnableWdgNotification()/Adc_DisableWdgNotification())
 */
 #define AdcChannel_VER                       (0x0U)
+#define AdcChannel_DEC                       (0x1U)
 #define AdcChannel_0                       (0x1000U)
 
 /**
