@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  * 
- * Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/20/23 8:27 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_CONFIG_H
@@ -31,7 +31,7 @@ extern "C" {
 #include <Os_tool.h>
 #include <CORTEXM/Os_CORTEXM_timer_fs_stm.h>
 
-#define OS_GENERATION_ID_OS_CONF_H  0x6e614cafUL
+#define OS_GENERATION_ID_OS_CONF_H  0x3550fcdaUL
 
 #define OS_AUTOSAROS_VER            6
 
@@ -228,7 +228,7 @@ OS_COUNTER_INIT(    /* HwCounter */  \
 /*===================================================================
  * Events
  *==================================================================*/
-#define OS_NEVENTS  18
+#define OS_NEVENTS  19
 
 /*===================================================================
  * Execution timer
@@ -267,9 +267,9 @@ OS_COUNTER_INIT(    /* HwCounter */  \
  * Interrupts
  *==================================================================*/
 
-#define OS_NINTERRUPTS         8
+#define OS_NINTERRUPTS         9
 #define OS_NCAT1_INTERRUPTS    0
-#define OS_NCAT2_INTERRUPTS    8
+#define OS_NCAT2_INTERRUPTS    9
 #define OS_NCATK_INTERRUPTS    0
 #define OS_NCAT2K_INTERRUPTS   0
 #define OS_NISRSEXECTIMELIMIT  0
@@ -284,7 +284,7 @@ OS_COUNTER_INIT(    /* HwCounter */  \
 
 /* Internal Interrupt Ids */
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Os_Counter_STM0_0  7
+#define Os_Counter_STM0_0  8
 #endif
 
 /* Isr Config Struct Init Macros. */
@@ -470,6 +470,32 @@ OS_ISRCONFIG_INIT(    /* CMP_0_ISR */  \
       /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
     )  \
 ),  \
+OS_ISRCONFIG_INIT(    /* EMIOS0_5_IRQ */  \
+  /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
+  /* Permissions */                       0x1u,  \
+  /* Accounting structure */              OS_NULL,  \
+  /* start of data/bss */                 OS_NULL,  \
+  /* end of data/bss */                   OS_NULL,  \
+  /* start of initial data */             OS_NULL,  \
+  /* end of initial data */               OS_NULL,  \
+  /* Interrupt entry */                   &OS_ISR_EMIOS0_5_IRQ,  \
+  /* Execution budget */                  0u,  \
+  /* Os interrupt lock budget */          0u,  \
+  /* All interrupt lock budget */         0u,  \
+  /* Resource lock budget */              OS_NULL,  \
+  /* Stack size */                        512u,  \
+  /* Rate monitor */                      OS_NULLRATEMONITOR,  \
+  /* Isr id */                            EMIOS0_5_IRQ,  \
+  /* dynamic data */                      &OS_isrDynamic_core0[7],  \
+  /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
+    OS_ARCHISR_INIT(  \
+      /* ISR source */                                                 66,  \
+      /* ISR priority */                                               7,  \
+      /* Target core */                                                OS_CORTEXM_INT_TARGET_DEFAULT,  \
+      /* size of the private data region for MPU */                    OS_CORTEXM_MPU_SIZE_DISABLED,  \
+      /* size of the ISR stack for MPU */                              OS_CORTEXM_MPU_SIZE_DISABLED  \
+    )  \
+),  \
 OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
   /* Application */                       &OS_appTable[OS_SYSTEM_0],  \
   /* Permissions */                       0x1u,  \
@@ -486,7 +512,7 @@ OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
   /* Stack size */                        512u,  \
   /* Rate monitor */                      OS_NULLRATEMONITOR,  \
   /* Isr id */                            Os_Counter_STM0_0,  \
-  /* dynamic data */                      &OS_isrDynamic_core0[7],  \
+  /* dynamic data */                      &OS_isrDynamic_core0[8],  \
   /* Flags */                             (OS_ISRF_CAT2|OS_ISRF_ENABLE),  \
     OS_ARCHISR_INIT(  \
       /* ISR source */                                                 39,  \
@@ -500,7 +526,7 @@ OS_ISRCONFIG_INIT(    /* Os_Counter_STM0_0 */  \
 /* Stack Macros */
 #define OS_ISTACKBASE_0          OS_kernStack0
 #define OS_ISTACKLEN_0           OS_U( 3072 )
-#define OS_NINTERRUPTS_CORE0     8
+#define OS_NINTERRUPTS_CORE0     9
 #define OS_NISRACCOUNTING_CORE0  0
 
 /*===================================================================
@@ -5623,7 +5649,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      0,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_FB569F32E86BE9DE6593E2D9B5D6CB4E | Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_FB569F32E86BE9DE6593E2D9B5D6CB4E | Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_10000 */  \
@@ -5658,7 +5684,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      2000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_60000 */  \
@@ -5693,7 +5719,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      4000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_110000 */  \
@@ -5728,7 +5754,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      6000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_160000 */  \
@@ -5763,7 +5789,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      8000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_210000 */  \
@@ -5798,7 +5824,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      10000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_260000 */  \
@@ -5833,7 +5859,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      12000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_310000 */  \
@@ -5868,7 +5894,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      14000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_360000 */  \
@@ -5903,7 +5929,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      16000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_410000 */  \
@@ -5938,7 +5964,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      18000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_460000 */  \
@@ -5973,7 +5999,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      20000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_510000 */  \
@@ -6008,7 +6034,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      22000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_560000 */  \
@@ -6043,7 +6069,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      24000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_610000 */  \
@@ -6078,7 +6104,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      26000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_660000 */  \
@@ -6113,7 +6139,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      28000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_710000 */  \
@@ -6148,7 +6174,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      30000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_760000 */  \
@@ -6183,7 +6209,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      32000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8 | Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_810000 */  \
@@ -6218,7 +6244,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      34000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_860000 */  \
@@ -6253,7 +6279,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      36000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_910000 */  \
@@ -6288,7 +6314,7 @@ OS_STCONFIG_INIT(    /* Rte_DefaultScheduleTable */  \
     /* Offset */                      38000000,  \
     /* Max advance */                 0,  \
     /* Max retard */                  0,  \
-    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131,  \
+    /* Event */                       Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131 | Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6,  \
     /* Task */                        Rte_Time_Task  \
   },  \
   {  /* EP_960000 */  \
@@ -6702,6 +6728,11 @@ OS_TASKCONFIG_INIT(    /* SchMMemTask_10ms */  \
 #define OS_SRCb7_C0_ENTRY                     OS_Cat2Entry
 #define OS_SRCb7_C0_EXIT                      OS_CORTEXM_IntCat2Exit
 #define OS_SRCb7_C0_LOCKLEVEL                 OS_KERNLOCK
+#define OS_SRC42_C0_NAME                      _OS_VECTOR_I066_EMIOS_0_3_0
+#define OS_SRC42_C0_ISRID                     EMIOS0_5_IRQ
+#define OS_SRC42_C0_ENTRY                     OS_Cat2Entry
+#define OS_SRC42_C0_EXIT                      OS_CORTEXM_IntCat2Exit
+#define OS_SRC42_C0_LOCKLEVEL                 OS_KERNLOCK
 #define OS_SRC27_C0_NAME                      _OS_VECTOR_I039_STM_0
 #define OS_SRC27_C0_ISRID                     Os_Counter_STM0_0
 #define OS_SRC27_C0_ENTRY                     OS_Cat2Entry

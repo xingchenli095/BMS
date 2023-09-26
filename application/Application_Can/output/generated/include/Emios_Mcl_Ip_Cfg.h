@@ -108,7 +108,7 @@ extern "C"
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
 /* Enable/Disable EMIOS support from MCL. */
-#define EMIOS_IP_IS_AVAILABLE                      STD_OFF
+#define EMIOS_IP_IS_AVAILABLE                      STD_ON
 
 /*==================================================================================================
 *                                              ENUMS

@@ -241,7 +241,7 @@ extern "C"{
 * @implements SPI_DISABLE_DEM_REPORT_ERROR_STATUS_define
 * 
 */
-#define SPI_DISABLE_DEM_REPORT_ERROR_STATUS   (STD_OFF)  /* Enable Production Error Detection */
+#define SPI_DISABLE_DEM_REPORT_ERROR_STATUS   (STD_ON) /* Disable Production Error Detection */
 
 
 /*==================================================================================================

@@ -97,8 +97,15 @@ extern "C"
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
 /* Macros that indicate EMIOS channels used by MCL. */
+#ifndef EMIOS_0_CH_23_USED
+    #define EMIOS_0_CH_23_USED
+#else
+    #error "EMIOS_0_CH_23 channel cannot be used by MCL driver. Channel locked by other driver!"
+#endif
+
 
 /* Macros used to save logic MCL EMIOS channel encoding. */
+#define MCL_EMIOS_LOGIC_CH0 (uint16)((0U << 8U) + 23U)
 
 #define EMIOS_MCL_IP_DEV_ERROR_DETECT  (STD_OFF)
 

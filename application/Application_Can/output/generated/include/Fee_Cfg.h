@@ -132,7 +132,7 @@ extern "C"{
 #define FEE_NUMBER_OF_CLUSTER_GROUPS              (1U)
 
 /* Number of configured Fee blocks */
-#define FEE_CRT_CFG_NR_OF_BLOCKS                  (11U)
+#define FEE_CRT_CFG_NR_OF_BLOCKS                  (12U)
 
 /* Maximum number of Fee blocks in all project versions and configurations */
 #define FEE_MAX_NR_OF_BLOCKS                      ((FEE_CRT_CFG_NR_OF_BLOCKS))
@@ -184,6 +184,7 @@ extern "C"{
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_SECONDARY_0     (112U)
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_SECONDARY_1     (113U)
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_PERMANENT     (128U)
+#define FeeConf_FeeBlockConfiguration_Fee_NvM_BLOCK_voltage     (144U)
 #define FEE_START_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Fee_MemMap.h"
 /* Configuration of cluster group set */

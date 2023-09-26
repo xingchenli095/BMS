@@ -221,10 +221,10 @@ const Siul2_Port_Ip_PinSettingsConfig g_pin_mux_InitConfigArr[NUM_OF_CONFIGURED_
                                        },
         .initValue                   = 0,
         .inputMuxReg                 = {
-                                         43
+                                         49
                                        },
         .inputMux                    = {
-                                         PORT_INPUT_MUX_ALT1,
+                                         PORT_INPUT_MUX_ALT2,
                                          PORT_INPUT_MUX_NO_INIT,
                                          PORT_INPUT_MUX_NO_INIT,
                                          PORT_INPUT_MUX_NO_INIT,

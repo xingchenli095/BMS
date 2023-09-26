@@ -1,19 +1,19 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Emios_Mcl_Ip_PBcfg.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Emios_Mcl_Ip_PBcfg.s: \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/src/Emios_Mcl_Ip_PBcfg.c \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_PBcfg.h \
+D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Emios_Mcl_Ip_PBcfg.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Emios_Mcl_Ip_PBcfg.s: \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/src/Emios_Mcl_Ip_PBcfg.c \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_PBcfg.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Mcl_TS_T40D34M20I1R0/include/Emios_Mcl_Ip_Types.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/StandardTypes.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_Cfg_Defines.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_Cfg_DeviceRegisters.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_Cfg_Defines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Mcl_Ip_Cfg_DeviceRegisters.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_ADC.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_COMMON.h \
@@ -84,6 +84,6 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Appl
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_SCB.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_SYSTICK.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_MPU.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Icu_Ip_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Icu_Ip_PBcfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Mcl_MemMap.h
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Icu_Ip_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Emios_Icu_Ip_PBcfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Mcl_MemMap.h

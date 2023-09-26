@@ -82,7 +82,7 @@ extern "C"{
 #define EMIOS_ICU_IP_NUM_OF_CHANNELS               (24U)
 
 /** @brief Switches the Development Error Detection and Notification on or off.  */
-#define EMIOS_ICU_IP_DEV_ERROR_DETECT             (STD_ON)
+#define EMIOS_ICU_IP_DEV_ERROR_DETECT             (STD_OFF)
 #define EMIOS_ICU_IP_VALIDATE_GLOBAL_CALL         (EMIOS_ICU_IP_DEV_ERROR_DETECT)
 
 /** @brief Adds or removes all services related to the timestamp functionality. */
@@ -95,10 +95,10 @@ extern "C"{
 #define EMIOS_ICU_IP_SIGNAL_MEASUREMENT_API       (STD_ON)
 
 /** @brief Adds or removes all services related to the input level. */
-#define EMIOS_ICU_IP_GET_INPUT_LEVEL_API          (STD_OFF)
+#define EMIOS_ICU_IP_GET_INPUT_LEVEL_API          (STD_ON)
 
 /** @brief define SAIC mode if any channels not supporting IPWM or IPM mode is configured. */
-#define EMIOS_ICU_IP_SIGNAL_MEASUREMENT_USES_SAIC_MODE            (STD_OFF)
+#define EMIOS_ICU_IP_SIGNAL_MEASUREMENT_USES_SAIC_MODE            (STD_ON)
 
 /** @brief Adds or removes all services related to the deinitialization functionality. */
 #define EMIOS_ICU_IP_DEINIT_API                   (STD_ON)
@@ -156,6 +156,10 @@ extern "C"{
 
 /** @implements PwmExclusivAccessMacro_Activity */
 
+
+
+
+        
 
 
 

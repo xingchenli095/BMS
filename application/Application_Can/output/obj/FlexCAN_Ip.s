@@ -1,11 +1,11 @@
 	.text
-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0::
+..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0::
 	.align	2
 ..gh.f.a.1.e.0:
 	.endo	..gh.f.a.1.e.0
 	.thumb2
-	.global	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_InitRxFifo:
 .LDW01:
 	push	{r4-r5,lr}
@@ -16,7 +16,7 @@ FlexCAN_InitRxFifo:
 	ldrb	r1,[r5,8]
 	cbz	r1,.L960
 ;line291
-..lin.126cd548..9c5c12e7.0_1::
+..lin.33d012f8..9c5c12e7.0_1::
 .LDWlin1:
 	ldr	r1,[r5,4]
 	cpy	r0,r4
@@ -28,7 +28,7 @@ FlexCAN_InitRxFifo:
 	ldrb	r1,[r5,24]
 	cbz	r1,.L958
 ;line311
-..lin.126cd548..9c5c12e7.0_2::
+..lin.33d012f8..9c5c12e7.0_2::
 .LDWlin2:
 	ldr	r3,[r5,20]
 	ldr	r2,[r5,16]
@@ -44,7 +44,7 @@ FlexCAN_InitRxFifo:
 	pop	{r4-r5,pc}
 __ghs_eofn_FlexCAN_InitRxFifo:
 	.endf	FlexCAN_InitRxFifo
-	.endf	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r0	local
 
 ;pBase	r4	param
@@ -63,8 +63,8 @@ __ghs_eofn_FlexCAN_InitRxFifo:
 	.text
 ..gh.f.a.1.e.1:
 	.endo	..gh.f.a.1.e.1
-	.global	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_InitCtroll:
 .LDW31:
 	push	{r4-r6,lr}
@@ -76,7 +76,7 @@ FlexCAN_InitCtroll:
 	cmp	r0,2
 	beq	.L1028
 ;line384
-..lin.126cd548..792e8a69.0_3::
+..lin.33d012f8..792e8a69.0_3::
 .LDWlin3:
 	mov	r0,0
 	cmp	r0,1
@@ -95,7 +95,7 @@ FlexCAN_InitCtroll:
 	str	r0,[r4]
 .L1028:
 ;line388
-..lin.126cd548..792e8a69.0_4::
+..lin.33d012f8..792e8a69.0_4::
 .LDWlin4:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -105,7 +105,7 @@ FlexCAN_InitCtroll:
 	cpy	r6,r0
 	cbz	r6,.L1037
 ;line392
-..lin.126cd548..792e8a69.0_5::
+..lin.33d012f8..792e8a69.0_5::
 .LDWlin5:
 	cpy	r0,r4
 .L1122:
@@ -118,7 +118,7 @@ FlexCAN_InitCtroll:
 	b	.L1039
 .L1037:
 ;line399
-..lin.126cd548..792e8a69.0_6::
+..lin.33d012f8..792e8a69.0_6::
 .LDWlin6:
 	add	r1,r5,36
 	cpy	r0,r4
@@ -133,7 +133,7 @@ FlexCAN_InitCtroll:
 	cpy	r6,r0
 	cbz	r6,.L1039
 ;line407
-..lin.126cd548..792e8a69.0_7::
+..lin.33d012f8..792e8a69.0_7::
 .LDWlin7:
 	cpy	r0,r4
 .L1130:
@@ -151,7 +151,7 @@ FlexCAN_InitCtroll:
 	pop	{r4-r6,pc}
 __ghs_eofn_FlexCAN_InitCtroll:
 	.endf	FlexCAN_InitCtroll
-	.endf	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r6	local
 
 ;pBase	r4	param
@@ -178,8 +178,8 @@ __ghs_eofn_FlexCAN_InitCtroll:
 	.text
 ..gh.f.a.1.e.2:
 	.endo	..gh.f.a.1.e.2
-	.global	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_InitController:
 .LDW61:
 	push	{r4-r7,lr}
@@ -199,7 +199,7 @@ FlexCAN_InitController:
 .L1140:
 	cbz	r0,.L1138
 ;line431
-..lin.126cd548..c0af8d3d.0_8::
+..lin.33d012f8..c0af8d3d.0_8::
 .LDWlin8:
 	cpy	r0,r4
 .L1267:
@@ -208,7 +208,7 @@ FlexCAN_InitController:
 	cpy	r5,r0
 	cbnz	r5,.L1138
 ;line434
-..lin.126cd548..c0af8d3d.0_9::
+..lin.33d012f8..c0af8d3d.0_9::
 .LDWlin9:
 	cpy	r0,r4
 .L1269:
@@ -219,7 +219,7 @@ FlexCAN_InitController:
 	cmp	r5,0
 	bne	.L1149
 ;line445
-..lin.126cd548..c0af8d3d.0_10::
+..lin.33d012f8..c0af8d3d.0_10::
 .LDWlin10:
 	ldr	r0,[r4]
 	bic	r0,r0,1<<31
@@ -231,7 +231,7 @@ FlexCAN_InitController:
 	cpy	r5,r0
 	cbz	r5,.L1156
 ;line451
-..lin.126cd548..c0af8d3d.0_11::
+..lin.33d012f8..c0af8d3d.0_11::
 .LDWlin11:
 	cpy	r0,r4
 .L1273:
@@ -244,7 +244,7 @@ FlexCAN_InitController:
 	b	.L1149
 .L1156:
 ;line458
-..lin.126cd548..c0af8d3d.0_12::
+..lin.33d012f8..c0af8d3d.0_12::
 .LDWlin12:
 	ldr	r0,[r4,52]
 	orr	r0,r0,1<<29
@@ -292,7 +292,7 @@ FlexCAN_InitController:
 	and	r0,r0,r1
 	str	r0,[r4,3072]
 ;line477
-..lin.126cd548..c0af8d3d.0_13::
+..lin.33d012f8..c0af8d3d.0_13::
 .LDWlin13:
 	ldr	r1,[r6,32]
 	cpy	r0,r4
@@ -317,7 +317,7 @@ FlexCAN_InitController:
 	pop	{r4-r7,pc}
 __ghs_eofn_FlexCAN_InitController:
 	.endf	FlexCAN_InitController
-	.endf	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r5	local
 ;enableFD	r0	local
 ;enableBRS	r2	local
@@ -349,8 +349,8 @@ __ghs_eofn_FlexCAN_InitController:
 	.text
 ..gh.f.a.1.e.3:
 	.endo	..gh.f.a.1.e.3
-	.global	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_InitBaudrate:
 .LDW91:
 	push	{r4,lr}
@@ -369,13 +369,13 @@ FlexCAN_InitBaudrate:
 	orr	r2,r3,r2
 	str	r2,[r0,80]
 ;line499
-..lin.126cd548..e26208a1.0_14::
+..lin.33d012f8..e26208a1.0_14::
 .LDWlin14:
 	ldrb	r2,[r1,45]
 	cmp	r2,0
 	beq	.L1294
 ;line502
-..lin.126cd548..e26208a1.0_15::
+..lin.33d012f8..e26208a1.0_15::
 .LDWlin15:
 	ldr	r2,[r0,52]
 	orr	r2,r2,1<<13
@@ -427,13 +427,13 @@ BKPT #0
 	orr	r2,r2,r3
 	str	r2,[r0,3056]
 ;line505
-..lin.126cd548..e26208a1.0_16::
+..lin.33d012f8..e26208a1.0_16::
 .LDWlin16:
 	ldrb	r2,[r1,44]
 	cmp	r2,0
 	beq	.L1285
 ;line507
-..lin.126cd548..e26208a1.0_17::
+..lin.33d012f8..e26208a1.0_17::
 .LDWlin17:
 	add	r2,r1,68
 	cmp	r2,0
@@ -488,7 +488,7 @@ BKPT #0
 	b	.L1285
 .L1294:
 ;line516
-..lin.126cd548..e26208a1.0_18::
+..lin.33d012f8..e26208a1.0_18::
 .LDWlin18:
 	ldr	r2,[r0,52]
 	mvn	r3,1<<13
@@ -498,7 +498,7 @@ BKPT #0
 	cmp	r2,0
 	beq	.L1332
 ;line523
-..lin.126cd548..e26208a1.0_19::
+..lin.33d012f8..e26208a1.0_19::
 .LDWlin19:
 	add	r2,r1,48
 	cmp	r2,0
@@ -544,7 +544,7 @@ BKPT #0
 	orr	r2,r2,r3
 	str	r2,[r0,80]
 ;line525
-..lin.126cd548..e26208a1.0_20::
+..lin.33d012f8..e26208a1.0_20::
 .LDWlin20:
 	add	r2,r1,68
 	cmp	r2,0
@@ -594,7 +594,7 @@ BKPT #0
 	b	.L1285
 .L1332:
 ;line530
-..lin.126cd548..e26208a1.0_21::
+..lin.33d012f8..e26208a1.0_21::
 .LDWlin21:
 	add	r2,r1,48
 	cmp	r2,0
@@ -643,12 +643,12 @@ BKPT #0
 .L1504:
 
 ;line534
-..lin.126cd548..e26208a1.0_22::
+..lin.33d012f8..e26208a1.0_22::
 .LDWlin22:
 	pop	{r4,pc}
 __ghs_eofn_FlexCAN_InitBaudrate:
 	.endf	FlexCAN_InitBaudrate
-	.endf	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;enableCBT	r2	local
 ;x	r2	local
 ;x	r2	local
@@ -665,8 +665,8 @@ __ghs_eofn_FlexCAN_InitBaudrate:
 	.text
 ..gh.f.a.1.e.14:
 	.endo	..gh.f.a.1.e.14
-	.global	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_CompleteRxMessageEnhancedFifoData:
 .LDW22:
 	push	{r4-r5,lr}
@@ -700,7 +700,7 @@ BKPT #0
 	b	.L1512
 .L1508:
 ;line560
-..lin.126cd548..24723b41.0_23::
+..lin.33d012f8..24723b41.0_23::
 .LDWlin23:
 	cpy	r0,r5
 .L1618:
@@ -720,12 +720,12 @@ BKPT #0
 	b	.L1518
 .L1514:
 ;line563
-..lin.126cd548..24723b41.0_24::
+..lin.33d012f8..24723b41.0_24::
 .LDWlin24:
 	ldrb	r0,[r4,1032]
 	cbnz	r0,.L1520
 ;line566
-..lin.126cd548..24723b41.0_25::
+..lin.33d012f8..24723b41.0_25::
 .LDWlin25:
 	mov	r0,1
 	strb	r0,[r4,1032]
@@ -740,7 +740,7 @@ BKPT #0
 	str	r0,[r5,3088]
 .L1520:
 ;line651
-..lin.126cd548..24723b41.0_26::
+..lin.33d012f8..24723b41.0_26::
 .LDWlin26:
 	mov	r0,0
 	str	r0,[r4,1024]
@@ -752,7 +752,7 @@ BKPT #0
 	pop	{r4-r5,pc}
 __ghs_eofn_FlexCAN_CompleteRxMessageEnhancedFifoData:
 	.endf	FlexCAN_CompleteRxMessageEnhancedFifoData
-	.endf	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r5	local
 ;state	r4	local
 ;x	r0	local
@@ -762,18 +762,18 @@ __ghs_eofn_FlexCAN_CompleteRxMessageEnhancedFifoData:
 
 	.section ".bss","awb"
 	.align	4
-Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.::
+Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.::
 Flexcan_Ip_apxState:	.space	16
-	.endo	Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endo	Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.endo	Flexcan_Ip_apxState
 	.section ".rodata","a"
 	.align	4
-Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.::
+Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.::
 Flexcan_Ip_apxBase:	.data.b	0,64,48,64
 	.data.b	0,128,48,64
 	.data.b	0,192,48,64
 	.data.b	0,0,49,64
-	.endo	Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endo	Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.endo	Flexcan_Ip_apxBase
 	.section ".ghcalltbl",""
 .L1619:	.data.w	.L1618
@@ -784,8 +784,8 @@ Flexcan_Ip_apxBase:	.data.b	0,64,48,64
 	.text
 ..gh.f.a.1.e.19:
 	.endo	..gh.f.a.1.e.19
-	.global	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_StartRxMessageEnhancedFifoData:
 .LDW52:
 	push	{r4,lr}
@@ -820,19 +820,19 @@ BKPT #0
 	b	.L1628
 .L1624:
 ;line692
-..lin.126cd548..65e05f16.0_27::
+..lin.33d012f8..65e05f16.0_27::
 .LDWlin27:
 	ldr.w	r0,[r2,1028]
 	cmp	r0,1
 	bne	.L1630
 ;line694
-..lin.126cd548..65e05f16.0_28::
+..lin.33d012f8..65e05f16.0_28::
 .LDWlin28:
 	mov	r4,2
 	b	.L1632
 .L1630:
 ;line698
-..lin.126cd548..65e05f16.0_29::
+..lin.33d012f8..65e05f16.0_29::
 .LDWlin29:
 	mov	r0,1
 	str	r0,[r2,1028]
@@ -840,7 +840,7 @@ BKPT #0
 	ldr.w	r0,[r2,1056]
 	cbnz	r0,.L1633
 ;line703
-..lin.126cd548..65e05f16.0_30::
+..lin.33d012f8..65e05f16.0_30::
 .LDWlin30:
 	mov	r0,0
 	strb	r0,[r2,1032]
@@ -848,7 +848,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L1633
 ;line707
-..lin.126cd548..65e05f16.0_31::
+..lin.33d012f8..65e05f16.0_31::
 .LDWlin31:
 	mov	r0,0
 	cbnz	r0,.L1641
@@ -860,13 +860,13 @@ BKPT #0
 	str	r0,[r3,3088]
 .L1633:
 ;line710
-..lin.126cd548..65e05f16.0_32::
+..lin.33d012f8..65e05f16.0_32::
 .LDWlin32:
 	ldr.w	r0,[r2,1056]
 	cmp	r0,1
 	bne	.L1632
 ;line712
-..lin.126cd548..65e05f16.0_33::
+..lin.33d012f8..65e05f16.0_33::
 .LDWlin33:
 	mov	r0,1
 	strb	r0,[r2,1032]
@@ -878,7 +878,7 @@ BKPT #0
 	pop	{r4,pc}
 __ghs_eofn_FlexCAN_StartRxMessageEnhancedFifoData:
 	.endf	FlexCAN_StartRxMessageEnhancedFifoData
-	.endf	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r3	local
 ;state	r2	local
 ;eResult	r4	local
@@ -893,8 +893,8 @@ __ghs_eofn_FlexCAN_StartRxMessageEnhancedFifoData:
 	.text
 ..gh.f.a.1.e.22:
 	.endo	..gh.f.a.1.e.22
-	.global	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_ProccessEnhancedRxFifo:
 .LDW82:
 	push	{r4-r8,r10-fp,lr}
@@ -933,19 +933,19 @@ FlexCAN_ProccessEnhancedRxFifo:
 	b	.L1746
 .L1748:
 ;line823
-..lin.126cd548..8530f24b.0_34::
+..lin.33d012f8..8530f24b.0_34::
 .LDWlin34:
 	ldr.w	r0,[r6,1056]
 	cmp	r0,1
 	bne	.L1749
 ;line825
-..lin.126cd548..8530f24b.0_35::
+..lin.33d012f8..8530f24b.0_35::
 .LDWlin35:
 	mov	r4,31
 	b	.L1754
 .L1759:
 ;line829
-..lin.126cd548..8530f24b.0_36::
+..lin.33d012f8..8530f24b.0_36::
 .LDWlin36:
 	uxtb	r0,r4
 	and	r0,r0,31
@@ -959,7 +959,7 @@ FlexCAN_ProccessEnhancedRxFifo:
 	uxtb	r0,r0
 	cbz	r0,.L1752
 ;line831
-..lin.126cd548..8530f24b.0_37::
+..lin.33d012f8..8530f24b.0_37::
 .LDWlin37:
 	cpy	r1,r4
 	mov	r0,r10
@@ -973,7 +973,7 @@ FlexCAN_ProccessEnhancedRxFifo:
 	bhs	.L1759
 .L1749:
 ;line836
-..lin.126cd548..8530f24b.0_38::
+..lin.33d012f8..8530f24b.0_38::
 .LDWlin38:
 	mov	r0,sp
 	mov	r1,0
@@ -985,20 +985,20 @@ FlexCAN_ProccessEnhancedRxFifo:
 	cmp	r7,r8
 	blo	.L1746
 ;line839
-..lin.126cd548..8530f24b.0_39::
+..lin.33d012f8..8530f24b.0_39::
 .LDWlin39:
 	mov	r5,3
 	b	.L1763
 .L1746:
 ;line821
-..lin.126cd548..8530f24b.0_40::
+..lin.33d012f8..8530f24b.0_40::
 .LDWlin40:
 	ldr.w	r0,[r6,1028]
 	cmp	r0,1
 	beq	.L1748
 .L1763:
 ;line844
-..lin.126cd548..8530f24b.0_41::
+..lin.33d012f8..8530f24b.0_41::
 .LDWlin41:
 	cmp	r5,3
 	bne	.L1765
@@ -1006,7 +1006,7 @@ FlexCAN_ProccessEnhancedRxFifo:
 	cmp	r0,1
 	beq	.L1765
 ;line847
-..lin.126cd548..8530f24b.0_42::
+..lin.33d012f8..8530f24b.0_42::
 .LDWlin42:
 	mov	r0,0
 	cmp	r0,1
@@ -1019,7 +1019,7 @@ FlexCAN_ProccessEnhancedRxFifo:
 	str	r0,[fp,3088]
 .L1765:
 ;line866
-..lin.126cd548..8530f24b.0_43::
+..lin.33d012f8..8530f24b.0_43::
 .LDWlin43:
 	ldr.w	r0,[r6,1028]
 	subs	r0,r0,1
@@ -1027,20 +1027,20 @@ FlexCAN_ProccessEnhancedRxFifo:
 	bne	.L1777
 .L1775:
 ;line869
-..lin.126cd548..8530f24b.0_44::
+..lin.33d012f8..8530f24b.0_44::
 .LDWlin44:
 	mov	r0,0
 	str	r0,[r6,1028]
 	b	.L1779
 .L1776:
 ;line872
-..lin.126cd548..8530f24b.0_45::
+..lin.33d012f8..8530f24b.0_45::
 .LDWlin45:
 	mov	r5,0
 	b	.L1779
 .L1777:
 ;line880
-..lin.126cd548..8530f24b.0_46::
+..lin.33d012f8..8530f24b.0_46::
 .LDWlin46:
 	mov	r5,1
 .L1779:
@@ -1052,7 +1052,7 @@ FlexCAN_ProccessEnhancedRxFifo:
 	pop	{r4-r8,r10-fp,pc}
 __ghs_eofn_FlexCAN_ProccessEnhancedRxFifo:
 	.endf	FlexCAN_ProccessEnhancedRxFifo
-	.endf	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r5	local
 ;pState	r6	local
 ;pBase	fp	local
@@ -1079,8 +1079,8 @@ __ghs_eofn_FlexCAN_ProccessEnhancedRxFifo:
 	.text
 ..gh.f.a.1.e.23:
 	.endo	..gh.f.a.1.e.23
-	.global	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_ProccessLegacyRxFIFO:
 .LDW13:
 	push	{r4-fp,lr}
@@ -1121,19 +1121,19 @@ FlexCAN_ProccessLegacyRxFIFO:
 	b	.L1920
 .L1922:
 ;line909
-..lin.126cd548..193c78ea.0_47::
+..lin.33d012f8..193c78ea.0_47::
 .LDWlin47:
 	ldr.w	r0,[r6,1056]
 	cmp	r0,1
 	bne	.L1923
 ;line911
-..lin.126cd548..193c78ea.0_48::
+..lin.33d012f8..193c78ea.0_48::
 .LDWlin48:
 	mov	r4,7
 	b	.L1928
 .L1933:
 ;line915
-..lin.126cd548..193c78ea.0_49::
+..lin.33d012f8..193c78ea.0_49::
 .LDWlin49:
 	mov	r0,0
 	cmp	r4,32
@@ -1163,7 +1163,7 @@ FlexCAN_ProccessLegacyRxFIFO:
 	cmp	r0,0
 	beq	.L1926
 ;line917
-..lin.126cd548..193c78ea.0_50::
+..lin.33d012f8..193c78ea.0_50::
 .LDWlin50:
 	cpy	r0,r5
 	lsl	r0,r0,2
@@ -1282,7 +1282,7 @@ FlexCAN_ProccessLegacyRxFIFO:
 	blx	r12
 .L1926:
 ;line911
-..lin.126cd548..193c78ea.0_51::
+..lin.33d012f8..193c78ea.0_51::
 .LDWlin51:
 	sub	r4,r4,1
 .L1928:
@@ -1290,7 +1290,7 @@ FlexCAN_ProccessLegacyRxFIFO:
 	bhs	.L1933
 .L1923:
 ;line922
-..lin.126cd548..193c78ea.0_52::
+..lin.33d012f8..193c78ea.0_52::
 .LDWlin52:
 	add	r0,sp,4
 	mov	r1,0
@@ -1305,20 +1305,20 @@ FlexCAN_ProccessLegacyRxFIFO:
 	cmp	r8,r9
 	blo	.L1920
 ;line925
-..lin.126cd548..193c78ea.0_53::
+..lin.33d012f8..193c78ea.0_53::
 .LDWlin53:
 	mov	r7,3
 	b	.L1968
 .L1920:
 ;line907
-..lin.126cd548..193c78ea.0_54::
+..lin.33d012f8..193c78ea.0_54::
 .LDWlin54:
 	ldr	r0,[r6,4]
 	cmp	r0,1
 	beq	.L1922
 .L1968:
 ;line930
-..lin.126cd548..193c78ea.0_55::
+..lin.33d012f8..193c78ea.0_55::
 .LDWlin55:
 	cmp	r7,3
 	bne	.L1970
@@ -1326,7 +1326,7 @@ FlexCAN_ProccessLegacyRxFIFO:
 	cmp	r0,1
 	beq	.L1970
 ;line933
-..lin.126cd548..193c78ea.0_56::
+..lin.33d012f8..193c78ea.0_56::
 .LDWlin56:
 	ldrb	r0,[r6,1068]
 	str	r0,[sp]
@@ -1362,20 +1362,20 @@ FlexCAN_ProccessLegacyRxFIFO:
 	bne	.L1976
 .L1974:
 ;line949
-..lin.126cd548..193c78ea.0_57::
+..lin.33d012f8..193c78ea.0_57::
 .LDWlin57:
 	mov	r0,0
 	str	r0,[r6,4]
 	b	.L1978
 .L1975:
 ;line952
-..lin.126cd548..193c78ea.0_58::
+..lin.33d012f8..193c78ea.0_58::
 .LDWlin58:
 	mov	r7,0
 	b	.L1978
 .L1976:
 ;line960
-..lin.126cd548..193c78ea.0_59::
+..lin.33d012f8..193c78ea.0_59::
 .LDWlin59:
 	mov	r7,1
 .L1978:
@@ -1387,7 +1387,7 @@ FlexCAN_ProccessLegacyRxFIFO:
 	pop	{r4-fp,pc}
 __ghs_eofn_FlexCAN_ProccessLegacyRxFIFO:
 	.endf	FlexCAN_ProccessLegacyRxFIFO
-	.endf	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r7	local
 ;pState	r6	local
 ;pBase	[sp,8]	local
@@ -1435,8 +1435,8 @@ __ghs_eofn_FlexCAN_ProccessLegacyRxFIFO:
 	.text
 ..gh.f.a.1.e.24:
 	.endo	..gh.f.a.1.e.24
-	.global	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_StartRxMessageBufferData:
 .LDW43:
 	push	{r4-r7,r10,lr}
@@ -1474,7 +1474,7 @@ BKPT #0
 	b	.L2259
 .L2255:
 ;line991
-..lin.126cd548..cf4cbc36.0_60::
+..lin.33d012f8..cf4cbc36.0_60::
 .LDWlin60:
 	ldr.w	r3,[r6,1064]
 	ldrb	r2,[r6,1060]
@@ -1486,13 +1486,13 @@ BKPT #0
 	cmp	r0,1
 	bne	.L2261
 ;line993
-..lin.126cd548..cf4cbc36.0_61::
+..lin.33d012f8..cf4cbc36.0_61::
 .LDWlin61:
 	mov	r7,4
 	b	.L2263
 .L2261:
 ;line999
-..lin.126cd548..cf4cbc36.0_62::
+..lin.33d012f8..cf4cbc36.0_62::
 .LDWlin62:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -1500,13 +1500,13 @@ BKPT #0
 	ldr	r0,[r0,4]
 	cbz	r0,.L2264
 ;line1001
-..lin.126cd548..cf4cbc36.0_63::
+..lin.33d012f8..cf4cbc36.0_63::
 .LDWlin63:
 	mov	r7,2
 	b	.L2263
 .L2264:
 ;line1005
-..lin.126cd548..cf4cbc36.0_64::
+..lin.33d012f8..cf4cbc36.0_64::
 .LDWlin64:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -1529,7 +1529,7 @@ BKPT #0
 	pop	{r4-r7,r10,pc}
 __ghs_eofn_FlexCAN_StartRxMessageBufferData:
 	.endf	FlexCAN_StartRxMessageBufferData
-	.endf	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;result	r7	local
 ;base	r12	local
 ;state	r6	local
@@ -1549,8 +1549,8 @@ __ghs_eofn_FlexCAN_StartRxMessageBufferData:
 	.text
 ..gh.f.a.1.e.27:
 	.endo	..gh.f.a.1.e.27
-	.global	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_StartSendData:
 .LDW73:
 	push	{r4-r8,r10-fp,lr}
@@ -1590,7 +1590,7 @@ BKPT #0
 	b	.L2352
 .L2348:
 ;line1039
-..lin.126cd548..56698b57.0_65::
+..lin.33d012f8..56698b57.0_65::
 .LDWlin65:
 	cmp	r4,0
 	ite	ne
@@ -1609,7 +1609,7 @@ BKPT #0
 	b	.L2358
 .L2354:
 ;line1042
-..lin.126cd548..56698b57.0_66::
+..lin.33d012f8..56698b57.0_66::
 .LDWlin66:
 	ldrb	r8,[r4,4]
 	strb	r8,[sp,7]
@@ -1636,7 +1636,7 @@ BKPT #0
 	b	.L2364
 .L2360:
 ;line1047
-..lin.126cd548..56698b57.0_67::
+..lin.33d012f8..56698b57.0_67::
 .LDWlin67:
 	ldr.w	r3,[r6,1064]
 	ldrb	r2,[r6,1060]
@@ -1648,13 +1648,13 @@ BKPT #0
 	cmp	r0,1
 	bne	.L2366
 ;line1049
-..lin.126cd548..56698b57.0_68::
+..lin.33d012f8..56698b57.0_68::
 .LDWlin68:
 	mov	r10,4
 	b	.L2368
 .L2366:
 ;line1054
-..lin.126cd548..56698b57.0_69::
+..lin.33d012f8..56698b57.0_69::
 .LDWlin69:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -1662,13 +1662,13 @@ BKPT #0
 	ldr	r0,[r0,4]
 	cbz	r0,.L2369
 ;line1056
-..lin.126cd548..56698b57.0_70::
+..lin.33d012f8..56698b57.0_70::
 .LDWlin70:
 	mov	r10,2
 	b	.L2368
 .L2369:
 ;line1061
-..lin.126cd548..56698b57.0_71::
+..lin.33d012f8..56698b57.0_71::
 .LDWlin71:
 	cpy	r0,r5
 	and	r1,r0,31
@@ -1684,7 +1684,7 @@ BKPT #0
 	str	r1,[r7,44]
 .L2372:
 ;line1063
-..lin.126cd548..56698b57.0_72::
+..lin.33d012f8..56698b57.0_72::
 .LDWlin72:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -1719,14 +1719,14 @@ BKPT #0
 	ldrb	r0,[r4,11]
 	cbz	r0,.L2379
 ;line1080
-..lin.126cd548..56698b57.0_73::
+..lin.33d012f8..56698b57.0_73::
 .LDWlin73:
 	mov	r0,28
 	str	r0,[sp,8]
 	b	.L2381
 .L2379:
 ;line1084
-..lin.126cd548..56698b57.0_74::
+..lin.33d012f8..56698b57.0_74::
 .LDWlin74:
 	mov	r0,12
 	str	r0,[sp,8]
@@ -1755,7 +1755,7 @@ BKPT #0
 	pop	{r4-r8,r10-fp,pc}
 __ghs_eofn_FlexCAN_StartSendData:
 	.endf	FlexCAN_StartSendData
-	.endf	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;eResult	r10	local
 ;cs	[sp,8]	local
 ;state	r6	local
@@ -1788,8 +1788,8 @@ __ghs_eofn_FlexCAN_StartSendData:
 	.text
 ..gh.f.a.1.e.34:
 	.endo	..gh.f.a.1.e.34
-	.global	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_StartRxMessageFifoData:
 .LDW04:
 	push	{r4-r7,lr}
@@ -1816,7 +1816,7 @@ BKPT #0
 	b	.L2548
 .L2544:
 ;line1114
-..lin.126cd548..8aa6fd00.0_75::
+..lin.33d012f8..8aa6fd00.0_75::
 .LDWlin75:
 	cpy	r0,r5
 	lsl	r0,r0,2
@@ -1833,24 +1833,24 @@ BKPT #0
 	ldrb	r0,[r4,1060]
 	cbnz	r0,.L2550
 ;line1121
-..lin.126cd548..8aa6fd00.0_76::
+..lin.33d012f8..8aa6fd00.0_76::
 .LDWlin76:
 	mov	r7,1
 	b	.L2552
 .L2550:
 ;line1150
-..lin.126cd548..8aa6fd00.0_77::
+..lin.33d012f8..8aa6fd00.0_77::
 .LDWlin77:
 	ldr	r0,[r4,4]
 	cbz	r0,.L2553
 ;line1152
-..lin.126cd548..8aa6fd00.0_78::
+..lin.33d012f8..8aa6fd00.0_78::
 .LDWlin78:
 	mov	r7,2
 	b	.L2552
 .L2553:
 ;line1156
-..lin.126cd548..8aa6fd00.0_79::
+..lin.33d012f8..8aa6fd00.0_79::
 .LDWlin79:
 	mov	r0,1
 	str	r0,[r4,4]
@@ -1858,7 +1858,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L2556
 ;line1159
-..lin.126cd548..8aa6fd00.0_80::
+..lin.33d012f8..8aa6fd00.0_80::
 .LDWlin80:
 	mov	r0,1
 	strb	r0,[r4,8]
@@ -1867,7 +1867,7 @@ BKPT #0
 	ldr.w	r0,[r4,1056]
 	cbnz	r0,.L2552
 ;line1167
-..lin.126cd548..8aa6fd00.0_81::
+..lin.33d012f8..8aa6fd00.0_81::
 .LDWlin81:
 	mov	r0,0
 	strb	r0,[r4,8]
@@ -1907,7 +1907,7 @@ BKPT #0
 	pop	{r4-r7,pc}
 __ghs_eofn_FlexCAN_StartRxMessageFifoData:
 	.endf	FlexCAN_StartRxMessageFifoData
-	.endf	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r6	local
 ;state	r4	local
 ;eResult	r7	local
@@ -1929,8 +1929,8 @@ __ghs_eofn_FlexCAN_StartRxMessageFifoData:
 	.text
 ..gh.f.a.1.e.37:
 	.endo	..gh.f.a.1.e.37
-	.global	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_IRQHandlerRxMB:
 .LDW34:
 	push	{r4-r7,r10,lr}
@@ -1957,7 +1957,7 @@ FlexCAN_IRQHandlerRxMB:
 	ldr	r0,[r0]
 	cbnz	r0,.L2658
 ;line1268
-..lin.126cd548..d3bc1c28.0_82::
+..lin.33d012f8..d3bc1c28.0_82::
 .LDWlin82:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -1992,7 +1992,7 @@ FlexCAN_IRQHandlerRxMB:
 	str	r0,[r6,44]
 .L2669:
 ;line1322
-..lin.126cd548..d3bc1c28.0_83::
+..lin.33d012f8..d3bc1c28.0_83::
 .LDWlin83:
 	ldr	r0,[r6,8]
 	cpy	r0,r4
@@ -2007,7 +2007,7 @@ FlexCAN_IRQHandlerRxMB:
 	ldr.w	r0,[r5,1040]
 	cbz	r0,.L2671
 ;line1341
-..lin.126cd548..d3bc1c28.0_84::
+..lin.33d012f8..d3bc1c28.0_84::
 .LDWlin84:
 	ldr.w	r12,[r5,1040]
 	cpy	r3,r5
@@ -2029,7 +2029,7 @@ FlexCAN_IRQHandlerRxMB:
 	ldrb	r0,[r0,8]
 	cbnz	r0,.L2673
 ;line1347
-..lin.126cd548..d3bc1c28.0_85::
+..lin.33d012f8..d3bc1c28.0_85::
 .LDWlin85:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -2048,7 +2048,7 @@ FlexCAN_IRQHandlerRxMB:
 	b	.L2656
 .L2673:
 ;line1351
-..lin.126cd548..d3bc1c28.0_86::
+..lin.33d012f8..d3bc1c28.0_86::
 .LDWlin86:
 	cmp	r10,0
 	bne	.L2656
@@ -2059,7 +2059,7 @@ FlexCAN_IRQHandlerRxMB:
 	cmp	r0,1
 	bne	.L2656
 ;line1354
-..lin.126cd548..d3bc1c28.0_87::
+..lin.33d012f8..d3bc1c28.0_87::
 .LDWlin87:
 	ldrb	r0,[r5,1068]
 	str	r0,[sp]
@@ -2078,7 +2078,7 @@ FlexCAN_IRQHandlerRxMB:
 	pop	{r4-r7,r10,pc}
 __ghs_eofn_FlexCAN_IRQHandlerRxMB:
 	.endf	FlexCAN_IRQHandlerRxMB
-	.endf	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r6	local
 ;state	r5	local
 ;data	[sp,4]	local
@@ -2105,8 +2105,8 @@ __ghs_eofn_FlexCAN_IRQHandlerRxMB:
 	.text
 ..gh.f.a.1.e.38:
 	.endo	..gh.f.a.1.e.38
-	.global	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_IRQHandlerTxMB:
 .LDW64:
 	push	{r4-r7,r10,lr}
@@ -2132,7 +2132,7 @@ FlexCAN_IRQHandlerTxMB:
 	ldrb	r0,[r0,9]
 	cbz	r0,.L2786
 ;line1380
-..lin.126cd548..d3bd34ea.0_88::
+..lin.33d012f8..d3bd34ea.0_88::
 .LDWlin88:
 	cpy	r1,r4
 	cpy	r0,r6
@@ -2157,7 +2157,7 @@ FlexCAN_IRQHandlerTxMB:
 	cmp	r0,4
 	bne	.L2801
 ;line1389
-..lin.126cd548..d3bd34ea.0_89::
+..lin.33d012f8..d3bd34ea.0_89::
 .LDWlin89:
 	and	r0,r4,31
 	mov	r1,1
@@ -2173,7 +2173,7 @@ FlexCAN_IRQHandlerTxMB:
 	b	.L2801
 .L2786:
 ;line1394
-..lin.126cd548..d3bd34ea.0_90::
+..lin.33d012f8..d3bd34ea.0_90::
 .LDWlin90:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -2198,7 +2198,7 @@ FlexCAN_IRQHandlerTxMB:
 	str	r0,[r6,44]
 .L2801:
 ;line1399
-..lin.126cd548..d3bd34ea.0_91::
+..lin.33d012f8..d3bd34ea.0_91::
 .LDWlin91:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -2208,7 +2208,7 @@ FlexCAN_IRQHandlerTxMB:
 	ldr.w	r0,[r5,1040]
 	cbz	r0,.L2813
 ;line1404
-..lin.126cd548..d3bd34ea.0_92::
+..lin.33d012f8..d3bd34ea.0_92::
 .LDWlin92:
 	ldr.w	r12,[r5,1040]
 	cpy	r3,r5
@@ -2225,7 +2225,7 @@ FlexCAN_IRQHandlerTxMB:
 	ldr	r0,[r0,4]
 	cbnz	r0,.L2815
 ;line1410
-..lin.126cd548..d3bd34ea.0_93::
+..lin.33d012f8..d3bd34ea.0_93::
 .LDWlin93:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -2244,7 +2244,7 @@ FlexCAN_IRQHandlerTxMB:
 	b	.L2784
 .L2815:
 ;line1414
-..lin.126cd548..d3bd34ea.0_94::
+..lin.33d012f8..d3bd34ea.0_94::
 .LDWlin94:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -2253,7 +2253,7 @@ FlexCAN_IRQHandlerTxMB:
 	cmp	r0,1
 	bne	.L2784
 ;line1417
-..lin.126cd548..d3bd34ea.0_95::
+..lin.33d012f8..d3bd34ea.0_95::
 .LDWlin95:
 	ldrb	r0,[r5,1068]
 	str	r0,[sp]
@@ -2272,7 +2272,7 @@ FlexCAN_IRQHandlerTxMB:
 	pop	{r4-r7,r10,pc}
 __ghs_eofn_FlexCAN_IRQHandlerTxMB:
 	.endf	FlexCAN_IRQHandlerTxMB
-	.endf	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;pBase	r6	local
 ;pState	r5	local
 ;mb	[sp,4]	local
@@ -2301,8 +2301,8 @@ __ghs_eofn_FlexCAN_IRQHandlerTxMB:
 	.text
 ..gh.f.a.1.e.39:
 	.endo	..gh.f.a.1.e.39
-	.global	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_IRQHandlerEnhancedRxFIFO:
 .LDW94:
 	push	{r4-r7,lr}
@@ -2334,18 +2334,18 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	b	.L2940
 .L2943:
 ;line1621
-..lin.126cd548..b543d833.0_96::
+..lin.33d012f8..b543d833.0_96::
 .LDWlin96:
 	ldr.w	r0,[r4,1028]
 	cmp	r0,1
 	bne	.L2940
 ;line1624
-..lin.126cd548..b543d833.0_97::
+..lin.33d012f8..b543d833.0_97::
 .LDWlin97:
 	ldr.w	r0,[r4,1024]
 	cbnz	r0,.L2951
 ;line1626
-..lin.126cd548..b543d833.0_98::
+..lin.33d012f8..b543d833.0_98::
 .LDWlin98:
 	mov	r0,sp
 	str	r0,[r4,1024]
@@ -2367,7 +2367,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	ldr.w	r0,[r4,1040]
 	cbz	r0,.L2965
 ;line1640
-..lin.126cd548..b543d833.0_99::
+..lin.33d012f8..b543d833.0_99::
 .LDWlin99:
 	ldr.w	r5,[r4,1040]
 	cpy	r3,r4
@@ -2381,7 +2381,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	ldr.w	r0,[r4,1028]
 	cbnz	r0,.L2940
 ;line1646
-..lin.126cd548..b543d833.0_100::
+..lin.33d012f8..b543d833.0_100::
 .LDWlin100:
 	cpy	r0,r6
 .L3086:
@@ -2390,7 +2390,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	b	.L2940
 .L2972:
 ;line1652
-..lin.126cd548..b543d833.0_101::
+..lin.33d012f8..b543d833.0_101::
 .LDWlin101:
 	mov	r0,1
 	lsl	r0,r0,r7
@@ -2398,7 +2398,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	ldr.w	r0,[r4,1040]
 	cbz	r0,.L2940
 ;line1657
-..lin.126cd548..b543d833.0_102::
+..lin.33d012f8..b543d833.0_102::
 .LDWlin102:
 	ldr.w	r5,[r4,1040]
 	cpy	r3,r4
@@ -2411,7 +2411,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	b	.L2940
 .L2978:
 ;line1662
-..lin.126cd548..b543d833.0_103::
+..lin.33d012f8..b543d833.0_103::
 .LDWlin103:
 	mov	r0,1
 	lsl	r0,r0,r7
@@ -2419,7 +2419,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	ldr.w	r0,[r4,1040]
 	cbz	r0,.L2940
 ;line1667
-..lin.126cd548..b543d833.0_104::
+..lin.33d012f8..b543d833.0_104::
 .LDWlin104:
 	ldr.w	r5,[r4,1040]
 	cpy	r3,r4
@@ -2432,7 +2432,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	b	.L2940
 .L2984:
 ;line1672
-..lin.126cd548..b543d833.0_105::
+..lin.33d012f8..b543d833.0_105::
 .LDWlin105:
 	mov	r0,1
 	lsl	r0,r0,r7
@@ -2440,7 +2440,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	ldr.w	r0,[r4,1040]
 	cbz	r0,.L2940
 ;line1677
-..lin.126cd548..b543d833.0_106::
+..lin.33d012f8..b543d833.0_106::
 .LDWlin106:
 	ldr.w	r5,[r4,1040]
 	cpy	r3,r4
@@ -2458,7 +2458,7 @@ FlexCAN_IRQHandlerEnhancedRxFIFO:
 	pop	{r4-r7,pc}
 __ghs_eofn_FlexCAN_IRQHandlerEnhancedRxFIFO:
 	.endf	FlexCAN_IRQHandlerEnhancedRxFIFO
-	.endf	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r5	local
 ;state	r4	local
 ;data	[sp]	local
@@ -2485,8 +2485,8 @@ __ghs_eofn_FlexCAN_IRQHandlerEnhancedRxFIFO:
 	.text
 ..gh.f.a.1.e.40:
 	.endo	..gh.f.a.1.e.40
-	.global	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_AbortTxTransfer:
 .LDW25:
 	push	{r4-r8,r10-fp,lr}
@@ -2540,7 +2540,7 @@ FlexCAN_AbortTxTransfer:
 	b	.L3098
 .L3100:
 ;line1773
-..lin.126cd548..6d79944e.0_107::
+..lin.33d012f8..6d79944e.0_107::
 .LDWlin107:
 	mov	r0,sp
 	mov	r1,0
@@ -2551,13 +2551,13 @@ FlexCAN_AbortTxTransfer:
 	cmp	r7,r10
 	blo	.L3098
 ;line1776
-..lin.126cd548..6d79944e.0_108::
+..lin.33d012f8..6d79944e.0_108::
 .LDWlin108:
 	mov	r5,3
 	b	.L3103
 .L3098:
 ;line1771
-..lin.126cd548..6d79944e.0_109::
+..lin.33d012f8..6d79944e.0_109::
 .LDWlin109:
 	mov	r1,fp
 	mov	r2,0
@@ -2587,12 +2587,12 @@ FlexCAN_AbortTxTransfer:
 	beq	.L3100
 .L3103:
 ;line1780
-..lin.126cd548..6d79944e.0_110::
+..lin.33d012f8..6d79944e.0_110::
 .LDWlin110:
 	cmp	r5,3
 	beq	.L3113
 ;line1782
-..lin.126cd548..6d79944e.0_111::
+..lin.33d012f8..6d79944e.0_111::
 .LDWlin111:
 	ldr	r1,[r6]
 	and	r0,r1,15<<24
@@ -2600,7 +2600,7 @@ FlexCAN_AbortTxTransfer:
 	cmp	r0,8
 	bne	.L3115
 ;line1787
-..lin.126cd548..6d79944e.0_112::
+..lin.33d012f8..6d79944e.0_112::
 .LDWlin112:
 	mov	r5,5
 .L3115:
@@ -2609,7 +2609,7 @@ FlexCAN_AbortTxTransfer:
 	cmp	r0,9
 	bne	.L3113
 ;line1793
-..lin.126cd548..6d79944e.0_113::
+..lin.33d012f8..6d79944e.0_113::
 .LDWlin113:
 	mov	r5,0
 .L3113:
@@ -2627,7 +2627,7 @@ FlexCAN_AbortTxTransfer:
 	str	r2,[r4,44]
 .L3119:
 ;line1798
-..lin.126cd548..6d79944e.0_114::
+..lin.33d012f8..6d79944e.0_114::
 .LDWlin114:
 	mov	r1,fp
 	lsl	r1,r1,4
@@ -2644,7 +2644,7 @@ FlexCAN_AbortTxTransfer:
 	pop	{r4-r8,r10-fp,pc}
 __ghs_eofn_FlexCAN_AbortTxTransfer:
 	.endf	FlexCAN_AbortTxTransfer
-	.endf	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;pBase	r4	local
 ;state	[sp,4]	local
 ;result	r5	local
@@ -2676,8 +2676,8 @@ __ghs_eofn_FlexCAN_AbortTxTransfer:
 	.text
 ..gh.f.a.1.e.41:
 	.endo	..gh.f.a.1.e.41
-	.global	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_AbortRxTransfer:
 .LDW55:
 	push	{r4-r7,lr}
@@ -2709,7 +2709,7 @@ FlexCAN_AbortRxTransfer:
 	cmp	r0,1
 	bne	.L3252
 ;line1824
-..lin.126cd548..6564720c.0_115::
+..lin.33d012f8..6564720c.0_115::
 .LDWlin115:
 	ldr	r0,[r4,52]
 	and	r0,r0,15<<24
@@ -2721,7 +2721,7 @@ FlexCAN_AbortRxTransfer:
 	cmp	r5,r0
 	bls	.L3258
 ;line1833
-..lin.126cd548..6564720c.0_116::
+..lin.33d012f8..6564720c.0_116::
 .LDWlin116:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -2740,7 +2740,7 @@ FlexCAN_AbortRxTransfer:
 .L3258:
 	cbnz	r5,.L3262
 ;line1846
-..lin.126cd548..6564720c.0_117::
+..lin.33d012f8..6564720c.0_117::
 .LDWlin117:
 	ldrb	r3,[r6,1068]
 	cpy	r1,r7
@@ -2752,7 +2752,7 @@ FlexCAN_AbortRxTransfer:
 	b	.L3262
 .L3252:
 ;line1858
-..lin.126cd548..6564720c.0_118::
+..lin.33d012f8..6564720c.0_118::
 .LDWlin118:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -2786,12 +2786,12 @@ FlexCAN_AbortRxTransfer:
 .L3350:
 
 ;line1871
-..lin.126cd548..6564720c.0_119::
+..lin.33d012f8..6564720c.0_119::
 .LDWlin119:
 	pop	{r4-r7,pc}
 __ghs_eofn_FlexCAN_AbortRxTransfer:
 	.endf	FlexCAN_AbortRxTransfer
-	.endf	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;pBase	r4	local
 ;state	r6	local
 ;val1	r0	local
@@ -2848,7 +2848,7 @@ BKPT #0
 	b	.L3358
 .L3354:
 ;line1887
-..lin.126cd548..2177a75b.0_120::
+..lin.33d012f8..2177a75b.0_120::
 .LDWlin120:
 	cmp	r6,0
 	ite	ne
@@ -2867,7 +2867,7 @@ BKPT #0
 	b	.L3364
 .L3360:
 ;line1908
-..lin.126cd548..2177a75b.0_121::
+..lin.33d012f8..2177a75b.0_121::
 .LDWlin121:
 	cpy	r2,r6
 	mov	r1,r10
@@ -2879,7 +2879,7 @@ BKPT #0
 	cmp	r7,0
 	bne	.L3366
 ;line1912
-..lin.126cd548..2177a75b.0_122::
+..lin.33d012f8..2177a75b.0_122::
 .LDWlin122:
 	cpy	r1,r6
 	mov	r0,r10
@@ -2895,7 +2895,7 @@ BKPT #0
 	b	.L3371
 .L3370:
 ;line1929
-..lin.126cd548..2177a75b.0_123::
+..lin.33d012f8..2177a75b.0_123::
 .LDWlin123:
 	cpy	r1,r0
 	lsl	r1,r1,4
@@ -2922,7 +2922,7 @@ BKPT #0
 	cmp	r0,64
 	blo	.L3370
 ;line1936
-..lin.126cd548..2177a75b.0_124::
+..lin.33d012f8..2177a75b.0_124::
 .LDWlin124:
 	mov	r0,1
 	strb	r0,[r4,1032]
@@ -3022,7 +3022,7 @@ BKPT #0
 	b	.L3478
 .L3474:
 ;line1991
-..lin.126cd548..982632a7.0_125::
+..lin.33d012f8..982632a7.0_125::
 .LDWlin125:
 	cmp	r6,0
 	ite	ne
@@ -3041,7 +3041,7 @@ BKPT #0
 	b	.L3484
 .L3490:
 ;line1993
-..lin.126cd548..982632a7.0_126::
+..lin.33d012f8..982632a7.0_126::
 .LDWlin126:
 	ldr	r1,[r7,4]
 	and	r1,r1,8
@@ -3053,7 +3053,7 @@ BKPT #0
 .L3488:
 	cbnz	r1,.L3486
 ;line1995
-..lin.126cd548..982632a7.0_127::
+..lin.33d012f8..982632a7.0_127::
 .LDWlin127:
 	str	r12,[sp]
 	cpy	r2,r6
@@ -3066,7 +3066,7 @@ BKPT #0
 	ldrb	r1,[r6,12]
 	cbnz	r1,.L3472
 ;line2000
-..lin.126cd548..982632a7.0_128::
+..lin.33d012f8..982632a7.0_128::
 .LDWlin128:
 	ldrb	r0,[r10,1068]
 	str	r0,[sp]
@@ -3147,7 +3147,7 @@ BKPT #0
 	b	.L3616
 .L3612:
 ;line2033
-..lin.126cd548..964dab2c.0_129::
+..lin.33d012f8..964dab2c.0_129::
 .LDWlin129:
 	cmp	r5,0
 	ite	ne
@@ -3166,7 +3166,7 @@ BKPT #0
 	b	.L3622
 .L3618:
 ;line2035
-..lin.126cd548..964dab2c.0_130::
+..lin.33d012f8..964dab2c.0_130::
 .LDWlin130:
 	ldr.w	r3,[r1,1064]
 	ldrb	r2,[r1,1060]
@@ -3178,13 +3178,13 @@ BKPT #0
 	cmp	r0,1
 	bne	.L3624
 ;line2037
-..lin.126cd548..964dab2c.0_131::
+..lin.33d012f8..964dab2c.0_131::
 .LDWlin131:
 	mov	r10,4
 	b	.L3626
 .L3624:
 ;line2043
-..lin.126cd548..964dab2c.0_132::
+..lin.33d012f8..964dab2c.0_132::
 .LDWlin132:
 	cpy	r0,r4
 	and	r1,r0,31
@@ -3200,7 +3200,7 @@ BKPT #0
 	str	r1,[r6,44]
 .L3627:
 ;line2045
-..lin.126cd548..964dab2c.0_133::
+..lin.33d012f8..964dab2c.0_133::
 .LDWlin133:
 	ldr	r0,[r5,4]
 	str	r0,[sp,8]
@@ -3310,7 +3310,7 @@ BKPT #0
 	b	.L3764
 .L3760:
 ;line2093
-..lin.126cd548..3c6d95a0.0_134::
+..lin.33d012f8..3c6d95a0.0_134::
 .LDWlin134:
 	cpy	r3,r6
 	cpy	r1,r5
@@ -3321,7 +3321,7 @@ BKPT #0
 	cbnz	r0,.L3758
 	cbnz	r6,.L3758
 ;line2098
-..lin.126cd548..3c6d95a0.0_135::
+..lin.33d012f8..3c6d95a0.0_135::
 .LDWlin135:
 	ldrb	r0,[r10,1068]
 	str	r0,[sp]
@@ -3399,7 +3399,7 @@ BKPT #0
 	b	.L3846
 .L3842:
 ;line2127
-..lin.126cd548..1ac4a89.0_136::
+..lin.33d012f8..1ac4a89.0_136::
 .LDWlin136:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -3426,7 +3426,7 @@ BKPT #0
 	cmp	fp,0
 	bne	.L3848
 ;line2138
-..lin.126cd548..1ac4a89.0_137::
+..lin.33d012f8..1ac4a89.0_137::
 .LDWlin137:
 	ldrb	r0,[r6,1068]
 	str	r0,[sp]
@@ -3442,7 +3442,7 @@ BKPT #0
 	cmp	r10,0
 	bne	.L3851
 ;line2143
-..lin.126cd548..1ac4a89.0_138::
+..lin.33d012f8..1ac4a89.0_138::
 .LDWlin138:
 	mov	r0,0
 .L4072:
@@ -3452,12 +3452,12 @@ BKPT #0
 	b	.L3853
 .L3855:
 ;line2146
-..lin.126cd548..1ac4a89.0_139::
+..lin.33d012f8..1ac4a89.0_139::
 .LDWlin139:
 	cmp	fp,1
 	bne	.L3856
 ;line2148
-..lin.126cd548..1ac4a89.0_140::
+..lin.33d012f8..1ac4a89.0_140::
 .LDWlin140:
 	cpy	r0,r5
 	mov	r1,0
@@ -3485,7 +3485,7 @@ BKPT #0
 	uxtb	r0,r1
 	cbz	r0,.L3856
 ;line2150
-..lin.126cd548..1ac4a89.0_141::
+..lin.33d012f8..1ac4a89.0_141::
 .LDWlin141:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3506,13 +3506,13 @@ BKPT #0
 	cmp	r8,r9
 	blo	.L3853
 ;line2156
-..lin.126cd548..1ac4a89.0_142::
+..lin.33d012f8..1ac4a89.0_142::
 .LDWlin142:
 	mov	r10,3
 	b	.L3851
 .L3853:
 ;line2144
-..lin.126cd548..1ac4a89.0_143::
+..lin.33d012f8..1ac4a89.0_143::
 .LDWlin143:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -3522,14 +3522,14 @@ BKPT #0
 	beq	.L3855
 .L3851:
 ;line2162
-..lin.126cd548..1ac4a89.0_144::
+..lin.33d012f8..1ac4a89.0_144::
 .LDWlin144:
 	cmp	r10,3
 	bne	.L3872
 	cmp	fp,0
 	bne	.L3872
 ;line2166
-..lin.126cd548..1ac4a89.0_145::
+..lin.33d012f8..1ac4a89.0_145::
 .LDWlin145:
 	ldrb	r0,[r6,1068]
 	str	r0,[sp]
@@ -3546,7 +3546,7 @@ BKPT #0
 	cmp	r10,2
 	beq	.L3875
 ;line2172
-..lin.126cd548..1ac4a89.0_146::
+..lin.33d012f8..1ac4a89.0_146::
 .LDWlin146:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -3554,13 +3554,13 @@ BKPT #0
 	ldr	r0,[r0,4]
 	cbnz	r0,.L3878
 ;line2174
-..lin.126cd548..1ac4a89.0_147::
+..lin.33d012f8..1ac4a89.0_147::
 .LDWlin147:
 	mov	r10,0
 	b	.L3875
 .L3878:
 ;line2178
-..lin.126cd548..1ac4a89.0_148::
+..lin.33d012f8..1ac4a89.0_148::
 .LDWlin148:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -3638,7 +3638,7 @@ BKPT #0
 	b	.L4088
 .L4084:
 ;line2290
-..lin.126cd548..396a550b.0_149::
+..lin.33d012f8..396a550b.0_149::
 .LDWlin149:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -3653,7 +3653,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L4090
 ;line2293
-..lin.126cd548..396a550b.0_150::
+..lin.33d012f8..396a550b.0_150::
 .LDWlin150:
 	ldr.w	r0,[r6,3084]
 	and	r0,r0,1<<31
@@ -3667,7 +3667,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L4092
 ;line2295
-..lin.126cd548..396a550b.0_151::
+..lin.33d012f8..396a550b.0_151::
 .LDWlin151:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3677,7 +3677,7 @@ BKPT #0
 	b	.L4082
 .L4092:
 ;line2299
-..lin.126cd548..396a550b.0_152::
+..lin.33d012f8..396a550b.0_152::
 .LDWlin152:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3687,7 +3687,7 @@ BKPT #0
 	b	.L4082
 .L4090:
 ;line2305
-..lin.126cd548..396a550b.0_153::
+..lin.33d012f8..396a550b.0_153::
 .LDWlin153:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3754,7 +3754,7 @@ BKPT #0
 	b	.L4216
 .L4212:
 ;line2333
-..lin.126cd548..c2fb44f4.0_154::
+..lin.33d012f8..c2fb44f4.0_154::
 .LDWlin154:
 	cpy	r0,r7
 .L4346:
@@ -3763,7 +3763,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L4218
 ;line2335
-..lin.126cd548..c2fb44f4.0_155::
+..lin.33d012f8..c2fb44f4.0_155::
 .LDWlin155:
 	ldr.w	r0,[r7,3084]
 	and	r0,r0,1<<31
@@ -3777,7 +3777,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L4220
 ;line2337
-..lin.126cd548..c2fb44f4.0_156::
+..lin.33d012f8..c2fb44f4.0_156::
 .LDWlin156:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3786,7 +3786,7 @@ BKPT #0
 	bl	FlexCAN_StartRxMessageEnhancedFifoData
 	cbnz	r0,.L4210
 ;line2340
-..lin.126cd548..c2fb44f4.0_157::
+..lin.33d012f8..c2fb44f4.0_157::
 .LDWlin157:
 	cpy	r1,r6
 	cpy	r0,r4
@@ -3796,7 +3796,7 @@ BKPT #0
 	b	.L4210
 .L4220:
 ;line2345
-..lin.126cd548..c2fb44f4.0_158::
+..lin.33d012f8..c2fb44f4.0_158::
 .LDWlin158:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3805,7 +3805,7 @@ BKPT #0
 	bl	FlexCAN_StartRxMessageFifoData
 	cbnz	r0,.L4210
 ;line2348
-..lin.126cd548..c2fb44f4.0_159::
+..lin.33d012f8..c2fb44f4.0_159::
 .LDWlin159:
 	cpy	r1,r6
 	cpy	r0,r4
@@ -3815,7 +3815,7 @@ BKPT #0
 	b	.L4210
 .L4218:
 ;line2355
-..lin.126cd548..c2fb44f4.0_160::
+..lin.33d012f8..c2fb44f4.0_160::
 .LDWlin160:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -3824,7 +3824,7 @@ BKPT #0
 	bl	FlexCAN_StartRxMessageFifoData
 	cbnz	r0,.L4210
 ;line2358
-..lin.126cd548..c2fb44f4.0_161::
+..lin.33d012f8..c2fb44f4.0_161::
 .LDWlin161:
 	cpy	r1,r6
 	cpy	r0,r4
@@ -3890,7 +3890,7 @@ BKPT #0
 	b	.L4368
 .L4364:
 ;line2381
-..lin.126cd548..c166b3ab.0_162::
+..lin.33d012f8..c166b3ab.0_162::
 .LDWlin162:
 	mov	r4,0
 	mov	r1,0
@@ -3915,12 +3915,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line2386
-..lin.126cd548..c166b3ab.0_163::
+..lin.33d012f8..c166b3ab.0_163::
 .LDWlin163:
 	cmp	r6,1
 	bne	.L4381
 ;line2388
-..lin.126cd548..c166b3ab.0_164::
+..lin.33d012f8..c166b3ab.0_164::
 .LDWlin164:
 	cpy	r0,r5
 .L4536:
@@ -3938,18 +3938,18 @@ BKPT #0
 .L4379:
 	cpy	r0,r1
 ;line2393
-..lin.126cd548..c166b3ab.0_165::
+..lin.33d012f8..c166b3ab.0_165::
 .LDWlin165:
 	cbnz	r0,.L4386
 	cbnz	r4,.L4386
 ;line2395
-..lin.126cd548..c166b3ab.0_166::
+..lin.33d012f8..c166b3ab.0_166::
 .LDWlin166:
 	mov	r4,1
 .L4386:
 	cbnz	r4,.L4389
 ;line2402
-..lin.126cd548..c166b3ab.0_167::
+..lin.33d012f8..c166b3ab.0_167::
 .LDWlin167:
 	mov	r2,r10
 	cpy	r1,r7
@@ -3961,7 +3961,7 @@ BKPT #0
 	cmp	r6,1
 	bne	.L4391
 ;line2407
-..lin.126cd548..c166b3ab.0_168::
+..lin.33d012f8..c166b3ab.0_168::
 .LDWlin168:
 	cpy	r0,r5
 .L4540:
@@ -3970,7 +3970,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L4391
 ;line2410
-..lin.126cd548..c166b3ab.0_169::
+..lin.33d012f8..c166b3ab.0_169::
 .LDWlin169:
 	cpy	r4,r1
 .L4391:
@@ -4032,7 +4032,7 @@ FlexCAN_Ip_ConfigEnhancedRxFifo_Privileged::
 	mov	r6,1
 	mov	r6,0
 ;line2434
-..lin.126cd548..8845af81.0_170::
+..lin.33d012f8..8845af81.0_170::
 .LDWlin170:
 	cmp	r0,4
 	ite	lo
@@ -4051,7 +4051,7 @@ BKPT #0
 	b	.L4557
 .L4553:
 ;line2435
-..lin.126cd548..8845af81.0_171::
+..lin.33d012f8..8845af81.0_171::
 .LDWlin171:
 	cpy	r0,r5
 .L4764:
@@ -4071,7 +4071,7 @@ BKPT #0
 	b	.L4563
 .L4559:
 ;line2436
-..lin.126cd548..8845af81.0_172::
+..lin.33d012f8..8845af81.0_172::
 .LDWlin172:
 	cmp	r7,0
 	ite	ne
@@ -4090,12 +4090,12 @@ BKPT #0
 	b	.L4569
 .L4565:
 ;line2439
-..lin.126cd548..8845af81.0_173::
+..lin.33d012f8..8845af81.0_173::
 .LDWlin173:
 	cmp	r6,1
 	bne	.L4575
 ;line2441
-..lin.126cd548..8845af81.0_174::
+..lin.33d012f8..8845af81.0_174::
 .LDWlin174:
 	cpy	r0,r5
 .L4766:
@@ -4112,18 +4112,18 @@ BKPT #0
 	mov	r0,0
 .L4573:
 ;line2446
-..lin.126cd548..8845af81.0_175::
+..lin.33d012f8..8845af81.0_175::
 .LDWlin175:
 	cbnz	r0,.L4580
 	cbnz	r4,.L4580
 ;line2448
-..lin.126cd548..8845af81.0_176::
+..lin.33d012f8..8845af81.0_176::
 .LDWlin176:
 	mov	r4,1
 .L4580:
 	cbnz	r4,.L4583
 ;line2455
-..lin.126cd548..8845af81.0_177::
+..lin.33d012f8..8845af81.0_177::
 .LDWlin177:
 	cpy	r1,r7
 	cpy	r0,r5
@@ -4134,7 +4134,7 @@ BKPT #0
 	cmp	r6,1
 	bne	.L4585
 ;line2460
-..lin.126cd548..8845af81.0_178::
+..lin.33d012f8..8845af81.0_178::
 .LDWlin178:
 	cpy	r0,r5
 .L4770:
@@ -4143,7 +4143,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L4585
 ;line2463
-..lin.126cd548..8845af81.0_179::
+..lin.33d012f8..8845af81.0_179::
 .LDWlin179:
 	cpy	r4,r1
 .L4585:
@@ -4221,7 +4221,7 @@ BKPT #0
 	b	.L4780
 .L4776:
 ;line2498
-..lin.126cd548..c95f5e5d.0_180::
+..lin.33d012f8..c95f5e5d.0_180::
 .LDWlin180:
 	cmp	r4,0
 	ite	ne
@@ -4240,7 +4240,7 @@ BKPT #0
 	b	.L4786
 .L4782:
 ;line2500
-..lin.126cd548..c95f5e5d.0_181::
+..lin.33d012f8..c95f5e5d.0_181::
 .LDWlin181:
 	ldr	r0,[r7,52]
 	lsr	r0,r0,17
@@ -4260,7 +4260,7 @@ BKPT #0
 	b	.L4792
 .L4788:
 ;line2503
-..lin.126cd548..c95f5e5d.0_182::
+..lin.33d012f8..c95f5e5d.0_182::
 .LDWlin182:
 	ldrb	r8,[r4,4]
 	strb	r8,[sp,7]
@@ -4287,7 +4287,7 @@ BKPT #0
 	b	.L4798
 .L4794:
 ;line2508
-..lin.126cd548..c95f5e5d.0_183::
+..lin.33d012f8..c95f5e5d.0_183::
 .LDWlin183:
 	ldr.w	r3,[fp,1064]
 	ldrb	r2,[fp,1060]
@@ -4299,14 +4299,14 @@ BKPT #0
 	cmp	r0,1
 	bne	.L4800
 ;line2510
-..lin.126cd548..c95f5e5d.0_184::
+..lin.33d012f8..c95f5e5d.0_184::
 .LDWlin184:
 	mov	r10,4
 .L4800:
 	cmp	r10,0
 	bne	.L4802
 ;line2516
-..lin.126cd548..c95f5e5d.0_185::
+..lin.33d012f8..c95f5e5d.0_185::
 .LDWlin185:
 	ldr	r0,[r4,4]
 	str	r0,[sp,20]
@@ -4334,7 +4334,7 @@ BKPT #0
 	str	r1,[r7,44]
 .L4804:
 ;line2525
-..lin.126cd548..c95f5e5d.0_186::
+..lin.33d012f8..c95f5e5d.0_186::
 .LDWlin186:
 	cpy	r1,r5
 	cpy	r0,r7
@@ -4352,7 +4352,7 @@ BKPT #0
 	ldrb	r0,[r4,12]
 	cbnz	r0,.L4802
 ;line2530
-..lin.126cd548..c95f5e5d.0_187::
+..lin.33d012f8..c95f5e5d.0_187::
 .LDWlin187:
 	ldrb	r0,[fp,1068]
 	str	r0,[sp]
@@ -4436,7 +4436,7 @@ BKPT #0
 	b	.L4982
 .L4978:
 ;line2555
-..lin.126cd548..49a0a0e6.0_188::
+..lin.33d012f8..49a0a0e6.0_188::
 .LDWlin188:
 	mov	r2,1
 	cmp	r1,64
@@ -4459,12 +4459,12 @@ BKPT #0
 	b	.L4991
 .L4987:
 ;line2558
-..lin.126cd548..49a0a0e6.0_189::
+..lin.33d012f8..49a0a0e6.0_189::
 .LDWlin189:
 	cmp	r1,64
 	bhs	.L4993
 ;line2560
-..lin.126cd548..49a0a0e6.0_190::
+..lin.33d012f8..49a0a0e6.0_190::
 .LDWlin190:
 	lsl	r1,r1,4
 	cpy	r0,r1
@@ -4472,30 +4472,30 @@ BKPT #0
 	ldr	r0,[r0,4]
 	cbnz	r0,.L4995
 ;line2562
-..lin.126cd548..49a0a0e6.0_191::
+..lin.33d012f8..49a0a0e6.0_191::
 .LDWlin191:
 	mov	r2,0
 	b	.L4998
 .L4995:
 ;line2573
-..lin.126cd548..49a0a0e6.0_192::
+..lin.33d012f8..49a0a0e6.0_192::
 .LDWlin192:
 	mov	r2,2
 	b	.L4998
 .L4993:
 ;line2580
-..lin.126cd548..49a0a0e6.0_193::
+..lin.33d012f8..49a0a0e6.0_193::
 .LDWlin193:
 	ldr.w	r0,[r3,1028]
 	cbnz	r0,.L4999
 ;line2582
-..lin.126cd548..49a0a0e6.0_194::
+..lin.33d012f8..49a0a0e6.0_194::
 .LDWlin194:
 	mov	r2,0
 	b	.L4998
 .L4999:
 ;line2593
-..lin.126cd548..49a0a0e6.0_195::
+..lin.33d012f8..49a0a0e6.0_195::
 .LDWlin195:
 	mov	r2,2
 .L4998:
@@ -4520,8 +4520,8 @@ __ghs_eofn_FlexCAN_Ip_GetTransferStatus::
 	.text
 ..gh.f.a.1.e.93:
 	.endo	..gh.f.a.1.e.93
-	.global	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
+	.global	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.:
 FlexCAN_CompleteRxMessageFifoData:
 .LDW19:
 	push	{r4-r6,lr}
@@ -4557,12 +4557,12 @@ BKPT #0
 	b	.L5134
 .L5130:
 ;line2619
-..lin.126cd548..1000de2b.0_196::
+..lin.33d012f8..1000de2b.0_196::
 .LDWlin196:
 	ldr.w	r0,[r4,1056]
 	cbnz	r0,.L5136
 ;line2622
-..lin.126cd548..1000de2b.0_197::
+..lin.33d012f8..1000de2b.0_197::
 .LDWlin197:
 	ldrb	r0,[r4,1068]
 	str	r0,[sp]
@@ -4603,7 +4603,7 @@ BKPT #0
 	pop	{r4-r6,pc}
 __ghs_eofn_FlexCAN_CompleteRxMessageFifoData:
 	.endf	FlexCAN_CompleteRxMessageFifoData
-	.endf	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.endf	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 ;base	r6	local
 ;state	r4	local
 ;x	r0	local
@@ -4666,7 +4666,7 @@ BKPT #0
 	b	.L5218
 .L5214:
 ;line2730
-..lin.126cd548..9fea3cef.0_198::
+..lin.33d012f8..9fea3cef.0_198::
 .LDWlin198:
 	ldr.w	r8,[sp,8]
 	cmp	r8,64
@@ -4686,12 +4686,12 @@ BKPT #0
 	b	.L5224
 .L5220:
 ;line2733
-..lin.126cd548..9fea3cef.0_199::
+..lin.33d012f8..9fea3cef.0_199::
 .LDWlin199:
 	cmp	fp,0
 	beq	.L5226
 ;line2735
-..lin.126cd548..9fea3cef.0_200::
+..lin.33d012f8..9fea3cef.0_200::
 .LDWlin200:
 	mov	r0,0
 	cmp	r5,32
@@ -4716,12 +4716,12 @@ BKPT #0
 	uxtb	r0,r0
 .L5228:
 ;line2737
-..lin.126cd548..9fea3cef.0_201::
+..lin.33d012f8..9fea3cef.0_201::
 .LDWlin201:
 	b	.L5236
 .L5238:
 ;line2739
-..lin.126cd548..9fea3cef.0_202::
+..lin.33d012f8..9fea3cef.0_202::
 .LDWlin202:
 	sub	r5,r5,1
 	mov	r0,0
@@ -4748,7 +4748,7 @@ BKPT #0
 .L5239:
 .L5236:
 ;line2737
-..lin.126cd548..9fea3cef.0_203::
+..lin.33d012f8..9fea3cef.0_203::
 .LDWlin203:
 	cbnz	r0,.L5237
 	ldr.w	r8,[sp,4]
@@ -4756,12 +4756,12 @@ BKPT #0
 	bhi	.L5238
 .L5237:
 ;line2744
-..lin.126cd548..9fea3cef.0_204::
+..lin.33d012f8..9fea3cef.0_204::
 .LDWlin204:
 	cmp	r0,0
 	beq	.L5248
 ;line2747
-..lin.126cd548..9fea3cef.0_205::
+..lin.33d012f8..9fea3cef.0_205::
 .LDWlin205:
 	mov	r9,0
 	strb	r9,[sp,2]
@@ -4772,7 +4772,7 @@ BKPT #0
 	cmp	r5,7
 	bhi	.L5250
 ;line2754
-..lin.126cd548..9fea3cef.0_206::
+..lin.33d012f8..9fea3cef.0_206::
 .LDWlin206:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -4891,13 +4891,13 @@ BKPT #0
 	blx	r12
 .L5253:
 ;line2755
-..lin.126cd548..9fea3cef.0_207::
+..lin.33d012f8..9fea3cef.0_207::
 .LDWlin207:
 	mov	r7,0
 	b	.L5280
 .L5250:
 ;line2760
-..lin.126cd548..9fea3cef.0_208::
+..lin.33d012f8..9fea3cef.0_208::
 .LDWlin208:
 	cpy	r0,r7
 	lsl	r0,r0,4
@@ -4906,7 +4906,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L5280
 ;line2762
-..lin.126cd548..9fea3cef.0_209::
+..lin.33d012f8..9fea3cef.0_209::
 .LDWlin209:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -4921,7 +4921,7 @@ BKPT #0
 	cmp	r0,2
 	bne	.L5289
 ;line2769
-..lin.126cd548..9fea3cef.0_210::
+..lin.33d012f8..9fea3cef.0_210::
 .LDWlin210:
 	cpy	r1,r5
 	cpy	r0,r4
@@ -4953,7 +4953,7 @@ BKPT #0
 .L5287:
 	cbz	r0,.L5248
 ;line2775
-..lin.126cd548..9fea3cef.0_211::
+..lin.33d012f8..9fea3cef.0_211::
 .LDWlin211:
 	cpy	r0,r7
 	lsl	r0,r0,4
@@ -4961,7 +4961,7 @@ BKPT #0
 	ldr	r0,[r0,4]
 	cbnz	r0,.L5248
 ;line2779
-..lin.126cd548..9fea3cef.0_212::
+..lin.33d012f8..9fea3cef.0_212::
 .LDWlin212:
 	and	r0,r5,31
 	mov	r7,1
@@ -4976,13 +4976,13 @@ BKPT #0
 	str	r0,[r6,44]
 .L5248:
 ;line2785
-..lin.126cd548..9fea3cef.0_213::
+..lin.33d012f8..9fea3cef.0_213::
 .LDWlin213:
 	ldrb	r8,[sp,3]
 	cmp	r8,1
 	bne	.L5304
 ;line2787
-..lin.126cd548..9fea3cef.0_214::
+..lin.33d012f8..9fea3cef.0_214::
 .LDWlin214:
 	ldr.w	r0,[r6,3084]
 	and	r0,r0,1<<31
@@ -4999,7 +4999,7 @@ BKPT #0
 	cmp	r0,0
 	bne	.L5304
 ;line2789
-..lin.126cd548..9fea3cef.0_215::
+..lin.33d012f8..9fea3cef.0_215::
 .LDWlin215:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -5066,13 +5066,13 @@ BKPT #0
 	strb	r0,[sp,2]
 .L5304:
 ;line2796
-..lin.126cd548..9fea3cef.0_216::
+..lin.33d012f8..9fea3cef.0_216::
 .LDWlin216:
 	ldrb	r8,[sp,2]
 	cmp	r8,1
 	bne	.L5212
 ;line2798
-..lin.126cd548..9fea3cef.0_217::
+..lin.33d012f8..9fea3cef.0_217::
 .LDWlin217:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -5189,13 +5189,13 @@ BKPT #0
 	b	.L5212
 .L5226:
 ;line2805
-..lin.126cd548..9fea3cef.0_218::
+..lin.33d012f8..9fea3cef.0_218::
 .LDWlin218:
 	ldr	r5,[sp,4]
 	b	.L5361
 .L5364:
 ;line2808
-..lin.126cd548..9fea3cef.0_219::
+..lin.33d012f8..9fea3cef.0_219::
 .LDWlin219:
 	and	r0,r5,31
 	mov	r4,1
@@ -5210,7 +5210,7 @@ BKPT #0
 	str	r0,[r6,44]
 .L5359:
 ;line2805
-..lin.126cd548..9fea3cef.0_220::
+..lin.33d012f8..9fea3cef.0_220::
 .LDWlin220:
 	add	r5,r5,1
 .L5361:
@@ -5218,13 +5218,13 @@ BKPT #0
 	cmp	r5,r8
 	bls	.L5364
 ;line2812
-..lin.126cd548..9fea3cef.0_221::
+..lin.33d012f8..9fea3cef.0_221::
 .LDWlin221:
 	ldrb	r8,[sp,3]
 	cmp	r8,1
 	bne	.L5212
 ;line2814
-..lin.126cd548..9fea3cef.0_222::
+..lin.33d012f8..9fea3cef.0_222::
 .LDWlin222:
 	mov	r0,1<<28
 	str	r0,[r6,3092]
@@ -5331,7 +5331,7 @@ BKPT #0
 	b	.L6093
 .L6089:
 ;line2839
-..lin.126cd548..f4bf16f2.0_223::
+..lin.33d012f8..f4bf16f2.0_223::
 .LDWlin223:
 	str	r1,[r2,32]
 .LDW99:
@@ -5379,7 +5379,7 @@ BKPT #0
 	b	.L6144
 .L6140:
 ;line2857
-..lin.126cd548..11e3c4b.0_224::
+..lin.33d012f8..11e3c4b.0_224::
 .LDWlin224:
 	ldr	r0,[r1,32]
 .LDW201:
@@ -5426,7 +5426,7 @@ BKPT #0
 	b	.L6208
 .L6204:
 ;line2875
-..lin.126cd548..8676ad17.0_225::
+..lin.33d012f8..8676ad17.0_225::
 .LDWlin225:
 	ldr	r1,[r1,28]
 	and	r1,r1,255
@@ -5475,7 +5475,7 @@ BKPT #0
 	b	.L6272
 .L6268:
 ;line2893
-..lin.126cd548..ff639d5.0_226::
+..lin.33d012f8..ff639d5.0_226::
 .LDWlin226:
 	ldr	r1,[r1,28]
 	and	r1,r1,255<<8
@@ -5534,12 +5534,12 @@ BKPT #0
 	b	.L6336
 .L6332:
 ;line2918
-..lin.126cd548..2c97a65c.0_227::
+..lin.33d012f8..2c97a65c.0_227::
 .LDWlin227:
 	cmp	r5,0
 	beq	.L6338
 ;line2921
-..lin.126cd548..2c97a65c.0_228::
+..lin.33d012f8..2c97a65c.0_228::
 .LDWlin228:
 	ldr	r1,[r4,32]
 	and	r2,r1,2
@@ -5548,14 +5548,14 @@ BKPT #0
 	and	r2,r2,1<<14
 	cbz	r2,.L6340
 ;line2926
-..lin.126cd548..2c97a65c.0_229::
+..lin.33d012f8..2c97a65c.0_229::
 .LDWlin229:
 	mov	r0,2
 	str	r0,[r4,32]
 	ldr.w	r0,[r5,1048]
 	cbz	r0,.L6343
 ;line2930
-..lin.126cd548..2c97a65c.0_230::
+..lin.33d012f8..2c97a65c.0_230::
 .LDWlin230:
 	ldr.w	r7,[r5,1048]
 	cpy	r3,r5
@@ -5575,14 +5575,14 @@ BKPT #0
 	and	r2,r2,1<<31
 	cbz	r2,.L6345
 ;line2941
-..lin.126cd548..2c97a65c.0_231::
+..lin.33d012f8..2c97a65c.0_231::
 .LDWlin231:
 	mov	r0,1<<20
 	str	r0,[r4,32]
 	ldr.w	r0,[r5,1048]
 	cbz	r0,.L6348
 ;line2945
-..lin.126cd548..2c97a65c.0_232::
+..lin.33d012f8..2c97a65c.0_232::
 .LDWlin232:
 	ldr.w	r7,[r5,1048]
 	cpy	r3,r5
@@ -5602,14 +5602,14 @@ BKPT #0
 	and	r2,r2,1<<11
 	cbz	r2,.L6350
 ;line2956
-..lin.126cd548..2c97a65c.0_233::
+..lin.33d012f8..2c97a65c.0_233::
 .LDWlin233:
 	mov	r0,1<<17
 	str	r0,[r4,32]
 	ldr.w	r0,[r5,1048]
 	cbz	r0,.L6353
 ;line2960
-..lin.126cd548..2c97a65c.0_234::
+..lin.33d012f8..2c97a65c.0_234::
 .LDWlin234:
 	ldr.w	r7,[r5,1048]
 	cpy	r3,r5
@@ -5629,14 +5629,14 @@ BKPT #0
 	and	r2,r2,1<<10
 	cbz	r2,.L6355
 ;line2970
-..lin.126cd548..2c97a65c.0_235::
+..lin.33d012f8..2c97a65c.0_235::
 .LDWlin235:
 	mov	r0,1<<16
 	str	r0,[r4,32]
 	ldr.w	r0,[r5,1048]
 	cbz	r0,.L6358
 ;line2974
-..lin.126cd548..2c97a65c.0_236::
+..lin.33d012f8..2c97a65c.0_236::
 .LDWlin236:
 	ldr.w	r7,[r5,1048]
 	cpy	r3,r5
@@ -5656,14 +5656,14 @@ BKPT #0
 	and	r2,r2,1<<15
 	cbz	r2,.L6338
 ;line2984
-..lin.126cd548..2c97a65c.0_237::
+..lin.33d012f8..2c97a65c.0_237::
 .LDWlin237:
 	mov	r0,4
 	str	r0,[r4,32]
 	ldr.w	r0,[r5,1048]
 	cbz	r0,.L6363
 ;line2988
-..lin.126cd548..2c97a65c.0_238::
+..lin.33d012f8..2c97a65c.0_238::
 .LDWlin238:
 	ldr.w	r7,[r5,1048]
 	cpy	r3,r5
@@ -5679,7 +5679,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L6330
 ;line3028
-..lin.126cd548..2c97a65c.0_239::
+..lin.33d012f8..2c97a65c.0_239::
 .LDWlin239:
 	movw	r0,6
 	movt	r0,59
@@ -5770,7 +5770,7 @@ BKPT #0
 	b	.L6588
 .L6584:
 ;line3216
-..lin.126cd548..1618fe90.0_240::
+..lin.33d012f8..1618fe90.0_240::
 .LDWlin240:
 	cmp	fp,0
 	ite	ne
@@ -5789,7 +5789,7 @@ BKPT #0
 	b	.L6594
 .L6590:
 ;line3219
-..lin.126cd548..1618fe90.0_241::
+..lin.33d012f8..1618fe90.0_241::
 .LDWlin241:
 	ldr.w	r8,[sp,60]
 	str	r8,[sp]
@@ -5804,7 +5804,7 @@ BKPT #0
 	cmp	r5,0
 	bne	.L6596
 ;line3223
-..lin.126cd548..1618fe90.0_242::
+..lin.33d012f8..1618fe90.0_242::
 .LDWlin242:
 	mov	r0,0
 .L6910:
@@ -5814,7 +5814,7 @@ BKPT #0
 	b	.L6598
 .L6600:
 ;line3226
-..lin.126cd548..1618fe90.0_243::
+..lin.33d012f8..1618fe90.0_243::
 .LDWlin243:
 	add	r0,sp,4
 	mov	r1,0
@@ -5826,13 +5826,13 @@ BKPT #0
 	cmp	r7,r8
 	blo	.L6598
 ;line3229
-..lin.126cd548..1618fe90.0_244::
+..lin.33d012f8..1618fe90.0_244::
 .LDWlin244:
 	mov	r5,3
 	b	.L6603
 .L6598:
 ;line3224
-..lin.126cd548..1618fe90.0_245::
+..lin.33d012f8..1618fe90.0_245::
 .LDWlin245:
 	cpy	r0,r4
 	mov	r1,0
@@ -5862,7 +5862,7 @@ BKPT #0
 	bne	.L6600
 .L6603:
 ;line3234
-..lin.126cd548..1618fe90.0_246::
+..lin.33d012f8..1618fe90.0_246::
 .LDWlin246:
 	cmp	r5,3
 	bne	.L6613
@@ -5874,7 +5874,7 @@ BKPT #0
 	cmp	r0,0
 	beq	.L6613
 ;line3237
-..lin.126cd548..1618fe90.0_247::
+..lin.33d012f8..1618fe90.0_247::
 .LDWlin247:
 	cpy	r0,r4
 	and	r1,r0,31
@@ -5890,7 +5890,7 @@ BKPT #0
 	str	r1,[r6,44]
 .L6616:
 ;line3238
-..lin.126cd548..1618fe90.0_248::
+..lin.33d012f8..1618fe90.0_248::
 .LDWlin248:
 	cpy	r1,r4
 	cpy	r0,r6
@@ -5919,7 +5919,7 @@ BKPT #0
 	b	.L6623
 .L6625:
 ;line3251
-..lin.126cd548..1618fe90.0_249::
+..lin.33d012f8..1618fe90.0_249::
 .LDWlin249:
 	add	r0,sp,4
 	mov	r1,0
@@ -5931,13 +5931,13 @@ BKPT #0
 	cmp	r7,r8
 	blo	.L6623
 ;line3254
-..lin.126cd548..1618fe90.0_250::
+..lin.33d012f8..1618fe90.0_250::
 .LDWlin250:
 	mov	r5,3
 	b	.L6628
 .L6623:
 ;line3249
-..lin.126cd548..1618fe90.0_251::
+..lin.33d012f8..1618fe90.0_251::
 .LDWlin251:
 	cpy	r0,r4
 	mov	r1,0
@@ -5967,7 +5967,7 @@ BKPT #0
 	beq	.L6625
 .L6628:
 ;line3259
-..lin.126cd548..1618fe90.0_252::
+..lin.33d012f8..1618fe90.0_252::
 .LDWlin252:
 	ldr.w	r0,[r10]
 	and	r1,r0,15<<24
@@ -5975,7 +5975,7 @@ BKPT #0
 	cmp	r1,8
 	bne	.L6638
 ;line3264
-..lin.126cd548..1618fe90.0_253::
+..lin.33d012f8..1618fe90.0_253::
 .LDWlin253:
 	mov	r5,0
 .L6638:
@@ -5984,7 +5984,7 @@ BKPT #0
 	cmp	r0,9
 	bne	.L6613
 ;line3270
-..lin.126cd548..1618fe90.0_254::
+..lin.33d012f8..1618fe90.0_254::
 .LDWlin254:
 	mov	r5,3
 .L6613:
@@ -6002,7 +6002,7 @@ BKPT #0
 	str	r1,[r6,44]
 .L6642:
 ;line3277
-..lin.126cd548..1618fe90.0_255::
+..lin.33d012f8..1618fe90.0_255::
 .LDWlin255:
 	cpy	r0,r4
 	lsl	r0,r0,4
@@ -6100,7 +6100,7 @@ BKPT #0
 	b	.L6930
 .L6934:
 ;line3302
-..lin.126cd548..f09c5b49.0_256::
+..lin.33d012f8..f09c5b49.0_256::
 .LDWlin256:
 	ldr	r1,[r5]
 	and	r1,r1,1<<31
@@ -6116,12 +6116,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line3304
-..lin.126cd548..f09c5b49.0_257::
+..lin.33d012f8..f09c5b49.0_257::
 .LDWlin257:
 	cmp	r6,1
 	bne	.L6943
 ;line3306
-..lin.126cd548..f09c5b49.0_258::
+..lin.33d012f8..f09c5b49.0_258::
 .LDWlin258:
 	cpy	r0,r5
 .L7096:
@@ -6138,25 +6138,25 @@ BKPT #0
 	mov	r1,0
 .L6941:
 ;line3311
-..lin.126cd548..f09c5b49.0_259::
+..lin.33d012f8..f09c5b49.0_259::
 .LDWlin259:
 	cbnz	r1,.L6948
 	cbnz	r4,.L6948
 ;line3313
-..lin.126cd548..f09c5b49.0_260::
+..lin.33d012f8..f09c5b49.0_260::
 .LDWlin260:
 	mov	r4,1
 .L6948:
 	cbnz	r4,.L6951
 ;line3318
-..lin.126cd548..f09c5b49.0_261::
+..lin.33d012f8..f09c5b49.0_261::
 .LDWlin261:
 	str	r7,[r5,16]
 .L6951:
 	cmp	r6,1
 	bne	.L6957
 ;line3323
-..lin.126cd548..f09c5b49.0_262::
+..lin.33d012f8..f09c5b49.0_262::
 .LDWlin262:
 	cpy	r0,r5
 .L7098:
@@ -6165,7 +6165,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L6957
 ;line3326
-..lin.126cd548..f09c5b49.0_263::
+..lin.33d012f8..f09c5b49.0_263::
 .LDWlin263:
 	cpy	r4,r1
 .L6957:
@@ -6299,7 +6299,7 @@ BKPT #0
 .LDW621:
 
 ;line3376
-..lin.126cd548..dd65bff2.0_264::
+..lin.33d012f8..dd65bff2.0_264::
 .LDWlin264:
 	ldr	r0,[r6]
 	and	r0,r0,127
@@ -6309,7 +6309,7 @@ BKPT #0
 	blo	.L7173
 .L7168:
 ;line3378
-..lin.126cd548..dd65bff2.0_265::
+..lin.33d012f8..dd65bff2.0_265::
 .LDWlin265:
 	mov	r5,4
 	b	.L7170
@@ -6317,7 +6317,7 @@ BKPT #0
 
 .L7173:
 ;line3384
-..lin.126cd548..dd65bff2.0_266::
+..lin.33d012f8..dd65bff2.0_266::
 .LDWlin266:
 	ldr	r0,[r6]
 	and	r0,r0,1<<31
@@ -6333,12 +6333,12 @@ BKPT #0
 	mov	r7,1
 	mov	r7,0
 ;line3386
-..lin.126cd548..dd65bff2.0_267::
+..lin.33d012f8..dd65bff2.0_267::
 .LDWlin267:
 	cmp	r7,1
 	bne	.L7182
 ;line3388
-..lin.126cd548..dd65bff2.0_268::
+..lin.33d012f8..dd65bff2.0_268::
 .LDWlin268:
 	cpy	r0,r6
 .L7366:
@@ -6356,18 +6356,18 @@ BKPT #0
 .L7180:
 	cpy	r1,r0
 ;line3393
-..lin.126cd548..dd65bff2.0_269::
+..lin.33d012f8..dd65bff2.0_269::
 .LDWlin269:
 	cbnz	r1,.L7187
 	cbnz	r5,.L7187
 ;line3395
-..lin.126cd548..dd65bff2.0_270::
+..lin.33d012f8..dd65bff2.0_270::
 .LDWlin270:
 	mov	r5,1
 .L7187:
 	cbnz	r5,.L7190
 ;line3400
-..lin.126cd548..dd65bff2.0_271::
+..lin.33d012f8..dd65bff2.0_271::
 .LDWlin271:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -6378,7 +6378,7 @@ BKPT #0
 	cmp	r7,1
 	bne	.L7170
 ;line3405
-..lin.126cd548..dd65bff2.0_272::
+..lin.33d012f8..dd65bff2.0_272::
 .LDWlin272:
 	cpy	r0,r6
 .L7368:
@@ -6387,7 +6387,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L7170
 ;line3408
-..lin.126cd548..dd65bff2.0_273::
+..lin.33d012f8..dd65bff2.0_273::
 .LDWlin273:
 	cpy	r5,r1
 .LDW821:
@@ -6447,7 +6447,7 @@ BKPT #0
 	b	.L7378
 .L7374:
 ;line3429
-..lin.126cd548..7fd3db9e.0_274::
+..lin.33d012f8..7fd3db9e.0_274::
 .LDWlin274:
 	mov	r4,0
 	mov	r1,0
@@ -6472,12 +6472,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line3434
-..lin.126cd548..7fd3db9e.0_275::
+..lin.33d012f8..7fd3db9e.0_275::
 .LDWlin275:
 	cmp	r6,1
 	bne	.L7391
 ;line3436
-..lin.126cd548..7fd3db9e.0_276::
+..lin.33d012f8..7fd3db9e.0_276::
 .LDWlin276:
 	cpy	r0,r5
 .L7544:
@@ -6495,25 +6495,25 @@ BKPT #0
 .L7389:
 	cpy	r0,r1
 ;line3441
-..lin.126cd548..7fd3db9e.0_277::
+..lin.33d012f8..7fd3db9e.0_277::
 .LDWlin277:
 	cbnz	r0,.L7396
 	cbnz	r4,.L7396
 ;line3443
-..lin.126cd548..7fd3db9e.0_278::
+..lin.33d012f8..7fd3db9e.0_278::
 .LDWlin278:
 	mov	r4,1
 .L7396:
 	cbnz	r4,.L7399
 ;line3449
-..lin.126cd548..7fd3db9e.0_279::
+..lin.33d012f8..7fd3db9e.0_279::
 .LDWlin279:
 	str	r7,[r5,72]
 .L7399:
 	cmp	r6,1
 	bne	.L7405
 ;line3454
-..lin.126cd548..7fd3db9e.0_280::
+..lin.33d012f8..7fd3db9e.0_280::
 .LDWlin280:
 	cpy	r0,r5
 .L7546:
@@ -6522,7 +6522,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L7405
 ;line3457
-..lin.126cd548..7fd3db9e.0_281::
+..lin.33d012f8..7fd3db9e.0_281::
 .LDWlin281:
 	cpy	r4,r1
 .L7405:
@@ -6583,7 +6583,7 @@ BKPT #0
 	b	.L7556
 .L7552:
 ;line3482
-..lin.126cd548..98e784c4.0_282::
+..lin.33d012f8..98e784c4.0_282::
 .LDWlin282:
 	cpy	r0,r4
 .L7644:
@@ -6593,7 +6593,7 @@ BKPT #0
 	cmp	r5,0
 	bne	.L7558
 ;line3486
-..lin.126cd548..98e784c4.0_283::
+..lin.33d012f8..98e784c4.0_283::
 .LDWlin283:
 	cpy	r0,r4
 .L7646:
@@ -6680,7 +6680,7 @@ BKPT #0
 	movt	r0,0xd890
 	str	r0,[r4]
 ;line3488
-..lin.126cd548..98e784c4.0_284::
+..lin.33d012f8..98e784c4.0_284::
 .LDWlin284:
 	cpy	r0,r4
 .L7650:
@@ -6757,7 +6757,7 @@ BKPT #0
 	b	.L7660
 .L7656:
 ;line3521
-..lin.126cd548..3d06b084.0_285::
+..lin.33d012f8..3d06b084.0_285::
 .LDWlin285:
 	mov	r0,1
 	cmp	r1,64
@@ -6779,12 +6779,12 @@ BKPT #0
 	b	.L7669
 .L7665:
 ;line3528
-..lin.126cd548..3d06b084.0_286::
+..lin.33d012f8..3d06b084.0_286::
 .LDWlin286:
 	cmp	r1,255
 	bne	.L7671
 ;line3530
-..lin.126cd548..3d06b084.0_287::
+..lin.33d012f8..3d06b084.0_287::
 .LDWlin287:
 	cpy	r0,r5
 .L8116:
@@ -6793,7 +6793,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L7654
 ;line3532
-..lin.126cd548..3d06b084.0_288::
+..lin.33d012f8..3d06b084.0_288::
 .LDWlin288:
 	ldr.w	r0,[r5,3084]
 	and	r0,r0,1<<31
@@ -6807,7 +6807,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L7654
 ;line3534
-..lin.126cd548..3d06b084.0_289::
+..lin.33d012f8..3d06b084.0_289::
 .LDWlin289:
 	ldr.w	r0,[r5,3092]
 	and	r0,r0,1<<28
@@ -6816,7 +6816,7 @@ BKPT #0
 	cmp	r0,0
 	beq	.L7654
 ;line3536
-..lin.126cd548..3d06b084.0_290::
+..lin.33d012f8..3d06b084.0_290::
 .LDWlin290:
 	cpy	r0,r4
 	mov	r1,28
@@ -6826,7 +6826,7 @@ BKPT #0
 	b	.L7654
 .L7671:
 ;line3544
-..lin.126cd548..3d06b084.0_291::
+..lin.33d012f8..3d06b084.0_291::
 .LDWlin291:
 	ldrb	r0,[r2,1060]
 	cmp	r0,1
@@ -6834,12 +6834,12 @@ BKPT #0
 	cmp	r1,7
 	bhi	.L7691
 ;line3547
-..lin.126cd548..3d06b084.0_292::
+..lin.33d012f8..3d06b084.0_292::
 .LDWlin292:
 	cmp	r1,0
 	bne	.L7654
 ;line3549
-..lin.126cd548..3d06b084.0_293::
+..lin.33d012f8..3d06b084.0_293::
 .LDWlin293:
 	mov	r0,0
 	mov	r1,0
@@ -6859,7 +6859,7 @@ BKPT #0
 	cmp	r0,0
 	beq	.L7654
 ;line3551
-..lin.126cd548..3d06b084.0_294::
+..lin.33d012f8..3d06b084.0_294::
 .LDWlin294:
 	cpy	r0,r4
 	lsl	r0,r0,2
@@ -6981,7 +6981,7 @@ BKPT #0
 	b	.L7654
 .L7691:
 ;line3557
-..lin.126cd548..3d06b084.0_295::
+..lin.33d012f8..3d06b084.0_295::
 .LDWlin295:
 	cpy	r0,r1
 	mov	r3,0
@@ -7009,7 +7009,7 @@ BKPT #0
 	uxtb	r0,r3
 	cbz	r0,.L7654
 ;line3560
-..lin.126cd548..3d06b084.0_296::
+..lin.33d012f8..3d06b084.0_296::
 .LDWlin296:
 	cpy	r0,r1
 	lsl	r0,r0,4
@@ -7018,7 +7018,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L7654
 ;line3562
-..lin.126cd548..3d06b084.0_297::
+..lin.33d012f8..3d06b084.0_297::
 .LDWlin297:
 	cpy	r0,r4
 .L8130:
@@ -7107,18 +7107,18 @@ BKPT #0
 	b	.L8140
 .L8136:
 ;line3591
-..lin.126cd548..c00d07d7.0_298::
+..lin.33d012f8..c00d07d7.0_298::
 .LDWlin298:
 	ldr	r5,[r4,32]
 	and	r3,r5,4
 	cbz	r3,.L8142
 ;line3596
-..lin.126cd548..c00d07d7.0_299::
+..lin.33d012f8..c00d07d7.0_299::
 .LDWlin299:
 	ldr.w	r1,[r2,1048]
 	cbz	r1,.L8144
 ;line3598
-..lin.126cd548..c00d07d7.0_300::
+..lin.33d012f8..c00d07d7.0_300::
 .LDWlin300:
 	ldr.w	r6,[r2,1048]
 	cpy	r3,r2
@@ -7194,7 +7194,7 @@ BKPT #0
 .LDW541:
 
 ;line3624
-..lin.126cd548..de3e80f3.0_301::
+..lin.33d012f8..de3e80f3.0_301::
 .LDWlin301:
 	cpy	r0,r5
 	mov	r1,0
@@ -7227,7 +7227,7 @@ BKPT #0
 .LDW741:
 
 ;line3626
-..lin.126cd548..de3e80f3.0_302::
+..lin.33d012f8..de3e80f3.0_302::
 .LDWlin302:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -7240,7 +7240,7 @@ BKPT #0
 .LDW941:
 
 ;line3628
-..lin.126cd548..de3e80f3.0_303::
+..lin.33d012f8..de3e80f3.0_303::
 .LDWlin303:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -7250,7 +7250,7 @@ BKPT #0
 .LDW051:
 
 ;line3631
-..lin.126cd548..de3e80f3.0_304::
+..lin.33d012f8..de3e80f3.0_304::
 .LDWlin304:
 	cpy	r1,r5
 	cpy	r0,r6
@@ -7275,7 +7275,7 @@ BKPT #0
 	cmp	r0,4
 	bne	.L8263
 ;line3640
-..lin.126cd548..de3e80f3.0_305::
+..lin.33d012f8..de3e80f3.0_305::
 .LDWlin305:
 	cpy	r0,r5
 	and	r1,r0,31
@@ -7293,12 +7293,12 @@ BKPT #0
 .LDW151:
 
 ;line3641
-..lin.126cd548..de3e80f3.0_306::
+..lin.33d012f8..de3e80f3.0_306::
 .LDWlin306:
 	b	.L8263
 .L8248:
 ;line3645
-..lin.126cd548..de3e80f3.0_307::
+..lin.33d012f8..de3e80f3.0_307::
 .LDWlin307:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -7326,7 +7326,7 @@ BKPT #0
 .LDW251:
 
 ;line3651
-..lin.126cd548..de3e80f3.0_308::
+..lin.33d012f8..de3e80f3.0_308::
 .LDWlin308:
 	cpy	r0,r5
 	lsl	r0,r0,4
@@ -7336,7 +7336,7 @@ BKPT #0
 	ldr.w	r0,[r7,1040]
 	cbz	r0,.L8228
 ;line3656
-..lin.126cd548..de3e80f3.0_309::
+..lin.33d012f8..de3e80f3.0_309::
 .LDWlin309:
 	ldr.w	r6,[r7,1040]
 	cpy	r3,r7
@@ -7414,7 +7414,7 @@ FlexCAN_Ip_GetStopMode_Privileged::
 .L8514:
 
 ;line3673
-..lin.126cd548..79e82f92.0_310::
+..lin.33d012f8..79e82f92.0_310::
 .LDWlin310:
 	ret
 __ghs_eofn_FlexCAN_Ip_GetStopMode_Privileged::
@@ -7452,7 +7452,7 @@ FlexCAN_Ip_GetStartMode_Privileged::
 .L8562:
 
 ;line3686
-..lin.126cd548..a862941a.0_311::
+..lin.33d012f8..a862941a.0_311::
 .LDWlin311:
 	ret
 __ghs_eofn_FlexCAN_Ip_GetStartMode_Privileged::
@@ -7488,7 +7488,7 @@ BKPT #0
 	b	.L8570
 .L8566:
 ;line3700
-..lin.126cd548..ae60526.0_312::
+..lin.33d012f8..ae60526.0_312::
 .LDWlin312:
 	cpy	r1,r0
 	lsl	r1,r1,2
@@ -7555,7 +7555,7 @@ BKPT #0
 	b	.L8630
 .L8626:
 ;line3723
-..lin.126cd548..d9fbaf1e.0_313::
+..lin.33d012f8..d9fbaf1e.0_313::
 .LDWlin313:
 	cpy	r1,r0
 	lsl	r1,r1,2
@@ -7571,7 +7571,7 @@ BKPT #0
 	cpy	r1,r0
 	cbnz	r1,.L8632
 ;line3736
-..lin.126cd548..d9fbaf1e.0_314::
+..lin.33d012f8..d9fbaf1e.0_314::
 .LDWlin314:
 	cpy	r0,r4
 .L8694:
@@ -7625,7 +7625,7 @@ BKPT #0
 	b	.L8704
 .L8700:
 ;line3755
-..lin.126cd548..f6d72f6b.0_315::
+..lin.33d012f8..f6d72f6b.0_315::
 .LDWlin315:
 	mov	r5,0
 	mov	r1,0
@@ -7650,12 +7650,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line3760
-..lin.126cd548..f6d72f6b.0_316::
+..lin.33d012f8..f6d72f6b.0_316::
 .LDWlin316:
 	cmp	r6,1
 	bne	.L8717
 ;line3762
-..lin.126cd548..f6d72f6b.0_317::
+..lin.33d012f8..f6d72f6b.0_317::
 .LDWlin317:
 	cpy	r0,r4
 .L8890:
@@ -7673,12 +7673,12 @@ BKPT #0
 .L8715:
 	cpy	r0,r1
 ;line3768
-..lin.126cd548..f6d72f6b.0_318::
+..lin.33d012f8..f6d72f6b.0_318::
 .LDWlin318:
 	cbnz	r0,.L8722
 	cbnz	r5,.L8722
 ;line3770
-..lin.126cd548..f6d72f6b.0_319::
+..lin.33d012f8..f6d72f6b.0_319::
 .LDWlin319:
 	mov	r5,1
 .L8722:
@@ -7686,7 +7686,7 @@ BKPT #0
 .L8892:
 
 ;line3777
-..lin.126cd548..f6d72f6b.0_320::
+..lin.33d012f8..f6d72f6b.0_320::
 .LDWlin320:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_08
 	cbnz	r7,.L8731
@@ -7705,14 +7705,14 @@ BKPT #0
 .L8894:
 
 ;line3780
-..lin.126cd548..f6d72f6b.0_321::
+..lin.33d012f8..f6d72f6b.0_321::
 .LDWlin321:
 	bl	SchM_Exit_Can_CAN_EXCLUSIVE_AREA_08
 .L8725:
 	cmp	r6,1
 	bne	.L8733
 ;line3785
-..lin.126cd548..f6d72f6b.0_322::
+..lin.33d012f8..f6d72f6b.0_322::
 .LDWlin322:
 	cpy	r0,r4
 .L8896:
@@ -7721,7 +7721,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L8733
 ;line3788
-..lin.126cd548..f6d72f6b.0_323::
+..lin.33d012f8..f6d72f6b.0_323::
 .LDWlin323:
 	cpy	r5,r1
 .L8733:
@@ -7780,7 +7780,7 @@ BKPT #0
 	b	.L8906
 .L8902:
 ;line3810
-..lin.126cd548..51ab21e.0_324::
+..lin.33d012f8..51ab21e.0_324::
 .LDWlin324:
 	cmp	r5,0
 	ite	ne
@@ -7799,7 +7799,7 @@ BKPT #0
 	b	.L8912
 .L8908:
 ;line3812
-..lin.126cd548..51ab21e.0_325::
+..lin.33d012f8..51ab21e.0_325::
 .LDWlin325:
 	mov	r6,0
 	mov	r1,0
@@ -7820,12 +7820,12 @@ BKPT #0
 .L8916:
 	cpy	r7,r1
 ;line3820
-..lin.126cd548..51ab21e.0_326::
+..lin.33d012f8..51ab21e.0_326::
 .LDWlin326:
 	cmp	r7,1
 	bne	.L8917
 ;line3822
-..lin.126cd548..51ab21e.0_327::
+..lin.33d012f8..51ab21e.0_327::
 .LDWlin327:
 	cpy	r0,r4
 .L9250:
@@ -7843,12 +7843,12 @@ BKPT #0
 .L8921:
 	cpy	r0,r1
 ;line3828
-..lin.126cd548..51ab21e.0_328::
+..lin.33d012f8..51ab21e.0_328::
 .LDWlin328:
 	cbnz	r0,.L8922
 	cbnz	r6,.L8922
 ;line3830
-..lin.126cd548..51ab21e.0_329::
+..lin.33d012f8..51ab21e.0_329::
 .LDWlin329:
 	mov	r6,1
 .L8922:
@@ -7857,7 +7857,7 @@ BKPT #0
 .L9252:
 
 ;line3837
-..lin.126cd548..51ab21e.0_330::
+..lin.33d012f8..51ab21e.0_330::
 .LDWlin330:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_14
 	cmp	r10,0
@@ -7875,12 +7875,12 @@ BKPT #0
 	orr	r0,r0,r1
 	str	r0,[r4,52]
 ;line3842
-..lin.126cd548..51ab21e.0_331::
+..lin.33d012f8..51ab21e.0_331::
 .LDWlin331:
 	cmp	r10,1
 	bne	.L8948
 ;line3845
-..lin.126cd548..51ab21e.0_332::
+..lin.33d012f8..51ab21e.0_332::
 .LDWlin332:
 	cmp	r5,0
 	ite	ne
@@ -7930,7 +7930,7 @@ BKPT #0
 	b	.L8943
 .L8948:
 ;line3850
-..lin.126cd548..51ab21e.0_333::
+..lin.33d012f8..51ab21e.0_333::
 .LDWlin333:
 	ldr	r1,[r4,80]
 	and	r1,r1,1<<31
@@ -7944,7 +7944,7 @@ BKPT #0
 	cmp	r1,1
 	bne	.L8963
 ;line3852
-..lin.126cd548..51ab21e.0_334::
+..lin.33d012f8..51ab21e.0_334::
 .LDWlin334:
 	cmp	r5,0
 	ite	ne
@@ -7991,7 +7991,7 @@ BKPT #0
 	b	.L8943
 .L8963:
 ;line3856
-..lin.126cd548..51ab21e.0_335::
+..lin.33d012f8..51ab21e.0_335::
 .LDWlin335:
 	cmp	r5,0
 	ite	ne
@@ -8038,14 +8038,14 @@ BKPT #0
 .L9254:
 
 ;line3860
-..lin.126cd548..51ab21e.0_336::
+..lin.33d012f8..51ab21e.0_336::
 .LDWlin336:
 	bl	SchM_Exit_Can_CAN_EXCLUSIVE_AREA_14
 .L8925:
 	cmp	r7,1
 	bne	.L8968
 ;line3865
-..lin.126cd548..51ab21e.0_337::
+..lin.33d012f8..51ab21e.0_337::
 .LDWlin337:
 	cpy	r0,r4
 .L9256:
@@ -8054,7 +8054,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L8968
 ;line3868
-..lin.126cd548..51ab21e.0_338::
+..lin.33d012f8..51ab21e.0_338::
 .LDWlin338:
 	cpy	r6,r1
 .L8968:
@@ -8116,7 +8116,7 @@ BKPT #0
 	b	.L9266
 .L9262:
 ;line3888
-..lin.126cd548..d0f265a8.0_339::
+..lin.33d012f8..d0f265a8.0_339::
 .LDWlin339:
 	cmp	r1,0
 	ite	ne
@@ -8135,7 +8135,7 @@ BKPT #0
 	b	.L9272
 .L9268:
 ;line3890
-..lin.126cd548..d0f265a8.0_340::
+..lin.33d012f8..d0f265a8.0_340::
 .LDWlin340:
 	cpy	r2,r0
 	lsl	r2,r2,2
@@ -8155,12 +8155,12 @@ BKPT #0
 	mov	r3,1
 .L9274:
 ;line3894
-..lin.126cd548..d0f265a8.0_341::
+..lin.33d012f8..d0f265a8.0_341::
 .LDWlin341:
 	cmp	r3,1
 	bne	.L9292
 ;line3896
-..lin.126cd548..d0f265a8.0_342::
+..lin.33d012f8..d0f265a8.0_342::
 .LDWlin342:
 	mov	r0,0
 	str	r0,[r1]
@@ -8181,7 +8181,7 @@ BKPT #0
 	b	.L9287
 .L9292:
 ;line3901
-..lin.126cd548..d0f265a8.0_343::
+..lin.33d012f8..d0f265a8.0_343::
 .LDWlin343:
 	ldr	r4,[r2,80]
 	and	r4,r4,1<<31
@@ -8195,7 +8195,7 @@ BKPT #0
 	cmp	r4,1
 	bne	.L9304
 ;line3904
-..lin.126cd548..d0f265a8.0_344::
+..lin.33d012f8..d0f265a8.0_344::
 .LDWlin344:
 	ldr	r4,[r2,80]
 	movw	r0,0
@@ -8221,7 +8221,7 @@ BKPT #0
 	b	.L9287
 .L9304:
 ;line3909
-..lin.126cd548..d0f265a8.0_345::
+..lin.33d012f8..d0f265a8.0_345::
 .LDWlin345:
 	ldr	r4,[r2,4]
 	and	r4,r4,255<<24
@@ -8285,7 +8285,7 @@ BKPT #0
 	b	.L9444
 .L9440:
 ;line3928
-..lin.126cd548..d8d4985b.0_346::
+..lin.33d012f8..d8d4985b.0_346::
 .LDWlin346:
 	cpy	r1,r0
 	lsl	r1,r1,2
@@ -8309,7 +8309,7 @@ BKPT #0
 	cmp	r1,1
 	bne	.L9446
 ;line3935
-..lin.126cd548..d8d4985b.0_347::
+..lin.33d012f8..d8d4985b.0_347::
 .LDWlin347:
 	ldr.w	r1,[r4,3068]
 	orr	r1,r1,1<<15
@@ -8317,7 +8317,7 @@ BKPT #0
 	b	.L9455
 .L9446:
 ;line3940
-..lin.126cd548..d8d4985b.0_348::
+..lin.33d012f8..d8d4985b.0_348::
 .LDWlin348:
 	ldr.w	r1,[r4,3072]
 	orr	r1,r1,1<<14
@@ -8370,7 +8370,7 @@ BKPT #0
 	b	.L9544
 .L9540:
 ;line3960
-..lin.126cd548..e0acf934.0_349::
+..lin.33d012f8..e0acf934.0_349::
 .LDWlin349:
 	cpy	r1,r0
 	lsl	r1,r1,2
@@ -8391,7 +8391,7 @@ BKPT #0
 	cmp	r2,1
 	bne	.L9546
 ;line3965
-..lin.126cd548..e0acf934.0_350::
+..lin.33d012f8..e0acf934.0_350::
 .LDWlin350:
 	ldr.w	r1,[r1,3068]
 	and	r1,r1,1<<15
@@ -8403,7 +8403,7 @@ BKPT #0
 	b	.L9558
 .L9546:
 ;line3970
-..lin.126cd548..e0acf934.0_351::
+..lin.33d012f8..e0acf934.0_351::
 .LDWlin351:
 	ldr.w	r1,[r1,3072]
 	and	r1,r1,1<<14
@@ -8414,7 +8414,7 @@ BKPT #0
 	mov	r1,0
 .L9558:
 ;line3972
-..lin.126cd548..e0acf934.0_352::
+..lin.33d012f8..e0acf934.0_352::
 .LDWlin352:
 	cpy	r0,r1
 .LDW481:
@@ -8457,7 +8457,7 @@ BKPT #0
 	b	.L9688
 .L9684:
 ;line3989
-..lin.126cd548..f76db615.0_353::
+..lin.33d012f8..f76db615.0_353::
 .LDWlin353:
 	cpy	r1,r0
 	lsl	r1,r1,2
@@ -8478,7 +8478,7 @@ BKPT #0
 	cmp	r2,1
 	bne	.L9690
 ;line3994
-..lin.126cd548..f76db615.0_354::
+..lin.33d012f8..f76db615.0_354::
 .LDWlin354:
 	ldr.w	r1,[r1,3068]
 	and	r1,r1,255
@@ -8487,7 +8487,7 @@ BKPT #0
 	b	.L9699
 .L9690:
 ;line3999
-..lin.126cd548..f76db615.0_355::
+..lin.33d012f8..f76db615.0_355::
 .LDWlin355:
 	ldr.w	r1,[r1,3072]
 	and	r1,r1,63
@@ -8537,7 +8537,7 @@ BKPT #0
 	b	.L9796
 .L9792:
 ;line4019
-..lin.126cd548..aa482e17.0_356::
+..lin.33d012f8..aa482e17.0_356::
 .LDWlin356:
 	cmp	r4,0
 	ite	ne
@@ -8556,7 +8556,7 @@ BKPT #0
 	b	.L9802
 .L9798:
 ;line4021
-..lin.126cd548..aa482e17.0_357::
+..lin.33d012f8..aa482e17.0_357::
 .LDWlin357:
 	mov	r6,0
 	mov	r1,0
@@ -8584,12 +8584,12 @@ BKPT #0
 .L9810:
 	mov	r10,r1
 ;line4028
-..lin.126cd548..aa482e17.0_358::
+..lin.33d012f8..aa482e17.0_358::
 .LDWlin358:
 	cmp	r10,1
 	bne	.L9811
 ;line4030
-..lin.126cd548..aa482e17.0_359::
+..lin.33d012f8..aa482e17.0_359::
 .LDWlin359:
 	cpy	r0,r5
 .L10146:
@@ -8607,14 +8607,14 @@ BKPT #0
 .L9815:
 	cpy	r0,r1
 ;line4038
-..lin.126cd548..aa482e17.0_360::
+..lin.33d012f8..aa482e17.0_360::
 .LDWlin360:
 	cbz	r7,.L9817
 	cbnz	r0,.L9816
 	cbnz	r6,.L9816
 .L9817:
 ;line4040
-..lin.126cd548..aa482e17.0_361::
+..lin.33d012f8..aa482e17.0_361::
 .LDWlin361:
 	mov	r6,1
 .L9816:
@@ -8625,7 +8625,7 @@ BKPT #0
 .LDW191:
 
 ;line4047
-..lin.126cd548..aa482e17.0_362::
+..lin.33d012f8..aa482e17.0_362::
 .LDWlin362:
 	ldr	r1,[r5,52]
 	and	r1,r1,1<<13
@@ -8640,7 +8640,7 @@ BKPT #0
 .L10148:
 
 ;line4050
-..lin.126cd548..aa482e17.0_363::
+..lin.33d012f8..aa482e17.0_363::
 .LDWlin363:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_15
 	cbz	r7,.L9833
@@ -8674,13 +8674,13 @@ BKPT #0
 	and	r1,r1,r0
 	str	r1,[r5,3072]
 ;line4053
-..lin.126cd548..aa482e17.0_364::
+..lin.33d012f8..aa482e17.0_364::
 .LDWlin364:
 	ldrb	r8,[sp,3]
 	cmp	r8,1
 	bne	.L9851
 ;line4055
-..lin.126cd548..aa482e17.0_365::
+..lin.33d012f8..aa482e17.0_365::
 .LDWlin365:
 	cmp	r4,0
 	ite	ne
@@ -8734,7 +8734,7 @@ BKPT #0
 	b	.L9848
 .L9851:
 ;line4061
-..lin.126cd548..aa482e17.0_366::
+..lin.33d012f8..aa482e17.0_366::
 .LDWlin366:
 	cmp	r4,0
 	ite	ne
@@ -8784,7 +8784,7 @@ BKPT #0
 .L10150:
 
 ;line4064
-..lin.126cd548..aa482e17.0_367::
+..lin.33d012f8..aa482e17.0_367::
 .LDWlin367:
 	bl	SchM_Exit_Can_CAN_EXCLUSIVE_AREA_15
 .LDW291:
@@ -8795,7 +8795,7 @@ BKPT #0
 	cmp	r10,1
 	bne	.L9856
 ;line4069
-..lin.126cd548..aa482e17.0_368::
+..lin.33d012f8..aa482e17.0_368::
 .LDWlin368:
 	cpy	r0,r5
 .L10152:
@@ -8804,7 +8804,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L9856
 ;line4072
-..lin.126cd548..aa482e17.0_369::
+..lin.33d012f8..aa482e17.0_369::
 .LDWlin369:
 	cpy	r6,r1
 .L9856:
@@ -8868,7 +8868,7 @@ BKPT #0
 	b	.L10162
 .L10158:
 ;line4092
-..lin.126cd548..d72278f2.0_370::
+..lin.33d012f8..d72278f2.0_370::
 .LDWlin370:
 	cmp	r1,0
 	ite	ne
@@ -8887,7 +8887,7 @@ BKPT #0
 	b	.L10168
 .L10164:
 ;line4094
-..lin.126cd548..d72278f2.0_371::
+..lin.33d012f8..d72278f2.0_371::
 .LDWlin371:
 	cpy	r2,r0
 	lsl	r2,r2,2
@@ -8907,12 +8907,12 @@ BKPT #0
 	mov	r3,1
 .L10170:
 ;line4099
-..lin.126cd548..d72278f2.0_372::
+..lin.33d012f8..d72278f2.0_372::
 .LDWlin372:
 	cmp	r3,1
 	bne	.L10189
 ;line4101
-..lin.126cd548..d72278f2.0_373::
+..lin.33d012f8..d72278f2.0_373::
 .LDWlin373:
 	cmp	r1,0
 	ite	ne
@@ -8952,7 +8952,7 @@ BKPT #0
 	b	.L10186
 .L10189:
 ;line4107
-..lin.126cd548..d72278f2.0_374::
+..lin.33d012f8..d72278f2.0_374::
 .LDWlin374:
 	ldr.w	r4,[r2,3076]
 	movw	r0,0
@@ -9021,7 +9021,7 @@ BKPT #0
 	b	.L10312
 .L10308:
 ;line4125
-..lin.126cd548..156c2f95.0_375::
+..lin.33d012f8..156c2f95.0_375::
 .LDWlin375:
 	mov	r5,0
 	mov	r1,0
@@ -9046,12 +9046,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line4130
-..lin.126cd548..156c2f95.0_376::
+..lin.33d012f8..156c2f95.0_376::
 .LDWlin376:
 	cmp	r6,1
 	bne	.L10325
 ;line4132
-..lin.126cd548..156c2f95.0_377::
+..lin.33d012f8..156c2f95.0_377::
 .LDWlin377:
 	cpy	r0,r4
 .L10546:
@@ -9069,12 +9069,12 @@ BKPT #0
 .L10323:
 	cpy	r0,r1
 ;line4142
-..lin.126cd548..156c2f95.0_378::
+..lin.33d012f8..156c2f95.0_378::
 .LDWlin378:
 	cbnz	r0,.L10330
 	cbnz	r5,.L10330
 ;line4144
-..lin.126cd548..156c2f95.0_379::
+..lin.33d012f8..156c2f95.0_379::
 .LDWlin379:
 	mov	r5,1
 .L10330:
@@ -9082,14 +9082,14 @@ BKPT #0
 .L10548:
 
 ;line4151
-..lin.126cd548..156c2f95.0_380::
+..lin.33d012f8..156c2f95.0_380::
 .LDWlin380:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_16
 	ldr	r1,[r4,52]
 	and	r1,r1,1<<13
 	cbz	r1,.L10346
 ;line4156
-..lin.126cd548..156c2f95.0_381::
+..lin.33d012f8..156c2f95.0_381::
 .LDWlin381:
 	ldr.w	r1,[r4,3068]
 	movw	r0,0xffff
@@ -9105,7 +9105,7 @@ BKPT #0
 	b	.L10343
 .L10346:
 ;line4162
-..lin.126cd548..156c2f95.0_382::
+..lin.33d012f8..156c2f95.0_382::
 .LDWlin382:
 	ldr.w	r1,[r4,3072]
 	mvn	r0,159<<8
@@ -9121,14 +9121,14 @@ BKPT #0
 .L10550:
 
 ;line4164
-..lin.126cd548..156c2f95.0_383::
+..lin.33d012f8..156c2f95.0_383::
 .LDWlin383:
 	bl	SchM_Exit_Can_CAN_EXCLUSIVE_AREA_16
 .L10333:
 	cmp	r6,1
 	bne	.L10350
 ;line4170
-..lin.126cd548..156c2f95.0_384::
+..lin.33d012f8..156c2f95.0_384::
 .LDWlin384:
 	cpy	r0,r4
 .L10552:
@@ -9137,7 +9137,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L10350
 ;line4173
-..lin.126cd548..156c2f95.0_385::
+..lin.33d012f8..156c2f95.0_385::
 .LDWlin385:
 	cpy	r5,r1
 .L10350:
@@ -9198,7 +9198,7 @@ BKPT #0
 	b	.L10562
 .L10558:
 ;line4193
-..lin.126cd548..37cfc19b.0_386::
+..lin.33d012f8..37cfc19b.0_386::
 .LDWlin386:
 	mov	r4,0
 	mov	r1,0
@@ -9223,12 +9223,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line4198
-..lin.126cd548..37cfc19b.0_387::
+..lin.33d012f8..37cfc19b.0_387::
 .LDWlin387:
 	cmp	r6,1
 	bne	.L10575
 ;line4200
-..lin.126cd548..37cfc19b.0_388::
+..lin.33d012f8..37cfc19b.0_388::
 .LDWlin388:
 	cpy	r0,r5
 .L10728:
@@ -9246,12 +9246,12 @@ BKPT #0
 .L10573:
 	cpy	r0,r1
 ;line4206
-..lin.126cd548..37cfc19b.0_389::
+..lin.33d012f8..37cfc19b.0_389::
 .LDWlin389:
 	cbnz	r0,.L10580
 	cbnz	r4,.L10580
 ;line4208
-..lin.126cd548..37cfc19b.0_390::
+..lin.33d012f8..37cfc19b.0_390::
 .LDWlin390:
 	mov	r4,1
 .L10580:
@@ -9259,7 +9259,7 @@ BKPT #0
 .L10730:
 
 ;line4215
-..lin.126cd548..37cfc19b.0_391::
+..lin.33d012f8..37cfc19b.0_391::
 .LDWlin391:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_17
 	ldr	r1,[r5,52]
@@ -9276,7 +9276,7 @@ BKPT #0
 	cmp	r6,1
 	bne	.L10589
 ;line4223
-..lin.126cd548..37cfc19b.0_392::
+..lin.33d012f8..37cfc19b.0_392::
 .LDWlin392:
 	cpy	r0,r5
 .L10734:
@@ -9285,7 +9285,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L10589
 ;line4226
-..lin.126cd548..37cfc19b.0_393::
+..lin.33d012f8..37cfc19b.0_393::
 .LDWlin393:
 	cpy	r4,r1
 .L10589:
@@ -9343,7 +9343,7 @@ BKPT #0
 	b	.L10744
 .L10740:
 ;line4247
-..lin.126cd548..ecac62de.0_394::
+..lin.33d012f8..ecac62de.0_394::
 .LDWlin394:
 	cpy	r2,r0
 	lsl	r2,r2,2
@@ -9355,7 +9355,7 @@ BKPT #0
 	cmp	r1,255
 	bne	.L10746
 ;line4251
-..lin.126cd548..ecac62de.0_395::
+..lin.33d012f8..ecac62de.0_395::
 .LDWlin395:
 	ldr.w	r0,[r3,3092]
 	and	r0,r0,1<<30
@@ -9369,7 +9369,7 @@ BKPT #0
 	b	.L10755
 .L10746:
 ;line4256
-..lin.126cd548..ecac62de.0_396::
+..lin.33d012f8..ecac62de.0_396::
 .LDWlin396:
 	cpy	r2,r1
 	mov	r4,0
@@ -9402,7 +9402,7 @@ BKPT #0
 	cpy	r2,r0
 .L10755:
 ;line4258
-..lin.126cd548..ecac62de.0_397::
+..lin.33d012f8..ecac62de.0_397::
 .LDWlin397:
 	cpy	r0,r2
 .LDW602:
@@ -9447,7 +9447,7 @@ BKPT #0
 	b	.L10882
 .L10878:
 ;line4273
-..lin.126cd548..34329025.0_398::
+..lin.33d012f8..34329025.0_398::
 .LDWlin398:
 	cpy	r2,r0
 	lsl	r2,r2,2
@@ -9459,14 +9459,14 @@ BKPT #0
 	cmp	r1,255
 	bne	.L10884
 ;line4277
-..lin.126cd548..34329025.0_399::
+..lin.33d012f8..34329025.0_399::
 .LDWlin399:
 	mov	r0,1<<30
 	str	r0,[r2,3092]
 	b	.L10876
 .L10884:
 ;line4282
-..lin.126cd548..34329025.0_400::
+..lin.33d012f8..34329025.0_400::
 .LDWlin400:
 	cpy	r3,r1
 	and	r0,r3,31
@@ -9485,7 +9485,7 @@ BKPT #0
 .L10982:
 
 ;line4284
-..lin.126cd548..34329025.0_401::
+..lin.33d012f8..34329025.0_401::
 .LDWlin401:
 	pop	{r4,pc}
 __ghs_eofn_FlexCAN_Ip_ClearBuffStatusFlag::
@@ -9538,7 +9538,7 @@ BKPT #0
 	b	.L10990
 .L10996:
 ;line4305
-..lin.126cd548..fd5b7f2e.0_402::
+..lin.33d012f8..fd5b7f2e.0_402::
 .LDWlin402:
 	ldr	r1,[r4]
 	and	r1,r1,1<<31
@@ -9552,7 +9552,7 @@ BKPT #0
 	cmp	r1,1
 	bne	.L10992
 ;line4307
-..lin.126cd548..fd5b7f2e.0_403::
+..lin.33d012f8..fd5b7f2e.0_403::
 .LDWlin403:
 	cpy	r1,r0
 	cpy	r0,r4
@@ -9568,7 +9568,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11001
 ;line4311
-..lin.126cd548..fd5b7f2e.0_404::
+..lin.33d012f8..fd5b7f2e.0_404::
 .LDWlin404:
 	ldr.w	r0,[r4,3084]
 	and	r0,r0,1<<31
@@ -9582,7 +9582,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11001
 ;line4313
-..lin.126cd548..fd5b7f2e.0_405::
+..lin.33d012f8..fd5b7f2e.0_405::
 .LDWlin405:
 	mov	r0,0
 	cbnz	r0,.L11017
@@ -9594,7 +9594,7 @@ BKPT #0
 	str	r0,[r4,3088]
 .L11001:
 ;line4317
-..lin.126cd548..fd5b7f2e.0_406::
+..lin.33d012f8..fd5b7f2e.0_406::
 .LDWlin406:
 	mov	r0,1
 	strb	r0,[r5,1068]
@@ -9659,7 +9659,7 @@ BKPT #0
 	b	.L11160
 .L11166:
 ;line4341
-..lin.126cd548..a1a5e55b.0_407::
+..lin.33d012f8..a1a5e55b.0_407::
 .LDWlin407:
 	ldr	r0,[r4]
 	and	r0,r0,1<<31
@@ -9673,7 +9673,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11162
 ;line4343
-..lin.126cd548..a1a5e55b.0_408::
+..lin.33d012f8..a1a5e55b.0_408::
 .LDWlin408:
 	cpy	r0,r4
 .L11318:
@@ -9686,7 +9686,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11171
 ;line4347
-..lin.126cd548..a1a5e55b.0_409::
+..lin.33d012f8..a1a5e55b.0_409::
 .LDWlin409:
 	ldr.w	r0,[r4,3084]
 	and	r0,r0,1<<31
@@ -9700,7 +9700,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11171
 ;line4349
-..lin.126cd548..a1a5e55b.0_410::
+..lin.33d012f8..a1a5e55b.0_410::
 .LDWlin410:
 	mov	r0,0
 	cmp	r0,1
@@ -9713,7 +9713,7 @@ BKPT #0
 	str	r0,[r4,3088]
 .L11171:
 ;line4353
-..lin.126cd548..a1a5e55b.0_411::
+..lin.33d012f8..a1a5e55b.0_411::
 .LDWlin411:
 	mov	r0,0
 	strb	r0,[r5,1068]
@@ -9767,7 +9767,7 @@ BKPT #0
 	b	.L11330
 .L11326:
 ;line4372
-..lin.126cd548..c3f97a28.0_412::
+..lin.33d012f8..c3f97a28.0_412::
 .LDWlin412:
 	mov	r5,0
 	mov	r1,0
@@ -9792,12 +9792,12 @@ BKPT #0
 	mov	r7,1
 	mov	r7,0
 ;line4377
-..lin.126cd548..c3f97a28.0_413::
+..lin.33d012f8..c3f97a28.0_413::
 .LDWlin413:
 	cmp	r7,1
 	bne	.L11339
 ;line4379
-..lin.126cd548..c3f97a28.0_414::
+..lin.33d012f8..c3f97a28.0_414::
 .LDWlin414:
 	cpy	r0,r4
 .L11604:
@@ -9808,7 +9808,7 @@ BKPT #0
 	cmp	r5,0
 	bne	.L11341
 ;line4384
-..lin.126cd548..c3f97a28.0_415::
+..lin.33d012f8..c3f97a28.0_415::
 .LDWlin415:
 	mov	r0,r10
 	cmp	r0,4
@@ -9821,7 +9821,7 @@ BKPT #0
 .L11565:
 
 ;line4384
-..lin.126cd548..c3f97a28.0_416::
+..lin.33d012f8..c3f97a28.0_416::
 .LDWlin416:
 	jtentry	(.L11359-.L11566)>>1
 	jtentry	(.L11370-.L11566)>>1
@@ -9835,7 +9835,7 @@ BKPT #0
 
 .L11344:
 ;line4388
-..lin.126cd548..c3f97a28.0_417::
+..lin.33d012f8..c3f97a28.0_417::
 .LDWlin417:
 	cpy	r2,r6
 	cpy	r0,r4
@@ -9846,7 +9846,7 @@ BKPT #0
 	b	.L11341
 .L11345:
 ;line4393
-..lin.126cd548..c3f97a28.0_418::
+..lin.33d012f8..c3f97a28.0_418::
 .LDWlin418:
 	cpy	r2,r6
 	cpy	r0,r4
@@ -9857,7 +9857,7 @@ BKPT #0
 	b	.L11341
 .L11346:
 ;line4398
-..lin.126cd548..c3f97a28.0_419::
+..lin.33d012f8..c3f97a28.0_419::
 .LDWlin419:
 	cpy	r2,r6
 	movw	r1,0x4001
@@ -9868,7 +9868,7 @@ BKPT #0
 	b	.L11341
 .L11359:
 ;line4404
-..lin.126cd548..c3f97a28.0_420::
+..lin.33d012f8..c3f97a28.0_420::
 .LDWlin420:
 	ldr	r1,[r4]
 	and	r1,r1,1<<24
@@ -9881,13 +9881,13 @@ BKPT #0
 	cmp	r1,1
 	beq	.L11355
 ;line4406
-..lin.126cd548..c3f97a28.0_421::
+..lin.33d012f8..c3f97a28.0_421::
 .LDWlin421:
 	mov	r5,1
 	b	.L11341
 .L11355:
 ;line4410
-..lin.126cd548..c3f97a28.0_422::
+..lin.33d012f8..c3f97a28.0_422::
 .LDWlin422:
 	cpy	r2,r6
 	cpy	r0,r4
@@ -9898,7 +9898,7 @@ BKPT #0
 	b	.L11341
 .L11370:
 ;line4417
-..lin.126cd548..c3f97a28.0_423::
+..lin.33d012f8..c3f97a28.0_423::
 .LDWlin423:
 	ldr	r1,[r4]
 	and	r1,r1,1<<24
@@ -9911,13 +9911,13 @@ BKPT #0
 	cmp	r1,1
 	beq	.L11366
 ;line4419
-..lin.126cd548..c3f97a28.0_424::
+..lin.33d012f8..c3f97a28.0_424::
 .LDWlin424:
 	mov	r5,1
 	b	.L11341
 .L11366:
 ;line4423
-..lin.126cd548..c3f97a28.0_425::
+..lin.33d012f8..c3f97a28.0_425::
 .LDWlin425:
 	cpy	r2,r6
 	cpy	r0,r4
@@ -9928,7 +9928,7 @@ BKPT #0
 	b	.L11341
 .L11349:
 ;line4430
-..lin.126cd548..c3f97a28.0_426::
+..lin.33d012f8..c3f97a28.0_426::
 .LDWlin426:
 	mov	r0,0
 	cmp	r0,0
@@ -9944,12 +9944,12 @@ BKPT #0
 	b	.L11381
 .L11341:
 ;line4438
-..lin.126cd548..c3f97a28.0_427::
+..lin.33d012f8..c3f97a28.0_427::
 .LDWlin427:
 	cmp	r7,1
 	bne	.L11384
 ;line4440
-..lin.126cd548..c3f97a28.0_428::
+..lin.33d012f8..c3f97a28.0_428::
 .LDWlin428:
 	cpy	r0,r4
 .L11616:
@@ -9958,7 +9958,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L11384
 ;line4443
-..lin.126cd548..c3f97a28.0_429::
+..lin.33d012f8..c3f97a28.0_429::
 .LDWlin429:
 	cpy	r5,r1
 .L11384:
@@ -10025,7 +10025,7 @@ BKPT #0
 	b	.L11626
 .L11622:
 ;line4464
-..lin.126cd548..ec42d7fa.0_430::
+..lin.33d012f8..ec42d7fa.0_430::
 .LDWlin430:
 	mov	r0,1
 	cmp	r4,64
@@ -10047,7 +10047,7 @@ BKPT #0
 	b	.L11635
 .L11631:
 ;line4466
-..lin.126cd548..ec42d7fa.0_431::
+..lin.33d012f8..ec42d7fa.0_431::
 .LDWlin431:
 	cpy	r0,r5
 	lsl	r0,r0,2
@@ -10065,7 +10065,7 @@ BKPT #0
 	cmp	r4,64
 	bhs	.L11637
 ;line4477
-..lin.126cd548..ec42d7fa.0_432::
+..lin.33d012f8..ec42d7fa.0_432::
 .LDWlin432:
 	cpy	r1,r4
 	lsl	r1,r1,4
@@ -10073,13 +10073,13 @@ BKPT #0
 	ldr	r1,[r1,4]
 	cbnz	r1,.L11639
 ;line4479
-..lin.126cd548..ec42d7fa.0_433::
+..lin.33d012f8..ec42d7fa.0_433::
 .LDWlin433:
 	mov	r7,5
 	b	.L11637
 .L11639:
 ;line4483
-..lin.126cd548..ec42d7fa.0_434::
+..lin.33d012f8..ec42d7fa.0_434::
 .LDWlin434:
 	ldrb	r3,[r6,1068]
 	cpy	r2,r4
@@ -10094,7 +10094,7 @@ BKPT #0
 	cmp	r0,2
 	bne	.L11642
 ;line4486
-..lin.126cd548..ec42d7fa.0_435::
+..lin.33d012f8..ec42d7fa.0_435::
 .LDWlin435:
 	cpy	r1,r4
 	cpy	r0,r5
@@ -10110,7 +10110,7 @@ BKPT #0
 	cmp	r0,1
 	bne	.L11637
 ;line4491
-..lin.126cd548..ec42d7fa.0_436::
+..lin.33d012f8..ec42d7fa.0_436::
 .LDWlin436:
 	cpy	r1,r4
 	cpy	r0,r5
@@ -10169,7 +10169,7 @@ BKPT #0
 	b	.L11780
 .L11776:
 ;line4530
-..lin.126cd548..782dcf5d.0_437::
+..lin.33d012f8..782dcf5d.0_437::
 .LDWlin437:
 	mov	r4,0
 	mov	r1,0
@@ -10195,12 +10195,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line4538
-..lin.126cd548..782dcf5d.0_438::
+..lin.33d012f8..782dcf5d.0_438::
 .LDWlin438:
 	cmp	r6,1
 	bne	.L11793
 ;line4540
-..lin.126cd548..782dcf5d.0_439::
+..lin.33d012f8..782dcf5d.0_439::
 .LDWlin439:
 	cpy	r0,r5
 .L11944:
@@ -10217,25 +10217,25 @@ BKPT #0
 	mov	r1,0
 .L11791:
 ;line4545
-..lin.126cd548..782dcf5d.0_440::
+..lin.33d012f8..782dcf5d.0_440::
 .LDWlin440:
 	cbnz	r1,.L11798
 	cbnz	r4,.L11798
 ;line4547
-..lin.126cd548..782dcf5d.0_441::
+..lin.33d012f8..782dcf5d.0_441::
 .LDWlin441:
 	mov	r4,1
 .L11798:
 	cbnz	r4,.L11801
 ;line4552
-..lin.126cd548..782dcf5d.0_442::
+..lin.33d012f8..782dcf5d.0_442::
 .LDWlin442:
 	str	r7,[r5,20]
 .L11801:
 	cmp	r6,1
 	bne	.L11803
 ;line4556
-..lin.126cd548..782dcf5d.0_443::
+..lin.33d012f8..782dcf5d.0_443::
 .LDWlin443:
 	cpy	r0,r5
 .L11946:
@@ -10244,7 +10244,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L11803
 ;line4559
-..lin.126cd548..782dcf5d.0_444::
+..lin.33d012f8..782dcf5d.0_444::
 .LDWlin444:
 	cpy	r4,r1
 .L11803:
@@ -10298,7 +10298,7 @@ BKPT #0
 	b	.L11956
 .L11952:
 ;line4572
-..lin.126cd548..8462f53e.0_445::
+..lin.33d012f8..8462f53e.0_445::
 .LDWlin445:
 	mov	r4,0
 	mov	r1,0
@@ -10324,12 +10324,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line4580
-..lin.126cd548..8462f53e.0_446::
+..lin.33d012f8..8462f53e.0_446::
 .LDWlin446:
 	cmp	r6,1
 	bne	.L11969
 ;line4582
-..lin.126cd548..8462f53e.0_447::
+..lin.33d012f8..8462f53e.0_447::
 .LDWlin447:
 	cpy	r0,r5
 .L12120:
@@ -10346,25 +10346,25 @@ BKPT #0
 	mov	r1,0
 .L11967:
 ;line4587
-..lin.126cd548..8462f53e.0_448::
+..lin.33d012f8..8462f53e.0_448::
 .LDWlin448:
 	cbnz	r1,.L11974
 	cbnz	r4,.L11974
 ;line4589
-..lin.126cd548..8462f53e.0_449::
+..lin.33d012f8..8462f53e.0_449::
 .LDWlin449:
 	mov	r4,1
 .L11974:
 	cbnz	r4,.L11977
 ;line4594
-..lin.126cd548..8462f53e.0_450::
+..lin.33d012f8..8462f53e.0_450::
 .LDWlin450:
 	str	r7,[r5,24]
 .L11977:
 	cmp	r6,1
 	bne	.L11979
 ;line4599
-..lin.126cd548..8462f53e.0_451::
+..lin.33d012f8..8462f53e.0_451::
 .LDWlin451:
 	cpy	r0,r5
 .L12122:
@@ -10373,7 +10373,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L11979
 ;line4602
-..lin.126cd548..8462f53e.0_452::
+..lin.33d012f8..8462f53e.0_452::
 .LDWlin452:
 	cpy	r4,r1
 .L11979:
@@ -10427,7 +10427,7 @@ BKPT #0
 	b	.L12132
 .L12128:
 ;line4622
-..lin.126cd548..154cd5c9.0_453::
+..lin.33d012f8..154cd5c9.0_453::
 .LDWlin453:
 	mov	r4,0
 	mov	r1,0
@@ -10452,12 +10452,12 @@ BKPT #0
 	mov	r6,1
 	mov	r6,0
 ;line4627
-..lin.126cd548..154cd5c9.0_454::
+..lin.33d012f8..154cd5c9.0_454::
 .LDWlin454:
 	cmp	r6,1
 	bne	.L12145
 ;line4629
-..lin.126cd548..154cd5c9.0_455::
+..lin.33d012f8..154cd5c9.0_455::
 .LDWlin455:
 	cpy	r0,r5
 .L12330:
@@ -10475,12 +10475,12 @@ BKPT #0
 .L12143:
 	cpy	r0,r1
 ;line4635
-..lin.126cd548..154cd5c9.0_456::
+..lin.33d012f8..154cd5c9.0_456::
 .LDWlin456:
 	cbnz	r0,.L12150
 	cbnz	r4,.L12150
 ;line4637
-..lin.126cd548..154cd5c9.0_457::
+..lin.33d012f8..154cd5c9.0_457::
 .LDWlin457:
 	mov	r4,1
 .L12150:
@@ -10488,7 +10488,7 @@ BKPT #0
 .L12332:
 
 ;line4644
-..lin.126cd548..154cd5c9.0_458::
+..lin.33d012f8..154cd5c9.0_458::
 .LDWlin458:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_10
 	cbz	r7,.L12159
@@ -10507,14 +10507,14 @@ BKPT #0
 .L12334:
 
 ;line4647
-..lin.126cd548..154cd5c9.0_459::
+..lin.33d012f8..154cd5c9.0_459::
 .LDWlin459:
 	bl	SchM_Exit_Can_CAN_EXCLUSIVE_AREA_10
 .L12153:
 	cmp	r6,1
 	bne	.L12162
 ;line4652
-..lin.126cd548..154cd5c9.0_460::
+..lin.33d012f8..154cd5c9.0_460::
 .LDWlin460:
 	cpy	r0,r5
 .L12336:
@@ -10523,7 +10523,7 @@ BKPT #0
 	cpy	r1,r0
 	cbz	r1,.L12162
 ;line4655
-..lin.126cd548..154cd5c9.0_461::
+..lin.33d012f8..154cd5c9.0_461::
 .LDWlin461:
 	cpy	r4,r1
 .L12162:
@@ -10582,7 +10582,7 @@ FlexCAN_Ip_GetListenOnlyMode::
 .L12386:
 
 ;line4673
-..lin.126cd548..5aef0bb3.0_462::
+..lin.33d012f8..5aef0bb3.0_462::
 .LDWlin462:
 	ret
 __ghs_eofn_FlexCAN_Ip_GetListenOnlyMode::
@@ -10637,13 +10637,13 @@ BKPT #0
 	b	.L12394
 .L12390:
 ;line4907
-..lin.126cd548..e76779af.0_463::
+..lin.33d012f8..e76779af.0_463::
 .LDWlin463:
 	ldr	r0,[r4,4]
 	and	r0,r0,64
 	cbz	r0,.L12396
 ;line4909
-..lin.126cd548..e76779af.0_464::
+..lin.33d012f8..e76779af.0_464::
 .LDWlin464:
 	mov	r6,0
 	ldr	r0,[r4,32]
@@ -10652,7 +10652,7 @@ BKPT #0
 .L12494:
 
 ;line4913
-..lin.126cd548..e76779af.0_465::
+..lin.33d012f8..e76779af.0_465::
 .LDWlin465:
 	bl	SchM_Enter_Can_CAN_EXCLUSIVE_AREA_20
 	ldr	r0,[r4,4]
@@ -10673,7 +10673,7 @@ BKPT #0
 	b	.L12400
 .L12402:
 ;line4924
-..lin.126cd548..e76779af.0_466::
+..lin.33d012f8..e76779af.0_466::
 .LDWlin466:
 	mov	r0,sp
 	mov	r1,0
@@ -10684,13 +10684,13 @@ BKPT #0
 	cmp	r5,r10
 	blo	.L12400
 ;line4927
-..lin.126cd548..e76779af.0_467::
+..lin.33d012f8..e76779af.0_467::
 .LDWlin467:
 	mov	r6,3
 	b	.L12396
 .L12400:
 ;line4922
-..lin.126cd548..e76779af.0_468::
+..lin.33d012f8..e76779af.0_468::
 .LDWlin468:
 	ldr	r0,[r4,32]
 	and	r0,r0,32
@@ -10698,7 +10698,7 @@ BKPT #0
 	bne	.L12402
 .L12396:
 ;line4934
-..lin.126cd548..e76779af.0_469::
+..lin.33d012f8..e76779af.0_469::
 .LDWlin469:
 	cpy	r0,r6
 .LDW632:
@@ -10736,7 +10736,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 ;Flexcan_Ip_apxState	Flexcan_Ip_apxState	static
 
 	.ghsnote info, 27, 8195, 640
-..eof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0::
+..eof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0::
 	.section	.debug_abbrev		;off: 0
 .Ldw_abbr_begin:
 	.section	.debug_str		;off: 0
@@ -10748,15 +10748,15 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.w	.Ldw_abbr_begin
 	.data.b	4
 	.data.b	1
-	.data.w	..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	..eof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	..eof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.section	.debug_str		;off: 0
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,77,99,97,108,69,120,116,95,84,83,95,84,52,48,68,120,77,49,73,48,82,48,47,77,67,65,76,95,68,101,108,105,118,101,114,121,47,101,99
 	.data.b	108,105,112,115,101,47,112,108,117,103,105,110,115,47,67,97,110,95,84,83,95,84,52,48,68,51,52,77,50,48,73,49,82,48,47,115,114,99,47,70,108,101,120,67,65,78,95,73,112,46,99,0
 	.section	.debug_info		;off: 20
 	.data.w	.Ldw_str_begin
 	.section	.debug_str		;off: 112
-	.data.b	68,58,92,68,101,115,107,116,111,112,92,65,99,104,105,116,97,92,83,51,50,75,51,52,50,92,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,92,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,92,68,101,115,107,116,111,112,92,65,99,104,105,116,97,92,83,51,50,75,51,52,50,92,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,92,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,92,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,92,117,116,105,108,0
 	.section	.debug_info		;off: 24
 	.data.w	.Ldw_str_begin+112
@@ -10809,11 +10809,11 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,67,111,109,112,105,108,101,114,95,84,83,95,84,120,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,67,111,109,112,105,108,101,114
 	.data.b	46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,67,111,109
 	.data.b	112,105,108,101,114,95,67,102,103,73,110,116,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,115,111,117,114,99,101,47,99,111,110,102,105,103,47,67,111,109,112,105,108,101,114,95,67,102,103,46,104
 	.data.b	0
 	.data.b	0,0,0
@@ -10823,7 +10823,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,67,111,109,112,105,108,101,114,95,84,83,95,84,120,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,67,79,82,84,69,88,77,47
 	.data.b	109,117,108,116,105,47,67,111,109,112,105,108,101,114,95,83,112,101,99,105,102,105,99,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,67,111,109
 	.data.b	112,105,108,101,114,95,67,102,103,69,120,116,77,99,97,108,46,104,0
 	.data.b	0,0,0
@@ -10832,7 +10832,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0,0,0
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,66,97,115,101,95,84,83,95,84,120,68,120,77,53,73,50,82,48,47,105,110,99,108,117,100,101,47,83,116,100,95,84,121,112,101,115,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,80,108,97
 	.data.b	116,102,111,114,109,95,84,121,112,101,115,46,104,0
 	.data.b	0,0,0
@@ -10848,11 +10848,11 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,77,99,97,108,69,120,116,95,84,83,95,84,52,48,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,79,115,73,102,95,73,110,116
 	.data.b	101,114,110,97,108,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,79,115,73
 	.data.b	102,95,67,102,103,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,79,115,73
 	.data.b	102,95,65,114,99,104,67,102,103,46,104,0
 	.data.b	0,0,0
@@ -10885,7 +10885,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,79,115,95,84,83,95,84,52,48,68,51,55,77,54,73,49,82,48,47,105,110,99,108,117,100,101,47,67,79,82,84,69,88,77,47,79,115,95,104
 	.data.b	119,95,67,79,82,84,69,88,77,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,79,115,95
 	.data.b	107,99,111,110,102,105,103,46,104,0
 	.data.b	0,0,0
@@ -10894,7 +10894,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,79,115,95,84,83,95,84,52,48,68,51,55,77,54,73,49,82,48,47,105,110,99,108,117,100,101,47,67,79,82,84,69,88,77,47,79,115,95,100
 	.data.b	101,102,115,95,67,79,82,84,69,88,77,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,79,115,95
 	.data.b	117,115,101,114,46,104,0
 	.data.b	0,0,0
@@ -10931,11 +10931,11 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,79,115,95,84,83,95,84,52,48,68,51,55,77,54,73,49,82,48,47,105,110,99,108,117,100,101,47,79,115,95,99,97,108,108,111,117,116,115,46
 	.data.b	104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,115,111,117,114,99,101,47,98,111,97,114,100,115,47,83,51,50,75,51,52,52,69,86,66,95,81,49,55
 	.data.b	50,95,83,67,79,83,47,98,111,97,114,100,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,115,111,117,114,99,101,47,98,111,97,114,100,115,47,83,51,50,75,51,52,52,69,86,66,95,81,49,55
 	.data.b	50,95,83,67,79,83,47,98,111,97,114,100,95,118,101,114,115,105,111,110,95,99,104,101,99,107,46,104,0
 	.data.b	0,0,0
@@ -10972,7 +10972,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,79,115,95,84,83,95,84,52,48,68,51,55,77,54,73,49,82,48,47,105,110,99,108,117,100,101,47,79,115,95,108,105,98,99,111,110,102,105,103
 	.data.b	46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,79,115,95
 	.data.b	108,105,98,99,102,103,46,104,0
 	.data.b	0,0,0
@@ -11048,7 +11048,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	108,105,112,115,101,47,112,108,117,103,105,110,115,47,67,97,110,95,84,83,95,84,52,48,68,51,52,77,50,48,73,49,82,48,47,105,110,99,108,117,100,101,47,70,108,101,120,67,65,78,95,73,112,95,68,101,118,105,99,101
 	.data.b	82,101,103,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,70,108,101
 	.data.b	120,67,65,78,95,73,112,95,67,102,103,68,101,102,105,110,101,115,46,104,0
 	.data.b	0,0,0
@@ -11261,17 +11261,17 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	108,105,112,115,101,47,112,108,117,103,105,110,115,47,67,97,110,95,84,83,95,84,52,48,68,51,52,77,50,48,73,49,82,48,47,105,110,99,108,117,100,101,47,70,108,101,120,67,65,78,95,73,112,95,84,121,112,101,115,46
 	.data.b	104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,70,108,101
 	.data.b	120,67,65,78,95,73,112,95,67,102,103,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,70,108,101
 	.data.b	120,67,65,78,95,73,112,95,80,66,99,102,103,46,104,0
 	.data.b	0,0,0
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,77,99,97,108,69,120,116,95,84,83,95,84,52,48,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,79,115,73,102,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,66,97,115
 	.data.b	101,78,88,80,95,77,101,109,77,97,112,46,104,0
 	.data.b	0,0,0
@@ -11279,7 +11279,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	108,105,112,115,101,47,112,108,117,103,105,110,115,47,67,97,110,95,84,83,95,84,52,48,68,51,52,77,50,48,73,49,82,48,47,105,110,99,108,117,100,101,47,70,108,101,120,67,65,78,95,73,112,95,87,114,97,112,112,101
 	.data.b	114,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,67,97,110
 	.data.b	95,77,101,109,77,97,112,46,104,0
 	.data.b	0,0,0
@@ -11293,29 +11293,29 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,77,99,97,108,69,120,116,95,84,83,95,84,52,48,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,68,101,118,97,115,115,101,114
 	.data.b	116,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,83,99,104
 	.data.b	77,95,67,97,110,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,83,99,104
 	.data.b	77,95,67,97,110,84,121,112,101,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,82,116,101
 	.data.b	95,84,121,112,101,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,82,116,101
 	.data.b	46,104,0
 	.data.b	0,0,0
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,66,97,115,101,95,84,83,95,84,120,68,120,77,53,73,50,82,48,47,105,110,99,108,117,100,101,47,84,83,65,117,116,111,115,97,114,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,84,83,65
 	.data.b	117,116,111,115,97,114,95,67,102,103,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,115,111,117,114,99,101,47,99,111,110,102,105,103,47,80,108,97,116,102,111,114,109,115,95,84,83,80,108
 	.data.b	97,116,102,111,114,109,115,46,104,0
 	.data.b	0,0,0
@@ -11331,7 +11331,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,65,116,111,109,105,99,115,95,84,83,95,84,120,68,120,77,49,73,48,82,48,47,105,110,99,108,117,100,101,47,65,116,111,109,105,99,115,95,112
 	.data.b	108,97,116,102,111,114,109,95,116,121,112,101,115,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,65,116,111
 	.data.b	109,105,99,115,95,77,101,109,77,97,112,46,104,0
 	.data.b	0,0,0
@@ -11341,18 +11341,18 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,66,97,115,101,95,84,83,95,84,120,68,120,77,53,73,50,82,48,47,105,110,99,108,117,100,101,47,67,111,109,83,116,97,99,107,95,84,121,112
 	.data.b	101,115,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,67,111,109
 	.data.b	83,116,97,99,107,95,67,102,103,46,104,0
 	.data.b	0,0,0
 	.data.b	67,58,47,69,66,47,116,114,101,115,111,115,47,112,108,117,103,105,110,115,47,66,97,115,101,95,84,83,95,84,120,68,120,77,53,73,50,82,48,47,105,110,99,108,117,100,101,47,67,97,110,95,71,101,110,101,114,97,108,84
 	.data.b	121,112,101,115,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,67,97,110
 	.data.b	95,71,101,110,101,114,97,108,84,121,112,101,115,95,67,102,103,46,104,0
 	.data.b	0,0,0
-	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,73,99,117,47,65,112,112,108,105,99,97,116,105
+	.data.b	68,58,47,68,101,115,107,116,111,112,47,65,99,104,105,116,97,47,83,51,50,75,51,52,50,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,95,109,97,105,110,95,78,118,109,47,65,112,112,108,105,99,97,116,105
 	.data.b	111,110,95,67,97,110,95,109,97,105,110,95,83,112,105,47,65,112,112,108,105,99,97,116,105,111,110,95,67,97,110,47,111,117,116,112,117,116,47,103,101,110,101,114,97,116,101,100,47,105,110,99,108,117,100,101,47,82,116,101
 	.data.b	95,77,101,109,77,97,112,46,104,0
 	.data.b	0,0,0
@@ -17210,7 +17210,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.b	5
 	.data.b	3
-	.data.w	Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	Flexcan_Ip_apxBase..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 
 	.section	.debug_abbrev		;off: 202
 	.data.b	6
@@ -17240,7 +17240,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.b	5
 	.data.b	3
-	.data.w	Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	Flexcan_Ip_apxState..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 
 	.data.b	27
 	.section	.debug_str		;off: 4336
@@ -20037,7 +20037,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_InitRxFifo
 	.data.b	1
 	.data.b	93
@@ -20086,8 +20086,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 144
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_InitRxFifo-FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_InitRxFifo-FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW21
 	.data.b	0
@@ -20095,7 +20095,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 17998
 	.data.b	0,5,2
-	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	156,2
@@ -20153,12 +20153,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.w	.Ldw_loc_begin
 	.section	.debug_loc		;off: 0
 .Ldw_loc_begin:
-	.data.w	.LDW01-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW01-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -20190,12 +20190,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+30
 	.section	.debug_loc		;off: 30
-	.data.w	.LDW01-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW01-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -20228,8 +20228,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+60
 	.section	.debug_loc		;off: 60
-	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW11-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW21-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -20263,7 +20263,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_InitCtroll
 	.data.b	1
 	.data.b	93
@@ -20282,8 +20282,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 168
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_InitCtroll-FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_InitCtroll-FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW51
 	.data.b	0
@@ -20291,7 +20291,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18061
 	.data.b	0,5,2
-	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitCtroll..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	250,2
@@ -20360,12 +20360,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+79
 	.section	.debug_loc		;off: 79
-	.data.w	.LDW31-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW31-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -20384,12 +20384,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+109
 	.section	.debug_loc		;off: 109
-	.data.w	.LDW31-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW31-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -20413,8 +20413,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+139
 	.section	.debug_loc		;off: 139
-	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW41-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW51-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -20434,7 +20434,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_InitController
 	.data.b	1
 	.data.b	93
@@ -20453,8 +20453,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 192
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_InitController-FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_InitController-FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW81
 	.data.b	0
@@ -20462,7 +20462,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18151
 	.data.b	0,5,2
-	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitController..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	168,3
@@ -20545,12 +20545,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+158
 	.section	.debug_loc		;off: 158
-	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -20569,12 +20569,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+188
 	.section	.debug_loc		;off: 188
-	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -20593,12 +20593,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+218
 	.section	.debug_loc		;off: 218
-	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW61-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -20622,8 +20622,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+248
 	.section	.debug_loc		;off: 248
-	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW71-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW81-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -20642,7 +20642,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	237,3
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_InitBaudrate
 	.data.b	1
 	.data.b	93
@@ -20690,8 +20690,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 216
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_InitBaudrate-FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_InitBaudrate-FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW12
 	.data.b	0
@@ -20699,7 +20699,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18260
 	.data.b	0,5,2
-	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_InitBaudrate..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	237,3
@@ -20772,8 +20772,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+267
 	.section	.debug_loc		;off: 267
-	.data.w	.LDW91-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW12-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW91-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW12-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -20792,8 +20792,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+286
 	.section	.debug_loc		;off: 286
-	.data.w	.LDW91-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW12-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW91-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW12-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -20816,7 +20816,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	161,4
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageEnhancedFifoData
 	.data.b	1
 	.data.b	93
@@ -20835,8 +20835,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 240
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageEnhancedFifoData-FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageEnhancedFifoData-FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW42
 	.data.b	0
@@ -20844,7 +20844,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18374
 	.data.b	0,5,2
-	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	161,4
@@ -20901,8 +20901,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+305
 	.section	.debug_loc		;off: 305
-	.data.w	.LDW22-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW22-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -20926,8 +20926,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+324
 	.section	.debug_loc		;off: 324
-	.data.w	.LDW32-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW32-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -20947,8 +20947,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+343
 	.section	.debug_loc		;off: 343
-	.data.w	.LDW32-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW32-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW42-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -20968,7 +20968,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_StartRxMessageEnhancedFifoData
 	.data.b	1
 	.data.b	93
@@ -20987,8 +20987,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 264
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_StartRxMessageEnhancedFifoData-FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_StartRxMessageEnhancedFifoData-FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW72
 	.data.b	0
@@ -20996,7 +20996,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18448
 	.data.b	0,5,2
-	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageEnhancedFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	169,5
@@ -21075,8 +21075,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+362
 	.section	.debug_loc		;off: 362
-	.data.w	.LDW52-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW52-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -21095,8 +21095,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+381
 	.section	.debug_loc		;off: 381
-	.data.w	.LDW52-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW52-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -21120,8 +21120,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+400
 	.section	.debug_loc		;off: 400
-	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -21141,8 +21141,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+419
 	.section	.debug_loc		;off: 419
-	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -21162,8 +21162,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+438
 	.section	.debug_loc		;off: 438
-	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW62-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW72-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -21183,7 +21183,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_ProccessEnhancedRxFifo
 	.data.b	1
 	.data.b	93
@@ -21202,8 +21202,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 288
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_ProccessEnhancedRxFifo-FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_ProccessEnhancedRxFifo-FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW03
 	.data.b	0
@@ -21211,7 +21211,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18559
 	.data.b	0,5,2
-	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessEnhancedRxFifo..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	170,6
@@ -21340,12 +21340,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+457
 	.section	.debug_loc		;off: 457
-	.data.w	.LDW82-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW82-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -21364,8 +21364,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+487
 	.section	.debug_loc		;off: 487
-	.data.w	.LDW82-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW82-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -21389,8 +21389,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+506
 	.section	.debug_loc		;off: 506
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -21410,8 +21410,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+525
 	.section	.debug_loc		;off: 525
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -21431,8 +21431,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+544
 	.section	.debug_loc		;off: 544
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -21452,8 +21452,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+563
 	.section	.debug_loc		;off: 563
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -21474,8 +21474,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+583
 	.section	.debug_loc		;off: 583
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -21495,8 +21495,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+602
 	.section	.debug_loc		;off: 602
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -21517,8 +21517,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+622
 	.section	.debug_loc		;off: 622
-	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW92-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW03-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -21538,7 +21538,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_ProccessLegacyRxFIFO
 	.data.b	1
 	.data.b	93
@@ -21557,8 +21557,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 312
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_ProccessLegacyRxFIFO-FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_ProccessLegacyRxFIFO-FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW33
 	.data.b	0
@@ -21566,7 +21566,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18749
 	.data.b	0,5,2
-	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_ProccessLegacyRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	255,6
@@ -21697,12 +21697,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+641
 	.section	.debug_loc		;off: 641
-	.data.w	.LDW13-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW13-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -21721,8 +21721,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+671
 	.section	.debug_loc		;off: 671
-	.data.w	.LDW13-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW13-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -21746,8 +21746,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+690
 	.section	.debug_loc		;off: 690
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -21767,8 +21767,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+709
 	.section	.debug_loc		;off: 709
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -21788,8 +21788,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+728
 	.section	.debug_loc		;off: 728
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -21810,8 +21810,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+748
 	.section	.debug_loc		;off: 748
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -21832,8 +21832,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+768
 	.section	.debug_loc		;off: 768
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	12
@@ -21854,8 +21854,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+788
 	.section	.debug_loc		;off: 788
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	16
@@ -21876,8 +21876,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+808
 	.section	.debug_loc		;off: 808
-	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW23-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW33-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -21897,7 +21897,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_StartRxMessageBufferData
 	.data.b	1
 	.data.b	93
@@ -21916,8 +21916,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 336
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_StartRxMessageBufferData-FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_StartRxMessageBufferData-FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW63
 	.data.b	0
@@ -21925,7 +21925,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 18941
 	.data.b	0,5,2
-	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageBufferData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	211,7
@@ -21983,8 +21983,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+827
 	.section	.debug_loc		;off: 827
-	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -22003,12 +22003,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+846
 	.section	.debug_loc		;off: 846
-	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -22027,12 +22027,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+876
 	.section	.debug_loc		;off: 876
-	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -22051,12 +22051,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+906
 	.section	.debug_loc		;off: 906
-	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW43-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -22080,8 +22080,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+936
 	.section	.debug_loc		;off: 936
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -22101,8 +22101,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+955
 	.section	.debug_loc		;off: 955
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	92
 	.data.w	0x0
@@ -22122,8 +22122,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+974
 	.section	.debug_loc		;off: 974
-	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW53-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW63-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -22143,7 +22143,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_StartSendData
 	.data.b	1
 	.data.b	93
@@ -22162,8 +22162,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 360
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_StartSendData-FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_StartSendData-FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW93
 	.data.b	0
@@ -22171,7 +22171,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19020
 	.data.b	0,5,2
-	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartSendData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	132,8
@@ -22268,8 +22268,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+993
 	.section	.debug_loc		;off: 993
-	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -22288,12 +22288,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1012
 	.section	.debug_loc		;off: 1012
-	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -22312,12 +22312,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1042
 	.section	.debug_loc		;off: 1042
-	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -22336,12 +22336,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1072
 	.section	.debug_loc		;off: 1072
-	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -22360,8 +22360,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1102
 	.section	.debug_loc		;off: 1102
-	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW73-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	56
@@ -22386,8 +22386,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1122
 	.section	.debug_loc		;off: 1122
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -22407,8 +22407,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1141
 	.section	.debug_loc		;off: 1141
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -22429,8 +22429,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1161
 	.section	.debug_loc		;off: 1161
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -22450,8 +22450,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1180
 	.section	.debug_loc		;off: 1180
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -22471,8 +22471,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1199
 	.section	.debug_loc		;off: 1199
-	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW83-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW93-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	92
 	.data.w	0x0
@@ -22492,7 +22492,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_StartRxMessageFifoData
 	.data.b	1
 	.data.b	93
@@ -22511,8 +22511,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 384
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_StartRxMessageFifoData-FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_StartRxMessageFifoData-FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW24
 	.data.b	0
@@ -22520,7 +22520,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19163
 	.data.b	0,5,2
-	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_StartRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	207,8
@@ -22610,12 +22610,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1218
 	.section	.debug_loc		;off: 1218
-	.data.w	.LDW04-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW04-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -22634,8 +22634,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1248
 	.section	.debug_loc		;off: 1248
-	.data.w	.LDW04-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW04-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -22659,8 +22659,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1267
 	.section	.debug_loc		;off: 1267
-	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -22680,8 +22680,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1286
 	.section	.debug_loc		;off: 1286
-	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -22701,8 +22701,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1305
 	.section	.debug_loc		;off: 1305
-	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW14-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW24-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -22721,7 +22721,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	234,9
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_IRQHandlerRxMB
 	.data.b	1
 	.data.b	93
@@ -22740,8 +22740,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 408
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_IRQHandlerRxMB-FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_IRQHandlerRxMB-FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW54
 	.data.b	0
@@ -22749,7 +22749,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19285
 	.data.b	0,5,2
-	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerRxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	234,9
@@ -22831,12 +22831,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1324
 	.section	.debug_loc		;off: 1324
-	.data.w	.LDW34-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW34-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -22855,12 +22855,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1354
 	.section	.debug_loc		;off: 1354
-	.data.w	.LDW34-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW34-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -22884,8 +22884,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1384
 	.section	.debug_loc		;off: 1384
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -22905,8 +22905,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1403
 	.section	.debug_loc		;off: 1403
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -22926,8 +22926,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1422
 	.section	.debug_loc		;off: 1422
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -22948,8 +22948,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1442
 	.section	.debug_loc		;off: 1442
-	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW44-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW54-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -22968,7 +22968,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	220,10
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_IRQHandlerTxMB
 	.data.b	1
 	.data.b	93
@@ -22987,8 +22987,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 432
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_IRQHandlerTxMB-FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_IRQHandlerTxMB-FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW84
 	.data.b	0
@@ -22996,7 +22996,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19393
 	.data.b	0,5,2
-	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerTxMB..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	220,10
@@ -23082,12 +23082,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1461
 	.section	.debug_loc		;off: 1461
-	.data.w	.LDW64-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW64-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -23106,12 +23106,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1491
 	.section	.debug_loc		;off: 1491
-	.data.w	.LDW64-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW64-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -23135,8 +23135,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1521
 	.section	.debug_loc		;off: 1521
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -23156,8 +23156,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1540
 	.section	.debug_loc		;off: 1540
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -23177,8 +23177,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1559
 	.section	.debug_loc		;off: 1559
-	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW74-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW84-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -23471,7 +23471,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	204,12
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_IRQHandlerEnhancedRxFIFO
 	.data.b	1
 	.data.b	93
@@ -23490,8 +23490,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 456
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_IRQHandlerEnhancedRxFIFO-FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_IRQHandlerEnhancedRxFIFO-FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW15
 	.data.b	0
@@ -23499,7 +23499,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19515
 	.data.b	0,5,2
-	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_IRQHandlerEnhancedRxFIFO..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	204,12
@@ -23606,12 +23606,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1579
 	.section	.debug_loc		;off: 1579
-	.data.w	.LDW94-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW94-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -23630,12 +23630,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1609
 	.section	.debug_loc		;off: 1609
-	.data.w	.LDW94-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW94-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -23659,8 +23659,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1639
 	.section	.debug_loc		;off: 1639
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -23680,8 +23680,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1658
 	.section	.debug_loc		;off: 1658
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -23701,8 +23701,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1677
 	.section	.debug_loc		;off: 1677
-	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW05-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW15-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -23723,7 +23723,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	30
 	.data.b	1
 	.data.w	.Ldw_begin+5363
-	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_AbortTxTransfer
 	.data.b	1
 	.data.b	93
@@ -23742,8 +23742,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 480
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_AbortTxTransfer-FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_AbortTxTransfer-FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW45
 	.data.b	0
@@ -23751,7 +23751,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19673
 	.data.b	0,5,2
-	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortTxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	213,13
@@ -23846,8 +23846,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1697
 	.section	.debug_loc		;off: 1697
-	.data.w	.LDW25-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW25-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -23866,12 +23866,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1716
 	.section	.debug_loc		;off: 1716
-	.data.w	.LDW25-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW25-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -23895,8 +23895,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1746
 	.section	.debug_loc		;off: 1746
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -23916,8 +23916,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1765
 	.section	.debug_loc		;off: 1765
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -23938,8 +23938,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1785
 	.section	.debug_loc		;off: 1785
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -23959,8 +23959,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1804
 	.section	.debug_loc		;off: 1804
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -23981,8 +23981,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1824
 	.section	.debug_loc		;off: 1824
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -24002,8 +24002,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1843
 	.section	.debug_loc		;off: 1843
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -24023,8 +24023,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1862
 	.section	.debug_loc		;off: 1862
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -24044,8 +24044,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1881
 	.section	.debug_loc		;off: 1881
-	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW35-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW45-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -24064,7 +24064,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	146,14
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_AbortRxTransfer
 	.data.b	1
 	.data.b	93
@@ -24083,8 +24083,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 504
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_AbortRxTransfer-FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_AbortRxTransfer-FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW75
 	.data.b	0
@@ -24092,7 +24092,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 19804
 	.data.b	0,5,2
-	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_AbortRxTransfer..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	146,14
@@ -24176,12 +24176,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1900
 	.section	.debug_loc		;off: 1900
-	.data.w	.LDW55-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW55-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -24200,12 +24200,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1930
 	.section	.debug_loc		;off: 1930
-	.data.w	.LDW55-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW55-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -24229,8 +24229,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1960
 	.section	.debug_loc		;off: 1960
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -24250,8 +24250,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1979
 	.section	.debug_loc		;off: 1979
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -24271,8 +24271,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+1998
 	.section	.debug_loc		;off: 1998
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24292,8 +24292,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2017
 	.section	.debug_loc		;off: 2017
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24313,8 +24313,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2036
 	.section	.debug_loc		;off: 2036
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24334,8 +24334,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2055
 	.section	.debug_loc		;off: 2055
-	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW65-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW75-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -24479,12 +24479,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2074
 	.section	.debug_loc		;off: 2074
-	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -24503,12 +24503,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2104
 	.section	.debug_loc		;off: 2104
-	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -24527,12 +24527,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2134
 	.section	.debug_loc		;off: 2134
-	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW85-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -24556,8 +24556,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2164
 	.section	.debug_loc		;off: 2164
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -24577,8 +24577,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2183
 	.section	.debug_loc		;off: 2183
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -24598,8 +24598,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2202
 	.section	.debug_loc		;off: 2202
-	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW95-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW06-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24700,12 +24700,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2221
 	.section	.debug_loc		;off: 2221
-	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -24724,12 +24724,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2251
 	.section	.debug_loc		;off: 2251
-	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -24748,12 +24748,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2281
 	.section	.debug_loc		;off: 2281
-	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -24772,8 +24772,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2311
 	.section	.debug_loc		;off: 2311
-	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -24792,13 +24792,13 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2330
 	.section	.debug_loc		;off: 2330
-	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW16-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	28
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	92
 	.data.w	0x0
@@ -24822,8 +24822,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2361
 	.section	.debug_loc		;off: 2361
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24843,8 +24843,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2380
 	.section	.debug_loc		;off: 2380
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -24864,8 +24864,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2399
 	.section	.debug_loc		;off: 2399
-	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW26-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW36-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -24975,8 +24975,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2418
 	.section	.debug_loc		;off: 2418
-	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -24995,12 +24995,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2437
 	.section	.debug_loc		;off: 2437
-	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -25019,12 +25019,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2467
 	.section	.debug_loc		;off: 2467
-	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -25043,12 +25043,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2497
 	.section	.debug_loc		;off: 2497
-	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW46-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -25072,8 +25072,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2527
 	.section	.debug_loc		;off: 2527
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -25093,8 +25093,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2546
 	.section	.debug_loc		;off: 2546
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -25115,8 +25115,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2566
 	.section	.debug_loc		;off: 2566
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -25136,8 +25136,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2585
 	.section	.debug_loc		;off: 2585
-	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW56-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW66-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -25227,12 +25227,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2604
 	.section	.debug_loc		;off: 2604
-	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -25251,12 +25251,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2634
 	.section	.debug_loc		;off: 2634
-	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -25275,8 +25275,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2664
 	.section	.debug_loc		;off: 2664
-	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -25295,12 +25295,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2683
 	.section	.debug_loc		;off: 2683
-	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW76-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -25324,8 +25324,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2713
 	.section	.debug_loc		;off: 2713
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -25345,8 +25345,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2732
 	.section	.debug_loc		;off: 2732
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -25366,8 +25366,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2751
 	.section	.debug_loc		;off: 2751
-	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW86-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW96-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -25540,12 +25540,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2770
 	.section	.debug_loc		;off: 2770
-	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -25564,12 +25564,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2800
 	.section	.debug_loc		;off: 2800
-	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -25588,12 +25588,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2830
 	.section	.debug_loc		;off: 2830
-	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -25612,12 +25612,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2860
 	.section	.debug_loc		;off: 2860
-	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -25636,13 +25636,13 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2890
 	.section	.debug_loc		;off: 2890
-	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW07-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	52
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -25666,8 +25666,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2921
 	.section	.debug_loc		;off: 2921
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -25687,8 +25687,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2940
 	.section	.debug_loc		;off: 2940
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -25709,8 +25709,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2960
 	.section	.debug_loc		;off: 2960
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -25731,8 +25731,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+2980
 	.section	.debug_loc		;off: 2980
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	12
@@ -25753,8 +25753,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3000
 	.section	.debug_loc		;off: 3000
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -25774,8 +25774,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3019
 	.section	.debug_loc		;off: 3019
-	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW17-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW27-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -25881,12 +25881,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3038
 	.section	.debug_loc		;off: 3038
-	.data.w	.LDW37-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW37-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -25905,12 +25905,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3068
 	.section	.debug_loc		;off: 3068
-	.data.w	.LDW37-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW37-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -25934,8 +25934,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3098
 	.section	.debug_loc		;off: 3098
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -25955,8 +25955,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3117
 	.section	.debug_loc		;off: 3117
-	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW47-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW57-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -26086,12 +26086,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3136
 	.section	.debug_loc		;off: 3136
-	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -26110,12 +26110,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3166
 	.section	.debug_loc		;off: 3166
-	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -26134,12 +26134,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3196
 	.section	.debug_loc		;off: 3196
-	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW67-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -26163,8 +26163,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3226
 	.section	.debug_loc		;off: 3226
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -26184,8 +26184,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3245
 	.section	.debug_loc		;off: 3245
-	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW77-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW87-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -26310,8 +26310,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3264
 	.section	.debug_loc		;off: 3264
-	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -26330,12 +26330,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3283
 	.section	.debug_loc		;off: 3283
-	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -26354,12 +26354,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3313
 	.section	.debug_loc		;off: 3313
-	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW97-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -26383,8 +26383,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3343
 	.section	.debug_loc		;off: 3343
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -26404,8 +26404,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3362
 	.section	.debug_loc		;off: 3362
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -26425,8 +26425,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3381
 	.section	.debug_loc		;off: 3381
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -26446,8 +26446,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3400
 	.section	.debug_loc		;off: 3400
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -26467,8 +26467,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3419
 	.section	.debug_loc		;off: 3419
-	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW08-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW18-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -26599,8 +26599,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3438
 	.section	.debug_loc		;off: 3438
-	.data.w	.LDW28-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW28-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -26619,12 +26619,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3457
 	.section	.debug_loc		;off: 3457
-	.data.w	.LDW28-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW28-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -26648,8 +26648,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3487
 	.section	.debug_loc		;off: 3487
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -26669,8 +26669,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3506
 	.section	.debug_loc		;off: 3506
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -26690,8 +26690,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3525
 	.section	.debug_loc		;off: 3525
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -26711,8 +26711,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3544
 	.section	.debug_loc		;off: 3544
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -26732,8 +26732,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3563
 	.section	.debug_loc		;off: 3563
-	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW38-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW48-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -26860,12 +26860,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3582
 	.section	.debug_loc		;off: 3582
-	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -26884,12 +26884,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3612
 	.section	.debug_loc		;off: 3612
-	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -26908,12 +26908,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3642
 	.section	.debug_loc		;off: 3642
-	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -26932,12 +26932,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3672
 	.section	.debug_loc		;off: 3672
-	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -26957,8 +26957,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3703
 	.section	.debug_loc		;off: 3703
-	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW58-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	60
@@ -26983,8 +26983,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3723
 	.section	.debug_loc		;off: 3723
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -27004,8 +27004,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3742
 	.section	.debug_loc		;off: 3742
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	12
@@ -27026,8 +27026,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3762
 	.section	.debug_loc		;off: 3762
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -27047,8 +27047,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3781
 	.section	.debug_loc		;off: 3781
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -27068,8 +27068,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3800
 	.section	.debug_loc		;off: 3800
-	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW68-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW78-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -27203,8 +27203,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3819
 	.section	.debug_loc		;off: 3819
-	.data.w	.LDW88-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW88-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -27223,8 +27223,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3838
 	.section	.debug_loc		;off: 3838
-	.data.w	.LDW88-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW88-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -27248,8 +27248,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3857
 	.section	.debug_loc		;off: 3857
-	.data.w	.LDW98-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW98-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -27269,8 +27269,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3876
 	.section	.debug_loc		;off: 3876
-	.data.w	.LDW98-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW98-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW09-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -27289,7 +27289,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	177,20
 	.data.b	13
 	.data.b	1
-	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageFifoData
 	.data.b	1
 	.data.b	93
@@ -27308,8 +27308,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.section	.debug_frame		;off: 792
 	.data.b	20,0,0,0
 	.data.w	.Ldw_frame_begin
-	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
-	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageFifoData-FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	__ghs_eofn_FlexCAN_CompleteRxMessageFifoData-FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	1
 	.data.w	.LDW39
 	.data.b	0
@@ -27317,7 +27317,7 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.section	.debug_line		;off: 21088
 	.data.b	0,5,2
-	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
+	.data.w	FlexCAN_CompleteRxMessageFifoData..D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip.
 	.data.b	6
 	.data.b	3
 	.data.b	177,20
@@ -27366,12 +27366,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3895
 	.section	.debug_loc		;off: 3895
-	.data.w	.LDW19-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW19-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -27395,8 +27395,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3925
 	.section	.debug_loc		;off: 3925
-	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -27416,8 +27416,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3944
 	.section	.debug_loc		;off: 3944
-	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW29-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW39-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -27650,12 +27650,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3963
 	.section	.debug_loc		;off: 3963
-	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -27674,12 +27674,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+3993
 	.section	.debug_loc		;off: 3993
-	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -27699,12 +27699,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4024
 	.section	.debug_loc		;off: 4024
-	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -27724,12 +27724,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4055
 	.section	.debug_loc		;off: 4055
-	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW49-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	3
@@ -27754,8 +27754,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4086
 	.section	.debug_loc		;off: 4086
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -27775,8 +27775,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4105
 	.section	.debug_loc		;off: 4105
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -27796,8 +27796,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4124
 	.section	.debug_loc		;off: 4124
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -27817,8 +27817,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4143
 	.section	.debug_loc		;off: 4143
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -27838,8 +27838,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4162
 	.section	.debug_loc		;off: 4162
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	2
@@ -27860,8 +27860,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4182
 	.section	.debug_loc		;off: 4182
-	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW59-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW69-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -27937,8 +27937,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4201
 	.section	.debug_loc		;off: 4201
-	.data.w	.LDW79-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW79-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -27957,8 +27957,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4220
 	.section	.debug_loc		;off: 4220
-	.data.w	.LDW79-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW79-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -27982,8 +27982,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4239
 	.section	.debug_loc		;off: 4239
-	.data.w	.LDW89-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW89-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW99-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -28060,8 +28060,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4258
 	.section	.debug_loc		;off: 4258
-	.data.w	.LDW001-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW201-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW001-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW201-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -28085,8 +28085,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4277
 	.section	.debug_loc		;off: 4277
-	.data.w	.LDW101-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW201-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW101-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW201-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -28163,8 +28163,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4296
 	.section	.debug_loc		;off: 4296
-	.data.w	.LDW301-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW501-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW301-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW501-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -28188,8 +28188,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4315
 	.section	.debug_loc		;off: 4315
-	.data.w	.LDW401-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW501-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW401-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW501-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -28266,8 +28266,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4334
 	.section	.debug_loc		;off: 4334
-	.data.w	.LDW601-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW801-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW601-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW801-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -28291,8 +28291,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4353
 	.section	.debug_loc		;off: 4353
-	.data.w	.LDW701-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW801-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW701-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW801-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -28495,12 +28495,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4372
 	.section	.debug_loc		;off: 4372
-	.data.w	.LDW901-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW901-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -28524,8 +28524,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4402
 	.section	.debug_loc		;off: 4402
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -28545,8 +28545,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4421
 	.section	.debug_loc		;off: 4421
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -28566,8 +28566,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4440
 	.section	.debug_loc		;off: 4440
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -28587,8 +28587,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4459
 	.section	.debug_loc		;off: 4459
-	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW011-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW111-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -28777,12 +28777,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4478
 	.section	.debug_loc		;off: 4478
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -28801,12 +28801,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4508
 	.section	.debug_loc		;off: 4508
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -28825,12 +28825,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4538
 	.section	.debug_loc		;off: 4538
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -28849,12 +28849,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4568
 	.section	.debug_loc		;off: 4568
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	20
@@ -28874,8 +28874,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4599
 	.section	.debug_loc		;off: 4599
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	60
@@ -28895,13 +28895,13 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4619
 	.section	.debug_loc		;off: 4619
-	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW211-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	3,0
 	.data.b	125
 	.data.b	192,0
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	92
 	.data.w	0x0
@@ -28925,8 +28925,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4651
 	.section	.debug_loc		;off: 4651
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -28946,8 +28946,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4670
 	.section	.debug_loc		;off: 4670
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -28967,8 +28967,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4689
 	.section	.debug_loc		;off: 4689
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	12
@@ -28989,8 +28989,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4709
 	.section	.debug_loc		;off: 4709
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	4
@@ -29011,8 +29011,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4729
 	.section	.debug_loc		;off: 4729
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -29032,8 +29032,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4748
 	.section	.debug_loc		;off: 4748
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	16
@@ -29054,8 +29054,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4768
 	.section	.debug_loc		;off: 4768
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	8
@@ -29076,8 +29076,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4788
 	.section	.debug_loc		;off: 4788
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -29097,8 +29097,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4807
 	.section	.debug_loc		;off: 4807
-	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW311-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW411-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -29228,8 +29228,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4826
 	.section	.debug_loc		;off: 4826
-	.data.w	.LDW511-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW511-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -29248,12 +29248,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4845
 	.section	.debug_loc		;off: 4845
-	.data.w	.LDW511-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW511-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -29277,8 +29277,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4875
 	.section	.debug_loc		;off: 4875
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -29298,8 +29298,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4894
 	.section	.debug_loc		;off: 4894
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29319,8 +29319,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4913
 	.section	.debug_loc		;off: 4913
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -29340,8 +29340,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4932
 	.section	.debug_loc		;off: 4932
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29361,8 +29361,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4951
 	.section	.debug_loc		;off: 4951
-	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW611-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW711-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -29436,8 +29436,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4970
 	.section	.debug_loc		;off: 4970
-	.data.w	.LDW811-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW021-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW811-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW021-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -29461,8 +29461,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+4989
 	.section	.debug_loc		;off: 4989
-	.data.w	.LDW911-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW021-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW911-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW021-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29536,8 +29536,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5008
 	.section	.debug_loc		;off: 5008
-	.data.w	.LDW121-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW321-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW121-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW321-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -29561,8 +29561,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5027
 	.section	.debug_loc		;off: 5027
-	.data.w	.LDW221-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW321-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW221-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW321-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29704,8 +29704,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5046
 	.section	.debug_loc		;off: 5046
-	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -29724,12 +29724,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5065
 	.section	.debug_loc		;off: 5065
-	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -29748,12 +29748,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5095
 	.section	.debug_loc		;off: 5095
-	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW421-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -29777,8 +29777,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5125
 	.section	.debug_loc		;off: 5125
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -29798,8 +29798,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5144
 	.section	.debug_loc		;off: 5144
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29819,8 +29819,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5163
 	.section	.debug_loc		;off: 5163
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -29840,8 +29840,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5182
 	.section	.debug_loc		;off: 5182
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -29869,8 +29869,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5201
 	.section	.debug_loc		;off: 5201
-	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW521-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW031-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -29999,8 +29999,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5220
 	.section	.debug_loc		;off: 5220
-	.data.w	.LDW131-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW131-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -30019,12 +30019,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5239
 	.section	.debug_loc		;off: 5239
-	.data.w	.LDW131-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW131-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -30048,8 +30048,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5269
 	.section	.debug_loc		;off: 5269
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -30069,8 +30069,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5288
 	.section	.debug_loc		;off: 5288
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -30090,8 +30090,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5307
 	.section	.debug_loc		;off: 5307
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -30111,8 +30111,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5326
 	.section	.debug_loc		;off: 5326
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -30132,8 +30132,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5345
 	.section	.debug_loc		;off: 5345
-	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW231-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW331-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -30232,12 +30232,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5364
 	.section	.debug_loc		;off: 5364
-	.data.w	.LDW431-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW431-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -30261,8 +30261,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5394
 	.section	.debug_loc		;off: 5394
-	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -30282,8 +30282,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5413
 	.section	.debug_loc		;off: 5413
-	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW531-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW631-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -30440,12 +30440,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5432
 	.section	.debug_loc		;off: 5432
-	.data.w	.LDW731-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW731-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -30464,8 +30464,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5462
 	.section	.debug_loc		;off: 5462
-	.data.w	.LDW731-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW731-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -30489,8 +30489,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5481
 	.section	.debug_loc		;off: 5481
-	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -30510,8 +30510,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5500
 	.section	.debug_loc		;off: 5500
-	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW831-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW931-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -30613,8 +30613,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5519
 	.section	.debug_loc		;off: 5519
-	.data.w	.LDW041-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW041-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -30638,8 +30638,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5538
 	.section	.debug_loc		;off: 5538
-	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -30659,8 +30659,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5557
 	.section	.debug_loc		;off: 5557
-	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -30680,8 +30680,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5576
 	.section	.debug_loc		;off: 5576
-	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -30701,8 +30701,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5595
 	.section	.debug_loc		;off: 5595
-	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW141-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW241-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -30839,12 +30839,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5614
 	.section	.debug_loc		;off: 5614
-	.data.w	.LDW341-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW341-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -30863,12 +30863,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5644
 	.section	.debug_loc		;off: 5644
-	.data.w	.LDW341-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW341-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -30892,8 +30892,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5674
 	.section	.debug_loc		;off: 5674
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -30913,8 +30913,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5693
 	.section	.debug_loc		;off: 5693
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -30958,8 +30958,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5712
 	.section	.debug_loc		;off: 5712
-	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW441-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW751-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -31047,8 +31047,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5732
 	.section	.debug_loc		;off: 5732
-	.data.w	.LDW951-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW061-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW951-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW061-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31072,8 +31072,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5751
 	.section	.debug_loc		;off: 5751
-	.data.w	.LDW951-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW061-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW951-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW061-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -31148,8 +31148,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5770
 	.section	.debug_loc		;off: 5770
-	.data.w	.LDW261-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW361-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW261-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW361-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31173,8 +31173,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5789
 	.section	.debug_loc		;off: 5789
-	.data.w	.LDW261-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW361-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW261-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW361-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -31254,8 +31254,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5808
 	.section	.debug_loc		;off: 5808
-	.data.w	.LDW461-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW661-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW461-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW661-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31279,8 +31279,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5827
 	.section	.debug_loc		;off: 5827
-	.data.w	.LDW561-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW661-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW561-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW661-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -31370,8 +31370,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5846
 	.section	.debug_loc		;off: 5846
-	.data.w	.LDW761-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW761-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31395,8 +31395,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5865
 	.section	.debug_loc		;off: 5865
-	.data.w	.LDW861-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW861-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -31416,8 +31416,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5884
 	.section	.debug_loc		;off: 5884
-	.data.w	.LDW861-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW861-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW961-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -31546,8 +31546,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5903
 	.section	.debug_loc		;off: 5903
-	.data.w	.LDW071-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW071-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31566,12 +31566,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5922
 	.section	.debug_loc		;off: 5922
-	.data.w	.LDW071-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW071-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -31595,8 +31595,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5952
 	.section	.debug_loc		;off: 5952
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -31616,8 +31616,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5971
 	.section	.debug_loc		;off: 5971
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -31637,8 +31637,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+5990
 	.section	.debug_loc		;off: 5990
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -31658,8 +31658,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6009
 	.section	.debug_loc		;off: 6009
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -31679,8 +31679,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6028
 	.section	.debug_loc		;off: 6028
-	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW171-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW271-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31843,8 +31843,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6047
 	.section	.debug_loc		;off: 6047
-	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -31863,12 +31863,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6066
 	.section	.debug_loc		;off: 6066
-	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -31887,12 +31887,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6096
 	.section	.debug_loc		;off: 6096
-	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW371-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -31916,8 +31916,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6126
 	.section	.debug_loc		;off: 6126
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -31937,8 +31937,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6145
 	.section	.debug_loc		;off: 6145
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -31958,8 +31958,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6164
 	.section	.debug_loc		;off: 6164
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -31979,8 +31979,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6183
 	.section	.debug_loc		;off: 6183
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -32000,8 +32000,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6202
 	.section	.debug_loc		;off: 6202
-	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW471-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW571-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32110,8 +32110,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6221
 	.section	.debug_loc		;off: 6221
-	.data.w	.LDW671-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW671-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32130,8 +32130,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6240
 	.section	.debug_loc		;off: 6240
-	.data.w	.LDW671-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW671-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32155,8 +32155,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6259
 	.section	.debug_loc		;off: 6259
-	.data.w	.LDW771-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW771-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -32176,8 +32176,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6278
 	.section	.debug_loc		;off: 6278
-	.data.w	.LDW771-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW771-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW871-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -32267,8 +32267,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6297
 	.section	.debug_loc		;off: 6297
-	.data.w	.LDW971-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW181-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW971-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW181-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32292,8 +32292,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6316
 	.section	.debug_loc		;off: 6316
-	.data.w	.LDW081-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW181-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW081-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW181-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -32386,8 +32386,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6335
 	.section	.debug_loc		;off: 6335
-	.data.w	.LDW281-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW281-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32411,8 +32411,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6354
 	.section	.debug_loc		;off: 6354
-	.data.w	.LDW381-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW381-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32432,8 +32432,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6373
 	.section	.debug_loc		;off: 6373
-	.data.w	.LDW381-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW381-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW481-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32524,8 +32524,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6392
 	.section	.debug_loc		;off: 6392
-	.data.w	.LDW581-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW581-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32549,8 +32549,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6411
 	.section	.debug_loc		;off: 6411
-	.data.w	.LDW681-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW681-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32570,8 +32570,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6430
 	.section	.debug_loc		;off: 6430
-	.data.w	.LDW681-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW681-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW781-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32726,8 +32726,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6449
 	.section	.debug_loc		;off: 6449
-	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32746,12 +32746,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6468
 	.section	.debug_loc		;off: 6468
-	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -32770,12 +32770,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6498
 	.section	.debug_loc		;off: 6498
-	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW881-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	91
 	.data.w	0x0
@@ -32799,8 +32799,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6528
 	.section	.debug_loc		;off: 6528
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -32820,8 +32820,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6547
 	.section	.debug_loc		;off: 6547
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -32841,8 +32841,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6566
 	.section	.debug_loc		;off: 6566
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -32862,8 +32862,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6585
 	.section	.debug_loc		;off: 6585
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -32883,8 +32883,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6604
 	.section	.debug_loc		;off: 6604
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -32904,8 +32904,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6623
 	.section	.debug_loc		;off: 6623
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -32933,8 +32933,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6642
 	.section	.debug_loc		;off: 6642
-	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW981-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW491-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	3
@@ -33040,8 +33040,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6662
 	.section	.debug_loc		;off: 6662
-	.data.w	.LDW591-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW591-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33060,8 +33060,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6681
 	.section	.debug_loc		;off: 6681
-	.data.w	.LDW591-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW591-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -33085,8 +33085,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6700
 	.section	.debug_loc		;off: 6700
-	.data.w	.LDW691-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW691-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -33106,8 +33106,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6719
 	.section	.debug_loc		;off: 6719
-	.data.w	.LDW691-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW691-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW791-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -33252,8 +33252,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6738
 	.section	.debug_loc		;off: 6738
-	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33272,12 +33272,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6757
 	.section	.debug_loc		;off: 6757
-	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -33296,12 +33296,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6787
 	.section	.debug_loc		;off: 6787
-	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW891-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -33325,8 +33325,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6817
 	.section	.debug_loc		;off: 6817
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -33346,8 +33346,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6836
 	.section	.debug_loc		;off: 6836
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -33367,8 +33367,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6855
 	.section	.debug_loc		;off: 6855
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -33388,8 +33388,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6874
 	.section	.debug_loc		;off: 6874
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -33409,8 +33409,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6893
 	.section	.debug_loc		;off: 6893
-	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW991-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW002-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33537,8 +33537,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6912
 	.section	.debug_loc		;off: 6912
-	.data.w	.LDW102-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW102-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33557,12 +33557,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6931
 	.section	.debug_loc		;off: 6931
-	.data.w	.LDW102-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW102-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -33586,8 +33586,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6961
 	.section	.debug_loc		;off: 6961
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -33607,8 +33607,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6980
 	.section	.debug_loc		;off: 6980
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -33628,8 +33628,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+6999
 	.section	.debug_loc		;off: 6999
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -33649,8 +33649,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7018
 	.section	.debug_loc		;off: 7018
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -33670,8 +33670,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7037
 	.section	.debug_loc		;off: 7037
-	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW202-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW302-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33764,8 +33764,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7056
 	.section	.debug_loc		;off: 7056
-	.data.w	.LDW402-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW402-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33784,8 +33784,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7075
 	.section	.debug_loc		;off: 7075
-	.data.w	.LDW402-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW402-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -33809,8 +33809,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7094
 	.section	.debug_loc		;off: 7094
-	.data.w	.LDW502-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW502-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -33830,8 +33830,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7113
 	.section	.debug_loc		;off: 7113
-	.data.w	.LDW502-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW502-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW602-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	83
 	.data.w	0x0
@@ -33921,8 +33921,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7132
 	.section	.debug_loc		;off: 7132
-	.data.w	.LDW702-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW702-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -33941,8 +33941,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7151
 	.section	.debug_loc		;off: 7151
-	.data.w	.LDW702-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW702-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -33966,8 +33966,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7170
 	.section	.debug_loc		;off: 7170
-	.data.w	.LDW802-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW802-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW902-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -34073,8 +34073,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7189
 	.section	.debug_loc		;off: 7189
-	.data.w	.LDW012-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW012-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -34098,8 +34098,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7208
 	.section	.debug_loc		;off: 7208
-	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -34119,8 +34119,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7227
 	.section	.debug_loc		;off: 7227
-	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -34140,8 +34140,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7246
 	.section	.debug_loc		;off: 7246
-	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW112-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW212-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -34247,8 +34247,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7265
 	.section	.debug_loc		;off: 7265
-	.data.w	.LDW312-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW312-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -34272,8 +34272,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7284
 	.section	.debug_loc		;off: 7284
-	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -34293,8 +34293,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7303
 	.section	.debug_loc		;off: 7303
-	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
 	.data.w	0x0
@@ -34314,8 +34314,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7322
 	.section	.debug_loc		;off: 7322
-	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW412-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW512-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -34503,8 +34503,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7341
 	.section	.debug_loc		;off: 7341
-	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -34523,12 +34523,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7360
 	.section	.debug_loc		;off: 7360
-	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -34547,12 +34547,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7390
 	.section	.debug_loc		;off: 7390
-	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW612-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	82
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -34576,8 +34576,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7420
 	.section	.debug_loc		;off: 7420
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -34597,8 +34597,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7439
 	.section	.debug_loc		;off: 7439
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -34618,8 +34618,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7458
 	.section	.debug_loc		;off: 7458
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -34639,8 +34639,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7477
 	.section	.debug_loc		;off: 7477
-	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW712-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW812-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -34766,12 +34766,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7496
 	.section	.debug_loc		;off: 7496
-	.data.w	.LDW912-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW912-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -34790,12 +34790,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7526
 	.section	.debug_loc		;off: 7526
-	.data.w	.LDW912-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW912-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -34819,8 +34819,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7556
 	.section	.debug_loc		;off: 7556
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -34840,8 +34840,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7575
 	.section	.debug_loc		;off: 7575
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -34861,8 +34861,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7594
 	.section	.debug_loc		;off: 7594
-	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW022-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW122-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -34988,8 +34988,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7613
 	.section	.debug_loc		;off: 7613
-	.data.w	.LDW222-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW222-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -35008,12 +35008,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7632
 	.section	.debug_loc		;off: 7632
-	.data.w	.LDW222-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW222-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -35037,8 +35037,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7662
 	.section	.debug_loc		;off: 7662
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -35058,8 +35058,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7681
 	.section	.debug_loc		;off: 7681
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35079,8 +35079,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7700
 	.section	.debug_loc		;off: 7700
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -35100,8 +35100,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7719
 	.section	.debug_loc		;off: 7719
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35121,8 +35121,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7738
 	.section	.debug_loc		;off: 7738
-	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW322-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW422-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -35248,8 +35248,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7757
 	.section	.debug_loc		;off: 7757
-	.data.w	.LDW522-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW522-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -35268,12 +35268,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7776
 	.section	.debug_loc		;off: 7776
-	.data.w	.LDW522-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW522-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -35297,8 +35297,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7806
 	.section	.debug_loc		;off: 7806
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -35318,8 +35318,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7825
 	.section	.debug_loc		;off: 7825
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35339,8 +35339,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7844
 	.section	.debug_loc		;off: 7844
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -35360,8 +35360,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7863
 	.section	.debug_loc		;off: 7863
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35381,8 +35381,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7882
 	.section	.debug_loc		;off: 7882
-	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW622-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW722-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -35511,8 +35511,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7901
 	.section	.debug_loc		;off: 7901
-	.data.w	.LDW822-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW822-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -35531,12 +35531,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7920
 	.section	.debug_loc		;off: 7920
-	.data.w	.LDW822-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW822-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -35560,8 +35560,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7950
 	.section	.debug_loc		;off: 7950
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -35581,8 +35581,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7969
 	.section	.debug_loc		;off: 7969
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35602,8 +35602,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+7988
 	.section	.debug_loc		;off: 7988
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -35623,8 +35623,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8007
 	.section	.debug_loc		;off: 8007
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0
@@ -35644,8 +35644,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8026
 	.section	.debug_loc		;off: 8026
-	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW922-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW032-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -35720,8 +35720,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8045
 	.section	.debug_loc		;off: 8045
-	.data.w	.LDW232-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW332-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW232-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW332-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
 	.data.w	0x0
@@ -35745,8 +35745,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8064
 	.section	.debug_loc		;off: 8064
-	.data.w	.LDW232-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW332-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW232-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW332-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	81
 	.data.w	0x0
@@ -35878,12 +35878,12 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8083
 	.section	.debug_loc		;off: 8083
-	.data.w	.LDW432-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW432-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	80
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	87
 	.data.w	0x0
@@ -35907,8 +35907,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8113
 	.section	.debug_loc		;off: 8113
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	84
 	.data.w	0x0
@@ -35928,8 +35928,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8132
 	.section	.debug_loc		;off: 8132
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	2,0
 	.data.b	125
 	.data.b	0
@@ -35950,8 +35950,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8152
 	.section	.debug_loc		;off: 8152
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	85
 	.data.w	0x0
@@ -35971,8 +35971,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8171
 	.section	.debug_loc		;off: 8171
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	90
 	.data.w	0x0
@@ -35992,8 +35992,8 @@ __ghs_eofn_FlexCAN_Ip_ManualBusOffRecovery::
 	.data.b	0
 	.data.w	.Ldw_loc_begin+8190
 	.section	.debug_loc		;off: 8190
-	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
-	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Icu.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Icu.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..6503E3F4..0
+	.data.w	.LDW532-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
+	.data.w	.LDW632-..bof.D.3A.2FDesktop.2FAchita.2FS32K342.2FApplication_Can_main_Nvm.2FApplication_Can_main_Spi.2FApplication_Can.2Foutput.2Fobj.2FFlexCAN_Ip...44.3A.5CDesktop.5CAchita.5CS32K342.5CApplication_Can_main_Nvm.5CApplication_Can_main_Spi.5CApplication_Can.5Cutil..650AEA96..0
 	.data.b	1,0
 	.data.b	86
 	.data.w	0x0

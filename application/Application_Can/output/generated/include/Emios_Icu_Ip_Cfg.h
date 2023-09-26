@@ -89,7 +89,15 @@ extern "C"{
 /*==================================================================================================
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
+/** @brief Macros to check EMIOS channels used by ICU. */
+#ifndef EMIOS_0_CH_1_USED
+    #define EMIOS_0_CH_1_USED
+#else
+    #error "EMIOS_0_CH_1 channel cannot be used by ICU. Instance locked by another driver!"
+#endif
 
+#define EMIOS_ICU_CONFIG_EXT \
+        EMIOS_ICU_CONFIG_PB
 
 
 

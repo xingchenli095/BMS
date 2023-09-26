@@ -198,6 +198,27 @@ const Icu_Ipw_ChannelConfigType Icu_Ipw_IpChannelConfig_PB[3U] =
     /** @brief IcuChannel_0 */
     {
         /** @brief IP type of this channel */
+        ICU_EMIOS_MODULE,
+        /** @brief Instance number */
+        (uint8)0,
+        /** @brief Emios IP channel pointer */
+        &eMios_Icu_Ip_0_ChannelConfig_PB[0U],
+        /** @brief Wkpu IP channel pointer */
+        NULL_PTR,
+    #if (defined(ICU_WKPU_NMI_API_USED))
+        /** @brief Wkpu NMI pointer */
+        NULL_PTR,
+    #endif
+        /** @brief Siul2 IP channel pointer */
+        NULL_PTR,
+        /** @brief Cmp IP channel pointer */
+        NULL_PTR,
+        /** @brief Index in the configuration table of the eMIos channels */
+        (uint8)0U
+    },
+    /** @brief IcuChannel_SIUL_PTE8 */
+    {
+        /** @brief IP type of this channel */
         ICU_SIUL2_MODULE,
         /** @brief Instance number */
         (uint8)0U,
@@ -215,27 +236,6 @@ const Icu_Ipw_ChannelConfigType Icu_Ipw_IpChannelConfig_PB[3U] =
         NULL_PTR,
         /** @brief Index in the configuration table of the Siul2 channels */
         (uint8)0
-    },
-    /** @brief IcuChannel_SIUL_PTE8 */
-    {
-        /** @brief IP type of this channel */
-        ICU_SIUL2_MODULE,
-        /** @brief Instance number */
-        (uint8)0U,
-        /** @brief Emios IP channel pointer */
-        NULL_PTR,
-        /** @brief Wkpu IP channel pointer */
-        NULL_PTR,
-    #if (defined(ICU_WKPU_NMI_API_USED))
-        /** @brief Wkpu NMI pointer */
-        NULL_PTR,
-    #endif
-        /** @brief Siul2 IP channel pointer */
-        &Siul2_Icu_Ip_0_ChannelConfig_PB[1U],
-        /** @brief Cmp IP channel pointer */
-        NULL_PTR,
-        /** @brief Index in the configuration table of the Siul2 channels */
-        (uint8)1
     },
     /** @brief IcuChannel_CMP_PTE8 */
     {
@@ -261,8 +261,22 @@ const Icu_Ipw_ChannelConfigType Icu_Ipw_IpChannelConfig_PB[3U] =
 
 };
 
-const Icu_Ipw_IpConfigType Icu_Ipw_IpConfig_PB[2U] =
+const Icu_Ipw_IpConfigType Icu_Ipw_IpConfig_PB[3U] =
 {
+    {
+        /** @brief IP type */
+        ICU_EMIOS_MODULE,
+        /** @brief IP instance number */
+        0U,
+        /** @brief pointer to Emios HW configuration of instance */
+        &eMios_Icu_Ip_0_Config_PB,
+        /** @brief pointer to Wkpu HW configuration of instance */
+        NULL_PTR,
+        /** @brief pointer to Siul2 HW configuration of instance */
+        NULL_PTR,
+        /** @brief pointer to LpCmp HW configuration of instance */
+        NULL_PTR
+    },
     {
         /** @brief IP type */
         ICU_SIUL2_MODULE,

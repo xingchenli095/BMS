@@ -83,7 +83,7 @@ extern "C"{
  *                                       DEFINES AND MACROS
  *================================================================================================*/
 #define SIUL2_ICU_CONFIG_PB \
-        extern const Siul2_Icu_Ip_ChannelConfigType Siul2_Icu_Ip_0_ChannelConfig_PB[2U]; \
+        extern const Siul2_Icu_Ip_ChannelConfigType Siul2_Icu_Ip_0_ChannelConfig_PB[1U]; \
         extern const Siul2_Icu_Ip_InstanceConfigType Siul2_Icu_Ip_0_InstanceConfig_PB; \
         extern const Siul2_Icu_Ip_ConfigType Siul2_Icu_Ip_0_Config_PB; \
 

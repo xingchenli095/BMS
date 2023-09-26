@@ -471,19 +471,45 @@
 #define NvM_NVM_BLOCK_DEM_PERMANENT   8U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
+#if (defined NvMConf_NvMBlockDescriptor_NvM_BLOCK_voltage)
+#error NvMConf_NvMBlockDescriptor_NvM_BLOCK_voltage already defined
+#endif
+/** \brief Symbolic name for Block 9 */
+#define NvMConf_NvMBlockDescriptor_NvM_BLOCK_voltage   9U
+
+
+#if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
+#if (defined NvM_ENABLE_ASR3_LEGACY_NAMES)
+    
+#if (defined NvM_BLOCK_voltage)
+#error NvM_BLOCK_voltage already defined
+#endif
+/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
+#define NvM_BLOCK_voltage   9U
+#endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
+
+
+#if (defined NvM_NvM_BLOCK_voltage)
+#error NvM_NvM_BLOCK_voltage already defined
+#endif
+/** \brief Export symbolic name value with module abbreviation as prefix
+ ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
+#define NvM_NvM_BLOCK_voltage   9U
+#endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
+
 #if (defined NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS)
 #error NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS is already defined
 #endif
 /** \brief Defines the number of all configured blocks including the reserved Block 0.
  **/
-#define NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS 9U
+#define NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS 10U
 
 #if (defined NVM_BLOCK_ID_MAX)
 #error NVM_BLOCK_ID_MAX is already defined
 #endif
 /** \brief Defines the number of all configured blocks including the reserved Block 0.
  **/
-#define NVM_BLOCK_ID_MAX 8U
+#define NVM_BLOCK_ID_MAX 9U
 
 
 
@@ -647,7 +673,7 @@
  **        the configuration parameter NvMSelectBlockForReadAll set to true.
  **        Block 0 is reserved and independent of this parameter Block 1 is read as part of the NvM_ReadAll.
  **/
-#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS   4U
+#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS   5U
 
 #if (defined NVM_NUMBER_OF_SELECT_BLOCK_FOR_FIRSTINITALL_BLOCKS)
 #error NVM_NUMBER_OF_SELECT_BLOCK_FOR_FIRSTINITALL_BLOCKS is already defined
@@ -663,7 +689,7 @@
 /** \brief Defines the number of NVRAM Blocks which have
  **        the configuration parameter NvMSelectBlockForWriteAll set to true.
   **/
-#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_WRITEALL   3U
+#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_WRITEALL   4U
 
 #if (defined NVM_NUMBER_OF_SELECT_BLOCK_FOR_VALIDATEALL)
 #error NVM_NUMBER_OF_SELECT_BLOCK_FOR_VALIDATEALL is already defined
@@ -715,7 +741,7 @@
  **        the configuration parameter NvMBlockUseCrc set to true and
  **        NvMBlockCrcType set to NVM_CRC16.
  **/
-#define NVM_NUMBER_OF_CALC_CRC16_BLOCKS                 1
+#define NVM_NUMBER_OF_CALC_CRC16_BLOCKS                 2
 
 #if (defined NVM_NUMBER_OF_CALC_CRC32_BLOCKS)
 #error NVM_NUMBER_OF_CALC_CRC32_BLOCKS is already defined
@@ -733,7 +759,7 @@
  **        the configuration parameter NvMBlockUseCrc set to true and
  **        NvMBlockCrcType set to NVM_CRC32.
  **/
-#define NVM_NUMBER_OF_CRC_BLOCKS                 4
+#define NVM_NUMBER_OF_CRC_BLOCKS                 5
 
 #if (defined NVM_CRC_COMP_MECH)
 #error NVM_CRC_COMP_MECH is already defined
@@ -822,7 +848,7 @@
 /** \brief Defines whether any block is configured with write retry
  **        by checking the number of NVRAM Blocks having NvMMaxNumOfWriteRetries set to non-zero.
  **/
-#define NVM_NUMBER_OF_WRITE_RETRY_BLOCKS                8U
+#define NVM_NUMBER_OF_WRITE_RETRY_BLOCKS                9U
 
 #if (defined NVM_NUMBER_OF_READ_RETRY_BLOCKS)
 #error NVM_NUMBER_OF_READ_RETRY_BLOCKS is already defined
@@ -882,7 +908,7 @@
  **        STD_ON: Dynamic configuration management handling enabled.
  **        STD_OFF: Dynamic configuration management handling disabled.
  **/
-#define NVM_DYNAMIC_CONFIGURATION                 STD_OFF
+#define NVM_DYNAMIC_CONFIGURATION                 STD_ON
 
 #if (defined NVM_USE_COMPILED_CONFIGID)
 #error NVM_USE_COMPILED_CONFIGID is already defined

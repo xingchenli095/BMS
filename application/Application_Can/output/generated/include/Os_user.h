@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  *
- * Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/20/23 8:27 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_USER_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_H    0x6e614cafUL
+#define OS_GENERATION_ID_OS_H    0x3550fcdaUL
 
 #define OS_AUTOSAROS_VER         6
 
@@ -117,6 +117,7 @@ extern void OS_CounterIsr_HwCounter(void);
 #define Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8  0x0008u
 #define Rte_OSTimingEvent_Rte_Time_Task_TE_D3499F3675C83D894764E034B9E1C95A  0x0010u
 #define Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131  0x0020u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6  0x0040u
 
 /*===================================================================
  * Interrupts
@@ -163,6 +164,12 @@ extern void OS_ISR_CMP_0_ISR(void);
 #define CMP_0_ISR_ISR_CATEGORY  2
 #define CMP_0_ISR_ISR_VECTOR    183
 #define CMP_0_ISR_ISR_LEVEL     7
+#ifndef OS_ASM
+extern void OS_ISR_EMIOS0_5_IRQ(void);
+#endif  /* OS_ASM */
+#define EMIOS0_5_IRQ_ISR_CATEGORY  2
+#define EMIOS0_5_IRQ_ISR_VECTOR    66
+#define EMIOS0_5_IRQ_ISR_LEVEL     7
 #define Os_Counter_STM0_0_ISR_CATEGORY  2
 #define Os_Counter_STM0_0_ISR_VECTOR    39
 #define Os_Counter_STM0_0_ISR_LEVEL     2
@@ -186,6 +193,9 @@ extern void OS_ISR_CMP_0_ISR(void);
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
 #define CMP_0_ISR  6
+#endif
+#if OS_KERNEL_TYPE != OS_MICROKERNEL
+#define EMIOS0_5_IRQ  7
 #endif
 
 /*===================================================================

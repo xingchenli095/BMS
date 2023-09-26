@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  * 
- * Date         : 9/15/23 12:55 PM           !!!IGNORE-LINE!!!
+ * Date         : 9/20/23 8:27 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_KCONFIG_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_KCONF_H  0x6e614cafUL
+#define OS_GENERATION_ID_OS_KCONF_H  0x3550fcdaUL
 
 #define OS_AUTOSAROS_VER             6
 

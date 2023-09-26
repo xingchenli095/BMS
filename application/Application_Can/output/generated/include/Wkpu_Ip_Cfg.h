@@ -92,7 +92,7 @@ extern "C"{
                                        DEFINES AND MACROS
 ==================================================================================================*/
 #ifndef WKPU_IP_DERIVATIVE_NOT_SUPPORT_WKPU
-#define WKPU_IP_DEV_ERROR_DETECT        (STD_ON)
+#define WKPU_IP_DEV_ERROR_DETECT        (STD_OFF)
 
 #define WKPU_IP_SET_MODE_API           (STD_ON)
 

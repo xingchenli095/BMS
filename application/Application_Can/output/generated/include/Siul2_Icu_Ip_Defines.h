@@ -76,7 +76,7 @@ extern "C"{
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
 /** @brief Switches the Development Error Detection and Notification on or off.  */
-#define SIUL2_ICU_IP_DEV_ERROR_DETECT        (STD_ON)
+#define SIUL2_ICU_IP_DEV_ERROR_DETECT        (STD_OFF)
 
 /** @brief The number of channels available on each instance */
 #define SIUL2_ICU_IP_NUM_OF_CHANNELS         (32U)

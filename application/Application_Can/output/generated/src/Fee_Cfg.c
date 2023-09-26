@@ -248,6 +248,18 @@ const Fee_BlockConfigType Fee_BlockConfig[FEE_CRT_CFG_NR_OF_BLOCKS] =
 #else
         FEE_PROJECT_RESERVED
 #endif
+    },
+    /* Fee_NvM_BLOCK_voltage */
+    {
+        FeeConf_FeeBlockConfiguration_Fee_NvM_BLOCK_voltage, /* FeeBlockNumber symbol */
+        4U, /* FeeBlockSize */
+        0U, /* FeeClusterGroup */
+        (boolean)FALSE,   /* FeeImmediateData */
+#if (FEE_SWAP_FOREIGN_BLOCKS_ENABLED == STD_ON) 
+        FEE_PROJECT_APPLICATION /* Fee Block Assignment to a project */
+#else
+        FEE_PROJECT_RESERVED
+#endif
     }
 };
 

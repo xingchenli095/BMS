@@ -101,6 +101,63 @@ extern void Icu_LogicChStateCallback(uint16 logicChannel, uint8 mask, boolean se
  *================================================================================================*/
 #define ICU_START_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Icu_MemMap.h"
+/*
+ *  @brief    PB 0 Channels Configuration 
+ */
+const eMios_Icu_Ip_ChannelConfigType eMios_Icu_Ip_0_ChannelConfig_PB[1U] =
+{
+    /** @brief IcueMiosChannel0 */
+    {
+        /** @brief EMIOS hardware channel used by the ICU driver. */
+        1U,
+        /** @brief Channel DutyCycle measurement mode. */
+        EMIOS_ICU_SAIC,
+        /** @brief Emios Channel Freeze bit. */
+        (boolean)TRUE,
+        /** @brief Value of EMIOS channel prescaler. */
+        EMIOS_PRESCALER_DIVIDE_1,
+        /** @brief Value of EMIOS channel alternate prescaler. */
+        EMIOS_PRESCALER_DIVIDE_1,
+        /** @brief Channel Counter bus selection. */
+        EMIOS_ICU_BUS_INTERNAL_COUNTER,
+        /** @brief eMios IPL mode of operation */
+        EMIOS_ICU_MODE_EDGE_COUNTER,
+        /** @brief DMA support for timestamp measurement. */
+        EMIOS_ICU_MODE_WITH_DMA,
+        /** @brief Measurement mode for signal measurement. */
+        EMIOS_ICU_NO_MEASUREMENT,
+        /** @brief Edge alignment for signal measurement. */
+        EMIOS_ICU_RISING_EDGE,
+        /** @brief Value of EMIOS channel digital filter. */
+        EMIOS_DIGITAL_FILTER_BYPASSED,
+        /** @brief Callback function for channels. */
+        &Icu_ReportWakeupAndOverflow,
+        /** @brief Callback function for changing channels status */
+        &Icu_LogicChStateCallback,
+        /** @brief Parameters used by callback function. */
+        (uint8)0U,
+        /** @brief Channel perform measurements without interrupt. */
+        (boolean)FALSE,
+#if (STD_ON == EMIOS_ICU_IP_TIMESTAMP_API)
+        /** @brief Timestamp buffer used. */
+        EMIOS_ICU_NO_TIMESTAMP,
+#endif
+        /** @brief Channel specific notification */
+        NULL_PTR,
+        /** @brief Channel overflow notification. */
+        NULL_PTR
+    }
+};
+
+/** @brief Emios PB instance 0 IP configuration. */
+const eMios_Icu_Ip_ConfigType eMios_Icu_Ip_0_Config_PB = 
+{
+    /** @brief Number of channels in the configuration */
+    (uint8) 1U,
+    /** @brief Instance Channels Config */
+    &eMios_Icu_Ip_0_ChannelConfig_PB
+};
+
 #define ICU_STOP_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Icu_MemMap.h"
 

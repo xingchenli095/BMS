@@ -84,7 +84,7 @@ extern "C"{
 
 #define ICU_CMP_0_ISR_USED (STD_ON)
 
-#define     CMP_IP_DEV_ERROR_DETECT        (STD_ON)
+#define     CMP_IP_DEV_ERROR_DETECT        (STD_OFF)
 
 #ifdef __cplusplus
 }

@@ -37,6 +37,13 @@
   #undef RTE_STOP_SEC_CODE
   #undef MEMMAP_ERROR_RTE
 
+#elif (defined RTE_START_SEC_CONST_16)
+  #undef RTE_START_SEC_CONST_16
+  #undef MEMMAP_ERROR_RTE
+#elif (defined RTE_STOP_SEC_CONST_16)
+  #undef RTE_STOP_SEC_CONST_16
+  #undef MEMMAP_ERROR_RTE
+
 #elif (defined RTE_START_SEC_CONST_32)
   #undef RTE_START_SEC_CONST_32
   #undef MEMMAP_ERROR_RTE

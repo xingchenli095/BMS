@@ -37,21 +37,17 @@
                     <d:var name="IcuChannelId" type="INTEGER" value="0"/>
                     <d:lst name="IcuChannelEcucPartitionRef"/>
                     <d:ref name="IcuChannelRef" type="REFERENCE" 
-                           value="ASPath:/Icu/Icu/IcuConfigSet/IcuSiul2_0/DSG_CURT_DET_INT"/>
+                           value="ASPath:/Icu/Icu/IcuConfigSet/IcueMios_0/IcueMiosChannel0"/>
                     <d:var name="IcuDMAChannelEnable" type="BOOLEAN" 
-                           value="false">
-                      <a:a name="IMPORTER_INFO" value="@DEF"/>
-                    </d:var>
-                    <d:ref name="IcuDMAChannelRef" type="REFERENCE" >
-                      <a:a name="ENABLE" value="false"/>
-                      <a:a name="IMPORTER_INFO" value="@DEF"/>
+                           value="true"/>
+                    <d:ref name="IcuDMAChannelRef" type="REFERENCE" 
+                           value="ASPath:/Mcl/Mcl/MclConfig/dmaLogicChannel_Type_0">
+                      <a:a name="ENABLE" value="true"/>
                     </d:ref>
                     <d:var name="IcuDefaultStartEdge" type="ENUMERATION" 
-                           value="ICU_RISING_EDGE">
-                      <a:a name="IMPORTER_INFO" value="@DEF"/>
-                    </d:var>
+                           value="ICU_RISING_EDGE"/>
                     <d:var name="IcuMeasurementMode" type="ENUMERATION" 
-                           value="ICU_MODE_SIGNAL_EDGE_DETECT"/>
+                           value="ICU_MODE_EDGE_COUNTER"/>
                     <d:var name="IcuOverflowNotification" type="FUNCTION-NAME" 
                            value="NULL_PTR">
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
@@ -61,7 +57,7 @@
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
                     <d:ctr name="IcuSignalEdgeDetection" type="IDENTIFIABLE">
-                      <a:a name="ENABLE" value="true"/>
+                      <a:a name="ENABLE" value="false"/>
                       <d:var name="IcuSignalNotification" type="FUNCTION-NAME" 
                              value="IcuSignalEdgeDetection_SIUL">
                         <a:a name="ENABLE" value="true"/>
@@ -70,9 +66,7 @@
                     <d:ctr name="IcuSignalMeasurement" type="IDENTIFIABLE">
                       <a:a name="ENABLE" value="false"/>
                       <d:var name="IcuSignalMeasurementProperty" 
-                             type="ENUMERATION" value="ICU_DUTY_CYCLE">
-                        <a:a name="IMPORTER_INFO" value="@DEF"/>
-                      </d:var>
+                             type="ENUMERATION" value="ICU_DUTY_CYCLE"/>
                     </d:ctr>
                     <d:ctr name="IcuTimestampMeasurement" type="IDENTIFIABLE">
                       <a:a name="ENABLE" value="false"/>
@@ -81,9 +75,9 @@
                         <a:a name="IMPORTER_INFO" value="@DEF"/>
                       </d:var>
                       <d:var name="IcuTimestampNotification" 
-                             type="FUNCTION-NAME" value="NULL_PTR">
-                        <a:a name="ENABLE" value="false"/>
-                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                             type="FUNCTION-NAME" 
+                             value="IcuSignalEdgeDetection_SIUL">
+                        <a:a name="ENABLE" value="true"/>
                       </d:var>
                     </d:ctr>
                     <d:ctr name="IcuWakeup" type="IDENTIFIABLE">
@@ -186,7 +180,7 @@
                     <d:ctr name="IcuSignalMeasurement" type="IDENTIFIABLE">
                       <a:a name="ENABLE" value="false"/>
                       <d:var name="IcuSignalMeasurementProperty" 
-                             type="ENUMERATION" value="ICU_HIGH_TIME"/>
+                             type="ENUMERATION" value="ICU_DUTY_CYCLE"/>
                     </d:ctr>
                     <d:ctr name="IcuTimestampMeasurement" type="IDENTIFIABLE">
                       <a:a name="ENABLE" value="false"/>
@@ -209,7 +203,37 @@
                     </d:ctr>
                   </d:ctr>
                 </d:lst>
-                <d:lst name="IcueMios" type="MAP"/>
+                <d:lst name="IcueMios" type="MAP">
+                  <d:ctr name="IcueMios_0" type="IDENTIFIABLE">
+                    <d:var name="IcueMiosModule" type="INTEGER" value="0"/>
+                    <d:lst name="IcueMiosChannels" type="MAP">
+                      <d:ctr name="IcueMiosChannel0" type="IDENTIFIABLE">
+                        <d:var name="IcueMiosChannel" type="INTEGER" value="1"/>
+                        <d:var name="IcuEmiosFreeze" type="BOOLEAN" value="true"/>
+                        <d:var name="IcuEmiosPrescaler" type="ENUMERATION" 
+                               value="EMIOS_PRESCALER_DIVIDE_1">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:var name="IcuEmiosPrescaler_Alternate" 
+                               type="ENUMERATION" 
+                               value="EMIOS_PRESCALER_DIVIDE_1">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                        <d:var name="IcuEmiosDigitalFilter" type="ENUMERATION" 
+                               value="EMIOS_DIGITAL_FILTER_BYPASSED"/>
+                        <d:var name="IcuEmiosBusSelect" type="ENUMERATION" 
+                               value="EMIOS_ICU_BUS_INTERNAL_COUNTER"/>
+                        <d:ref name="IcuEmiosBusRef" type="REFERENCE" value=""/>
+                        <d:var name="IcuSubModeforMeasurement" 
+                               type="ENUMERATION" value="SAIC"/>
+                        <d:var name="IcuSignalMeasureWithoutInterrupt" 
+                               type="BOOLEAN" value="false">
+                          <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        </d:var>
+                      </d:ctr>
+                    </d:lst>
+                  </d:ctr>
+                </d:lst>
                 <d:lst name="IcuSiul2" type="MAP">
                   <d:ctr name="IcuSiul2_0" type="IDENTIFIABLE">
                     <d:var name="IcuSiul2Instance" type="INTEGER" value="0">
@@ -228,15 +252,6 @@
                       <a:a name="IMPORTER_INFO" value="@DEF"/>
                     </d:var>
                     <d:lst name="IcuSiul2Channels" type="MAP">
-                      <d:ctr name="DSG_CURT_DET_INT" type="IDENTIFIABLE">
-                        <d:var name="IcuSiul2Channel" type="INTEGER" value="27"/>
-                        <d:var name="Icu_EXT_ISR_IFERDigitalFilter" 
-                               type="BOOLEAN" value="false"/>
-                        <d:var name="Icu_EXT_ISR_IFMCDigitalFilter" 
-                               type="INTEGER" value="0">
-                          <a:a name="IMPORTER_INFO" value="@DEF"/>
-                        </d:var>
-                      </d:ctr>
                       <d:ctr name="IcuSiul2Channels_0" type="IDENTIFIABLE">
                         <d:var name="IcuSiul2Channel" type="INTEGER" value="7"/>
                         <d:var name="Icu_EXT_ISR_IFERDigitalFilter" 
@@ -303,9 +318,7 @@
                       <d:var name="IcuCmpPositiveInputMux" type="ENUMERATION" 
                              value="CMP_IP_INPUTMUX_IN3"/>
                       <d:var name="IcuCmpOutputSelect" type="ENUMERATION" 
-                             value="CMP_IP_OUTPUTSELECT_COUT">
-                        <a:a name="IMPORTER_INFO" value="@DEF"/>
-                      </d:var>
+                             value="CMP_IP_OUTPUTSELECT_COUT"/>
                       <d:var name="IcuCmpWindowCloseOutputOverwrite" 
                              type="ENUMERATION" 
                              value="CMP_IP_WINDOWCLOSEOUTPUTOVERWRITE_DISABLED">
@@ -381,12 +394,15 @@
                     <d:var name="IcuIsrHwId" type="ENUMERATION" value="CMP_0"/>
                     <d:var name="IcuIsrEnable" type="BOOLEAN" value="true"/>
                   </d:ctr>
+                  <d:ctr name="IcuHwInterrupt_Emios_0" type="IDENTIFIABLE">
+                    <d:var name="IcuIsrHwId" type="ENUMERATION" 
+                           value="EMIOS_0_CH_1"/>
+                    <d:var name="IcuIsrEnable" type="BOOLEAN" value="true"/>
+                  </d:ctr>
                 </d:lst>
               </d:ctr>
               <d:ctr name="IcuGeneral" type="IDENTIFIABLE">
-                <d:var name="IcuDevErrorDetect" type="BOOLEAN" value="true">
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
-                </d:var>
+                <d:var name="IcuDevErrorDetect" type="BOOLEAN" value="false"/>
                 <d:var name="IcuReportWakeupSource" type="BOOLEAN" value="true">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
@@ -407,14 +423,10 @@
                 <d:var name="IcuEnableDualClockMode" type="BOOLEAN" value="true"/>
                 <d:var name="IcuOverflowNotificationApi" type="BOOLEAN" 
                        value="true"/>
-                <d:var name="IcuGetInputLevelApi" type="BOOLEAN" value="false">
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
-                </d:var>
+                <d:var name="IcuGetInputLevelApi" type="BOOLEAN" value="true"/>
                 <d:var name="IcuGetCaptureRegisterValueApi" type="BOOLEAN" 
                        value="true"/>
-                <d:var name="IcuSupportSAICModeApi" type="BOOLEAN" value="false">
-                  <a:a name="IMPORTER_INFO" value="@DEF"/>
-                </d:var>
+                <d:var name="IcuSupportSAICModeApi" type="BOOLEAN" value="true"/>
                 <d:var name="IcuWkpuStandbyWakeupSupport" type="BOOLEAN" 
                        value="false">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>

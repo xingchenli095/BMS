@@ -127,7 +127,7 @@ extern "C"{
 *        STD_OFF: Disabled.
 *   @implements ICU_DEV_ERROR_DETECT_define
 */
-#define ICU_DEV_ERROR_DETECT            (STD_ON)
+#define ICU_DEV_ERROR_DETECT            (STD_OFF)
 
 /**
 *   @brief  Switch for enabling Wakeup source reporting.
@@ -277,7 +277,7 @@ extern "C"{
 *
 *
 */
-#define ICU_GET_INPUT_LEVEL_API             (STD_OFF)
+#define ICU_GET_INPUT_LEVEL_API             (STD_ON)
 
 /**
  * @brief  Switch for enabling Standby wakeup support  on or off.

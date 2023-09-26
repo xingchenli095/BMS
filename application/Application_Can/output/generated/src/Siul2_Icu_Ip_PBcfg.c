@@ -125,28 +125,8 @@ extern void Icu_ReportWakeupAndOverflow(uint16 Channel, boolean bOverflow);
 /*
  *  @brief    PB SIUL2 Channels Configuration
  */
-const Siul2_Icu_Ip_ChannelConfigType Siul2_Icu_Ip_0_ChannelConfig_PB[2U] =
+const Siul2_Icu_Ip_ChannelConfigType Siul2_Icu_Ip_0_ChannelConfig_PB[1U] =
 {
-    /** @brief DSG_CURT_DET_INT */
-    {
-        /** @brief Siul2 HW Module and Channel used by the Icu channel */
-        27U,
-        /** @brief Siul2 Digital Filter enable */
-        (boolean)FALSE,
-        /** @brief Siul2 Digital Filter value */
-        0U,
-        /** @brief Siul2 request type*/
-        SIUL2_ICU_IRQ,
-        /** @brief Siul2 Edge type*/
-        SIUL2_ICU_RISING_EDGE,
-        /** @brief Callback Pointer */
-        &Icu_ReportEvents,
-        /** @brief The notification functions */
-        NULL_PTR,
-        /** @brief Callback Param1*/
-        0U
-    }
-    ,
     /** @brief IcuSiul2Channels_0 */
     {
         /** @brief Siul2 HW Module and Channel used by the Icu channel */
@@ -183,7 +163,7 @@ const Siul2_Icu_Ip_InstanceConfigType Siul2_Icu_Ip_0_InstanceConfig_PB =
 const Siul2_Icu_Ip_ConfigType Siul2_Icu_Ip_0_Config_PB = 
 {
     /** @brief Number of Siul2 channels in the Icu configuration */
-    (uint8)2U,
+    (uint8)1U,
     /** @brief The Siul2 instance configuration */
     &Siul2_Icu_Ip_0_InstanceConfig_PB,
     /** @brief Pointer to the array of Siul2 channel configurations */

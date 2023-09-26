@@ -1,27 +1,27 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Det.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Det.s: \
+D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Det.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Det.s: \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/src/Det.c \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSAutosar.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/TSAutosar_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config/Platforms_TSPlatforms.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/TSAutosar_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Platforms_TSPlatforms.h \
  C:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_TSPlatforms.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/TSCompiler.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSCompiler_Default.h \
  C:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_platform_types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Atomics_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Atomics_MemMap.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det_BSW.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Det_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_MemMap.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det_Version.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Trace.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Trace.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det_Int.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Int_Cfg.h
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Int_Cfg.h

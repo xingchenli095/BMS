@@ -32,7 +32,7 @@ CC_OPT += --gnu_asm
 # Generate DWARF 2.0 debug information
 CC_OPT += -dual_debug
 # Generate debug information
-CC_OPT += -g
+CC_OPT += -G
 # Prevents the deletion of temporary files after they are used. If an assembly language file is created by the compiler, 
 # this option will place it in the current directory instead of the temporary directory.
 CC_OPT += -keeptempfiles
@@ -55,7 +55,7 @@ CC_OPT += --no_commons
 # Disables support for exception handling
 CC_OPT += --no_exceptions
 # C++ like comments will generate a compilation error
-CC_OPT += --no_slash_comment
+#CC_OPT += --no_slash_comment
 # Generates errors when functions referenced or called have no prototype
 CC_OPT += --prototype_errors
 # Valid #pragma directives with wrong syntax are treated as warnings

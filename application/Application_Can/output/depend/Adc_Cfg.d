@@ -1,23 +1,23 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Adc_Cfg.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/obj/Adc_Cfg.s: \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/src/Adc_Cfg.c \
+D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Adc_Cfg.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/Adc_Cfg.s: \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/src/Adc_Cfg.c \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Adc.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/Mcal.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/StandardTypes.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/Soc_Ips.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/IpVersionMacros.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/Reg_eSys.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/OsIf_Internal.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/OsIf_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/OsIf_ArchCfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/OsIf_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/OsIf_ArchCfg.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_SYSTICK.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_COMMON.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/BasicTypes.h \
@@ -28,10 +28,10 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Appl
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_usuffix.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_hw.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_hw_CORTEXM.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Os_kconfig.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Os_kconfig.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_hwsel.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_defs_CORTEXM.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Os_user.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Os_user.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_api.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_types.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_types_arch.h \
@@ -44,8 +44,8 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Appl
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_api_simtimer.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_api_timestamp.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_callouts.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS/board.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS/board_version_check.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS/board.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS/board_version_check.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_Version.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_timeconversion.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_CORTEXM_timer_fs_stm_config.h \
@@ -58,7 +58,7 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Appl
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_CORTEXM_timer_nxp_pit.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_kernel.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_libconfig.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Os_libcfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Os_libcfg.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_arch.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_kernel_CORTEXM.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_tool_CORTEXM.h \
@@ -85,20 +85,20 @@ D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Appl
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_userkernel.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/Os_proto_arch.h \
  C:/EB/tresos/plugins/Os_TS_T40D37M6I1R0/include/CORTEXM/Os_proto_CORTEXM.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_CfgDefines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_CfgDefines.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Adc_Types.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Adc_Ipw_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Ipw_CfgDefines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Ipw_CfgDefines.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Adc_Sar_Ip_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Sar_Ip_CfgDefines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_Sar_Ip_CfgDefines.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_ADC.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_TEMPSENSE.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Adc_Sar_Ip_HeaderWrapper_S32K3.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/include/OsIf.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/BaseNXP_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/BaseNXP_MemMap.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Adc_TS_T40D34M20I1R0/include/Bctu_Ip_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Bctu_Ip_CfgDefines.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Bctu_Ip_CfgDefines.h \
  C:/EB/tresos/plugins/McalExt_TS_T40DxM1I0R0/MCAL_Delivery/eclipse/plugins/Base_TS_T40D34M20I1R0/header/S32K342_BCTU.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_PBcfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_MemMap.h
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_PBcfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Adc_MemMap.h

@@ -160,7 +160,6 @@ extern "C"{
 * @brief External Notifications for Edge Detection
 *
 */
-extern void IcuSignalEdgeDetection_SIUL(void);
 extern void IcuSignalEdageDetection_Notification(void);
 extern void IcuSignalEdageDetection_CMP_Notification(void);
 #define ICU_STOP_SEC_CODE
@@ -189,9 +188,9 @@ static const Icu_ChannelConfigType Icu_ChannelConfig_PB[3U]=
     {
         (boolean)FALSE,    /* Wakeup capability */
         ICU_RISING_EDGE,    /* Edge used */
-        ICU_MODE_SIGNAL_EDGE_DETECT,     /* Measurement mode */
-        (Icu_MeasurementSubModeType)0U, /* Icu_MeasurementSubModeType */
-        &IcuSignalEdgeDetection_SIUL, /* Icu_Channel_Notification */
+        ICU_MODE_EDGE_COUNTER,     /* Measurement mode */
+        (Icu_MeasurementSubModeType)ICU_RISING_EDGE, /* Starting edge */
+        NULL_PTR, /* Icu_Channel_Notification */
 #if ((ICU_SIGNALMEASUREMENT_USES_DMA == STD_ON) || (ICU_TIMESTAMP_USES_DMA == STD_ON))
         (Mcl_ChannelType)NoMclDmaChannel, /* Mcl_DmaChannel */
 #endif
@@ -251,7 +250,7 @@ const Icu_ConfigType Icu_Config=
     /** @brief The number of channels configured*/
     &Icu_ChannelConfig_PB, 
     /** @brief Icu Channel Configuration Pointer */
-    (uint8)2, /* The number of IP instances configured*/
+    (uint8)3, /* The number of IP instances configured*/
     /** @brief Icu Instance Configuration Pointer */
     &Icu_Ipw_IpConfig_PB,
     /** @brief Index of channel in each partition map table*/

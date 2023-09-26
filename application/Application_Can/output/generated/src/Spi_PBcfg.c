@@ -313,8 +313,7 @@ const Spi_ConfigType Spi_Config=
     Spi_aExternalDeviceConfigList, /* pcExternalDeviceConfig */
     Spi_aHwUnitConfigList /* pcHWUnitConfig */
 #if (SPI_DISABLE_DEM_REPORT_ERROR_STATUS == STD_OFF)
-                                        ,{ (uint32)STD_ON, (uint32)DemConf_DemEventParameter_SPI_E_HARDWARE_ERROR} /* SPI_E_HARDWARE_ERROR parameters*/                             
-        
+            ,{ (uint32)STD_OFF, (uint32)0U}/* SPI_E_HARDWARE_ERROR parameters*/         
 #endif /* SPI_DISABLE_DEM_REPORT_ERROR_STATUS == STD_OFF */  
 };
 

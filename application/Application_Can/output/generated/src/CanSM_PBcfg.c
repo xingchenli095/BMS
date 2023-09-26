@@ -82,16 +82,16 @@
 CanSM_ConstConfigLayoutType CanSM_ConfigLayout = {
     { /* RootCfg */
         TS_MAKEREF2CFG( CanSM_Net[0] ), /* NetRef */
-        UINT16_C( 0 ), /* ModeReqRepTime */
-        UINT8_C( 0 ) /* ModeReqRepMax */
+        UINT16_C( 1 ), /* ModeReqRepTime */
+        UINT8_C( 5 ) /* ModeReqRepMax */
     },
     { /* CanSM_Net */
         { /* CanSM_Net[0] */
             TS_MAKEREF2CFG( CanSM_Ctrl[0] ), /* CtrlRef */
-            UINT16_C( 2 ), /* BorCounterL1ToL2 */
-            UINT16_C( 25 ), /* BorTimeL1 */
-            UINT16_C( 75 ), /* BorTimeL2 */
-            UINT16_C( 500 ), /* BorTimeTxEnsured */
+            UINT16_C( 10 ), /* BorCounterL1ToL2 */
+            UINT16_C( 3 ), /* BorTimeL1 */
+            UINT16_C( 50 ), /* BorTimeL2 */
+            UINT16_C( 200 ), /* BorTimeTxEnsured */
             UINT16_C( 3 ), /* DemEventId */
             UINT8_C( 0 ), /* ComMChId */
             UINT8_C( 0 ), /* TrcvId */

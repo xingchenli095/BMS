@@ -5,7 +5,7 @@
 -DDISABLE_MCAL_INTERMODULE_ASR_CHECK
 -DOSB_TOOL=OSB_ghs -cpu=cortexm7 -thumb -fpu=vfpv5_d16 -fsingle -c99
 --ghstd=last -O0
---gnu_asm -dual_debug -g -keeptempfiles
+--gnu_asm -dual_debug -G -keeptempfiles
 -Wimplicit-int
 -Wshadow
 -Wtrigraphs
@@ -14,7 +14,6 @@
 --unsigned_fields -nostartfiles
 --no_commons
 --no_exceptions
---no_slash_comment
 --prototype_errors
 --incorrect_pragma_warnings -c
 -DS32K3XX
@@ -32,13 +31,13 @@
 -DATOMICS_USE_GENERIC_IMPL=1
 -DOS_DEVELOPMENT_SANITY_CHECKS=0
 -DOS_MEMMAP=0 
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/config
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/include
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/stubs
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/template
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/templates
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/instance/Crypto/include
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/stubs
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/template
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/boards/S32K344EVB_Q172_SCOS
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/templates
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/instance/Crypto/include
 -IC:/EB/tresos/plugins/SecOC_TS_TxDxM2I8R0/include
 -IC:/EB/tresos/plugins/SecOC_TS_TxDxM2I8R0/src
 -IC:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include
@@ -47,7 +46,7 @@
 -IC:/EB/tresos/plugins/CanIf_TS_TxDxM6I10R0/include
 -IC:/EB/tresos/plugins/CanNm_TS_TxDxM6I20R0/include
 -IC:/EB/tresos/plugins/CanNm_TS_TxDxM6I20R0/src
--ID:/Desktop/Achita/S32K342/Application_Can_main_Icu/Application_Can_main_Spi/Application_Can/output/generated/src
+-ID:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/src
 -IC:/EB/tresos/plugins/CanSM_TS_TxDxM3I7R0/include
 -IC:/EB/tresos/plugins/CanSM_TS_TxDxM3I7R0/src
 -IC:/EB/tresos/plugins/CanTp_TS_TxDxM6I8R0/include

@@ -69,7 +69,20 @@ extern "C"{
 /*==================================================================================================
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
+#ifndef ICU_EMIOS_0_CH_1_ISR_USED
+    /** @brief Macros for indicate EMIOS interrupts used by ICU. */
+    #define ICU_EMIOS_0_CH_1_ISR_USED    (STD_ON)
+#endif
 
+#ifndef EMIOS_0_CH_1_ISR_USED
+    /** @brief Macros for indicate EMIOS interrupts used. */
+    #define EMIOS_0_CH_1_ISR_USED        (STD_ON)
+#endif
+
+
+#define EMIOS_ICU_CONFIG_PB \
+        extern const eMios_Icu_Ip_ChannelConfigType  eMios_Icu_Ip_0_ChannelConfig_PB[1U]; \
+        extern const eMios_Icu_Ip_ConfigType         eMios_Icu_Ip_0_Config_PB; \
 
 
 

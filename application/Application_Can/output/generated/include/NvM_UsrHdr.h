@@ -22,6 +22,7 @@
 /*==================[inclusions]============================================*/
 
 #include <Eb_Intgr_NvM_Include.h>
+#include <NvMData_Include.h>
 
 /*==================[macros]================================================*/
 #if (defined NVM_CRYPTO_HOOKS)

@@ -115,6 +115,13 @@
         /* Length = 56U (Block length) */
         NVM_ASSERT_STC(56U == sizeof(Dem_NvGateEntryPrimaryData));
   
+                    /* BlockIdentifier: 9 - RamBlockDataAddress: &NvM_Ram_voltage */
+        /* Length = 2U (Block length) */
+        NVM_ASSERT_STC(2U == sizeof(NvM_Ram_voltage));
+        /* BlockIdentifier: 9 - RomBlockDataAddress: &NvM_Rom_voltage */
+    /* Length = 2U */
+    NVM_ASSERT_STC(2U == sizeof(NvM_Rom_voltage));
+  
 
 
 /*==================[type definitions]=======================================*/
@@ -320,6 +327,27 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     0U, /* romBlockNum */
     1U, /* blockJobPriority */
     3U,  /* writeRetryLimit */
+  },
+
+  /* NVM_BLOCK_NvM_BLOCK_voltage */
+  {
+    NULL_PTR, /* initBlockCallback */
+    NULL_PTR, /* singleBlockCallback */
+    NULL_PTR, /* readRamFromNvCallback */
+    NULL_PTR, /* writeRamToNvCallback */
+    &NvM_Rom_voltage, /* romBlockDataAddress */
+    &NvM_Ram_voltage, /* ramBlockDataAddress */
+    0x00442242U,  /* blockDesc */
+    2U,  /* nvBlockLength */
+    
+    
+    144U,  /* nvBlockBaseNumber */
+    9U,   /* nvBlockIdentifier*/
+    0xFFFFU, /* ramBlockCrcIndex */
+    1U, /* nvBlockNum */
+    1U, /* romBlockNum */
+    64U, /* blockJobPriority */
+    1U,  /* writeRetryLimit */
   }
 }; /* NvM_BlockDescriptorTable */
 

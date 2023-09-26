@@ -42,7 +42,7 @@ CC_OPT += -mthumb
 CC_OPT += -mlittle-endian
 CC_OPT += -mfpu=fpv5-sp-d16
 CC_OPT += -mfloat-abi=hard
-CC_OPT += -std=c99
+CC_OPT += -c99
 CC_OPT += -Os
 CC_OPT += -ggdb3
 CC_OPT += -Wall
