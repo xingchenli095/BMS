@@ -48,13 +48,9 @@
 
 typedef struct /* PduR_ConfigLayoutType */ {
     CONST( PduR_PBConfigType, TYPEDEF ) PduR_RootConfig;
-    VAR( PduR_RTabLoIfType, TYPEDEF ) PduR_RTabLoIfRx[7];
-    VAR( PduR_RTabLoIfType, TYPEDEF ) PduR_RTabLoIfTx[9];
-    VAR( PduR_RTabUpIfTxType, TYPEDEF ) PduR_RTabUpIfTx[9];
-    VAR( PduR_RTabLoTpType, TYPEDEF ) PduR_RTabLoTpRx[6];
-    VAR( PduR_RTabLoTpType, TYPEDEF ) PduR_RTabLoTpTx[3];
-    VAR( PduR_RTabUpTpType, TYPEDEF ) PduR_RTabUpTpTx[3];
-    VAR( PduR_RTabUpTpType, TYPEDEF ) PduR_RTabUpTpRx[6];
+    VAR( PduR_RTabLoIfType, TYPEDEF ) PduR_RTabLoIfRx[8];
+    VAR( PduR_RTabLoIfType, TYPEDEF ) PduR_RTabLoIfTx[3];
+    VAR( PduR_RTabUpIfTxType, TYPEDEF ) PduR_RTabUpIfTx[3];
 } PduR_ConfigLayoutType;
 
 typedef CONST( PduR_ConfigLayoutType, TYPEDEF ) PduR_ConstConfigLayoutType;

@@ -30,13 +30,17 @@
 
 /* ==================[Includes]=============================================== */
 #include <Rte_SWC_SPI.h>
+#include <Com.h>
+#include <Com_SymbolicNames_PBcfg.h>
 
-int counter = 0u;
-uint8 NvmFlag = 1;
+int counter = 2u;
+uint8 NvmFlag = 0;
 uint8 NvmCount = 0;
-  static uint16 ReadBlock[1];
-  static uint16 WriteBlock[1] = 1000;
+  static uint16 ReadBlock[1] = {0};
+  static uint16 WriteBlock[1];
 
+//uint16 signalId = ComConf_ComGroupSignal_PB2FETStatus_172T;
+//static   PB1FETStatus_value = 0U;  
 /* ==================[Definition of functions with external linkage]========== */
 /* ------------------------[runnable entity skeletons]------------------------ */
 #define SWC_SPI_START_SEC_CODE
@@ -51,7 +55,7 @@ FUNC(void, RTE_CODE) NvM_Cyclic (void)
   NvM_SrcPtrType arg_Call_SrcPtr;
   Std_ReturnType ret_Call_0;
   
-/*
+
   ret_Read = Rte_Read_Rp_AdcValue_ArgData(WriteBlock);
   (void)ret_Read;
   //WriteBlock = arg_Read_data;
@@ -74,58 +78,27 @@ FUNC(void, RTE_CODE) NvM_Cyclic (void)
     NvmCount = 0;
     NvmFlag = !NvmFlag;
   }
-  
+
+/*不需要手动写在runnble里面，而是SWC工具自动根据DBC生成runnable
+
+  //1s send onece signal
+  if (counter%10 == 1)
+  {
+      Com_SendSignal(signalId, &PB1FETStatus_value);
+      PB1FETStatus_value += 1;
+      if (PB1FETStatus_value > 4)
+      {
+        PB1FETStatus_value = 0;
+      }
+      //Com_ReceiveSignal(Signame,&value);
+  }
+    counter ++;
+    if (counter == 100)
+    {
+      counter = 2;
+    }
+    
 */
-
-/*
-    if(NvmFlag == 1)
-      {
-        ret_Call = Rte_Call_PS_NvM_Block_voltage_ReadBlock(ReadBlock);
-        (void)ret_Call;
-        NvmFlag = 0;
-      }
-
-      if (NvmFlag == 0)
-      {
-        NvmCount++;
-        if(NvmCount == 20)
-        {
-          NvmCount = 0;
-          NvmFlag = 2;
-        }
-      }
-
-      if(NvmFlag == 2)
-      {
-        ret_Call_0 = Rte_Call_PS_NvM_Block_voltage_WriteBlock(WriteBlock);
-        (void)ret_Call_0;
-        NvmFlag = 3;
-      }
-
-      if (NvmFlag == 3)
-      {
-        NvmCount++;
-        if(NvmCount == 20)
-        {
-          NvmCount = 0;
-          NvmFlag = 1;
-        }
-      }
-      
-*/
-     if(NvmFlag == 2)
-     {
-        ret_Call = Rte_Call_PS_NvM_Block_voltage_ReadBlock(ReadBlock);
-        (void)ret_Call;
-        NvmFlag = 0;
-     }
-     if(NvmFlag == 3)
-     {
-        ret_Call_0 = Rte_Call_PS_NvM_Block_voltage_WriteBlock(WriteBlock);
-        (void)ret_Call_0; 
-        NvmFlag = 0;     
-     }
-     
 
 } /* FUNC(void, RTE_CODE) NvM_Cyclic (void) */
 
@@ -136,8 +109,6 @@ FUNC(void, RTE_CODE) NvM_Cyclic (void)
 #include <SWC_SPI_MemMap.h>
 FUNC(void, RTE_CODE) SPI_cyclic (void)
 {
-
-  counter ++;
   
 } /* FUNC(void, RTE_CODE) SPI_cyclic (void) */
 

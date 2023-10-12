@@ -57,16 +57,6 @@ typedef struct /* PduR_AbstractRoutingTableEntry */ {
     VAR( PduR_PduIdType, TYPEDEF ) TargetPduId;
 } PduR_AbstractRoutingTableEntry;
 
-typedef struct /* PduR_RTabUpTpType */ {
-    VAR( PduR_PduIdType, TYPEDEF ) TargetPduId;
-    VAR( PduR_RefToModuleAPI, TYPEDEF ) TargetModuleAPIRef;
-} PduR_RTabUpTpType;
-
-typedef struct /* PduR_RTabLoTpType */ {
-    VAR( PduR_PduIdType, TYPEDEF ) TargetPduId;
-    VAR( PduR_RefToModuleAPI, TYPEDEF ) TargetModuleAPIRef;
-} PduR_RTabLoTpType;
-
 typedef struct /* PduR_RTabUpIfTxType */ {
     VAR( PduR_PduIdType, TYPEDEF ) TargetPduId;
     VAR( PduR_RefToModuleAPI, TYPEDEF ) TargetModuleAPIRef;
@@ -163,20 +153,6 @@ typedef struct /* PduR_BufDfConfigType */ {
     VAR( uint8, TYPEDEF ) Depth;
 } PduR_BufDfConfigType;
 
-typedef struct /* PduR_RTabUpTpConfigType */ {
-    TS_REF2CFG( PduR_RTabUpTpType )  RTabTxRef;
-    TS_REF2CFG( PduR_RTabUpTpType )  RTabRxRef;
-    VAR( PduR_PduIdType, TYPEDEF ) RTabTxCount;
-    VAR( PduR_PduIdType, TYPEDEF ) RTabRxCount;
-} PduR_RTabUpTpConfigType;
-
-typedef struct /* PduR_RTabLoTpConfigType */ {
-    TS_REF2CFG( PduR_RTabLoTpType )  RTabRxRef;
-    TS_REF2CFG( PduR_RTabLoTpType )  RTabTxRef;
-    VAR( PduR_PduIdType, TYPEDEF ) RTabRxCount;
-    VAR( PduR_PduIdType, TYPEDEF ) RTabTxCount;
-} PduR_RTabLoTpConfigType;
-
 typedef struct /* PduR_RTabUpIfTxConfigType */ {
     TS_REF2CFG( PduR_RTabUpIfTxType )  RTabTxRef;
     VAR( PduR_PduIdType, TYPEDEF ) RTabTxCount;
@@ -241,10 +217,8 @@ typedef struct /* PduR_PBConfigType */ {
     CONST( PduR_GTabIfConfigType, TYPEDEF ) PduR_GTabIfConfig;
     CONST( PduR_GTabTpConfigType, TYPEDEF ) PduR_GTabTpConfig;
     CONST( PduR_Nto1TabTpConfigType, TYPEDEF ) PduR_Nto1TabTpConfig;
-    VAR( PduR_RTabLoIfConfigType, TYPEDEF ) PduR_RTabLoIfConfig[3];
-    VAR( PduR_RTabUpIfTxConfigType, TYPEDEF ) PduR_RTabUpIfTxConfig[3];
-    VAR( PduR_RTabLoTpConfigType, TYPEDEF ) PduR_RTabLoTpConfig[1];
-    VAR( PduR_RTabUpTpConfigType, TYPEDEF ) PduR_RTabUpTpConfig[1];
+    VAR( PduR_RTabLoIfConfigType, TYPEDEF ) PduR_RTabLoIfConfig[1];
+    VAR( PduR_RTabUpIfTxConfigType, TYPEDEF ) PduR_RTabUpIfTxConfig[1];
     VAR( uint16, TYPEDEF ) PduR_ConfigurationId;
     VAR( uint16, TYPEDEF ) PduR_BufSbCount;
     VAR( uint16, TYPEDEF ) PduR_BufDfCount;

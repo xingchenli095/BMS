@@ -56,14 +56,14 @@
 
 typedef struct /* CanIf_ConfigLayoutType */ {
     VAR( CanIf_ConfigType, TYPEDEF ) RootCfg;
-    VAR( CanIf_TxLPduConfigType, TYPEDEF ) txLPduConfig[14];
-    VAR( CanIf_RxLPduConfigType, TYPEDEF ) rxLPduConfig[11];
-    VAR( CanIf_HthConfigType, TYPEDEF ) driverHthConfig[4];
-    VAR( CanIf_HrhConfigType, TYPEDEF ) driverHrhConfig[11];
-    VAR( uint16, TYPEDEF ) hohIdToCanIfIdx[15];
+    VAR( CanIf_TxLPduConfigType, TYPEDEF ) txLPduConfig[3];
+    VAR( CanIf_RxLPduConfigType, TYPEDEF ) rxLPduConfig[8];
+    VAR( CanIf_HthConfigType, TYPEDEF ) driverHthConfig[1];
+    VAR( CanIf_HrhConfigType, TYPEDEF ) driverHrhConfig[8];
+    VAR( uint16, TYPEDEF ) hohIdToCanIfIdx[9];
     VAR( CanIf_CanControllerConfigType, TYPEDEF ) canControllerConfig[1];
     VAR( CanIf_CanDriverConfigType, TYPEDEF ) canDriverConfig[1];
-    VAR( CanIf_SortedRxLPduConfigType, TYPEDEF ) sortedRxLPduConfig[11];
+    VAR( CanIf_SortedRxLPduConfigType, TYPEDEF ) sortedRxLPduConfig[8];
     VAR( CanIf_CanTrcvChnlConfigType, TYPEDEF ) canTrcvChnlConfig[1];
 } CanIf_ConfigLayoutType;
 

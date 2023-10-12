@@ -185,19 +185,8 @@ typedef P2FUNC(Std_ReturnType, PDUR_APPL_CODE, PduR_TransmitFpType)
   P2CONST(PduInfoType, AUTOMATIC, PDUR_APPL_DATA) PduInfoPtr
 );
 
-/** \brief Function pointer type used for cancel transmit functions provided to
- ** upper layer modules routing TP-PDUs **/
-typedef P2FUNC(Std_ReturnType, PDUR_APPL_CODE, PduR_CancelTransmitFpType)
-(
-  PduIdType TxPduId
-);
 
 
-/** \brief Function pointer type providing cancel receive functionality **/
-typedef P2FUNC(Std_ReturnType, PDUR_APPL_CODE, PduR_CancelReceiveFpType)
-(
-  PduIdType RxPduId
-);
 
 /*------------------[Module API table type]---------------------------------*/
 
@@ -223,8 +212,6 @@ typedef struct
   PduR_CopyRxDataFpType TpCopyRxData; /**< pointer to x_CopyRxData() */
   PduR_StrtOfRcptnFpType TpStartOfReception; /**< pointer to x_StartOfReception() */
   PduR_TpRxIndFpType TpRxIndication; /**< pointer to x_RxIndication() */
-    PduR_CancelTransmitFpType TpCancelTransmit; /**< pointer to x_CancelTransmit() */
-    PduR_CancelReceiveFpType TpCancelReceive; /**< pointer to LoTp_CancelReceive() */
 } PduR_TpModuleAPIType;
 
 /* Deviation MISRA-1 */

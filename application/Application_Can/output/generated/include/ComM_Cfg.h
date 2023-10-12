@@ -40,9 +40,6 @@
 
 
 
-#include <Com.h>
-
-
 
 
 
@@ -80,7 +77,7 @@
 #if (defined COMM_CFG_SIGNATURE)
 #error COMM_CFG_SIGNATURE already defined
 #endif
-#define COMM_CFG_SIGNATURE 4283348280U /* Compile time verification value */
+#define COMM_CFG_SIGNATURE 2010708794U /* Compile time verification value */
 
 #if (defined COMM_PUBLIC_INFO_SIGNATURE)
 #error COMM_PUBLIC_INFO_SIGNATURE already defined
@@ -222,7 +219,7 @@
 #if (defined COMM_DCM_ENABLED)
 #error COMM_DCM_ENABLED already defined
 #endif
-#define COMM_DCM_ENABLED                  STD_ON
+#define COMM_DCM_ENABLED                  STD_OFF
 
 /* !LINKSTO ComM.Config.ComMMultiCoreSupport,1 */
 /** \brief Enable multicore support*/
@@ -314,49 +311,6 @@
 
 
 
-
-
-/** \brief Number of bytes to store the EIRA or ERA */
-#if (defined COMM_PN_INFO_LENGTH)
-#error COMM_PN_INFO_LENGTH already defined
-#endif
-#define COMM_PN_INFO_LENGTH 6U
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-
- 
-
-
-
- 
-
-  
-    
-  
- 
- 
-
-  
-
-
- 
-
-
-
-
-
-
 /** \brief Number of ComM communication channels */
 #if (defined COMM_NUM_CHANNELS)
 #error COMM_NUM_CHANNELS already defined
@@ -385,7 +339,7 @@
 #if (defined COMM_NM_ACCESS_NEEDED)
 #error COMM_NM_ACCESS_NEEDED already defined
 #endif
-#define COMM_NM_ACCESS_NEEDED             STD_ON
+#define COMM_NM_ACCESS_NEEDED             STD_OFF
 
 /** \brief Flag indicating if CanSm access is needed at all. */
 #if (defined COMM_CANSM_ACCESS_NEEDED)
@@ -416,7 +370,7 @@
 #if (defined COMM_NM_VARIANT_FULL_NEEDED)
 #error COMM_NM_VARIANT_FULL_NEEDED already defined
 #endif
-#define COMM_NM_VARIANT_FULL_NEEDED       STD_ON
+#define COMM_NM_VARIANT_FULL_NEEDED       STD_OFF
 
 /** \brief Flag indicating if there is at least one channel of variant
  * "passive" */
@@ -445,7 +399,7 @@
 #if (defined COMM_NM_VARIANT_NONE_NEEDED)
 #error COMM_NM_VARIANT_NONE_NEEDED already defined
 #endif
-#define COMM_NM_VARIANT_NONE_NEEDED       STD_OFF
+#define COMM_NM_VARIANT_NONE_NEEDED       STD_ON
 
 /* !LINKSTO ComM.EB.Dsn.Information.COMM_NM_VARIANT_SLAVE_ACTIVE_NEEDED,1 */
 /** \brief Flag indicating if there is at least one channel of variant
@@ -468,14 +422,14 @@
 #if (defined COMM_NM_VARIANT_FULL_ONLY)
 #error COMM_NM_VARIANT_FULL_ONLY already defined
 #endif
-#define COMM_NM_VARIANT_FULL_ONLY         STD_ON
+#define COMM_NM_VARIANT_FULL_ONLY         STD_OFF
 
 /** \brief Flag indicating if only channels of variant "light" ore "none" are
  * configured */
 #if (defined COMM_NM_VARIANT_LIGHT_NONE_ONLY)
 #error COMM_NM_VARIANT_LIGHT_NONE_ONLY already defined
 #endif
-#define COMM_NM_VARIANT_LIGHT_NONE_ONLY   STD_OFF
+#define COMM_NM_VARIANT_LIGHT_NONE_ONLY   STD_ON
 
 /** \brief Flag indicating if there is at least one channel of bustype
  * "internal" */
@@ -494,7 +448,7 @@
 #if (defined COMM_NM_CHANNEL_OF_CHANNEL)
 #error COMM_NM_CHANNEL_OF_CHANNEL already defined
 #endif
-#define COMM_NM_CHANNEL_OF_CHANNEL(idx)   0U /* Fixed mapping of channel specific attributes to attributes of channel #0 */
+#define COMM_NM_CHANNEL_OF_CHANNEL(idx)   0xFFU /* no NM channel associated */
 
 /* !LINKSTO HisComM0001_Refine1,1, HisComM0002_Refine1,1, HisComM0003_Refine1,1 */
 /** \brief Bus type of ComM channel */
@@ -513,7 +467,7 @@
 #if (defined COMM_NM_VARIANT_OF_CHANNEL)
 #error COMM_NM_VARIANT_OF_CHANNEL already defined
 #endif
-#define COMM_NM_VARIANT_OF_CHANNEL(idx)    COMM_NM_FULL_VARIANT
+#define COMM_NM_VARIANT_OF_CHANNEL(idx)    COMM_NM_NONE_VARIANT
 #if (defined COMM_NM_VARIANT_OF_CHANNEL_DYNAMIC)
 #error COMM_NM_VARIANT_OF_CHANNEL_DYNAMIC already defined
 #endif
@@ -542,7 +496,7 @@
 #if (defined COMM_PNC_SUPPORT)
 #error COMM_PNC_SUPPORT already defined
 #endif
-#define COMM_PNC_SUPPORT                  STD_ON
+#define COMM_PNC_SUPPORT                  STD_OFF
 
 #if (defined COMM_PNC_GW_ENABLED)
 #error COMM_PNC_GW_ENABLED already defined
@@ -572,71 +526,16 @@
 #if (defined COMM_NUM_PNC)
 #error COMM_NUM_PNC already defined
 #endif
-#define COMM_NUM_PNC                      2U
+#define COMM_NUM_PNC                      0U
 
 
-
-
-/** \brief Prepare Sleep timeout time in ms, spent in the
- *  PNC_PREPARE_SLEEP state */
-#if (defined COMM_T_PNC_PREPARE_SLEEP)
-#error COMM_T_PNC_PREPARE_SLEEP already defined
-#endif
-#define COMM_T_PNC_PREPARE_SLEEP 32U
-
-
-#if (defined ComMConf_ComMPnc_ComMPnc_16)
-#error ComMConf_ComMPnc_ComMPnc_16 already defined
-#endif
-/** \brief Symbolic name for the ComM Pnc "ComMPnc_16" */
-#define ComMConf_ComMPnc_ComMPnc_16   16U
-
-#if (defined COMM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
-#if (defined ComMPnc_16)
-#error ComMPnc_16 already defined
-#endif
-
-/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) 16 */
-#define ComMPnc_16                     16U
-
-#if (defined ComM_ComMPnc_16)
-#error ComM_ComMPnc_16 already defined
-#endif
-
-/** \brief Export symbolic name value with module abbreviation as prefix
- ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define ComM_ComMPnc_16   16U
-#endif /* COMM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
-
-#if (defined ComMConf_ComMPnc_ComMPnc_17)
-#error ComMConf_ComMPnc_ComMPnc_17 already defined
-#endif
-/** \brief Symbolic name for the ComM Pnc "ComMPnc_17" */
-#define ComMConf_ComMPnc_ComMPnc_17   17U
-
-#if (defined COMM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
-#if (defined ComMPnc_17)
-#error ComMPnc_17 already defined
-#endif
-
-/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) 17 */
-#define ComMPnc_17                     17U
-
-#if (defined ComM_ComMPnc_17)
-#error ComM_ComMPnc_17 already defined
-#endif
-
-/** \brief Export symbolic name value with module abbreviation as prefix
- ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define ComM_ComMPnc_17   17U
-#endif /* COMM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
 
 /** \brief Number of unique Rx EIRA Signals */
 #if (defined COMM_NUM_RX_EIRA_SIGNALS)
 #error COMM_NUM_RX_EIRA_SIGNALS already defined
 #endif
-#define COMM_NUM_RX_EIRA_SIGNALS      1U
+#define COMM_NUM_RX_EIRA_SIGNALS      0U
 
 
 
@@ -644,7 +543,7 @@
 #if (defined COMM_NUM_TX_SIGNALS)
 #error COMM_NUM_TX_SIGNALS already defined
 #endif
-#define COMM_NUM_TX_SIGNALS      1U
+#define COMM_NUM_TX_SIGNALS      0U
 
 
 
@@ -726,8 +625,7 @@ extern FUNC(void, COMM_CODE) ComM_MainFunction_0(void);
 #error COMM_PN_OFFSET already defined
 #endif
 
-                
-                #define COMM_PN_OFFSET 2U
+#define COMM_PN_OFFSET
 
 
 /** \brief COM Callback function indicates reception of an RX-EIRA
@@ -736,18 +634,6 @@ extern FUNC(void, COMM_CODE) ComM_MainFunction_0(void);
  ** eira signal is received.
  **
  ** \note called in interrupt context */
-
-
-
-#define COMM_START_SEC_CODE
-#include <ComM_MemMap.h>
-/** \brief Com callback function for the signal "SGCanNmPnEiraRxNSdu" */
-extern FUNC(void, COMM_CODE) ComM_COMCbk_SGCanNmPnEiraRxNSdu
-(void);
-#define COMM_STOP_SEC_CODE
-#include <ComM_MemMap.h>
-
-
 
 
 

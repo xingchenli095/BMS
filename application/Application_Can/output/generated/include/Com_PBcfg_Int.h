@@ -31,7 +31,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_IPDU_INIT_ARRAY_SIZE */
-#define COM_IPDU_INIT_ARRAY_SIZE 129U
+#define COM_IPDU_INIT_ARRAY_SIZE 192U
 
 
 #if (defined COM_IPDU_TMS_FLAGS_INIT_VALUES_ARRAY_SIZE) /* To prevent double declaration */
@@ -57,7 +57,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_IPDU_TIMEOUT_NOTIFICATION_ARRAY_SIZE */
-#define COM_TX_IPDU_TIMEOUT_NOTIFICATION_ARRAY_SIZE 0U
+#define COM_TX_IPDU_TIMEOUT_NOTIFICATION_ARRAY_SIZE 1U
 
 
 #if (defined COM_TX_IPDU_NOTIFICATION_ARRAY_SIZE) /* To prevent double declaration */
@@ -66,7 +66,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_IPDU_NOTIFICATION_ARRAY_SIZE */
-#define COM_TX_IPDU_NOTIFICATION_ARRAY_SIZE 0U
+#define COM_TX_IPDU_NOTIFICATION_ARRAY_SIZE 1U
 
 
 #if (defined COM_RX_SIGNAL_ARRAY_SIZE) /* To prevent double declaration */
@@ -75,7 +75,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_RX_SIGNAL_ARRAY_SIZE */
-#define COM_RX_SIGNAL_ARRAY_SIZE 8U
+#define COM_RX_SIGNAL_ARRAY_SIZE 21U
 
 #if (defined COM_TX_SIGNAL_ARRAY_SIZE) /* To prevent double declaration */
 #error COM_TX_SIGNAL_ARRAY_SIZE already defined
@@ -83,7 +83,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_SIGNAL_ARRAY_SIZE */
-#define COM_TX_SIGNAL_ARRAY_SIZE 8U
+#define COM_TX_SIGNAL_ARRAY_SIZE 74U
 
 
 #if (defined COM_RX_FIRST_TIMEOUT_FACTOR_ARRAY_SIZE) /* To prevent double declaration */
@@ -126,7 +126,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_RX_IPDU_ARRAY_SIZE */
-#define COM_RX_IPDU_ARRAY_SIZE 6U
+#define COM_RX_IPDU_ARRAY_SIZE 8U
 
 
 #if (defined COM_TX_IPDU_ARRAY_SIZE) /* To prevent double declaration */
@@ -135,7 +135,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_IPDU_ARRAY_SIZE */
-#define COM_TX_IPDU_ARRAY_SIZE 5U
+#define COM_TX_IPDU_ARRAY_SIZE 3U
 
 #if (defined COM_RX_SIGNAL_GROUP_ARRAY_SIZE) /* To prevent double declaration */
 #error COM_RX_SIGNAL_GROUP_ARRAY_SIZE already defined
@@ -151,7 +151,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_SIGNAL_GROUP_ARRAY_SIZE */
-#define COM_TX_SIGNAL_GROUP_ARRAY_SIZE 1U
+#define COM_TX_SIGNAL_GROUP_ARRAY_SIZE 2U
 
 
 #if (defined COM_TX_MODE_N_TIMES_ARRAY_SIZE) /* To prevent double declaration */
@@ -170,7 +170,7 @@
 /** \brief Define COM_TX_MODE_PERIODIC_ARRAY_SIZE
  * Note: in the TxModePeriodicArray also the parameters of the
  * COM_TX_MODE_MIXED_DIRECT are stored */
-#define COM_TX_MODE_PERIODIC_ARRAY_SIZE 1U
+#define COM_TX_MODE_PERIODIC_ARRAY_SIZE 2U
 
 #if (defined COM_TX_MODE_MIXED_N_TIMES_ARRAY_SIZE) /* To prevent double declaration */
 #error COM_TX_MODE_MIXED_N_TIMES_ARRAY_SIZE already defined
@@ -195,7 +195,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_IPDU_GROUPS_NUM */
-#define COM_IPDU_GROUPS_NUM 32U
+#define COM_IPDU_GROUPS_NUM 4U
 
 
 #if (defined COM_RX_IPDU_SIGNAL_GROUP_LIST_ARRAY_SIZE) /* To prevent double declaration */
@@ -213,7 +213,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_IPDU_SIGNAL_GROUP_LIST_ARRAY_SIZE */
-#define COM_TX_IPDU_SIGNAL_GROUP_LIST_ARRAY_SIZE 1U
+#define COM_TX_IPDU_SIGNAL_GROUP_LIST_ARRAY_SIZE 2U
 
 
 #if (defined COM_RX_IPDU_SIGNAL_LIST_ARRAY_SIZE) /* To prevent double declaration */
@@ -222,7 +222,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_RX_IPDU_SIGNAL_LIST_ARRAY_SIZE */
-#define COM_RX_IPDU_SIGNAL_LIST_ARRAY_SIZE 5U
+#define COM_RX_IPDU_SIGNAL_LIST_ARRAY_SIZE 13U
 
 #if (defined COM_TX_IPDU_SIGNAL_LIST_ARRAY_SIZE) /* To prevent double declaration */
 #error COM_TX_IPDU_SIGNAL_LIST_ARRAY_SIZE already defined
@@ -230,7 +230,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_TX_IPDU_SIGNAL_LIST_ARRAY_SIZE */
-#define COM_TX_IPDU_SIGNAL_LIST_ARRAY_SIZE 5U
+#define COM_TX_IPDU_SIGNAL_LIST_ARRAY_SIZE 65U
 
 
 #if (defined COM_MDT_QUEUE_ARRAY_SIZE) /* To prevent double declaration */
@@ -257,7 +257,7 @@
 
 /* Generator has to set the value */
 /** \brief Define COM_N_TIMES_QUEUE_ARRAY_SIZE */
-#define COM_N_TIMES_QUEUE_ARRAY_SIZE 2U
+#define COM_N_TIMES_QUEUE_ARRAY_SIZE 1U
 
 #if (defined COM_RX_TIMEOUT_QUEUE_ARRAY_SIZE) /* To prevent double declaration */
 #error COM_RX_TIMEOUT_QUEUE_ARRAY_SIZE already defined

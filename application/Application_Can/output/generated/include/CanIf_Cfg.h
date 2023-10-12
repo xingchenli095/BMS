@@ -453,7 +453,7 @@
 #if (defined CANIF_CAN_WAKEUP_SUPPORT)
 #error CANIF_CAN_WAKEUP_SUPPORT already defined!
 #endif /* #if( defined CANIF_CAN_WAKEUP_SUPPORT)*/
-#define CANIF_CAN_WAKEUP_SUPPORT   STD_OFF
+#define CANIF_CAN_WAKEUP_SUPPORT   STD_ON
 
 /** \brief CAN transceiver wakeup support
  **
@@ -534,30 +534,11 @@
 #error CANIF_CONFIRMPNAVAILABILITY_CALLBACK already defined!
 #endif /* #if( defined CANIF_CONFIRMPNAVAILABILITY_CALLBACK)*/
 #define CANIF_CONFIRMPNAVAILABILITY_CALLBACK( Transceiver) \
-    CanSM_ConfirmPnAvailability( Transceiver )
-
-
-/** \brief Macro for clear transceiver WUF flag indication callback function
-**
-** This macro shall be used for calling the clear transceiver WUF flag indication function
-*/
-#if (defined CANIF_CLEARTRCVWUFFLAGINDICATION_CALLBACK)
-#error CANIF_CLEARTRCVWUFFLAGINDICATION_CALLBACK already defined!
-#endif /* #if( defined CANIF_CLEARTRCVWUFFLAGINDICATION_CALLBACK)*/
-#define CANIF_CLEARTRCVWUFFLAGINDICATION_CALLBACK( Transceiver) \
-    CanSM_ClearTrcvWufFlagIndication( Transceiver )
+    User_CanIfConfirmPnAvailabilityDummy( Transceiver )
 
 
 
-/** \brief Macro for check transceiver wake flag indication callback function
-**
-** This macro shall be used for calling the check transceiver wake flag indication function
-*/
-#if (defined CANIF_CHECKTRCVWAKEFLAGINDICATION_CALLBACK)
-#error CANIF_CHECKTRCVWAKEFLAGINDICATION_CALLBACK already defined!
-#endif /* #if( defined CANIF_CHECKTRCVWAKEFLAGINDICATION_CALLBACK)*/
-#define CANIF_CHECKTRCVWAKEFLAGINDICATION_CALLBACK( Transceiver) \
-    CanSM_CheckTransceiverWakeFlagIndication( Transceiver )
+
 #endif /* CANIF_PUBLIC_PN_SUPPORT */
 
 
@@ -718,7 +699,7 @@
 #if (defined CANIF_CFG_SIGNATURE)
 #error CANIF_CFG_SIGNATURE already defined!
 #endif /* #if( defined CANIF_CFG_SIGNATURE)*/
-#define CANIF_CFG_SIGNATURE 4094173456U
+#define CANIF_CFG_SIGNATURE 1444882739U
 
 /** \brief Compile time Published information verfication value */
 #if (defined CANIF_PUBLIC_INFO_SIGNATURE)

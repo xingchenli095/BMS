@@ -132,7 +132,7 @@ extern "C"{
 #define FEE_NUMBER_OF_CLUSTER_GROUPS              (1U)
 
 /* Number of configured Fee blocks */
-#define FEE_CRT_CFG_NR_OF_BLOCKS                  (12U)
+#define FEE_CRT_CFG_NR_OF_BLOCKS                  (9U)
 
 /* Maximum number of Fee blocks in all project versions and configurations */
 #define FEE_MAX_NR_OF_BLOCKS                      ((FEE_CRT_CFG_NR_OF_BLOCKS))
@@ -175,9 +175,6 @@ extern "C"{
 /* Symbolic names of configured Fee blocks */
 #define FeeConf_FeeBlockConfiguration_Fee_NvMBlock_ConfigID     (16U)
 #define FeeConf_FeeBlockConfiguration_Fee_NvMBlock_ConfigID_Red     (17U)
-#define FeeConf_FeeBlockConfiguration_Fee_PersistentCounterValue     (32U)
-#define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DCM_NvM_Dummy     (48U)
-#define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DCM_ROE     (64U)
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_DEFAULT     (80U)
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_PRIMARY_0     (96U)
 #define FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_PRIMARY_1     (97U)

@@ -88,14 +88,8 @@
 #endif
 
 #ifndef BASE_CANNM_ENABLED
-/** \brief Enable status of the module CanNm (/CanNm/CanNm) (VariantPostBuild) */
-#define BASE_CANNM_ENABLED STD_ON
-#endif
-
-
-#ifndef BASE_CANNM_CONFIG_PTR
-/** \brief Address of the first multiple configuration container for CanNm (/CanNm/CanNm) */
-#define BASE_CANNM_CONFIG_PTR (&CanNmGlobalConfig)
+/** \brief Enable status of the module CanNm (/CanNm/CanNm) (VariantPreCompile) */
+#define BASE_CANNM_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_CANNM_HEADER
@@ -120,14 +114,8 @@
 #endif
 
 #ifndef BASE_CANTP_ENABLED
-/** \brief Enable status of the module CanTp (/CanTp/CanTp) (VariantPostBuild) */
-#define BASE_CANTP_ENABLED STD_ON
-#endif
-
-
-#ifndef BASE_CANTP_CONFIG_PTR
-/** \brief Address of the first multiple configuration container for CanTp (/CanTp/CanTp) */
-#define BASE_CANTP_CONFIG_PTR (&CanTpConfig)
+/** \brief Enable status of the module CanTp (/CanTp/CanTp) (VariantPreCompile) */
+#define BASE_CANTP_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_CANTP_HEADER
@@ -235,13 +223,7 @@
 
 #ifndef BASE_DCM_ENABLED
 /** \brief Enable status of the module Dcm (/Dcm/Dcm) (VariantPreCompile) */
-#define BASE_DCM_ENABLED STD_ON
-#endif
-
-
-#ifndef BASE_DCM_CONFIG_PTR
-/** \brief Address of the first multiple configuration container for Dcm (/Dcm/Dcm) */
-#define BASE_DCM_CONFIG_PTR (&DcmConfigSet)
+#define BASE_DCM_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_DCM_HEADER
@@ -287,7 +269,7 @@
 
 #ifndef BASE_E2E_ENABLED
 /** \brief Enable status of the module E2E (/E2E/E2E) (VariantPreCompile) */
-#define BASE_E2E_ENABLED STD_ON
+#define BASE_E2E_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_E2E_HEADER
@@ -297,7 +279,7 @@
 
 #ifndef BASE_E2EP05_ENABLED
 /** \brief Enable status of the module E2EP05 (/E2EP05/E2EP05) (VariantPreCompile) */
-#define BASE_E2EP05_ENABLED STD_ON
+#define BASE_E2EP05_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_E2EP05_HEADER
@@ -307,7 +289,7 @@
 
 #ifndef BASE_E2ESM_ENABLED
 /** \brief Enable status of the module E2ESM (/E2ESM/E2ESM) (VariantPreCompile) */
-#define BASE_E2ESM_ENABLED STD_ON
+#define BASE_E2ESM_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_E2ESM_HEADER
@@ -423,7 +405,7 @@
 
 #ifndef BASE_NM_ENABLED
 /** \brief Enable status of the module Nm (/Nm/Nm) (VariantPreCompile) */
-#define BASE_NM_ENABLED STD_ON
+#define BASE_NM_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_NM_HEADER
@@ -539,8 +521,8 @@
 #endif
 
 #ifndef BASE_SECOC_ENABLED
-/** \brief Enable status of the module SecOC (/SecOC/SecOC) (VariantPostBuild) */
-#define BASE_SECOC_ENABLED STD_ON
+/** \brief Enable status of the module SecOC (/SecOC/SecOC) (VariantPreCompile) */
+#define BASE_SECOC_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_SECOC_HEADER
@@ -627,7 +609,7 @@
 
 #ifndef BASE_E2EXF_ENABLED
 /** \brief Enable status of the module E2EXf (/E2EXf/Xfrm) (VariantPreCompile) */
-#define BASE_E2EXF_ENABLED STD_ON
+#define BASE_E2EXF_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_E2EXF_HEADER
@@ -637,7 +619,7 @@
 
 #ifndef BASE_COMXF_ENABLED
 /** \brief Enable status of the module ComXf (/ComXf/Xfrm) (VariantPreCompile) */
-#define BASE_COMXF_ENABLED STD_ON
+#define BASE_COMXF_ENABLED STD_OFF
 #endif
 
 #ifndef BASE_COMXF_HEADER

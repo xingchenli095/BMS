@@ -147,6 +147,16 @@ typedef P2FUNC( Std_ReturnType, CAN_CODE, CanIf_SetControllerModeFctPtrType )
     Can_ControllerStateType Transition
   );
 
+/** \brief Pointer type definition to function Can_CheckWakeup()
+ **
+ ** This is a function pointer type definition for the CAN driver function
+ ** Can_CheckWakeup().
+ */
+typedef P2FUNC( Std_ReturnType, CAN_CODE, CanIf_CheckWakeupFctPtrType )
+  (
+    uint8 Controller
+  );
+
 
 
 /* --- CAN Transceiver Configuration ----------------------------------- */
@@ -303,6 +313,7 @@ typedef struct
 {
   CanIf_WriteFctPtrType                        Write;                        /**< Can Write */
   CanIf_SetControllerModeFctPtrType            SetControllerMode;            /**< Can Set Controller Mode */
+  CanIf_CheckWakeupFctPtrType                  CheckWakeup;                  /**< Can Check Wakeup */
   Can_HwHandleType                             HohIdOffset;                  /**< Offset for the HW Object id in the local struct */
 } CanIf_CanDrvFctConfigType;
 

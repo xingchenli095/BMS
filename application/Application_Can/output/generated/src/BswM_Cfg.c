@@ -79,7 +79,7 @@ P2VAR(BswM_PartitionContextType, AUTOMATIC, BSWM_VAR) inst
 #define BSWM_START_SEC_CONST_32
 #include <BswM_MemMap.h>
 
-CONST(uint32, BSWM_CONST) BswM_LcfgSignature = 740432317U;
+CONST(uint32, BSWM_CONST) BswM_LcfgSignature = 3986728524U;
 
 #define BSWM_STOP_SEC_CONST_32
 #include <BswM_MemMap.h>

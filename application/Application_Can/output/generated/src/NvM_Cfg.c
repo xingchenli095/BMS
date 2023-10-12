@@ -103,15 +103,7 @@
 #define NVM_ASSERT_STC(expr)\
  typedef uint8 NVM_JOIN(AssertFailedInLine,__LINE__)[(expr)?1:-1]
 
-                    /* BlockIdentifier: 3 - RamBlockDataAddress: &Dcm_Dsl_RoeServices_Persistent_Data */
-        /* Length = 16U (Block length) */
-        NVM_ASSERT_STC(16U == sizeof(Dcm_Dsl_RoeServices_Persistent_Data));
-  
-                    /* BlockIdentifier: 4 - RamBlockDataAddress: &Dem_NvData */
-        /* Length = 40U (Block length) */
-        NVM_ASSERT_STC(40U == sizeof(Dem_NvData));
-  
-                    /* BlockIdentifier: 5 - RamBlockDataAddress: &Dem_NvGateEntryPrimaryData */
+                    /* BlockIdentifier: 3 - RamBlockDataAddress: &Dem_NvGateEntryPrimaryData */
         /* Length = 56U (Block length) */
         NVM_ASSERT_STC(56U == sizeof(Dem_NvGateEntryPrimaryData));
   
@@ -182,48 +174,6 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     3U,  /* writeRetryLimit */
   },
 
-  /* NVM_BLOCK_NVM_BLOCK_DCM_NvM_Dummy */
-  {
-    NULL_PTR, /* initBlockCallback */
-    NULL_PTR, /* singleBlockCallback */
-    NULL_PTR, /* readRamFromNvCallback */
-    NULL_PTR, /* writeRamToNvCallback */
-    &DidF190_DefaultData, /* romBlockDataAddress */
-    NULL_PTR, /* ramBlockDataAddress */
-    0x00400000U,  /* blockDesc */
-    17U,  /* nvBlockLength */
-    
-    
-    48U,  /* nvBlockBaseNumber */
-    2U,   /* nvBlockIdentifier*/
-    0xFFFFU, /* ramBlockCrcIndex */
-    1U, /* nvBlockNum */
-    1U, /* romBlockNum */
-    1U, /* blockJobPriority */
-    3U,  /* writeRetryLimit */
-  },
-
-  /* NVM_BLOCK_NVM_BLOCK_DCM_ROE */
-  {
-    NULL_PTR, /* initBlockCallback */
-    NULL_PTR, /* singleBlockCallback */
-    NULL_PTR, /* readRamFromNvCallback */
-    NULL_PTR, /* writeRamToNvCallback */
-    NULL_PTR, /* romBlockDataAddress */
-    &Dcm_Dsl_RoeServices_Persistent_Data, /* ramBlockDataAddress */
-    0x00440200U,  /* blockDesc */
-    16U,  /* nvBlockLength */
-    
-    
-    64U,  /* nvBlockBaseNumber */
-    3U,   /* nvBlockIdentifier*/
-    0xFFFFU, /* ramBlockCrcIndex */
-    1U, /* nvBlockNum */
-    0U, /* romBlockNum */
-    1U, /* blockJobPriority */
-    3U,  /* writeRetryLimit */
-  },
-
   /* NVM_BLOCK_NVM_BLOCK_DEM_DEFAULT */
   {
     NULL_PTR, /* initBlockCallback */
@@ -237,7 +187,7 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     
     
     80U,  /* nvBlockBaseNumber */
-    4U,   /* nvBlockIdentifier*/
+    2U,   /* nvBlockIdentifier*/
     0xFFFFU, /* ramBlockCrcIndex */
     1U, /* nvBlockNum */
     0U, /* romBlockNum */
@@ -258,7 +208,7 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     
     
     96U,  /* nvBlockBaseNumber */
-    5U,   /* nvBlockIdentifier*/
+    3U,   /* nvBlockIdentifier*/
     0xFFFFU, /* ramBlockCrcIndex */
     2U, /* nvBlockNum */
     0U, /* romBlockNum */
@@ -279,32 +229,11 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     
     
     112U,  /* nvBlockBaseNumber */
-    6U,   /* nvBlockIdentifier*/
+    4U,   /* nvBlockIdentifier*/
     0xFFFFU, /* ramBlockCrcIndex */
     2U, /* nvBlockNum */
     0U, /* romBlockNum */
     1U, /* blockJobPriority */
-    3U,  /* writeRetryLimit */
-  },
-
-  /* NVM_BLOCK_PersistentCounterValue */
-  {
-    NULL_PTR, /* initBlockCallback */
-    NULL_PTR, /* singleBlockCallback */
-    NULL_PTR, /* readRamFromNvCallback */
-    NULL_PTR, /* writeRamToNvCallback */
-    &Demo_CyclicCounter_Rom_Block, /* romBlockDataAddress */
-    &Demo_CyclicCounter_Ram_Block, /* ramBlockDataAddress */
-    0x00440200U,  /* blockDesc */
-    1U,  /* nvBlockLength */
-    
-    
-    32U,  /* nvBlockBaseNumber */
-    7U,   /* nvBlockIdentifier*/
-    0xFFFFU, /* ramBlockCrcIndex */
-    1U, /* nvBlockNum */
-    1U, /* romBlockNum */
-    64U, /* blockJobPriority */
     3U,  /* writeRetryLimit */
   },
 
@@ -321,7 +250,7 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
     
     
     128U,  /* nvBlockBaseNumber */
-    8U,   /* nvBlockIdentifier*/
+    5U,   /* nvBlockIdentifier*/
     0xFFFFU, /* ramBlockCrcIndex */
     1U, /* nvBlockNum */
     0U, /* romBlockNum */
@@ -359,6 +288,24 @@ CONST(NvM_BlockDescriptorType,NVM_CONST) NvM_BlockDescriptorTable[NVM_TOTAL_NUMB
 #include <NvM_MemMap.h>
 #endif /*MULTICORE ENABLED*/
 
+
+#define NVM_START_SEC_CONFIG_DATA_16
+#include <NvM_MemMap.h>
+CONST(uint16, NVM_CONST) NvM_RedirBlockId[10U]=
+{
+  0U, /* Position of block with Id 0 in the Configuration structure */
+  1U, /* Position of block with Id 1 in the Configuration structure */
+  2U, /* Position of block with Id 2 in the Configuration structure */
+  3U, /* Position of block with Id 3 in the Configuration structure */
+  4U, /* Position of block with Id 4 in the Configuration structure */
+  5U, /* Position of block with Id 5 in the Configuration structure */
+  7U, /* NO block with Id 6 in the Configuration structure */
+  7U, /* NO block with Id 7 in the Configuration structure */
+  7U, /* NO block with Id 8 in the Configuration structure */
+  6U, /* Position of block with Id 9 in the Configuration structure */
+};
+#define NVM_STOP_SEC_CONFIG_DATA_16
+#include <NvM_MemMap.h>
 
 
 #define NVM_START_SEC_CONFIG_DATA_8

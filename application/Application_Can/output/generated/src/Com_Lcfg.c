@@ -88,26 +88,22 @@ CONSTP2VAR(uint8, COM_CONST, COM_VAR_CLEARED) Com_gDataMemPtr =
 /* send callouts */
 
 /* TX acknowledge callbacks */
+/* Deviation MISRAC2012-2 <+1> */
+extern FUNC(void, COM_APPL_CODE) Rte_COMCbkTAck_SGPBSoCAbsolute_323T(void);
 
 /* TX timeout callbacks */
 /* extern FUNC(void, COM_APPL_CODE) Com_EB_TxDMDummyCbk(void); (extern declaration already generated)*/
+/* Deviation MISRAC2012-2 <+1> */
+extern FUNC(void, COM_APPL_CODE) Rte_COMCbkTxTOut_SGPBSoCAbsolute_323T(void);
 
 /* TX error callbacks */
 /* extern FUNC(void, COM_APPL_CODE) Com_EB_TxDMDummyCbk(void); (extern declaration already generated)*/
+/* Deviation MISRAC2012-2 <+1> */
+extern FUNC(void, COM_APPL_CODE) Rte_COMCbkTErr_SGPBSoCAbsolute_323T(void);
 
 /* RX timeout callbacks */
 
 /* RX acknowledge callbacks */
-/* Deviation MISRAC2012-2 <+1> */
-extern FUNC(void, COM_APPL_CODE) Rte_COMCbk_SGCounterIn_256R(void);
-/* Deviation MISRAC2012-2 <+1> */
-extern FUNC(void, COM_APPL_CODE) Rte_COMCbk_SGCounterIn_CAN_FD_257R(void);
-/* Deviation MISRAC2012-2 <+1> */
-extern FUNC(void, COM_APPL_CODE) Rte_COMCbk_SGSecuredDataIn_281R(void);
-/* Deviation MISRAC2012-2 <+1> */
-extern FUNC(void, COM_APPL_CODE) Rte_COMCbk_GRsigGroup_E2EProt_DataIn_280R(void);
-/* Deviation MISRAC2012-2 <+1> */
-extern FUNC(void, COM_APPL_CODE) ComM_COMCbk_SGCanNmPnEiraRxNSdu(void);
 
 #define COM_STOP_SEC_CALLOUT_CODE
 #include <Com_MemMap.h>
@@ -148,6 +144,7 @@ CONSTP2VAR(Com_RxCalloutType, AUTOMATIC, COM_APPL_CODE) Com_RxCallouts[1] =
 #if (COM_CBK_TX_ACK_PTR_ARRAY_SIZE > 0)
 CONSTP2VAR(Com_CbkTxAck_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxAck_Array[COM_CBK_TX_ACK_PTR_ARRAY_SIZE] =
 {
+     &Rte_COMCbkTAck_SGPBSoCAbsolute_323T
 };
 #else /* (COM_CBK_TX_ACK_PTR_ARRAY_SIZE > 0) */
 CONSTP2VAR(Com_CbkTxAck_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxAck_Array[1] =
@@ -163,6 +160,7 @@ CONSTP2VAR(Com_CbkTxAck_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxAck_Array[1] =
 CONSTP2VAR(Com_CbkTxTOut_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxTOut_Array[COM_CBK_TX_T_OUT_ARRAY_SIZE] =
 {
      &Com_EB_TxDMDummyCbk
+    ,&Rte_COMCbkTxTOut_SGPBSoCAbsolute_323T
 };
 #else /* (COM_CBK_TX_T_OUT_ARRAY_SIZE > 0) */
 CONSTP2VAR(Com_CbkTxTOut_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxTOut_Array[1] =
@@ -178,6 +176,7 @@ CONSTP2VAR(Com_CbkTxTOut_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxTOut_Array[1] =
 CONSTP2VAR(Com_CbkTxErr_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxErr_Array[COM_CBK_TX_ERR_PTR_ARRAY_SIZE] =
 {
      &Com_EB_TxDMDummyCbk
+    ,&Rte_COMCbkTErr_SGPBSoCAbsolute_323T
 };
 #else /* (COM_CBK_TX_ERR_PTR_ARRAY_SIZE > 0) */
 CONSTP2VAR(Com_CbkTxErr_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxErr_Array[1] =
@@ -192,11 +191,6 @@ CONSTP2VAR(Com_CbkTxErr_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkTxErr_Array[1] =
 #if (COM_CBK_RX_ACK_PTR_ARRAY_SIZE > 0)
 CONSTP2VAR(Com_CbkRxAck_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkRxAck_Array[COM_CBK_RX_ACK_PTR_ARRAY_SIZE] =
 {
-     &Rte_COMCbk_SGCounterIn_256R
-    ,&Rte_COMCbk_SGCounterIn_CAN_FD_257R
-    ,&Rte_COMCbk_SGSecuredDataIn_281R
-    ,&Rte_COMCbk_GRsigGroup_E2EProt_DataIn_280R
-    ,&ComM_COMCbk_SGCanNmPnEiraRxNSdu
 };
 #else /* (COM_CBK_RX_ACK_PTR_ARRAY_SIZE > 0)) */
 CONSTP2VAR(Com_CbkRxAck_Type, AUTOMATIC, COM_RTE_CODE) Com_CbkRxAck_Array[1] =

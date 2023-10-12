@@ -30,9 +30,6 @@
 
 #include <Det.h>              /* Det API                   */
 
-#include <Dcm.h>              /* DCM API                   */
-#include <BswM_DCM.h>         /* Module public API         */
-
 #include <BswM_EcuM.h>        /* EcuM related API          */
 #include <EcuM.h>             /* EcuM API                  */
 
@@ -44,8 +41,6 @@
 
 #include <CanSM.h>            /* CanSM API                 */
 #include <BswM_CanSM.h>       /* Module public API         */
-
-#include <BswM_Nm.h>
 
 #include <NvM.h>              /* NvM API                   */
 #include <BswM_NvM.h>         /* Module public API         */
@@ -145,71 +140,35 @@
 
 #define BSWM_COMM_PNC_REQUEST 3U
 
-#if (defined BSWM_DCM_APPLICATION_UPDATED_INDICATION)
-#error BSWM_DCM_APPLICATION_UPDATED_INDICATION is already defined
-#endif
-
-#define BSWM_DCM_APPLICATION_UPDATED_INDICATION 4U
-
-#if (defined BSWM_DCM_COM_MODE_CURRENT_STATE)
-#error BSWM_DCM_COM_MODE_CURRENT_STATE is already defined
-#endif
-
-#define BSWM_DCM_COM_MODE_CURRENT_STATE 5U
-
-#if (defined BSWM_DCM_COM_MODE_REQUEST)
-#error BSWM_DCM_COM_MODE_REQUEST is already defined
-#endif
-
-#define BSWM_DCM_COM_MODE_REQUEST 6U
-
-#if (defined BSWM_DCM_RESET_MODE_REQUEST)
-#error BSWM_DCM_RESET_MODE_REQUEST is already defined
-#endif
-
-#define BSWM_DCM_RESET_MODE_REQUEST 7U
-
-#if (defined BSWM_DCM_SESSION_MODE_REQUEST)
-#error BSWM_DCM_SESSION_MODE_REQUEST is already defined
-#endif
-
-#define BSWM_DCM_SESSION_MODE_REQUEST 8U
-
 #if (defined BSWM_ECUM_INDICATION)
 #error BSWM_ECUM_INDICATION is already defined
 #endif
 
-#define BSWM_ECUM_INDICATION 9U
+#define BSWM_ECUM_INDICATION 4U
 
 #if (defined BSWM_ECUM_WAKEUP_SOURCE)
 #error BSWM_ECUM_WAKEUP_SOURCE is already defined
 #endif
 
-#define BSWM_ECUM_WAKEUP_SOURCE 10U
+#define BSWM_ECUM_WAKEUP_SOURCE 5U
 
 #if (defined BSWM_GENERIC_REQUEST)
 #error BSWM_GENERIC_REQUEST is already defined
 #endif
 
-#define BSWM_GENERIC_REQUEST 11U
-
-#if (defined BSWM_NM_CAR_WAKEUP_INDICATION)
-#error BSWM_NM_CAR_WAKEUP_INDICATION is already defined
-#endif
-
-#define BSWM_NM_CAR_WAKEUP_INDICATION 12U
+#define BSWM_GENERIC_REQUEST 6U
 
 #if (defined BSWM_NVM_JOB_MODE_INDICATION)
 #error BSWM_NVM_JOB_MODE_INDICATION is already defined
 #endif
 
-#define BSWM_NVM_JOB_MODE_INDICATION 13U
+#define BSWM_NVM_JOB_MODE_INDICATION 7U
 
 #if (defined BSWM_NVM_REQUEST)
 #error BSWM_NVM_REQUEST is already defined
 #endif
 
-#define BSWM_NVM_REQUEST 14U
+#define BSWM_NVM_REQUEST 8U
 
 #if (defined BSWM_TIMER_CONTROL_ACTIONS_USED)
 #error BSWM_TIMER_CONTROL_ACTIONS_USED is already defined
@@ -229,7 +188,7 @@
 #if (defined BSWM_COMM_PNC_REQUEST_PORTS_CONFIGURED)
 #error BSWM_COMM_PNC_REQUEST_PORTS_CONFIGURED is already defined
 #endif
-#define BSWM_COMM_PNC_REQUEST_PORTS_CONFIGURED STD_ON
+#define BSWM_COMM_PNC_REQUEST_PORTS_CONFIGURED STD_OFF
 
 /*==================[type definitions]=======================================*/
 
@@ -286,7 +245,7 @@ typedef struct
   uint8 IPduGroupReInitVector[4]; /* IPduGroupReInitVector */
   uint8 IPduGroupVector[4]; /* IPduGroupVector */
   VAR( BswMResultType , BSWM_VAR_NOINIT ) RuleResultTable[17]; /* RuleResultTable */
-  uint8 LogicalExprInitStatus[18]; /* LogicalExprInitStatus */
+  uint8 LogicalExprInitStatus[17]; /* LogicalExprInitStatus */
   uint8 IsInitialized; /* IsInitialized */
   uint8 PduGroupSwitchTriggered; /* PduGroupSwitchTriggered */
   uint8 PduGroupSwitchReInitTriggered; /* PduGroupSwitchReInitTriggered */
@@ -301,16 +260,6 @@ typedef struct
   uint8 isImmediate; /* isImmediate */
   uint8 isDefined; /* isDefined */
 } BswMBasicPortType;
-
-/**
- * BswMComMPncRequestPortType
- */
-typedef struct 
-{
-  BswMBasicPortType base; /* base */
-  uint16 channel; /* channel */
-  uint8 mode; /* mode */
-} BswMComMPncRequestPortType;
 
 /**
  * BswMGenericRequestPortType
@@ -332,9 +281,7 @@ typedef struct
   Std_ReturnType ( *executeActionFuncPtr )( uint16 actionIndex ); /* executeActionFuncPtr */
   Std_ReturnType ( *handleStaticRequestFuncPtr )( uint32 channel, uint16 mode, uint8 source, uint8 sid ); /* handleStaticRequestFuncPtr */
   BswMGenericRequestPortType *genericRequestPortsTablePtr; /* genericRequestPortsTablePtr */
-  BswMComMPncRequestPortType *comMPncRequestPortsTablePtr; /* comMPncRequestPortsTablePtr */
   uint16 numBswMGenericRequestPorts; /* numBswMGenericRequestPorts */
-  uint16 numBswMComMPncRequestPorts; /* numBswMComMPncRequestPorts */
   uint16 numBswMExpressions; /* numBswMExpressions */
 } BswM_LinkTimeContextType;
 
@@ -374,6 +321,16 @@ typedef struct
   uint16 channel; /* channel */
   uint8 mode; /* mode */
 } BswMJ1939NmStateChangeNotificationPortType;
+
+/**
+ * BswMComMPncRequestPortType
+ */
+typedef struct 
+{
+  BswMBasicPortType base; /* base */
+  uint16 channel; /* channel */
+  uint8 mode; /* mode */
+} BswMComMPncRequestPortType;
 
 /**
  * BswMUInt8RteModeRequestPortType

@@ -35,7 +35,7 @@
  * Size of internal Com data in units of bytes (static memory allocation).
  * Memory required by post-build configuration must be smaller than this constant.
  */
-#define COM_DATA_MEM_SIZE 216
+#define COM_DATA_MEM_SIZE 644
 
 #if (COM_RAM_SIZE_MAX < COM_DATA_MEM_SIZE)
 #error (COM_RAM_SIZE_MAX < COM_DATA_MEM_SIZE)
@@ -62,7 +62,7 @@
 #endif /* if (defined COM_CBK_TX_ACK_PTR_ARRAY_SIZE) */
 
 /** \brief Define COM_CBK_TX_ACK_PTR_ARRAY_SIZE */
-#define COM_CBK_TX_ACK_PTR_ARRAY_SIZE 0U
+#define COM_CBK_TX_ACK_PTR_ARRAY_SIZE 1U
 
 
 #if (defined COM_CBK_RX_ACK_PTR_ARRAY_SIZE) /* To prevent double declaration */
@@ -70,7 +70,7 @@
 #endif /* if (defined COM_CBK_RX_ACK_PTR_ARRAY_SIZE) */
 
 /** \brief Define COM_CBK_RX_ACK_PTR_ARRAY_SIZE */
-#define COM_CBK_RX_ACK_PTR_ARRAY_SIZE 5U
+#define COM_CBK_RX_ACK_PTR_ARRAY_SIZE 0U
 
 
 #if (defined COM_CBK_TX_T_OUT_ARRAY_SIZE) /* To prevent double declaration */
@@ -78,7 +78,7 @@
 #endif /* if (defined COM_CBK_TX_T_OUT_ARRAY_SIZE) */
 
 /** \brief Define COM_CBK_TX_T_OUT_ARRAY_SIZE */
-#define COM_CBK_TX_T_OUT_ARRAY_SIZE 1U
+#define COM_CBK_TX_T_OUT_ARRAY_SIZE 2U
 
 
 #if (defined COM_CBK_RX_T_OUT_ARRAY_SIZE) /* To prevent double declaration */
@@ -94,7 +94,7 @@
 #endif /* if (defined COM_CBK_TX_ERR_PTR_ARRAY_SIZE) */
 
 /** \brief Define COM_CBK_TX_ERR_PTR_ARRAY_SIZE */
-#define COM_CBK_TX_ERR_PTR_ARRAY_SIZE 1U
+#define COM_CBK_TX_ERR_PTR_ARRAY_SIZE 2U
 
 
 #if (defined COM_LCFG_SIGNATURE) /* To prevent double declaration */
@@ -102,7 +102,7 @@
 #endif /* if (defined COM_LCFG_SIGNATURE) */
 
 /** \brief Define COM_LCFG_SIGNATURE */
-#define COM_LCFG_SIGNATURE 0xd0b9928bU
+#define COM_LCFG_SIGNATURE 0xe2f6a4ecU
 
 /*==================[type definitions]======================================*/
 

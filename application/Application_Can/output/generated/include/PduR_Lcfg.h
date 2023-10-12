@@ -54,13 +54,7 @@
 
 /* Index referring to the configuration of a module */
 extern CONST(uint8, PDUR_CONST) PduR_CanIfRTabLoIfConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_CanNmRTabLoIfConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_SecOCRTabLoIfConfigIdx;
 extern CONST(uint8, PDUR_CONST) PduR_ComRTabUpIfTxConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_DcmRTabUpIfTxConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_SecOCRTabUpIfTxConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_CanTpRTabLoTpConfigIdx;
-extern CONST(uint8, PDUR_CONST) PduR_DcmRTabUpTpConfigIdx;
 
 /* stop const section declaration */
 #define PDUR_STOP_SEC_CONST_8
@@ -71,7 +65,6 @@ extern CONST(uint8, PDUR_CONST) PduR_DcmRTabUpTpConfigIdx;
 #include <PduR_MemMap.h>
 
 /* Target module API reference */
-extern CONST(PduR_RefToModuleAPI, PDUR_CONST) PduR_DcmTargetModuleAPIRef;
 
 /* stop const section declaration */
 #define PDUR_STOP_SEC_CONST_16
@@ -95,11 +88,7 @@ extern CONST(uint32, PDUR_CONST) PduR_LcfgSignature;
 /**
  * API function pointer table for modules with interface archetype
  */
-extern CONST(PduR_IfModuleAPIType, PDUR_CONST) PduR_IfModuleAPI[6];
-/**
- * API function pointer table for modules with TP archetype
- */
-extern CONST(PduR_TpModuleAPIType, PDUR_CONST) PduR_TpModuleAPI[2];
+extern CONST(PduR_IfModuleAPIType, PDUR_CONST) PduR_IfModuleAPI[2];
 
 /* stop const section declaration */
 #define PDUR_STOP_SEC_CONST_UNSPECIFIED

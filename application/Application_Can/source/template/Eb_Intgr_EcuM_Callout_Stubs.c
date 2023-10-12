@@ -543,6 +543,8 @@ FUNC(void,ECUM_APPL_CODE) EcuM_CheckWakeup
    *    <Module>_CheckWakeup(wakeupSource);
    *  }
    */
+
+  
 }
 
 FUNC(void, ECUM_APPL_CODE) EcuM_PreHalt(void)

@@ -120,7 +120,7 @@ extern "C"{
 /*! @brief Definitions for BOARD_InitPins Functional Group */
 
 /*! @brief User number of configured pins */
-#define NUM_OF_CONFIGURED_PINS 10
+#define NUM_OF_CONFIGURED_PINS 16
 
 #define PORT_START_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Port_MemMap.h"

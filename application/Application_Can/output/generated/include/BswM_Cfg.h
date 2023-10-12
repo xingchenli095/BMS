@@ -78,7 +78,7 @@
 #error BSWM_DCM_API_ENABLED is already defined
 #endif
 
-#define BSWM_DCM_API_ENABLED STD_ON
+#define BSWM_DCM_API_ENABLED STD_OFF
 
 #if (defined BSWM_ECUM_API_ENABLED)
 #error BSWM_ECUM_API_ENABLED is already defined
@@ -138,7 +138,7 @@
 #error BSWM_NM_API_ENABLED is already defined
 #endif
 
-#define BSWM_NM_API_ENABLED STD_ON
+#define BSWM_NM_API_ENABLED STD_OFF
 
 #if (defined BSWM_NVM_API_ENABLED)
 #error BSWM_NVM_API_ENABLED is already defined
@@ -262,7 +262,7 @@
 #endif
 
 /** \brief PreCompile time verification value */
-#define BSWM_CFG_SIGNATURE 1717689180U
+#define BSWM_CFG_SIGNATURE 1248659870U
 
 #if (defined BSWM_PUBLIC_INFO_SIGNATURE)
 #error BSWM_PUBLIC_INFO_SIGNATURE is already defined

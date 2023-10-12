@@ -646,7 +646,6 @@
 #define DEM_INT_VAL_UNUSED        (DEM_NUM_EXT_DATAELEMENTS + 20U)
 
 /*------------------[Events configuration]----------------------------------*/
-    
 /* 1st 32 bits of event description layout */
 
 #if (defined DEM_UDS_DTC_OFFSET)
@@ -716,7 +715,7 @@
 #if (defined DEM_DTCGROUP_OFFSET)
 #error DEM_DTCGROUP_OFFSET already defined
 #endif
-#define DEM_DTCGROUP_OFFSET            13U
+#define DEM_DTCGROUP_OFFSET            4U
 
 
 #if (defined DEM_IMMEDIATESTORAGE_WIDTH)
@@ -749,7 +748,7 @@
 #error DEM_DEBOUNCEALGO_OFFSET already defined
 #endif
 /** \brief Offset of Debounce algorithm in 3rd element of event desc */
-#define DEM_DEBOUNCEALGO_OFFSET        3U
+#define DEM_DEBOUNCEALGO_OFFSET        1U
 
 #if (defined DEM_EVENTSIGNIFICANCE_WIDTH)
 #error DEM_EVENTSIGNIFICANCE_WIDTH already defined
@@ -806,7 +805,7 @@
 #error DEM_OPCYCLEIDX_WIDTH already defined
 #endif
 /** \brief Number of bits to hold the value of Operation cycle index */
-#define DEM_OPCYCLEIDX_WIDTH           2U
+#define DEM_OPCYCLEIDX_WIDTH           0U
 
 #if (defined DEM_OPCYCLEIDX_OFFSET)
 #error DEM_OPCYCLEIDX_OFFSET already defined
@@ -818,13 +817,13 @@
 #error DEM_AGINGCTRTHRESHOLD_WIDTH already defined
 #endif
 /** \brief Number of bits to hold the value of number of Aging cycles */
-#define DEM_AGINGCTRTHRESHOLD_WIDTH          7U
+#define DEM_AGINGCTRTHRESHOLD_WIDTH          0U
 
 #if (defined DEM_AGINGCTRTHRESHOLD_OFFSET)
 #error DEM_AGINGCTRTHRESHOLD_OFFSET already defined
 #endif
 /** \brief Offset of Aging cycle in 2nd element of event desc */
-#define DEM_AGINGCTRTHRESHOLD_OFFSET         6U
+#define DEM_AGINGCTRTHRESHOLD_OFFSET         4U
 
 /* Configurational value width in bits used for Dem_EventDescType */
 
@@ -832,13 +831,13 @@
 #error DEM_EVENTCLASSDESCIDX_WIDTH already defined
 #endif
 /** \brief Number of bits to hold the value of event class index */
-#define DEM_EVENTCLASSDESCIDX_WIDTH    0U
+#define DEM_EVENTCLASSDESCIDX_WIDTH    2U
 
 #if (defined DEM_EVENTCLASSDESCIDX_OFFSET)
 #error DEM_EVENTCLASSDESCIDX_OFFSET already defined
 #endif
 /** \brief Offset of event class idx in 2nd element of event desc if calibration is enabled */
-#define DEM_EVENTCLASSDESCIDX_OFFSET   18U
+#define DEM_EVENTCLASSDESCIDX_OFFSET   9U
 
 #if (defined DEM_EVENTKIND_WIDTH)
 #error DEM_EVENTKIND_WIDTH already defined
@@ -856,13 +855,13 @@
 #error DEM_EVENTFAILURECLASSIDX_OFFSET already defined
 #endif
 /** \brief Offset of Event failure class index in 3rd element of event desc */
-#define DEM_EVENTFAILURECLASSIDX_OFFSET  1U
+#define DEM_EVENTFAILURECLASSIDX_OFFSET  0U
 
 #if (defined DEM_ENCONDGRPIDX_WIDTH)
 #error DEM_ENCONDGRPIDX_WIDTH already defined
 #endif
 /** \brief Number of bits to hold the value of Enable condition group index */
-#define DEM_ENCONDGRPIDX_WIDTH            1U
+#define DEM_ENCONDGRPIDX_WIDTH            0U
 
 #if (defined DEM_ENCONDGRPIDX_OFFSET)
 #error DEM_ENCONDGRPIDX_OFFSET already defined
@@ -883,13 +882,13 @@
 #error DEM_PRIORITY_WIDTH already defined
 #endif
 /** \brief Number of bits to hold the value of Internal priority */
-#define DEM_PRIORITY_WIDTH             1U
+#define DEM_PRIORITY_WIDTH             0U
 
 #if (defined DEM_PRIORITY_OFFSET)
 #error DEM_PRIORITY_OFFSET already defined
 #endif
 /** \brief Offset of Internal priority in 3rd element of event desc */
-#define DEM_PRIORITY_OFFSET            2U
+#define DEM_PRIORITY_OFFSET            1U
 
 #if (defined DEM_DEBOUNCEIDX_WIDTH)
 #error DEM_DEBOUNCEIDX_WIDTH already defined
@@ -901,7 +900,7 @@
 #error DEM_DEBOUNCEIDX_OFFSET already defined
 #endif
 /** \brief Offset of Debounce algorithm index in 3rd element of event desc */
-#define DEM_DEBOUNCEIDX_OFFSET         5U
+#define DEM_DEBOUNCEIDX_OFFSET         3U
 
 #if (defined DEM_DTCFUNCTIONALUNIT_WIDTH)
 #error DEM_DTCFUNCTIONALUNIT_WIDTH already defined
@@ -913,7 +912,7 @@
 #error DEM_DTCFUNCTIONALUNIT_OFFSET already defined
 #endif
 /** \brief Offset of DTC functional unit in 3rd element of event desc */
-#define DEM_DTCFUNCTIONALUNIT_OFFSET   8
+#define DEM_DTCFUNCTIONALUNIT_OFFSET   6
 
 #if (defined DEM_AGINGCYCLEIDX_WIDTH)
 #error DEM_AGINGCYCLEIDX_WIDTH already defined
@@ -921,15 +920,16 @@
 /** \brief Number of bits to hold the value of relative Aging cycle index
  *
  * The invalid value :: DEM_NUM_AGINGCYCLES is also included in the width. */
-#define DEM_AGINGCYCLEIDX_WIDTH        1U
+#define DEM_AGINGCYCLEIDX_WIDTH        0U
 
 #if (defined DEM_AGINGCYCLEIDX_OFFSET)
 #error DEM_AGINGCYCLEIDX_OFFSET already defined
 #endif
 /** \brief Offset of Aging cycle index in 3rd element of event desc */
-#define DEM_AGINGCYCLEIDX_OFFSET       9U
+#define DEM_AGINGCYCLEIDX_OFFSET       7U
 
 /*----------------------[OBD configuration offsets]-------------------------*/
+
 
 #if (defined DEM_OBD_READINESS_OFFSET)
 #error DEM_OBD_READINESS_OFFSET already defined
@@ -941,7 +941,7 @@
 #error DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET already defined
 #endif
 /** \brief Offset of DemOBDAgingCycleCounterThreshold in Dem_OBDConfig.Dem_OBDEvConf1 */
-#define DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET       5U
+#define DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET       1U
 
 /*------------------[Warning indicators configuration]----------------------*/
 
@@ -991,6 +991,8 @@
 #error DEM_NUM_DEBOUNCE_COUNTER_CLASSES already defined
 #endif
 
+
+  
 
 
 /** \brief Number of counter based debounce classes */

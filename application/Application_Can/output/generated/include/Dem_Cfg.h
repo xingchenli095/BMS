@@ -57,6 +57,10 @@ typedef uint16 Dem_EventIdType;
 
 /** \brief Macro to define the dimension of Dem_OBDReadinessGroupMap[]
  ** and Dem_OBDReadinessGroup[] */
+#if (defined DEM_NUM_OBD_RDY_GROUPS)
+#error DEM_NUM_OBD_RDY_GROUPS already defined
+#endif
+#define DEM_NUM_OBD_RDY_GROUPS 0x0CU
 
 #if (defined DEM_CFG_SIGNATURE)
 #error DEM_CFG_SIGNATURE is already defined
@@ -64,7 +68,7 @@ typedef uint16 Dem_EventIdType;
 /* !LINKSTO Dem.EB.Config.Id,1 */
 /** \brief Sign a certain configuration with unique hash
  **/
-#define DEM_CFG_SIGNATURE 726248421U
+#define DEM_CFG_SIGNATURE 3917502553U
 
 #if (defined DEM_NVRAM_CONFIG_SIGNATURE_USED)
 #error DEM_NVRAM_CONFIG_SIGNATURE_USED is already defined
@@ -202,7 +206,7 @@ typedef uint16 Dem_EventIdType;
 #endif
 /** \brief Switch for calibration support without event combination */
 /* !LINKSTO dsn.Dem.Calibration.Support.Macro,1 */
-#define DEM_CALIBRATION_SUPPORT               STD_OFF
+#define DEM_CALIBRATION_SUPPORT               STD_ON
 
 #if (defined DEM_CALIBRATION_WITHEVCOMB_SUPPORT)
 #error DEM_CALIBRATION_WITHEVCOMB_SUPPORT already defined
@@ -214,7 +218,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_INDICATORCLASS_SUPPORT already defined
 #endif
 /** \brief Switch for indicator class support */
-#define DEM_INDICATORCLASS_SUPPORT STD_OFF
+#define DEM_INDICATORCLASS_SUPPORT STD_ON
 
 
 #if (defined DEM_POSITIVE_RESPONSE_NO_FFCLASSES)
@@ -223,14 +227,35 @@ typedef uint16 Dem_EventIdType;
 /** \brief Switch for positive response when event has no FF assigned
  ** (disabled through calibration) */
 /* !LINKSTO dsn.Dem.Calibration.NoFFClass.PositiveResponse,1 */
-#define DEM_POSITIVE_RESPONSE_NO_FFCLASSES   STD_OFF
+#define DEM_POSITIVE_RESPONSE_NO_FFCLASSES   STD_ON
 
 #if (defined DEM_CONSISTENT_FF_SIZE_SUPPORT)
 #error DEM_CONSISTENT_FF_SIZE_SUPPORT already defined
 #endif
 /** \brief Switch for consistent FF size */
 /* !LINKSTO dsn.Dem.Storage.ConsistentFFSize.Support,1 */
-#define DEM_CONSISTENT_FF_SIZE_SUPPORT   STD_OFF
+#define DEM_CONSISTENT_FF_SIZE_SUPPORT   STD_ON
+
+#if (defined DEM_CONSISTENT_FF_SIZE_PRIMARY)
+#error DEM_CONSISTENT_FF_SIZE_PRIMARY already defined
+#endif
+/** \brief Consistent size of primary FFs */
+/* !LINKSTO dsn.Dem.Storage.ConsistentFFSize,1 */
+#define DEM_CONSISTENT_FF_SIZE_PRIMARY      1U
+
+#if (defined DEM_CONSISTENT_FF_SIZE_SECONDARY)
+#error DEM_CONSISTENT_FF_SIZE_SECONDARY already defined
+#endif
+/** \brief Consistent size of primary FFs */
+/* !LINKSTO dsn.Dem.Storage.ConsistentFFSize,1 */
+#define DEM_CONSISTENT_FF_SIZE_SECONDARY    1U
+
+#if (defined DEM_CONSISTENT_FF_SIZE_MIRROR)
+#error DEM_CONSISTENT_FF_SIZE_MIRROR already defined
+#endif
+/** \brief Consistent size of mirror FFs */
+/* !LINKSTO dsn.Dem.Storage.ConsistentFFSize,1 */
+#define DEM_CONSISTENT_FF_SIZE_MIRROR       0U
 
 
 #if (defined DEM_COMMON_OPERATION_CYCLE_SUPPORT)
@@ -238,7 +263,7 @@ typedef uint16 Dem_EventIdType;
 #endif
 /** \brief Switch for common operation cycle support */
 /* !LINKSTO dsn.Dem.CommonOperationCycle.Support.Macro,1 */
-#define DEM_COMMON_OPERATION_CYCLE_SUPPORT    STD_OFF
+#define DEM_COMMON_OPERATION_CYCLE_SUPPORT    STD_ON
 
 #if (defined DEM_AGINGALLOWED_CONVENIENT_CALIBRATION)
 #error DEM_AGINGALLOWED_CONVENIENT_CALIBRATION already defined
@@ -317,7 +342,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_EVENT_DISABLING_SUPPORT already defined
 #endif
 /** \brief Switch for DTC availability support */
-#define DEM_EVENT_DISABLING_SUPPORT           STD_OFF
+#define DEM_EVENT_DISABLING_SUPPORT           STD_ON
 
 #if (defined DEM_CLEAR_DTC_OF_DISABLED_EVENTS )
 #error DEM_CLEAR_DTC_OF_DISABLED_EVENTS  already defined
@@ -336,7 +361,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_EVENTCLASS_SUPPORT already defined
 #endif
 /** \brief Switch for event class support */
-#define DEM_EVENTCLASS_SUPPORT                STD_OFF
+#define DEM_EVENTCLASS_SUPPORT                STD_ON
 
 #if (defined DEM_DTC_STATUS_AVAILABILITY_MASK)
 #error DEM_DTC_STATUS_AVAILABILITY_MASK already defined
@@ -545,7 +570,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_DCM_ENABLED already defined
 #endif
 /** \brief Switch, indicating whether Dcm module should be a part of Dem */
-#define DEM_DCM_ENABLED              STD_ON
+#define DEM_DCM_ENABLED              STD_OFF
 
 #if (defined DEM_GET_DTCBYOCCURRENCETIME_SUPPORT)
 #error DEM_GET_DTCBYOCCURRENCETIME_SUPPORT already defined
@@ -773,8 +798,7 @@ typedef uint16 Dem_EventIdType;
  **   (common + individual or only individual) */
 #define DEM_NUM_FFPARTS     1U
 
-
-#define DEM_STATIC  STATIC
+#define DEM_STATIC
 
 /* !LINKSTO dsn.Dem.ProjectSpecificCustomization.Macro,1 */
 #if (defined DEM_PROJECT_SPECIFIC_CUSTOMIZATION_SUPPORT)
@@ -789,7 +813,7 @@ typedef uint16 Dem_EventIdType;
 #error DEM_MAX_HANDLED_PASSED_EVENTS_PER_SCHEDULING already defined
 #endif
 /** \brief The number of passed events handled per Dem_MainFunction call */
-#define DEM_MAX_HANDLED_PASSED_EVENTS_PER_SCHEDULING 255U
+#define DEM_MAX_HANDLED_PASSED_EVENTS_PER_SCHEDULING 10U
 
 /* !LINKSTO dsn.Dem.EventBurstReduction.MaxFailed,1 */
 #if (defined DEM_MAX_HANDLED_FAILED_EVENTS_PER_SCHEDULING)
@@ -1052,36 +1076,32 @@ typedef uint16 Dem_EventIdType;
                                   
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event Permanent_DTC:
-   no internal values + ED_DTC_0x000001_Properties + 2
-   * (DiagnosticFreezeFrameClass_0 + ) = 9 */
-
-
-/* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event CANSM_E_BUS_OFF_0:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + ED_DTC_0x000001_Properties + 2
+   * (DiagnosticFreezeFrameClass_0 + ) = 10 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event WDGM_E_MONITORING:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event WDGM_E_SET_MODE:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event WDGM_E_DATA_CORRUPTION:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event ECUM_E_RAM_CHECK_FAILED:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event MCU_E_CLOCK_FAILURE:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event WDGM_E_MF_TIMINGVIOLATION:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
                                   
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event DTC_0x000002_Event:
@@ -1095,21 +1115,25 @@ typedef uint16 Dem_EventIdType;
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event MCU_E_TIMEOUT_FAILURE:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event MCU_E_INVALIDFXOSC_CONFIG:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event MCU_E_CLOCKMUXSWITCH_FAILURE:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
 
 
 /* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event SPI_E_HARDWARE_ERROR:
-   no internal values + no extended data + no freeze frames = 0 */
+   aging counter value + no extended data + no freeze frames = 1 */
+
+
+/* DEM_DTC_ORIGIN_PRIMARY_MEMORY - Event CANSM_E_BUS_OFF_0:
+   aging counter value + no extended data + no freeze frames = 1 */
 /* entry data sizes (IntVal + ED + Num * FF) of prm memory:
-   10 9 0 0 0 0 0 0 0 10 0 0 0 0 */
+   10 10 1 1 1 1 1 1 10 1 1 1 1 1 */
 /* entry data sizes (IntVal + ED + Num * FF) of sec memory:
    10 */
 /* entry data sizes (IntVal + ED + Num * FF) of mir memory:
@@ -1564,7 +1588,7 @@ typedef uint16 Dem_EventIdType;
  *  If calibration is disabled, this value is set to 0 which triggers an
  *  optimized implementation of OBD readiness groups.
  */
-#define DEM_MAX_EVENTS_PER_READINESS_GROUP 0U
+#define DEM_MAX_EVENTS_PER_READINESS_GROUP 1U
 
 /*------------------[DTC groups configuration]------------------------------*/
 
@@ -1782,7 +1806,13 @@ typedef uint16 Dem_EventIdType;
 #error DEM_NUM_BSWEVENT_INDICATOR_USED already defined
 #endif
 /** \brief Number of BSW events which are configured for warning indicator */
-#define DEM_NUM_BSWEVENT_INDICATOR_USED         0U
+#define DEM_NUM_BSWEVENT_INDICATOR_USED         11U
+
+#if (defined DEM_NUM_INDICATOR_GROUPS)
+#error DEM_NUM_INDICATOR_GROUPS already defined
+#endif
+/** \brief Number of warning indicator groups */
+#define DEM_NUM_INDICATOR_GROUPS                2U
 
 /*------------------[Enable conditions configuration]-----------------------*/
 
@@ -2145,6 +2175,13 @@ extern CONST(Dem_ConfigType, DEM_CONST) DemConfigSet;
 #include <Dem_MemMap.h>
 
 /* !LINKSTO Dem.Dem_FFSegId.External,1 */
+#define DEM_START_SEC_CALIB_16
+#include <Dem_MemMap.h>
+
+extern CONST(Dem_FFSegIdxType, DEM_CONST) Dem_FFSegIdxDiagnosticFreezeFrameClass_0[1];
+
+#define DEM_STOP_SEC_CALIB_16
+#include <Dem_MemMap.h>
 
 /*==================[internal constants]====================================*/
 

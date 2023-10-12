@@ -28,7 +28,7 @@
 -------------------------------------------------------------------------------*/
 
 #include <Std_Types.h>                      /* AUTOSAR Standard Types         */
-#include "Dcm_Types.h"                      /* AUTOSAR DCM Types              */
+//#include "Dcm_Types.h"                      /* AUTOSAR DCM Types              */
 #include "FreeTimer_Cfg.h"
 
 
@@ -58,7 +58,7 @@
 
 typedef uint32 FreeTimer_TimeInTicksType;                /* Time in ticks type */
 typedef uint32 FreeTimer_TimeInMsType;                           /* Time in mS */
-typedef uint32 FreeTimer_TimeInUsType;       /* Time in µS */
+typedef uint32 FreeTimer_TimeInUsType;       /* Time in ï¿½S */
 
 
 /*------------------------------------------------------------------------------

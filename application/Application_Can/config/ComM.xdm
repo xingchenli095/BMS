@@ -64,10 +64,10 @@
                   <a:a name="ENABLE" value="false"/>
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:ref>
-                <d:var name="ComMDcmUsage" type="BOOLEAN" value="true">
+                <d:var name="ComMDcmUsage" type="BOOLEAN" value="false">
                   <a:a name="IMPORTER_INFO">
-                    <a:v>@DEF</a:v>
                     <a:v>@CALC</a:v>
+                    <a:v>@DEF</a:v>
                   </a:a>
                 </d:var>
                 <d:var name="ComM0PncVectorAvoidance" type="BOOLEAN" 
@@ -90,7 +90,7 @@
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
                 <d:var name="ComMPncGatewayEnabled" type="BOOLEAN" value="false">
-                  <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                  <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
                 <d:var name="ComMPncPrepareSleepTimer" type="FLOAT" value="0.64">
                   <a:a name="CUSTOMDATA" type="CUSTOMDATA">
@@ -119,11 +119,10 @@
                        value="true">
                   <a:a name="IMPORTER_INFO" value="@DEF"/>
                 </d:var>
-                <d:var name="ComMPncSupport" type="BOOLEAN" value="true">
+                <d:var name="ComMPncSupport" type="BOOLEAN" value="false">
                   <a:a name="CUSTOMDATA" type="CUSTOMDATA">
                     <cd:v id="splittag">EB.CAN</cd:v>
                   </a:a>
-                  <a:a name="IMPORTER_INFO" value="SplittableImp_SplitImport"/>
                 </d:var>
                 <d:var name="ComMRteUsage" type="BOOLEAN" value="true">
                   <a:a name="CUSTOMDATA" type="CUSTOMDATA">
@@ -182,7 +181,7 @@
                 <d:ctr name="ComMConfigSet" type="IDENTIFIABLE">
                   <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
                   <d:var name="ComMPncEnabled" type="BOOLEAN" value="true">
-                    <a:a name="ENABLE" value="true"/>
+                    <a:a name="ENABLE" value="false"/>
                     <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
                   </d:var>
                   <d:lst name="ComMChannel" type="MAP">
@@ -190,9 +189,7 @@
                     <d:ctr name="CanNetwork" type="IDENTIFIABLE">
                       <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
                       <d:var name="ComMBusType" type="ENUMERATION" 
-                             value="COMM_BUS_TYPE_CAN">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                      </d:var>
+                             value="COMM_BUS_TYPE_CAN"/>
                       <d:var name="ComMChannelId" type="INTEGER" value="0">
                         <a:a name="IMPORTER_INFO">
                           <a:v>@DEF</a:v>
@@ -222,8 +219,7 @@
                       </d:var>
                       <d:var name="ComMPncGatewayType" type="ENUMERATION" 
                              value="COMM_GATEWAY_TYPE_ACTIVE">
-                        <a:a name="ENABLE" value="true"/>
-                        <a:a name="IMPORTER_INFO" value="@DEF"/>
+                        <a:a name="ENABLE" value="false"/>
                       </d:var>
                       <d:ctr name="ComMNetworkManagement" type="IDENTIFIABLE">
                         <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
@@ -233,7 +229,9 @@
                           <a:a name="IMPORTER_INFO" value="@DEF"/>
                         </d:var>
                         <d:var name="ComMNmVariant" type="ENUMERATION" 
-                               value="FULL"/>
+                               value="NONE">
+                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
+                        </d:var>
                         <d:var name="ComMPncNmRequest" type="BOOLEAN" 
                                value="false">
                           <a:a name="IMPORTER_INFO" value="@DEF"/>
@@ -250,120 +248,6 @@
                   </d:lst>
                   <d:lst name="ComMPnc" type="MAP">
                     <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                    <d:ctr name="ComMPnc_16" type="IDENTIFIABLE">
-                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                      <d:var name="ComMPncId" type="INTEGER" value="16">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                      </d:var>
-                      <d:lst name="ComMChannelPerPnc">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        <d:ref type="REFERENCE" 
-                               value="ASPath:/ComM/ComM/ComMConfigSet/CanNetwork">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        </d:ref>
-                      </d:lst>
-                      <d:lst name="ComMUserPerPnc"/>
-                      <d:lst name="ComMPncComSignal" type="MAP">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        <d:ctr name="SGCanNmPnEiraRxNSdu" type="IDENTIFIABLE">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          <d:var name="ComMPncComSignalDirection" 
-                                 type="ENUMERATION" value="RX">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:var name="ComMPncComSignalKind" type="ENUMERATION" 
-                                 value="EIRA">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:ref name="ComMPncComSignalChannelRef" 
-                                 type="REFERENCE" >
-                            <a:a name="IMPORTER_INFO" value="@DEF"/>
-                          </d:ref>
-                          <d:ref name="ComMPncComSignalRef" type="REFERENCE" 
-                                 value="ASPath:/Com/Com/ComConfig/SGCanNmPnEiraRxNSdu">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:ref>
-                        </d:ctr>
-                        <d:ctr name="SGCanNetworkNmPnIraTxNSdu" 
-                               type="IDENTIFIABLE">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          <d:var name="ComMPncComSignalDirection" 
-                                 type="ENUMERATION" value="TX">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:var name="ComMPncComSignalKind" type="ENUMERATION" 
-                                 value="EIRA">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:ref name="ComMPncComSignalChannelRef" 
-                                 type="REFERENCE" >
-                            <a:a name="IMPORTER_INFO" value="@DEF"/>
-                          </d:ref>
-                          <d:ref name="ComMPncComSignalRef" type="REFERENCE" 
-                                 value="ASPath:/Com/Com/ComConfig/SGCanNetworkNmPnIraTxNSdu">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:ref>
-                        </d:ctr>
-                      </d:lst>
-                      <d:lst name="ComMPncEthIfSwitchPortGroupRef"/>
-                    </d:ctr>
-                    <d:ctr name="ComMPnc_17" type="IDENTIFIABLE">
-                      <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                      <d:var name="ComMPncId" type="INTEGER" value="17">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                      </d:var>
-                      <d:lst name="ComMChannelPerPnc">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        <d:ref type="REFERENCE" 
-                               value="ASPath:/ComM/ComM/ComMConfigSet/CanNetwork">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        </d:ref>
-                      </d:lst>
-                      <d:lst name="ComMUserPerPnc"/>
-                      <d:lst name="ComMPncComSignal" type="MAP">
-                        <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                        <d:ctr name="SGCanNmPnEiraRxNSdu" type="IDENTIFIABLE">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          <d:var name="ComMPncComSignalDirection" 
-                                 type="ENUMERATION" value="RX">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:var name="ComMPncComSignalKind" type="ENUMERATION" 
-                                 value="EIRA">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:ref name="ComMPncComSignalChannelRef" 
-                                 type="REFERENCE" >
-                            <a:a name="IMPORTER_INFO" value="@DEF"/>
-                          </d:ref>
-                          <d:ref name="ComMPncComSignalRef" type="REFERENCE" 
-                                 value="ASPath:/Com/Com/ComConfig/SGCanNmPnEiraRxNSdu">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:ref>
-                        </d:ctr>
-                        <d:ctr name="SGCanNetworkNmPnIraTxNSdu" 
-                               type="IDENTIFIABLE">
-                          <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          <d:var name="ComMPncComSignalDirection" 
-                                 type="ENUMERATION" value="TX">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:var name="ComMPncComSignalKind" type="ENUMERATION" 
-                                 value="EIRA">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:var>
-                          <d:ref name="ComMPncComSignalChannelRef" 
-                                 type="REFERENCE" >
-                            <a:a name="IMPORTER_INFO" value="@DEF"/>
-                          </d:ref>
-                          <d:ref name="ComMPncComSignalRef" type="REFERENCE" 
-                                 value="ASPath:/Com/Com/ComConfig/SGCanNetworkNmPnIraTxNSdu">
-                            <a:a name="IMPORTER_INFO" value="ImportEcuConfig"/>
-                          </d:ref>
-                        </d:ctr>
-                      </d:lst>
-                      <d:lst name="ComMPncEthIfSwitchPortGroupRef"/>
-                    </d:ctr>
                   </d:lst>
                   <d:lst name="ComMUser" type="MAP">
                     <d:ctr name="ComMUser_0" type="IDENTIFIABLE">

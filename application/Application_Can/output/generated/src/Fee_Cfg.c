@@ -141,42 +141,6 @@ const Fee_BlockConfigType Fee_BlockConfig[FEE_CRT_CFG_NR_OF_BLOCKS] =
         FEE_PROJECT_RESERVED
 #endif
     },
-    /* Fee_PersistentCounterValue */
-    {
-        FeeConf_FeeBlockConfiguration_Fee_PersistentCounterValue, /* FeeBlockNumber symbol */
-        1U, /* FeeBlockSize */
-        0U, /* FeeClusterGroup */
-        (boolean)FALSE,   /* FeeImmediateData */
-#if (FEE_SWAP_FOREIGN_BLOCKS_ENABLED == STD_ON) 
-        FEE_PROJECT_APPLICATION /* Fee Block Assignment to a project */
-#else
-        FEE_PROJECT_RESERVED
-#endif
-    },
-    /* Fee_NVM_BLOCK_DCM_NvM_Dummy */
-    {
-        FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DCM_NvM_Dummy, /* FeeBlockNumber symbol */
-        17U, /* FeeBlockSize */
-        0U, /* FeeClusterGroup */
-        (boolean)FALSE,   /* FeeImmediateData */
-#if (FEE_SWAP_FOREIGN_BLOCKS_ENABLED == STD_ON) 
-        FEE_PROJECT_APPLICATION /* Fee Block Assignment to a project */
-#else
-        FEE_PROJECT_RESERVED
-#endif
-    },
-    /* Fee_NVM_BLOCK_DCM_ROE */
-    {
-        FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DCM_ROE, /* FeeBlockNumber symbol */
-        16U, /* FeeBlockSize */
-        0U, /* FeeClusterGroup */
-        (boolean)FALSE,   /* FeeImmediateData */
-#if (FEE_SWAP_FOREIGN_BLOCKS_ENABLED == STD_ON) 
-        FEE_PROJECT_APPLICATION /* Fee Block Assignment to a project */
-#else
-        FEE_PROJECT_RESERVED
-#endif
-    },
     /* Fee_NVM_BLOCK_DEM_DEFAULT */
     {
         FeeConf_FeeBlockConfiguration_Fee_NVM_BLOCK_DEM_DEFAULT, /* FeeBlockNumber symbol */

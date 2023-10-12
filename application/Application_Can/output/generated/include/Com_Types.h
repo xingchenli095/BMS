@@ -140,7 +140,7 @@ typedef struct /* ComRxSignalExtType */ {
     VAR( Com_CbkRxAckIdxType, TYPEDEF ) ComNotification;
     VAR( ComRxTimeoutFactorType, TYPEDEF ) ComRxTimeoutFactorValue;
     VAR( ComRxFirstTimeoutFactorType, TYPEDEF ) ComRxFirstTimeoutFactorValue;
-    VAR( ComSignalRefType, TYPEDEF ) RxSigDMQueueRef;
+    VAR( ComSignalGroupRefType, TYPEDEF ) RxSigDMQueueRef;
     VAR( Com_CbkRxTOutIdxType, TYPEDEF ) ComRxTimeoutNotification;
     VAR( ComSignalDescBitType, TYPEDEF ) ComUpdateBitPositionInBit;
     VAR( uint8, TYPEDEF ) ComRxSignalExtFlags;

@@ -45,17 +45,6 @@
 
 /*==================[external constants]====================================*/
 
-#define CANSM_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include <CanSM_MemMap.h>
-
-CONST(CanSM_NetworkConfigType, CANSM_APPL_CONST) CanSM_NetworkConfig[CANSM_NETWORKS_NUM] =
-{
-  {
-    FALSE, /* partial networking */},
-};
-
-#define CANSM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include <CanSM_MemMap.h>
 
 
 

@@ -49,23 +49,27 @@
 
 typedef struct /* Com_ConfigLayoutType */ {
     VAR( Com_ConfigType, TYPEDEF ) Com_RootConfig;
-    VAR( ComRxIPduType, TYPEDEF ) ComRxIPdu[6];
-    VAR( ComTxIPduType, TYPEDEF ) ComTxIPdu[5];
-    VAR( ComTxSignalGroupType, TYPEDEF ) ComTxSignalGroup[1];
+    VAR( ComRxIPduType, TYPEDEF ) ComRxIPdu[8];
+    VAR( ComTxIPduType, TYPEDEF ) ComTxIPdu[3];
+    VAR( ComTxSignalGroupType, TYPEDEF ) ComTxSignalGroup[2];
     VAR( ComTxModeNTimesType, TYPEDEF ) ComTxModeNTimes[1];
-    VAR( ComTxModePeriodicType, TYPEDEF ) ComTxModePeriodic[1];
+    VAR( ComTxModePeriodicType, TYPEDEF ) ComTxModePeriodic[2];
     VAR( ComSignalGroupRefType, TYPEDEF ) ComRxIPduSignalGroupList[1];
-    VAR( ComSignalGroupRefType, TYPEDEF ) ComTxIPduSignalGroupList[1];
-    VAR( ComSignalRefType, TYPEDEF ) ComRxIPduSignalList[5];
-    VAR( ComSignalRefType, TYPEDEF ) ComTxIPduSignalList[5];
+    VAR( ComSignalGroupRefType, TYPEDEF ) ComTxIPduSignalGroupList[2];
+    VAR( ComSignalRefType, TYPEDEF ) ComRxIPduSignalList[13];
+    VAR( ComSignalRefType, TYPEDEF ) ComTxIPduSignalList[65];
     VAR( ComRxSignalGroupType, TYPEDEF ) ComRxSignalGroup[1];
-    VAR( ComRxSignalType, TYPEDEF ) ComRxSignal[8];
-    VAR( ComRxSignalExtType, TYPEDEF ) ComRxSignalExt[6];
-    VAR( ComTxSignalType, TYPEDEF ) ComTxSignal[8];
+    VAR( ComRxSignalType, TYPEDEF ) ComRxSignal[21];
+    VAR( ComRxSignalExtType, TYPEDEF ) ComRxSignalExt[14];
+    VAR( ComTxSignalType, TYPEDEF ) ComTxSignal[74];
+    VAR( Com_CbkTxTOutIdxType, TYPEDEF ) ComTxTimeoutNotificationList[1];
+    VAR( Com_CbkTxTOutIdxType, TYPEDEF ) ComTxErrorNotificationList[1];
+    VAR( Com_CbkTxAckIdxType, TYPEDEF ) ComTxNotificationList[1];
     VAR( ComIPduRefType, TYPEDEF ) ComPeriodicQueueList[2];
-    VAR( ComIPduRefType, TYPEDEF ) ComNTimesQueueList[2];
-    VAR( ComIPduGroupMaskType, TYPEDEF ) ComIPduGroupMask[20];
-    VAR( uint8, TYPEDEF ) ComIPduInit[129];
+    VAR( ComIPduRefType, TYPEDEF ) ComNTimesQueueList[1];
+    VAR( ComIPduGroupMaskType, TYPEDEF ) ComIPduGroupMask[8];
+    VAR( uint8, TYPEDEF ) ComTOCMask[7];
+    VAR( uint8, TYPEDEF ) ComIPduInit[192];
 } Com_ConfigLayoutType;
 
 typedef CONST( Com_ConfigLayoutType, TYPEDEF ) Com_ConstConfigLayoutType;

@@ -127,7 +127,7 @@ const Flexcan_Ip_ConfigType Flexcan_aCtrlConfigPB[1U]=
     /* Can Hardware Channel FLEXCAN_0 */
     {
         /* Number Of Message Buffer used .max_num_mb */
-        (uint8)37U,
+        (uint8)9U,
         /*Can Hw filter count* .num_id_filters */
         (Flexcan_Ip_RxFifoIdFilterNumType)0U,
         /* Legacy FIFO ENABLED .is_rx_fifo_needed */
@@ -148,7 +148,7 @@ const Flexcan_Ip_ConfigType Flexcan_aCtrlConfigPB[1U]=
         (uint32)( FLEXCAN_IP_ISO_U32 |FLEXCAN_IP_EACEN_U32),
         /* Can FD RamBlock specified .payload */
         {
-            FLEXCAN_PAYLOAD_SIZE_8,
+            FLEXCAN_PAYLOAD_SIZE_64,
             FLEXCAN_PAYLOAD_SIZE_64
         },
         /* Can FD enabled .fd_enable */
@@ -159,19 +159,19 @@ const Flexcan_Ip_ConfigType Flexcan_aCtrlConfigPB[1U]=
         (boolean)TRUE,
         /* Values for normal baudrate .bitrate */
         {
-            (uint8)7U,
+            (uint8)5U,
             (uint8)2U,
-            (uint8)3U,
-            (uint16)2,
-            (uint8)2U
+            (uint8)1U,
+            (uint16)3,
+            (uint8)1U
         },
         /* Values for CBT baudrate .bitrate_cbt */
         {
+            (uint8)5U,
+            (uint8)3U,
             (uint8)1U,
-            (uint8)1U,
-            (uint8)1U,
-            (uint16)1U,
-            (uint8)0U
+            (uint16)0U,
+            (uint8)1U
         },
         /* Fifo Transfer Type .transfer_type */
         FLEXCAN_RXFIFO_USING_INTERRUPTS,

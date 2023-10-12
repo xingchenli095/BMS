@@ -83,233 +83,96 @@ CanIf_ConstConfigLayoutType CanIf_ConfigLayout = {
     { /* RootCfg */
         UINT32_C( 2147485970 ), /* PlatformSignature */
         UINT32_C( 1656477932 ), /* LcfgSignature */
-        UINT32_C( 4094173456 ), /* CfgSignature */
+        UINT32_C( 1444882739 ), /* CfgSignature */
         UINT32_C( 3439471228 ), /* PublicInfoSignature */
         TS_MAKEREF2CFG( txLPduConfig[0] ), /* txLPduConfigPtr */
         TS_MAKEREF2CFG( rxLPduConfig[0] ), /* rxLPduConfigPtr */
         TS_MAKEREF2CFG( sortedRxLPduConfig[0] ), /* sortedRxLPduConfigPtr */
         TS_MAKEREF2CFG( canDriverConfig[0] ), /* driverConfigPtr */
         TS_MAKEREF2CFG( canTrcvChnlConfig[0] ), /* trcvChnlConfigPtr */
-        UINT16_C( 14 ), /* nrOfStaticTxLPdus */
-        UINT16_C( 14 ), /* nrOfTxLPdus */
-        UINT16_C( 11 ), /* nrOfRxLPdus */
+        UINT16_C( 3 ), /* nrOfStaticTxLPdus */
+        UINT16_C( 3 ), /* nrOfTxLPdus */
+        UINT16_C( 8 ), /* nrOfRxLPdus */
         UINT8_C( 0 ), /* maxCanControllerId */
         UINT8_C( 1 ) /* nrOfTransceivers */
     },
     { /* txLPduConfig */
         { /* txLPduConfig[0] */
-            UINT32_C( 272 ), /* canId */
-            UINT8_C( 14 ), /* hth */
-            UINT16_C( 0 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 1 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[1] */
-            UINT32_C( 2564485611 ), /* canId */
-            UINT8_C( 12 ), /* hth */
-            UINT16_C( 4 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[2] */
-            UINT32_C( 2564485611 ), /* canId */
-            UINT8_C( 12 ), /* hth */
-            UINT16_C( 1 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[3] */
-            UINT32_C( 2564616683 ), /* canId */
-            UINT8_C( 11 ), /* hth */
-            UINT16_C( 1 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[4] */
-            UINT32_C( 3638227691 ), /* canId */
-            UINT8_C( 11 ), /* hth */
-            UINT16_C( 3 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 64 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[5] */
-            UINT32_C( 3638227691 ), /* canId */
-            UINT8_C( 11 ), /* hth */
-            UINT16_C( 0 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 64 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[6] */
-            UINT32_C( 3638358763 ), /* canId */
-            UINT8_C( 11 ), /* hth */
-            UINT16_C( 2 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 64 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[7] */
-            UINT32_C( 3221225745 ), /* canId */
-            UINT8_C( 12 ), /* hth */
-            UINT16_C( 3 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 64 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[8] */
-            UINT32_C( 593 ), /* canId */
-            UINT8_C( 13 ), /* hth */
+            UINT32_C( 1073741996 ), /* canId */
+            UINT8_C( 8 ), /* hth */
             UINT16_C( 0 ), /* sourcePduId_UL */
             UINT8_C( 0 ), /* userType */
             UINT8_C( 0 ), /* pNFilterFlag */
             UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
+            UINT16_C( 64 ), /* PduLength */
             UINT8_C( 3 ) /* truncateOptions */
         },
-        { /* txLPduConfig[9] */
-            UINT32_C( 285 ), /* canId */
-            UINT8_C( 14 ), /* hth */
-            UINT16_C( 4 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
+        { /* txLPduConfig[1] */
+            UINT32_C( 1073742147 ), /* canId */
+            UINT8_C( 8 ), /* hth */
+            UINT16_C( 1 ), /* sourcePduId_UL */
+            UINT8_C( 0 ), /* userType */
             UINT8_C( 0 ), /* pNFilterFlag */
             UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
+            UINT16_C( 64 ), /* PduLength */
             UINT8_C( 3 ) /* truncateOptions */
         },
-        { /* txLPduConfig[10] */
-            UINT32_C( 284 ), /* canId */
-            UINT8_C( 14 ), /* hth */
-            UINT16_C( 5 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[11] */
-            UINT32_C( 2024 ), /* canId */
-            UINT8_C( 13 ), /* hth */
-            UINT16_C( 5 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[12] */
-            UINT32_C( 2024 ), /* canId */
-            UINT8_C( 13 ), /* hth */
+        { /* txLPduConfig[2] */
+            UINT32_C( 1073743743 ), /* canId */
+            UINT8_C( 8 ), /* hth */
             UINT16_C( 2 ), /* sourcePduId_UL */
-            UINT8_C( 1 ), /* userType */
+            UINT8_C( 0 ), /* userType */
             UINT8_C( 0 ), /* pNFilterFlag */
             UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
-            UINT8_C( 3 ) /* truncateOptions */
-        },
-        { /* txLPduConfig[13] */
-            UINT32_C( 2024 ), /* canId */
-            UINT8_C( 13 ), /* hth */
-            UINT16_C( 6 ), /* sourcePduId_UL */
-            UINT8_C( 2 ), /* userType */
-            UINT8_C( 0 ), /* pNFilterFlag */
-            UINT8_C( 0 ), /* intCtrlIdx */
-            UINT16_C( 8 ), /* PduLength */
+            UINT16_C( 64 ), /* PduLength */
             UINT8_C( 3 ) /* truncateOptions */
         }
     },
     { /* rxLPduConfig */
         { /* rxLPduConfig[0] */
             UINT16_C( 0 ), /* targetPduId */
-            UINT8_C( 1 ), /* limitedPduLength */
-            UINT8_C( 2 ) /* userType */
+            UINT8_C( 64 ), /* limitedPduLength */
+            UINT8_C( 0 ) /* userType */
         },
         { /* rxLPduConfig[1] */
-            UINT16_C( 2 ), /* targetPduId */
-            UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
+            UINT16_C( 1 ), /* targetPduId */
+            UINT8_C( 64 ), /* limitedPduLength */
+            UINT8_C( 0 ) /* userType */
         },
         { /* rxLPduConfig[2] */
-            UINT16_C( 4 ), /* targetPduId */
-            UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
+            UINT16_C( 2 ), /* targetPduId */
+            UINT8_C( 64 ), /* limitedPduLength */
+            UINT8_C( 0 ) /* userType */
         },
         { /* rxLPduConfig[3] */
-            UINT16_C( 0 ), /* targetPduId */
+            UINT16_C( 3 ), /* targetPduId */
             UINT8_C( 64 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
+            UINT8_C( 0 ) /* userType */
         },
         { /* rxLPduConfig[4] */
-            UINT16_C( 1 ), /* targetPduId */
+            UINT16_C( 4 ), /* targetPduId */
             UINT8_C( 64 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
+            UINT8_C( 0 ) /* userType */
         },
         { /* rxLPduConfig[5] */
-            UINT16_C( 1 ), /* targetPduId */
-            UINT8_C( 64 ), /* limitedPduLength */
-            UINT8_C( 2 ) /* userType */
-        },
-        { /* rxLPduConfig[6] */
-            UINT16_C( 0 ), /* targetPduId */
+            UINT16_C( 5 ), /* targetPduId */
             UINT8_C( 8 ), /* limitedPduLength */
             UINT8_C( 0 ) /* userType */
         },
+        { /* rxLPduConfig[6] */
+            UINT16_C( 6 ), /* targetPduId */
+            UINT8_C( 64 ), /* limitedPduLength */
+            UINT8_C( 0 ) /* userType */
+        },
         { /* rxLPduConfig[7] */
-            UINT16_C( 2 ), /* targetPduId */
+            UINT16_C( 7 ), /* targetPduId */
             UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 2 ) /* userType */
-        },
-        { /* rxLPduConfig[8] */
-            UINT16_C( 3 ), /* targetPduId */
-            UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 2 ) /* userType */
-        },
-        { /* rxLPduConfig[9] */
-            UINT16_C( 3 ), /* targetPduId */
-            UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
-        },
-        { /* rxLPduConfig[10] */
-            UINT16_C( 5 ), /* targetPduId */
-            UINT8_C( 8 ), /* limitedPduLength */
-            UINT8_C( 1 ) /* userType */
+            UINT8_C( 0 ) /* userType */
         }
     },
     { /* driverHthConfig */
         { /* driverHthConfig[0] */
             UINT16_C( 0 ), /* firstIndex */
-            UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHthConfig[1] */
-            UINT16_C( 4 ), /* firstIndex */
-            UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHthConfig[2] */
-            UINT16_C( 7 ), /* firstIndex */
-            UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHthConfig[3] */
-            UINT16_C( 11 ), /* firstIndex */
             UINT8_C( 0 ) /* intCtrlIdx */
         }
     },
@@ -361,24 +224,6 @@ CanIf_ConstConfigLayoutType CanIf_ConfigLayout = {
             UINT16_C( 7 ), /* lastIndex */
             UINT8_C( 255 ), /* swFiltering */
             UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHrhConfig[8] */
-            UINT16_C( 8 ), /* firstIndex */
-            UINT16_C( 8 ), /* lastIndex */
-            UINT8_C( 255 ), /* swFiltering */
-            UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHrhConfig[9] */
-            UINT16_C( 9 ), /* firstIndex */
-            UINT16_C( 9 ), /* lastIndex */
-            UINT8_C( 255 ), /* swFiltering */
-            UINT8_C( 0 ) /* intCtrlIdx */
-        },
-        { /* driverHrhConfig[10] */
-            UINT16_C( 10 ), /* firstIndex */
-            UINT16_C( 10 ), /* lastIndex */
-            UINT8_C( 255 ), /* swFiltering */
-            UINT8_C( 0 ) /* intCtrlIdx */
         }
     },
     { /* hohIdToCanIfIdx */
@@ -390,13 +235,7 @@ CanIf_ConstConfigLayoutType CanIf_ConfigLayout = {
         UINT16_C( 5 ), /* hohIdToCanIfIdx[5] */
         UINT16_C( 6 ), /* hohIdToCanIfIdx[6] */
         UINT16_C( 7 ), /* hohIdToCanIfIdx[7] */
-        UINT16_C( 8 ), /* hohIdToCanIfIdx[8] */
-        UINT16_C( 9 ), /* hohIdToCanIfIdx[9] */
-        UINT16_C( 10 ), /* hohIdToCanIfIdx[10] */
-        UINT16_C( 32768 ), /* hohIdToCanIfIdx[11] */
-        UINT16_C( 32769 ), /* hohIdToCanIfIdx[12] */
-        UINT16_C( 32770 ), /* hohIdToCanIfIdx[13] */
-        UINT16_C( 32771 ) /* hohIdToCanIfIdx[14] */
+        UINT16_C( 32768 ) /* hohIdToCanIfIdx[8] */
     },
     { /* canControllerConfig */
         { /* canControllerConfig[0] */
@@ -412,65 +251,50 @@ CanIf_ConstConfigLayoutType CanIf_ConfigLayout = {
             TS_MAKEREF2CFG( hohIdToCanIfIdx[0] ), /* hohIdToCanIfIdxPtr */
             TS_MAKEREF2CFG( driverHthConfig[0] ), /* hthConfigPtr */
             TS_MAKEREF2CFG( driverHrhConfig[0] ), /* hrhConfigPtr */
-            UINT8_C( 15 ), /* upperHohIdLimit */
+            UINT8_C( 9 ), /* upperHohIdLimit */
             UINT8_C( 1 ) /* nrOfControllers */
         }
     },
     { /* sortedRxLPduConfig */
         { /* sortedRxLPduConfig[0] */
-            UINT32_C( 767 ), /* upperRangeCanId */
-            UINT32_C( 512 ), /* canId */
-            UINT16_C( 6 ) /* rxLPduIndex */
+            UINT32_C( 4294967295 ), /* upperRangeCanId */
+            UINT32_C( 1073741902 ), /* canId */
+            UINT16_C( 0 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[1] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 256 ), /* canId */
-            UINT16_C( 0 ) /* rxLPduIndex */
+            UINT32_C( 1073741946 ), /* canId */
+            UINT16_C( 1 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[2] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 2564554481 ), /* canId */
-            UINT16_C( 1 ) /* rxLPduIndex */
+            UINT32_C( 1073741989 ), /* canId */
+            UINT16_C( 2 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[3] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 2564484081 ), /* canId */
-            UINT16_C( 2 ) /* rxLPduIndex */
+            UINT32_C( 1073742086 ), /* canId */
+            UINT16_C( 3 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[4] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 3638296306 ), /* canId */
-            UINT16_C( 3 ) /* rxLPduIndex */
+            UINT32_C( 1073742091 ), /* canId */
+            UINT16_C( 4 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[5] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 3638225906 ), /* canId */
-            UINT16_C( 4 ) /* rxLPduIndex */
+            UINT32_C( 1073742848 ), /* canId */
+            UINT16_C( 5 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[6] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 3221225729 ), /* canId */
-            UINT16_C( 5 ) /* rxLPduIndex */
+            UINT32_C( 1073743735 ), /* canId */
+            UINT16_C( 6 ) /* rxLPduIndex */
         },
         { /* sortedRxLPduConfig[7] */
             UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 281 ), /* canId */
+            UINT32_C( 1073743839 ), /* canId */
             UINT16_C( 7 ) /* rxLPduIndex */
-        },
-        { /* sortedRxLPduConfig[8] */
-            UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 280 ), /* canId */
-            UINT16_C( 8 ) /* rxLPduIndex */
-        },
-        { /* sortedRxLPduConfig[9] */
-            UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 2015 ), /* canId */
-            UINT16_C( 9 ) /* rxLPduIndex */
-        },
-        { /* sortedRxLPduConfig[10] */
-            UINT32_C( 4294967295 ), /* upperRangeCanId */
-            UINT32_C( 2016 ), /* canId */
-            UINT16_C( 10 ) /* rxLPduIndex */
         }
     },
     { /* canTrcvChnlConfig */

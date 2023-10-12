@@ -1367,7 +1367,7 @@
 /**
  * pre-compile time signature
  */
-#define COM_CFG_SIGNATURE 0x4ca49866U
+#define COM_CFG_SIGNATURE 0x222f91a2U
 
 
 #if (defined COM_PUBLIC_INFO_SIGNATURE) /* To prevent double declaration */

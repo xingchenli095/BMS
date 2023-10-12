@@ -231,13 +231,13 @@ extern "C" {
 
 /* ========== DioConfig ========== */
 
-/* ---------- DIO_PORT_D ---------- */
+/* ---------- DioPort_AL ---------- */
 
 /**
-* @brief          Symbolic name for the port DIO_PORT_D.
+* @brief          Symbolic name for the port DioPort_AL.
 *
 */
-#define DioConf_DioPort_DIO_PORT_D  ((uint8)0x00U)
+#define DioConf_DioPort_DioPort_AL  ((uint8)0x00U)
 
 
 
@@ -247,13 +247,61 @@ extern "C" {
 */
 #define  DioConf_DioChannel_MY_LED_CYCLIC ((uint16)0x0008U)
 
-/* ---------- DioPort_0 ---------- */
+/* ---------- DioPort_AH ---------- */
 
 /**
-* @brief          Symbolic name for the port DioPort_0.
+* @brief          Symbolic name for the port DioPort_AH.
 *
 */
-#define DioConf_DioPort_DioPort_0  ((uint8)0x04U)
+#define DioConf_DioPort_DioPort_AH  ((uint8)0x01U)
+
+/* ---------- DioPort_BL ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_BL.
+*
+*/
+#define DioConf_DioPort_DioPort_BL  ((uint8)0x02U)
+
+
+
+/**
+* @brief          Symbolic name for the channel CAN_1463_NSTB.
+*
+*/
+#define  DioConf_DioChannel_CAN_1463_NSTB ((uint16)0x0023U)
+
+/* ---------- DioPort_BH ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_BH.
+*
+*/
+#define DioConf_DioPort_DioPort_BH  ((uint8)0x03U)
+
+/* ---------- DioPort_CL ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_CL.
+*
+*/
+#define DioConf_DioPort_DioPort_CL  ((uint8)0x04U)
+
+/* ---------- DioPort_CH ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_CH.
+*
+*/
+#define DioConf_DioPort_DioPort_CH  ((uint8)0x05U)
+
+/* ---------- DioPort_DL ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_DL.
+*
+*/
+#define DioConf_DioPort_DioPort_DL  ((uint8)0x06U)
 
 
 
@@ -261,7 +309,31 @@ extern "C" {
 * @brief          Symbolic name for the channel ADC_VCC_Voltage.
 *
 */
-#define  DioConf_DioChannel_ADC_VCC_Voltage ((uint16)0x004aU)
+#define  DioConf_DioChannel_ADC_VCC_Voltage ((uint16)0x006aU)
+
+
+
+/**
+* @brief          Symbolic name for the channel CAN_1463_EN.
+*
+*/
+#define  DioConf_DioChannel_CAN_1463_EN ((uint16)0x0067U)
+
+/* ---------- DioPort_DH ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_DH.
+*
+*/
+#define DioConf_DioPort_DioPort_DH  ((uint8)0x07U)
+
+/* ---------- DioPort_EL ---------- */
+
+/**
+* @brief          Symbolic name for the port DioPort_EL.
+*
+*/
+#define DioConf_DioPort_DioPort_EL  ((uint8)0x08U)
 
 
 /*=================================================================================================

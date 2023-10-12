@@ -448,6 +448,71 @@ CONST(Dem_DTCGroupType, DEM_CONST) Dem_DTCGroups[DEM_NUM_DTC_GROUPS] =
 #include <Dem_MemMap.h>
 
 
+/** \brief EventClass configuration description table */
+CONST(Dem_EventClassDescType, DEM_CONST) Dem_EventClassDesc[DEM_NUMBER_OF_EVENT_CLASSES] =
+{
+  /* Event Class 0 */
+  {
+    DEM_INDICATOR_UNUSED,
+    /* DemAgingCycleCounterThreshold (if 0 DemAgingAllowed == 'false')*/
+    100U,
+    /* DemEventFailureCycleCounterThreshold (0 if disabled')*/
+    1U,
+    /* Event priority (0 = most important) */
+    1U,
+    /* Operation cycle*/
+    DEM_OPCYC_POWER,
+    /* Bitfield for boolean values
+     *   bit 0: DemMinRatio
+     *   bit 1: DemFreezeFrameUpdate (always true, for calibration use only)
+     */
+    ((uint8)0U)
+    | ((uint8)(DEM_FFUPDATEEVENTCLASS_MASK & 1U) << DEM_FFUPDATEEVENTCLASS_OFFSET),
+    /* enable condition group */
+    0U
+  },
+  /* Event Class 1 */
+  {
+    0U,
+    /* DemAgingCycleCounterThreshold (if 0 DemAgingAllowed == 'false')*/
+    0U,
+    /* DemEventFailureCycleCounterThreshold (0 if disabled')*/
+    0U,
+    /* Event priority (0 = most important) */
+    0U,
+    /* Operation cycle*/
+    DEM_OPCYC_OBD_DCY,
+    /* Bitfield for boolean values
+     *   bit 0: DemMinRatio
+     *   bit 1: DemFreezeFrameUpdate (always true, for calibration use only)
+     */
+    ((uint8)0U)
+    | ((uint8)(DEM_FFUPDATEEVENTCLASS_MASK & 1U) << DEM_FFUPDATEEVENTCLASS_OFFSET),
+    /* enable condition group */
+    DEM_ENCONDITIONGROUP_UNUSED
+  },
+  /* Event Class 2 */
+  {
+    DEM_INDICATOR_UNUSED,
+    /* DemAgingCycleCounterThreshold (if 0 DemAgingAllowed == 'false')*/
+    0U,
+    /* DemEventFailureCycleCounterThreshold (0 if disabled')*/
+    0U,
+    /* Event priority (0 = most important) */
+    0U,
+    /* Operation cycle*/
+    DEM_OPCYC_IGNITION,
+    /* Bitfield for boolean values
+     *   bit 0: DemMinRatio
+     *   bit 1: DemFreezeFrameUpdate (always true, for calibration use only)
+     */
+    ((uint8)0U)
+    | ((uint8)(DEM_FFUPDATEEVENTCLASS_MASK & 1U) << DEM_FFUPDATEEVENTCLASS_OFFSET),
+    /* enable condition group */
+    DEM_ENCONDITIONGROUP_UNUSED
+  },
+};
+
 #define DEM_STOP_SEC_CALIB_UNSPECIFIED
 #include <Dem_MemMap.h>
 
@@ -481,19 +546,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_IDX_DiagnosticFrezeFrameRecNumClass_0) << DEM_FFRECINFO_OFFSET )
     /* Extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_IDX_ED_DTC_0x000001_Properties) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_POWER) << DEM_OPCYCLEIDX_OFFSET )
-    /* Limit of DTC aging cycles */
-    | ( (uint32)(DEM_AGINGCTRTHRESHOLD_MASK & 100U) << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* Group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_ALL_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 0U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* Index of enable condition group */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & 0U ) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Index of failure class configuration */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 1U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Counter based event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_COUNTERBASED) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index of debouncing configuration/status */
@@ -525,67 +585,19 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_IDX_DiagnosticFrezeFrameRecNumClass_0) << DEM_FFRECINFO_OFFSET )
     /* Extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_IDX_ED_DTC_0x000001_Properties) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_OBD_DCY) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* Group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_BODY_DTCS) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 1U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
     /* DTC Functional Unit */
     | ( (uint32)(DEM_DTCFUNCTIONALUNIT_MASK & 0U) << DEM_DTCFUNCTIONALUNIT_OFFSET )
-    /* No aging cycle Id */
-    | ( (uint32)(DEM_AGINGCYCLEIDX_MASK & DEM_NUM_AGINGCYCLES) << DEM_AGINGCYCLEIDX_OFFSET )
-  },
-  { /* event: CANSM_E_BUS_OFF_0 */
-    /* No UDS-DTC value */
-    ( (uint32)(DEM_NO_DTC) )
-    /* Origin of DTC */
-    | ( (uint32) (DEM_DTCORIGIN_MASK & (DEM_DTC_ORIGIN_PRIMARY_MEMORY - 1U)) << DEM_DTCORIGIN_OFFSET )
-    /* No severity specified for DTC */
-    | ( (uint32)(DEM_DTCSEVERITY_MASK & 0U) << DEM_DTCSEVERITY_OFFSET )
-    /* Prestorage disabled */
-    /* Event kind is BSW */
-    | ( (uint32)(DEM_EVENTKIND_MASK & DEM_EVENT_KIND_BSW) << DEM_EVENTKIND_OFFSET )
-    /* No warning indicator used */
-    /* Immediate storage disabled */
-    ,
-    /* DTC Significance */
-    ( (uint32)(DEM_EVENTSIGNIFICANCE_MASK & DEM_EVENT_SIGNIFICANCE_FAULT) << DEM_EVENTSIGNIFICANCE_OFFSET )
-    /* No freeze frame class */
-    | ( (uint32)(DEM_FFCLASSIDX_MASK & DEM_FFCLS_NULL_IDX) << DEM_FFCLASSIDX_OFFSET )
-    /* No freeze frame records */
-    | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
-    /* No extended data class */
-    | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
-    /* No group of DTC */
-    | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
-    ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
-    /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
-    /* Counter based event debouncing */
-    | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_COUNTERBASED) << DEM_DEBOUNCEALGO_OFFSET )
-    /* Index of debouncing configuration/status */
-    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 1U) << DEM_DEBOUNCEIDX_OFFSET )
-    /* No DTC Functional Unit */
-    | ( (DEM_DTCFUNCTIONALUNIT_MASK & DEM_NO_DTC_FUNCTIONAL_UNIT) << DEM_DTCFUNCTIONALUNIT_OFFSET )
     /* No aging cycle Id */
     | ( (uint32)(DEM_AGINGCYCLEIDX_MASK & DEM_NUM_AGINGCYCLES) << DEM_AGINGCYCLEIDX_OFFSET )
   },
@@ -610,19 +622,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -652,19 +659,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -694,19 +696,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -736,19 +733,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -778,19 +770,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -820,19 +807,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -862,23 +844,18 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_IDX_DiagnosticFrezeFrameRecNumClass_0) << DEM_FFRECINFO_OFFSET )
     /* Extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_IDX_ED_DTC_0x000001_Properties) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_POWER) << DEM_OPCYCLEIDX_OFFSET )
-    /* Limit of DTC aging cycles */
-    | ( (uint32)(DEM_AGINGCTRTHRESHOLD_MASK & 100U) << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* Group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_CHASSIS_DTCS) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 0U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* Index of enable condition group */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & 0U ) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Index of failure class configuration */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 1U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Counter based event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_COUNTERBASED) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index of debouncing configuration/status */
-    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 2U) << DEM_DEBOUNCEIDX_OFFSET )
+    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 1U) << DEM_DEBOUNCEIDX_OFFSET )
     /* DTC Functional Unit */
     | ( (uint32)(DEM_DTCFUNCTIONALUNIT_MASK & 0U) << DEM_DTCFUNCTIONALUNIT_OFFSET )
     /* No aging cycle Id */
@@ -906,23 +883,18 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_IDX_DiagnosticFrezeFrameRecNumClass_0) << DEM_FFRECINFO_OFFSET )
     /* Extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_IDX_ED_DTC_0x000001_Properties) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_POWER) << DEM_OPCYCLEIDX_OFFSET )
-    /* Limit of DTC aging cycles */
-    | ( (uint32)(DEM_AGINGCTRTHRESHOLD_MASK & 100U) << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* Group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_POWERTRAIN_DTCS) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 0U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* Index of enable condition group */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & 0U ) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Index of failure class configuration */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 1U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & 0U) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Counter based event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_COUNTERBASED) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index of debouncing configuration/status */
-    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 3U) << DEM_DEBOUNCEIDX_OFFSET )
+    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 2U) << DEM_DEBOUNCEIDX_OFFSET )
     /* DTC Functional Unit */
     | ( (uint32)(DEM_DTCFUNCTIONALUNIT_MASK & 0U) << DEM_DTCFUNCTIONALUNIT_OFFSET )
     /* No aging cycle Id */
@@ -949,19 +921,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -991,19 +958,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -1033,19 +995,14 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
@@ -1075,22 +1032,55 @@ CONST(Dem_EventDescType, DEM_CONST) Dem_EventDesc[DEM_NUMBER_OF_EVENTS] =
     | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
     /* No extended data class */
     | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
-    /* Operation cycle Id */
-    | ( (uint32)(DEM_OPCYCLEIDX_MASK & DEM_OPCYC_IGNITION) << DEM_OPCYCLEIDX_OFFSET )
-    /* Aging disabled (AgingCycles = 0) */
-    | ( (uint32)0U << DEM_AGINGCTRTHRESHOLD_OFFSET )
     /* No group of DTC */
     | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
     ,
-    /* No enable condition group referenced */
-    ( (uint32)(DEM_ENCONDGRPIDX_MASK & DEM_ENCONDITIONGROUP_UNUSED) << DEM_ENCONDGRPIDX_OFFSET )
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
     /* Fault confirmation not configured */
-    | ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
-    /* Internal event priority (0 = most important) */
-    | ( (uint32)(DEM_PRIORITY_MASK & 0U) << DEM_PRIORITY_OFFSET )
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
     /* Monitor internal event debouncing */
     | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_MONITOR) << DEM_DEBOUNCEALGO_OFFSET )
     /* Index not used */
+    /* No DTC Functional Unit */
+    | ( (DEM_DTCFUNCTIONALUNIT_MASK & DEM_NO_DTC_FUNCTIONAL_UNIT) << DEM_DTCFUNCTIONALUNIT_OFFSET )
+    /* No aging cycle Id */
+    | ( (uint32)(DEM_AGINGCYCLEIDX_MASK & DEM_NUM_AGINGCYCLES) << DEM_AGINGCYCLEIDX_OFFSET )
+  },
+  { /* event: CANSM_E_BUS_OFF_0 */
+    /* No UDS-DTC value */
+    ( (uint32)(DEM_NO_DTC) )
+    /* Origin of DTC */
+    | ( (uint32) (DEM_DTCORIGIN_MASK & (DEM_DTC_ORIGIN_PRIMARY_MEMORY - 1U)) << DEM_DTCORIGIN_OFFSET )
+    /* No severity specified for DTC */
+    | ( (uint32)(DEM_DTCSEVERITY_MASK & 0U) << DEM_DTCSEVERITY_OFFSET )
+    /* Prestorage disabled */
+    /* Event kind is BSW */
+    | ( (uint32)(DEM_EVENTKIND_MASK & DEM_EVENT_KIND_BSW) << DEM_EVENTKIND_OFFSET )
+    /* No warning indicator used */
+    /* Immediate storage disabled */
+    ,
+    /* DTC Significance */
+    ( (uint32)(DEM_EVENTSIGNIFICANCE_MASK & DEM_EVENT_SIGNIFICANCE_FAULT) << DEM_EVENTSIGNIFICANCE_OFFSET )
+    /* No freeze frame class */
+    | ( (uint32)(DEM_FFCLASSIDX_MASK & DEM_FFCLS_NULL_IDX) << DEM_FFCLASSIDX_OFFSET )
+    /* No freeze frame records */
+    | ( (uint32)(DEM_FFRECINFO_MASK & DEM_FFRECNUMCLS_NULL) << DEM_FFRECINFO_OFFSET )
+    /* No extended data class */
+    | ( (uint32)(DEM_EDCLASSIDX_MASK & DEM_EDCLS_NULL_IDX) << DEM_EDCLASSIDX_OFFSET )
+    /* No group of DTC */
+    | ( (uint32)(DEM_DTCGROUP_MASK & DEM_DTCGRP_IDX_NO_DTC) << DEM_DTCGROUP_OFFSET )
+    /* Event Class Description Index */
+    | ( (uint32)(DEM_EVENTCLASSDESCIDX_MASK & 2U) << DEM_EVENTCLASSDESCIDX_OFFSET )
+    ,
+    /* calibration support enabled, enable condition group located in Dem_EventClassDesc */
+    /* Fault confirmation not configured */
+    ( (uint32)(DEM_EVENTFAILURECLASSIDX_MASK & DEM_NO_FAULT_CONFIRMATION) << DEM_EVENTFAILURECLASSIDX_OFFSET )
+    /* Counter based event debouncing */
+    | ( (uint32)(DEM_DEBOUNCEALGO_MASK & DEM_DEBOUNCE_COUNTERBASED) << DEM_DEBOUNCEALGO_OFFSET )
+    /* Index of debouncing configuration/status */
+    | ( (uint32)(DEM_DEBOUNCEIDX_MASK & 3U) << DEM_DEBOUNCEIDX_OFFSET )
     /* No DTC Functional Unit */
     | ( (DEM_DTCFUNCTIONALUNIT_MASK & DEM_NO_DTC_FUNCTIONAL_UNIT) << DEM_DTCFUNCTIONALUNIT_OFFSET )
     /* No aging cycle Id */
@@ -1146,122 +1136,62 @@ CONST(Dem_OBDConfigType, DEM_CONST) Dem_OBDConfig[DEM_NUMBER_OF_EVENTS] =
   { /* DTC_0x000001_Event */
     0x0003U, /* OBD-DTC value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & 40U) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold */
   },
   { /* Permanent_DTC */
     0x0009U, /* OBD-DTC value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
-  },
-  { /* CANSM_E_BUS_OFF_0 */
-    (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
-    0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* WDGM_E_MONITORING */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* WDGM_E_SET_MODE */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* WDGM_E_DATA_CORRUPTION */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* ECUM_E_RAM_CHECK_FAILED */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* MCU_E_CLOCK_FAILURE */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* WDGM_E_MF_TIMINGVIOLATION */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* DTC_0x000002_Event */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & 40U) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold */
   },
   { /* USER_DEFINE_MEMORY_Event */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & 40U) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold */
   },
   { /* MCU_E_TIMEOUT_FAILURE */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* MCU_E_INVALIDFXOSC_CONFIG */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* MCU_E_CLOCKMUXSWITCH_FAILURE */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
   },
   { /* SPI_E_HARDWARE_ERROR */
     (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
     0U /* Minimum Ratio Event is not set */
-    | ((uint16)(DEM_OBD_READINESS_MASK & DEM_OBD_RDY_NONE) <<
-        DEM_OBD_READINESS_OFFSET) /* OBD Readiness Group is set */
-    | ((uint16)(DEM_OBD_AGING_CYC_CNT_THRESHOLD_MASK & DEM_AGING_CYC_CNT_DISABLED) <<
-        DEM_OBD_AGING_CYC_CNT_THRESHOLD_OFFSET) /* OBD Aging Cycle Counter Threshold Disabled */
+  },
+  { /* CANSM_E_BUS_OFF_0 */
+    (uint16)(DEM_NO_DTC), /* No OBD-DTC Value */
+    0U /* Minimum Ratio Event is not set */
   },
 };
 
@@ -1271,6 +1201,89 @@ CONST(Dem_OBDConfigType, DEM_CONST) Dem_OBDConfig[DEM_NUMBER_OF_EVENTS] =
 
 
 
+#define DEM_START_SEC_CONST_8
+#include <Dem_MemMap.h>
+CONST(Dem_EventOBDReadinessGroupType, DEM_CONST)
+  Dem_OBDReadinessGroupMap[DEM_NUM_OBD_RDY_GROUPS] =
+{
+  /* OBD engine type unspecific */
+  DEM_OBD_RDY_MISF,     /* DataB:0 */
+  DEM_OBD_RDY_FLSYS,    /* DataB:1 */
+  DEM_OBD_RDY_CMPRCMPT, /* DataB:2 */
+  DEM_OBD_RDY_EGR,      /* DataC:7 */
+  DEM_OBD_RDY_FLSYS_NONCONT,
+
+  /* OBD engine type specific: 'compression' */
+  DEM_OBD_RDY_HCCAT,    /* DataC:0 */
+  DEM_OBD_RDY_NOXCAT,   /* DataC:1 */
+  DEM_OBD_RDY_NONE,     /* unused */
+  DEM_OBD_RDY_BOOSTPR,  /* DataC:3 */
+  DEM_OBD_RDY_EGSENS,   /* DataC:5 */
+  DEM_OBD_RDY_PMFLT,    /* DataC:6 */
+  DEM_OBD_RDY_NONE,     /* unused */
+};
+
+#define DEM_STOP_SEC_CONST_8
+#include <Dem_MemMap.h>
+
+#define DEM_START_SEC_CALIB_16
+#include <Dem_MemMap.h>
+
+CONST(Dem_EventIdType, DEM_CONST)
+  Dem_OBDReadinessGroup[DEM_NUM_OBD_RDY_GROUPS][DEM_MAX_EVENTS_PER_READINESS_GROUP] =
+  {
+    /* DEM_OBD_RDY_MISF */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_FLSYS */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_CMPRCMPT */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_EGR */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_FLSYS_NONCONT */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_HCCAT */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_NOXCAT */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* UNUSED */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_BOOSTPR */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_EGSENS */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* DEM_OBD_RDY_PMFLT */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+    /* UNUSED */
+    {
+      DEM_EVENT_ID_INVALID,
+    },
+  };
+
+#define DEM_STOP_SEC_CALIB_16
+#include <Dem_MemMap.h>
 
 
 
@@ -1332,65 +1345,59 @@ CONST(Dem_EnCondGrpType, DEM_CONST)
 
 /*------------------[Warning indicators configuration]----------------------*/
 
-#define DEM_START_SEC_CONST_UNSPECIFIED
+/* Indicator class index:
+ * DTC_0x000001_Event: -
+ * Permanent_DTC: 0
+ * WDGM_E_MONITORING: -
+ * WDGM_E_SET_MODE: -
+ * WDGM_E_DATA_CORRUPTION: -
+ * ECUM_E_RAM_CHECK_FAILED: -
+ * MCU_E_CLOCK_FAILURE: -
+ * WDGM_E_MF_TIMINGVIOLATION: -
+ * DTC_0x000002_Event: -
+ * USER_DEFINE_MEMORY_Event: -
+ * MCU_E_TIMEOUT_FAILURE: -
+ * MCU_E_INVALIDFXOSC_CONFIG: -
+ * MCU_E_CLOCKMUXSWITCH_FAILURE: -
+ * SPI_E_HARDWARE_ERROR: -
+ * CANSM_E_BUS_OFF_0: -
+ */
+#if (DEM_NUM_INDICATOR_LINKS > 0U)
+#define DEM_START_SEC_CALIB_8
 #include <Dem_MemMap.h>
 
-/** \brief Warning indicator configuration description table */
-CONST(Dem_IndicatorDescType, DEM_CONST)
-  Dem_IndicatorDesc[DEM_NUMBER_OF_INDICATORS] =
+CONST(Dem_IndicatorClassType, DEM_CONST) Dem_IndicatorClasses[DEM_NUM_INDICATOR_LINKS] =
 {
-  { /* warning indicator: DEM_INDICATOR_0 (= ID 0) */
-    /* number: */ 1U, /* index: */ 0U
-  },
-};
-
-
-#if (DEM_NUM_INDICATOR_LINKS != 0)
-/** \brief Warning indicator-link configuration link table */
-CONST(Dem_IndicatorLinkType, DEM_CONST)
-  Dem_IndicatorLink[DEM_NUM_INDICATOR_LINKS] =
-{
+  /* Class 0 */
   {
-    DemConf_DemEventParameter_Permanent_DTC,
+    TRUE, /* Enabled */
+    DemConf_DemIndicator_DEM_INDICATOR_0, /* Indicator Id */
     DEM_INDICATOR_CONTINUOUS,
-    0U, /* Index of Dem_HealingCycleCounterInfo[] */
-    0U, /* Index of Dem_FailureCycleCounterInfo[] */
+    1U, /* Indicator Healing Cycle Counter Threshold */
+    1U, /* Indicator Failure Cycle Counter Threshold */
+    /* Flag indicates, whether DemIndicatorFailureCycleSource == DEM_FAILURE_CYCLE_EVENT */
+    FALSE,
   },
+
 };
+#define DEM_STOP_SEC_CALIB_8
+#include <Dem_MemMap.h>
 #endif
 
+#if (DEM_NUM_INDICATOR_GROUPS > 0U)
+#define DEM_START_SEC_CONST_UNSPECIFIED
+#include <Dem_MemMap.h>
+CONST(Dem_IndicatorIdxType, DEM_CONST) Dem_IndicatorGroups[DEM_NUM_INDICATOR_GROUPS] =
+{
+  0U,
+  1U,
+/* !LINKSTO VCC_DEM_006_Req115v1,1 */
+};
 #define DEM_STOP_SEC_CONST_UNSPECIFIED
 #include <Dem_MemMap.h>
 
-#define DEM_START_SEC_CONST_8
-#include <Dem_MemMap.h>
-
-#if (DEM_NUM_HEALINGCYC_COUNTER_INFO_ELEMENTS != 0U)
-/** \brief Warning indicator configuration healing cycle-counter information table */
-CONST(Dem_CounterInfoType, DEM_CONST)
-  Dem_HealingCycleCounterInfo[DEM_NUM_HEALINGCYC_COUNTER_INFO_ELEMENTS] =
-{
-  {
-    DEM_OPCYC_OBD_DCY,
-    1U /* Healing threshold */
-  },
-};
 #endif
 
-#if (DEM_NUM_FAILURECYC_COUNTER_INFO_ELEMENTS != 0U)
-/** \brief Warning indicator configuration failure cycle-counter information table */
-CONST(Dem_CounterInfoType, DEM_CONST)
-  Dem_FailureCycleCounterInfo[DEM_NUM_FAILURECYC_COUNTER_INFO_ELEMENTS] =
-{
-  {
-    DEM_OPCYC_OBD_DCY,
-    1U /* Failure threshold */
-  },
-};
-#endif
-
-#define DEM_STOP_SEC_CONST_8
-#include <Dem_MemMap.h>
 
 
 /*------------------[Debouncing configuration]------------------------------*/
@@ -1431,9 +1438,9 @@ CONST(Dem_DebounceCounterClassIdxType, DEM_CONST)
   Dem_DebounceCounterClassIdx[DEM_NUM_DEBOUNCE_COUNTER] =
 {
   0U, /* 1 */
-  1U, /* 3 */
+  0U, /* 9 */
   0U, /* 10 */
-  0U, /* 11 */
+  1U, /* 15 */
 };
 
 #define DEM_STOP_SEC_CALIB_16
@@ -1457,21 +1464,7 @@ CONST(Dem_DebounceCounterClassIdxType, DEM_CONST)
 
 /*------------------[Fault confirmation configuration]----------------------*/
 
-#define DEM_START_SEC_CONST_8
-#include <Dem_MemMap.h>
-
-/** \brief Failure cycle and failure counter threshold configuration */
-CONST(Dem_EventFailureCycleCfgType, DEM_CONST)
-  Dem_EventFailureCycleCfg[DEM_NUM_FAILURECYCLES] =
-{
-  {
-    DEM_OPCYC_POWER,
-    1U
-  },
-};
-
-#define DEM_STOP_SEC_CONST_8
-#include <Dem_MemMap.h>
+/* stored in event class */
 
 
 /*------------------[ Event Availability ]------------------------*/
@@ -1479,6 +1472,14 @@ CONST(Dem_EventFailureCycleCfgType, DEM_CONST)
 #define DEM_START_SEC_CALIB_8
 #include <Dem_MemMap.h>
 
+/** \brief Calibratable bit-field array that holds availability status (enabled/disabled)
+ **        of all events
+ ** Note: If an event is available, the corresponding bit is set to one. */
+CONST(uint8, DEM_CONST) Dem_EventEnabled[DEM_EVENT_ENABLED_ARRAY_SIZE] =
+{
+  0xfeU,
+  0xffU,
+};
 
 #define DEM_STOP_SEC_CALIB_8
 #include <Dem_MemMap.h>
@@ -1506,13 +1507,6 @@ CONST(Dem_CbPropertyType, DEM_CONST) Dem_CbProperty[DEM_NUMBER_OF_EVENTS] =
   /* no trigger on event data changed callback */
   /* no clearEventAllowed callback */
   /* no fault detection counter callback */
-  DEM_ZERO_END,
-  /* event: CANSM_E_BUS_OFF_0 */
-  /* no init monitor callback */
-  /* no trigger on event status callback(s) */
-  /* no trigger on event data changed callback */
-  /* no clearEventAllowed callback */
-  /* DEM-internal fault detection counter */
   DEM_ZERO_END,
   /* event: WDGM_E_MONITORING */
   /* no init monitor callback */
@@ -1597,6 +1591,13 @@ CONST(Dem_CbPropertyType, DEM_CONST) Dem_CbProperty[DEM_NUMBER_OF_EVENTS] =
   /* no trigger on event data changed callback */
   /* no clearEventAllowed callback */
   /* no fault detection counter callback */
+  DEM_ZERO_END,
+  /* event: CANSM_E_BUS_OFF_0 */
+  /* no init monitor callback */
+  /* no trigger on event status callback(s) */
+  /* no trigger on event data changed callback */
+  /* no clearEventAllowed callback */
+  /* DEM-internal fault detection counter */
   DEM_ZERO_END,
 };
 /*---------------[Operation cycle automatic end enabled masks]-------------*/

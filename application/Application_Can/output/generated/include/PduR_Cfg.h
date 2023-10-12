@@ -149,7 +149,7 @@
 #endif /* if (defined PDUR_CFG_SIGNATURE) */
 
 /** \brief This macro specifies the compile time signature. */
-#define PDUR_CFG_SIGNATURE 4174011813U
+#define PDUR_CFG_SIGNATURE 3833116173U
 
 
 #if (defined PDUR_PUBLIC_INFO_SIGNATURE) /* to prevent double declaration */
@@ -211,7 +211,7 @@
 
 /** \brief This macro specifies if at least one lower layer communication interface module with 
   *        enabled PduRTriggertransmit is provided. Otherwise it is set to STD_OFF. */
-#define PDUR_LOIF_TRIGGERTX_ENABLED STD_ON
+#define PDUR_LOIF_TRIGGERTX_ENABLED STD_OFF
 
 
 #if (defined PDUR_LOTP_ENABLED) /* to prevent double declaration */
@@ -220,7 +220,7 @@
 
 /** \brief This macro specifies if at least one lower layer transport protocol module is provided. 
   *        Otherwise it is set to STD_OFF. */
-#define PDUR_LOTP_ENABLED STD_ON
+#define PDUR_LOTP_ENABLED STD_OFF
 
 
 #if (defined PDUR_UPIF_ENABLED) /* to prevent double declaration */
@@ -238,7 +238,7 @@
 
 /** \brief This macro specifies if at least one upper layer transport protocol module is provided. 
   *        Otherwise it is set to STD_OFF. */
-#define PDUR_UPTP_ENABLED STD_ON
+#define PDUR_UPTP_ENABLED STD_OFF
 
 
 #if (defined PDUR_LOIF_STATPAYLOAD_ENABLED) /* to prevent double declaration */
@@ -386,7 +386,7 @@
 
 /** \brief This macro specifies if at least one upper layer transport protocol module with enabled 
   *        PduRCancelTransmit is provided. Otherwise it is set to STD_OFF. */
-#define PDUR_UPTP_CANCELTX_ENABLED STD_ON
+#define PDUR_UPTP_CANCELTX_ENABLED STD_OFF
 
 
 #if (defined PDUR_UPTP_CANCELRX_ENABLED) /* to prevent double declaration */
@@ -395,7 +395,7 @@
 
 /** \brief This macro specifies if at least one upper layer transport protocol module with enabled 
   *        PduRCancelReceive is provided. Otherwise it is set to STD_OFF. */
-#define PDUR_UPTP_CANCELRX_ENABLED STD_ON
+#define PDUR_UPTP_CANCELRX_ENABLED STD_OFF
 
 
 /*==================[type definitions]======================================*/

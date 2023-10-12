@@ -42,33 +42,6 @@
           <member name="NumChannelsOfAllUser" type="uint16" count="2" comment="Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser"/>
           <member name="DirectNumChannelsOfAllUser" type="uint16" count="2" comment="Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser"/>
 
-          <member name="ComMPncEnabled" type="boolean" comment="Enabling/Disabling of partial networking"/>
-          <member name="pChannelsOfAllPnc" type="uint8" comment="Concatenated array of channels ids for each PNC: Pnc1Chan1,Pnc1Chan2,Pnc2Chan1..." >
-            <compiler-abstraction>
-              <ref2cfg />
-            </compiler-abstraction>
-          </member>
-           <!-- PncSupport means that at least one PNC is configured -->
-          <member name="NumChannelsOfAllPnc" type="uint16" count="3" comment="Index of first channel of each Pnc in COMM_ConfigLayoutType.aChannelsOfAllPnc"/>
-          <member name="pPNCsOfAllChannel" type="uint16" comment="Concatenated array of PNC ids for each channel: Chan1Pnc1,Chan1Pnc2,Chan2Pnc1...">
-            <compiler-abstraction>
-              <ref2cfg />
-            </compiler-abstraction>
-          </member>
-          <member name="NumPncOfAllCh" type="uint16" count="2" comment="Index of first PNC of each channel in COMM_ConfigLayoutType.aPNCsOfAllChannel"/>
-          <member name="pPncOfAllUser" type="uint16" comment="Concatenated array of PNC indices (NOT ID) for users: Usr1Pnc1,Usr1Pnc2,Usr2Pnc1..">
-            <compiler-abstraction>
-              <ref2cfg />
-            </compiler-abstraction>
-          </member>
-          <member name="NumPncOfAllUser" type="uint16" count="2" comment="Index of first PNC of each user in COMM_ConfigLayoutType.aPncOfAllUser"/>
-          <member name="pUsersOfAllPnc" type="uint8" comment="Concatenated array of user ids for each PNC: Pnc1Usr1,Pnc1Usr2,Pnc2Usr1...">
-            <compiler-abstraction>
-              <ref2cfg />
-            </compiler-abstraction>
-          </member>
-          <!-- PncSupport means that at least one PNC is configured -->
-          <member name="NumUsersOfAllPnc" type="uint16" count="3" comment="Index of first User of each PNC in COMM_ConfigLayoutType.aUsersOfAllPnc"/>
         </struct>
       </type>
 
@@ -93,14 +66,6 @@
           <!-- Member of the layout type starting with the RootCfg -->
           <member name="RootCfg" type="ComM_ConfigType"/>
           <!-- !LINKSTO ComM795,1, ComM796,1, ComM797,1, ComM798,1 -->           
-          <member name="aPNCsOfAllChannel" type="uint16" count="2" comment="PNC Ids of all channels"/>
-
-          <!-- Workaround: Dummy member used in case of no PNC users configured, because all PNCs are on passive channels! -->
-          <member name="aPncOfAllUser" type="uint16" count="1" comment="PNC Ids of all users" />
-          <member name="aChannelsOfAllPnc"  type="uint8" count="2"  comment="Channel Id of all channels for all PNC" />
-
-          <!-- Workaround: Dummy member used in case of no PNC users configured, because all PNCs are on passive channels! -->
-          <member name="aUsersOfAllPnc" type="uint8" count="1" comment="User Ids of all cwPNCsusers" />
           <member name="aUsersOfAllChannel" type="uint8" count="1" comment="User Ids referenced by channel or PNCs of channel"/>
           <member name="aChannelsOfAllUser" type="uint8" count="1" comment="Channel Ids or PNC ids referenced by user of channel" />           
         </struct>
@@ -136,7 +101,7 @@
             <int>3958107115</int>
           </field>
           <field>
-            <int>4283348280</int>
+            <int>2010708794</int>
           </field>
           <field>
             <int>1499283658</int>
@@ -179,103 +144,7 @@
             </field>
           </field> <!-- DirectNumChannelsOfAllUser -->
 
-          <field>
-            <int>1 <!-- ComMPncEnabled is enabled and set to true --> </int>
-          </field> <!-- ComMPncEnabled -->
-          <field>
-            <ref>
-              <struct-field name="aChannelsOfAllPnc"/>
-              <array-field index="0" />
-            </ref>
-          </field> <!-- pChannelsOfAllPnc -->
-          <field>
-            <field>
-              <int>0</int> <!-- idx of PNC ComMPnc_16 -->
-            </field>
-            <field>
-              <int>1</int> <!-- idx of PNC ComMPnc_17 -->
-            </field>
-            <field>
-              <int>2</int> <!-- idx of entry after last PNC -->
-            </field>
-          </field> <!-- NumChannelsOfAllPnc -->
-          <field>
-            <ref>
-              <struct-field name="aPNCsOfAllChannel"/>
-              <array-field index="0" />
-            </ref>
-          </field> <!-- pPNCsOfAllChannel  -->
-          <field>
-            <field>
-              <int>0</int> <!-- idx of channel CanNetwork -->
-            </field>
-            <field>
-              <int>2</int> <!--  idx of entry after last channel -->
-            </field>
-          </field> <!-- NumPncOfAllCh -->
-          <field>
-            <ref>
-              <struct-field name="aPncOfAllUser"/>
-              <array-field index="0" />
-            </ref>
-          </field> <!-- pPncOfAllUser -->
-          <field>
-            <field>
-              <int>0</int> <!-- idx of user ComMUser_0 -->
-            </field>
-            <field>
-              <int>0</int> <!-- idx of entry after last user -->
-            </field>
-          </field> <!-- NumPncOfAllUser -->
-          <field>
-            <ref>
-              <struct-field name="aUsersOfAllPnc"/>
-              <array-field index="0" />
-            </ref>
-          </field> <!-- pUsersOfAllPnc -->
-          <field>
-            <field>
-              <int>0</int> <!-- idx of PNC ComMPnc_16 -->
-            </field>
-            <field>
-              <int>0</int> <!-- idx of PNC ComMPnc_17 -->
-            </field>
-            <field>
-              <int>0</int> <!-- idx of entry after last PNC -->
-            </field>
-          </field> <!-- NumUsersOfAllPnc -->
         </field> <!-- ComM_ConfigType -->
-        <field>
-          <!-- Channel CanNetwork (ID=0) -->
-          <field>
-            <int>16</int> <!-- ID of PNC ComMPnc_16 -->
-          </field>
-          <field>
-            <int>17</int> <!-- ID of PNC ComMPnc_17 -->
-          </field>
-        </field> <!-- aPNCsOfAllChannel -->
-        <field>
-
-          <field>
-            <int>255</int> <!-- Workaround: Dummy value to satisfy dummy member demand! -->
-          </field>
-        </field> <!-- aPncOfAllUser -->
-        <field>
-          <!-- PNC ComMPnc_16 (ID=16) -->
-          <field>
-            <int>0</int> <!-- ID of channel CanNetwork -->
-          </field>
-          <!-- PNC ComMPnc_17 (ID=17) -->
-          <field>
-            <int>0</int> <!-- ID of channel CanNetwork -->
-          </field>
-        </field> <!-- aChannelsOfAllPnc  -->
-        <field>
-
-          <field>
-            <int>255</int> <!-- Workaround: Dummy value to satisfy dummy member demand! -->
-          </field>
-        </field> <!-- aUsersOfAllPnc -->
 <field>
           <field>
             <int>0</int> <!-- user ComMUser_0 -->

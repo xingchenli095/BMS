@@ -92,7 +92,7 @@ CanSM_ConstConfigLayoutType CanSM_ConfigLayout = {
             UINT16_C( 3 ), /* BorTimeL1 */
             UINT16_C( 50 ), /* BorTimeL2 */
             UINT16_C( 200 ), /* BorTimeTxEnsured */
-            UINT16_C( 3 ), /* DemEventId */
+            UINT16_C( 15 ), /* DemEventId */
             UINT8_C( 0 ), /* ComMChId */
             UINT8_C( 0 ), /* TrcvId */
             UINT8_C( 1 ), /* NumNwCtrl */

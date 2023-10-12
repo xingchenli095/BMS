@@ -21,8 +21,8 @@
 
 #include <Mcu.h>
 #include <CanIf.h>
-#include <CanNm.h>
-#include <Nm.h>
+//#include <CanNm.h>
+//#include <Nm.h>
 #include <BswM.h>
 #include <EcuM.h>
 #include <EcuM_Int.h> /* for EcuM_SchM_Deinit() */
@@ -67,8 +67,8 @@ FUNC(void, ECUM_APPL_CODE) CanTrcv_Callout_SimulatedShutDown(void)
      * Nm frame is received due to channel state is disabled in this modules. */
     do
     {
-        CanNm_MainFunction();
-        Nm_MainFunction();
+        //CanNm_MainFunction();
+        //Nm_MainFunction();
         ComM_MainFunction_0();
     } while(ComM_ChanState[0] == 0); 
 

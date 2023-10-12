@@ -24,8 +24,7 @@
 
 
 
-                
-                
+
 
 
 
@@ -81,20 +80,6 @@
 
 
 
-/** \brief Number of Tx EIRA Com Signals mapped to ComMPnc_16 */
-#if (defined COMM_NUM_TX_PNC_16)
-#error COMM_NUM_TX_PNC_16 already defined
-#endif
-#define COMM_NUM_TX_PNC_16  1
-
-/** \brief Number of Tx EIRA Com Signals mapped to ComMPnc_17 */
-#if (defined COMM_NUM_TX_PNC_17)
-#error COMM_NUM_TX_PNC_17 already defined
-#endif
-#define COMM_NUM_TX_PNC_17  1
-
-
-
 /*==================[type definitions]======================================*/
 
 /*==================[external function declarations]========================*/
@@ -113,52 +98,6 @@
 
 
 
-
-
- 
-
-
-
-
-
-/** \brief Array of Rx Eira Com signal masks for Com Signal SGCanNmPnEiraRxNSdu */
-STATIC CONST(uint8, COMM_CONST) ComM_PncRxEiraMask_SGCanNmPnEiraRxNSdu[COMM_PN_INFO_LENGTH] =
-{
-  /* 6 2 1.0 */
-  0x3U,
-    0x00u,
-  0x00u,
-  0x00u,
-  0x00u,
-  0x00u,
-};
-
-
-
-
-/** \brief Array of Tx Eira Com signal masks for Com Signal SGCanNetworkNmPnIraTxNSdu */
-STATIC CONST(uint8, COMM_CONST) ComM_PncTxMask_SGCanNetworkNmPnIraTxNSdu[COMM_PN_INFO_LENGTH] =
-{
-  0x3U,
-    0x00u,
-  0x00u,
-  0x00u,
-  0x00u,
-  0x00u,
-};
-
-
-/** \brief List of Tx Eira Com signals mapped to ComMPnc_16 */
-STATIC CONST(uint8, COMM_CONST) ComM_TxSig_Pnc_16[COMM_NUM_TX_PNC_16] =
-{
-  0, /* SGCanNetworkNmPnIraTxNSdu */
-};
-/** \brief List of Tx Eira Com signals mapped to ComMPnc_17 */
-STATIC CONST(uint8, COMM_CONST) ComM_TxSig_Pnc_17[COMM_NUM_TX_PNC_17] =
-{
-  0, /* SGCanNetworkNmPnIraTxNSdu */
-};
-
 /* !LINKSTO ECUC_ComM_00892,1 */
 
 #define COMM_STOP_SEC_CONST_8
@@ -170,13 +109,6 @@ STATIC CONST(uint8, COMM_CONST) ComM_TxSig_Pnc_17[COMM_NUM_TX_PNC_17] =
 #include <ComM_MemMap.h>
 
 
-
-
-CONST(boolean, COMM_CONST)
-  ComM_PncNmRequest[COMM_NUM_CHANNELS] =
-{
- FALSE,
-};
 
 
 #define COMM_STOP_SEC_CONST_8
@@ -192,7 +124,7 @@ CONST(boolean, COMM_CONST)
 CONST(uint16, COMM_CONST) ComM_NetReqNoNmTimeoutMs[COMM_NUM_CHANNELS] =
 {
   /* for channel CanNetwork */
-  0xFFU, /* channel with real bus NM support, value never used */
+  2500U, /* Nm variant 'LIGHT' or 'NONE' */
 };
 #endif
 
@@ -201,19 +133,11 @@ CONST(uint16, COMM_CONST) ComM_NetReqNoNmTimeoutMs[COMM_NUM_CHANNELS] =
 CONST(uint16, COMM_CONST) ComM_ReadySleepNoNmTimeoutMs[COMM_NUM_CHANNELS] =
 {
   /* for channel CanNetwork */
-  0xFFU, /* channel with real bus NM support, value never used */
+  0U,    /* Nm variant NONE, "ready sleep" state is instantly left */
 };
 #endif
 
 
-/** \brief List of Pnc Ids */
-CONST(PNCHandleType, COMM_CONST) ComM_PncID[COMM_NUM_PNC] =
-{
-  16, /* for PNC ComMPnc_16 */
-  17, /* for PNC ComMPnc_17 */
-};
-
-
 #define COMM_STOP_SEC_CONST_16
 #include <ComM_MemMap.h>
 
@@ -246,63 +170,9 @@ CONST(PNCHandleType, COMM_CONST) ComM_PncID[COMM_NUM_PNC] =
   
 
  
-#define COMM_START_SEC_CONST_16
-#include <ComM_MemMap.h>
-
-CONST(ComM_RxSignal_Struct_Type, COMM_CONST) ComM_RxComSignalEiraCfg[COMM_NUM_RX_EIRA_SIGNALS] =
-{
-      {
-    4,  /* SGCanNmPnEiraRxNSdu */
-  },
-};
-
- 
-#define COMM_STOP_SEC_CONST_16
-#include <ComM_MemMap.h>
  
 
 
-
-
-
-  
-
-
-
-
-  
-
-
-
-
- 
-
-
-
- 
-
-  
-    
-  
- 
- 
-
-  
-
- 
-#if (COMM_NUM_TX_SIGNALS > 0U)
-#define COMM_START_SEC_CONST_UNSPECIFIED
-#include <ComM_MemMap.h>
-CONST(ComM_TxSignal_Struct_Type, COMM_CONST) ComM_TxComSignalCfg[COMM_NUM_TX_SIGNALS] =
-{
-  {
-    3, /* SGCanNetworkNmPnIraTxNSdu */
-    COMM_EIRA_ERA_ACTIVE  },
-};
-#define COMM_STOP_SEC_CONST_UNSPECIFIED
-#include <ComM_MemMap.h>
-#endif /* (COMM_NUM_TX_SIGNALS > 0U) */
- 
  
 
 #define COMM_START_SEC_CONST_UNSPECIFIED
@@ -310,38 +180,6 @@ CONST(ComM_TxSignal_Struct_Type, COMM_CONST) ComM_TxComSignalCfg[COMM_NUM_TX_SIG
 
 
 
-
-
-#if (COMM_NUM_TX_SIGNALS > 0U)
-CONST(ComM_PncTxSigMapType, COMM_CONST) ComM_PncTxSignalMap[COMM_NUM_PNC] =
-{
-  /* ComMPnc_16 */
-  {
-    ComM_TxSig_Pnc_16,      /* TxSignalList */
-    COMM_NUM_TX_PNC_16     /* NumTxSignal */
-  },
-  /* ComMPnc_17 */
-  {
-    ComM_TxSig_Pnc_17,      /* TxSignalList */
-    COMM_NUM_TX_PNC_17     /* NumTxSignal */
-  },
-};
-#endif /* (COMM_NUM_TX_SIGNALS > 0U) */
-
-CONSTP2CONST(uint8, COMM_CONST, COMM_CONST) ComM_PncRxEiraMask[COMM_NUM_RX_EIRA_SIGNALS] =
-{
-  /* Com Signal: SGCanNmPnEiraRxNSdu */
-  ComM_PncRxEiraMask_SGCanNmPnEiraRxNSdu,
-};
-
-
-#if (COMM_NUM_TX_SIGNALS > 0U)
-CONSTP2CONST(uint8, COMM_CONST, COMM_CONST) ComM_PncTxMask[COMM_NUM_TX_SIGNALS] =
-{
-  /* Com Signal: SGCanNetworkNmPnIraTxNSdu */
-  ComM_PncTxMask_SGCanNetworkNmPnIraTxNSdu,
-};
-#endif /* (COMM_NUM_TX_SIGNALS > 0U) */
 
 
 #define COMM_STOP_SEC_CONST_UNSPECIFIED

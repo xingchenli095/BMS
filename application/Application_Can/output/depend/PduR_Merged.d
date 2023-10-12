@@ -1,44 +1,44 @@
-D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/PduR_Merged.o \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/obj/PduR_Merged.s: \
+D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/obj/PduR_Merged.o \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/obj/PduR_Merged.s: \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/src/PduR_Merged.c \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/include/PduR_Internal_Static.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSAutosar.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Std_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Platform_Types.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/Compiler.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgInt.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/source/config/Compiler_Cfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/Compiler_Common.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/CORTEXM/multi/Compiler_Specific.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/TSAutosar_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/source/config/Platforms_TSPlatforms.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Compiler_CfgExtMcal.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/TSAutosar_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/source/config/Platforms_TSPlatforms.h \
  C:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_TSPlatforms.h \
  C:/EB/tresos/plugins/Compiler_TS_TxDxM1I0R0/include/TSCompiler.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSCompiler_Default.h \
  C:/EB/tresos/plugins/Atomics_TS_TxDxM1I0R0/include/Atomics_platform_types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Atomics_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Atomics_MemMap.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/ComStack_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/ComStack_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/ComStack_Cfg.h \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/include/PduR_Api_Static.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Types.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_CfgTypes.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Types.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_CfgTypes.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSPBConfig_Types.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSPBConfig_BasicTypes.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_MemMap.h \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/include/PduR_Lcfg_Static.h \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/include/PduR_Version.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSPBConfig_Access.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det_BSW.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Cfg.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Det_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Det_Cfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Det_MemMap.h \
  C:/EB/tresos/plugins/Det_TS_TxDxM6I5R0/include/Det_Version.h \
  C:/EB/tresos/plugins/PduR_TS_TxDxM5I3R0/include/PduR_Api_Depend.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSMem.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/Base_MemMap.h \
- D:/Desktop/Achita/S32K342/Application_Can_main_Nvm/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Lcfg.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/Base_MemMap.h \
+ D:/Desktop/Achita/S32K342/Application_Can_main_CAN/Application_Can_main_Spi/Application_Can/output/generated/include/PduR_Lcfg.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSPBConfig_Signature.h \
  C:/EB/tresos/plugins/Base_TS_TxDxM5I2R0/include/TSPBConfig_OffsetAlignment.h \
  C:/ghs/comp_202114/ansi/stddef.h C:/ghs/comp_202114/ansi/ghs_null.h \

@@ -56,11 +56,50 @@ int icu_gloable_Status = 0u;
 uint32 IcuCount = 0u;
 int Icu_CMP_Count1 =0u;
 
+int readData = 0U;
 Icu_DutyCycleType icuDutyResult;
 
 
 /* ==================[Definition of functions with external linkage]========== */
 /* ------------------------[runnable entity skeletons]------------------------ */
+#define SWC_IoHwAbs_START_SEC_CODE
+#include <SWC_IoHwAbs_MemMap.h>
+FUNC(void, RTE_CODE) Can_Receive (void)
+{
+  uint8 ret_DRead;
+
+  ret_DRead = Rte_DRead_Rp_Can_Receive_Can();
+  (void)ret_DRead;
+
+  readData = ret_DRead;
+
+} /* FUNC(void, RTE_CODE) Can_Receive (void) */
+
+#define SWC_IoHwAbs_STOP_SEC_CODE
+#include <SWC_IoHwAbs_MemMap.h>
+
+#define SWC_IoHwAbs_START_SEC_CODE
+#include <SWC_IoHwAbs_MemMap.h>
+FUNC(void, RTE_CODE) Can_Send (void)
+{
+
+
+  uint8 arg_Write_data = Count;
+  Std_ReturnType ret_Write;
+  Std_ReturnType ret_Feedback;
+
+  ret_Write = Rte_Write_Pp_Can_Send_Can(arg_Write_data);
+  (void)ret_Write;
+  ret_Feedback = Rte_Feedback_Pp_Can_Send_Can();
+  (void)ret_Feedback;
+
+  Count ++;
+  
+
+} /* FUNC(void, RTE_CODE) Can_Send (void) */
+
+#define SWC_IoHwAbs_STOP_SEC_CODE
+#include <SWC_IoHwAbs_MemMap.h>
 
 #define SWC_IoHwAbs_START_SEC_CODE
 #include <SWC_IoHwAbs_MemMap.h>
@@ -86,17 +125,12 @@ FUNC(void, RTE_CODE) Adc_ReadValue (void)
 #define SWC_IoHwAbs_STOP_SEC_CODE
 #include <SWC_IoHwAbs_MemMap.h>
 
-
-#define SWC_IoHwAbs_START_SEC_CODE
-#include <SWC_IoHwAbs_MemMap.h>
-
 #define SWC_IoHwAbs_START_SEC_CODE
 #include <SWC_IoHwAbs_MemMap.h>
 FUNC(void, RTE_CODE) LedControl_IO (void)
 {
   
   ComM_RequestComMode(ComMConf_ComMUser_ComMUser_0,COMM_FULL_COMMUNICATION);
-  
   
   if(Dio_ReadChannel(DioConf_DioChannel_MY_LED_CYCLIC) == DIO_LOW_VALUE)
   {
@@ -153,7 +187,6 @@ FUNC(void, RTE_CODE) LedControl_IO (void)
 void IcuSignalEdgeDetection_SIUL(void)
 {
   IcuCount = Icu_GetEdgeNumbers(IcuChannel_0);
-
 }
 
 void IcuSignalEdageDetection_Notification(void)
@@ -186,15 +219,28 @@ FUNC(void, RTE_CODE) SWC_IoHwAbs_SetDiscreteValue (uint32 pdav0, uint32 value)
 #define SWC_IoHwAbs_STOP_SEC_CODE
 #include <SWC_IoHwAbs_MemMap.h>
 
-/*
-  ------------------------[runnable-independent API]-------------------------
 
-  Copy and paste the following API to those runnable entity functions where
-  you want to use them.
+FUNC(void, CANSM_CODE) User_CanIfConfirmPnAvailabilityDummy (
+  uint8 TransceiverId
+){
+  
+}
 
-  ------------------------[port handle API]----------------------------------
-  ------------------------[per instance memory API]--------------------------
- */
+
+  //------------------------[runnable-independent API]-------------------------
+
+  /*Copy and paste the following API to those runnable entity functions where
+  you want to use them.*/
+
+  //------------------------[port handle API]----------------------------------
+  void CanSleepToNomail(void)
+  {
+    Dio_WriteChannel(DioConf_DioChannel_CAN_1463_EN, (Dio_LevelType) DIO_HIGH_VALUE);
+    Dio_WriteChannel(DioConf_DioChannel_CAN_1463_NSTB, (Dio_LevelType) DIO_HIGH_VALUE);
+  }
+  
+  //------------------------[per instance memory API]--------------------------
+ 
 
 /** @} doxygen end group definition  */
 /* ==================[end of file]============================================ */

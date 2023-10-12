@@ -49,14 +49,14 @@
 
 typedef struct /* BswM_ConfigLayoutType */ {
     VAR( BswM_ConfigType, TYPEDEF ) BswM_RootConfig[1];
-    VAR( BswMRuleType, TYPEDEF ) RuleTable[17];
-    VAR( uint16, TYPEDEF ) RuleDependencyTable[22];
-    VAR( BswMRangeType, TYPEDEF ) RuleDependencyListRangeTable[9];
+    VAR( BswMRuleType, TYPEDEF ) RuleTable[16];
+    VAR( uint16, TYPEDEF ) RuleDependencyTable[21];
+    VAR( BswMRangeType, TYPEDEF ) RuleDependencyListRangeTable[5];
     VAR( BswMActionListType, TYPEDEF ) ActionListTable[17];
-    VAR( BswMActionListItemType, TYPEDEF ) ActionListItemTable[48];
+    VAR( BswMActionListItemType, TYPEDEF ) ActionListItemTable[41];
     VAR( BswMPduGroupSwitchActionType, TYPEDEF ) PduGroupSwitchActionTable[8];
     VAR( uint16, TYPEDEF ) UInt16InitialValuesTable[1];
-    VAR( uint8, TYPEDEF ) UInt8InitialValuesTable[5];
+    VAR( uint8, TYPEDEF ) UInt8InitialValuesTable[1];
 } BswM_ConfigLayoutType;
 
 typedef CONST( BswM_ConfigLayoutType, TYPEDEF ) BswM_ConstConfigLayoutType;

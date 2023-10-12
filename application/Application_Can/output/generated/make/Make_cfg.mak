@@ -30,10 +30,10 @@ DERIVATE := S32K34X
 ifeq (,$(ENABLED_PLUGINS))
 # In case enabled modules are NOT specified explicitly
 # use all enabled modules (including modules, that are NOT generated)
-PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Icu Make McalExt Mcl Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate Spi WdgIf WdgM Wdg
+PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanSM CanTrcv Can ComM Com Compiler Crc CryIf Crypto Csm Dem Det Dio EcuC EcuM Fee Fls Icu Make McalExt Mcl Mcu MemIf MemMap NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor ServiceApplTemplate Spi WdgIf WdgM Wdg
 else
 # otherwise only use generated modules
-PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanNm CanSM CanTp CanTrcv Can ComM ComXf Com Compiler Crc CryIf Crypto Csm Dcm Dem Det Dio E2EP05 E2ESM E2EXf E2E EcuC EcuM Fee Fls Icu Make McalExt Mcl Mcu MemIf MemMap Nm NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor SecOC ServiceApplTemplate Spi WdgIf WdgM Wdg
+PROJECT_MODULES := Adc Atomics BaseNXP Base BswM CanIf CanSM CanTrcv Can ComM Com Compiler Crc CryIf Crypto Csm Dem Det Dio EcuC EcuM Fee Fls Icu Make McalExt Mcl Mcu MemIf MemMap NvM Os PbcfgM PduR Platforms Port Resource Rte SCrc Scriptor ServiceApplTemplate Spi WdgIf WdgM Wdg
 endif
 
 # add tresos2 make plugin if not yet contained in SOFTWARE_MODULES
@@ -55,19 +55,13 @@ BswM_VARIANT   := TS_TxDxM1I16R0
 BswM_CORE_PATH := $(TRESOS_BASE)/plugins/BswM_TS_TxDxM1I16R0
 CanIf_VARIANT   := TS_TxDxM6I10R0
 CanIf_CORE_PATH := $(TRESOS_BASE)/plugins/CanIf_TS_TxDxM6I10R0
-CanNm_VARIANT   := TS_TxDxM6I20R0
-CanNm_CORE_PATH := $(TRESOS_BASE)/plugins/CanNm_TS_TxDxM6I20R0
 CanSM_VARIANT   := TS_TxDxM3I7R0
 CanSM_CORE_PATH := $(TRESOS_BASE)/plugins/CanSM_TS_TxDxM3I7R0
-CanTp_VARIANT   := TS_TxDxM6I8R0
-CanTp_CORE_PATH := $(TRESOS_BASE)/plugins/CanTp_TS_TxDxM6I8R0
 CanTrcv_VARIANT   := TS_TxDxM1I0R0
 CanTrcv_CORE_PATH := $(TRESOS_BASE)/plugins/CanTrcv_TS_TxDxM1I0R0
 Can_VARIANT   := TS_T40D34M20I1R0
 ComM_VARIANT   := TS_TxDxM5I21R0
 ComM_CORE_PATH := $(TRESOS_BASE)/plugins/ComM_TS_TxDxM5I21R0
-ComXf_VARIANT   := TS_TxDxM1I0R0
-ComXf_CORE_PATH := $(TRESOS_BASE)/plugins/ComXf_TS_TxDxM1I0R0
 Com_VARIANT   := TS_TxDxM6I3R0
 Com_CORE_PATH := $(TRESOS_BASE)/plugins/Com_TS_TxDxM6I3R0
 Compiler_VARIANT   := TS_TxDxM1I0R0
@@ -80,21 +74,11 @@ Crypto_VARIANT   := TS_TxDxM1I7R0_GENERIC
 Crypto_CORE_PATH := $(TRESOS_BASE)/plugins/Crypto_TS_TxDxM1I7R0_GENERIC
 Csm_VARIANT   := TS_TxDxM3I1R0
 Csm_CORE_PATH := $(TRESOS_BASE)/plugins/Csm_TS_TxDxM3I1R0
-Dcm_VARIANT   := TS_TxDxM5I0R0
-Dcm_CORE_PATH := $(TRESOS_BASE)/plugins/Dcm_TS_TxDxM5I0R0
 Dem_VARIANT   := TS_TxDxM6I4R0
 Dem_CORE_PATH := $(TRESOS_BASE)/plugins/Dem_TS_TxDxM6I4R0
 Det_VARIANT   := TS_TxDxM6I5R0
 Det_CORE_PATH := $(TRESOS_BASE)/plugins/Det_TS_TxDxM6I5R0
 Dio_VARIANT   := TS_T40D34M20I1R0
-E2EP05_VARIANT   := TS_TxDxM1I0R0
-E2EP05_CORE_PATH := $(TRESOS_BASE)/plugins/E2EP05_TS_TxDxM1I0R0
-E2ESM_VARIANT   := TS_TxDxM1I1R0
-E2ESM_CORE_PATH := $(TRESOS_BASE)/plugins/E2ESM_TS_TxDxM1I1R0
-E2EXf_VARIANT   := TS_TxDxM1I0R0
-E2EXf_CORE_PATH := $(TRESOS_BASE)/plugins/E2EXf_TS_TxDxM1I0R0
-E2E_VARIANT   := TS_TxDxM2I0R0
-E2E_CORE_PATH := $(TRESOS_BASE)/plugins/E2E_TS_TxDxM2I0R0
 EcuC_VARIANT   := TS_TxDxM5I0R0
 EcuC_CORE_PATH := $(TRESOS_BASE)/plugins/EcuC_TS_TxDxM5I0R0
 EcuM_VARIANT   := TS_TxDxM5I15R0
@@ -112,8 +96,6 @@ MemIf_VARIANT   := TS_TxDxM5I11R0
 MemIf_CORE_PATH := $(TRESOS_BASE)/plugins/MemIf_TS_TxDxM5I11R0
 MemMap_VARIANT   := TS_TxDxM1I3R0
 MemMap_CORE_PATH := $(TRESOS_BASE)/plugins/MemMap_TS_TxDxM1I3R0
-Nm_VARIANT   := TS_TxDxM5I12R0
-Nm_CORE_PATH := $(TRESOS_BASE)/plugins/Nm_TS_TxDxM5I12R0
 NvM_VARIANT   := TS_TxDxM6I17R0
 NvM_CORE_PATH := $(TRESOS_BASE)/plugins/NvM_TS_TxDxM6I17R0
 Os_VARIANT   := TS_T40D37M6I1R0_AS45
@@ -133,8 +115,6 @@ SCrc_VARIANT   := TS_TxDxM2I0R0
 SCrc_CORE_PATH := $(TRESOS_BASE)/plugins/SCrc_TS_TxDxM2I0R0
 Scriptor_VARIANT   := TS_TxDxM1I0R0
 Scriptor_CORE_PATH := $(TRESOS_BASE)/plugins/Scriptor_TS_TxDxM1I0R0
-SecOC_VARIANT   := TS_TxDxM2I8R0
-SecOC_CORE_PATH := $(TRESOS_BASE)/plugins/SecOC_TS_TxDxM2I8R0
 ServiceApplTemplate_VARIANT   := TS_TxDxM1I3R0
 ServiceApplTemplate_CORE_PATH := $(TRESOS_BASE)/plugins/ServiceApplTemplate_TS_TxDxM1I3R0
 Spi_VARIANT   := TS_T40D34M20I1R0

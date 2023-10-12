@@ -83,7 +83,7 @@ ComM_ConstConfigLayoutType ComM_Configuration = {
     { /* RootCfg */
         UINT32_C( 2147485970 ), /* PlatformSignature */
         UINT32_C( 3958107115 ), /* LcfgSignature */
-        UINT32_C( 4283348280 ), /* CfgSignature */
+        UINT32_C( 2010708794 ), /* CfgSignature */
         UINT32_C( 1499283658 ), /* PublicInfoSignature */
         TS_MAKEREF2CFG( aUsersOfAllChannel[0] ), /* pUsersOfAllChannel */
         { /* NumUsersOfAllChannel */
@@ -98,44 +98,7 @@ ComM_ConstConfigLayoutType ComM_Configuration = {
         { /* DirectNumChannelsOfAllUser */
             UINT16_C( 0 ), /* DirectNumChannelsOfAllUser[0] */
             UINT16_C( 1 ) /* DirectNumChannelsOfAllUser[1] */
-        },
-        BOOLEAN_C( 1 ), /* ComMPncEnabled */
-        TS_MAKEREF2CFG( aChannelsOfAllPnc[0] ), /* pChannelsOfAllPnc */
-        { /* NumChannelsOfAllPnc */
-            UINT16_C( 0 ), /* NumChannelsOfAllPnc[0] */
-            UINT16_C( 1 ), /* NumChannelsOfAllPnc[1] */
-            UINT16_C( 2 ) /* NumChannelsOfAllPnc[2] */
-        },
-        TS_MAKEREF2CFG( aPNCsOfAllChannel[0] ), /* pPNCsOfAllChannel */
-        { /* NumPncOfAllCh */
-            UINT16_C( 0 ), /* NumPncOfAllCh[0] */
-            UINT16_C( 2 ) /* NumPncOfAllCh[1] */
-        },
-        TS_MAKEREF2CFG( aPncOfAllUser[0] ), /* pPncOfAllUser */
-        { /* NumPncOfAllUser */
-            UINT16_C( 0 ), /* NumPncOfAllUser[0] */
-            UINT16_C( 0 ) /* NumPncOfAllUser[1] */
-        },
-        TS_MAKEREF2CFG( aUsersOfAllPnc[0] ), /* pUsersOfAllPnc */
-        { /* NumUsersOfAllPnc */
-            UINT16_C( 0 ), /* NumUsersOfAllPnc[0] */
-            UINT16_C( 0 ), /* NumUsersOfAllPnc[1] */
-            UINT16_C( 0 ) /* NumUsersOfAllPnc[2] */
         }
-    },
-    { /* aPNCsOfAllChannel */
-        UINT16_C( 16 ), /* aPNCsOfAllChannel[0] */
-        UINT16_C( 17 ) /* aPNCsOfAllChannel[1] */
-    },
-    { /* aPncOfAllUser */
-        UINT16_C( 255 ) /* aPncOfAllUser[0] */
-    },
-    { /* aChannelsOfAllPnc */
-        UINT8_C( 0 ), /* aChannelsOfAllPnc[0] */
-        UINT8_C( 0 ) /* aChannelsOfAllPnc[1] */
-    },
-    { /* aUsersOfAllPnc */
-        UINT8_C( 255 ) /* aUsersOfAllPnc[0] */
     },
     { /* aUsersOfAllChannel */
         UINT8_C( 0 ) /* aUsersOfAllChannel[0] */

@@ -746,16 +746,6 @@
 #define DBG_BSWM_ACTION_BSWM_ACT_SLEEP_EXIT(a)
 #endif
 
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StartDemOpCycleState_POWER */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StartDemOpCycleState_POWER */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_EXIT()
-#endif
-
 #ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_ENTRY
 /** \brief Entry point of function BswM_Action_BswM_Act_StartInternalPDUs */
 #define DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_ENTRY()
@@ -764,66 +754,6 @@
 #ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_EXIT
 /** \brief Exit point of function BswM_Action_BswM_Act_StartInternalPDUs */
 #define DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StopDemOpCycleState_POWER */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StopDemOpCycleState_POWER */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_EXIT()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_ENTRY
-/** \brief Entry point of function BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_ENTRY()
-#endif
-
-#ifndef DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_EXIT
-/** \brief Exit point of function BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY */
-#define DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_EXIT()
 #endif
 
 /*==================[type definitions]======================================*/

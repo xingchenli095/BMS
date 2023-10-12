@@ -179,114 +179,84 @@ extern "C"{
 #define CAN_START_SEC_CONFIG_DATA_32
 #include "Can_MemMap.h"
 /**
-*   @brief  Hardware Buffer Address of EcuTestNode
+*   @brief  Hardware Buffer Address of PBU
 */
-static const uint32 Can_au32HwBufferAddr_Ctrl0[15U]=
+static const uint32 Can_au32HwBufferAddr_Ctrl0[9U]=
 {
     (FLEXCAN_0_BASE + (uint32)0x0080U),
-    (FLEXCAN_0_BASE + (uint32)0x0090U),
-    (FLEXCAN_0_BASE + (uint32)0x00a0U),
-    (FLEXCAN_0_BASE + (uint32)0x00b0U),
+    (FLEXCAN_0_BASE + (uint32)0x00c8U),
+    (FLEXCAN_0_BASE + (uint32)0x0110U),
+    (FLEXCAN_0_BASE + (uint32)0x0158U),
+    (FLEXCAN_0_BASE + (uint32)0x01a0U),
+    (FLEXCAN_0_BASE + (uint32)0x01e8U),
+    (FLEXCAN_0_BASE + (uint32)0x0230U),
     (FLEXCAN_0_BASE + (uint32)0x0280U),
-    (FLEXCAN_0_BASE + (uint32)0x02c8U),
-    (FLEXCAN_0_BASE + (uint32)0x0310U),
-    (FLEXCAN_0_BASE + (uint32)0x00c0U),
-    (FLEXCAN_0_BASE + (uint32)0x00d0U),
-    (FLEXCAN_0_BASE + (uint32)0x00e0U),
-    (FLEXCAN_0_BASE + (uint32)0x00f0U),
-    (FLEXCAN_0_BASE + (uint32)0x0358U),
-    (FLEXCAN_0_BASE + (uint32)0x03a0U),
-    (FLEXCAN_0_BASE + (uint32)0x0100U),
-    (FLEXCAN_0_BASE + (uint32)0x0110U)
+    (FLEXCAN_0_BASE + (uint32)0x02c8U)
 };
 
 
 /**
-*   @brief  Hardware Filter of HOH_1_EcuTestNode
+*   @brief  Hardware Filter of HOH_2_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object0=
 {
-    (uint32)0x00000200U,
-    (uint32)0xdc000000U
+    (uint32)0x0000004eU,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_2_EcuTestNode
+*   @brief  Hardware Filter of HOH_1_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object1=
 {
-    (uint32)0x00000100U,
+    (uint32)0x0000007aU,
     (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_3_EcuTestNode
+*   @brief  Hardware Filter of HOH_3_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object2=
 {
-    (uint32)0x18dbfef1U,
-    (uint32)0xdfffffffU
+    (uint32)0x000000a5U,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_4_EcuTestNode
+*   @brief  Hardware Filter of HOH_4_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object3=
 {
-    (uint32)0x18daebf1U,
-    (uint32)0xdfffffffU
+    (uint32)0x00000106U,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_5_EcuTestNode
+*   @brief  Hardware Filter of HOH_5_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object4=
 {
-    (uint32)0x18dbfef2U,
-    (uint32)0xdfffffffU
+    (uint32)0x0000010bU,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_6_EcuTestNode
+*   @brief  Hardware Filter of HOH_6_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object5=
 {
-    (uint32)0x18daebf2U,
-    (uint32)0xdfffffffU
+    (uint32)0x00000400U,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_7_EcuTestNode
+*   @brief  Hardware Filter of HOH_7_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object6=
 {
-    (uint32)0x00000101U,
-    (uint32)0xdfffffffU
+    (uint32)0x00000777U,
+    (uint32)0xdffc0000U
 };
 /**
-*   @brief  Hardware Filter of HOH_8_EcuTestNode
+*   @brief  Hardware Filter of HOH_8_PBU
 */
 static const Can_HwFilterType Can_aHwFilter_Object7=
 {
-    (uint32)0x00000119U,
-    (uint32)0xdffc0000U
-};
-/**
-*   @brief  Hardware Filter of HOH_9_EcuTestNode
-*/
-static const Can_HwFilterType Can_aHwFilter_Object8=
-{
-    (uint32)0x00000118U,
-    (uint32)0xdffc0000U
-};
-/**
-*   @brief  Hardware Filter of HOH_10_EcuTestNode
-*/
-static const Can_HwFilterType Can_aHwFilter_Object9=
-{
     (uint32)0x000007dfU,
-    (uint32)0xdffc0000U
-};
-/**
-*   @brief  Hardware Filter of HOH_11_EcuTestNode
-*/
-static const Can_HwFilterType Can_aHwFilter_Object10=
-{
-    (uint32)0x000007e0U,
     (uint32)0xdffc0000U
 };
 
@@ -318,12 +288,6 @@ static const uint8 Can_aHwObjIDToCtrlIDMap[CAN_HWOBJECT_CONFIG_COUNT]=
     (uint8)0U,
     (uint8)0U,
     (uint8)0U,
-    (uint8)0U,
-    (uint8)0U,
-    (uint8)0U,
-    (uint8)0U,
-    (uint8)0U,
-    (uint8)0U,
     (uint8)0U
 };
 
@@ -341,7 +305,7 @@ static const uint8 Can_aHwObjIDToCtrlIDMap[CAN_HWOBJECT_CONFIG_COUNT]=
 /* @violates @ref Can_PBcfg_c_REF_5 MISRA 2012 Required Rule 8.4*/
 static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUNT]=
 {
-    /* HOH_1_EcuTestNode of EcuTestNode*/
+    /* HOH_2_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)0U,
@@ -358,7 +322,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
@@ -372,7 +336,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[0U]
     },
-    /* HOH_2_EcuTestNode of EcuTestNode*/
+    /* HOH_1_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)1U,
@@ -389,7 +353,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
@@ -403,14 +367,14 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[1U]
     },
-    /* HOH_3_EcuTestNode of EcuTestNode*/
+    /* HOH_3_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)2U,
         /* Hardware Object handle type */
         CAN_RECEIVE,
         /* ID Message type */
-        CAN_EXTENDED,
+        CAN_STANDARD,
         /* Object uses polling */
         (boolean)FALSE,
         /* Object enable trigger transmit */
@@ -420,7 +384,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
@@ -434,14 +398,14 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[2U]
     },
-    /* HOH_4_EcuTestNode of EcuTestNode*/
+    /* HOH_4_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)3U,
         /* Hardware Object handle type */
         CAN_RECEIVE,
         /* ID Message type */
-        CAN_EXTENDED,
+        CAN_STANDARD,
         /* Object uses polling */
         (boolean)FALSE,
         /* Object enable trigger transmit */
@@ -451,7 +415,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
@@ -465,14 +429,14 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[3U]
     },
-    /* HOH_5_EcuTestNode of EcuTestNode*/
+    /* HOH_5_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)4U,
         /* Hardware Object handle type */
         CAN_RECEIVE,
         /* ID Message type */
-        CAN_EXTENDED,
+        CAN_STANDARD,
         /* Object uses polling */
         (boolean)FALSE,
         /* Object enable trigger transmit */
@@ -492,18 +456,18 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message Buffer is Rx normal */
         CAN_RX_NORMAL,
         /* Buffer Index in Message buffer ram */
-        (uint8)32U,
+        (uint8)4U,
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[4U]
     },
-    /* HOH_6_EcuTestNode of EcuTestNode*/
+    /* HOH_6_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)5U,
         /* Hardware Object handle type */
         CAN_RECEIVE,
         /* ID Message type */
-        CAN_EXTENDED,
+        CAN_STANDARD,
         /* Object uses polling */
         (boolean)FALSE,
         /* Object enable trigger transmit */
@@ -523,18 +487,18 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message Buffer is Rx normal */
         CAN_RX_NORMAL,
         /* Buffer Index in Message buffer ram */
-        (uint8)33U,
+        (uint8)5U,
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[5U]
     },
-    /* HOH_7_EcuTestNode of EcuTestNode*/
+    /* HOH_7_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)6U,
         /* Hardware Object handle type */
         CAN_RECEIVE,
         /* ID Message type */
-        CAN_EXTENDED,
+        CAN_STANDARD,
         /* Object uses polling */
         (boolean)FALSE,
         /* Object enable trigger transmit */
@@ -554,11 +518,11 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message Buffer is Rx normal */
         CAN_RX_NORMAL,
         /* Buffer Index in Message buffer ram */
-        (uint8)34U,
+        (uint8)6U,
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[6U]
     },
-    /* HOH_8_EcuTestNode of EcuTestNode*/
+    /* HOH_8_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)7U,
@@ -575,7 +539,7 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
@@ -585,16 +549,16 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* Message Buffer is Rx normal */
         CAN_RX_NORMAL,
         /* Buffer Index in Message buffer ram */
-        (uint8)4U,
+        (uint8)7U,
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[7U]
     },
-    /* HOH_9_EcuTestNode of EcuTestNode*/
+    /* HOH_0_PBU of PBU*/
     {
         /* Hardware Object ID */
         (Can_HwHandleType)8U,
         /* Hardware Object handle type */
-        CAN_RECEIVE,
+        CAN_TRANSMIT,
         /* ID Message type */
         CAN_STANDARD,
         /* Object uses polling */
@@ -606,210 +570,24 @@ static const Can_HwObjectConfigType Can_aHwObjectConfig[CAN_HWOBJECT_CONFIG_COUN
         /* MainFunction RW period reference */
         (uint8)0xFFU,
         /* Data Payload length */
-        (uint8)8U,
+        (uint8)64U,
         /* Padding value */
         (uint8)0U,
         /* Hardware Filter Count */
-        (uint8)1U,
+        (uint8)0U,
         /* Hw Filter Config */
-        &Can_aHwFilter_Object8,
-        /* Message Buffer is Rx normal */
-        CAN_RX_NORMAL,
+        NULL_PTR,
+        /* Message Buffer is Tx normal */
+        CAN_TX_NORMAL,
         /* Buffer Index in Message buffer ram */
-        (uint8)5U,
+        (uint8)8U,
         /* Message buffer address */
         &Can_au32HwBufferAddr_Ctrl0[8U]
-    },
-    /* HOH_10_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)9U,
-        /* Hardware Object handle type */
-        CAN_RECEIVE,
-        /* ID Message type */
-        CAN_STANDARD,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)8U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)1U,
-        /* Hw Filter Config */
-        &Can_aHwFilter_Object9,
-        /* Message Buffer is Rx normal */
-        CAN_RX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)6U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[9U]
-    },
-    /* HOH_11_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)10U,
-        /* Hardware Object handle type */
-        CAN_RECEIVE,
-        /* ID Message type */
-        CAN_STANDARD,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)8U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)1U,
-        /* Hw Filter Config */
-        &Can_aHwFilter_Object10,
-        /* Message Buffer is Rx normal */
-        CAN_RX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)7U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[10U]
-    },
-    /* HOH_12_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)11U,
-        /* Hardware Object handle type */
-        CAN_TRANSMIT,
-        /* ID Message type */
-        CAN_EXTENDED,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)64U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)0U,
-        /* Hw Filter Config */
-        NULL_PTR,
-        /* Message Buffer is Tx normal */
-        CAN_TX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)35U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[11U]
-    },
-    /* HOH_13_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)12U,
-        /* Hardware Object handle type */
-        CAN_TRANSMIT,
-        /* ID Message type */
-        CAN_EXTENDED,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)64U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)0U,
-        /* Hw Filter Config */
-        NULL_PTR,
-        /* Message Buffer is Tx normal */
-        CAN_TX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)36U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[12U]
-    },
-    /* HOH_14_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)13U,
-        /* Hardware Object handle type */
-        CAN_TRANSMIT,
-        /* ID Message type */
-        CAN_STANDARD,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)8U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)0U,
-        /* Hw Filter Config */
-        NULL_PTR,
-        /* Message Buffer is Tx normal */
-        CAN_TX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)8U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[13U]
-    },
-    /* HOH_0_EcuTestNode of EcuTestNode*/
-    {
-        /* Hardware Object ID */
-        (Can_HwHandleType)14U,
-        /* Hardware Object handle type */
-        CAN_TRANSMIT,
-        /* ID Message type */
-        CAN_STANDARD,
-        /* Object uses polling */
-        (boolean)FALSE,
-        /* Object enable trigger transmit */
-        (boolean)FALSE,
-        /* Number of Hw Object used in one Hoh */
-        (uint8)1U,
-        /* MainFunction RW period reference */
-        (uint8)0xFFU,
-        /* Data Payload length */
-        (uint8)8U,
-        /* Padding value */
-        (uint8)0U,
-        /* Hardware Filter Count */
-        (uint8)0U,
-        /* Hw Filter Config */
-        NULL_PTR,
-        /* Message Buffer is Tx normal */
-        CAN_TX_NORMAL,
-        /* Buffer Index in Message buffer ram */
-        (uint8)9U,
-        /* Message buffer address */
-        &Can_au32HwBufferAddr_Ctrl0[14U]
     }
 };
 
 /**
-*   @brief  Can Baudrate Config of EcuTestNode
+*   @brief  Can Baudrate Config of PBU
 */
 static const Can_BaudrateConfigType Can_aBaudrateConfig_Ctrl0[1U]=
 {
@@ -822,28 +600,28 @@ static const Can_BaudrateConfigType Can_aBaudrateConfig_Ctrl0[1U]=
         (boolean)TRUE,
         /* Nominal bit rate */
         {
-            (uint8)7U,
+            (uint8)5U,
             (uint8)2U,
-            (uint8)3U,
-            (uint16)2U,
+            (uint8)1U,
+            (uint16)3U,
             #if (CAN_DUAL_CLOCK_MODE == STD_ON)
             /* Alternative Baudrate Nominal Prescaler */
             (uint16)9U,
             #endif
-            (uint8)2U
+            (uint8)1U
         },
         
         /* Data bit rate */
         {
+            (uint8)5U,
+            (uint8)3U,
             (uint8)1U,
-            (uint8)1U,
-            (uint8)1U,
-            (uint16)1U,
+            (uint16)0U,
             #if (CAN_DUAL_CLOCK_MODE == STD_ON)
             /* Alternative Baudrate Data Prescaler */
             (uint16)9U,
             #endif
-            (uint8)0U
+            (uint8)1U
         },
         
         /* Tx Arbitration Start delay */
@@ -854,9 +632,9 @@ static const Can_BaudrateConfigType Can_aBaudrateConfig_Ctrl0[1U]=
 };
 
 /**
-*   @brief  HwObject's pointer structure of EcuTestNode
+*   @brief  HwObject's pointer structure of PBU
 */
-static const Can_HwObjectConfigType * const Can_apHwObject_Ctrl0[15U]=
+static const Can_HwObjectConfigType * const Can_apHwObject_Ctrl0[9U]=
 {
     &Can_aHwObjectConfig[0U],
     &Can_aHwObjectConfig[1U],
@@ -866,13 +644,7 @@ static const Can_HwObjectConfigType * const Can_apHwObject_Ctrl0[15U]=
     &Can_aHwObjectConfig[5U],
     &Can_aHwObjectConfig[6U],
     &Can_aHwObjectConfig[7U],
-    &Can_aHwObjectConfig[8U],
-    &Can_aHwObjectConfig[9U],
-    &Can_aHwObjectConfig[10U],
-    &Can_aHwObjectConfig[11U],
-    &Can_aHwObjectConfig[12U],
-    &Can_aHwObjectConfig[13U],
-    &Can_aHwObjectConfig[14U]
+    &Can_aHwObjectConfig[8U]
 };
 /* Inport external structure defined by IPW */
 CAN_IPW_EXT
@@ -938,7 +710,7 @@ static const Can_ControllerConfigType Can_aControllerConfig[CAN_CONTROLLER_CONFI
         /* Pointer to IPW structure to IP config */
         &CanIpwHwChannelConfig0,
         /* Hw Object reference count */
-        (uint8)15U,
+        (uint8)9U,
         /* Pointer point to Group of Hw Object that refer to Controller */
         Can_apHwObject_Ctrl0
         #if (CAN_TIMESTAMP_ENABLE == STD_ON)
@@ -969,7 +741,7 @@ const Can_ConfigType Can_Config =
     /* Configuration Core ID */
     (uint32)0U,
     /* The HTH first Index after HRH consecutive */
-    (Can_HwHandleType)11U,
+    (Can_HwHandleType)8U,
     /* Mapping Controller ID to Controller Hw Offset */
     Can_aCtrlOffsetToCtrlIDMap,
     /* Mapping Controller ID to Hardware Object ID */

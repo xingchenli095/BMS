@@ -29,12 +29,12 @@
 #if (defined BSWM_NUM_LOGICAL_EXPRESSIONS)
 #error BSWM_NUM_LOGICAL_EXPRESSIONS is already defined
 #endif
-#define BSWM_NUM_LOGICAL_EXPRESSIONS 18U
+#define BSWM_NUM_LOGICAL_EXPRESSIONS 17U
 
 #if (defined BSWM_NUM_ACTIONS)
 #error BSWM_NUM_ACTIONS is already defined
 #endif
-#define BSWM_NUM_ACTIONS 45U
+#define BSWM_NUM_ACTIONS 38U
 
 /*==================[type definitions]======================================*/
 
@@ -63,8 +63,7 @@ extern FUNC(Std_ReturnType, BSWM_CODE) BswM_HandleStaticRequest(uint32 channel, 
 
 extern BswM_PartitionContextType BswM_Context;
 
-extern BswMModeRequestPortType BswMComMIndicationPortTable[1];
-extern BswMComMPncRequestPortType BswMComMPncRequestPortTable[2];
+extern BswMModeRequestPortType BswMComMIndicationPortTable[3];
 extern BswMGenericRequestPortType BswMGenericRequestPortTable[1];
 
 #define BSWM_STOP_SEC_VAR_INIT_UNSPECIFIED

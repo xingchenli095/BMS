@@ -232,11 +232,11 @@ extern "C"{
 /**
 *   @brief      Symbolic Name generated for CanMainFunctionRWPeriods
 */
+#define CanMainFunctionRWPeriods_0    0U
 
 /**
 *   @brief      Period for cyclic call of Main Function Read/Write
 */
-
 #define CAN_MAINFUNCTION_MULTIPLE_WRITE    (STD_OFF)
 #define CAN_MAINFUNCTION_MULTIPLE_READ    (STD_OFF)
 
@@ -260,31 +260,25 @@ extern "C"{
 /**
 *   @brief      Number Of HardwareObject Config
 */
-#define CAN_HWOBJECT_CONFIG_COUNT    ((Can_HwHandleType)15U)
+#define CAN_HWOBJECT_CONFIG_COUNT    ((Can_HwHandleType)9U)
 
 /**
 *   @brief      Symbolic Name generated for Can Controller
 */
-#define EcuTestNode    ((uint8)0U)
+#define PBU    ((uint8)0U)
 
 /**
 *   @brief      Symbolic Name generated for Can HardwareObject
 */
-#define HOH_1_EcuTestNode    ((Can_HwHandleType)0U)
-#define HOH_2_EcuTestNode    ((Can_HwHandleType)1U)
-#define HOH_3_EcuTestNode    ((Can_HwHandleType)2U)
-#define HOH_4_EcuTestNode    ((Can_HwHandleType)3U)
-#define HOH_5_EcuTestNode    ((Can_HwHandleType)4U)
-#define HOH_6_EcuTestNode    ((Can_HwHandleType)5U)
-#define HOH_7_EcuTestNode    ((Can_HwHandleType)6U)
-#define HOH_8_EcuTestNode    ((Can_HwHandleType)7U)
-#define HOH_9_EcuTestNode    ((Can_HwHandleType)8U)
-#define HOH_10_EcuTestNode    ((Can_HwHandleType)9U)
-#define HOH_11_EcuTestNode    ((Can_HwHandleType)10U)
-#define HOH_12_EcuTestNode    ((Can_HwHandleType)11U)
-#define HOH_13_EcuTestNode    ((Can_HwHandleType)12U)
-#define HOH_14_EcuTestNode    ((Can_HwHandleType)13U)
-#define HOH_0_EcuTestNode    ((Can_HwHandleType)14U)
+#define HOH_2_PBU    ((Can_HwHandleType)0U)
+#define HOH_1_PBU    ((Can_HwHandleType)1U)
+#define HOH_3_PBU    ((Can_HwHandleType)2U)
+#define HOH_4_PBU    ((Can_HwHandleType)3U)
+#define HOH_5_PBU    ((Can_HwHandleType)4U)
+#define HOH_6_PBU    ((Can_HwHandleType)5U)
+#define HOH_7_PBU    ((Can_HwHandleType)6U)
+#define HOH_8_PBU    ((Can_HwHandleType)7U)
+#define HOH_0_PBU    ((Can_HwHandleType)8U)
 
 /**
 *   @brief      Enable/Disable support  Can_CheckWakeup API

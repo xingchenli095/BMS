@@ -83,7 +83,7 @@ PduR_ConstConfigLayoutType PduR_ConfigLayout = {
     { /* PduR_RootConfig */
         UINT32_C( 2147485970 ), /* PduR_PlatformSignature */
         UINT32_C( 3287920854 ), /* PduR_PublicInfoSignature */
-        UINT32_C( 4174011813 ), /* PduR_CfgSignature */
+        UINT32_C( 3833116173 ), /* PduR_CfgSignature */
         UINT32_C( 3958107115 ), /* PduR_LcfgSignature */
         TS_MAKENULLREF2CFG, /* PduR_BufDefaultRef */
         TS_MAKENULLREF2CFG, /* PduR_BufSbConfigRef */
@@ -124,50 +124,14 @@ PduR_ConstConfigLayoutType PduR_ConfigLayout = {
             { /* PduR_RTabLoIfConfig[0] -- CanIf */
                 TS_MAKEREF2CFG( PduR_RTabLoIfRx[0] ), /* RTabRxRef */
                 TS_MAKEREF2CFG( PduR_RTabLoIfTx[0] ), /* RTabTxRef */
-                UINT16_C( 4 ), /* RTabRxCount */
-                UINT16_C( 7 ) /* RTabTxCount */
-            },
-            { /* PduR_RTabLoIfConfig[1] -- CanNm */
-                TS_MAKEREF2CFG( PduR_RTabLoIfRx[4] ), /* RTabRxRef */
-                TS_MAKEREF2CFG( PduR_RTabLoIfTx[7] ), /* RTabTxRef */
-                UINT16_C( 2 ), /* RTabRxCount */
-                UINT16_C( 1 ) /* RTabTxCount */
-            },
-            { /* PduR_RTabLoIfConfig[2] -- SecOC */
-                TS_MAKEREF2CFG( PduR_RTabLoIfRx[6] ), /* RTabRxRef */
-                TS_MAKEREF2CFG( PduR_RTabLoIfTx[8] ), /* RTabTxRef */
-                UINT16_C( 1 ), /* RTabRxCount */
-                UINT16_C( 1 ) /* RTabTxCount */
+                UINT16_C( 8 ), /* RTabRxCount */
+                UINT16_C( 3 ) /* RTabTxCount */
             }
         },
         { /* PduR_RTabUpIfTxConfig */
             { /* PduR_RTabUpIfTxConfig[0] -- Com */
                 TS_MAKEREF2CFG( PduR_RTabUpIfTx[0] ), /* RTabTxRef */
-                UINT16_C( 5 ) /* RTabTxCount */
-            },
-            { /* PduR_RTabUpIfTxConfig[1] -- Dcm */
-                TS_MAKEREF2CFG( PduR_RTabUpIfTx[5] ), /* RTabTxRef */
                 UINT16_C( 3 ) /* RTabTxCount */
-            },
-            { /* PduR_RTabUpIfTxConfig[2] -- SecOC */
-                TS_MAKEREF2CFG( PduR_RTabUpIfTx[8] ), /* RTabTxRef */
-                UINT16_C( 1 ) /* RTabTxCount */
-            }
-        },
-        { /* PduR_RTabLoTpConfig */
-            { /* PduR_RTabLoTpConfig[0] -- CanTp */
-                TS_MAKEREF2CFG( PduR_RTabLoTpRx[0] ), /* RTabRxRef */
-                TS_MAKEREF2CFG( PduR_RTabLoTpTx[0] ), /* RTabTxRef */
-                UINT16_C( 6 ), /* RTabRxCount */
-                UINT16_C( 3 ) /* RTabTxCount */
-            }
-        },
-        { /* PduR_RTabUpTpConfig */
-            { /* PduR_RTabUpTpConfig[0] -- Dcm */
-                TS_MAKEREF2CFG( PduR_RTabUpTpTx[0] ), /* RTabTxRef */
-                TS_MAKEREF2CFG( PduR_RTabUpTpRx[0] ), /* RTabRxRef */
-                UINT16_C( 3 ), /* RTabTxCount */
-                UINT16_C( 6 ) /* RTabRxCount */
             }
         },
         UINT16_C( 0 ), /* PduR_ConfigurationId */
@@ -189,189 +153,65 @@ PduR_ConstConfigLayoutType PduR_ConfigLayout = {
         UINT8_C( 0 ) /* PduR_MultiTpTxRPathsMax */
     },
     { /* PduR_RTabLoIfRx */
-        { /* PduR_RTabLoIfRx[0] -- Routing path:'Pdu_CounterIn_256R', calling module:'CanIf-LO-IF', PDU ID:0 */
+        { /* PduR_RTabLoIfRx[0] -- Routing path:'EVC_BCMA_PR1_Rio_10ms_78R', calling module:'CanIf-LO-IF', PDU ID:0 */
             UINT16_C( 0 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfRx[1] -- Routing path:'Pdu_CounterIn_CAN_FD_257R', calling module:'CanIf-LO-IF', PDU ID:1 */
+        { /* PduR_RTabLoIfRx[1] -- Routing path:'EVC_BCMA_PR1_Rio_20ms_122R', calling module:'CanIf-LO-IF', PDU ID:1 */
             UINT16_C( 1 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfRx[2] -- Routing path:'Pdu_SecuredIn_281R', calling module:'CanIf-LO-IF', PDU ID:2 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 2 ) /* TargetModuleAPIRef -- SecOC */
-        },
-        { /* PduR_RTabLoIfRx[3] -- Routing path:'ISIP_E2EProt_DataIn_280R', calling module:'CanIf-LO-IF', PDU ID:3 */
-            UINT16_C( 4 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
-        },
-        { /* PduR_RTabLoIfRx[4] -- Routing path:'Nm_Pdu_CanIn_NmComUserData_592R', calling module:'CanNm-LO-IF', PDU ID:0 */
+        { /* PduR_RTabLoIfRx[2] -- Routing path:'EVC_BCMA_PR1_Rio_40ms_165R', calling module:'CanIf-LO-IF', PDU ID:2 */
             UINT16_C( 2 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfRx[5] -- Routing path:'CanNmPnEiraRxNSdu', calling module:'CanNm-LO-IF', PDU ID:1 */
+        { /* PduR_RTabLoIfRx[3] -- Routing path:'EVC_BCMA_PR1_Rio_80ms_262R', calling module:'CanIf-LO-IF', PDU ID:3 */
+            UINT16_C( 3 ), /* TargetPduId */
+            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
+        },
+        { /* PduR_RTabLoIfRx[4] -- Routing path:'EVC_BCMA_PR2_Rio_80ms_267R', calling module:'CanIf-LO-IF', PDU ID:4 */
+            UINT16_C( 4 ), /* TargetPduId */
+            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
+        },
+        { /* PduR_RTabLoIfRx[5] -- Routing path:'VEHCONFIG_400RIO_MUX_1024R', calling module:'CanIf-LO-IF', PDU ID:5 */
             UINT16_C( 5 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfRx[6] -- Routing path:'Pdu_SecuredPayloadIn_281R', calling module:'SecOC-LO-IF', PDU ID:0 */
-            UINT16_C( 3 ), /* TargetPduId */
+        { /* PduR_RTabLoIfRx[6] -- Routing path:'TST_PhysicalReqPBU_RIO_1911R', calling module:'CanIf-LO-IF', PDU ID:6 */
+            UINT16_C( 6 ), /* TargetPduId */
+            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
+        },
+        { /* PduR_RTabLoIfRx[7] -- Routing path:'TST_FunctionalReq_RIOBus_2015R', calling module:'CanIf-LO-IF', PDU ID:7 */
+            UINT16_C( 7 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         }
     },
     { /* PduR_RTabLoIfTx */
-        { /* PduR_RTabLoIfTx[0] -- Routing path:'Pdu_CounterOut_272T', calling module:'CanIf-LO-IF', PDU ID:0 */
+        { /* PduR_RTabLoIfTx[0] -- Routing path:'EVC_PBU_PR1_Rio_40ms_172T', calling module:'CanIf-LO-IF', PDU ID:0 */
             UINT16_C( 0 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfTx[1] -- Routing path:'Dcm_Pdu_UUDT_CAN_Tx_417133035T', calling module:'CanIf-LO-IF', PDU ID:1 */
-            UINT16_C( 4 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoIfTx[2] -- Routing path:'Dcm_Pdu_UUDT_CAN_FD_Tx_417133291T', calling module:'CanIf-LO-IF', PDU ID:2 */
-            UINT16_C( 5 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoIfTx[3] -- Routing path:'Pdu_CounterOut_CAN_FD_273T', calling module:'CanIf-LO-IF', PDU ID:3 */
+        { /* PduR_RTabLoIfTx[1] -- Routing path:'EVC_PBU_PR1_Rio_Pdu_100ms_323T', calling module:'CanIf-LO-IF', PDU ID:1 */
             UINT16_C( 1 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         },
-        { /* PduR_RTabLoIfTx[4] -- Routing path:'Pdu_SecuredOut_285T', calling module:'CanIf-LO-IF', PDU ID:4 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 2 ) /* TargetModuleAPIRef -- SecOC */
-        },
-        { /* PduR_RTabLoIfTx[5] -- Routing path:'ISIP_E2EProt_DataOut_284T', calling module:'CanIf-LO-IF', PDU ID:5 */
+        { /* PduR_RTabLoIfTx[2] -- Routing path:'TST_PhysicalRespPBU_RIO_1919T', calling module:'CanIf-LO-IF', PDU ID:2 */
             UINT16_C( 2 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
-        },
-        { /* PduR_RTabLoIfTx[6] -- Routing path:'Dcm_Pdu_UUDT_CAN_Tx_OBD_2024T', calling module:'CanIf-LO-IF', PDU ID:6 */
-            UINT16_C( 3 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoIfTx[7] -- Routing path:'Nm_Pdu_CanOut_NmComUserData_593T', calling module:'CanNm-LO-IF', PDU ID:0 */
-            UINT16_C( 4 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
-        },
-        { /* PduR_RTabLoIfTx[8] -- Routing path:'Pdu_SecuredPayloadOut_285T', calling module:'SecOC-LO-IF', PDU ID:0 */
-            UINT16_C( 3 ), /* TargetPduId */
             UINT16_C( 0 ) /* TargetModuleAPIRef -- Com */
         }
     },
     { /* PduR_RTabUpIfTx */
-        { /* PduR_RTabUpIfTx[0] -- Routing path:'Pdu_CounterOut_272T', calling module:'Com-UP-IF', PDU ID:0 */
+        { /* PduR_RTabUpIfTx[0] -- Routing path:'EVC_PBU_PR1_Rio_40ms_172T', calling module:'Com-UP-IF', PDU ID:0 */
             UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
+            UINT16_C( 1 ) /* TargetModuleAPIRef -- CanIf */
         },
-        { /* PduR_RTabUpIfTx[1] -- Routing path:'Pdu_CounterOut_CAN_FD_273T', calling module:'Com-UP-IF', PDU ID:1 */
-            UINT16_C( 7 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        },
-        { /* PduR_RTabUpIfTx[2] -- Routing path:'Pdu_SecuredPayloadOut_285T', calling module:'Com-UP-IF', PDU ID:2 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 5 ) /* TargetModuleAPIRef -- SecOC */
-        },
-        { /* PduR_RTabUpIfTx[3] -- Routing path:'ISIP_E2EProt_DataOut_284T', calling module:'Com-UP-IF', PDU ID:3 */
-            UINT16_C( 10 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        },
-        { /* PduR_RTabUpIfTx[4] -- Routing path:'Nm_Pdu_CanOut_NmComUserData_593T', calling module:'Com-UP-IF', PDU ID:4 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 4 ) /* TargetModuleAPIRef -- CanNm */
-        },
-        { /* PduR_RTabUpIfTx[5] -- Routing path:'Dcm_Pdu_UUDT_CAN_Tx_417133035T', calling module:'Dcm-UP-IF', PDU ID:0 */
-            UINT16_C( 3 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        },
-        { /* PduR_RTabUpIfTx[6] -- Routing path:'Dcm_Pdu_UUDT_CAN_FD_Tx_417133291T', calling module:'Dcm-UP-IF', PDU ID:1 */
-            UINT16_C( 6 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        },
-        { /* PduR_RTabUpIfTx[7] -- Routing path:'Dcm_Pdu_UUDT_CAN_Tx_OBD_2024T', calling module:'Dcm-UP-IF', PDU ID:2 */
-            UINT16_C( 13 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        },
-        { /* PduR_RTabUpIfTx[8] -- Routing path:'Pdu_SecuredOut_285T', calling module:'SecOC-UP-IF', PDU ID:0 */
-            UINT16_C( 9 ), /* TargetPduId */
-            UINT16_C( 3 ) /* TargetModuleAPIRef -- CanIf */
-        }
-    },
-    { /* PduR_RTabLoTpRx */
-        { /* PduR_RTabLoTpRx[0] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Rx_Func', calling module:'CanTp-LO-TP', PDU ID:0 */
-            UINT16_C( 2 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpRx[1] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Rx_Phys', calling module:'CanTp-LO-TP', PDU ID:1 */
-            UINT16_C( 3 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpRx[2] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Func', calling module:'CanTp-LO-TP', PDU ID:2 */
-            UINT16_C( 4 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpRx[3] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Func_OBD', calling module:'CanTp-LO-TP', PDU ID:3 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpRx[4] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Phys', calling module:'CanTp-LO-TP', PDU ID:4 */
-            UINT16_C( 5 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpRx[5] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Phys_OBD', calling module:'CanTp-LO-TP', PDU ID:5 */
+        { /* PduR_RTabUpIfTx[1] -- Routing path:'EVC_PBU_PR1_Rio_Pdu_100ms_323T', calling module:'Com-UP-IF', PDU ID:1 */
             UINT16_C( 1 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        }
-    },
-    { /* PduR_RTabLoTpTx */
-        { /* PduR_RTabLoTpTx[0] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Tx', calling module:'CanTp-LO-TP', PDU ID:0 */
-            UINT16_C( 1 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
+            UINT16_C( 1 ) /* TargetModuleAPIRef -- CanIf */
         },
-        { /* PduR_RTabLoTpTx[1] -- Routing path:'Dcm_Pdu_USDT_CAN_Tx', calling module:'CanTp-LO-TP', PDU ID:1 */
+        { /* PduR_RTabUpIfTx[2] -- Routing path:'TST_PhysicalRespPBU_RIO_1919T', calling module:'Com-UP-IF', PDU ID:2 */
             UINT16_C( 2 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        },
-        { /* PduR_RTabLoTpTx[2] -- Routing path:'Dcm_Pdu_USDT_CAN_Tx_OBD', calling module:'CanTp-LO-TP', PDU ID:2 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 1 ) /* TargetModuleAPIRef -- Dcm */
-        }
-    },
-    { /* PduR_RTabUpTpTx */
-        { /* PduR_RTabUpTpTx[0] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Tx', calling module:'Dcm-UP-TP', PDU ID:0 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpTx[1] -- Routing path:'Dcm_Pdu_USDT_CAN_Tx', calling module:'Dcm-UP-TP', PDU ID:1 */
-            UINT16_C( 1 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpTx[2] -- Routing path:'Dcm_Pdu_USDT_CAN_Tx_OBD', calling module:'Dcm-UP-TP', PDU ID:2 */
-            UINT16_C( 2 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        }
-    },
-    { /* PduR_RTabUpTpRx */
-        { /* PduR_RTabUpTpRx[0] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Rx_Func', calling module:'Dcm-UP-TP', PDU ID:0 */
-            UINT16_C( 0 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpRx[1] -- Routing path:'Dcm_Pdu_USDT_CAN_FD_Rx_Phys', calling module:'Dcm-UP-TP', PDU ID:1 */
-            UINT16_C( 1 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpRx[2] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Func', calling module:'Dcm-UP-TP', PDU ID:2 */
-            UINT16_C( 2 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpRx[3] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Func_OBD', calling module:'Dcm-UP-TP', PDU ID:3 */
-            UINT16_C( 3 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpRx[4] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Phys', calling module:'Dcm-UP-TP', PDU ID:4 */
-            UINT16_C( 4 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
-        },
-        { /* PduR_RTabUpTpRx[5] -- Routing path:'Dcm_Pdu_USDT_CAN_Rx_Phys_OBD', calling module:'Dcm-UP-TP', PDU ID:5 */
-            UINT16_C( 5 ), /* TargetPduId */
-            UINT16_C( 0 ) /* TargetModuleAPIRef -- CanTp */
+            UINT16_C( 1 ) /* TargetModuleAPIRef -- CanIf */
         }
     }
 };

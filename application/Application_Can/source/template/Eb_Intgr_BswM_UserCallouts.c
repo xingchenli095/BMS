@@ -22,7 +22,8 @@
 #include <Eb_Intgr_Det.h>               /* Det definitions */
 #include <Eb_Intgr_CanTrcv_Specific_Init.h>               
 
-
+#include <Dio_Cfg.h>
+#include <Dio.h>
 
 
 #include <Base_Modules.h>               /* Module enable defines and
@@ -1021,6 +1022,10 @@ FUNC(void, BSWM_APPL_CODE) Eb_Intgr_BswM_RunTwo(void)
   DoIP_ActivationLineSwitchActive();
 #endif
 #endif
+ //can pull
+  Dio_WriteChannel(DioConf_DioChannel_CAN_1463_EN, 1U);
+  Dio_WriteChannel(DioConf_DioChannel_CAN_1463_NSTB, 1U);
+
 }
 #define BSWM_STOP_SEC_CODE
 #include <MemMap.h>

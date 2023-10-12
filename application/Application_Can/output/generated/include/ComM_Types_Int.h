@@ -47,15 +47,6 @@ typedef struct /* ComM_ConfigType */ {
     TS_REF2CFG( uint8 )  pChannelsOfAllUser; /* Reference to COMM_ConfigLayoutType.aChannelsOfAllUser */
     VAR( uint16, TYPEDEF ) NumChannelsOfAllUser[2]; /* Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser */
     VAR( uint16, TYPEDEF ) DirectNumChannelsOfAllUser[2]; /* Index of first channel of a user in COMM_ConfigLayoutType.aChannelsOfAllUser */
-    VAR( boolean, TYPEDEF ) ComMPncEnabled; /* Enabling/Disabling of partial networking */
-    TS_REF2CFG( uint8 )  pChannelsOfAllPnc; /* Concatenated array of channels ids for each PNC: Pnc1Chan1,Pnc1Chan2,Pnc2Chan1... */
-    VAR( uint16, TYPEDEF ) NumChannelsOfAllPnc[3]; /* Index of first channel of each Pnc in COMM_ConfigLayoutType.aChannelsOfAllPnc */
-    TS_REF2CFG( uint16 )  pPNCsOfAllChannel; /* Concatenated array of PNC ids for each channel: Chan1Pnc1,Chan1Pnc2,Chan2Pnc1... */
-    VAR( uint16, TYPEDEF ) NumPncOfAllCh[2]; /* Index of first PNC of each channel in COMM_ConfigLayoutType.aPNCsOfAllChannel */
-    TS_REF2CFG( uint16 )  pPncOfAllUser; /* Concatenated array of PNC indices (NOT ID) for users: Usr1Pnc1,Usr1Pnc2,Usr2Pnc1.. */
-    VAR( uint16, TYPEDEF ) NumPncOfAllUser[2]; /* Index of first PNC of each user in COMM_ConfigLayoutType.aPncOfAllUser */
-    TS_REF2CFG( uint8 )  pUsersOfAllPnc; /* Concatenated array of user ids for each PNC: Pnc1Usr1,Pnc1Usr2,Pnc2Usr1... */
-    VAR( uint16, TYPEDEF ) NumUsersOfAllPnc[3]; /* Index of first User of each PNC in COMM_ConfigLayoutType.aUsersOfAllPnc */
 } ComM_ConfigType;
 
 

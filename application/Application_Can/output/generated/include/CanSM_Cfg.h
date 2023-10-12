@@ -147,7 +147,7 @@
 #endif /* #if (defined CANSM_PNSUPPORT) */
 
 /** \brief Partial Networking Support */
-#define CANSM_PNSUPPORT STD_ON
+#define CANSM_PNSUPPORT STD_OFF
 
 #if (defined CANSM_MODEREQ_MAX)
 #error CANSM_MODEREQ_MAX is already defined
@@ -461,20 +461,6 @@
 
 
 
-#if (defined CANSM_NW_INFO_TRCVCLEARWUFINDICATION)
-#error CANSM_NW_INFO_TRCVCLEARWUFINDICATION is already defined
-#endif /* #if (defined CANSM_NW_INFO_TRCVCLEARWUFINDICATION) */
-
-/** \brief access to last CanSM_ClearTrcvWufFlagIndication of network \a nw */
-#define CANSM_NW_INFO_TRCVCLEARWUFINDICATION(nw) (CanSM_NetworkInfo[(nw)].TrcvClearWUFIndication)
-
-#if (defined CANSM_NW_INFO_TRCVCHECKWAKEFLAGINDICATION)
-#error CANSM_NW_INFO_TRCVCHECKWAKEFLAGINDICATION is already defined
-#endif /* #if (defined CANSM_NW_INFO_TRCVCHECKWAKEFLAGINDICATION) */
-
-/** \brief access to last CanSM_CheckTransceiverWakeFlagIndication of network \a nw */
-#define CANSM_NW_INFO_TRCVCHECKWAKEFLAGINDICATION(nw) (CanSM_NetworkInfo[(nw)].TrcvCheckWakeFlagIndication)
-
 
 #if (defined CANSM_NW_INFO_MODE_REQUEST_REPETITION_COUNTER)
 #error CANSM_NW_INFO_MODE_REQUEST_REPETITION_COUNTER is already defined
@@ -532,13 +518,6 @@
 
 
 
-typedef struct {
-
-  boolean PartialNetworking; /**< partial networking activated for this network */
-
-
-} CanSM_NetworkConfigType;
-
 
 /** \brief runtime information for one network */
 typedef struct {
@@ -572,13 +551,6 @@ typedef struct {
 } CanSM_NetworkInfoType;
 
 /*==================[external constants]====================================*/
-
-#define CANSM_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include <CanSM_MemMap.h>
-/** \brief configuration of all networks */
-extern CONST(CanSM_NetworkConfigType, CANSM_APPL_CONST) CanSM_NetworkConfig[CANSM_NETWORKS_NUM];
-#define CANSM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include <CanSM_MemMap.h>
 
 
 

@@ -91,7 +91,7 @@
 
 /** \brief Macro to check if Block Id-s are consecutive. Otherwise a redirecting array is needed
  **/
-#define NVM_USE_REDIR_BLOCK_ARRAY     STD_OFF
+#define NVM_USE_REDIR_BLOCK_ARRAY     STD_ON
 
 /** \brief Macro to check if Block Id-s are consecutive. Otherwise a binary search is needed
  **/
@@ -289,63 +289,11 @@
 #define NvM_NvMBlock_ConfigID   1U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
-#if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_NvM_Dummy)
-#error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_NvM_Dummy already defined
-#endif
-/** \brief Symbolic name for Block 2 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_NvM_Dummy   2U
-
-
-#if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
-#if (defined NvM_ENABLE_ASR3_LEGACY_NAMES)
-    
-#if (defined NVM_BLOCK_DCM_NvM_Dummy)
-#error NVM_BLOCK_DCM_NvM_Dummy already defined
-#endif
-/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DCM_NvM_Dummy   2U
-#endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
-
-
-#if (defined NvM_NVM_BLOCK_DCM_NvM_Dummy)
-#error NvM_NVM_BLOCK_DCM_NvM_Dummy already defined
-#endif
-/** \brief Export symbolic name value with module abbreviation as prefix
- ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DCM_NvM_Dummy   2U
-#endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
-
-#if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_ROE)
-#error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_ROE already defined
-#endif
-/** \brief Symbolic name for Block 3 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DCM_ROE   3U
-
-
-#if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
-#if (defined NvM_ENABLE_ASR3_LEGACY_NAMES)
-    
-#if (defined NVM_BLOCK_DCM_ROE)
-#error NVM_BLOCK_DCM_ROE already defined
-#endif
-/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DCM_ROE   3U
-#endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
-
-
-#if (defined NvM_NVM_BLOCK_DCM_ROE)
-#error NvM_NVM_BLOCK_DCM_ROE already defined
-#endif
-/** \brief Export symbolic name value with module abbreviation as prefix
- ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DCM_ROE   3U
-#endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
-
 #if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_DEFAULT)
 #error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_DEFAULT already defined
 #endif
-/** \brief Symbolic name for Block 4 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_DEFAULT   4U
+/** \brief Symbolic name for Block 2 */
+#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_DEFAULT   2U
 
 
 #if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
@@ -355,7 +303,7 @@
 #error NVM_BLOCK_DEM_DEFAULT already defined
 #endif
 /** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DEM_DEFAULT   4U
+#define NVM_BLOCK_DEM_DEFAULT   2U
 #endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
 
 
@@ -364,14 +312,14 @@
 #endif
 /** \brief Export symbolic name value with module abbreviation as prefix
  ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DEM_DEFAULT   4U
+#define NvM_NVM_BLOCK_DEM_DEFAULT   2U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
 #if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PRIMARY)
 #error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PRIMARY already defined
 #endif
-/** \brief Symbolic name for Block 5 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PRIMARY   5U
+/** \brief Symbolic name for Block 3 */
+#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PRIMARY   3U
 
 
 #if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
@@ -381,7 +329,7 @@
 #error NVM_BLOCK_DEM_PRIMARY already defined
 #endif
 /** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DEM_PRIMARY   5U
+#define NVM_BLOCK_DEM_PRIMARY   3U
 #endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
 
 
@@ -390,14 +338,14 @@
 #endif
 /** \brief Export symbolic name value with module abbreviation as prefix
  ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DEM_PRIMARY   5U
+#define NvM_NVM_BLOCK_DEM_PRIMARY   3U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
 #if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_SECONDARY)
 #error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_SECONDARY already defined
 #endif
-/** \brief Symbolic name for Block 6 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_SECONDARY   6U
+/** \brief Symbolic name for Block 4 */
+#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_SECONDARY   4U
 
 
 #if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
@@ -407,7 +355,7 @@
 #error NVM_BLOCK_DEM_SECONDARY already defined
 #endif
 /** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DEM_SECONDARY   6U
+#define NVM_BLOCK_DEM_SECONDARY   4U
 #endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
 
 
@@ -416,40 +364,14 @@
 #endif
 /** \brief Export symbolic name value with module abbreviation as prefix
  ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DEM_SECONDARY   6U
-#endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
-
-#if (defined NvMConf_NvMBlockDescriptor_PersistentCounterValue)
-#error NvMConf_NvMBlockDescriptor_PersistentCounterValue already defined
-#endif
-/** \brief Symbolic name for Block 7 */
-#define NvMConf_NvMBlockDescriptor_PersistentCounterValue   7U
-
-
-#if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
-#if (defined NvM_ENABLE_ASR3_LEGACY_NAMES)
-    
-#if (defined PersistentCounterValue)
-#error PersistentCounterValue already defined
-#endif
-/** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define PersistentCounterValue   7U
-#endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
-
-
-#if (defined NvM_PersistentCounterValue)
-#error NvM_PersistentCounterValue already defined
-#endif
-/** \brief Export symbolic name value with module abbreviation as prefix
- ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_PersistentCounterValue   7U
+#define NvM_NVM_BLOCK_DEM_SECONDARY   4U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
 #if (defined NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PERMANENT)
 #error NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PERMANENT already defined
 #endif
-/** \brief Symbolic name for Block 8 */
-#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PERMANENT   8U
+/** \brief Symbolic name for Block 5 */
+#define NvMConf_NvMBlockDescriptor_NVM_BLOCK_DEM_PERMANENT   5U
 
 
 #if (defined NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES)
@@ -459,7 +381,7 @@
 #error NVM_BLOCK_DEM_PERMANENT already defined
 #endif
 /** \brief Export symbolic name value without prefix (AUTOSAR version <= 3.1 rev4) */
-#define NVM_BLOCK_DEM_PERMANENT   8U
+#define NVM_BLOCK_DEM_PERMANENT   5U
 #endif /* NvM_ENABLE_ASR3_LEGACY_NAMES */
 
 
@@ -468,7 +390,7 @@
 #endif
 /** \brief Export symbolic name value with module abbreviation as prefix
  ** only (3.1 rev4 < AUTOSAR version <= AUTOSAR 4.0 rev2) */
-#define NvM_NVM_BLOCK_DEM_PERMANENT   8U
+#define NvM_NVM_BLOCK_DEM_PERMANENT   5U
 #endif /* NVM_PROVIDE_LEGACY_SYMBOLIC_NAMES */
 
 #if (defined NvMConf_NvMBlockDescriptor_NvM_BLOCK_voltage)
@@ -502,7 +424,7 @@
 #endif
 /** \brief Defines the number of all configured blocks including the reserved Block 0.
  **/
-#define NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS 10U
+#define NVM_TOTAL_NUMBER_OF_NVRAM_BLOCKS 7U
 
 #if (defined NVM_BLOCK_ID_MAX)
 #error NVM_BLOCK_ID_MAX is already defined
@@ -664,7 +586,7 @@
 /** \brief Defines the number of NVRAM Blocks which have
  **        the configuration parameter NvMResistantToChangedSw set to false.
  **/
-#define NVM_NUMBER_OF_NON_RESISTANT_TO_CHANGED_SW_BLOCKS    8U
+#define NVM_NUMBER_OF_NON_RESISTANT_TO_CHANGED_SW_BLOCKS    5U
 
 #if (defined NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS)
 #error NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS is already defined
@@ -673,7 +595,7 @@
  **        the configuration parameter NvMSelectBlockForReadAll set to true.
  **        Block 0 is reserved and independent of this parameter Block 1 is read as part of the NvM_ReadAll.
  **/
-#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS   5U
+#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_READALL_BLOCKS   3U
 
 #if (defined NVM_NUMBER_OF_SELECT_BLOCK_FOR_FIRSTINITALL_BLOCKS)
 #error NVM_NUMBER_OF_SELECT_BLOCK_FOR_FIRSTINITALL_BLOCKS is already defined
@@ -689,7 +611,7 @@
 /** \brief Defines the number of NVRAM Blocks which have
  **        the configuration parameter NvMSelectBlockForWriteAll set to true.
   **/
-#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_WRITEALL   4U
+#define NVM_NUMBER_OF_SELECT_BLOCK_FOR_WRITEALL   2U
 
 #if (defined NVM_NUMBER_OF_SELECT_BLOCK_FOR_VALIDATEALL)
 #error NVM_NUMBER_OF_SELECT_BLOCK_FOR_VALIDATEALL is already defined
@@ -848,7 +770,7 @@
 /** \brief Defines whether any block is configured with write retry
  **        by checking the number of NVRAM Blocks having NvMMaxNumOfWriteRetries set to non-zero.
  **/
-#define NVM_NUMBER_OF_WRITE_RETRY_BLOCKS                9U
+#define NVM_NUMBER_OF_WRITE_RETRY_BLOCKS                6U
 
 #if (defined NVM_NUMBER_OF_READ_RETRY_BLOCKS)
 #error NVM_NUMBER_OF_READ_RETRY_BLOCKS is already defined
@@ -1090,6 +1012,14 @@ extern CONST( uint16,NVM_CONST ) NvM_CompiledConfigurationId;
 #include <NvM_MemMap.h>
 
 
+
+#define NVM_START_SEC_CONFIG_DATA_16
+#include <NvM_MemMap.h>
+
+extern CONST(uint16, NVM_CONST) NvM_RedirBlockId[10U];
+
+#define NVM_STOP_SEC_CONFIG_DATA_16
+#include <NvM_MemMap.h>
 
  
  /*==================[BC type definitions]======================================*/

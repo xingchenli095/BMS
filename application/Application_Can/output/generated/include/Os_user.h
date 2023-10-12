@@ -8,7 +8,7 @@
  * 91058 Erlangen
  * GERMANY
  *
- * Date         : 9/20/23 8:27 PM           !!!IGNORE-LINE!!!
+ * Date         : 10/11/23 4:15 PM           !!!IGNORE-LINE!!!
  */
 
 #ifndef OS_USER_H
@@ -17,7 +17,7 @@
 extern "C" {
 #endif
 
-#define OS_GENERATION_ID_OS_H    0x3550fcdaUL
+#define OS_GENERATION_ID_OS_H    0xd1177377UL
 
 #define OS_AUTOSAROS_VER         6
 
@@ -99,25 +99,12 @@ extern void OS_CounterIsr_HwCounter(void);
 /*===================================================================
  * Events
  *==================================================================*/
-#define Rte_OSShutdownEvent  0x0001u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_79814614D8B02944CBB412B318DA1EDD  0x0002u
 #define SchM_OSShutdownEvent  0x0001u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_147E97E564FE829F3F8D2217BDD620DE  0x0002u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_FB569F32E86BE9DE6593E2D9B5D6CB4E  0x0004u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_4650FA0144082B5FCC32B6CB82463B28  0x0004u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_2473347BF9B6AE15429D27E0459AFBC6  0x0008u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_8A730602D267F5074564E9C3C0C4F41A  0x0010u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_MSE_DB14A82EC870A2287F9736669E739E42  0x0020u
-#define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_A0B39ADC998DCBFC9FEDC9C44553C764  0x0002u
-#define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_1D9477AD6BFD7572B479646A93CA47F7  0x0004u
-#define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_BD1D019BDBF1F0D852395BC522AA98CE  0x0008u
-#define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_B9B20196EED3DF85BF827C21CF3A8A38  0x0010u
-#define Rte_OSTriggerExecutableEvent_TASK_RTE_ModeSwitchEvent_MSE_1E3BA96972F6352754D1659D8F1E5B6B  0x0020u
-#define Rte_OSTriggerExecutableEvent_Rte_Event_Task_DRE_87FF1E90955AB02FBCF7374E77F1780A  0x0040u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8  0x0008u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_D3499F3675C83D894764E034B9E1C95A  0x0010u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131  0x0020u
-#define Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6  0x0040u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_09949D2EF70F7870E5AC33D18A3F29C8  0x0002u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_D3499F3675C83D894764E034B9E1C95A  0x0004u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_6E112CFF2BCB051EBE4C32AE20F72131  0x0008u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_59EBA845D7BAF6524BFCB941DB91C3D6  0x0010u
+#define Rte_OSTimingEvent_Rte_Time_Task_TE_FB569F32E86BE9DE6593E2D9B5D6CB4E  0x0020u
 
 /*===================================================================
  * Interrupts
@@ -204,15 +191,6 @@ extern void OS_ISR_EMIOS0_5_IRQ(void);
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
 #define RES_SCHEDULER_0  0
 #endif
-#if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Rte_Res_0  1
-#endif
-#if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Rte_Res_1  2
-#endif
-#if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Rte_Res_2  3
-#endif
 
 /*===================================================================
  * Schedule Tables
@@ -228,28 +206,28 @@ extern void OS_ISR_EMIOS0_5_IRQ(void);
  * Tasks
  *==================================================================*/
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Rte_Event_Task  0
+#define Rte_Time_Task  0
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Rte_Time_Task  1
+#define Init_Task  1
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define TASK_RTE_ModeSwitchEvent  2
+#define Rte_Event_Task  2
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define Init_Task  3
+#define SchMComTask_10ms  3
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define SchMComTask_10ms  4
+#define SchMComTask_5ms  4
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define SchMComTask_5ms  5
+#define SchMDiagStateTask_20ms  5
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define SchMDiagStateTask_20ms  6
+#define SchMMemTask_10ms  6
 #endif
 #if OS_KERNEL_TYPE != OS_MICROKERNEL
-#define SchMMemTask_10ms  7
+#define TASK_RTE_ModeSwitchEvent  7
 #endif
 
 /*===================================================================

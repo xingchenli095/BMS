@@ -189,7 +189,7 @@ CONST(EcuM_SleepModeConfigType, ECUM_CONST) EcuM_SleepModeConfigList[ECUM_SLEEPM
 /*------------------[Errors reporting to Dem]-------------------------------------------*/
 
 CONST(Dem_EventIdType, ECUM_CONST) EcuM_DemErrRamChkFailed =
-  7U;  /* Error for Ram check failure */
+  6U;  /* Error for Ram check failure */
 
 
 #define ECUM_STOP_SEC_CONST_UNSPECIFIED

@@ -47,8 +47,6 @@
 /* do not indirectly include PduR_SymbolicNames_PBcfg.h via PduR_CanIf.h */
 #define PDUR_NO_PBCFG_REQUIRED
 
-#include <CanNm_Cbk.h>             /* CanNm callback function declarations */
-#include <CanTp_Cbk.h>             /* CanTp callback function declarations */
 #include <PduR_CanIf.h>            /* PduR callback function declarations */
 
 
@@ -74,6 +72,7 @@ CONST( CanIf_CanDrvFctConfigType, CANIF_APPL_CONST )
   {
     &Can_Write,
     &Can_SetControllerMode,
+    NULL_PTR,
     0u,
   },
 };
@@ -99,16 +98,6 @@ CONST( CanIf_CanTrcvConfigType, CANIF_APPL_CONST )
 /* Deviation MISRAC2012-1 <START> */
 CONST( CanIf_CbkFctPtrTblType, CANIF_APPL_CONST ) CanIf_CbkFctPtrTbl[] =
 {
-  {
-     /* CAN_NM */
-    &CanNm_RxIndication,
-    &CanNm_TxConfirmation,
-  },
-  {
-     /* CAN_TP */
-    &CanTp_RxIndication,
-    &CanTp_TxConfirmation,
-  },
   {
      /* PDUR */
     &PduR_CanIfRxIndication,

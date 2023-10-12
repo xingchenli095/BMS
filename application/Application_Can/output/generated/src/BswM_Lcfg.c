@@ -37,6 +37,15 @@
  * creating a new stack variable.
  */
 
+/* tasking Deviation List
+ *
+ * TASKING-1) Deviated Rule: W549
+ * W549: condition is always true
+ *
+ * Reason:
+ * The warning "condition is always true" is a tasking compiler issue (TCVX-41885).
+ * If the condition were always true then an infinite loop would occur.
+ */
 /*==================[inclusions]============================================*/
 
 #include <BswM_Trace.h>       /* Dbg macros */
@@ -65,7 +74,6 @@
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_ComMFullCom(void);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_ComMNoCom(void);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_ComMSilentCom(void);
-STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_Dcm_Reset(void);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_GoOffOneA(void);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_GoOffOneB(void);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_PncCanFDStart(void);
@@ -84,7 +92,6 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_StartupTwoB(vo
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_ComMFullCom(void);
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_ComMNoCom(void);
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_ComMSilentCom(void);
-STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_Dcm_Reset(void);
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_GoOffOneA(void);
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_GoOffOneB(void);
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_PncCanFDStart(void);
@@ -137,14 +144,7 @@ STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_RteSwitch_Run(void);
 STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_RteSwitch_Startup(void);
 STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_RunTwo(void);
 STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_Sleep(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_POWER(void);
 STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartInternalPDUs(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_POWER(void);
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY(void);
 
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprGetState(uint16 exprIndex);
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprGetResult(uint16 exprIndex);
@@ -167,20 +167,12 @@ STATIC FUNC(void, BSWM_CODE) BswM_InitRteModeRequestPorts(void);
 #define BSWM_START_SEC_CONST_8
 #include <BswM_MemMap.h>
 
-STATIC CONST(uint8, AUTOMATIC) BswM_InitialValueMappings[9] = 
+STATIC CONST(uint8, AUTOMATIC) BswM_InitialValueMappings[5] = 
 {
   /* BswM_ModeReqPort_AppState */
   0U,
   /* BswM_ModeReqPort_ComM_CurrentMode */
   0xFFU,
-  /* BswM_ModeReqPort_DcmCommunicationControl */
-  1U,
-  /* BswM_ModeReqPort_DcmDiagnosticSessionControl */
-  2U,
-  /* BswM_ModeReqPort_DcmResponseOnEvent */
-  3U,
-  /* BswM_ModeReqPort_Dcm_ResetModeRequest */
-  4U,
   /* BswM_ModeReqPort_EcuState */
   0U,
   /* BswM_ModeReqPort_PncCan */
@@ -198,21 +190,15 @@ STATIC CONST(uint8, AUTOMATIC) BswM_InitialValueMappings[9] =
 /**
  * BswM_NumModeRequestPortsTable
  */
-STATIC CONST( uint16 , AUTOMATIC ) BswM_NumModeRequestPortsTable[15] = 
+STATIC CONST( uint16 , AUTOMATIC ) BswM_NumModeRequestPortsTable[9] = 
 {
   UINT16_C( 0 ), /* Number of ports of type BSWM_CAN_SM_INDICATION */
-  UINT16_C( 1 ), /* Number of ports of type BSWM_COMM_INDICATION */
+  UINT16_C( 3 ), /* Number of ports of type BSWM_COMM_INDICATION */
   UINT16_C( 0 ), /* Number of ports of type BSWM_COMM_INITIATE_RESET */
-  UINT16_C( 2 ), /* Number of ports of type BSWM_COMM_PNC_REQUEST */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_DCM_APPLICATION_UPDATED_INDICATION */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_DCM_COM_MODE_CURRENT_STATE */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_DCM_COM_MODE_REQUEST */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_DCM_RESET_MODE_REQUEST */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_DCM_SESSION_MODE_REQUEST */
+  UINT16_C( 0 ), /* Number of ports of type BSWM_COMM_PNC_REQUEST */
   UINT16_C( 0 ), /* Number of ports of type BSWM_ECUM_INDICATION */
   UINT16_C( 0 ), /* Number of ports of type BSWM_ECUM_WAKEUP_SOURCE */
   UINT16_C( 1 ), /* Number of ports of type BSWM_GENERIC_REQUEST */
-  UINT16_C( 0 ), /* Number of ports of type BSWM_NM_CAR_WAKEUP_INDICATION */
   UINT16_C( 0 ), /* Number of ports of type BSWM_NVM_JOB_MODE_INDICATION */
   UINT16_C( 0 )  /* Number of ports of type BSWM_NVM_REQUEST */
 };
@@ -231,7 +217,7 @@ STATIC CONST( uint16 , AUTOMATIC ) BswM_NumModeRequestPortsTable[15] =
 /**
  * BswM_LogicalExprTable
  */
-STATIC CONST( BswMLogicalExprType , AUTOMATIC ) BswM_LogicalExprTable[18] = 
+STATIC CONST( BswMLogicalExprType , AUTOMATIC ) BswM_LogicalExprTable[17] = 
 {
   { /* [0] */
     &BswM_ExprState_BswM_LogEx_ComMFullCom, /* GetState */
@@ -246,62 +232,58 @@ STATIC CONST( BswMLogicalExprType , AUTOMATIC ) BswM_LogicalExprTable[18] =
     &BswM_ExprResult_BswM_LogEx_ComMSilentCom  /* GetResult */
   },
   { /* [3] */
-    &BswM_ExprState_BswM_LogEx_Dcm_Reset, /* GetState */
-    &BswM_ExprResult_BswM_LogEx_Dcm_Reset  /* GetResult */
-  },
-  { /* [4] */
     &BswM_ExprState_BswM_LogEx_GoOffOneA, /* GetState */
     &BswM_ExprResult_BswM_LogEx_GoOffOneA  /* GetResult */
   },
-  { /* [5] */
+  { /* [4] */
     &BswM_ExprState_BswM_LogEx_GoOffOneB, /* GetState */
     &BswM_ExprResult_BswM_LogEx_GoOffOneB  /* GetResult */
   },
-  { /* [6] */
+  { /* [5] */
     &BswM_ExprState_BswM_LogEx_PncCanFDStart, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PncCanFDStart  /* GetResult */
   },
-  { /* [7] */
+  { /* [6] */
     &BswM_ExprState_BswM_LogEx_PncCanFDStop, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PncCanFDStop  /* GetResult */
   },
-  { /* [8] */
+  { /* [7] */
     &BswM_ExprState_BswM_LogEx_PncCanStart, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PncCanStart  /* GetResult */
   },
-  { /* [9] */
+  { /* [8] */
     &BswM_ExprState_BswM_LogEx_PncCanStop, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PncCanStop  /* GetResult */
   },
-  { /* [10] */
+  { /* [9] */
     &BswM_ExprState_BswM_LogEx_PostRun, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PostRun  /* GetResult */
   },
-  { /* [11] */
+  { /* [10] */
     &BswM_ExprState_BswM_LogEx_PostRunToRunTwo, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PostRunToRunTwo  /* GetResult */
   },
-  { /* [12] */
+  { /* [11] */
     &BswM_ExprState_BswM_LogEx_PrpShutdown, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PrpShutdown  /* GetResult */
   },
-  { /* [13] */
+  { /* [12] */
     &BswM_ExprState_BswM_LogEx_PrpShutdown_Transition, /* GetState */
     &BswM_ExprResult_BswM_LogEx_PrpShutdown_Transition  /* GetResult */
   },
-  { /* [14] */
+  { /* [13] */
     &BswM_ExprState_BswM_LogEx_RunTwo, /* GetState */
     &BswM_ExprResult_BswM_LogEx_RunTwo  /* GetResult */
   },
-  { /* [15] */
+  { /* [14] */
     &BswM_ExprState_BswM_LogEx_RunTwoToPostRun, /* GetState */
     &BswM_ExprResult_BswM_LogEx_RunTwoToPostRun  /* GetResult */
   },
-  { /* [16] */
+  { /* [15] */
     &BswM_ExprState_BswM_LogEx_StartupTwoA, /* GetState */
     &BswM_ExprResult_BswM_LogEx_StartupTwoA  /* GetResult */
   },
-  { /* [17] */
+  { /* [16] */
     &BswM_ExprState_BswM_LogEx_StartupTwoB, /* GetState */
     &BswM_ExprResult_BswM_LogEx_StartupTwoB  /* GetResult */
   }
@@ -320,7 +302,7 @@ STATIC CONST( BswMLogicalExprType , AUTOMATIC ) BswM_LogicalExprTable[18] =
 /**
  * BswM_ActionTable
  */
-STATIC CONST( BswMActionFuncPtrType , AUTOMATIC ) BswM_ActionTable[45] = 
+STATIC CONST( BswMActionFuncPtrType , AUTOMATIC ) BswM_ActionTable[38] = 
 {
   &BswM_Action_BswM_Act_AllowCom, /* [0] */
   &BswM_Action_BswM_Act_DemDeinit, /* [1] */
@@ -359,14 +341,7 @@ STATIC CONST( BswMActionFuncPtrType , AUTOMATIC ) BswM_ActionTable[45] =
   &BswM_Action_BswM_Act_RteSwitch_Startup, /* [34] */
   &BswM_Action_BswM_Act_RunTwo, /* [35] */
   &BswM_Action_BswM_Act_Sleep, /* [36] */
-  &BswM_Action_BswM_Act_StartDemOpCycleState_POWER, /* [37] */
-  &BswM_Action_BswM_Act_StartInternalPDUs, /* [38] */
-  &BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY, /* [39] */
-  &BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION, /* [40] */
-  &BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY, /* [41] */
-  &BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION, /* [42] */
-  &BswM_Action_BswM_Act_StopDemOpCycleState_POWER, /* [43] */
-  &BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY  /* [44] */
+  &BswM_Action_BswM_Act_StartInternalPDUs  /* [37] */
 };
 
 #define BSWM_STOP_SEC_CONST_UNSPECIFIED
@@ -380,7 +355,7 @@ STATIC CONST( BswMActionFuncPtrType , AUTOMATIC ) BswM_ActionTable[45] =
 /**
  * BswM_UInt8RteRequestPortTable
  */
-STATIC BswMUInt8RteModeRequestPortType BswM_UInt8RteRequestPortTable[5] = 
+STATIC BswMUInt8RteModeRequestPortType BswM_UInt8RteRequestPortTable[1] = 
 {
   { /* BswM_ModeReqPort_AppState */
     { /* base */
@@ -389,45 +364,13 @@ STATIC BswMUInt8RteModeRequestPortType BswM_UInt8RteRequestPortTable[5] =
       UINT8_C( 0 )  /* isDefined */
     },
     UINT8_C( 1 )  /* mode */
-  },
-  { /* BswM_ModeReqPort_DcmCommunicationControl */
-    { /* base */
-      UINT16_C( 2 ), /* id */
-      UINT8_C( 0 ), /* isImmediate */
-      UINT8_C( 0 )  /* isDefined */
-    },
-    UINT8_C( 8 )  /* mode */
-  },
-  { /* BswM_ModeReqPort_DcmDiagnosticSessionControl */
-    { /* base */
-      UINT16_C( 3 ), /* id */
-      UINT8_C( 0 ), /* isImmediate */
-      UINT8_C( 0 )  /* isDefined */
-    },
-    UINT8_C( 1 )  /* mode */
-  },
-  { /* BswM_ModeReqPort_DcmResponseOnEvent */
-    { /* base */
-      UINT16_C( 4 ), /* id */
-      UINT8_C( 0 ), /* isImmediate */
-      UINT8_C( 0 )  /* isDefined */
-    },
-    UINT8_C( 0 )  /* mode */
-  },
-  { /* BswM_ModeReqPort_Dcm_ResetModeRequest */
-    { /* base */
-      UINT16_C( 5 ), /* id */
-      UINT8_C( 0 ), /* isImmediate */
-      UINT8_C( 0 )  /* isDefined */
-    },
-    UINT8_C( 5 )  /* mode */
   }
 };
 
 /**
  * BswMComMIndicationPortTable
  */
-BswMModeRequestPortType BswMComMIndicationPortTable[1] = 
+BswMModeRequestPortType BswMComMIndicationPortTable[3] = 
 {
   { /* [0] */
     { /* base */
@@ -437,30 +380,23 @@ BswMModeRequestPortType BswMComMIndicationPortTable[1] =
     },
     0U, /* channel */
     UINT8_C( 0 )  /* mode */
-  }
-};
-
-/**
- * BswMComMPncRequestPortTable
- */
-BswMComMPncRequestPortType BswMComMPncRequestPortTable[2] = 
-{
-  { /* [0] */
-    { /* base */
-      UINT16_C( 7 ), /* id */
-      UINT8_C( 0 ), /* isImmediate */
-      UINT8_C( 0 )  /* isDefined */
-    },
-    UINT16_C( 16 ), /* channel */
-    UINT8_C( 0 )  /* mode */
   },
   { /* [1] */
     { /* base */
-      UINT16_C( 8 ), /* id */
+      UINT16_C( 3 ), /* id */
       UINT8_C( 0 ), /* isImmediate */
       UINT8_C( 0 )  /* isDefined */
     },
-    UINT16_C( 17 ), /* channel */
+    0U, /* channel */
+    UINT8_C( 0 )  /* mode */
+  },
+  { /* [2] */
+    { /* base */
+      UINT16_C( 4 ), /* id */
+      UINT8_C( 0 ), /* isImmediate */
+      UINT8_C( 0 )  /* isDefined */
+    },
+    0U, /* channel */
     UINT8_C( 0 )  /* mode */
   }
 };
@@ -472,7 +408,7 @@ BswMGenericRequestPortType BswMGenericRequestPortTable[1] =
 {
   { /* [0] */
     { /* base */
-      UINT16_C( 6 ), /* id */
+      UINT16_C( 2 ), /* id */
       UINT8_C( 0 ), /* isImmediate */
       UINT8_C( 0 )  /* isDefined */
     },
@@ -489,21 +425,15 @@ BswMGenericRequestPortType BswMGenericRequestPortTable[1] =
 /**
  * BswM_PtrModeRequestPortsTable
  */
-STATIC CONSTP2VAR( BswMModeRequestPortType, BSWM_CONST, BSWM_VAR ) BswM_PtrModeRequestPortsTable[15] = 
+STATIC CONSTP2VAR( BswMModeRequestPortType, BSWM_CONST, BSWM_VAR ) BswM_PtrModeRequestPortsTable[9] = 
 {
   NULL_PTR, /* BSWM_CAN_SM_INDICATION */
   &BswMComMIndicationPortTable[0], /* BSWM_COMM_INDICATION */
   NULL_PTR, /* BSWM_COMM_INITIATE_RESET */
   NULL_PTR, /* BSWM_COMM_PNC_REQUEST */
-  NULL_PTR, /* BSWM_DCM_APPLICATION_UPDATED_INDICATION */
-  NULL_PTR, /* BSWM_DCM_COM_MODE_CURRENT_STATE */
-  NULL_PTR, /* BSWM_DCM_COM_MODE_REQUEST */
-  NULL_PTR, /* BSWM_DCM_RESET_MODE_REQUEST */
-  NULL_PTR, /* BSWM_DCM_SESSION_MODE_REQUEST */
   NULL_PTR, /* BSWM_ECUM_INDICATION */
   NULL_PTR, /* BSWM_ECUM_WAKEUP_SOURCE */
   NULL_PTR, /* BSWM_GENERIC_REQUEST */
-  NULL_PTR, /* BSWM_NM_CAR_WAKEUP_INDICATION */
   NULL_PTR, /* BSWM_NVM_JOB_MODE_INDICATION */
   NULL_PTR  /* BSWM_NVM_REQUEST */
 };
@@ -525,10 +455,8 @@ STATIC BswM_LinkTimeContextType BswM_LinkTimeContext =
   &BswM_ExecuteAction, /* executeActionFuncPtr */
   &BswM_HandleStaticRequest, /* handleStaticRequestFuncPtr */
   &BswMGenericRequestPortTable[0], /* genericRequestPortsTablePtr */
-  &BswMComMPncRequestPortTable[0], /* comMPncRequestPortsTablePtr */
   UINT16_C( 1 ), /* numBswMGenericRequestPorts */
-  UINT16_C( 2 ), /* numBswMComMPncRequestPorts */
-  UINT16_C( 18 )  /* numBswMExpressions */
+  UINT16_C( 17 )  /* numBswMExpressions */
 };
 
 /**
@@ -588,8 +516,7 @@ BswM_PartitionContextType BswM_Context =
       UINT8_C( 0 ), /* [13] */
       UINT8_C( 0 ), /* [14] */
       UINT8_C( 0 ), /* [15] */
-      UINT8_C( 0 ), /* [16] */
-      UINT8_C( 0 )  /* [17] */
+      UINT8_C( 0 )  /* [16] */
     },
     UINT8_C( 0 ), /* IsInitialized */
     UINT8_C( 0 ), /* PduGroupSwitchTriggered */
@@ -631,7 +558,8 @@ STATIC FUNC(void, BSWM_CODE) BswM_InitRteModeRequestPorts(void)
 {
   {
     BswM_IndexType i;
-    for ( i = 0; i < 5U; i++)
+    /* Deviation TASKING-1 */
+    for ( i = 0; i < 1U; i++)
     {
       uint16 table_index = BswM_InitialValueMappings[BswM_UInt8RteRequestPortTable[i].base.id];
       if (table_index != BSWM_INVALID_INITIAL_VALUE_INDEX)
@@ -656,7 +584,7 @@ FUNC(void, BSWM_CODE) BswM_LT_Init(void)
 
   {
     BswM_IndexType i,j;
-    for (i = 0U; i < 15U; i++)
+    for (i = 0U; i < 9U; i++)
     {
       BswMModeRequestPortType* arrPtr = BswM_PtrModeRequestPortsTable[i];
       if ( arrPtr != NULL_PTR)
@@ -694,302 +622,10 @@ FUNC(void, BSWM_CODE) BswM_LT_Init(void)
       }
     }
   }
-  {
-    BswM_IndexType i;
-    for (i = 0U; i < BswM_NumModeRequestPortsTable[BSWM_COMM_PNC_REQUEST]; i++)
-    {
-      uint16 table_index = BswM_InitialValueMappings[BswMComMPncRequestPortTable[i].base.id];
-      if (table_index != BSWM_INVALID_INITIAL_VALUE_INDEX)
-      {
-        BswMComMPncRequestPortTable[i].mode = BSWM_GET_UINT8_INITIAL_VALUES_TABLE(BswM_Context.ID)[table_index];
-        BswMComMPncRequestPortTable[i].base.isDefined = TRUE;
-      }
-      else
-      {
-        BswMComMPncRequestPortTable[i].base.isDefined = FALSE;
-      }
-    }
-  }
 
   /* !LINKSTO SWS_BswM_00251,1 */
 
   DBG_BSWM_LT_INIT_EXIT();
-}
-
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_TX_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_TX_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_TX_NORM_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_ENABLE_RX_DISABLE_TX_NORM_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_ENABLE_TX_NORM_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM_NM(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[1], RTE_MODE_DcmCommunicationControl_DCM_DISABLE_RX_TX_NORM_NM, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[1].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Default(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[2], RTE_MODE_DcmDiagnosticSessionControl_Default, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[2].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Programming(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[2], RTE_MODE_DcmDiagnosticSessionControl_Programming, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[2].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmDiagnosticSessionControl_Extended(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[2], RTE_MODE_DcmDiagnosticSessionControl_Extended, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[2].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_STARTED(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[3], RTE_MODE_DcmResponseOnEvent_0_EVENT_STARTED, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[3].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_STOPPED(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[3], RTE_MODE_DcmResponseOnEvent_0_EVENT_STOPPED, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[3].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_DcmResponseOnEvent_EVENT_CLEARED(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[3], RTE_MODE_DcmResponseOnEvent_0_EVENT_CLEARED, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[3].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_NONE(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_NONE, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_HARD(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_HARD, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_KEYONOFF(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_KEYONOFF, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_SOFT(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_SOFT, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_JUMPTOBOOTLOADER(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_JUMPTOBOOTLOADER, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_JUMPTOSYSSUPPLIERBOOTLOADER(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_JUMPTOSYSSUPPLIERBOOTLOADER, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
-}
-FUNC(void, BSWM_CODE) BswM_MRPFunc_BswM_ModeReqPort_Dcm_ResetModeRequest_EXECUTE(void)
-{
-  if (TRUE == BswM_Context.RunTimeContext.IsInitialized)
-  {
-    BswM_HandleRequest(&BswM_Context, &BswM_UInt8RteRequestPortTable[4], RTE_MODE_DcmEcuReset_EXECUTE, BSWM_ARBITRATION_RTE_PORT_UINT8, BSWM_SID_INVALID, BswM_UInt8RteRequestPortTable[4].base.isImmediate);
-  }
-  else
-  {
-    /* No arbitration shall be performed if BswM is not initialized */
-  }
 }
 
 /*==================[internal function definitions]=========================*/
@@ -1019,14 +655,6 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_ComMSilentCom(
   ) ? BSWM_TRUE : BSWM_FALSE;
 }
 
-STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_Dcm_Reset(void)
-{
-  return
-  (
-    (BswM_UInt8RteRequestPortTable[4].mode == RTE_MODE_DcmEcuReset_EXECUTE)
-  ) ? BSWM_TRUE : BSWM_FALSE;
-}
-
 STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_GoOffOneA(void)
 {
   return
@@ -1047,8 +675,8 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_PncCanFDStart(
 {
   return
   (
-    (BswMComMPncRequestPortTable[1U].mode == PNC_FULL_COMMUNICATION) ||
-    (BswMComMPncRequestPortTable[1U].mode == PNC_READY_SLEEP)
+    (BswMComMIndicationPortTable[2U].mode == PNC_FULL_COMMUNICATION) ||
+    (BswMComMIndicationPortTable[2U].mode == PNC_READY_SLEEP)
   ) ? BSWM_TRUE : BSWM_FALSE;
 }
 
@@ -1056,7 +684,7 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_PncCanFDStop(v
 {
   return
   (
-    (BswMComMPncRequestPortTable[1U].mode == PNC_NO_COMMUNICATION)
+    (BswMComMIndicationPortTable[2U].mode == PNC_NO_COMMUNICATION)
   ) ? BSWM_TRUE : BSWM_FALSE;
 }
 
@@ -1064,8 +692,8 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_PncCanStart(vo
 {
   return
   (
-    (BswMComMPncRequestPortTable[0U].mode == PNC_FULL_COMMUNICATION) ||
-    (BswMComMPncRequestPortTable[0U].mode == PNC_READY_SLEEP)
+    (BswMComMIndicationPortTable[1U].mode == PNC_FULL_COMMUNICATION) ||
+    (BswMComMIndicationPortTable[1U].mode == PNC_READY_SLEEP)
   ) ? BSWM_TRUE : BSWM_FALSE;
 }
 
@@ -1073,7 +701,7 @@ STATIC FUNC(BswMResultType, BSWM_CODE) BswM_ExprResult_BswM_LogEx_PncCanStop(voi
 {
   return
   (
-    (BswMComMPncRequestPortTable[0U].mode == PNC_NO_COMMUNICATION)
+    (BswMComMIndicationPortTable[1U].mode == PNC_NO_COMMUNICATION)
   ) ? BSWM_TRUE : BSWM_FALSE;
 }
 
@@ -1174,14 +802,6 @@ STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_ComMSilentCom(void)
   ) ? TRUE : FALSE;
 }
 
-STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_Dcm_Reset(void)
-{
-  return
-  (
-    (TRUE == BswM_UInt8RteRequestPortTable[4].base.isDefined)
-  ) ? TRUE : FALSE;
-}
-
 STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_GoOffOneA(void)
 {
   return
@@ -1202,7 +822,7 @@ STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_PncCanFDStart(void)
 {
   return
   (
-    (TRUE == BswMComMPncRequestPortTable[1U].base.isDefined)
+    (TRUE == BswMComMIndicationPortTable[2U].base.isDefined)
   ) ? TRUE : FALSE;
 }
 
@@ -1210,7 +830,7 @@ STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_PncCanFDStop(void)
 {
   return
   (
-    (TRUE == BswMComMPncRequestPortTable[1U].base.isDefined)
+    (TRUE == BswMComMIndicationPortTable[2U].base.isDefined)
   ) ? TRUE : FALSE;
 }
 
@@ -1218,7 +838,7 @@ STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_PncCanStart(void)
 {
   return
   (
-    (TRUE == BswMComMPncRequestPortTable[0U].base.isDefined)
+    (TRUE == BswMComMIndicationPortTable[1U].base.isDefined)
   ) ? TRUE : FALSE;
 }
 
@@ -1226,7 +846,7 @@ STATIC FUNC(boolean, BSWM_CODE) BswM_ExprState_BswM_LogEx_PncCanStop(void)
 {
   return
   (
-    (TRUE == BswMComMPncRequestPortTable[0U].base.isDefined)
+    (TRUE == BswMComMIndicationPortTable[1U].base.isDefined)
   ) ? TRUE : FALSE;
 }
 
@@ -1608,67 +1228,11 @@ STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_Sleep(void)
   return result;
 }
 
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_POWER(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_POWER, DEM_CYCLE_STATE_START);
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_POWER_EXIT();
-  return E_OK;
-}
-
 STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartInternalPDUs(void)
 {
   DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_ENTRY();
   BswM_ExecutePduGroupSwitchAction(&BswM_Context, 7U);
   DBG_BSWM_ACTION_BSWM_ACT_STARTINTERNALPDUS_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_QualifyDemOpCycle_OBD_DCY(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_ENTRY();
-  (void)Dem_SetCycleQualified(DEM_OPCYC_OBD_DCY);
-  DBG_BSWM_ACTION_BSWM_ACT_QUALIFYDEMOPCYCLE_OBD_DCY_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_IGNITION(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_IGNITION, DEM_CYCLE_STATE_START);
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_IGNITION_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StartDemOpCycleState_OBD_DCY(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_OBD_DCY, DEM_CYCLE_STATE_START);
-  DBG_BSWM_ACTION_BSWM_ACT_STARTDEMOPCYCLESTATE_OBD_DCY_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_IGNITION(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_IGNITION, DEM_CYCLE_STATE_END);
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_IGNITION_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_POWER(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_POWER, DEM_CYCLE_STATE_END);
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_POWER_EXIT();
-  return E_OK;
-}
-
-STATIC FUNC(Std_ReturnType, BSWM_CODE) BswM_Action_BswM_Act_StopDemOpCycleState_OBD_DCY(void)
-{
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_ENTRY();
-  (void)Dem_SetOperationCycleState(DEM_OPCYC_OBD_DCY, DEM_CYCLE_STATE_END);
-  DBG_BSWM_ACTION_BSWM_ACT_STOPDEMOPCYCLESTATE_OBD_DCY_EXIT();
   return E_OK;
 }
 

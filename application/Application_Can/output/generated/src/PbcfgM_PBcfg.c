@@ -117,130 +117,123 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                 TS_MAKEREF2CFG( UInt16InitialValuesTable[0] ), /* UInt16InitialValuesTable */
                 TS_MAKENULLREF2CFG, /* UInt32InitialValuesTable */
                 UINT32_C( 2147485970 ), /* PlatformSignature */
-                UINT32_C( 740432317 ), /* LcfgSignature */
-                UINT32_C( 1717689180 ), /* CfgSignature */
+                UINT32_C( 3986728524 ), /* LcfgSignature */
+                UINT32_C( 1248659870 ), /* CfgSignature */
                 UINT32_C( 3613472969 ), /* PublicInfoSignature */
-                UINT16_C( 17 ), /* NumRules */
-                UINT16_C( 17 ), /* NumRulesDeferred */
+                UINT16_C( 16 ), /* NumRules */
+                UINT16_C( 16 ), /* NumRulesDeferred */
                 UINT16_C( 17 ) /* NumActionLists */
             }
         },
         { /* RuleTable */
             { /* RuleTable[0] -- BswM_EB_Rule_BswM_Rule_StartupTwoB */
-                UINT16_C( 16 ), /* ID */
-                UINT16_C( 17 ), /* LogicalExprIndex */
+                UINT16_C( 15 ), /* ID */
+                UINT16_C( 16 ), /* LogicalExprIndex */
                 UINT16_C( 16 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[1] -- BswM_EB_Rule_BswM_Rule_StartupTwoA */
-                UINT16_C( 15 ), /* ID */
-                UINT16_C( 16 ), /* LogicalExprIndex */
+                UINT16_C( 14 ), /* ID */
+                UINT16_C( 15 ), /* LogicalExprIndex */
                 UINT16_C( 15 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 2 ) /* RuleInitState */
             },
             { /* RuleTable[2] -- BswM_EB_Rule_BswM_Rule_RunTwo */
-                UINT16_C( 14 ), /* ID */
-                UINT16_C( 14 ), /* LogicalExprIndex */
+                UINT16_C( 13 ), /* ID */
+                UINT16_C( 13 ), /* LogicalExprIndex */
                 UINT16_C( 13 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[3] -- BswM_EB_Rule_BswM_Rule_PrpShutdown */
-                UINT16_C( 13 ), /* ID */
-                UINT16_C( 12 ), /* LogicalExprIndex */
+                UINT16_C( 12 ), /* ID */
+                UINT16_C( 11 ), /* LogicalExprIndex */
                 UINT16_C( 11 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[4] -- BswM_EB_Rule_BswM_Rule_PncCanStop */
-                UINT16_C( 12 ), /* ID */
-                UINT16_C( 9 ), /* LogicalExprIndex */
+                UINT16_C( 11 ), /* ID */
+                UINT16_C( 8 ), /* LogicalExprIndex */
                 UINT16_C( 5 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[5] -- BswM_EB_Rule_BswM_Rule_PncCanStart */
-                UINT16_C( 11 ), /* ID */
-                UINT16_C( 8 ), /* LogicalExprIndex */
+                UINT16_C( 10 ), /* ID */
+                UINT16_C( 7 ), /* LogicalExprIndex */
                 UINT16_C( 6 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[6] -- BswM_EB_Rule_BswM_Rule_PncCanFDStop */
-                UINT16_C( 10 ), /* ID */
-                UINT16_C( 7 ), /* LogicalExprIndex */
+                UINT16_C( 9 ), /* ID */
+                UINT16_C( 6 ), /* LogicalExprIndex */
                 UINT16_C( 7 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[7] -- BswM_EB_Rule_BswM_Rule_PncCanFDStart */
-                UINT16_C( 9 ), /* ID */
-                UINT16_C( 6 ), /* LogicalExprIndex */
+                UINT16_C( 8 ), /* ID */
+                UINT16_C( 5 ), /* LogicalExprIndex */
                 UINT16_C( 8 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[8] -- BswM_EB_Rule_BswM_Rule_GoOffOneB */
-                UINT16_C( 8 ), /* ID */
-                UINT16_C( 5 ), /* LogicalExprIndex */
+                UINT16_C( 7 ), /* ID */
+                UINT16_C( 4 ), /* LogicalExprIndex */
                 UINT16_C( 4 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
             { /* RuleTable[9] -- BswM_EB_Rule_BswM_Rule_GoOffOneA */
-                UINT16_C( 7 ), /* ID */
-                UINT16_C( 4 ), /* LogicalExprIndex */
+                UINT16_C( 6 ), /* ID */
+                UINT16_C( 3 ), /* LogicalExprIndex */
                 UINT16_C( 3 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[10] -- BswM_EB_Rule_BswM_Rule_Dcm_Reset */
-                UINT16_C( 6 ), /* ID */
-                UINT16_C( 3 ), /* LogicalExprIndex */
-                UINT16_C( 12 ), /* TrueActionListIndex */
-                UINT16_C( 65535 ), /* FalseActionListIndex */
-                UINT8_C( 0 ) /* RuleInitState */
-            },
-            { /* RuleTable[11] -- BswM_EB_Rule_BswM_Rule_ComM_SilentCom */
+            { /* RuleTable[10] -- BswM_EB_Rule_BswM_Rule_ComM_SilentCom */
                 UINT16_C( 5 ), /* ID */
                 UINT16_C( 1 ), /* LogicalExprIndex */
                 UINT16_C( 1 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[12] -- BswM_EB_Rule_BswM_Rule_ComM_NoCom */
+            { /* RuleTable[11] -- BswM_EB_Rule_BswM_Rule_ComM_NoCom */
                 UINT16_C( 4 ), /* ID */
                 UINT16_C( 1 ), /* LogicalExprIndex */
                 UINT16_C( 1 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[13] -- BswM_EB_Rule_BswM_Rule_ComM_FullCom */
+            { /* RuleTable[12] -- BswM_EB_Rule_BswM_Rule_ComM_FullCom */
                 UINT16_C( 3 ), /* ID */
                 UINT16_C( 0 ), /* LogicalExprIndex */
                 UINT16_C( 0 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[14] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
+            { /* RuleTable[13] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
                 UINT16_C( 2 ), /* ID */
-                UINT16_C( 15 ), /* LogicalExprIndex */
+                UINT16_C( 14 ), /* LogicalExprIndex */
                 UINT16_C( 14 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[15] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
+            { /* RuleTable[14] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
                 UINT16_C( 1 ), /* ID */
-                UINT16_C( 11 ), /* LogicalExprIndex */
+                UINT16_C( 10 ), /* LogicalExprIndex */
                 UINT16_C( 10 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
             },
-            { /* RuleTable[16] -- BswM_EB_Rule_BswMRule_PostRun */
+            { /* RuleTable[15] -- BswM_EB_Rule_BswMRule_PostRun */
                 UINT16_C( 0 ), /* ID */
-                UINT16_C( 10 ), /* LogicalExprIndex */
+                UINT16_C( 9 ), /* LogicalExprIndex */
                 UINT16_C( 9 ), /* TrueActionListIndex */
                 UINT16_C( 65535 ), /* FalseActionListIndex */
                 UINT8_C( 0 ) /* RuleInitState */
@@ -250,25 +243,24 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             UINT16_C( 3 ), /* RuleDependencyTable[0] -- BswM_EB_Rule_BswM_Rule_PrpShutdown */
             UINT16_C( 2 ), /* RuleDependencyTable[1] -- BswM_EB_Rule_BswM_Rule_RunTwo */
             UINT16_C( 0 ), /* RuleDependencyTable[2] -- BswM_EB_Rule_BswM_Rule_StartupTwoB */
-            UINT16_C( 15 ), /* RuleDependencyTable[3] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
-            UINT16_C( 14 ), /* RuleDependencyTable[4] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
-            UINT16_C( 13 ), /* RuleDependencyTable[5] -- BswM_EB_Rule_BswM_Rule_ComM_FullCom */
-            UINT16_C( 12 ), /* RuleDependencyTable[6] -- BswM_EB_Rule_BswM_Rule_ComM_NoCom */
-            UINT16_C( 11 ), /* RuleDependencyTable[7] -- BswM_EB_Rule_BswM_Rule_ComM_SilentCom */
-            UINT16_C( 10 ), /* RuleDependencyTable[8] -- BswM_EB_Rule_BswM_Rule_Dcm_Reset */
-            UINT16_C( 16 ), /* RuleDependencyTable[9] -- BswM_EB_Rule_BswMRule_PostRun */
-            UINT16_C( 15 ), /* RuleDependencyTable[10] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
-            UINT16_C( 14 ), /* RuleDependencyTable[11] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
-            UINT16_C( 9 ), /* RuleDependencyTable[12] -- BswM_EB_Rule_BswM_Rule_GoOffOneA */
-            UINT16_C( 8 ), /* RuleDependencyTable[13] -- BswM_EB_Rule_BswM_Rule_GoOffOneB */
-            UINT16_C( 3 ), /* RuleDependencyTable[14] -- BswM_EB_Rule_BswM_Rule_PrpShutdown */
-            UINT16_C( 2 ), /* RuleDependencyTable[15] -- BswM_EB_Rule_BswM_Rule_RunTwo */
-            UINT16_C( 1 ), /* RuleDependencyTable[16] -- BswM_EB_Rule_BswM_Rule_StartupTwoA */
-            UINT16_C( 0 ), /* RuleDependencyTable[17] -- BswM_EB_Rule_BswM_Rule_StartupTwoB */
-            UINT16_C( 5 ), /* RuleDependencyTable[18] -- BswM_EB_Rule_BswM_Rule_PncCanStart */
-            UINT16_C( 4 ), /* RuleDependencyTable[19] -- BswM_EB_Rule_BswM_Rule_PncCanStop */
-            UINT16_C( 7 ), /* RuleDependencyTable[20] -- BswM_EB_Rule_BswM_Rule_PncCanFDStart */
-            UINT16_C( 6 ) /* RuleDependencyTable[21] -- BswM_EB_Rule_BswM_Rule_PncCanFDStop */
+            UINT16_C( 14 ), /* RuleDependencyTable[3] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
+            UINT16_C( 13 ), /* RuleDependencyTable[4] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
+            UINT16_C( 12 ), /* RuleDependencyTable[5] -- BswM_EB_Rule_BswM_Rule_ComM_FullCom */
+            UINT16_C( 11 ), /* RuleDependencyTable[6] -- BswM_EB_Rule_BswM_Rule_ComM_NoCom */
+            UINT16_C( 10 ), /* RuleDependencyTable[7] -- BswM_EB_Rule_BswM_Rule_ComM_SilentCom */
+            UINT16_C( 15 ), /* RuleDependencyTable[8] -- BswM_EB_Rule_BswMRule_PostRun */
+            UINT16_C( 14 ), /* RuleDependencyTable[9] -- BswM_EB_Rule_BswMRule_PostRunToRunTwo */
+            UINT16_C( 13 ), /* RuleDependencyTable[10] -- BswM_EB_Rule_BswMRule_RunTwoToPostRun */
+            UINT16_C( 9 ), /* RuleDependencyTable[11] -- BswM_EB_Rule_BswM_Rule_GoOffOneA */
+            UINT16_C( 8 ), /* RuleDependencyTable[12] -- BswM_EB_Rule_BswM_Rule_GoOffOneB */
+            UINT16_C( 3 ), /* RuleDependencyTable[13] -- BswM_EB_Rule_BswM_Rule_PrpShutdown */
+            UINT16_C( 2 ), /* RuleDependencyTable[14] -- BswM_EB_Rule_BswM_Rule_RunTwo */
+            UINT16_C( 1 ), /* RuleDependencyTable[15] -- BswM_EB_Rule_BswM_Rule_StartupTwoA */
+            UINT16_C( 0 ), /* RuleDependencyTable[16] -- BswM_EB_Rule_BswM_Rule_StartupTwoB */
+            UINT16_C( 5 ), /* RuleDependencyTable[17] -- BswM_EB_Rule_BswM_Rule_PncCanStart */
+            UINT16_C( 4 ), /* RuleDependencyTable[18] -- BswM_EB_Rule_BswM_Rule_PncCanStop */
+            UINT16_C( 7 ), /* RuleDependencyTable[19] -- BswM_EB_Rule_BswM_Rule_PncCanFDStart */
+            UINT16_C( 6 ) /* RuleDependencyTable[20] -- BswM_EB_Rule_BswM_Rule_PncCanFDStop */
         },
         { /* RuleDependencyListRangeTable */
             { /* RuleDependencyListRangeTable[0] -- BswM_ModeReqPort_AppState */
@@ -279,33 +271,17 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                 UINT16_C( 3 ), /* Head */
                 UINT16_C( 8 ) /* Tail */
             },
-            { /* RuleDependencyListRangeTable[2] -- BswM_ModeReqPort_DcmCommunicationControl */
+            { /* RuleDependencyListRangeTable[2] -- BswM_ModeReqPort_EcuState */
                 UINT16_C( 8 ), /* Head */
-                UINT16_C( 8 ) /* Tail */
+                UINT16_C( 17 ) /* Tail */
             },
-            { /* RuleDependencyListRangeTable[3] -- BswM_ModeReqPort_DcmDiagnosticSessionControl */
-                UINT16_C( 8 ), /* Head */
-                UINT16_C( 8 ) /* Tail */
+            { /* RuleDependencyListRangeTable[3] -- BswM_ModeReqPort_PncCan */
+                UINT16_C( 17 ), /* Head */
+                UINT16_C( 19 ) /* Tail */
             },
-            { /* RuleDependencyListRangeTable[4] -- BswM_ModeReqPort_DcmResponseOnEvent */
-                UINT16_C( 8 ), /* Head */
-                UINT16_C( 8 ) /* Tail */
-            },
-            { /* RuleDependencyListRangeTable[5] -- BswM_ModeReqPort_Dcm_ResetModeRequest */
-                UINT16_C( 8 ), /* Head */
-                UINT16_C( 9 ) /* Tail */
-            },
-            { /* RuleDependencyListRangeTable[6] -- BswM_ModeReqPort_EcuState */
-                UINT16_C( 9 ), /* Head */
-                UINT16_C( 18 ) /* Tail */
-            },
-            { /* RuleDependencyListRangeTable[7] -- BswM_ModeReqPort_PncCan */
-                UINT16_C( 18 ), /* Head */
-                UINT16_C( 20 ) /* Tail */
-            },
-            { /* RuleDependencyListRangeTable[8] -- BswM_ModeReqPort_PncCanFD */
-                UINT16_C( 20 ), /* Head */
-                UINT16_C( 22 ) /* Tail */
+            { /* RuleDependencyListRangeTable[4] -- BswM_ModeReqPort_PncCanFD */
+                UINT16_C( 19 ), /* Head */
+                UINT16_C( 21 ) /* Tail */
             }
         },
         { /* ActionListTable */
@@ -389,42 +365,42 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             { /* ActionListTable[11] -- BswM_ActLst_PrpShutdown */
                 { /* ActionListItemSegment */
                     UINT16_C( 17 ), /* Head */
-                    UINT16_C( 24 ) /* Tail */
+                    UINT16_C( 21 ) /* Tail */
                 },
                 UINT8_C( 1 ) /* IsTriggered */
             },
             { /* ActionListTable[12] -- BswM_ActLst_Reset */
+                { /* ActionListItemSegment */
+                    UINT16_C( 21 ), /* Head */
+                    UINT16_C( 24 ) /* Tail */
+                },
+                UINT8_C( 1 ) /* IsTriggered */
+            },
+            { /* ActionListTable[13] -- BswM_ActLst_RunTwo */
                 { /* ActionListItemSegment */
                     UINT16_C( 24 ), /* Head */
                     UINT16_C( 27 ) /* Tail */
                 },
                 UINT8_C( 1 ) /* IsTriggered */
             },
-            { /* ActionListTable[13] -- BswM_ActLst_RunTwo */
-                { /* ActionListItemSegment */
-                    UINT16_C( 27 ), /* Head */
-                    UINT16_C( 30 ) /* Tail */
-                },
-                UINT8_C( 1 ) /* IsTriggered */
-            },
             { /* ActionListTable[14] -- BswM_ActLst_RunTwoToPostRun */
                 { /* ActionListItemSegment */
-                    UINT16_C( 30 ), /* Head */
-                    UINT16_C( 32 ) /* Tail */
+                    UINT16_C( 27 ), /* Head */
+                    UINT16_C( 29 ) /* Tail */
                 },
                 UINT8_C( 1 ) /* IsTriggered */
             },
             { /* ActionListTable[15] -- BswM_ActLst_StartupTwoA */
                 { /* ActionListItemSegment */
-                    UINT16_C( 32 ), /* Head */
-                    UINT16_C( 38 ) /* Tail */
+                    UINT16_C( 29 ), /* Head */
+                    UINT16_C( 35 ) /* Tail */
                 },
                 UINT8_C( 1 ) /* IsTriggered */
             },
             { /* ActionListTable[16] -- BswM_ActLst_StartupTwoB */
                 { /* ActionListItemSegment */
-                    UINT16_C( 38 ), /* Head */
-                    UINT16_C( 48 ) /* Tail */
+                    UINT16_C( 35 ), /* Head */
+                    UINT16_C( 41 ) /* Tail */
                 },
                 UINT8_C( 1 ) /* IsTriggered */
             }
@@ -545,175 +521,133 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                 UINT8_C( 0 ) /* ActionType */
             },
             { /* ActionListItemTable[19] */
-                UINT16_C( 43 ), /* ArtifactIndex -- BswM_Act_StopDemOpCycleState_POWER */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[20] */
-                UINT16_C( 42 ), /* ArtifactIndex -- BswM_Act_StopDemOpCycleState_IGNITION */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[21] */
-                UINT16_C( 44 ), /* ArtifactIndex -- BswM_Act_StopDemOpCycleState_OBD_DCY */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[22] */
                 UINT16_C( 1 ), /* ArtifactIndex -- BswM_Act_DemDeinit */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[23] */
+            { /* ActionListItemTable[20] */
                 UINT16_C( 20 ), /* ArtifactIndex -- BswM_Act_ReqGoOffOneA */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[24] */
+            { /* ActionListItemTable[21] */
                 UINT16_C( 25 ), /* ArtifactIndex -- BswM_Act_Reset */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[25] */
+            { /* ActionListItemTable[22] */
                 UINT16_C( 22 ), /* ArtifactIndex -- BswM_Act_ReqPrpShutDown */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[26] */
+            { /* ActionListItemTable[23] */
                 UINT16_C( 27 ), /* ArtifactIndex -- BswM_Act_RteModeReq_AppInactive */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[27] */
+            { /* ActionListItemTable[24] */
                 UINT16_C( 11 ), /* ArtifactIndex -- BswM_Act_HookOnRunTwo */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[28] */
+            { /* ActionListItemTable[25] */
                 UINT16_C( 35 ), /* ArtifactIndex -- BswM_Act_RunTwo */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[29] */
+            { /* ActionListItemTable[26] */
                 UINT16_C( 33 ), /* ArtifactIndex -- BswM_Act_RteSwitch_Run */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[30] */
+            { /* ActionListItemTable[27] */
                 UINT16_C( 36 ), /* ArtifactIndex -- BswM_Act_Sleep */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[31] */
+            { /* ActionListItemTable[28] */
                 UINT16_C( 21 ), /* ArtifactIndex -- BswM_Act_ReqPostRun */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[32] */
+            { /* ActionListItemTable[29] */
                 UINT16_C( 12 ), /* ArtifactIndex -- BswM_Act_HookOnStartupTwoA */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[33] */
+            { /* ActionListItemTable[30] */
                 UINT16_C( 15 ), /* ArtifactIndex -- BswM_Act_NvMReadAll */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[34] */
+            { /* ActionListItemTable[31] */
                 UINT16_C( 29 ), /* ArtifactIndex -- BswM_Act_RteStart */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[35] */
+            { /* ActionListItemTable[32] */
                 UINT16_C( 34 ), /* ArtifactIndex -- BswM_Act_RteSwitch_Startup */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[36] */
+            { /* ActionListItemTable[33] */
                 UINT16_C( 24 ), /* ArtifactIndex -- BswM_Act_ReqStartupTwoB */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[37] */
+            { /* ActionListItemTable[34] */
                 UINT16_C( 28 ), /* ArtifactIndex -- BswM_Act_RteModeReq_AppStartup */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[38] */
+            { /* ActionListItemTable[35] */
                 UINT16_C( 13 ), /* ArtifactIndex -- BswM_Act_HookOnStartupTwoB */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[39] */
+            { /* ActionListItemTable[36] */
                 UINT16_C( 14 ), /* ArtifactIndex -- BswM_Act_InitDriverInitThree */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[40] */
-                UINT16_C( 38 ), /* ArtifactIndex -- BswM_Act_StartInternalPDUs */
+            { /* ActionListItemTable[37] */
+                UINT16_C( 37 ), /* ArtifactIndex -- BswM_Act_StartInternalPDUs */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 1 ) /* ActionType */
             },
-            { /* ActionListItemTable[41] */
+            { /* ActionListItemTable[38] */
                 UINT16_C( 0 ), /* ArtifactIndex -- BswM_Act_AllowCom */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[42] */
-                UINT16_C( 37 ), /* ArtifactIndex -- BswM_Act_StartDemOpCycleState_POWER */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[43] */
-                UINT16_C( 40 ), /* ArtifactIndex -- BswM_Act_StartDemOpCycleState_IGNITION */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[44] */
-                UINT16_C( 41 ), /* ArtifactIndex -- BswM_Act_StartDemOpCycleState_OBD_DCY */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[45] */
+            { /* ActionListItemTable[39] */
                 UINT16_C( 26 ), /* ArtifactIndex -- BswM_Act_RteModeReq_AppActive */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
             },
-            { /* ActionListItemTable[46] */
+            { /* ActionListItemTable[40] */
                 UINT16_C( 23 ), /* ArtifactIndex -- BswM_Act_ReqRunTwo */
-                UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
-                UINT8_C( 0 ), /* IsAbortOnFail */
-                UINT8_C( 0 ) /* ActionType */
-            },
-            { /* ActionListItemTable[47] */
-                UINT16_C( 39 ), /* ArtifactIndex -- BswM_Act_QualifyDemOpCycle_OBD_DCY */
                 UINT8_C( 0 ), /* ActionListItemType -- BSWM_ACTION */
                 UINT8_C( 0 ), /* IsAbortOnFail */
                 UINT8_C( 0 ) /* ActionType */
@@ -728,7 +662,7 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                     UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
-                    UINT8_C( 175 ), /* DisableMask[0] */
+                    UINT8_C( 250 ), /* DisableMask[0] */
                     UINT8_C( 255 ), /* DisableMask[1] */
                     UINT8_C( 255 ), /* DisableMask[2] */
                     UINT8_C( 255 ) /* DisableMask[3] */
@@ -737,13 +671,13 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             },
             { /* PduGroupSwitchActionTable[1] */
                 { /* EnableMask */
-                    UINT8_C( 16 ), /* EnableMask[0] */
+                    UINT8_C( 1 ), /* EnableMask[0] */
                     UINT8_C( 0 ), /* EnableMask[1] */
                     UINT8_C( 0 ), /* EnableMask[2] */
                     UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
-                    UINT8_C( 191 ), /* DisableMask[0] */
+                    UINT8_C( 251 ), /* DisableMask[0] */
                     UINT8_C( 255 ), /* DisableMask[1] */
                     UINT8_C( 255 ), /* DisableMask[2] */
                     UINT8_C( 255 ) /* DisableMask[3] */
@@ -752,7 +686,7 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             },
             { /* PduGroupSwitchActionTable[2] */
                 { /* EnableMask */
-                    UINT8_C( 80 ), /* EnableMask[0] */
+                    UINT8_C( 5 ), /* EnableMask[0] */
                     UINT8_C( 0 ), /* EnableMask[1] */
                     UINT8_C( 0 ), /* EnableMask[2] */
                     UINT8_C( 0 ) /* EnableMask[3] */
@@ -773,19 +707,19 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                     UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
-                    UINT8_C( 253 ), /* DisableMask[0] */
+                    UINT8_C( 245 ), /* DisableMask[0] */
                     UINT8_C( 255 ), /* DisableMask[1] */
                     UINT8_C( 255 ), /* DisableMask[2] */
-                    UINT8_C( 127 ) /* DisableMask[3] */
+                    UINT8_C( 255 ) /* DisableMask[3] */
                 },
                 UINT8_C( 0 ) /* RequestInit */
             },
             { /* PduGroupSwitchActionTable[4] */
                 { /* EnableMask */
-                    UINT8_C( 2 ), /* EnableMask[0] */
+                    UINT8_C( 10 ), /* EnableMask[0] */
                     UINT8_C( 0 ), /* EnableMask[1] */
                     UINT8_C( 0 ), /* EnableMask[2] */
-                    UINT8_C( 128 ) /* EnableMask[3] */
+                    UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
                     UINT8_C( 255 ), /* DisableMask[0] */
@@ -803,19 +737,19 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
                     UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
-                    UINT8_C( 254 ), /* DisableMask[0] */
+                    UINT8_C( 245 ), /* DisableMask[0] */
                     UINT8_C( 255 ), /* DisableMask[1] */
                     UINT8_C( 255 ), /* DisableMask[2] */
-                    UINT8_C( 191 ) /* DisableMask[3] */
+                    UINT8_C( 255 ) /* DisableMask[3] */
                 },
                 UINT8_C( 0 ) /* RequestInit */
             },
             { /* PduGroupSwitchActionTable[6] */
                 { /* EnableMask */
-                    UINT8_C( 1 ), /* EnableMask[0] */
+                    UINT8_C( 10 ), /* EnableMask[0] */
                     UINT8_C( 0 ), /* EnableMask[1] */
                     UINT8_C( 0 ), /* EnableMask[2] */
-                    UINT8_C( 64 ) /* EnableMask[3] */
+                    UINT8_C( 0 ) /* EnableMask[3] */
                 },
                 { /* DisableMask */
                     UINT8_C( 255 ), /* DisableMask[0] */
@@ -827,7 +761,7 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             },
             { /* PduGroupSwitchActionTable[7] */
                 { /* EnableMask */
-                    UINT8_C( 4 ), /* EnableMask[0] */
+                    UINT8_C( 2 ), /* EnableMask[0] */
                     UINT8_C( 0 ), /* EnableMask[1] */
                     UINT8_C( 0 ), /* EnableMask[2] */
                     UINT8_C( 0 ) /* EnableMask[3] */
@@ -845,11 +779,7 @@ PbcfgM_ConstConfigLayoutType PbcfgM_Config = {
             UINT16_C( 0 ) /* UInt16InitialValuesTable[0] -- Initial value of Port BswM_ModeReqPort_EcuState */
         },
         { /* UInt8InitialValuesTable */
-            UINT8_C( 1 ), /* UInt8InitialValuesTable[0] -- Initial value of Port BswM_ModeReqPort_AppState */
-            UINT8_C( 8 ), /* UInt8InitialValuesTable[1] -- Initial value of Port BswM_ModeReqPort_DcmCommunicationControl */
-            UINT8_C( 1 ), /* UInt8InitialValuesTable[2] -- Initial value of Port BswM_ModeReqPort_DcmDiagnosticSessionControl */
-            UINT8_C( 0 ), /* UInt8InitialValuesTable[3] -- Initial value of Port BswM_ModeReqPort_DcmResponseOnEvent */
-            UINT8_C( 5 ) /* UInt8InitialValuesTable[4] -- Initial value of Port BswM_ModeReqPort_Dcm_ResetModeRequest */
+            UINT8_C( 1 ) /* UInt8InitialValuesTable[0] -- Initial value of Port BswM_ModeReqPort_AppState */
         }
     }
 };

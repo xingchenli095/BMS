@@ -199,27 +199,6 @@ FUNC(void, COMM_CODE) ComM_MainFunction_0
 #include <ComM_MemMap.h>
 
 
-#define COMM_START_SEC_CODE
-#include <ComM_MemMap.h>
-/* !LINKSTO ComM975,1, ComM986,1, ComM971,1 */
-FUNC(void, COMM_CODE) ComM_COMCbk_SGCanNmPnEiraRxNSdu(void)
-{
-  /* There is one bit indicating the status of each unique Com signal.
-   * For easy mapping, the bits are assigned in the ascending order of
-   * the signal handle ids.
-   */
-  ComM_Enter_SCHM_COMM_EXCLUSIVE_AREA_0();
-  ComM_RxEiraSignalStatus = TRUE;
-  ComM_Exit_SCHM_COMM_EXCLUSIVE_AREA_0();
-}
-#define COMM_STOP_SEC_CODE
-#include <ComM_MemMap.h>
-
-
-
-
-
-
  
 
 /*==================[internal function definitions]=========================*/
